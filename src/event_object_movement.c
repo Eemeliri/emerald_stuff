@@ -3,6 +3,7 @@
 #include "battle_pyramid.h"
 #include "berry.h"
 #include "data.h"
+#include "day_night.h"
 #include "decoration.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -2212,7 +2213,7 @@ void PatchObjectPalette(u16 paletteTag, u8 paletteSlot)
 {
     u8 paletteIndex = FindObjectEventPaletteIndexByTag(paletteTag);
 
-    LoadPalette(sObjectEventSpritePalettes[paletteIndex].data, 16 * paletteSlot + 0x100, 0x20);
+    LoadPaletteDayNight(sObjectEventSpritePalettes[paletteIndex].data, 16 * paletteSlot + 0x100, 0x20);
 }
 
 void PatchObjectPaletteRange(const u16 *paletteTags, u8 minSlot, u8 maxSlot)
