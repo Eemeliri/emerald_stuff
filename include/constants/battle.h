@@ -365,31 +365,28 @@
 #define MOVE_EFFECT_CERTAIN             0x8000
 
 // Battle terrain defines for gBattleTerrain.
-#define BATTLE_TERRAIN_GRASS            0
-#define BATTLE_TERRAIN_LONG_GRASS       1
-#define BATTLE_TERRAIN_SAND             2
-#define BATTLE_TERRAIN_UNDERWATER       3
-#define BATTLE_TERRAIN_WATER            4
-#define BATTLE_TERRAIN_POND             5
-#define BATTLE_TERRAIN_MOUNTAIN         6
-#define BATTLE_TERRAIN_CAVE             7
-#define BATTLE_TERRAIN_BUILDING         8
-#define BATTLE_TERRAIN_PLAIN            9
-// New battle terrains are used for Secret Power but not fully implemented.
-#define BATTLE_TERRAIN_SOARING          10
-#define BATTLE_TERRAIN_SKY_PILLAR       11
-#define BATTLE_TERRAIN_BURIAL_GROUND    12
-#define BATTLE_TERRAIN_PUDDLE           13
-#define BATTLE_TERRAIN_MARSH            14
-#define BATTLE_TERRAIN_SWAMP            15
-#define BATTLE_TERRAIN_SNOW             16
-#define BATTLE_TERRAIN_ICE              17
-#define BATTLE_TERRAIN_VOLCANO          18
-#define BATTLE_TERRAIN_DISTORTION_WORLD 19
-#define BATTLE_TERRAIN_SPACE            20
-#define BATTLE_TERRAIN_ULTRA_SPACE      21
-
-#define BATTLE_TERRAIN_COUNT            22
+#define BATTLE_TERRAIN_GRASS        0
+#define BATTLE_TERRAIN_LONG_GRASS   1
+#define BATTLE_TERRAIN_SAND         2
+#define BATTLE_TERRAIN_UNDERWATER   3
+#define BATTLE_TERRAIN_WATER        4
+#define BATTLE_TERRAIN_POND         5
+#define BATTLE_TERRAIN_MOUNTAIN     6
+#define BATTLE_TERRAIN_CAVE         7
+#define BATTLE_TERRAIN_BUILDING     8
+#define BATTLE_TERRAIN_PLAIN        9
+#define BATTLE_TERRAIN_LINK         10
+#define BATTLE_TERRAIN_GYM          11
+#define BATTLE_TERRAIN_LEADER       12
+#define BATTLE_TERRAIN_MAGMA        13
+#define BATTLE_TERRAIN_AQUA         14
+#define BATTLE_TERRAIN_SIDNEY       15
+#define BATTLE_TERRAIN_PHOEBE       16
+#define BATTLE_TERRAIN_GLACIA       17
+#define BATTLE_TERRAIN_DRAKE        18
+#define BATTLE_TERRAIN_CHAMPION     19
+#define BATTLE_TERRAIN_RAYQUAZA     20
+#define BATTLE_TERRAIN_FRONTIER     21
 
 #define B_WAIT_TIME_LONG  64
 #define B_WAIT_TIME_MED   48
@@ -414,7 +411,7 @@
 // Window Ids for gStandardBattleWindowTemplates / gBattleArenaWindowTemplates
 #define B_WIN_MSG                 0
 #define B_WIN_ACTION_PROMPT       1 // "What will {x} do?"
-#define B_WIN_ACTION_MENU         2 // "Fight/Pokémon/Bag/Run" menu
+#define B_WIN_ACTION_MENU         2 // "Fight/Pok�mon/Bag/Run" menu
 #define B_WIN_MOVE_NAME_1         3 // Top left
 #define B_WIN_MOVE_NAME_2         4 // Top right
 #define B_WIN_MOVE_NAME_3         5 // Bottom left
