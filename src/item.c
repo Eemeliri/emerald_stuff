@@ -985,3 +985,8 @@ bool32 IsPinchBerryItemEffect(u16 holdEffect)
 
     return FALSE;
 }
+
+void ItemId_GetHoldEffectParam_Script()
+{
+    VarSet(VAR_RESULT, ItemId_GetHoldEffectParam(VarGet(VAR_0x8004)));
+}
