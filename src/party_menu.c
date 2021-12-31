@@ -4322,7 +4322,7 @@ static bool8 ExecuteTableBasedItemEffect_(u8 partyMonIndex, u16 item, u8 monMove
 void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
 {
     u16 hp = 0;
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
     u16 item = gSpecialVar_ItemId;
     bool8 canHeal, cannotUse;
 
@@ -4348,7 +4348,11 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        else
+            gTasks[taskId].func = task;
+        return;
     }
     else
     {
@@ -4380,7 +4384,10 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             GetMedicineItemEffectMessage(item);
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = task;
+            if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+                gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            else
+                gTasks[taskId].func = task;
         }
     }
 }
@@ -4492,7 +4499,10 @@ static void Task_DisplayHPRestoredMessage(u8 taskId)
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);
     HandleBattleLowHpMusicChange();
-    gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    else
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 }
 
 static void Task_ClosePartyMenuAfterText(u8 taskId)
