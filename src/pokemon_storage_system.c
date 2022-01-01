@@ -51,9 +51,9 @@
 
 // PC main menu options
 enum {
+    OPTION_MOVE_MONS, 
     OPTION_WITHDRAW,
     OPTION_DEPOSIT,
-    OPTION_MOVE_MONS,
     OPTION_MOVE_ITEMS,
     OPTION_EXIT,
     OPTIONS_COUNT
@@ -875,9 +875,9 @@ struct {
     const u8 *desc;
 } static const sMainMenuTexts[OPTIONS_COUNT] =
 {
+    [OPTION_MOVE_MONS] = {gText_MovePokemon,     gText_MoveMonDescription},
     [OPTION_WITHDRAW]   = {gText_WithdrawPokemon, gText_WithdrawMonDescription},
     [OPTION_DEPOSIT]    = {gText_DepositPokemon,  gText_DepositMonDescription},
-    [OPTION_MOVE_MONS]  = {gText_MovePokemon,     gText_MoveMonDescription},
     [OPTION_MOVE_ITEMS] = {gText_MoveItems,       gText_MoveItemsDescription},
     [OPTION_EXIT]       = {gText_SeeYa,           gText_SeeYaDescription}
 };
