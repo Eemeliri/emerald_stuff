@@ -230,7 +230,8 @@
 // Other
 #define B_DOUBLE_WILD_CHANCE        0     // % chance of encountering two Pokémon in a Wild Encounter.
 #define INHERIT_BALL				GEN_6 // Starting from gen6, pokemon could inherit pokeballs from their parents
-#define INHERIT_IVS 				GEN_6 // Starting from gen6, pokemon could inherit pokeballs from their parents
+#define INHERIT_IVS 				GEN_6 // Starting from gen6, pokemon could inherit 5 IVs from their parents using Destiny Knot
+#define INHERIT_NATURE 				GEN_6 // Starting from gen6, pokemon could inherit their parent's nature regardless of gender using everstone
 
 // Animation Settings
 #define B_NEW_SWORD_PARTICLE            FALSE    // If set to TRUE, it updates Swords Dance's particle.
