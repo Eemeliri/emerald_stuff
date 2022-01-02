@@ -541,7 +541,7 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
     u8 i;
-    u8 iv_count;
+    u8 iv_count = 3;
     u8 selectedIvs[5];
     u8 availableIVs[NUM_STATS];
     u8 whichParents[5];
@@ -553,13 +553,12 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
         availableIVs[i] = i;
     }
 
+#if INHERIT_IVS >= GEN_6
     //If either parent has the destiny knot inherit 5 IVs
     if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM) == ITEM_DESTINY_KNOT || GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM) == ITEM_DESTINY_KNOT) {
         iv_count = 5;
     }
-    else {
-        iv_count = 3;
-    }
+#endif
 
     // Select the 3 IVs that will be inherited.
     for (i = 0; i < iv_count; i++)
