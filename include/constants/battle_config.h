@@ -227,11 +227,13 @@
 #define B_LAST_USED_BALL            TRUE     // If TRUE, the "last used ball" feature from Gen 7 will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON // If last used ball is implemented, this button (or button combo) will trigger throwing the last used ball.
 
-// Other
-#define B_DOUBLE_WILD_CHANCE        0     // % chance of encountering two Pokémon in a Wild Encounter.
+// Daycare settings
 #define INHERIT_BALL				GEN_6 // Starting from gen6, pokemon could inherit pokeballs from their parents
 #define INHERIT_IVS 				GEN_6 // Starting from gen6, pokemon could inherit 5 IVs from their parents using Destiny Knot
 #define INHERIT_NATURE 				GEN_6 // Starting from gen6, pokemon could inherit their parent's nature regardless of gender using everstone
+
+// Other
+#define B_DOUBLE_WILD_CHANCE        0     // % chance of encountering two Pokémon in a Wild Encounter.
 
 // Animation Settings
 #define B_NEW_SWORD_PARTICLE            FALSE    // If set to TRUE, it updates Swords Dance's particle.
