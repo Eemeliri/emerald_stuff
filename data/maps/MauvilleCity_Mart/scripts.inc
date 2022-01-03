@@ -11,20 +11,29 @@ MauvilleCity_Mart_EventScript_Clerk::
 	release
 	end
 
+MauvilleCity_Mart_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart MauvilleCity_Mart_Pokemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
 	.align 2
 MauvilleCity_Mart_Pokemart:
-	.2byte ITEM_POKE_BALL
-	.2byte ITEM_GREAT_BALL
-	.2byte ITEM_SUPER_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFENSE
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_DIRE_HIT
-	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_TM09_VENOSHOCK
+	.2byte ITEM_TM40_AERIAL_ACE
+	.2byte ITEM_TM42_FACADE
+	.2byte ITEM_TM47_LOW_SWEEP
+	.2byte ITEM_TM48_ROUND
+	.2byte ITEM_TM57_CHARGE_BEAM
+	.2byte ITEM_TM78_BULLDOZE
+	.2byte ITEM_TM82_DRAGON_TAIL
+	.2byte ITEM_TM89_U_TURN
+	.2byte ITEM_TM96_NATURE_POWER
+	.2byte ITEM_TM98_POWER_UP_PUNCH
 	.2byte ITEM_NONE
 	release
 	end
