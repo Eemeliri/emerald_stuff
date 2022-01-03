@@ -561,7 +561,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon* mon)
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_NICKNAME, gSpeciesNames[gEvolutionTable[preEvoSpecies][1].targetSpecies]);
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_HELD_ITEM, &data);
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_MARKINGS, &data);
-        SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_ENCRYPT_SEPARATOR, &data);
+        SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_YEAR_MET, &data);
         
         #if P_SHEDINJA_BALL >= GEN_4
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_POKEBALL, &ball);

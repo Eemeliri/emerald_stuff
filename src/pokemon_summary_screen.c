@@ -165,6 +165,9 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 sanity; // 0x35
         u8 OTName[17]; // 0x36
         u32 OTID; // 0x48
+        u8 dayMet;
+        u8 monthMet;
+        u8 yearMet;
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
     u8 mode;
@@ -263,6 +266,7 @@ static void BufferMonTrainerMemo(void);
 static void PrintMonTrainerMemo(void);
 static void BufferNatureString(void);
 static void GetMetLevelString(u8 *a);
+static void GetDateMetString(u8* a, u8* b);
 static bool8 DoesMonOTMatchOwner(void);
 static bool8 DidMonComeFromGBAGames(void);
 static bool8 IsInGamePartnerMon(void);
@@ -1531,6 +1535,9 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->metLevel = GetMonData(mon, MON_DATA_MET_LEVEL);
         sum->metGame = GetMonData(mon, MON_DATA_MET_GAME);
         sum->friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+        sum->dayMet = GetMonData(mon, MON_DATA_DAY_MET);
+        sum->monthMet = GetMonData(mon, MON_DATA_MONTH_MET);
+        sum->yearMet = GetMonData(mon, MON_DATA_YEAR_MET);
         break;
     default:
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
@@ -3294,6 +3301,8 @@ static void BufferMonTrainerMemo(void)
     {
         u8 *metLevelString = Alloc(32);
         u8 *metLocationString = Alloc(32);
+        u8* metDateString = Alloc(32);
+        u8* metDateString2 = Alloc(32);
         GetMetLevelString(metLevelString);
 
         if (sum->metLocation < MAPSEC_NONE)
@@ -3325,6 +3334,8 @@ static void BufferMonTrainerMemo(void)
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, text);
         Free(metLevelString);
         Free(metLocationString);
+        Free(metDateString);
+        Free(metDateString2);
     }
 }
 
@@ -3337,7 +3348,7 @@ static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[sumStruct->summary.nature]);
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
+    //DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
 static void GetMetLevelString(u8 *output)
@@ -3347,6 +3358,34 @@ static void GetMetLevelString(u8 *output)
         level = EGG_HATCH_LEVEL;
     ConvertIntToDecimalStringN(output, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, output);
+}
+
+static void GetDateMetString(u8* output, u8* output2)
+{
+    u8 data[2];
+    static const u8* const monthNames[12] = {
+        gText_Month_January,
+        gText_Month_February,
+        gText_Month_March,
+        gText_Month_April,
+        gText_Month_May,
+        gText_Month_June,
+        gText_Month_July,
+        gText_Month_August,
+        gText_Month_September,
+        gText_Month_October,
+        gText_Month_November,
+        gText_Month_December,
+    };
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, monthNames[sMonSummaryScreen->summary.monthMet - 1]);
+
+    data[0] = sMonSummaryScreen->summary.dayMet;
+    ConvertIntToDecimalStringN(output, data[0], STR_CONV_MODE_LEFT_ALIGN, 6);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(6, output);
+
+    data[1] = sMonSummaryScreen->summary.yearMet;
+    ConvertIntToDecimalStringN(output2, data[1], STR_CONV_MODE_LEFT_ALIGN, 7);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(7, output2);
 }
 
 static bool8 DoesMonOTMatchOwner(void)

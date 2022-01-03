@@ -113,7 +113,9 @@ struct BoxPokemon
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u16 unknown;
+    u16 dayMet:5;
+    u16 monthMet:4;
+    u16 yearMet:7;
 
     union
     {
