@@ -7103,15 +7103,25 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm)
     {
         return 0;
     }
-    else if (tm < 32)
+    else if (tm < 31)
     {
         u32 mask = 1 << tm;
         return gTMHMLearnsets[species][0] & mask;
     }
+    else if (tm < 62)
+    {
+        u32 mask = 1 << (tm - 31);
+        return gTMHMLearnsets[species][1] & mask;
+    }
+    else if (tm < 9493
+    {
+        u32 mask = 1 << (tm - 62);
+        return gTMHMLearnsets[species][2] & mask;
+    }
     else
     {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
+        u32 mask = 1 << (tm - 93);
+        return gTMHMLearnsets[species][3] & mask;
     }
 }
 
@@ -7121,15 +7131,25 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     {
         return 0;
     }
-    else if (tm < 32)
+    else if (tm < 31)
     {
         u32 mask = 1 << tm;
         return gTMHMLearnsets[species][0] & mask;
     }
+    else if (tm < 62)
+    {
+        u32 mask = 1 << (tm - 31);
+        return gTMHMLearnsets[species][1] & mask;
+    }
+    else if (tm < 93)
+    {
+        u32 mask = 1 << (tm - 62);
+        return gTMHMLearnsets[species][2] & mask;
+    }
     else
     {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
+        u32 mask = 1 << (tm - 93);
+        return gTMHMLearnsets[species][3] & mask;
     }
 }
 
