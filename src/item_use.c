@@ -32,6 +32,7 @@
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "script.h"
+#include "soar.h"
 #include "sound.h"
 #include "strings.h"
 #include "string_util.h"
@@ -1189,6 +1190,20 @@ void ItemUseOutOfBattle_FormChange_ConsumedOnUse(u8 taskId)
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+}
+
+void ItemUseOutOfBattle_EonFlute(u8 taskId)
+{
+    s16* data = gTasks[taskId].data;
+
+    if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_EonFlute;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, data[3]);
+    }
 }
 
 #undef tUsingRegisteredKeyItem

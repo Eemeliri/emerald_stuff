@@ -89,7 +89,7 @@ static u16 GetMapSecIdAt(u16 x, u16 y);
 static void RegionMap_SetBG2XAndBG2Y(s16 x, s16 y);
 static void InitMapBasedOnPlayerLocation(void);
 static void RegionMap_InitializeStateBasedOnSSTidalLocation(void);
-static u8 GetMapsecType(u16 mapSecId);
+//static u8 GetMapsecType(u16 mapSecId);
 static u16 CorrectSpecialMapSecId_Internal(u16 mapSecId);
 static u16 GetTerraOrMarineCaveMapSecId(void);
 static void GetMarineCaveCoords(u16 *x, u16 *y);
@@ -120,9 +120,9 @@ static void CB_ExitFlyMap(void);
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map/cursor.gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.lz");
 static const u32 sRegionMapCursorLargeGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_large.4bpp.lz");
-static const u16 sRegionMapBg_Pal[] = INCBIN_U16("graphics/pokenav/region_map.gbapal");
-static const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map.8bpp.lz");
-static const u32 sRegionMapBg_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map_map.bin.lz");
+const u16 sRegionMapBg_Pal[] = INCBIN_U16("graphics/pokenav/region_map.gbapal");
+const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map.8bpp.lz");
+const u32 sRegionMapBg_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map_map.bin.lz");
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/region_map/may_icon.gbapal");
@@ -287,7 +287,7 @@ static const u32 sRegionMapFrameTilemapLZ[] = INCBIN_U32("graphics/pokenav/regio
 static const u16 sFlyTargetIcons_Pal[] = INCBIN_U16("graphics/pokenav/region_map/fly_target_icons.gbapal");
 static const u32 sFlyTargetIcons_Gfx[] = INCBIN_U32("graphics/pokenav/region_map/fly_target_icons.4bpp.lz");
 
-static const u8 sMapHealLocations[][3] =
+const u8 sMapHealLocations[][3] =
 {
     [MAPSEC_LITTLEROOT_TOWN] = {MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
     [MAPSEC_OLDALE_TOWN] = {MAP_GROUP(OLDALE_TOWN), MAP_NUM(OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
@@ -339,7 +339,7 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_ROUTE_132] = {MAP_GROUP(ROUTE132), MAP_NUM(ROUTE132), HEAL_LOCATION_ROUTE132},
     [MAPSEC_ROUTE_133] = {MAP_GROUP(ROUTE133), MAP_NUM(ROUTE133), HEAL_LOCATION_ROUTE133},
     [MAPSEC_ROUTE_134] = {MAP_GROUP(ROUTE134), MAP_NUM(ROUTE134), HEAL_LOCATION_ROUTE134},
-    [MAPSEC_MT_CHIMNEY] = {MAP_GROUP(MT_CHIMNEY), MAP_NUM(MT_CHIMNEY), HEAL_LOCATION_MT_CHIMNEY
+    [MAPSEC_MT_CHIMNEY] = {MAP_GROUP(MT_CHIMNEY), MAP_NUM(MT_CHIMNEY), HEAL_LOCATION_MT_CHIMNEY}
 };
 
 static const u8 *const sEverGrandeCityNames[] =
@@ -969,7 +969,7 @@ static u16 GetMapSecIdAt(u16 x, u16 y)
     return sRegionMap_MapSectionLayout[x + y * MAP_WIDTH];
 }
 
-static void InitMapBasedOnPlayerLocation(void)
+void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPosX, u16* cursorPosY, bool8* playerIsInCave)
 {
     const struct MapHeader *mapHeader;
     u16 mapWidth;
@@ -997,22 +997,22 @@ static void InitMapBasedOnPlayerLocation(void)
     case MAP_TYPE_ROUTE:
     case MAP_TYPE_UNDERWATER:
     case MAP_TYPE_OCEAN_ROUTE:
-        gRegionMap->mapSecId = gMapHeader.regionMapSectionId;
-        gRegionMap->playerIsInCave = FALSE;
+        *mapSectionId = gMapHeader.regionMapSectionId;
+        *playerIsInCave = FALSE;
         mapWidth = gMapHeader.mapLayout->width;
         mapHeight = gMapHeader.mapLayout->height;
         x = gSaveBlock1Ptr->pos.x;
         y = gSaveBlock1Ptr->pos.y;
-        if (gRegionMap->mapSecId == MAPSEC_UNDERWATER_SEAFLOOR_CAVERN || gRegionMap->mapSecId == MAPSEC_UNDERWATER_MARINE_CAVE)
-            gRegionMap->playerIsInCave = TRUE;
+        if (*mapSectionId == MAPSEC_UNDERWATER_SEAFLOOR_CAVERN || *mapSectionId == MAPSEC_UNDERWATER_MARINE_CAVE)
+            *playerIsInCave = TRUE;
         break;
     case MAP_TYPE_UNDERGROUND:
     case MAP_TYPE_UNKNOWN:
         if (gMapHeader.allowEscaping)
         {
             mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
-            gRegionMap->mapSecId = mapHeader->regionMapSectionId;
-            gRegionMap->playerIsInCave = TRUE;
+            *mapSectionId = mapHeader->regionMapSectionId;
+            *playerIsInCave = TRUE;
             mapWidth = mapHeader->mapLayout->width;
             mapHeight = mapHeader->mapLayout->height;
             x = gSaveBlock1Ptr->escapeWarp.x;
@@ -1020,8 +1020,8 @@ static void InitMapBasedOnPlayerLocation(void)
         }
         else
         {
-            gRegionMap->mapSecId = gMapHeader.regionMapSectionId;
-            gRegionMap->playerIsInCave = TRUE;
+            *mapSectionId = gMapHeader.regionMapSectionId;
+            *playerIsInCave = TRUE;
             mapWidth = 1;
             mapHeight = 1;
             x = 1;
@@ -1030,16 +1030,16 @@ static void InitMapBasedOnPlayerLocation(void)
         break;
     case MAP_TYPE_SECRET_BASE:
         mapHeader = Overworld_GetMapHeaderByGroupAndId((u16)gSaveBlock1Ptr->dynamicWarp.mapGroup, (u16)gSaveBlock1Ptr->dynamicWarp.mapNum);
-        gRegionMap->mapSecId = mapHeader->regionMapSectionId;
-        gRegionMap->playerIsInCave = TRUE;
+        *mapSectionId = mapHeader->regionMapSectionId;
+        *playerIsInCave = TRUE;
         mapWidth = mapHeader->mapLayout->width;
         mapHeight = mapHeader->mapLayout->height;
         x = gSaveBlock1Ptr->dynamicWarp.x;
         y = gSaveBlock1Ptr->dynamicWarp.y;
         break;
     case MAP_TYPE_INDOOR:
-        gRegionMap->mapSecId = gMapHeader.regionMapSectionId;
-        if (gRegionMap->mapSecId != MAPSEC_DYNAMIC)
+        *mapSectionId = gMapHeader.regionMapSectionId;
+        if (*mapSectionId != MAPSEC_DYNAMIC)
         {
             warp = &gSaveBlock1Ptr->escapeWarp;
             mapHeader = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum);
@@ -1048,13 +1048,13 @@ static void InitMapBasedOnPlayerLocation(void)
         {
             warp = &gSaveBlock1Ptr->dynamicWarp;
             mapHeader = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum);
-            gRegionMap->mapSecId = mapHeader->regionMapSectionId;
+            *mapSectionId = mapHeader->regionMapSectionId;
         }
 
         if (IsPlayerInAquaHideout(gRegionMap->mapSecId))
-            gRegionMap->playerIsInCave = TRUE;
+            *playerIsInCave = TRUE;
         else
-            gRegionMap->playerIsInCave = FALSE;
+            *playerIsInCave = FALSE;
 
         mapWidth = mapHeader->mapLayout->width;
         mapHeight = mapHeader->mapLayout->height;
@@ -1065,29 +1065,29 @@ static void InitMapBasedOnPlayerLocation(void)
 
     xOnMap = x;
 
-    dimensionScale = mapWidth / gRegionMapEntries[gRegionMap->mapSecId].width;
+    dimensionScale = mapWidth / gRegionMapEntries[*mapSectionId].width;
     if (dimensionScale == 0)
     {
         dimensionScale = 1;
     }
     x /= dimensionScale;
-    if (x >= gRegionMapEntries[gRegionMap->mapSecId].width)
+    if (x >= gRegionMapEntries[*mapSectionIdd].width)
     {
-        x = gRegionMapEntries[gRegionMap->mapSecId].width - 1;
+        x = gRegionMapEntries[*mapSectionId].width - 1;
     }
 
-    dimensionScale = mapHeight / gRegionMapEntries[gRegionMap->mapSecId].height;
+    dimensionScale = mapHeight / gRegionMapEntries[*mapSectionId].height;
     if (dimensionScale == 0)
     {
         dimensionScale = 1;
     }
     y /= dimensionScale;
-    if (y >= gRegionMapEntries[gRegionMap->mapSecId].height)
+    if (y >= gRegionMapEntries[*mapSectionId].height)
     {
-        y = gRegionMapEntries[gRegionMap->mapSecId].height - 1;
+        y = gRegionMapEntries[*mapSectionId].height - 1;
     }
 
-    switch (gRegionMap->mapSecId)
+    switch (*mapSectionId)
     {
     case MAPSEC_ROUTE_114:
         if (y != 0)
@@ -1120,8 +1120,12 @@ static void InitMapBasedOnPlayerLocation(void)
         GetMarineCaveCoords(&gRegionMap->cursorPosX, &gRegionMap->cursorPosY);
         return;
     }
-    gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->mapSecId].x + x + MAPCURSOR_X_MIN;
-    gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->mapSecId].y + y + MAPCURSOR_Y_MIN;
+    *cursorPosX = gRegionMapEntries[*mapSectionId].x + x + MAPCURSOR_X_MIN;
+    *cursorPosY = gRegionMapEntries[*mapSectionId].y + y + MAPCURSOR_Y_MIN;
+}
+
+static void InitMapBasedOnPlayerLocation(void) {
+    RegionMap_GetSectionCoordsFromCurrFieldPos(&gRegionMap->mapSecId, &gRegionMap->cursorPosX, &gRegionMap->cursorPosY, &gRegionMap->playerIsInCave);
 }
 
 static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
@@ -1176,7 +1180,7 @@ static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
     gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->mapSecId].y + y + MAPCURSOR_Y_MIN;
 }
 
-static u8 GetMapsecType(u16 mapSecId)
+u8 GetMapsecType(u16 mapSecId)
 {
     switch (mapSecId)
     {

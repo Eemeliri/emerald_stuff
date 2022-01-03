@@ -68,6 +68,7 @@ static void PokeballGlowEffect_Idle(struct Sprite *);
 static void SpriteCB_PokeballGlow(struct Sprite *);
 
 static void FieldCallback_UseFly(void);
+static void FieldCallback_Fly_2(void);
 static void Task_UseFly(u8);
 static void FieldCallback_FlyIntoMap(void);
 static void Task_FlyIntoMap(u8);
@@ -270,6 +271,12 @@ static const u8 sRockFragment_TopLeft[] = INCBIN_U8("graphics/misc/deoxys_rock_f
 static const u8 sRockFragment_TopRight[] = INCBIN_U8("graphics/misc/deoxys_rock_fragment_top_right.4bpp");
 static const u8 sRockFragment_BottomLeft[] = INCBIN_U8("graphics/misc/deoxys_rock_fragment_bottom_left.4bpp");
 static const u8 sRockFragment_BottomRight[] = INCBIN_U8("graphics/misc/deoxys_rock_fragment_bottom_right.4bpp");
+
+void Fldeff_FlyLand(void)
+{
+    SetMainCallback2(CB2_ReturnToField);
+    gFieldCallback = FieldCallback_Fly_2;
+}
 
 bool8 (*const gFieldEffectScriptFuncs[])(u8 **, u32 *) =
 {
@@ -1337,6 +1344,17 @@ static void FieldCallback_UseFly(void)
 {
     FadeInFromBlack();
     CreateTask(Task_UseFly, 0);
+    ScriptContext2_Enable();
+    FreezeObjectEvents();
+    gFieldCallback = NULL;
+}
+
+static void FieldCallback_Fly_2(void)
+{
+    u8 taskId;
+    FadeInFromBlack();
+    taskId = CreateTask(task00_8084310, 0);
+    gTasks[taskId].data[0] = 1; //do landing anim only
     ScriptContext2_Enable();
     FreezeObjectEvents();
     gFieldCallback = NULL;
