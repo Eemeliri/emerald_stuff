@@ -414,6 +414,62 @@ LilycoveCity_EventScript_DontKnowAboutBerryBlender::
 	msgbox LilycoveCity_Text_ExplainBerryBlender, MSGBOX_DEFAULT
 	return
 
+LilycoveCity_EventScript_CheckSpecies::
+	lock
+	faceplayer
+	goto_if_set FLAG_ITEM_ALTARIANITE, LilycoveCity_ReceivedAltarianite
+	msgbox LilycoveCity_Text_Alatria, MSGBOX_DEFAULT	
+	special ChoosePartyMon
+	waitstate
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	compare VAR_RESULT, SPECIES_ALTARIA
+	goto_if_eq LilycoveCity_EventScript_YouHaveOne
+	msgbox LilycoveCity_Text_YouDontHaveOne, MSGBOX_SIGN	
+	release
+	end
+
+LilycoveCity_ReceivedAltarianite::
+	msgbox LilycoveCity_Text_EventScript_HoldDiscussions, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_YouHaveOne:
+	msgbox LilycoveCity_Text_EventScript_YouHaveOne, MSGBOX_SIGN
+	giveitem ITEM_ALTARIANITE
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_ITEM_ALTARIANITE
+ 	msgbox LilycoveCity_Text_Yeah, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_Text_Alatria:
+	.string "This is where fans of Spectacular\n"
+	.string "Trainers hold passionate discussions\l"
+	.string "every day.\p"
+	.string "To commemorate our first meeting,\n"
+	.string "how about a contest quiz?\p"
+	.string "What Pokémon does Winona the Gym\n"
+	.string "Leader always have with her?\l"
+	.string "Try and show me!$"
+
+LilycoveCity_Text_Yeah:
+	.string "Yeah, yeah, hang in there!$"
+
+LilycoveCity_Text_EventScript_YouHaveOne:
+	.string "I expected nothing less from you!\p"
+	.string "You're Altaria looks pretty amazing,\n"
+	.string "too, doesn't it? You can make it\l"
+	.string "can't you?$"
+
+LilycoveCity_Text_YouDontHaveOne:
+	.string "Aww, you don't have one.$"
+
+LilycoveCity_Text_EventScript_HoldDiscussions:
+	.string "This is where fans of Spectacular\n"
+	.string "Trainers hold passionate discussions\l"
+	.string "every day.$"
+
 LilycoveCity_Text_MayShoppingLetsBattle:
 	.string "May: Oh, hey?\n"
 	.string "{PLAYER}{KUN}, are you shopping, too?\p"

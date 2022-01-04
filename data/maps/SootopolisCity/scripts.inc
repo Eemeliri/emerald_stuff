@@ -477,6 +477,21 @@ SootopolisCity_Movement_GroudonIdle:
 @ If not at PokeCenter, assumed to have arrived via Dive
 SootopolisCity_EventScript_StartRayquazaScene::
 	lockall
+	clearflag FLAG_ITEM_VENUSAURITE
+	clearflag FLAG_ITEM_CHARIZARD_X
+	clearflag FLAG_ITEM_CHARIZARD_Y
+	clearflag FLAG_ITEM_BLASTOISINITE
+	clearflag FLAG_ITEM_KANGASKHANITE
+	clearflag FLAG_ITEM_AERODACTYLITE
+	clearflag FLAG_ITEM_MEWTWONITE_X
+	clearflag FLAG_ITEM_MEWTWONITE_Y
+	clearflag FLAG_ITEM_AMPHAROSITE
+	clearflag FLAG_ITEM_SCIZORITE
+	clearflag FLAG_ITEM_HOUNDOOMINITE
+	clearflag FLAG_ITEM_TYRANITARITE
+	clearflag FLAG_ITEM_ABOMASITE
+	clearflag FLAG_ITEM_SALAMENCITE
+	clearflag FLAG_ITEM_PIDGEOTITE
 	special StorePlayerCoordsInVars
 	goto_if_ne VAR_0x8004, 43, SootopolisCity_EventScript_RayquazaSceneFromDive
 	goto_if_ne VAR_0x8005, 32, SootopolisCity_EventScript_RayquazaSceneFromDive
@@ -1308,7 +1323,7 @@ SootopolisCity_EventScript_Wallace::
 
 SootopolisCity_EventScript_GiveWaterfall::
 	msgbox SootopolisCity_Text_ThankYouForHelpAcceptThis, MSGBOX_DEFAULT
-	giveitem ITEM_HM07
+	giveitem ITEM_HM05
 	setflag FLAG_RECEIVED_HM07
 	msgbox SootopolisCity_Text_ExplainWaterfallGoToGym, MSGBOX_DEFAULT
 	closemessage
@@ -1362,10 +1377,19 @@ SootopolisCity_EventScript_Maxie::
 
 SootopolisCity_EventScript_MaxieRayquaza::
 	msgbox SootopolisCity_Text_AfterAllOurScheming, MSGBOX_DEFAULT
+	call_if_unset FLAG_ITEM_CAMERUPTITE, SootopolisCity_EventScript_MaxieCameruptite
 	setflag FLAG_MET_MAXIE_SOOTOPOLIS
 	goto_if_set FLAG_MET_ARCHIE_SOOTOPOLIS, SootopolisCity_EventScript_MaxieArchieLeave
 	releaseall
 	end
+
+SootopolisCity_EventScript_MaxieCameruptite::
+	faceplayer
+	msgbox SootopolisCity_Text_Cameruptite, MSGBOX_DEFAULT
+	giveitem ITEM_CAMERUPTITE
+	setflag FLAG_ITEM_CAMERUPTITE
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceDown
+	return
 
 SootopolisCity_EventScript_Archie::
 	lockall
@@ -1377,10 +1401,19 @@ SootopolisCity_EventScript_Archie::
 
 SootopolisCity_EventScript_ArchieRayquaza::
 	msgbox SootopolisCity_Text_TryingMeaninglessToPokemon, MSGBOX_DEFAULT
+	call_if_unset FLAG_ITEM_SHARPEDONITE, SootopolisCity_EventScript_ArchieSharpedonite
 	setflag FLAG_MET_ARCHIE_SOOTOPOLIS
 	goto_if_set FLAG_MET_MAXIE_SOOTOPOLIS, SootopolisCity_EventScript_MaxieArchieLeave
 	releaseall
 	end
+
+SootopolisCity_EventScript_ArchieSharpedonite::
+	faceplayer
+	msgbox SootopolisCity_Text_Sharpedonite, MSGBOX_DEFAULT
+	giveitem ITEM_SHARPEDONITE
+	setflag FLAG_ITEM_SHARPEDONITE
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceDown
+	return
 
 SootopolisCity_EventScript_MaxieArchieLeave::
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
@@ -1724,3 +1757,13 @@ SootopolisCity_Text_DazzledByMentor:
 	.string "Wallace: I'm sure that you will be\n"
 	.string "dazzled by my mentor's breathtakingly\l"
 	.string "elegant battle style.$"
+
+SootopolisCity_Text_Cameruptite:
+	.string "Thank you for correcting my\n"
+	.string "foolish mistake. Here, it's not\l"
+	.string "much but please take this.$"
+
+SootopolisCity_Text_Sharpedonite:
+	.string "I must apologise for what I've done\n"
+	.string "and what you went through to fix it.\l"
+	.string "Please, take this as thanks.$"

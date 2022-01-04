@@ -35,7 +35,13 @@ RustboroCity_Mart_EventScript_PokefanF::
 	end
 
 RustboroCity_Mart_EventScript_Boy::
+ 	goto_if_set FLAG_RECEIVED_TM03, RustboroCity_Mart_EventScript_ReceivedTM54
 	msgbox RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead, MSGBOX_NPC
+	giveitem ITEM_TM54
+	end
+
+RustboroCity_Mart_EventScript_ReceivedTM54::
+	msgbox RustboroCity_Mart_Text_TM54, MSGBOX_NPC
 	end
 
 RustboroCity_Mart_EventScript_BugCatcher::
@@ -49,10 +55,19 @@ RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish:
 	.string "in Petalburg Woods.$"
 
 RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead:
-	.string "My Pokémon evolved.\n"
-	.string "It has a lot of HP now.\p"
-	.string "I should buy Super Potions for it\n"
-	.string "instead of ordinary Potions.$"
+	.string "Excuse me, trainer over there.\n"
+	.string "Do you have a minute?\p"
+	.string "You know moves are sometimes too\n"
+	.string "strong to catch a Pokemon.\p"
+	.string "You end up making a Pokemon faint\n"
+	.string "even when you don't want to.\p"
+	.string "For such a common problem, use this!$"
+
+RustboroCity_Mart_Text_TM54: @ 8214FF1
+	.string "False Swipe is a very handy move.\p"
+	.string "No matter how many times it's used\n"
+	.string "on the opposing Pokemon, it won't\l"
+	.string "cause the Pokemon to faint!$"
 
 RustboroCity_Mart_Text_GettingEscapeRopeJustInCase:
 	.string "I'm getting an Escape Rope just in\n"

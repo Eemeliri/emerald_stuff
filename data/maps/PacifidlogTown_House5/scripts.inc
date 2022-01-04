@@ -17,6 +17,12 @@ PacifidlogTown_House5_EventScript_MirageIslandPresent::
 
 PacifidlogTown_House5_EventScript_Gentleman::
 	msgbox PacifidlogTown_House5_Text_MirageIslandAppearDependingOnWeather, MSGBOX_NPC
+	goto_if_unset FLAG_RECEIVED_TM03, PacifidlogTown_House5_EventScript_GiveTM03
+	end
+
+PacifidlogTown_House5_EventScript_GiveTM03::
+	giveitem ITEM_TM03
+	setflag FLAG_RECEIVED_TM03
 	end
 
 PacifidlogTown_House5_Text_CantSeeMirageIslandToday:
@@ -27,10 +33,11 @@ PacifidlogTown_House5_Text_CanSeeMirageIslandToday:
 	.string "I can see Mirage Island today!$"
 
 PacifidlogTown_House5_Text_MirageIslandAppearDependingOnWeather:
-	.string "Mirage Island…\p"
-	.string "It must become visible and invisible\n"
-	.string "depending on the weather conditions\l"
-	.string "that make mirages appear.\p"
-	.string "Or is it really appearing and\n"
-	.string "disappearing?$"
+	.string "I've been to a Mirage spot…\n"
+	.string "I'm sure of it. But I forgot where\l"
+	.string "it is…\p"
+	.string "I used to be very good at\n"
+	.string "remembering things…\p"
+	.string "I'm so shocked that I can't\n"
+	.string "remember…$"
 

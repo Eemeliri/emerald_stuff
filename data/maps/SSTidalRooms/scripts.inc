@@ -6,7 +6,7 @@ SSTidalRooms_EventScript_SnatchGiver::
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM49, SSTidalRooms_EventScript_ExplainSnatch
 	msgbox SSTidalRooms_Text_NotSuspiciousTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM49
+	giveitem ITEM_TM63
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM49
 	msgbox SSTidalRooms_Text_ExplainSnatch, MSGBOX_DEFAULT
@@ -164,12 +164,12 @@ SSTidalRooms_Text_NaomiPostBattle:
 SSTidalRooms_Text_NotSuspiciousTakeThis:
 	.string "Uh… Hi! I… I'm not acting suspicious!\n"
 	.string "Uh… You can have this! For free!\p"
-	.string "It… Honestly, I didn't Snatch it from\n"
-	.string "someone! I'd never do such a thing!\l"
-	.string "It's clean! You can use it!$"
+	.string "It… Honestly, it's not an unlicensed\n"
+	.string "item that's been embargoes or\l"
+	.string "anything. It's totally legal! You can\l"
+	.string "use it!$"
 
 SSTidalRooms_Text_ExplainSnatch:
-	.string "Snatch steals the beneficial effects\n"
-	.string "of certain moves before they can be\l"
-	.string "used by a foe or ally.$"
+	.string "Embargo prevents the target from\n"
+	.string "using its held item!$"
 

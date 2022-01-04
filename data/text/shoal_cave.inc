@@ -51,3 +51,9 @@ ShoalCave_Text_WasShoalSaltNowNothing:
 ShoalCave_Text_WasShoallShellNowNothing:
 	.string "There was a Shoal Shell here.\n"
 	.string "But, there's nothing here now.$"
+
+ShoalCave_LowTideEntranceRoom_Text_Slowbronite:
+	.string "And...\n"
+	.string "I'm not quite sure what this is,\l"
+	.string "but I got this recently.p"
+	.string "If you like, please take this, too.$"

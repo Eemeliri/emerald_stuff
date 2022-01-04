@@ -39,12 +39,23 @@ LilycoveCity_ContestLobby_EventScript_PickUpPrize::
 	msgbox LilycoveCity_ContestLobby_Text_PokemonWonWeHavePrize, MSGBOX_DEFAULT
 	switch VAR_CONTEST_PRIZE_PICKUP
 	case 4, LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter
+	case 5, LilycoveCity_ContestLobby_EventScript_GiveLucarioniteAtCounter
 	end
 
 LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter::
 	giveitem ITEM_LUXURY_BALL
 	goto_if_eq VAR_RESULT, FALSE, LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
 	setvar VAR_CONTEST_PRIZE_PICKUP, 0
+	closemessage
+	release
+	end
+
+LilycoveCity_ContestLobby_EventScript_GiveLucarioniteAtCounter:: @ 8279D2C
+	giveitem ITEM_LUCARIONITE
+	compare VAR_RESULT, FALSE
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
+	setvar VAR_CONTEST_PRIZE_PICKUP, 0
+	setflag FLAG_ITEM_LUCARIONITE
 	closemessage
 	release
 	end
@@ -1148,11 +1159,30 @@ ContestHall_EventScript_NoRoomForLuxuryBall::
 	setvar VAR_CONTEST_PRIZE_PICKUP, 4
 	return
 
+ContestHall_EventScript_NoRoomForLucarionite:: @ 827ACA8
+	lockall
+	call Common_EventScript_BagIsFull
+	msgbox ContestHall_Text_PickUpPrizeAtCounterLater, MSGBOX_DEFAULT
+	releaseall
+	setvar VAR_CONTEST_PRIZE_PICKUP, 5
+	return
+
 ContestHall_EventScript_GiveLuxuryBall::
+	goto_if_unset FLAG_ITEM_LUCARIONITE, ContestHall_EventScript_GiveLucarionite
 	giveitem ITEM_LUXURY_BALL
 	goto_if_eq VAR_RESULT, FALSE, ContestHall_EventScript_NoRoomForLuxuryBall
 	lockall
 	msgbox ContestHall_Text_CongratsPleaseCompeteAgain, MSGBOX_DEFAULT
+	releaseall
+	return
+
+ContestHall_EventScript_GiveLucarionite::
+	giveitem ITEM_LUCARIONITE
+	compare VAR_RESULT, FALSE
+	goto_if_eq ContestHall_EventScript_NoRoomForLucarionite
+	lockall
+	msgbox ContestHall_Text_CongratsPleaseCompeteAgain, MSGBOX_DEFAULT
+	setflag FLAG_ITEM_LUCARIONITE
 	releaseall
 	return
 

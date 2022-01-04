@@ -63,8 +63,7 @@ RusturfTunnel_EventScript_ClearTunnelScene::
 	msgbox RusturfTunnel_Text_YouShatteredBoulderTakeHM, MSGBOX_DEFAULT
 	call_if_eq VAR_TEMP_1, 2, RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
 	call_if_eq VAR_TEMP_1, 3, RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
-	giveitem ITEM_HM04
-	setflag FLAG_RECEIVED_HM04
+	giveitem ITEM_AGGRONITE
 	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_TEMP_1, 1, RusturfTunnel_EventScript_BoyfriendApproachWanda1
@@ -494,13 +493,14 @@ RusturfTunnel_Text_YouShatteredBoulderTakeHM:
 	.string "Wow! You shattered that boulder\n"
 	.string "blocking the way.\p"
 	.string "To show you how much I appreciate it,\n"
-	.string "I'd like you to have this HM.$"
+	.string "I'd like you to have this.$"
 
 RusturfTunnel_Text_ExplainStrength:
-	.string "That HM contains Strength.\p"
-	.string "If a muscular Pokémon were to learn\n"
-	.string "that, it would be able to move even\l"
-	.string "large boulders.$"
+	.string "I found that when I was digging\n"
+	.string "for the tunnel.\p"
+	.string "I felt like there's some mysterious\n"
+	.string "power coming from it, but I don't\l"
+	.string "think I could do a thing with it.$"
 
 RusturfTunnel_Text_WandaReunion:
 	.string "Wanda!\n"

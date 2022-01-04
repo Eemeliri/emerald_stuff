@@ -567,8 +567,10 @@ SlateportCity_EventScript_PowerTMClerk::
 
 	.align 2
 SlateportCity_Pokemart_PowerTMs:
-	.2byte ITEM_TM10  @ Hidden Power
-	.2byte ITEM_TM43  @ Secret Power
+	.2byte ITEM_TM01  @ Hone Claws
+	.2byte ITEM_TM73  @ Thunder Wave
+	.2byte ITEM_TM76  @ Struggle Bug
+	.2byte ITEM_TM100 @ Confide
 	.2byte ITEM_NONE
 	release
 	end

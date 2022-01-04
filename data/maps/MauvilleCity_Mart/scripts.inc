@@ -46,6 +46,37 @@ MauvilleCity_Mart_EventScript_Man::
 	msgbox MauvilleCity_Mart_Text_DecisionsDetermineBattle, MSGBOX_NPC
 	end
 
+MauvilleCity_Mart_EventScript_Woman:: @ 8211125
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_TM58, MauvilleCity_Mart_ReceivedSkyDrop
+	msgbox MauvilleCity_Mart_Text_DoYouLikeScaryRides, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleCity_Mart_EventScript_Yes
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_Mart_EventScript_No
+	end
+
+MauvilleCity_Mart_EventScript_Yes::
+	msgbox MauvilleCity_Mart_Text_YouCool, MSGBOX_DEFAULT
+	giveitem ITEM_TM58
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_TM58
+	goto MauvilleCity_Mart_ReceivedSkyDrop
+	release
+	end
+
+MauvilleCity_Mart_ReceivedSkyDrop::
+	msgbox MauvilleCity_Mart_Text_SkyDropIsSick, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_Mart_EventScript_No::
+	msgbox MauvilleCity_Mart_Text_Lame, MSGBOX_DEFAULT
+	release
+	end
+
 MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats:
 	.string "There are items that temporarily\n"
 	.string "elevate the stats of Pokémon.\p"
@@ -60,3 +91,20 @@ MauvilleCity_Mart_Text_DecisionsDetermineBattle:
 	.string "The Trainer's decisions determine how\n"
 	.string "battles turn out, I think.$"
 
+MauvilleCity_Mart_Text_DoYouLikeScaryRides: @ 8204035
+	.string "Hey, you. Do you like scary rides,\n"
+	.string "you know, like a roller coaster?$"
+
+MauvilleCity_Mart_Text_YouCool:
+	.string "…Hey, you're cool.\n"
+	.string "Like, you are totally my BFF.\p"
+	.string "As a proof, or as a token, you know,\n"
+	.string "I'm giving you my favourite TM.$"
+
+MauvilleCity_Mart_Text_SkyDropIsSick:
+	.string "Sky Drop is seriously sick.\n"
+	.string "It totally messes with the inner ear!$"
+
+MauvilleCity_Mart_Text_Lame:
+	.string "…Tsk."
+	.string "You're lame."

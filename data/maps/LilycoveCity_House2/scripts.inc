@@ -4,7 +4,7 @@ LilycoveCity_House2_MapScripts::
 LilycoveCity_House2_EventScript_FatMan::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_TM44, LilycoveCity_House2_EventScript_ReceivedRest
+	goto_if_set FLAG_RECEIVED_TM44, LilycoveCity_House2_EventScript_ReceivedRestTwo
 	msgbox LilycoveCity_House2_Text_NotAwakeYetHaveThis, MSGBOX_DEFAULT
 	giveitem ITEM_TM44
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
@@ -18,6 +18,16 @@ LilycoveCity_House2_EventScript_ReceivedRest::
 	release
 	end
 
+LilycoveCity_House2_EventScript_ReceivedRestTwo::
+	goto_if_set FLAG_RECEIVED_TM88, LilycoveCity_House2_EventScript_ReceivedRest
+	msgbox LilycoveCity_House2_Text_ThisToo, MSGBOX_DEFAULT
+	giveitem ITEM_TM88
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_TM88
+	release
+	end
+
 LilycoveCity_House2_Text_NotAwakeYetHaveThis:
 	.string "Huh? What? What's that?\p"
 	.string "I'm not near awake yet…\n"
@@ -27,3 +37,7 @@ LilycoveCity_House2_Text_SleepIsEssential:
 	.string "Yawn…\p"
 	.string "Sleep is essential for good health…\n"
 	.string "Sleep and regain health…$"
+
+LilycoveCity_House2_Text_ThisToo:
+	.string "Zzz… Hm?\n"
+	.string "Take this, too…$" 
