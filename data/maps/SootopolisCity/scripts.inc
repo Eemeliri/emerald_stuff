@@ -1406,7 +1406,7 @@ SootopolisCity_Movement_DestroyTask::
 
 SootopolisCity_Text_GymSign:
 	.string "Sootopolis City Pokémon Gym\n"
-	.string "Leader: Juan\p"
+	.string "Leader: Wallace\p"
 	.string "“The Gym Leader with the beauty\n"
 	.string "of pure water!”$"
 
