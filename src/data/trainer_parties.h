@@ -7607,16 +7607,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GruntSeafloorCavern5[] =
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntUnused[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntSouthernisland[] = {
     {
     .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_WAILMER,
-    },
-    {
-    .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_ZUBAT,
+    .lvl = 29,
+    .species = SPECIES_KOFFING,
     }
 };
 
@@ -12432,5 +12427,21 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayLinkPlaceholder[] = {
     .iv = 0,
     .lvl = 5,
     .species = SPECIES_KYOGRE,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Courtney[] = {
+    {
+    .iv = 0,
+    .lvl = 31,
+    .species = SPECIES_CAMERUPT,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Steven_SouthernIsland[] = {
+    {
+    .iv = 0,
+    .lvl = 35,
+    .species = SPECIES_METANG,
     }
 };

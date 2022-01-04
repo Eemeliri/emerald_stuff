@@ -4,6 +4,7 @@ Route118_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route118_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route118_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route118_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route118_OnWarp
 	.byte 0
 
 Route118_OnTransition:
@@ -20,7 +21,28 @@ Route118_OnLoad:
 
 Route118_OnFrame:
 	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	map_script_2 VAR_ROUTE118_STATE, 3, LatiEventEnd
 	.2byte 0
+
+Route118_OnWarp: @ 81E58DB
+	map_script_2 VAR_ROUTE118_STATE, 3, Route118_EventScript_ChangeDir
+	.2byte 0
+
+Route118_EventScript_ChangeDir::
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	end
+
+LatiEventEnd::
+	lock
+	msgbox Route118_Text_StevenGoodbye, MSGBOX_DEFAULT
+	closemessage
+	applymovement 22, Route118_Movement_StevenExitFinal
+	waitmovement 0
+	removeobject 22
+	release
+	setvar VAR_ROUTE118_STATE, 4
+	clearflag FLAG_LANDMARK_SOUTHERN_ISLAND
+	end
 
 Route118_EventScript_GoodRodFisherman::
 	lock
@@ -96,12 +118,29 @@ Route118_EventScript_StevenTrigger::
 	delay 30
 	msgbox Route118_Text_StevenQuestions, MSGBOX_DEFAULT
 	closemessage
-	call_if_eq VAR_0x8008, 0, Route118_EventScript_StevenExit0
-	call_if_eq VAR_0x8008, 1, Route118_EventScript_StevenExit1
-	call_if_eq VAR_0x8008, 2, Route118_EventScript_StevenExit2
-	setvar VAR_ROUTE118_STATE, 1
-	removeobject LOCALID_STEVEN
-	releaseall
+	playmoncry SPECIES_LATIAS, 0
+	delay 90
+	playse SE_PIN
+	applymovement 19, Common_Movement_ExclamationMark
+	delay 30
+	compare VAR_0x8008, 0
+	call_if_eq Route118_EventScript_StevenExit0
+	compare VAR_0x8008, 1
+	call_if_eq Route118_EventScript_StevenExit1
+	compare VAR_0x8008, 2
+	call_if_eq Route118_EventScript_StevenExit2
+	msgbox Route118_Text_StevenLatias1, MSGBOX_DEFAULT
+	compare VAR_0x8008, 0
+	call_if_eq Route118_EventScript_StevenTurn0
+	compare VAR_0x8008, 1
+	call_if_eq Route118_EventScript_StevenTurn1
+	compare VAR_0x8008, 2
+	call_if_eq Route118_EventScript_StevenTurn1
+	msgbox Route118_Text_StevenLatias2, MSGBOX_DEFAULT
+	clearflag FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE
+	clearflag FLAG_HIDE_SOUTHERN_ISLAND_UNCHOSEN_EON_DUO_MON
+	setflag FLAG_SOUTHERNISLAND_SHIP
+	warp MAP_SOUTHERN_ISLAND_EXTERIOR, 255, 15, 20
 	end
 
 Route118_EventScript_StevenExit0::
@@ -122,9 +161,34 @@ Route118_EventScript_StevenExit2::
 	waitmovement 0
 	return
 
+Route118_EventScript_StevenTurn0:: @ 81F3F28
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerTurnsRight
+	applymovement 19, Route118_Movement_PlayerTurnsLeft
+	waitmovement 0
+	return
+
+Route118_EventScript_StevenTurn1:: @ 81F3F28
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerTurnsLeft
+	applymovement 19, Route118_Movement_PlayerTurnsRight
+	waitmovement 0
+	return
+
+Route118_Movement_PlayerTurnsRight::
+	walk_in_place_right
+	step_end
+
+Route118_Movement_PlayerTurnsLeft::
+	walk_in_place_left
+	step_end
+
 Route118_Movement_PlayerWatchStevenExit:
 	delay_16
 	walk_in_place_faster_right
+	step_end
+
+Route118_Movement_TurnToStevenLeft: @ 81F3F5E
+	delay_16
+	walk_in_place_fastest_left
 	step_end
 
 Route118_Movement_StevenApproachLedge0:
@@ -141,33 +205,22 @@ Route118_Movement_StevenJumpLedge:
 	walk_down
 	step_end
 
-Route118_Movement_StevenExit0:
+Route118_Movement_StevenExit0: @ 81F3F69
 	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
+	walk_down
 	step_end
 
-Route118_Movement_StevenExit1:
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
+Route118_Movement_StevenExit1: @ 81F3F74
+	walk_left
+	walk_down
 	step_end
 
-Route118_Movement_StevenExit2:
-	walk_right
+Route118_Movement_StevenExit2: @ 81F3F7E
+	walk_left
+	walk_down
+	step_end
+
+Route118_Movement_StevenExitFinal: @ 81F3F7E
 	walk_right
 	walk_right
 	walk_right
@@ -261,6 +314,31 @@ Route118_Text_StevenQuestions:
 	.string "Of course, it's not any of my business.\p"
 	.string "It would be nice if we were to meet\n"
 	.string "again somewhere.$"
+
+Route118_Text_StevenLatias1: @ 81F40BE
+	.string "…Hm?\p"
+	.string "Latias!!\p"
+	.string "Do you…want us to soar somewhere\n"
+	.string "with you?$"
+
+Route118_Text_StevenLatias2: @ 81F40BE
+	.string "{PLAYER}{KUN}.\p"
+	.string "Come with me.\p"
+	.string "Latias…\n"
+	.string "I believe that it sough us out for\l"
+	.string "help.\p"
+	.string "If that's the case, let's go!$"
+
+Route118_Text_StevenGoodbye: @ 81F40BE
+	.string "Thank you for your help {PLAYER}{KUN}.\p"
+	.string "In the end you were a far greater\n"
+	.string "help than I expected you might be.\p"
+	.string "I expect that you and your team will\n"
+	.string "be able to best both Route 119 ahead\l"
+	.string "and even the Fortree Gym beyond that.\p"
+	.string "I'll be curious to see how much stronger\n"
+	.string "you might grow by the next time we meet.\p"
+	.string "Until then, {PLAYER}{KUN}.$"
 
 Route118_Text_YouAgreeGoodRodIsGood:
 	.string "Hmm!\n"
