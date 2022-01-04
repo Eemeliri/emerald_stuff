@@ -466,16 +466,35 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	closemessage
 	call_if_eq VAR_0x8008, MALE, PlayersHouse_1F_EventScript_PlayerApproachTVForLatiMale
 	call_if_eq VAR_0x8008, FEMALE, PlayersHouse_1F_EventScript_PlayerApproachTVForLatiFemale
-	msgbox PlayersHouse_1F_Text_LatiEmergencyNewsFlash, MSGBOX_DEFAULT
+	goto_if_set FLAG_EON_LATI, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatias
+	msgbox PlayersHouse_1F_Text_LatiosEmergencyNewsFlash, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_SYS_TV_LATIAS_LATIOS
 	setflag FLAG_LATIOS_OR_LATIAS_ROAMING
 	special TurnOffTVScreen
 	call_if_eq VAR_0x8008, MALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVMale
 	call_if_eq VAR_0x8008, FEMALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVFemale
-	msgbox PlayersHouse_1F_Text_WhatColorDidTheySay, MSGBOX_DEFAULT
-	multichoice 22, 8, MULTI_TV_LATI, TRUE
-	copyvar VAR_0x8004, VAR_RESULT
+	copyvar VAR_0x8004, 1
+	special InitRoamer
+	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
+	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
+	releaseall
+	end
+
+PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatias::
+	msgbox PlayersHouse_1F_Text_LatiasEmergencyNewsFlash, MSGBOX_DEFAULT
+	closemessage
+	clearflag FLAG_SYS_TV_LATIAS_LATIOS
+	setflag FLAG_LATIOS_OR_LATIAS_ROAMING
+	special TurnOffTVScreen
+	compare VAR_0x8008, MALE
+	call_if_eq PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVMale
+	compare VAR_0x8008, FEMALE
+	call_if_eq PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVFemale
+	copyvar VAR_0x8004, 0
 	special InitRoamer
 	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
 	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT

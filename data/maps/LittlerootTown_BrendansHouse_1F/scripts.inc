@@ -419,11 +419,22 @@ PlayersHouse_1F_Text_DadShouldStayLonger:
 PlayersHouse_1F_Text_IsThatABreakingStory:
 	.string "Mom: Is that a breaking news story?$"
 
-PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
+PlayersHouse_1F_Text_LatiosEmergencyNewsFlash: @ 81F826F
 	.string "We bring you this emergency\n"
 	.string "news flash!\p"
 	.string "In various Hoenn locales, there have\n"
-	.string "been reports of a BZZT…colored\l"
+	.string "been reports of a blue colored\l"
+	.string "Pokémon in flight.\p"
+	.string "The identity of this Pokémon is\n"
+	.string "currently unknown.\p"
+	.string "We now return you to the regular\n"
+	.string "movie program.$"
+
+PlayersHouse_1F_Text_LatiasEmergencyNewsFlash: @ 81F826F
+	.string "We bring you this emergency\n"
+	.string "news flash!\p"
+	.string "In various Hoenn locales, there have\n"
+	.string "been reports of a red colored\l"
 	.string "Pokémon in flight.\p"
 	.string "The identity of this Pokémon is\n"
 	.string "currently unknown.\p"
