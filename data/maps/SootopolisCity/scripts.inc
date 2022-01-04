@@ -131,7 +131,7 @@ SootopolisCity_EventScript_SetExitCaveOfOriginObjPos::
 
 SootopolisCity_EventScript_SetOutsideGymObjPos::
 	setobjectxyperm LOCALID_EXPERT, 31, 18
-	setobjectxyperm LOCALID_STEVEN, 29, 33
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
 	setobjectxyperm LOCALID_MAXIE, 33, 35
 	setobjectxyperm LOCALID_ARCHIE, 34, 35
 	call_if_eq VAR_SOOTOPOLIS_WALLACE_STATE, 0, SootopolisCity_EventScript_SetWallaceMiddle
@@ -140,17 +140,17 @@ SootopolisCity_EventScript_SetOutsideGymObjPos::
 	return
 
 SootopolisCity_EventScript_SetWallaceMiddle::
-	setobjectxyperm LOCALID_WALLACE, 31, 33
+	setobjectxyperm LOCALID_STEVEN, 31, 33
 	setobjectmovementtype LOCALID_WALLACE, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 SootopolisCity_EventScript_SetWallaceRight::
-	setobjectxyperm LOCALID_WALLACE, 32, 33
+	setobjectxyperm LOCALID_STEVEN, 32, 33
 	setobjectmovementtype LOCALID_WALLACE, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 SootopolisCity_EventScript_SetWallaceLeft::
-	setobjectxyperm LOCALID_WALLACE, 30, 33
+	setobjectxyperm LOCALID_STEVEN, 30, 33
 	setobjectmovementtype LOCALID_WALLACE, MOVEMENT_TYPE_FACE_DOWN
 	return
 
@@ -916,7 +916,8 @@ SootopolisCity_EventScript_Steven::
 	goto_if_eq VAR_SOOTOPOLIS_CITY_STATE, 2, SootopolisCity_EventScript_StevenHelpWallace
 	goto_if_eq VAR_SOOTOPOLIS_CITY_STATE, 3, SootopolisCity_EventScript_StevenHelpedWallace
 	goto_if_eq VAR_SOOTOPOLIS_CITY_STATE, 4, SootopolisCity_EventScript_StevenHelpedWallace
-	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_StevenMaxieArchieLeft
+	goto_if_set FLAG_RECEIVED_EON_FLUTE, SootopolisCity_EventScript_GoToGym
+	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_GiveWaterfall
 	msgbox SootopolisCity_Text_SoThatsRayquaza, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -1315,7 +1316,7 @@ SootopolisCity_EventScript_Wallace::
 	lock
 	faceplayer
 	goto_if_eq VAR_SOOTOPOLIS_CITY_STATE, 4, SootopolisCity_EventScript_GoToSkyPillar
-	goto_if_set FLAG_RECEIVED_HM07, SootopolisCity_EventScript_GoToGym
+	goto_if_set FLAG_RECEIVED_EON_FLUTE, SootopolisCity_EventScript_GoToGym
 	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_GiveWaterfall
 	msgbox SootopolisCity_Text_AquaMagmaDidntMeanHarm, MSGBOX_DEFAULT
 	release
@@ -1323,8 +1324,9 @@ SootopolisCity_EventScript_Wallace::
 
 SootopolisCity_EventScript_GiveWaterfall::
 	msgbox SootopolisCity_Text_ThankYouForHelpAcceptThis, MSGBOX_DEFAULT
-	giveitem ITEM_HM05
-	setflag FLAG_RECEIVED_HM07
+	giveitem ITEM_EON_FLUTE
+	setflag FLAG_RECEIVED_EON_FLUTE
+	goto_if_set FLAG_EON_LATI, SootopolisCity_EventScript_EonLatias
 	msgbox SootopolisCity_Text_ExplainWaterfallGoToGym, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_FACING, DIR_NORTH, SootopolisCity_EventScript_WallaceMoveFromGym
@@ -1333,17 +1335,29 @@ SootopolisCity_EventScript_GiveWaterfall::
 	release
 	end
 
+SootopolisCity_EventScript_EonLatias::
+	msgbox SootopolisCity_Text_ExplainEonLatias, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq SootopolisCity_EventScript_WallaceMoveFromGym
+	compare VAR_FACING, DIR_EAST
+	call_if_eq SootopolisCity_EventScript_WallaceMoveFromGym
+	compare VAR_FACING, DIR_WEST
+	call_if_eq SootopolisCity_EventScript_WallaceMoveFromGymWest
+	release
+	end
+
 SootopolisCity_EventScript_WallaceMoveFromGym::
-	applymovement LOCALID_WALLACE, SootopolisCity_Movement_WallaceMoveFromGym
+	applymovement LOCALID_STEVEN, SootopolisCity_Movement_WallaceMoveFromGym
 	waitmovement 0
-	copyobjectxytoperm LOCALID_WALLACE
+	copyobjectxytoperm LOCALID_STEVEN
 	setvar VAR_SOOTOPOLIS_WALLACE_STATE, 1
 	return
 
 SootopolisCity_EventScript_WallaceMoveFromGymWest::
-	applymovement LOCALID_WALLACE, SootopolisCity_Movement_WallaceMoveFromGymWest
+	applymovement LOCALID_STEVEN, SootopolisCity_Movement_WallaceMoveFromGymWest
 	waitmovement 0
-	copyobjectxytoperm LOCALID_WALLACE
+	copyobjectxytoperm LOCALID_STEVEN
 	setvar VAR_SOOTOPOLIS_WALLACE_STATE, 2
 	return
 
@@ -1732,31 +1746,68 @@ SootopolisCity_Text_AquaMagmaDidntMeanHarm:
 	.string "have to say for themselves.$"
 
 SootopolisCity_Text_ThankYouForHelpAcceptThis:
-	.string "Wallace: {PLAYER}{KUN}…\n"
-	.string "My eyes didn't deceive me.\p"
-	.string "Thanks to your help, Sootopolis…\n"
-	.string "No, all of Hoenn was saved.\p"
-	.string "On behalf of the people, I thank you.\p"
-	.string "This is a gift from me.\n"
-	.string "Please accept it.$"
+	.string "Steven: {PLAYER}{KUN}…\n"
+	.string "We owe you great thanks.\p"
+	.string "Look above you.\p"
+	.string "The sky over Sootopolis has\n"
+	.string "returned to normal.\p"
+	.string "I imagine that many changes are\n"
+	.string "happening now all across Hoenn.\p"
+	.string "I hope you will be able to\n"
+	.string "travel this world and see its\l"
+	.string "richness with you own eyes-\l"
+	.string "and revel in its newness in\l"
+	.string "your own heart.\p"
+	.string "But for the present, you may\n"
+	.string "wish to challenge this city's\l"
+	.string "Pokémon Gym.\p"
+	.string "Inside, you'll find the very same\n"
+	.string "Wallace who helped us so much\l"
+	.string "waiting for you.\p"
+	.string "He's strong.\p"
+	.string "But the way you are now, you\n"
+	.string "should be capable of battling\l"
+	.string "him on an equal footing.\p"
+	.string "And when you travel the world,\n"
+	.string "you should try to use this.\p"
+	.string "This flute is one of my favorite\n"
+	.string "items.$"
 
 SootopolisCity_Text_ExplainWaterfallGoToGym:
-	.string "That Hidden Machine contains\n"
-	.string "Waterfall.\p"
-	.string "If you have the Rain Badge, a Pokémon\n"
-	.string "that has learned that HM move can\l"
-	.string "force its way up waterfalls.\p"
-	.string "And where does one get the Rain Badge?\n"
-	.string "You know, don't you?\p"
-	.string "That's right! You have to beat\n"
-	.string "the Sootopolis Gym Leader.\p"
-	.string "When you're all set to go, step through\n"
-	.string "that door.$"
+	.string "This Eon Flute is proof of the bond\n"
+	.string "between you and your Latios.\p"
+	.string "No matter how far you may be from\n"
+	.string "one another, play that flute and\l"
+	.string "Latios will surely fly straight to\l"
+	.string "you.\p"
+	.string "Then it can take to the sky, soaring\n"
+	.string "above the land with you astride its\l"
+	.string "back.\p"
+	.string "Yes, just like when we first\n"
+	.string "encountered Latias and Latios at\l"
+	.string "Southern Island...\p"
+	.string "Well, when you're all set to go,\n"
+	.string "step through that door.$"
+
+SootopolisCity_Text_ExplainEonLatias:
+	.string "This Eon Flute is proof of the bond\n"
+	.string "between you and your Latias.\p"
+	.string "No matter how far you may be from\n"
+	.string "one another, play that flute and\l"
+	.string "Latias will surely fly straight to\l"
+	.string "you.\p"
+	.string "Then it can take to the sky, soaring\n"
+	.string "above the land with you astride its\l"
+	.string "back.\p"
+	.string "Yes, just like when we first\n"
+	.string "encountered Latias and Latios at\l"
+	.string "Southern Island...\p"
+	.string "Well, when you're all set to go,\n"
+	.string "step through that door.$"
 
 SootopolisCity_Text_DazzledByMentor:
-	.string "Wallace: I'm sure that you will be\n"
-	.string "dazzled by my mentor's breathtakingly\l"
-	.string "elegant battle style.$"
+	.string "When you're all set to go,\n"
+	.string "step through that door.$"
 
 SootopolisCity_Text_Cameruptite:
 	.string "Thank you for correcting my\n"
