@@ -4,6 +4,8 @@ MauvilleCity_BikeShop_MapScripts::
 MauvilleCity_BikeShop_EventScript_Rydel::
 	lock
 	faceplayer
+	goto_if_set FLAG_RECEIVED_BOTHBIKES, MauvilleCity_BikeShop_EventScript_MayTheWind
+	goto_if_set FLAG_BOTHBIKES, MauvilleCity_BikeShop_EventScript_GiveOtherBike
 	goto_if_set FLAG_RECEIVED_BIKE, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
 	goto_if_set FLAG_DECLINED_BIKE, MauvilleCity_BikeShop_EventScript_SkipGreeting
 	msgbox MauvilleCity_BikeShop_Text_RydelGreeting, MSGBOX_DEFAULT
@@ -174,6 +176,34 @@ MauvilleCity_BikeShop_EventScript_ExitAcroHandbook::
 	release
 	end
 
+MauvilleCity_BikeShop_EventScript_GiveOtherBike::
+	checkitem ITEM_ACRO_BIKE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq MauvilleCity_BikeShop_EventScript_GiveMachBike
+	checkitem ITEM_MACH_BIKE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq MauvilleCity_BikeShop_EventScript_GiveAcroBike
+	msgbox MauvilleCity_BikeShop_Text_OhYourBikeIsInPC, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_GiveMachBike::
+	msgbox MauvilleCity_BikeShop_Text_ItsYou, MSGBOX_DEFAULT
+	giveitem ITEM_MACH_BIKE
+	setflag FLAG_RECEIVED_BOTHBIKES
+	goto MauvilleCity_BikeShop_EventScript_MayTheWind
+
+MauvilleCity_BikeShop_EventScript_GivAcroBike::
+	msgbox MauvilleCity_BikeShop_Text_ItsYou, MSGBOX_DEFAULT
+	giveitem ITEM_ACRO_BIKE
+	setflag FLAG_RECEIVED_BOTHBIKES
+	goto MauvilleCity_BikeShop_EventScript_MayTheWind
+
+MauvilleCity_BikeShop_EventScript_MayTheWind::
+	msgbox MauvilleCity_BikeShop_Text_MayTheWind, MSGBOX_DEFAULT
+	release
+	end
+
 MauvilleCity_BikeShop_Text_RydelGreeting:
 	.string "Well, well, what have we here?\n"
 	.string "A most energetic customer!\p"
@@ -318,3 +348,17 @@ MauvilleCity_BikeShop_Text_Jumps:
 	.string "change directions while jumping.\p"
 	.string "Want to read a different page?$"
 
+MauvilleCity_BikeShop_Text_ItsYou: @ 820F898
+	.string "Rydel: Oh, it's you!\n"
+	.string "I've been waiting for you!\p"
+	.string "Many people have come to my shop,\n"
+	.string "saying they saw you riding a Rydel's\l"
+	.string "Bike here and there and they want to\l"
+	.string "buy a bike, too.\p"
+	.string "Thanks to you, my business is\n"
+	.string "thriving! As a token of my appreciation,\l"
+	.string "I'll give you another Bike!$"
+
+MauvilleCity_BikeShop_Text_MayTheWind: @ 820F898
+	.string "Rydel: May the wind always be at your\n"
+	.string "back on your adventure!$"
