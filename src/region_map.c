@@ -1071,7 +1071,7 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         dimensionScale = 1;
     }
     x /= dimensionScale;
-    if (x >= gRegionMapEntries[*mapSectionIdd].width)
+    if (x >= gRegionMapEntries[*mapSectionId].width)
     {
         x = gRegionMapEntries[*mapSectionId].width - 1;
     }

@@ -58,13 +58,13 @@ MossdeepCity_Mart_EventScript_Yes::
 	release
 	end
 
-MauvilleCity_Mart_ReceivedQuash::
+MossdeepCity_Mart_ReceivedQuash::
 	msgbox MossdeepCity_Mart_Text_Sweetie, MSGBOX_DEFAULT
 	release
 	end
 
 MossdeepCity_Mart_EventScript_No::
-	msgbox MauvilleCity_Mart_Text_ISee, MSGBOX_DEFAULT
+	msgbox MossdeepCity_Mart_Text_ISee, MSGBOX_DEFAULT
 	release
 	end
 
@@ -98,6 +98,6 @@ MossdeepCity_Mart_Text_Sweetie:
 	.string "But I'm not a Trainer, so I don't\n"
 	.string "know how to use TMs. Hahaha!$"
 
-MauvilleCity_Mart_Text_ISee:
+MossdeepCity_Mart_Text_ISee:
 	.string "I see.\n"
 	.string "If you want to get it, let me know.$" 

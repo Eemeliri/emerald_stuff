@@ -1254,10 +1254,10 @@
 #define FLAG_ITEM_SHARPEDONITE                                      0x4B5 // Unused Flag
 #define FLAG_ITEM_CAMERUPTITE                                       0x4B6 // Unused Flag
 #define FLAG_ITEM_LUCARIONITE                                       0x4B7 // Unused Flag
-#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
-#define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
-#define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
-#define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag
+#define FLAG_ITEM_GALLADITE                                         0x4B8 // Unused Flag
+#define FLAG_ITEM_LOPUNNITE                                         0x4B9 // Unused Flag
+#define FLAG_ITEM_GARCHOMPITE                                       0x4BA // Unused Flag
+#define FLAG_ITEM_AUDINITE                                          0x4BB // Unused Flag
 #define FLAG_UNUSED_0x4BC                                           0x4BC // Unused Flag
 #define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
 #define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag

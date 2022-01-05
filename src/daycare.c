@@ -441,11 +441,12 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
     {
         parent = 1;
         if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM) == ITEM_EVERSTONE)
+        {
             if (Random() >= USHRT_MAX / 2)
                 parent = 0;
             else
                 parent = 1;
-
+        }
     }
 
 
@@ -899,38 +900,6 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
     ball = ITEM_POKE_BALL;
-
-    #if INHERIT_BALL == GEN_6
-        if (GetBoxMonGender(&daycare->mons[0].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-            ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
-        }
-        else if (GetBoxMonGender(&daycare->mons[1].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-            ball = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
-        }
-    #endif
-
-    #if INHERIT_BALL >= GEN_7
-        if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPECIES) == SPECIES_DITTO) {
-            if (GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-                ball = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
-            }
-        }
-        else if (GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPECIES) == SPECIES_DITTO) {
-            if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-                ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
-            }
-        }
-        else if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPECIES) == GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPECIES)) {
-            u16 rand = Random() % 2;
-            if (GetBoxMonData(&daycare->mons[rand].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-                ball = GetBoxMonData(&daycare->mons[rand].mon, MON_DATA_POKEBALL);
-            }
-        }
-        else if (GetBoxMonGender(&daycare->mons[0].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
-            ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
-        }
-    #endif
-
     language = LANGUAGE_JAPANESE;
     SetMonData(mon, MON_DATA_POKEBALL, &ball);
     SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);
@@ -958,6 +927,38 @@ static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *
     CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
     ball = ITEM_POKE_BALL;
+
+#if INHERIT_BALL == GEN_6
+    if (GetBoxMonGender(&daycare->mons[0].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+        ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+    }
+    else if (GetBoxMonGender(&daycare->mons[1].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+        ball = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
+    }
+#endif
+
+#if INHERIT_BALL >= GEN_7
+    if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPECIES) == SPECIES_DITTO) {
+        if (GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+            ball = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_POKEBALL);
+        }
+    }
+    else if (GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPECIES) == SPECIES_DITTO) {
+        if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+            ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+        }
+    }
+    else if (GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPECIES) == GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPECIES)) {
+        u16 rand = Random() % 2;
+        if (GetBoxMonData(&daycare->mons[rand].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+            ball = GetBoxMonData(&daycare->mons[rand].mon, MON_DATA_POKEBALL);
+        }
+    }
+    else if (GetBoxMonGender(&daycare->mons[0].mon) == MON_FEMALE && GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL) != ITEM_MASTER_BALL) {
+        ball = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_POKEBALL);
+    }
+#endif
+
     language = LANGUAGE_JAPANESE;
     SetMonData(mon, MON_DATA_POKEBALL, &ball);
     SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);

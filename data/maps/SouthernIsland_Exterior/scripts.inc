@@ -113,19 +113,19 @@ SouthernIsland_Exterior_EventScript_StevenLeaves:: @ 81F3F28
 	return
 
 SouthernIsland_Exterior_Movement_PlayerTurnsRight::
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
 SouthernIsland_Exterior_Movement_PlayerTurnsLeft::
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SouthernIsland_Exterior_Movement_PlayerTurnsUp::
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	step_end
 
 SouthernIsland_Exterior_Movement_PlayerTurnsDown::
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	step_end
 
 SouthernIsland_Exterior_Movement_StevenLeaves::

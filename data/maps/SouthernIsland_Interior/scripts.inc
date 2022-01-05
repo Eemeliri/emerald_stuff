@@ -334,7 +334,7 @@ SouthernIsland_Interior_EventScript_RecievedLatias::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, SouthernIsland_Interior_Movement_PlayerTurnsRight
 	msgbox SouthernIsland_Interior_Text_Return1, MSGBOX_DEFAULT
-	giveitem ITEM_MEGA_BRACELET
+	giveitem ITEM_MEGA_RING
 	bufferspeciesname 0, SPECIES_LATIAS
 	msgbox SouthernIsland_Interior_Text_Return2, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_ROUTE_118_STEVEN2
@@ -368,7 +368,7 @@ SouthernIsland_Interior_EventScript_RecievedLatios::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, SouthernIsland_Interior_Movement_PlayerTurnsLeft
 	msgbox SouthernIsland_Interior_Text_Return1, MSGBOX_DEFAULT
-	giveitem ITEM_MEGA_BRACELET
+	giveitem ITEM_MEGA_RING
 	bufferspeciesname 0, SPECIES_LATIOS
 	msgbox SouthernIsland_Interior_Text_Return2, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_ROUTE_118_STEVEN2
@@ -435,11 +435,11 @@ SouthernIsland_Interior_Movement_Magma2::
 	step_end
 
 SouthernIsland_Interior_Movement_Magma3::
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
 	step_end
 
 SouthernIsland_Interior_Movement_PlayerTurnsLeft::

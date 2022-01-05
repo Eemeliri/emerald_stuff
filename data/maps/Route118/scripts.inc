@@ -188,7 +188,7 @@ Route118_Movement_PlayerWatchStevenExit:
 
 Route118_Movement_TurnToStevenLeft: @ 81F3F5E
 	delay_16
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 Route118_Movement_StevenApproachLedge0:

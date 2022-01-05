@@ -3225,7 +3225,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = {
     .lvl = 50,
     .species = SPECIES_SHIFTRY,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FAKE_OUT, MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_LEAF_BLADE}
+    .moves = {MOVE_FAKE_OUT, MOVE_FEINT_ATTACK, MOVE_EXTRASENSORY, MOVE_LEAF_BLADE}
     },
     {
     .iv = 250,

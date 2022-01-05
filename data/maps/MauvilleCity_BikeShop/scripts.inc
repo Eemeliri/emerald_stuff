@@ -193,7 +193,7 @@ MauvilleCity_BikeShop_EventScript_GiveMachBike::
 	setflag FLAG_RECEIVED_BOTHBIKES
 	goto MauvilleCity_BikeShop_EventScript_MayTheWind
 
-MauvilleCity_BikeShop_EventScript_GivAcroBike::
+MauvilleCity_BikeShop_EventScript_GiveAcroBike::
 	msgbox MauvilleCity_BikeShop_Text_ItsYou, MSGBOX_DEFAULT
 	giveitem ITEM_ACRO_BIKE
 	setflag FLAG_RECEIVED_BOTHBIKES

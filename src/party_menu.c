@@ -6621,7 +6621,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
     u16 item1, item2;
     u8 buffer[100];
 
-    if (gPaletteFade.active || sub_81221EC())
+    if (gPaletteFade.active || MenuHelpers_CallLinkSomething())
         return;
 
     switch (PartyMenuButtonHandler(&gPartyMenu.slotId2))
@@ -6634,7 +6634,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
         if (GetMonData(&gPlayerParty[gPartyMenu.slotId2], MON_DATA_IS_EGG)
             || gPartyMenu.slotId == gPartyMenu.slotId2)
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             return;
         }
 
@@ -6687,7 +6687,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
         AnimatePartySlot(gPartyMenu.slotId, 1);
 
         // return to the main party menu
-        schedule_bg_copy_tilemap_to_vram(2);
+        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
         break;
     }
@@ -6724,7 +6724,7 @@ void CursorCb_MoveItem(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
 
         // return to the main party menu
-        schedule_bg_copy_tilemap_to_vram(2);
+        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
 }
