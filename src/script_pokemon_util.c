@@ -249,3 +249,90 @@ void ReducePlayerPartyToSelectedMons(void)
 
     CalculatePlayerPartyCount();
 }
+
+u8 ScriptGiveCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8* evs, u8* ivs, u16* moves, bool8 isShiny)
+{
+    u16 nationalDexNum;
+    int sentToPc;
+    u8 heldItem[2];
+    struct Pokemon mon;
+    u8 i;
+    u8 evTotal = 0;
+
+    if (nature == NUM_NATURES || nature == 0xFF)
+        nature = Random() % NUM_NATURES;
+
+    if (isShiny)
+        CreateShinyMonWithNature(&mon, species, level, nature);
+    else
+        CreateMonWithNature(&mon, species, level, 32, nature);
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        // ev
+        if (evs[i] != 0xFF && evTotal < 510)
+        {
+            // only up to 510 evs
+            if ((evTotal + evs[i]) > 510)
+                evs[i] = (510 - evTotal);
+
+            evTotal += evs[i];
+            SetMonData(&mon, MON_DATA_HP_EV + i, &evs[i]);
+        }
+
+        // iv
+        if (ivs[i] != 32 && ivs[i] != 0xFF)
+            SetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);
+    }
+    CalculateMonStats(&mon);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] > MOVES_COUNT)
+            continue;
+
+        SetMonMoveSlot(&mon, moves[i], i);
+    }
+
+    //ability
+    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == 0)
+    {
+        do {
+            abilityNum = Random() % 3;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+    }
+
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    //ball
+    if (ball <= POKEBALL_COUNT)
+        SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+
+    //item
+    heldItem[0] = item;
+    heldItem[1] = item >> 8;
+    SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
+
+    // give player the mon
+    //sentToPc = GiveMonToPlayer(&mon);
+    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            break;
+    }
+
+    sentToPc = GiveMonToPlayer(&mon);
+    nationalDexNum = SpeciesToNationalPokedexNum(species);
+    switch (sentToPc)
+    {
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        break;
+    }
+
+    return sentToPc;
+}
