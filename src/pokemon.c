@@ -4459,6 +4459,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_MONTH_MET:
         retVal = boxMon->monthMet;
+        break;
     case MON_DATA_SPECIES:
         retVal = boxMon->isBadEgg ? SPECIES_EGG : substruct0->species;
         break;
@@ -4832,6 +4833,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_DAY_MET:
         SET16(boxMon->dayMet);
+        break;
     case MON_DATA_SPECIES:
     {
         SET16(substruct0->species);

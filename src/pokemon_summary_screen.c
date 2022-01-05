@@ -3299,6 +3299,7 @@ static void BufferMonTrainerMemo(void)
         u8* metDateString = Alloc(32);
         u8* metDateString2 = Alloc(32);
         GetMetLevelString(metLevelString);
+        GetDateMetString(metDateString, metDateString2);
 
         if (sum->metLocation < MAPSEC_NONE)
         {
