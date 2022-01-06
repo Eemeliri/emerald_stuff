@@ -6621,7 +6621,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
     u16 item1, item2;
     u8 buffer[100];
 
-    if (gPaletteFade.active || MenuHelpers_CallLinkSomething())
+    if (gPaletteFade.active || MenuHelpers_ShouldWaitForLinkRecv())
         return;
 
     switch (PartyMenuButtonHandler(&gPartyMenu.slotId2))
