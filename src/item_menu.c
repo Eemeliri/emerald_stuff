@@ -64,11 +64,9 @@
                             max(BAG_ITEMS_COUNT,             \
                             max(BAG_BATTLEITEMS_COUNT,       \
                             max(BAG_MEGASTONES_COUNT,        \
-                            max(BAG_ZCRYSTALS_COUNT,         \
-                            max(BAG_TREASURES_COUNT,         \
                             max(BAG_MEDICINE_COUNT,          \
                             max(BAG_KEYITEMS_COUNT,          \
-                                BAG_POKEBALLS_COUNT)))))))))) + 1)
+                                BAG_POKEBALLS_COUNT)))))))) + 1)
 
 // Up to 8 item slots can be visible at a time
 #define MAX_ITEMS_SHOWN 8
@@ -774,10 +772,9 @@ static bool8 SetupBagMenu(void)
         PrintPocketNames(gPocketNamesStringsTable[gBagPosition.pocket], 0);
         CopyPocketNameToWindow(0);
         DrawPocketIndicatorSquare(0, FALSE);
-        DrawPocketIndicatorSquare(1, FALSE);
+        DrawPocketIndicatorSquare(5, FALSE);
+        DrawPocketIndicatorSquare(6, FALSE);
         DrawPocketIndicatorSquare(7, FALSE);
-        DrawPocketIndicatorSquare(8, FALSE);
-        DrawPocketIndicatorSquare(9, FALSE);
         DrawPocketIndicatorSquare(gBagPosition.pocket, TRUE);
         gMain.state++;
         break;
@@ -1471,9 +1468,9 @@ static void DrawItemListBgRow(u8 y)
 static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
 {
     if (!isCurrentPocket)
-        FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 3, 3, 1, 1);
+        FillBgTilemapBufferRect_Palette0(2, 0x1017, x + 4, 3, 1, 1);
     else
-        FillBgTilemapBufferRect_Palette0(2, 0x102B, x + 3, 3, 1, 1);
+        FillBgTilemapBufferRect_Palette0(2, 0x102B, x + 4, 3, 1, 1);
     ScheduleBgCopyTilemapToVram(2);
 }
 
@@ -1708,15 +1705,7 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
                 break;
-            case TREASURES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
             case MEGASTONES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
-            case ZCRYSTALS_POCKET:
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
                 break;
@@ -3318,17 +3307,9 @@ static void SortItemsInBag(u8 pocket, u8 type)
         itemMem = gSaveBlock1Ptr->bagPocket_Berries;
         itemAmount = BAG_BERRIES_COUNT;
         break;
-    case TREASURES_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_Treasures;
-        itemAmount = BAG_TREASURES_COUNT;
-        break;
     case MEGASTONES_POCKET:
         itemMem = gSaveBlock1Ptr->bagPocket_MegaStones;
         itemAmount = BAG_MEGASTONES_COUNT;
-        break;
-    case ZCRYSTALS_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_ZCrystals;
-        itemAmount = BAG_ZCRYSTALS_COUNT;
         break;
     case TMHM_POCKET:
         itemMem = &gTmHmItemSlots[0];
