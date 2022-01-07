@@ -2252,7 +2252,8 @@ bool8 ScrCmd_checkmoneventlegal(struct ScriptContext *ctx)
 
 bool8 ScrCmd_trywondercardscript(struct ScriptContext *ctx)
 {
-    const u8* script = GetSavedRamScriptIfValid();
+    struct RamScriptData* scriptData = &gSaveBlock1Ptr->ramScript.data;
+    const u8* script = scriptData->script;
 
     if (script)
     {
