@@ -288,5 +288,6 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_ITEM_ABOMASITE
  	setflag FLAG_ITEM_SALAMENCITE
 	setflag FLAG_ITEM_PIDGEOTITE
+	setflag FLAG_STONE_SELLER
 	call EventScript_ResetAllBerries
 	end

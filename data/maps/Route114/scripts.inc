@@ -200,3 +200,26 @@ Route114_Text_FossilManiacsHouseSign:
 Route114_Text_LanettesHouse:
 	.string "Lanette's House$"
 
+Route114_EventScript_StoneSeller::
+	lock
+	faceplayer
+	msgbox Route114_Text_StoneSeller, MSGBOX_DEFAULT
+	waitmessage
+	pokemart Route114_Stonemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+Route114_Stonemart:
+	.2byte ITEM_HARD_STONE
+	.2byte ITEM_SCEPTILITE
+	.2byte ITEM_BLAZIKENITE
+	.2byte ITEM_SWAMPERTITE
+	.2byte ITEM_NONE
+	release
+	end
+
+Route114_Text_StoneSeller:
+	.string "What stone would you like\n"
+	.string "today?$"

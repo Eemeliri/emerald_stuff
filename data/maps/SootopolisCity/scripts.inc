@@ -492,6 +492,7 @@ SootopolisCity_EventScript_StartRayquazaScene::
 	clearflag FLAG_ITEM_ABOMASITE
 	clearflag FLAG_ITEM_SALAMENCITE
 	clearflag FLAG_ITEM_PIDGEOTITE
+	clearflag FLAG_STONE_SELLER
 	special StorePlayerCoordsInVars
 	goto_if_ne VAR_0x8004, 43, SootopolisCity_EventScript_RayquazaSceneFromDive
 	goto_if_ne VAR_0x8005, 32, SootopolisCity_EventScript_RayquazaSceneFromDive
