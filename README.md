@@ -7,7 +7,6 @@ It builds the following ROM:
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-
 ## See also
 
 Other disassembly and/or decompilation projects:
@@ -27,4 +26,4 @@ Other disassembly and/or decompilation projects:
 
 ## Contacts
 
-You can find us on [Discord](https://discord.gg/d5dubZ3) and [IRC](https://web.libera.chat/?#pret).
+You can find PRET on [Discord](https://discord.gg/d5dubZ3) and [IRC](https://web.libera.chat/?#pret).

@@ -1736,8 +1736,14 @@
 	.2byte \quantity
 	.endm
 
+  @ Like callnative, but function expects a ctx
+  .macro callfunc func:req
+  .byte 0xe3
+  .4byte \func
+  .endm
+
 	.macro givecustommon species:req, level:req, item, ball, nature, abilityNum, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny
-    .byte 0xe3
+    .byte 0xe4
     .2byte \species
     .byte \level
     .ifb \item
