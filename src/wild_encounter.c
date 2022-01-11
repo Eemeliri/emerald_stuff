@@ -63,6 +63,7 @@ EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 
 #include "data/wild_encounters.h"
+#include "data/safari_zone.h"
 
 static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};
 
@@ -644,6 +645,17 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
                     return TRUE;
                 }
 
+                 if (GetSafariZoneFlag())
+                 {
+                     int wildMonIndex = ChooseWildMonIndex_Land();
+                     int level = ChooseWildMonLevel(&gSafariZone_South_LandMons[wildMonIndex]);
+                     SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex+gSaveBlock1Ptr->location.mapNum);
+                     wildMonIndex = Random2() % 213;
+                     CreateWildMon(gSafariZone_GrassEncounters[wildMonIndex], level);
+                     BattleSetup_StartWildBattle();
+                     return TRUE;
+                 }
+
                 // try a regular wild land encounter
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
@@ -687,6 +699,17 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
             }
             else // try a regular surfing encounter
             {
+                if (GetSafariZoneFlag())
+                 {
+                     int wildMonIndex = ChooseWildMonIndex_WaterRock();
+                     int level = ChooseWildMonLevel(&gSafariZone_Southwest_WaterMons[wildMonIndex]);
+                     SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
+                     wildMonIndex = Random2() % 12;
+                     CreateWildMon(gSafariZone_WaterEncounters[wildMonIndex], level);
+                     BattleSetup_StartWildBattle();
+                     return TRUE;
+                 }
+
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
                     gIsSurfingEncounter = TRUE;
@@ -828,16 +851,28 @@ void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    if (CheckFeebas() == TRUE)
+    if (GetSafariZoneFlag())
     {
-        u8 level = ChooseWildMonLevel(&sWildFeebas);
-
-        species = sWildFeebas.species;
-        CreateWildMon(species, level);
+        int wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+        int level = ChooseWildMonLevel(&gSafariZone_Southwest_FishingMons[wildMonIndex]);
+        SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
+        wildMonIndex = Random2() % 10;
+        CreateWildMon(gSafariZone_FishingEncounters[wildMonIndex], level);
+        species = gSafariZone_FishingEncounters[wildMonIndex];
     }
     else
     {
-        species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
+        if (CheckFeebas() == TRUE)
+        {
+            u8 level = ChooseWildMonLevel(&sWildFeebas);
+
+            species = sWildFeebas.species;
+            CreateWildMon(species, level);
+        }
+        else
+        {
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
+        }
     }
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
     SetPokemonAnglerSpecies(species);

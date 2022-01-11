@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "main.h"
 #include "pokeblock.h"
+#include "rtc.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "string_util.h"
@@ -57,10 +58,18 @@ void EnterSafariMode(void)
     IncrementGameStat(GAME_STAT_ENTERED_SAFARI_ZONE);
     SetSafariZoneFlag();
     ClearAllPokeblockFeeders();
+    FillEncounterTables();
     gNumSafariBalls = 30;
     sSafariZoneStepCounter = 500;
     sSafariZoneCaughtMons = 0;
     sSafariZonePkblkUses = 0;
+}
+
+void FillEncounterTables(void)
+{
+    struct SiiRtcInfo rtc;
+    RtcGetDateTime(&rtc);
+    VarSet(VAR_SAFARI_ZONE_SEED, (1+rtc.month)*rtc.year+(31*rtc.day));
 }
 
 void ExitSafariMode(void)
