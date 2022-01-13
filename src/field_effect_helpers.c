@@ -37,7 +37,7 @@ static u32 ShowDisguiseFieldEffect(u8, u8);
 static void LoadFieldEffectPalette_(u8 fieldEffect, bool8 updateGammaType);
 
 void LoadSpecialReflectionPalette(struct Sprite *sprite);
-
+u32 FldEff_Shadow(void);
 extern u16 gReflectionPaletteBuffer[];
 
 // Used by several field effects to determine which of a group it is
@@ -147,31 +147,6 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
     if (!objectEvent->active || !objectEvent->hasReflection || objectEvent->localId != reflectionSprite->data[1])
     {
         reflectionSprite->inUse = FALSE;
-        FieldEffectFreePaletteIfUnused(reflectionSprite->oam.paletteNum);
-        return;
-    }
-
-    // Only filter palette if not using the high bridge blue palette
-    if (IndexOfSpritePaletteTag(HIGH_BRIDGE_PAL_TAG) != reflectionSprite->oam.paletteNum) {
-      u16 baseTag = GetSpritePaletteTagByPaletteNum(mainSprite->oam.paletteNum);
-      u16 paletteTag = baseTag == 0xFFFF ? mainSprite->oam.paletteNum + PAL_RAW_REFLECTION_OFFSET : baseTag + PAL_TAG_REFLECTION_OFFSET;
-      u8 paletteNum = IndexOfSpritePaletteTag(paletteTag);
-      if (paletteNum == 0xFF) { // Build filtered palette
-        u16 filteredData[16] = {0};
-        struct SpritePalette filteredPalette = {.tag = paletteTag, .data = filteredData};
-        // Free palette if unused
-        reflectionSprite->inUse = FALSE;
-        FieldEffectFreePaletteIfUnused(reflectionSprite->oam.paletteNum);
-        reflectionSprite->inUse = TRUE;
-        if (reflectionSprite->data[7] == FALSE) {
-          ApplyPondFilter(mainSprite->oam.paletteNum, filteredData);
-        } else {
-          ApplyIceFilter(mainSprite->oam.paletteNum, filteredData);
-        }
-        paletteNum = LoadSpritePalette(&filteredPalette);
-        UpdateSpritePaletteWithWeather(paletteNum);
-      }
-      reflectionSprite->oam.paletteNum = paletteNum;
     }
     else
     {
@@ -190,18 +165,19 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         reflectionSprite->y2 = -mainSprite->y2;
         reflectionSprite->coordOffsetEnabled = mainSprite->coordOffsetEnabled;
 
-    if (objectEvent->hideReflection == TRUE)
-        reflectionSprite->invisible = TRUE;
+        if (objectEvent->hideReflection == TRUE)
+            reflectionSprite->invisible = TRUE;
 
-    // Check if the reflection is not still.
-    if (reflectionSprite->data[7] == FALSE)
-    {
+        // Check if the reflection is not still.
+        if (reflectionSprite->data[7] == FALSE)
+        {
         // Sets the reflection sprite's rot/scale matrix to the appropriate
         // matrix based on whether or not the main sprite is horizontally flipped.
         // If the sprite is facing to the east, then it is flipped, and its matrixNum is 8.
-        reflectionSprite->oam.matrixNum = 0;
-        if (mainSprite->oam.matrixNum & ST_OAM_HFLIP)
-            reflectionSprite->oam.matrixNum = 1;
+            reflectionSprite->oam.matrixNum = 0;
+            if (mainSprite->oam.matrixNum & ST_OAM_HFLIP)
+                reflectionSprite->oam.matrixNum = 1;
+        }
     }
 }
 
@@ -273,12 +249,7 @@ u32 FldEff_Shadow(void)
     u8 objectEventId;
     const struct ObjectEventGraphicsInfo *graphicsInfo;
     u8 spriteId;
-    u8 i;
-    for (i = 0; i < MAX_SPRITES; i++) {
-      // Return early if a shadow sprite already exists
-      if (gSprites[i].data[0] == gFieldEffectArguments[0] && gSprites[i].callback == UpdateShadowFieldEffect)
-        return 0;
-    }
+
     objectEventId = GetObjectEventIdByLocalIdAndMap(gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
     graphicsInfo = GetObjectEventGraphicsInfo(gObjectEvents[objectEventId].graphicsId);
     LoadFieldEffectPalette_(sShadowEffectTemplateIds[graphicsInfo->shadowSize], FALSE);
@@ -1386,7 +1357,7 @@ static u32 ShowDisguiseFieldEffect(u8 fldEff, u8 templateIdx)
     if (spriteId != MAX_SPRITES)
     {
         sprite = &gSprites[spriteId];
-        UpdateSpritePaletteByTemplate(gFieldEffectObjectTemplatePointers[fldEffObj], sprite);
+        //UpdateSpritePaletteByTemplate(gFieldEffectObjectTemplatePointers[fldEffObj], sprite);
         sprite->coordOffsetEnabled ++;
         sprite->sFldEff = fldEff;
         sprite->sLocalId = gFieldEffectArguments[0];
