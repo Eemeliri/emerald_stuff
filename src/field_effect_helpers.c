@@ -103,7 +103,7 @@ static void LoadObjectReflectionPalette(struct ObjectEvent *objectEvent, struct 
         LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION, TRUE);
         reflectionSprite->oam.paletteNum = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION);
         UpdatePaletteGammaType(reflectionSprite->oam.paletteNum, GAMMA_NORMAL);
-        UpdateSpritePaletteWithWeather(reflectionSprite->oam.paletteNum);
+        //UpdateSpritePaletteWithWeather(reflectionSprite->oam.paletteNum);
     }
     else
     {
