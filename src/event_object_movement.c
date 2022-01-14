@@ -146,7 +146,7 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *);
 static void SpawnObjectEventOnReturnToField(u8, s16, s16);
 static void SetPlayerAvatarObjectEventIdAndObjectId(u8, u8);
 static void ResetObjectEventFldEffData(struct ObjectEvent *);
-static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *);
+static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *, bool8 shouldTint);
 static u8 FindObjectEventPaletteIndexByTag(u16);
 static void _PatchObjectPalette(u16, u8);
 static bool8 ObjectEventDoesZCoordMatch(struct ObjectEvent *, u8);
@@ -498,7 +498,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
     {gObjectEventPal_Npc1, OBJ_EVENT_PAL_TAG_DYNAMIC},
     {gObjectEventPaletteEmotes, OBJ_EVENT_PAL_TAG_EMOTES},
-    {NULL,                  0x0000},
+    {NULL,                  OBJ_EVENT_PAL_TAG_NONE},
 };
 
 #include "data/object_events/berry_tree_graphics_tables.h"
@@ -1233,7 +1233,7 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
     if (spriteTemplate->paletteTag != 0xFFFF)
     {
-        LoadObjectEventPalette(spriteTemplate->paletteTag);
+        LoadObjectEventPalette(spriteTemplate->paletteTag, TRUE);
         UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate->paletteTag), GAMMA_ALT);
     }
 
@@ -1403,7 +1403,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
         paletteNum = LoadDynamicFollowerPalette(species, form, shiny);
         spriteTemplate->paletteTag = spritePalette->tag;
     } else if (spriteTemplate->paletteTag != TAG_NONE)
-        LoadObjectEventPalette(spriteTemplate->paletteTag);
+        LoadObjectEventPalette(spriteTemplate->paletteTag, FALSE);
 
     spriteId = CreateSprite(spriteTemplate, x, y, subpriority);
     free(spriteTemplate);
@@ -1437,7 +1437,7 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 z, u8 di
     CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, SpriteCB_VirtualObject, &spriteTemplate, &subspriteTables);
     if (spriteTemplate.paletteTag != 0xFFFF)
     {
-        LoadObjectEventPalette(spriteTemplate.paletteTag);
+        LoadObjectEventPalette(spriteTemplate.paletteTag, TRUE);
         UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate.paletteTag), GAMMA_ALT);
     }
     x += 7;
@@ -1506,7 +1506,11 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
     // so that palette tags do not overlap
     const struct CompressedSpritePalette *spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
     if ((paletteNum = IndexOfSpritePaletteTag(spritePalette->tag)) == 0xFF) { // Load compressed palette
-      LoadCompressedSpritePalette(spritePalette);
+      LoadCompressedSpritePaletteDayNight(spritePalette);
+      //LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
+      //LoadObjectEventPalette(spriteTemplate->paletteTag, TRUE);
+      //LoadSpritePaletteDayNight(spritePalette);
+      //DoLoadSpritePaletteDayNight(spritePalette->data, spritePalette->tag * 16);
       paletteNum = IndexOfSpritePaletteTag(spritePalette->tag); // Tag is always present
     }
     return paletteNum;
@@ -1885,7 +1889,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
     spriteTemplate.images = &spriteFrameImage;
     if (spriteTemplate.paletteTag != 0xFFFF)
     {
-        LoadObjectEventPalette(spriteTemplate.paletteTag);
+        LoadObjectEventPalette(spriteTemplate.paletteTag, TRUE);
         UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate.paletteTag), GAMMA_ALT);
     }
 
@@ -1950,7 +1954,7 @@ static u8 UpdateSpritePalette(const struct SpritePalette * spritePalette, struct
   FieldEffectFreePaletteIfUnused(sprite->oam.paletteNum);
   sprite->inUse = TRUE;
   if (IndexOfSpritePaletteTag(spritePalette->tag) == 0xFF) {
-    sprite->oam.paletteNum = LoadSpritePalette(spritePalette);
+    sprite->oam.paletteNum = LoadSpritePaletteDayNight(spritePalette);
   } else {
     sprite->oam.paletteNum = LoadSpritePalette(spritePalette);
   }
@@ -2033,7 +2037,7 @@ static void SetBerryTreeGraphics(struct ObjectEvent *objectEvent, u8 berryId, u8
   const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
   struct Sprite *sprite = &gSprites[objectEvent->spriteId];
   UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteTagTablePointers[berryId][berryStage]-2], sprite);
-  LoadObjectEventPalette(gBerryTreePaletteTagTablePointers[berryId][berryStage]);
+  LoadObjectEventPalette(gBerryTreePaletteTagTablePointers[berryId][berryStage], TRUE);
   ObjectEventSetGraphicsId(objectEvent, gBerryTreeObjectEventGraphicsIdTablePointers[berryId][berryStage]);
   sprite->oam.shape = graphicsInfo->oam->shape;
   sprite->oam.size = graphicsInfo->oam->size;
@@ -2183,30 +2187,35 @@ void FreeAndReserveObjectSpritePalettes(void)
     gReservedSpritePaletteCount = 12;
 }
 
-void LoadObjectEventPalette(u16 paletteTag)
+void LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
 {
     u16 i = FindObjectEventPaletteIndexByTag(paletteTag);
 
     if (i != OBJ_EVENT_PAL_TAG_NONE) // always true
-        LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i]);
+        LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
 }
 
-// Unused
+/*/ Unused
 static void LoadObjectEventPaletteSet(u16 *paletteTags)
 {
     u8 i;
 
     for (i = 0; paletteTags[i] != OBJ_EVENT_PAL_TAG_NONE; i++)
         LoadObjectEventPalette(paletteTags[i]);
-}
+}*/
 
-static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *spritePalette)
+static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *spritePalette, bool8 shouldTint)
 {
-    u8 paletteNum;
+    //u8 paletteNum;
     if (IndexOfSpritePaletteTag(spritePalette->tag) != 0xFF)
         return 0xFF;
-    paletteNum = LoadSpritePalette(spritePalette);
-    return paletteNum;
+    
+    if (shouldTint)
+        return LoadSpritePaletteDayNight(spritePalette);
+    else
+        return LoadSpritePalette(spritePalette);
+    //paletteNum = LoadSpritePalette(spritePalette);
+    //return paletteNum;
 }
 
 void PatchObjectPalette(u16 paletteTag, u8 paletteSlot)

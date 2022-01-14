@@ -192,9 +192,9 @@ void ForceTimeBasedEvents(void)
 }
 
 #undef tState
-#undef tAmbientCryState
-#undef tAmbientCryDelay
-#undef tForceTimeUpdate
+//#undef tAmbientCryState
+//#undef tAmbientCryDelay
+//#undef tForceTimeUpdate
 
 void SetUpFieldTasks(void)
 {

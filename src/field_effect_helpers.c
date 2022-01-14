@@ -100,7 +100,7 @@ static void LoadObjectReflectionPalette(struct ObjectEvent *objectEvent, struct 
         // When walking on a bridge high above water (Route 120), the reflection is a solid dark blue color.
         // This is so the sprite blends in with the dark water metatile underneath the bridge.
         reflectionSprite->sReflectionVerticalOffset = bridgeReflectionVerticalOffsets[bridgeType - 1];
-        LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION);
+        LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION, TRUE);
         reflectionSprite->oam.paletteNum = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION);
         UpdatePaletteGammaType(reflectionSprite->oam.paletteNum, GAMMA_NORMAL);
         UpdateSpritePaletteWithWeather(reflectionSprite->oam.paletteNum);
@@ -133,7 +133,7 @@ void LoadSpecialReflectionPalette(struct Sprite *sprite)
 	}
 	reflectionPalette.data = gReflectionPaletteBuffer;
 	reflectionPalette.tag = GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) + 0x1000;
-	LoadSpritePalette(&reflectionPalette);
+	LoadSpritePaletteDayNight(&reflectionPalette);
 	sprite->oam.paletteNum = IndexOfSpritePaletteTag(reflectionPalette.tag);
 	UpdatePaletteGammaType(sprite->oam.paletteNum, GAMMA_ALT);
 	UpdateSpritePaletteWithWeather(sprite->oam.paletteNum);
@@ -232,7 +232,7 @@ void ShowWarpArrowSprite(u8 spriteId, u8 direction, s16 x, s16 y)
         sprite->invisible = FALSE;
         sprite->data[0] = x;
         sprite->data[1] = y;
-        sprite->oam.paletteNum = LoadSpritePalette(&gSpritePalette_ArrowEmotionsFieldEffect);
+        //sprite->oam.paletteNum = LoadSpritePalette(&gSpritePalette_ArrowEmotionsFieldEffect);
         StartSpriteAnim(sprite, direction - 1);
     }
 }
@@ -1719,7 +1719,7 @@ static void LoadFieldEffectPalette_(u8 fieldEffect, bool8 updateGammaType)
     spriteTemplate = gFieldEffectObjectTemplatePointers[fieldEffect];
     if (spriteTemplate->paletteTag != 0xffff)
     {
-        LoadObjectEventPalette(spriteTemplate->paletteTag);
+        LoadObjectEventPalette(spriteTemplate->paletteTag, TRUE);
         if (updateGammaType)
             UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate->paletteTag), GAMMA_NORMAL);
     }
