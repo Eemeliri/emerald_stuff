@@ -1,5 +1,6 @@
 .set LOCALID_GRUNT_1, 1
 .set LOCALID_GRUNT_2, 6
+.set LOCALID_RIVAL, 15
 
 Route112_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition
@@ -112,7 +113,7 @@ Route112_EventScript_Shayla::
 
 Route112_EventScript_RivalScene:: @ 81EF9CB
 	lockall
-	addobject 25
+	addobject LOCALID_RIVAL
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq Route112_EventScript_PlayMayMusic
@@ -139,7 +140,7 @@ Route112_EventScript_PlayBrendanMusic:: @ 81EF7E6
 	return
 
 Route112_EventScript_RivalApproachPlayer1:: @ 81EF94E
-	applymovement 15, Route112_Movement_RivalApproachPlayer
+	applymovement LOCALID_RIVAL, Route112_Movement_RivalApproachPlayer
 	waitmovement 0
 	return
 
@@ -173,7 +174,7 @@ Route112_EventScript_RivalExit:: @ 81EF8EC
 	closemessage
 	delay 45
 	call Route112_EventScript_RivalMove
-	removeobject 15
+	removeobject LOCALID_RIVAL
 	setvar VAR_ROUTE112_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
