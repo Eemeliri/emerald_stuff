@@ -431,7 +431,7 @@ $(ELF): $(OBJ_DIR)/ld_script.ld $(OBJS) berry_fix libagbsyscall
 
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
-	$(FIX) $@ --silent
+	$(FIX) $@ -p --silent
 
 modern: all
 
