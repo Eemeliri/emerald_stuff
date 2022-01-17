@@ -648,7 +648,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
                  if (GetSafariZoneFlag())
                  {
                      int wildMonIndex = ChooseWildMonIndex_Land();
-                     int level = ChooseWildMonLevel(&gSafariZone_South_LandMons[wildMonIndex]);
+                     int level = ChooseWildMonLevel(&gSafariZone_South_LandMons_DAY[wildMonIndex]);
                      SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex+gSaveBlock1Ptr->location.mapNum);
                      wildMonIndex = Random2() % 213;
                      CreateWildMon(gSafariZone_GrassEncounters[wildMonIndex], level);
@@ -702,7 +702,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
                 if (GetSafariZoneFlag())
                  {
                      int wildMonIndex = ChooseWildMonIndex_WaterRock();
-                     int level = ChooseWildMonLevel(&gSafariZone_Southwest_WaterMons[wildMonIndex]);
+                     int level = ChooseWildMonLevel(&gSafariZone_Southwest_WaterMons_DAY[wildMonIndex]);
                      SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
                      wildMonIndex = Random2() % 12;
                      CreateWildMon(gSafariZone_WaterEncounters[wildMonIndex], level);
@@ -854,7 +854,7 @@ void FishingWildEncounter(u8 rod)
     if (GetSafariZoneFlag())
     {
         int wildMonIndex = ChooseWildMonIndex_Fishing(rod);
-        int level = ChooseWildMonLevel(&gSafariZone_Southwest_FishingMons[wildMonIndex]);
+        int level = ChooseWildMonLevel(&gSafariZone_Southwest_FishingMons_DAY[wildMonIndex]);
         SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
         wildMonIndex = Random2() % 10;
         CreateWildMon(gSafariZone_FishingEncounters[wildMonIndex], level);
