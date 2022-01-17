@@ -6163,6 +6163,22 @@ static const struct SpriteFrameImage sPicTable_arceus[] = {
     overworld_frame(gObjectEventPic_arceus, 8, 8, 4),
     overworld_frame(gObjectEventPic_arceus, 8, 8, 5),
 };
+static const struct SpriteFrameImage sPicTable_alolanvulpix[] = {
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 0),
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 1),
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 2),
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 3),
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 4),
+    overworld_frame(gObjectEventPic_alolanvulpix, 4, 4, 5),
+};
+static const struct SpriteFrameImage sPicTable_alolanninetales[] = {
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 0),
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 1),
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 2),
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 3),
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 4),
+    overworld_frame(gObjectEventPic_alolanninetales, 4, 4, 5),
+};
 
 static const struct SpriteFrameImage sPicTable_DeoxysOld[] = {
     overworld_frame(gObjectEventPic_DeoxysOld, 4, 4, 0),

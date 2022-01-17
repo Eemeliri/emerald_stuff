@@ -877,6 +877,8 @@ const u32 gObjectEventPic_manaphy[] = INCBIN_U32("graphics/object_events/pics/po
 const u32 gObjectEventPic_darkrai[] = INCBIN_U32("graphics/object_events/pics/pokemon/darkrai.4bpp");
 const u32 gObjectEventPic_shaymin[] = INCBIN_U32("graphics/object_events/pics/pokemon/shaymin.4bpp");
 const u32 gObjectEventPic_arceus[] = INCBIN_U32("graphics/object_events/pics/pokemon/arceus.4bpp");
+const u32 gObjectEventPic_alolanvulpix[] = INCBIN_U32("graphics/object_events/pics/pokemon/alolan_vulpix.4bpp");
+const u32 gObjectEventPic_alolanninetales[] = INCBIN_U32("graphics/object_events/pics/pokemon/alolan_ninetales.4bpp");
 
 const u32 gObjectEventPic_DeoxysOld[] = INCBIN_U32("graphics/object_events/pics/pokemon/deoxys_old.4bpp");
 const u32 gObjectEventPic_MewOld[] = INCBIN_U32("graphics/object_events/pics/pokemon/mew_old.4bpp");
