@@ -388,8 +388,20 @@
 #define BATTLE_TERRAIN_DISTORTION_WORLD 19
 #define BATTLE_TERRAIN_SPACE            20
 #define BATTLE_TERRAIN_ULTRA_SPACE      21
+#define BATTLE_TERRAIN_LINK             22
+#define BATTLE_TERRAIN_GYM              23
+#define BATTLE_TERRAIN_LEADER           24
+#define BATTLE_TERRAIN_MAGMA            25
+#define BATTLE_TERRAIN_AQUA             26
+#define BATTLE_TERRAIN_SIDNEY           27
+#define BATTLE_TERRAIN_PHOEBE           28
+#define BATTLE_TERRAIN_GLACIA           29
+#define BATTLE_TERRAIN_DRAKE            30
+#define BATTLE_TERRAIN_CHAMPION         31
+#define BATTLE_TERRAIN_RAYQUAZA         32
+#define BATTLE_TERRAIN_FRONTIER         33
 
-#define BATTLE_TERRAIN_COUNT            22
+#define BATTLE_TERRAIN_COUNT            34
 
 #define B_WAIT_TIME_LONG  64
 #define B_WAIT_TIME_MED   48
