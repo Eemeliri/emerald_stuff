@@ -24,6 +24,17 @@
 #define FRONTIER_MODE_LINK_MULTIS  3
 #define FRONTIER_MODE_COUNT        4
 
+// Pokemon World Tournament mode
+#define PWT_MODE_NONE              0
+#define PWT_MODE_KANTO             1
+#define PWT_MODE_JOHTO             2
+#define PWT_MODE_HOENN             3
+#define PWT_MODE_SINNOH            4
+#define PWT_MODE_UNOVA             5
+#define PWT_MODE_WORLD_LEADERS     6
+#define PWT_MODE_WORLDS_BEST       7
+#define PWT_MODE_CHAMPIONS         8
+
 // Challenge Statuses
 #define CHALLENGE_STATUS_SAVING   1
 #define CHALLENGE_STATUS_PAUSED   2

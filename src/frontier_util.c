@@ -496,6 +496,478 @@ static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZ
     },
 };
 
+
+static const struct FrontierBrainMon sFrontierGymLeaderMons[][6] =
+{
+    [TRAINER_FRONTIER_ROXANNE] =
+    {
+        {
+            .species = SPECIES_PROBOPASS,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_ARMALDO,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CRADILY,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_AGGRON,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_RELICANTH,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_GOLEM,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_BRAWLEY] =
+    {
+        {
+            .species = SPECIES_HARIYAMA,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_MEDICHAM,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_BRELOOM,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_MACHAMP,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_HITMONTOP,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_HERACROSS,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_WATTSON] =
+    {
+        {
+            .species = SPECIES_MANECTRIC,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_MAGNEZONE,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_ELECTRODE,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_PLUSLE,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_MINUN,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_RAICHU,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_FLANNERY] =
+    {
+        {
+            .species = SPECIES_TORKOAL,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_CAMERUPT,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_MAGCARGO,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_BLAZIKEN,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_HOUNDOOM,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_MAGMORTAR,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_NORMAN] =
+    {
+        {
+            .species = SPECIES_SLAKING,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_SPINDA,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_KECLEON,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_CASTFORM,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_EXPLOUD,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_ZANGOOSE,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_WINONA] =
+    {
+        {
+            .species = SPECIES_ALTARIA,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_PELIPPER,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_SWELLOW,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_SKARMORY,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_TROPIUS,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_HONCHKROW,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_TATE] =
+    {
+        {
+            .species = SPECIES_SOLROCK,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_XATU,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CHIMECHO,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_GRUMPIG,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_GALLADE,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CLAYDOL,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_LIZA] =
+    {
+        {
+            .species = SPECIES_LUNATONE,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_XATU,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CHIMECHO,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_GRUMPIG,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_GARDEVOIR,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CLAYDOL,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+
+    [TRAINER_FRONTIER_WALLACE] =
+    {
+        {
+            .species = SPECIES_KINGDRA,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_WALREIN,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_CRAWDAUNT,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+        {
+            .species = SPECIES_WHISCASH,
+            .heldItem = ITEM_BRIGHT_POWDER,
+            .fixedIV = 24,
+            .nature = NATURE_MODEST,
+            .evs = {106, 0, 152, 152, 100, 0},
+            .moves = {MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_DISABLE},
+        },
+        {
+            .species = SPECIES_HUNTAIL,
+            .heldItem = ITEM_LUM_BERRY,
+            .fixedIV = 24,
+            .nature = NATURE_LONELY,
+            .evs = {100, 152, 152, 0, 100, 6},
+            .moves = {MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_RETURN, MOVE_ROAR},
+        },
+        {
+            .species = SPECIES_GOREBYSS,
+            .heldItem = ITEM_QUICK_CLAW,
+            .fixedIV = 24,
+            .nature = NATURE_ADAMANT,
+            .evs = {152, 152, 0, 0, 106, 100},
+            .moves = {MOVE_BODY_SLAM, MOVE_BELLY_DRUM, MOVE_YAWN, MOVE_SHADOW_BALL},
+        },
+    },
+};
+
 static const u8 sBattlePointAwards[][NUM_FRONTIER_FACILITIES][FRONTIER_MODE_COUNT] =
 {
     {
@@ -725,7 +1197,123 @@ static const u16 sFrontierBrainTrainerIds[NUM_FRONTIER_FACILITIES] =
     [FRONTIER_FACILITY_PIKE]    = TRAINER_LUCY,
     [FRONTIER_FACILITY_PYRAMID] = TRAINER_BRANDON,
 };
+/*
+static const u16 gFrontierKantoLeaders[] =
+{
+    TRAINER_FRONTIER_BROCK,
+    TRAINER_FRONTIER_MISTY,
+    TRAINER_FRONTIER_SURGE,
+    TRAINER_FRONTIER_ERIKA,
+    TRAINER_FRONTIER_JANINE,
+    TRAINER_FRONTIER_SABRINA,
+    TRAINER_FRONTIER_BLAINE,
+    TRAINER_FRONTIER_GIOVANNI,
+};
 
+static const u16 gFrontierJohtoLeaders[] =
+{
+    TRAINER_FRONTIER_FALKNER,
+    TRAINER_FRONTIER_BUGSY,
+    TRAINER_FRONTIER_WHITNEY,
+    TRAINER_FRONTIER_MORTY,
+    TRAINER_FRONTIER_CHUCK,
+    TRAINER_FRONTIER_JASMINE,
+    TRAINER_FRONTIER_PRYCE,
+    TRAINER_FRONTIER_CLAIR,
+};
+
+static const u16 gFrontierHoennLeaders[] =
+{
+    TRAINER_FRONTIER_ROXANNE,
+    TRAINER_FRONTIER_BRAWLEY,
+    TRAINER_FRONTIER_WATTSON,
+    TRAINER_FRONTIER_FLANNERY,
+    TRAINER_FRONTIER_NORMAN,
+    TRAINER_FRONTIER_WINONA,
+    TRAINER_FRONTIER_TATE,
+    TRAINER_FRONTIER_LIZA,
+    TRAINER_FRONTIER_WALLACE,
+};
+
+static const u16 gFrontierSinnohLeaders[] =
+{
+    TRAINER_FRONTIER_ROARK,
+    TRAINER_FRONTIER_GARDENIA,
+    TRAINER_FRONTIER_MAYLENE,
+    TRAINER_FRONTIER_WAKE,
+    TRAINER_FRONTIER_FANTINA,
+    TRAINER_FRONTIER_BYRON,
+    TRAINER_FRONTIER_CANDICE,
+    TRAINER_FRONTIER_VOLKNER,
+};
+
+static const u16 gFrontierUnovaLeaders[] =
+{
+    TRAINER_FRONTIER_CILAN,
+    TRAINER_FRONTIER_CHILI,
+    TRAINER_FRONTIER_CRESS,
+    TRAINER_FRONTIER_LENORA,
+    TRAINER_FRONTIER_BURGH,
+    TRAINER_FRONTIER_ELESA,
+    TRAINER_FRONTIER_CLAY,
+    TRAINER_FRONTIER_SKYLA,
+    TRAINER_FRONTIER_BRYCEN,
+    TRAINER_FRONTIER_DRAYDEN,
+    TRAINER_FRONTIER_CHEREN,
+    TRAINER_FRONTIER_ROXIE,
+    TRAINER_FRONTIER_MARLON,
+};
+
+static const u16 gFrontierWorldLeaders[] =
+{
+    TRAINER_FRONTIER_BROCK,
+    TRAINER_FRONTIER_MISTY,
+    TRAINER_FRONTIER_SURGE,
+    TRAINER_FRONTIER_ERIKA,
+    TRAINER_FRONTIER_JANINE,
+    TRAINER_FRONTIER_SABRINA,
+    TRAINER_FRONTIER_BLAINE,
+    TRAINER_FRONTIER_GIOVANNI,
+    TRAINER_FRONTIER_FALKNER,
+    TRAINER_FRONTIER_BUGSY,
+    TRAINER_FRONTIER_WHITNEY,
+    TRAINER_FRONTIER_MORTY,
+    TRAINER_FRONTIER_CHUCK,
+    TRAINER_FRONTIER_JASMINE,
+    TRAINER_FRONTIER_PRYCE,
+    TRAINER_FRONTIER_CLAIR,
+    TRAINER_FRONTIER_ROXANNE,
+    TRAINER_FRONTIER_BRAWLEY,
+    TRAINER_FRONTIER_WATTSON,
+    TRAINER_FRONTIER_FLANNERY,
+    TRAINER_FRONTIER_NORMAN,
+    TRAINER_FRONTIER_WINONA,
+    TRAINER_FRONTIER_TATE,
+    TRAINER_FRONTIER_LIZA,
+    TRAINER_FRONTIER_WALLACE,
+    TRAINER_FRONTIER_ROARK,
+    TRAINER_FRONTIER_GARDENIA,
+    TRAINER_FRONTIER_MAYLENE,
+    TRAINER_FRONTIER_WAKE,
+    TRAINER_FRONTIER_FANTINA,
+    TRAINER_FRONTIER_BYRON,
+    TRAINER_FRONTIER_CANDICE,
+    TRAINER_FRONTIER_VOLKNER,
+    TRAINER_FRONTIER_CILAN,
+    TRAINER_FRONTIER_CHILI,
+    TRAINER_FRONTIER_CRESS,
+    TRAINER_FRONTIER_LENORA,
+    TRAINER_FRONTIER_BURGH,
+    TRAINER_FRONTIER_ELESA,
+    TRAINER_FRONTIER_CLAY,
+    TRAINER_FRONTIER_SKYLA,
+    TRAINER_FRONTIER_BRYCEN,
+    TRAINER_FRONTIER_DRAYDEN,
+    TRAINER_FRONTIER_CHEREN,
+    TRAINER_FRONTIER_ROXIE,
+    TRAINER_FRONTIER_MARLON,
+};
+*/
 static const u8 *const sFrontierBrainPlayerLostSilverTexts[NUM_FRONTIER_FACILITIES] =
 {
     [FRONTIER_FACILITY_TOWER]   = gText_AnabelWonSilver,
@@ -2545,6 +3133,85 @@ void CreateFrontierBrainPokemon(void)
     }
 }
 
+void CreateFrontierGymChampionPokemon(u16 trainerId)
+{
+    s32 i, j;
+    s32 selectedMonBits;
+    s32 monPartyId;
+    s32 monLevel = 0;
+    u8 friendship;
+    u8 partysize = 3;
+
+    if(VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
+        partysize = 4;
+
+    ZeroEnemyPartyMons();
+    monPartyId = 0;
+    monLevel = SetFacilityPtrsGetLevel();
+    for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
+    {
+        if (i  == 0)
+        {
+            do
+            {
+                do
+                {
+                    j = Random32(); //should just be one while loop, but that doesn't match
+                } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+            } while (sFrontierGymLeaderMons[trainerId][i].nature != GetNatureFromPersonality(j));
+            CreateMon(&gEnemyParty[monPartyId],
+                  sFrontierGymLeaderMons[trainerId][i].species,
+                  monLevel,
+                  sFrontierGymLeaderMons[trainerId][i].fixedIV,
+                  TRUE, j,
+                  OT_ID_PRESET, FRONTIER_BRAIN_OTID);
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierGymLeaderMons[trainerId][i].heldItem);
+            for (j = 0; j < NUM_STATS; j++)
+                SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierGymLeaderMons[trainerId][i].evs[j]);
+            friendship = MAX_FRIENDSHIP;
+            for (j = 0; j < MAX_MON_MOVES; j++)
+            {
+                SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][i].moves[j], j);
+                if (sFrontierGymLeaderMons[trainerId][i].moves[j] == MOVE_FRUSTRATION)
+                    friendship = 0;
+            }
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+            CalculateMonStats(&gEnemyParty[monPartyId]);
+            monPartyId++;
+        }
+        else
+        {
+
+            do
+            {
+                do
+                {
+                    j = Random32(); //should just be one while loop, but that doesn't match
+                } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+            } while (sFrontierGymLeaderMons[trainerId][i].nature != GetNatureFromPersonality(j));
+            CreateMon(&gEnemyParty[monPartyId],
+                      sFrontierGymLeaderMons[trainerId][i].species,
+                      monLevel,
+                      sFrontierGymLeaderMons[trainerId][i].fixedIV,
+                      TRUE, j,
+                      OT_ID_PRESET, FRONTIER_BRAIN_OTID);
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierGymLeaderMons[trainerId][i].heldItem);
+            for (j = 0; j < NUM_STATS; j++)
+                SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierGymLeaderMons[trainerId][i].evs[j]);
+            friendship = MAX_FRIENDSHIP;
+            for (j = 0; j < MAX_MON_MOVES; j++)
+            {
+                SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][i].moves[j], j);
+                if (sFrontierGymLeaderMons[trainerId][i].moves[j] == MOVE_FRUSTRATION)
+                    friendship = 0;
+            }
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+            CalculateMonStats(&gEnemyParty[monPartyId]);
+            monPartyId++;
+        }
+    }
+}
+
 u16 GetFrontierBrainMonSpecies(u8 monId)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
@@ -2552,6 +3219,11 @@ u16 GetFrontierBrainMonSpecies(u8 monId)
 
     return sFrontierBrainsMons[facility][symbol][monId].species;
 }
+/*
+u16 GetFrontierGymLeaderMonSpecies(u16 trainerId, u8 monId)
+{
+    return sFrontierGymLeaderMons[trainerId][monId].species;
+}*/
 
 void SetFrontierBrainObjEventGfx(u8 facility)
 {

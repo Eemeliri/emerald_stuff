@@ -859,11 +859,92 @@
 #define TRAINER_COURTNEY                    855
 #define TRAINER_STEVEN_SOUTHERNISLAND       856
 
+#define TRAINER_FRONTIER_BROCK              857
+#define TRAINER_FRONTIER_MISTY              858
+#define TRAINER_FRONTIER_SURGE              859
+#define TRAINER_FRONTIER_ERIKA              860
+#define TRAINER_FRONTIER_JANINE             861
+#define TRAINER_FRONTIER_SABRINA            862
+#define TRAINER_FRONTIER_BLAINE             863
+#define TRAINER_FRONTIER_GIOVANNI           864
+
+#define TRAINER_FRONTIER_FALKNER            865
+#define TRAINER_FRONTIER_BUGSY              866
+#define TRAINER_FRONTIER_WHITNEY            867
+#define TRAINER_FRONTIER_MORTY              868
+#define TRAINER_FRONTIER_CHUCK              869
+#define TRAINER_FRONTIER_JASMINE            870
+#define TRAINER_FRONTIER_PRYCE              871
+#define TRAINER_FRONTIER_CLAIR              872
+
+#define TRAINER_FRONTIER_ROXANNE            873
+#define TRAINER_FRONTIER_BRAWLEY            874
+#define TRAINER_FRONTIER_WATTSON            875
+#define TRAINER_FRONTIER_FLANNERY           876
+#define TRAINER_FRONTIER_NORMAN             877
+#define TRAINER_FRONTIER_WINONA             878
+#define TRAINER_FRONTIER_TATE               879
+#define TRAINER_FRONTIER_LIZA               880
+#define TRAINER_FRONTIER_WALLACE            881
+
+#define TRAINER_FRONTIER_ROARK              882
+#define TRAINER_FRONTIER_GARDENIA           883
+#define TRAINER_FRONTIER_MAYLENE            884
+#define TRAINER_FRONTIER_WAKE               885
+#define TRAINER_FRONTIER_FANTINA            886
+#define TRAINER_FRONTIER_BYRON              887
+#define TRAINER_FRONTIER_CANDICE            888
+#define TRAINER_FRONTIER_VOLKNER            889
+
+#define TRAINER_FRONTIER_CILAN              890
+#define TRAINER_FRONTIER_CHILI              891
+#define TRAINER_FRONTIER_CRESS              892
+#define TRAINER_FRONTIER_LENORA             893
+#define TRAINER_FRONTIER_BURGH              894
+#define TRAINER_FRONTIER_ELESA              895
+#define TRAINER_FRONTIER_CLAY               896
+#define TRAINER_FRONTIER_SKYLA              897
+#define TRAINER_FRONTIER_BRYCEN             898
+#define TRAINER_FRONTIER_DRAYDEN            899
+#define TRAINER_FRONTIER_CHEREN             900
+#define TRAINER_FRONTIER_ROXIE              901
+#define TRAINER_FRONTIER_MARLON             902
+
+#define TRAINER_FRONTIER_LORELEI            903
+#define TRAINER_FRONTIER_BRUNO              904
+#define TRAINER_FRONTIER_AGATHA             905
+#define TRAINER_FRONTIER_WILL               906
+#define TRAINER_FRONTIER_KOGA               907
+#define TRAINER_FRONTIER_KAREN              908
+#define TRAINER_FRONTIER_SIDNEY             909
+#define TRAINER_FRONTIER_PHOEBE             910
+#define TRAINER_FRONTIER_GLACIA             911
+#define TRAINER_FRONTIER_DRAKE              912
+#define TRAINER_FRONTIER_AARON              913
+#define TRAINER_FRONTIER_BERTHA             914
+#define TRAINER_FRONTIER_FLINT              915
+#define TRAINER_FRONTIER_LUCIAN             916
+#define TRAINER_FRONTIER_SHAUNTAL           917
+#define TRAINER_FRONTIER_GRIMSLEY           918
+#define TRAINER_FRONTIER_CAITLIN            919
+#define TRAINER_FRONTIER_MARSHAL            920
+
+#define TRAINER_FRONTIER_RED                921
+#define TRAINER_FRONTIER_BLUE               922
+#define TRAINER_FRONTIER_LANCE              923
+#define TRAINER_FRONTIER_STEVEN             924
+#define TRAINER_FRONTIER_CYNTHIA            925
+#define TRAINER_FRONTIER_ALDER              926
+#define TRAINER_FRONTIER_IRIS               927
+
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      857
-#define MAX_TRAINERS_COUNT                  864
+//#define TRAINERS_COUNT                      857
+//#define MAX_TRAINERS_COUNT                  864
+
+#define TRAINERS_COUNT                      928
+#define MAX_TRAINERS_COUNT                  928
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

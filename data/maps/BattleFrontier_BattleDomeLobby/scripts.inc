@@ -117,6 +117,37 @@ BattleFrontier_BattleDomeLobby_EventScript_ResumeChallenge::
 	setvar VAR_TEMP_0, 255
 	goto BattleFrontier_BattleDomeLobby_EventScript_EnterChallenge
 
+BattleFrontier_BattleDomeLobby_EventScript_LeftAttendant::
+	lock
+	faceplayer
+	setvar VAR_PWT_MODE, PWT_MODE_NONE
+	multichoice 10, 6, MULTI_BATTLE_MODE, FALSE
+	switch VAR_RESULT
+	case 0, BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
+	case 1, BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+	case 2, BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
+	case 3, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case 3, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_RightAttendant::
+	lock
+	faceplayer
+	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_DOME
+	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES
+	setvar VAR_PWT_MODE, PWT_MODE_HOENN
+	special SavePlayerParty
+	msgbox BattleFrontier_BattleDomeLobby_Text_WelcomePWT, MSGBOX_DEFAULT
+	msgbox BattleFrontier_BattleDomeLobby_Text_TakePWTChallenge, MSGBOX_DEFAULT
+	waitmessage
+	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	switch VAR_RESULT
+	case 0, BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+	case 1, BattleFrontier_BattleDomeLobby_EventScript_ExplainChallenge
+	case 2, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+
+
 BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant::
 	lock
 	faceplayer
@@ -679,3 +710,14 @@ BattleFrontier_BattleDomeLobby_Text_ExplainDoubleKORules:
 	.string "time--a double KO--in a tournament\l"
 	.string "match, the Referees will review\l"
 	.string "the match and declare the winner.$"
+
+BattleFrontier_BattleDomeLobby_Text_WelcomePWT:
+	.string "Where the strategies of Trainers\n"
+	.string "are put to the test!\p"
+	.string "Welcome to the Battle Dome!\p"
+	.string "I am your guide to the Pokemon\n"
+	.string "World Tournament.$"
+
+BattleFrontier_BattleDomeLobby_Text_TakePWTChallenge:
+	.string "Would you like to take the Pokemon\n"
+	.string "World Tournament challenge?$\p"

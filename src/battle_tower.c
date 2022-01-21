@@ -1176,6 +1176,11 @@ void SetBattleFacilityTrainerGfxId(u16 trainerId, u8 tempVarId)
         SetFrontierBrainObjEventGfx_2();
         return;
     }
+    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    {
+        SetFrontierBrainObjEventGfx_2();
+        return;
+    }
     else if (trainerId < FRONTIER_TRAINERS_COUNT)
     {
         facilityClass = gFacilityTrainers[trainerId].facilityClass;
@@ -1682,6 +1687,11 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         }
         return;
     }
+    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    {
+        CreateFrontierGymChampionPokemon(trainerId);
+        return;
+    }
     else
     {
         // Apprentice.
@@ -2068,6 +2078,8 @@ void DoSpecialTrainerBattle(void)
         if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
             gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
         if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
+            FillFrontierTrainerParty(DOME_BATTLE_PARTY_SIZE);
+        if (gTrainerBattleOpponent_A > 800 && gTrainerBattleOpponent_A < TRAINERS_COUNT)
             FillFrontierTrainerParty(DOME_BATTLE_PARTY_SIZE);
         CreateTask(Task_StartBattleAfterTransition, 1);
         CreateTask_PlayMapChosenOrBattleBGM(0);

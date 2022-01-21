@@ -134,19 +134,7 @@ BattleFrontier_BattleDomePreBattleRoom_EventScript_TourneyInFinals::
 	return
 
 BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge::
-	message BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons
-	waitmessage
-	waitbuttonpress
-	fadescreen FADE_TO_BLACK
-	call BattleFrontier_EventScript_GetLvlMode
-	copyvar VAR_0x8004, VAR_RESULT
-	setvar VAR_0x8005, DOME_BATTLE_PARTY_SIZE  @ 2 of the 3 party mons are selected for battle
-	special ChoosePartyForBattleFrontier
-	waitstate
-	frontier_resetsketch
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
-	dome_set DOME_DATA_SELECTED_MONS
-	dome_reduceparty
+	call_if_eq  VAR_PWT_MODE, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_ChooseTwoPokemon
 	dome_setopponent
 	msgbox BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay, MSGBOX_DEFAULT
 	closemessage
@@ -164,6 +152,22 @@ BattleFrontier_BattleDomePreBattleRoom_EventScript_ContinueChallenge::
 	setvar VAR_TEMP_0, 0
 	waitstate
 	end
+
+BattleFrontier_BattleDomePreBattleRoom_EventScript_ChooseTwoPokemon::
+	message BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons
+	waitmessage
+	waitbuttonpress
+	fadescreen FADE_TO_BLACK
+	call BattleFrontier_EventScript_GetLvlMode
+	copyvar VAR_0x8004, VAR_RESULT
+	setvar VAR_0x8005, DOME_BATTLE_PARTY_SIZE  @ 2 of the 3 party mons are selected for battle
+	special ChoosePartyForBattleFrontier
+	waitstate
+	frontier_resetsketch
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
+	dome_set DOME_DATA_SELECTED_MONS
+	dome_reduceparty
+	return
 
 BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForNextRoundMessage::
 	frontier_get FRONTIER_DATA_BATTLE_NUM
