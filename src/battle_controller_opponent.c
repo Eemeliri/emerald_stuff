@@ -1271,14 +1271,19 @@ static void OpponentHandleDrawTrainerPic(void)
     {
         if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
         {
+
             if (gActiveBattler == 1)
-                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+               trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_B);
+            
         }
         else
         {
-            trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+            if (gTrainerBattleOpponent_A > 800 && gTrainerBattleOpponent_A < TRAINERS_COUNT)
+                trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+            else
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
@@ -1362,7 +1367,10 @@ static void OpponentHandleTrainerSlide(void)
         }
         else
         {
-            trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+            if (gTrainerBattleOpponent_A > 800 && gTrainerBattleOpponent_A < TRAINERS_COUNT)
+                trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+            else
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)

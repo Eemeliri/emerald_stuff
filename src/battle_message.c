@@ -2964,8 +2964,13 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
     {
-        GetFrontierTrainerName(text, trainerId);
-        toCpy = text;
+        if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+            toCpy = gTrainers[trainerId].trainerName;
+        else
+        {
+            GetFrontierTrainerName(text, trainerId);
+            toCpy = text;
+        }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
     {
@@ -3056,7 +3061,10 @@ static const u8 *BattleStringGetOpponentClassByTrainerId(u16 trainerId)
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         toCpy = gTrainerClassNames[GetFrontierBrainTrainerClass()];
     else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-        toCpy = gTrainerClassNames[GetFrontierOpponentClass(trainerId)];
+        if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+            toCpy = gTrainerClassNames[gTrainers[trainerId].trainerClass];
+        else
+            toCpy = gTrainerClassNames[GetFrontierOpponentClass(trainerId)];
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
         toCpy = gTrainerClassNames[GetTrainerHillOpponentClass(trainerId)];
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)

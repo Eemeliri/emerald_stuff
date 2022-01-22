@@ -1178,7 +1178,7 @@ void SetBattleFacilityTrainerGfxId(u16 trainerId, u8 tempVarId)
     }
     else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
     {
-        SetFrontierBrainObjEventGfx_2();
+        SetFrontierLeaderObjEventGfx(trainerId);
         return;
     }
     else if (trainerId < FRONTIER_TRAINERS_COUNT)
@@ -1958,6 +1958,8 @@ static void GetOpponentIntroSpeech(void)
         FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
     else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         FrontierSpeechToString(gSaveBlock2Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
+    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+        StringCopy(gStringVar4, gText_BatteryRunDry);
     else
         BufferApprenticeChallengeText(trainerId - TRAINER_RECORD_MIXING_APPRENTICE);
 }

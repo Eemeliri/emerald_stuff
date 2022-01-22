@@ -17,6 +17,7 @@ u8 GetFrontierBrainTrainerClass(void);
 void CopyFrontierBrainTrainerName(u8 *dst);
 bool8 IsFrontierBrainFemale(void);
 void SetFrontierBrainObjEventGfx_2(void);
+void SetFrontierLeaderObjEventGfx(u16 trainerId);
 void CreateFrontierBrainPokemon(void);
 void CreateFrontierGymChampionPokemon(u16 trainerId);
 u16 GetFrontierBrainMonSpecies(u8 monId);
