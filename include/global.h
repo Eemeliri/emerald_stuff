@@ -381,7 +381,7 @@ struct BattleFrontier
     /*0xD14*/ u16 domeRecordWinStreaks[2][FRONTIER_LVL_MODE_COUNT];
     /*0xD1C*/ u16 domeTotalChampionships[2][FRONTIER_LVL_MODE_COUNT];
     /*0xD24*/ struct BattleDomeTrainer domeTrainers[DOME_TOURNAMENT_TRAINERS_COUNT];
-    /*0xD64*/ u16 domeMonIds[DOME_TOURNAMENT_TRAINERS_COUNT][4];
+    /*0xD64*/ u16 domeMonIds[DOME_TOURNAMENT_TRAINERS_COUNT][FRONTIER_PARTY_SIZE];
     /*0xDC4*/ //u16 unused_DC4;
     /*0xDC6*/ u16 palacePrize;
     /*0xDC8*/ u16 palaceWinStreaks[2][FRONTIER_LVL_MODE_COUNT];
@@ -423,7 +423,7 @@ struct BattleFrontier
     /*0xEF9*/ u8 savedGame:1;
     /*0xEFA*/ //u8 unused_EFA;
     /*0xEFB*/ //u8 unused_EFB;
-    /*0xEFC*/ struct DomeMonData domePlayerPartyData[4];
+    /*0xEFC*/ struct DomeMonData domePlayerPartyData[MAX_FRONTIER_PARTY_SIZE];
 };
 
 struct ApprenticeQuestion
