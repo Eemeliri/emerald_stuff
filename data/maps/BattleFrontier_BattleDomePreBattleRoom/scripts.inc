@@ -224,7 +224,19 @@ BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle::
 	setvar VAR_TEMP_0, 1
 	msgbox BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT
 	special LoadPlayerParty
+	goto_if_eq VAR_PWT_MODE, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle2
 	frontier_setpartyorder MAX_FRONTIER_PARTY_SIZE
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	call BattleFrontier_BattleDomePreBattleRoom_EventScript_RoundCompleteMessage
+	fadescreen FADE_TO_BLACK
+	dome_showstatictourneytree
+	waitstate
+	goto BattleFrontier_BattleDomePreBattleRoom_EventScript_AskReadyForNextRound
+
+BattleFrontier_BattleDomePreBattleRoom_EventScript_ReturnFromBattle2::
+	frontier_setpartyorder FRONTIER_PARTY_SIZE
 	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty

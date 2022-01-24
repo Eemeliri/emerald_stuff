@@ -121,13 +121,13 @@ BattleFrontier_BattleDomeLobby_EventScript_LeftAttendant::
 	lock
 	faceplayer
 	setvar VAR_PWT_MODE, PWT_MODE_NONE
-	multichoice 10, 6, MULTI_BATTLE_MODE, FALSE
+	message BattleFrontier_BattleDomeLobby_Text_WelcomeSingleBattle
+	waitmessage
+	multichoice 17, 6, MULTI_PWT_MODE, FALSE
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
-	case 2, BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant
-	case 3, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
-	case 3, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case 2, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 
 BattleFrontier_BattleDomeLobby_EventScript_RightAttendant::
@@ -142,7 +142,7 @@ BattleFrontier_BattleDomeLobby_EventScript_RightAttendant::
 	waitmessage
 	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
 	switch VAR_RESULT
-	case 0, BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+	case 0, BattleFrontier_BattleDomeLobby_EventScript_TryEnterPWTChallenge
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_ExplainChallenge
 	case 2, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
@@ -153,7 +153,7 @@ BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendant::
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_DOME
 	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES
-	goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
 	end
 
 BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant::
@@ -161,7 +161,7 @@ BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendant::
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_DOME
 	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
-	goto BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome
+	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
 	end
 
 BattleFrontier_BattleDomeLobby_EventScript_AttendantWelcome::
@@ -180,6 +180,31 @@ BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge::
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 
 BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge::
+	special SavePlayerParty
+	message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
+	waitmessage
+	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	switch VAR_RESULT
+	case FRONTIER_LVL_TENT, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	frontier_checkineligible
+	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMons
+	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
+	msgbox BattleFrontier_BattleDomeLobby_Text_SelectThreeMons, MSGBOX_DEFAULT
+	fadescreen FADE_TO_BLACK
+	call BattleFrontier_EventScript_GetLvlMode
+	copyvar VAR_0x8004, VAR_RESULT
+	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
+	special ChoosePartyForBattleFrontier
+	waitstate
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+	msgbox BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+	case YES, BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_TryEnterPWTChallenge::
 	message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
 	waitmessage
 	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
@@ -195,6 +220,7 @@ BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge::
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_PWTDoubles
 	case 2, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	msgbox BattleFrontier_BattleDomeLobby_Text_SelectThreeMons, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	call BattleFrontier_EventScript_GetLvlMode
@@ -489,8 +515,9 @@ BattleFrontier_BattleDomeLobby_Text_WelcomeSingleBattle:
 	.string "Where the strategies of Trainers\n"
 	.string "are put to the test!\p"
 	.string "Welcome to the Battle Dome!\p"
-	.string "I am your guide to the Single Battle\n"
-	.string "Tournament.$"
+	.string "You can compete in the singles\n"
+	.string "or doubles division.\l"
+	.string "Which would you like?$"
 
 BattleFrontier_BattleDomeLobby_Text_TakeSinglesChallenge:
 	.string "Would you like to challenge\n"
