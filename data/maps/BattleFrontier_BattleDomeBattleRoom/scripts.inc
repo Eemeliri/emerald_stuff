@@ -853,8 +853,8 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround::
 	return
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobby::
-	copyvar VAR_RESULT, VAR_FRONTIER_BATTLE_MODE
-	goto_if_eq VAR_RESULT, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleDomePreBattleRoom_EventScript_WarpToLobbyDoubles
+	copyvar VAR_RESULT, VAR_PWT_MODE
+	goto_if_gt VAR_RESULT, 0, BattleFrontier_BattleDomePreBattleRoom_EventScript_WarpToLobbyDoubles
 	warp MAP_BATTLE_FRONTIER_BATTLE_DOME_LOBBY, 5, 11
 	waitstate
 	end

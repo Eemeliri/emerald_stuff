@@ -329,7 +329,7 @@ gText_LizaWon::
 	.string "The combination of me and my Pokémon\nwas superior!$"
 
 gText_LizaDefeat::
-	.string "Oh! The combination of me and my Pokémon…$"
+	.string "Oh! The combination of me and my\nPokémon…$"
 
 gText_WallaceIntro::
 	.string "You have overcome challenges and\nmade it this far because you\lworked as one with your Pokémon.\lShow me that strength here and now!$"
