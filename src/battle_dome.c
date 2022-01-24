@@ -2463,18 +2463,6 @@ static void InitDomeTrainers(void)
                     break;
                 }
             }
-/*
-            if ((2*i) < DOME_TOURNAMENT_TRAINERS_COUNT)
-            {
-                if (DOME_TRAINERS[2*i].trainerId == TRAINER_PLAYER)
-                    DOME_TRAINERS[2*i + 1].trainerId = gFrontierHoennLeaders[randomOrdering[i]];
-                else
-                    DOME_TRAINERS[2*i].trainerId = gFrontierHoennLeaders[randomOrdering[i]];
-            }
-            else{
-                if (DOME_TRAINERS[2*(i-8)+1].trainerId != TRAINER_PLAYER  &&  DOME_TRAINERS[2*(i-8)+1].trainerId < 800 &&  DOME_TRAINERS[2*(i-8)+1].trainerId > TRAINERS_COUNT)
-                    DOME_TRAINERS[2*(i-8)+1].trainerId = gFrontierHoennLeaders[randomOrdering[i]];
-            }*/
         }
 
         j = 0;

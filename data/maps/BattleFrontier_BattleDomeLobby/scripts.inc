@@ -189,11 +189,33 @@ BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge::
 	frontier_checkineligible
 	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMons
 	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
+	message BattleFrontier_BattleDomeLobby_Text_TakeSinglesOrDoubles
+	waitmessage
+	multichoice 17, 6, MULTI_PWT_MODE, FALSE
+	switch VAR_RESULT
+	case 1, BattleFrontier_BattleDomeLobby_EventScript_PWTDoubles
+	case 2, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	msgbox BattleFrontier_BattleDomeLobby_Text_SelectThreeMons, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	call BattleFrontier_EventScript_GetLvlMode
 	copyvar VAR_0x8004, VAR_RESULT
 	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
+	special ChoosePartyForBattleFrontier
+	waitstate
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+	msgbox BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+	case YES, BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
+	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_PWTDoubles::
+	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
+	msgbox BattleFrontier_BattleDomeLobby_Text_SelectFourMons, MSGBOX_DEFAULT
+	fadescreen FADE_TO_BLACK
+	call BattleFrontier_EventScript_GetLvlMode
+	copyvar VAR_0x8004, VAR_RESULT
+	setvar VAR_0x8005, MAX_FRONTIER_PARTY_SIZE
 	special ChoosePartyForBattleFrontier
 	waitstate
 	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
@@ -218,7 +240,7 @@ BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge::
 	dome_inittrainers
 BattleFrontier_BattleDomeLobby_EventScript_EnterChallenge::
 	special SavePlayerParty
-	frontier_setpartyorder FRONTIER_PARTY_SIZE
+	frontier_setpartyorder MAX_FRONTIER_PARTY_SIZE
 	dome_settrainers
 	msgbox BattleFrontier_BattleDomeLobby_Text_ShowYouToBattleDome, MSGBOX_DEFAULT
 	closemessage
@@ -511,6 +533,10 @@ BattleFrontier_BattleDomeLobby_Text_SelectThreeMons:
 	.string "Now select the three Pokémon that\n"
 	.string "you wish to enter, please.$"
 
+BattleFrontier_BattleDomeLobby_Text_SelectFourMons:
+	.string "Now select the four Pokémon that\n"
+	.string "you wish to enter, please.$"
+
 BattleFrontier_BattleDomeLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "Excuse me!\p"
 	.string "You don't have three eligible Pokémon.\p"
@@ -721,3 +747,8 @@ BattleFrontier_BattleDomeLobby_Text_WelcomePWT:
 BattleFrontier_BattleDomeLobby_Text_TakePWTChallenge:
 	.string "Would you like to take the Pokemon\n"
 	.string "World Tournament challenge?$\p"
+
+BattleFrontier_BattleDomeLobby_Text_TakeSinglesOrDoubles:
+	.string "You can compete in the singles\n"
+	.string "or doubles division.\l"
+	.string "Which would you like?$"
