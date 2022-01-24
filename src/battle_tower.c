@@ -762,6 +762,19 @@ static const u8 *const *const sPartnerApprenticeTextTables[NUM_APPRENTICES] =
     sPartnerApprenticeTexts16
 };
 
+static const u8 *const sFrontierLeaderIntroTexts[] =
+{
+    [TRAINER_FRONTIER_ROXANNE]   = gText_RoxanneIntro,
+    [TRAINER_FRONTIER_BRAWLEY]    = gText_BrawlyIntro,
+    [TRAINER_FRONTIER_WATTSON]  = gText_WattsonIntro,
+    [TRAINER_FRONTIER_FLANNERY]   = gText_FlanneryIntro,
+    [TRAINER_FRONTIER_NORMAN] = gText_NormanIntro,
+    [TRAINER_FRONTIER_WINONA]    = gText_WinonaIntro,
+    [TRAINER_FRONTIER_TATE] = gText_TateIntro,
+    [TRAINER_FRONTIER_LIZA] = gText_LizaIntro,
+    [TRAINER_FRONTIER_WALLACE] = gText_WallaceIntro,
+};
+
 struct
 {
     u16 species;
@@ -1959,7 +1972,7 @@ static void GetOpponentIntroSpeech(void)
     else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         FrontierSpeechToString(gSaveBlock2Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
     else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
-        StringCopy(gStringVar4, gText_BatteryRunDry);
+        StringCopy(gStringVar4, sFrontierLeaderIntroTexts[trainerId]);
     else
         BufferApprenticeChallengeText(trainerId - TRAINER_RECORD_MIXING_APPRENTICE);
 }

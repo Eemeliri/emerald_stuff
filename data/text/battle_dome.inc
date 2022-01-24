@@ -339,3 +339,6 @@ BattleDome_Text_SemifinalMatch2::
 
 BattleDome_Text_FinalMatch::
 	.string "Final Match$"
+
+gText_DummyText::
+	.string "Dummy text.$"

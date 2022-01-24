@@ -1255,6 +1255,32 @@ static const u8 *const sFrontierBrainPlayerWonGoldTexts[NUM_FRONTIER_FACILITIES]
     [FRONTIER_FACILITY_PYRAMID] = gText_BrandonDefeatGold,
 };
 
+static const u8 *const sFrontierLeaderLoseTexts[] =
+{
+    [TRAINER_FRONTIER_ROXANNE]   = gText_RoxanneDefeat,
+    [TRAINER_FRONTIER_BRAWLEY]    = gText_BrawlyDefeat,
+    [TRAINER_FRONTIER_WATTSON]  = gText_WattsonDefeat,
+    [TRAINER_FRONTIER_FLANNERY]   = gText_FlanneryDefeat,
+    [TRAINER_FRONTIER_NORMAN] = gText_NormanDefeat,
+    [TRAINER_FRONTIER_WINONA]    = gText_WinonaDefeat,
+    [TRAINER_FRONTIER_TATE] = gText_TateDefeat,
+    [TRAINER_FRONTIER_LIZA] = gText_LizaDefeat,
+    [TRAINER_FRONTIER_WALLACE] = gText_WallaceDefeat,
+};
+
+static const u8 *const sFrontierLeaderWonTexts[] =
+{
+    [TRAINER_FRONTIER_ROXANNE]   = gText_RoxanneWon,
+    [TRAINER_FRONTIER_BRAWLEY]    = gText_BrawlyWon,
+    [TRAINER_FRONTIER_WATTSON]  = gText_WattsonWon,
+    [TRAINER_FRONTIER_FLANNERY]   = gText_FlanneryWon,
+    [TRAINER_FRONTIER_NORMAN] = gText_NormanWon,
+    [TRAINER_FRONTIER_WINONA]    = gText_WinonaWon,
+    [TRAINER_FRONTIER_TATE] = gText_TateWon,
+    [TRAINER_FRONTIER_LIZA] = gText_LizaWon,
+    [TRAINER_FRONTIER_WALLACE] = gText_WallaceWon,
+};
+
 static const u8 *const *const sFrontierBrainPlayerLostTexts[] =
 {
     sFrontierBrainPlayerLostSilverTexts,
@@ -2205,6 +2231,10 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         {
             FrontierSpeechToString(gFacilityTrainers[trainerId].speechWin);
         }
+        else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+        {
+            StringCopy(gStringVar4, sFrontierLeaderWonTexts[trainerId]);
+        }
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
@@ -2232,6 +2262,10 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {
             FrontierSpeechToString(gFacilityTrainers[trainerId].speechLose);
+        }
+        else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+        {
+            StringCopy(gStringVar4, sFrontierLeaderLoseTexts[trainerId]);
         }
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         {

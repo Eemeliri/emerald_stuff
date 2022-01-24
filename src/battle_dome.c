@@ -6100,9 +6100,9 @@ static void DecideRoundWinners(u8 roundId)
             gSaveBlock2Ptr->frontier.domeWinningMoves[tournamentId1] = GetWinningMove(tournamentId2, tournamentId1, roundId);
         }
         // Gym Champion always wins, check tournamentId1.
-        else if (DOME_TRAINERS[tournamentId1].trainerId > 800 && DOME_TRAINERS[tournamentId1].trainerId < TRAINERS_COUNT  && tournamentId2 != 0xFF)
+        else if (DOME_TRAINERS[tournamentId1].trainerId > 800 && DOME_TRAINERS[tournamentId1].trainerId < TRAINERS_COUNT && tournamentId2 != 0xFF)
         {
-            if(DOME_TRAINERS[tournamentId2].trainerId > 800 && DOME_TRAINERS[tournamentId2].trainerId < TRAINERS_COUNT)
+            if(DOME_TRAINERS[tournamentId2].trainerId > 800 && DOME_TRAINERS[tournamentId2].trainerId < TRAINERS_COUNT && tournamentId1 != 0xFF)
             {
                 int rand = Random() % 2;
                 if (rand == 0){
@@ -6123,13 +6123,6 @@ static void DecideRoundWinners(u8 roundId)
                 DOME_TRAINERS[tournamentId2].eliminatedAt = roundId;
                 gSaveBlock2Ptr->frontier.domeWinningMoves[tournamentId2] = GetWinningMove(tournamentId1, tournamentId2, roundId);
             }
-        }
-        // Gym Champion always wins, check tournamentId2.
-        else if (DOME_TRAINERS[tournamentId2].trainerId > 800 && DOME_TRAINERS[tournamentId2].trainerId < TRAINERS_COUNT && tournamentId1 != 0xFF)
-        {
-            DOME_TRAINERS[tournamentId1].isEliminated = TRUE;
-            DOME_TRAINERS[tournamentId1].eliminatedAt = roundId;
-            gSaveBlock2Ptr->frontier.domeWinningMoves[tournamentId1] = GetWinningMove(tournamentId2, tournamentId1, roundId);
         }
         // Decide which one of two trainers wins!
         else if (tournamentId2 != 0xFF)
