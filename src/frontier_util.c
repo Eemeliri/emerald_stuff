@@ -3077,74 +3077,60 @@ void CreateFrontierGymChampionPokemon(u16 trainerId)
     s32 monLevel = 0;
     u8 friendship;
     u8 partysize = 3;
+    u16 randomOrdering[4] = {99};
 
     if(VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
         partysize = 4;
 
+    randomOrdering[0] = 0;
+    for (i = 1; i < partysize; i++)
+    {
+        randomOrdering[i] = (Random() % 5) + 1;
+
+        // Loop through all the numbers generated so far.
+        for (j = 0; j < i; j++)
+        {
+            if (randomOrdering[i] == randomOrdering[j])
+            {
+                // This number isn't unique; try generating again.
+                i--;
+                break;
+            }
+        }
+    }
+
     ZeroEnemyPartyMons();
     monPartyId = 0;
     monLevel = SetFacilityPtrsGetLevel();
-    for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
+    for (i = 0; i < partysize; i++)
     {
-        if (i  == 0)
+        do
         {
             do
             {
-                do
-                {
-                    j = Random32(); //should just be one while loop, but that doesn't match
-                } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
-            } while (sFrontierGymLeaderMons[trainerId][i].nature != GetNatureFromPersonality(j));
-            CreateMon(&gEnemyParty[monPartyId],
-                  sFrontierGymLeaderMons[trainerId][i].species,
+                j = Random32(); //should just be one while loop, but that doesn't match
+            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+        } while (sFrontierGymLeaderMons[trainerId][randomOrdering[i]].nature != GetNatureFromPersonality(j));
+        CreateMon(&gEnemyParty[monPartyId],
+                  sFrontierGymLeaderMons[trainerId][randomOrdering[i]].species,
                   monLevel,
-                  sFrontierGymLeaderMons[trainerId][i].fixedIV,
+                  sFrontierGymLeaderMons[trainerId][randomOrdering[i]].fixedIV,
                   TRUE, j,
                   OT_ID_PRESET, FRONTIER_BRAIN_OTID);
-            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierGymLeaderMons[trainerId][i].heldItem);
-            for (j = 0; j < NUM_STATS; j++)
-                SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierGymLeaderMons[trainerId][i].evs[j]);
-            friendship = MAX_FRIENDSHIP;
-            for (j = 0; j < MAX_MON_MOVES; j++)
-            {
-                SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][i].moves[j], j);
-                if (sFrontierGymLeaderMons[trainerId][i].moves[j] == MOVE_FRUSTRATION)
-                    friendship = 0;
-            }
-            SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
-            CalculateMonStats(&gEnemyParty[monPartyId]);
-            monPartyId++;
-        }
-        else
+        SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierGymLeaderMons[trainerId][randomOrdering[i]].heldItem);
+        for (j = 0; j < NUM_STATS; j++)
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierGymLeaderMons[trainerId][randomOrdering[i]].evs[j]);
+        friendship = MAX_FRIENDSHIP;
+        for (j = 0; j < MAX_MON_MOVES; j++)
         {
-
-            do
-            {
-                do
-                {
-                    j = Random32(); //should just be one while loop, but that doesn't match
-                } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
-            } while (sFrontierGymLeaderMons[trainerId][i].nature != GetNatureFromPersonality(j));
-            CreateMon(&gEnemyParty[monPartyId],
-                      sFrontierGymLeaderMons[trainerId][i].species,
-                      monLevel,
-                      sFrontierGymLeaderMons[trainerId][i].fixedIV,
-                      TRUE, j,
-                      OT_ID_PRESET, FRONTIER_BRAIN_OTID);
-            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierGymLeaderMons[trainerId][i].heldItem);
-            for (j = 0; j < NUM_STATS; j++)
-                SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierGymLeaderMons[trainerId][i].evs[j]);
-            friendship = MAX_FRIENDSHIP;
-            for (j = 0; j < MAX_MON_MOVES; j++)
-            {
-                SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][i].moves[j], j);
-                if (sFrontierGymLeaderMons[trainerId][i].moves[j] == MOVE_FRUSTRATION)
-                    friendship = 0;
-            }
-            SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
-            CalculateMonStats(&gEnemyParty[monPartyId]);
-            monPartyId++;
+            SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][randomOrdering[i]].moves[j], j);
+            if (sFrontierGymLeaderMons[trainerId][randomOrdering[i]].moves[j] == MOVE_FRUSTRATION)
+                friendship = 0;
         }
+        SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+        CalculateMonStats(&gEnemyParty[monPartyId]);
+        monPartyId++;
+
     }
 }
 
