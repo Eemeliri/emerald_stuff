@@ -2420,7 +2420,7 @@ static void InitDomeTrainers(void)
     }
 
     // Add Frontier Brain to the tourney if they should be fought at the end of it
-    if (GetFrontierBrainStatus() != FRONTIER_BRAIN_NOT_READY)
+    if (GetFrontierBrainStatus() != FRONTIER_BRAIN_NOT_READY && VarGet(VAR_PWT_MODE) == 0)
     {
         for (i = 0; i < DOME_TOURNAMENT_TRAINERS_COUNT; i++)
         {
@@ -2479,53 +2479,10 @@ static void InitDomeTrainers(void)
                 j++;
             }
 
-            /*
-            if ((2*i) < DOME_TOURNAMENT_TRAINERS_COUNT)
-            {
-                if (DOME_TRAINERS[2*i].trainerId == TRAINER_PLAYER)
-                {
-                    DOME_TRAINERS[2*i + 1].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
-                    j++;
-                }
-                else
-                {
-                    DOME_TRAINERS[2*i].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
-                    j++;
-                }
-            }
-            else{
-                if (DOME_TRAINERS[2*(i-8)+1].trainerId != TRAINER_PLAYER  &&  DOME_TRAINERS[2*(i-8)+1].trainerId < 800 &&  DOME_TRAINERS[2*(i-8)+1].trainerId > TRAINERS_COUNT)
-                {
-                    DOME_TRAINERS[2*(i-8)+1].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
-                    j++;
-                }
-            }*/
-
             if (j==9)
                 break;
         }
 
-
-/*
-        for (i = 0; i < DOME_TOURNAMENT_TRAINERS_COUNT; i++)
-        {
-            if (DOME_TRAINERS[i].trainerId == TRAINER_PLAYER)
-                break;
-        }
-
-        if (sTrainerNamePositions[i][0] != 0)
-        {
-            j = 0;
-            DOME_TRAINERS[j].trainerId = gFrontierHoennLeaders[0];
-        }
-        else
-        {
-            j = 1;
-            DOME_TRAINERS[j].trainerId = gFrontierHoennLeaders[0];
-        }
-
-        for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
-            DOME_MONS[j][i] = GetFrontierGymLeaderMonSpecies(i);*/
     }
 
     Free(rankingScores);

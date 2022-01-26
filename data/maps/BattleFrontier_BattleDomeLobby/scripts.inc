@@ -36,9 +36,16 @@ BattleFrontier_BattleDomeLobby_EventScript_QuitWithoutSaving::
 	lockall
 	msgbox BattleFrontier_BattleDomeLobby_Text_DidntSaveBeforeQuitting, MSGBOX_DEFAULT
 	closemessage
+	goto_if_ne VAR_PWT_MODE, 0, BattleFrontier_BattleDomeLobby_EventScript_QuitWithoutSavingPWT
 	dome_set DOME_DATA_WIN_STREAK, 0
 	dome_set DOME_DATA_WIN_STREAK_ACTIVE, FALSE
 	dome_set DOME_DATA_ATTEMPTED_CHALLENGE, TRUE
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
+	setvar VAR_TEMP_0, 255
+	releaseall
+	end
+
+BattleFrontier_BattleDomeLobby_EventScript_QuitWithoutSavingPWT::
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
 	setvar VAR_TEMP_0, 255
 	releaseall
@@ -63,9 +70,15 @@ BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePoints::
 	special LoadPlayerParty
 	frontier_setpartyorder FRONTIER_PARTY_SIZE
 	frontier_checkairshow
+	goto_if_ne VAR_PWT_MODE, 0, BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePointsPWT
 	dome_set DOME_DATA_ATTEMPTED_CHALLENGE, TRUE
 	dome_set DOME_DATA_HAS_WON_CHALLENGE, TRUE
 	dome_set DOME_DATA_WIN_STREAK_ACTIVE, TRUE
+	special LoadPlayerParty
+	special HealPlayerParty
+	goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
+
+BattleFrontier_BattleDomeLobby_EventScript_GiveBattlePointsPWT::
 	special LoadPlayerParty
 	special HealPlayerParty
 	goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
@@ -78,6 +91,7 @@ BattleFrontier_BattleDomeLobby_EventScript_LostChallenge::
 	special LoadPlayerParty
 	frontier_setpartyorder FRONTIER_PARTY_SIZE
 	frontier_checkairshow
+	goto_if_ne VAR_PWT_MODE, 0, BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT
 	dome_set DOME_DATA_WIN_STREAK_ACTIVE, FALSE
 	dome_set DOME_DATA_ATTEMPTED_CHALLENGE, TRUE
 	special LoadPlayerParty
@@ -95,6 +109,11 @@ BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle::
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT::
+	special LoadPlayerParty
+	special HealPlayerParty
+	goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
 
 BattleFrontier_BattleDomeLobby_EventScript_RecordBattle::
 	call BattleFrontier_EventScript_SaveBattle
