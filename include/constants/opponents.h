@@ -878,7 +878,7 @@
 #define TRAINER_FRONTIER_CLAIR              872
 
 #define TRAINER_FRONTIER_ROXANNE            873
-#define TRAINER_FRONTIER_BRAWLEY            874
+#define TRAINER_FRONTIER_BRAWLY             874
 #define TRAINER_FRONTIER_WATTSON            875
 #define TRAINER_FRONTIER_FLANNERY           876
 #define TRAINER_FRONTIER_NORMAN             877

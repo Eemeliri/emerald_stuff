@@ -764,8 +764,26 @@ static const u8 *const *const sPartnerApprenticeTextTables[NUM_APPRENTICES] =
 
 static const u8 *const sFrontierLeaderIntroTexts[] =
 {
+    [TRAINER_FRONTIER_BROCK]   = gText_BrockIntro,
+    [TRAINER_FRONTIER_MISTY]    = gText_MistyIntro,
+    [TRAINER_FRONTIER_SURGE]  = gText_SurgeIntro,
+    [TRAINER_FRONTIER_ERIKA]   = gText_ErikaIntro,
+    [TRAINER_FRONTIER_JANINE] = gText_JanineIntro,
+    [TRAINER_FRONTIER_SABRINA]    = gText_SabrinaIntro,
+    [TRAINER_FRONTIER_BLAINE] = gText_BlaineIntro,
+    [TRAINER_FRONTIER_GIOVANNI] = gText_GiovanniIntro,
+
+    [TRAINER_FRONTIER_FALKNER]   = gText_FalknerIntro,
+    [TRAINER_FRONTIER_BUGSY]    = gText_BugsyIntro,
+    [TRAINER_FRONTIER_WHITNEY]  = gText_WhitneyIntro,
+    [TRAINER_FRONTIER_MORTY]   = gText_MortyIntro,
+    [TRAINER_FRONTIER_CHUCK] = gText_ChuckIntro,
+    [TRAINER_FRONTIER_JASMINE]    = gText_JasmineIntro,
+    [TRAINER_FRONTIER_PRYCE] = gText_PryceIntro,
+    [TRAINER_FRONTIER_CLAIR] = gText_ClairIntro,
+
     [TRAINER_FRONTIER_ROXANNE]   = gText_RoxanneIntro,
-    [TRAINER_FRONTIER_BRAWLEY]    = gText_BrawlyIntro,
+    [TRAINER_FRONTIER_BRAWLY]    = gText_BrawlyIntro,
     [TRAINER_FRONTIER_WATTSON]  = gText_WattsonIntro,
     [TRAINER_FRONTIER_FLANNERY]   = gText_FlanneryIntro,
     [TRAINER_FRONTIER_NORMAN] = gText_NormanIntro,

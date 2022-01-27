@@ -12235,7 +12235,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Tucker},
     },
 
-    [TRAINER_FRONTIER_BRAWLEY] =
+    [TRAINER_FRONTIER_BRAWLY] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_LEADER,
