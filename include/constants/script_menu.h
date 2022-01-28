@@ -17,7 +17,7 @@
 #define MULTI_BASE_PC_WITH_REGISTRY        6
 #define MULTI_REGISTER_MENU                7
 #define MULTI_SSTIDAL_LILYCOVE             8 // Exit only, populated by CreateLilycoveSSTidalMultichoice
-#define MULTI_UNUSED_9                     9
+#define MULTI_PWT_OPTIONS                  9
 #define MULTI_UNUSED_10                    10
 #define MULTI_FRONTIER_PASS_INFO           11
 #define MULTI_BIKE                         12
@@ -132,6 +132,17 @@
 #define SSTIDAL_SELECTION_FARAWAY_ISLAND   5
 #define SSTIDAL_SELECTION_EXIT             6
 #define SSTIDAL_SELECTION_COUNT            7
+
+// Lilycove SS Tidal Multichoice Selections
+#define PWT_SELECTION_KANTO                0
+#define PWT_SELECTION_JOHTO                1
+#define PWT_SELECTION_HOENN                2
+#define PWT_SELECTION_SINNOH               3
+#define PWT_SELECTION_UNOVA                4
+#define PWT_SELECTION_WORLDS               5
+#define PWT_SELECTION_CHAMPIONS            6
+#define PWT_SELECTION_EXIT                 7
+#define PWT_SELECTION_COUNT                8
 
 // Std String Ids
 #define STDSTRING_COOL             0

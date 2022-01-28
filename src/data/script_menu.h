@@ -800,7 +800,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BASE_PC_WITH_REGISTRY]      = MULTICHOICE(MultichoiceList_BasePCWithRegistry),
     [MULTI_REGISTER_MENU]              = MULTICHOICE(MultichoiceList_RegisterMenu),
     [MULTI_SSTIDAL_LILYCOVE]           = MULTICHOICE(MultichoiceList_Exit),
-    [MULTI_UNUSED_9]                   = MULTICHOICE(MultichoiceList_Exit),
+    [MULTI_PWT_OPTIONS]                = MULTICHOICE(MultichoiceList_Exit),
     [MULTI_UNUSED_10]                  = MULTICHOICE(MultichoiceList_Exit),
     [MULTI_FRONTIER_PASS_INFO]         = MULTICHOICE(MultichoiceList_FrontierPassInfo),
     [MULTI_BIKE]                       = MULTICHOICE(MultichoiceList_Bike),
@@ -972,6 +972,18 @@ static const u8 *const sLilycoveSSTidalDestinations[SSTIDAL_SELECTION_COUNT] =
     [SSTIDAL_SELECTION_BIRTH_ISLAND]    = gText_BirthIsland,
     [SSTIDAL_SELECTION_FARAWAY_ISLAND]  = gText_FarawayIsland,
     [SSTIDAL_SELECTION_EXIT]            = gText_Exit,
+};
+
+static const u8 *const sPWTOptions[PWT_SELECTION_COUNT] =
+{
+    [PWT_SELECTION_KANTO]     = gText_KantoLeaders,
+    [PWT_SELECTION_JOHTO]     = gText_JohtoLeaders,
+    [PWT_SELECTION_HOENN]     = gText_HoennLeaders,
+    [PWT_SELECTION_SINNOH]    = gText_SinnohLeaders,
+    [PWT_SELECTION_UNOVA]     = gText_UnovaLeaders,
+    [PWT_SELECTION_WORLDS]    = gText_WorldLeaders,
+    [PWT_SELECTION_CHAMPIONS] = gText_Champions,
+    [PWT_SELECTION_EXIT]  = gText_Exit,
 };
 
 static const u8 *const sCableClubOptions_WithRecordMix[] =

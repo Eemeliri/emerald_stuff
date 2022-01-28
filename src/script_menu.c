@@ -23,6 +23,7 @@
 static EWRAM_DATA u8 sProcessInputDelay = 0;
 
 static u8 sLilycoveSSTidalSelections[SSTIDAL_SELECTION_COUNT];
+static u8 sPWTSelections[PWT_SELECTION_COUNT];
 
 static void Task_HandleMultichoiceInput(u8 taskId);
 static void Task_HandleYesNoInput(u8 taskId);
@@ -32,6 +33,7 @@ static void InitMultichoiceCheckWrap(bool8 ignoreBPress, u8 count, u8 windowId, 
 static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId);
 static void CreatePCMultichoice(void);
 static void CreateLilycoveSSTidalMultichoice(void);
+static void CreatePWTMultichoice(void);
 static bool8 IsPicboxClosed(void);
 static void CreateStartMenuForPokenavTutorial(void);
 static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowId, u8 multichoiceId);
@@ -543,6 +545,110 @@ void GetLilycoveSSTidalSelection(void)
     if (gSpecialVar_Result != MULTI_B_PRESSED)
     {
         gSpecialVar_Result = sLilycoveSSTidalSelections[gSpecialVar_Result];
+    }
+}
+
+bool8 ScriptMenu_CreatePWTMultichoice(void)
+{
+    if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
+    {
+        return FALSE;
+    }
+    else
+    {
+        gSpecialVar_Result = 0xFF;
+        CreatePWTMultichoice();
+        return TRUE;
+    }
+}
+
+static void CreatePWTMultichoice(void)
+{
+    u8 selectionCount = 0;
+    u8 count;
+    u32 pixelWidth;
+    u8 width;
+    u8 windowId;
+    u8 i;
+    u32 j;
+
+    for (i = 0; i < PWT_SELECTION_COUNT; i++)
+    {
+        sPWTSelections[i] = 0xFF;
+    }
+
+    GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_WIDTH);
+
+    if (FlagGet(FLAG_DEFEATED_HOENN_PWT) == TRUE)
+    {
+        sPWTSelections[selectionCount] = PWT_SELECTION_KANTO;
+        selectionCount++;
+        sPWTSelections[selectionCount] = PWT_SELECTION_JOHTO;
+        selectionCount++;
+    }
+
+    sPWTSelections[selectionCount] = PWT_SELECTION_HOENN;
+    selectionCount++;
+
+    if (FlagGet(FLAG_DEFEATED_HOENN_PWT) == TRUE)
+    {
+        sPWTSelections[selectionCount] = PWT_SELECTION_SINNOH;
+        selectionCount++;
+        sPWTSelections[selectionCount] = PWT_SELECTION_UNOVA;
+        selectionCount++;
+    }
+
+    if (FlagGet(FLAG_DEFEATED_KANTO_PWT) == TRUE && FlagGet(FLAG_DEFEATED_JOHTO_PWT) == TRUE && FlagGet(FLAG_DEFEATED_SINNOH_PWT) == TRUE && FlagGet(FLAG_DEFEATED_UNOVA_PWT) == TRUE)
+    {
+        sPWTSelections[selectionCount] = PWT_SELECTION_WORLDS;
+        selectionCount++;
+    }
+
+    if (FlagGet(FLAG_DEFEATED_WORLDS_SEVEN_PWT) == TRUE)
+    {
+        sPWTSelections[selectionCount] = PWT_SELECTION_CHAMPIONS;
+        selectionCount++;
+    }
+
+    sPWTSelections[selectionCount] = PWT_SELECTION_EXIT;
+    selectionCount++;
+
+    count = selectionCount;
+
+    pixelWidth = 0;
+    for (j = 0; j < PWT_SELECTION_COUNT; j++)
+    {
+        u8 selection = sPWTSelections[j];
+        if (selection != 0xFF)
+        {
+            pixelWidth = DisplayTextAndGetWidth(sPWTOptions[selection], pixelWidth);
+        }
+    }
+
+    width = ConvertPixelWidthToTileWidth(pixelWidth);
+    windowId = CreateWindowFromRect(MAX_MULTICHOICE_WIDTH - width, (6 - count) * 2, width, count * 2);
+    SetStandardWindowBorderStyle(windowId, 0);
+
+    for (selectionCount = 0, i = 0; i < PWT_SELECTION_COUNT; i++)
+    {
+        if (sPWTSelections[i] != 0xFF)
+        {
+            AddTextPrinterParameterized(windowId, FONT_NORMAL, sPWTOptions[sPWTSelections[i]], 8, selectionCount * 16 + 1, TEXT_SKIP_DRAW, NULL);
+            selectionCount++;
+        }
+    }
+
+    InitMenuInUpperLeftCornerNormal(windowId, count, count - 1);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+    InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_PWT_OPTIONS);
+    
+}
+
+void GetPWTSelection(void)
+{
+    if (gSpecialVar_Result != MULTI_B_PRESSED)
+    {
+        gSpecialVar_Result = sPWTSelections[gSpecialVar_Result];
     }
 }
 

@@ -3123,4 +3123,12 @@ extern const u8 gText_PkmnForSwap[];
 extern const u8 gText_SamePkmnInPartyAlready[];
 extern const u8 gText_Cancel3[];
 
+extern const u8 gText_KantoLeaders[];
+extern const u8 gText_JohtoLeaders[];
+extern const u8 gText_HoennLeaders[];
+extern const u8 gText_SinnohLeaders[];
+extern const u8 gText_UnovaLeaders[];
+extern const u8 gText_WorldLeaders[];
+extern const u8 gText_Champions[];
+
 #endif // GUARD_STRINGS_H

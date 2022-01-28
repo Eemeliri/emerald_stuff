@@ -2248,7 +2248,8 @@ static void InitDomeTrainers(void)
     u16 *rankingScores;
     int *statValues;
     u8 ivs = 0;
-    u16 randomOrdering[9] = {99};
+    u16 randomOrdering[15] = {99};
+    int numLeaders = 8;
 
     species[0] = 0;
     species[1] = 0;
@@ -2444,14 +2445,34 @@ static void InitDomeTrainers(void)
     }
 
     // Add Gym Leaders/E4/Champions if doing the PWT
-    if (VarGet(VAR_PWT_MODE) != 0)
+    if (VarGet(VAR_PWT_MODE) != PWT_MODE_NONE)
     {
+        switch (VAR_PWT_MODE)
+        {
+            case PWT_MODE_HOENN:
+                numLeaders = 9;
+                break;
+            case PWT_MODE_UNOVA:
+                numLeaders = 13;
+                break;
+            case PWT_MODE_WORLD_LEADERS:
+                numLeaders = 15;
+                break;
+            case PWT_MODE_CHAMPIONS:
+                numLeaders = 7;
+                break;
+            case PWT_MODE_KANTO:
+            case PWT_MODE_JOHTO:
+            case PWT_MODE_SINNOH:
+            default:
+                break;
+        }
 
         // Generate a unique random number for each contestant.
-        for (i = 0; i < 9; i++)
+        for (i = 0; i < numLeaders; i++)
         {
             s32 j;
-            randomOrdering[i] = Random() % 9;
+            randomOrdering[i] = Random() % numLeaders;
 
             // Loop through all the numbers generated so far.
             for (j = 0; j < i; j++)
@@ -2479,7 +2500,7 @@ static void InitDomeTrainers(void)
                 j++;
             }
 
-            if (j==9)
+            if (j==numLeaders)
                 break;
         }
 

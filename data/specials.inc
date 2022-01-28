@@ -537,3 +537,5 @@ gSpecials::
 	def_special TrySetBattleTowerLinkType
 	def_special SetTotemBoost
 	def_special CheckSavefileSize
+	def_special ScriptMenu_CreatePWTMultichoice
+	def_special GetPWTSelection

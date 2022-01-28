@@ -1383,12 +1383,12 @@
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
 #define FLAG_EON_LATI	                            (SYSTEM_FLAGS + 0x21)
-#define FLAG_UNUSED_0x882                           (SYSTEM_FLAGS + 0x22) // Unused Flag
-#define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Unused Flag
-#define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
-#define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
-#define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
+#define FLAG_DEFEATED_KANTO_PWT                     (SYSTEM_FLAGS + 0x22)
+#define FLAG_DEFEATED_JOHTO_PWT                     (SYSTEM_FLAGS + 0x23)
+#define FLAG_DEFEATED_HOENN_PWT                     (SYSTEM_FLAGS + 0x24)
+#define FLAG_DEFEATED_SINNOH_PWT                    (SYSTEM_FLAGS + 0x25)
+#define FLAG_DEFEATED_UNOVA_PWT                     (SYSTEM_FLAGS + 0x26)
+#define FLAG_DEFEATED_WORLDS_SEVEN_PWT              (SYSTEM_FLAGS + 0x27)
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)
 #define FLAG_SYS_USE_STRENGTH                       (SYSTEM_FLAGS + 0x29)

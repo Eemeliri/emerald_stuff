@@ -1847,3 +1847,11 @@ const u8 gText_Answer[] = _("Answer");
 const u8 gText_PokeBalls[] = _("Poké Balls");
 const u8 gText_Berry[] = _("Berry");
 const u8 gText_Berries[] = _("Berries");
+
+const u8 gText_KantoLeaders[] = _("Kanto Leaders");
+const u8 gText_JohtoLeaders[] = _("Johto Leaders");
+const u8 gText_HoennLeaders[] = _("Hoenn Leaders");
+const u8 gText_SinnohLeaders[] = _("Sinnoh Leaders");
+const u8 gText_UnovaLeaders[] = _("Unova Leaders");
+const u8 gText_WorldLeaders[] = _("World Leaders");
+const u8 gText_Champions[] = _("Champions");
