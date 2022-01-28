@@ -791,6 +791,37 @@ static const u8 *const sFrontierLeaderIntroTexts[] =
     [TRAINER_FRONTIER_TATE] = gText_TateIntro,
     [TRAINER_FRONTIER_LIZA] = gText_LizaIntro,
     [TRAINER_FRONTIER_WALLACE] = gText_WallaceIntro,
+
+    [TRAINER_FRONTIER_ROARK]   = gText_BrockDefeat,
+    [TRAINER_FRONTIER_GARDENIA]    = gText_MistyDefeat,
+    [TRAINER_FRONTIER_MAYLENE]  = gText_SurgeDefeat,
+    [TRAINER_FRONTIER_WAKE]   = gText_ErikaDefeat,
+    [TRAINER_FRONTIER_FANTINA] = gText_JanineDefeat,
+    [TRAINER_FRONTIER_BYRON]    = gText_SabrinaDefeat,
+    [TRAINER_FRONTIER_CANDICE] = gText_BlaineDefeat,
+    [TRAINER_FRONTIER_VOLKNER] = gText_GiovanniDefeat,
+
+    [TRAINER_FRONTIER_CILAN]   = gText_BrockDefeat,
+    [TRAINER_FRONTIER_CHILI]    = gText_MistyDefeat,
+    [TRAINER_FRONTIER_CRESS]  = gText_SurgeDefeat,
+    [TRAINER_FRONTIER_LENORA]   = gText_ErikaDefeat,
+    [TRAINER_FRONTIER_BURGH] = gText_JanineDefeat,
+    [TRAINER_FRONTIER_ELESA]    = gText_SabrinaDefeat,
+    [TRAINER_FRONTIER_CLAY] = gText_BlaineDefeat,
+    [TRAINER_FRONTIER_SKYLA] = gText_GiovanniDefeat,
+    [TRAINER_FRONTIER_BRYCEN]   = gText_ErikaDefeat,
+    [TRAINER_FRONTIER_DRAYDEN] = gText_JanineDefeat,
+    [TRAINER_FRONTIER_CHEREN]    = gText_SabrinaDefeat,
+    [TRAINER_FRONTIER_ROXIE] = gText_BlaineDefeat,
+    [TRAINER_FRONTIER_MARLON] = gText_GiovanniDefeat,
+
+    [TRAINER_FRONTIER_RED]    = gText_MistyDefeat,
+    [TRAINER_FRONTIER_BLUE]  = gText_SurgeDefeat,
+    [TRAINER_FRONTIER_LANCE]   = gText_ErikaDefeat,
+    [TRAINER_FRONTIER_STEVEN] = gText_JanineDefeat,
+    [TRAINER_FRONTIER_CYNTHIA]    = gText_SabrinaDefeat,
+    [TRAINER_FRONTIER_ALDER] = gText_BlaineDefeat,
+    [TRAINER_FRONTIER_IRIS] = gText_GiovanniDefeat,
 };
 
 struct
