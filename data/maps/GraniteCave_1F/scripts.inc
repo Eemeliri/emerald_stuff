@@ -33,5 +33,4 @@ GraniteCave_1F_Text_ExplainFlash:
 	.string "Teach that TM Flash to\n"
 	.string "a Pokémon and use it.\p"
 	.string "It lights up even the inky darkness\n"
-	.string "of caves.\p"
-
+	.string "of caves.$"
