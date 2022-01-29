@@ -614,33 +614,45 @@ static void CreatePWTMultichoice(void)
     selectionCount++;
 
     count = selectionCount;
-
-    pixelWidth = 0;
-    for (j = 0; j < PWT_SELECTION_COUNT; j++)
+    if (count == PWT_SELECTION_COUNT)
     {
-        u8 selection = sPWTSelections[j];
-        if (selection != 0xFF)
-        {
-            pixelWidth = DisplayTextAndGetWidth(sPWTOptions[selection], pixelWidth);
-        }
+        gSpecialVar_0x8004 = SCROLL_MULTI_PWT_OPTIONS;
+        ShowScrollableMultichoice();
     }
-
-    width = ConvertPixelWidthToTileWidth(pixelWidth);
-    windowId = CreateWindowFromRect(MAX_MULTICHOICE_WIDTH - width, (6 - count) * 2, width, count * 2);
-    SetStandardWindowBorderStyle(windowId, 0);
-
-    for (selectionCount = 0, i = 0; i < PWT_SELECTION_COUNT; i++)
+    else if (count == PWT_SELECTION_COUNT-1)
     {
-        if (sPWTSelections[i] != 0xFF)
-        {
-            AddTextPrinterParameterized(windowId, FONT_NORMAL, sPWTOptions[sPWTSelections[i]], 8, selectionCount * 16 + 1, TEXT_SKIP_DRAW, NULL);
-            selectionCount++;
-        }
+        gSpecialVar_0x8004 = SCROLL_MULTI_PWT_OPTIONS2;
+        ShowScrollableMultichoice();
     }
+    else
+    {
+        pixelWidth = 0;
+        for (j = 0; j < PWT_SELECTION_COUNT; j++)
+        {
+            u8 selection = sPWTSelections[j];
+            if (selection != 0xFF)
+            {
+                pixelWidth = DisplayTextAndGetWidth(sPWTOptions[selection], pixelWidth);
+            }
+        }
 
-    InitMenuInUpperLeftCornerNormal(windowId, count, count - 1);
-    CopyWindowToVram(windowId, COPYWIN_FULL);
-    InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_PWT_OPTIONS);
+        width = ConvertPixelWidthToTileWidth(pixelWidth);
+        windowId = CreateWindowFromRect(MAX_MULTICHOICE_WIDTH - width, (6 - count) * 2, width, count * 2);
+        SetStandardWindowBorderStyle(windowId, 0);
+
+        for (selectionCount = 0, i = 0; i < PWT_SELECTION_COUNT; i++)
+        {
+            if (sPWTSelections[i] != 0xFF)
+            {
+                AddTextPrinterParameterized(windowId, FONT_NORMAL, sPWTOptions[sPWTSelections[i]], 8, selectionCount * 16 + 1, TEXT_SKIP_DRAW, NULL);
+                selectionCount++;
+            }
+        }
+
+        InitMenuInUpperLeftCornerNormal(windowId, count, count - 1);
+        CopyWindowToVram(windowId, COPYWIN_FULL);
+        InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_PWT_OPTIONS);
+    }
     
 }
 

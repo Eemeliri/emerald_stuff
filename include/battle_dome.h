@@ -119,6 +119,17 @@ static const u16 gFrontierWorldLeaders[] =
     TRAINER_FRONTIER_MARLON,
 };
 
+static const u16 gFrontierChampions[] =
+{
+    TRAINER_FRONTIER_RED,
+    TRAINER_FRONTIER_BLUE,
+    TRAINER_FRONTIER_LANCE,
+    TRAINER_FRONTIER_STEVEN,
+    TRAINER_FRONTIER_CYNTHIA,
+    TRAINER_FRONTIER_ALDER,
+    TRAINER_FRONTIER_IRIS,
+};
+
 int GetDomeTrainerSelectedMons(u16 tournamentTrainerId);
 int TrainerIdToDomeTournamentId(u16 trainerId);
 

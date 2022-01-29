@@ -2434,6 +2434,26 @@ void ShowScrollableMultichoice(void)
             task->tKeepOpenAfterSelect = FALSE;
             task->tTaskId = taskId;
             break;
+        case SCROLL_MULTI_PWT_OPTIONS:
+            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
+            task->tNumItems = 8;
+            task->tLeft = 19;
+            task->tTop = 1;
+            task->tWidth = 10;
+            task->tHeight = 12;
+            task->tKeepOpenAfterSelect = FALSE;
+            task->tTaskId = taskId;
+            break;
+        case SCROLL_MULTI_PWT_OPTIONS2:
+            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
+            task->tNumItems = 7;
+            task->tLeft = 19;
+            task->tTop = 1;
+            task->tWidth = 10;
+            task->tHeight = 12;
+            task->tKeepOpenAfterSelect = FALSE;
+            task->tTaskId = taskId;
+            break;
         default:
             gSpecialVar_Result = MULTI_B_PRESSED;
             DestroyTask(taskId);
@@ -2593,6 +2613,27 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_PokemonMoves,
         gText_Underpowered,
         gText_WhenInDanger,
+        gText_Exit
+    },
+    [SCROLL_MULTI_PWT_OPTIONS] =
+    {
+        gText_KantoLeaders,
+        gText_JohtoLeaders,
+        gText_HoennLeaders,
+        gText_SinnohLeaders,
+        gText_UnovaLeaders,
+        gText_WorldLeaders,
+        gText_Champions,
+        gText_Exit
+    },
+    [SCROLL_MULTI_PWT_OPTIONS2] =
+    {
+        gText_KantoLeaders,
+        gText_JohtoLeaders,
+        gText_HoennLeaders,
+        gText_SinnohLeaders,
+        gText_UnovaLeaders,
+        gText_WorldLeaders,
         gText_Exit
     }
 };

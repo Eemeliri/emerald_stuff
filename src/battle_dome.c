@@ -2447,7 +2447,7 @@ static void InitDomeTrainers(void)
     // Add Gym Leaders/E4/Champions if doing the PWT
     if (VarGet(VAR_PWT_MODE) != PWT_MODE_NONE)
     {
-        switch (VAR_PWT_MODE)
+        switch (VarGet(VAR_PWT_MODE))
         {
             case PWT_MODE_HOENN:
                 numLeaders = 9;
@@ -2491,12 +2491,60 @@ static void InitDomeTrainers(void)
         {
             if (DOME_TRAINERS[i].trainerId == TRAINER_PLAYER &&  (DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId < 800 || DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId > TRAINERS_COUNT))
             {
-                DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                switch (VarGet(VAR_PWT_MODE))
+                {
+                    default:
+                    case PWT_MODE_HOENN:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_KANTO:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_JOHTO:
+                    DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_SINNOH:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_UNOVA:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_WORLD_LEADERS:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_CHAMPIONS:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierChampions[randomOrdering[j]];
+                        break;
+                }
                 j++;
             }
             else if (DOME_TRAINERS[i].trainerId < 800 || DOME_TRAINERS[i].trainerId > TRAINERS_COUNT)
             {
-                DOME_TRAINERS[i].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                switch (VarGet(VAR_PWT_MODE))
+                {
+                    default:
+                    case PWT_MODE_HOENN:
+                        DOME_TRAINERS[i].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_KANTO:
+                        DOME_TRAINERS[i].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_JOHTO:
+                    DOME_TRAINERS[i].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_SINNOH:
+                        DOME_TRAINERS[i].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_UNOVA:
+                        DOME_TRAINERS[i].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_WORLD_LEADERS:
+                        DOME_TRAINERS[i].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                        break;
+                    case PWT_MODE_CHAMPIONS:
+                        DOME_TRAINERS[i].trainerId = gFrontierChampions[randomOrdering[j]];
+                        break;
+                }
                 j++;
             }
 
