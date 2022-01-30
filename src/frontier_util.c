@@ -1224,7 +1224,7 @@ static const struct FrontierBrainMon sFrontierGymLeaderMons[][2][6] =
 			.moves = {MOVE_SUPERPOWER, MOVE_QUICK_ATTACK, MOVE_OVERHEAT, MOVE_TOXIC},
 		},
 		{
-			.species = SPECIES_ROTOM,
+			.species = SPECIES_ROTOM_HEAT,
 			.heldItem = ITEM_FLAME_ORB,
 			.fixedIV = 25,
 			.nature = NATURE_BOLD,
@@ -2468,7 +2468,7 @@ static const struct FrontierBrainMon sFrontierGymLeaderMons[][2][6] =
 			.moves = {MOVE_THUNDER, MOVE_SIGNAL_BEAM, MOVE_SWAGGER, MOVE_THUNDER_WAVE},
 		},
 		{
-			.species = SPECIES_ROTOM,
+			.species = SPECIES_ROTOM_WASH,
 			.heldItem = ITEM_WIDE_LENS,
 			.fixedIV = 25,
 			.nature = NATURE_TIMID,
@@ -3938,7 +3938,7 @@ static const struct FrontierBrainMon sFrontierGymLeaderMons[][2][6] =
 			.moves = {MOVE_THUNDERBOLT, MOVE_FOCUS_BLAST, MOVE_GRASS_KNOT, MOVE_CHARGE},
 		},
 		{
-			.species = SPECIES_ROTOM,
+			.species = SPECIES_ROTOM_FAN,
 			.heldItem = ITEM_KINGS_ROCK,
 			.fixedIV = 25,
 			.nature = NATURE_BOLD,
