@@ -2456,7 +2456,7 @@ static void InitDomeTrainers(void)
                 numLeaders = 13;
                 break;
             case PWT_MODE_WORLD_LEADERS:
-                numLeaders = 15;
+                numLeaders = 46;
                 break;
             case PWT_MODE_CHAMPIONS:
                 numLeaders = 7;
@@ -2487,70 +2487,186 @@ static void InitDomeTrainers(void)
         }
 
         j = 0;
-        for (i = 0; i < DOME_TOURNAMENT_TRAINERS_COUNT; i++)
+        if (numLeaders >= 8)
         {
-            if (DOME_TRAINERS[i].trainerId == TRAINER_PLAYER &&  (DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId < 800 || DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId > TRAINERS_COUNT))
+            for (i = 0; i < DOME_TOURNAMENT_TRAINERS_COUNT; i++)
             {
-                switch (VarGet(VAR_PWT_MODE))
+                if (DOME_TRAINERS[i].trainerId == TRAINER_PLAYER &&  (DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId < 800 || DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId > TRAINERS_COUNT))
                 {
-                    default:
-                    case PWT_MODE_HOENN:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_KANTO:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_JOHTO:
-                    DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_SINNOH:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_UNOVA:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_WORLD_LEADERS:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_CHAMPIONS:
-                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierChampions[randomOrdering[j]];
-                        break;
+                    switch (VarGet(VAR_PWT_MODE))
+                    {
+                        default:
+                        case PWT_MODE_HOENN:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_KANTO:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_JOHTO:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_SINNOH:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_UNOVA:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_WORLD_LEADERS:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_CHAMPIONS:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierChampions[randomOrdering[j]];
+                            break;
+                    }
+                    j++;
                 }
-                j++;
+                else if (DOME_TRAINERS[i].trainerId < 800 || DOME_TRAINERS[i].trainerId > TRAINERS_COUNT)
+                {
+                    switch (VarGet(VAR_PWT_MODE))
+                    {
+                        default:
+                        case PWT_MODE_HOENN:
+                            DOME_TRAINERS[i].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_KANTO:
+                            DOME_TRAINERS[i].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_JOHTO:
+                            DOME_TRAINERS[i].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_SINNOH:
+                            DOME_TRAINERS[i].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_UNOVA:
+                            DOME_TRAINERS[i].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_WORLD_LEADERS:
+                            DOME_TRAINERS[i].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_CHAMPIONS:
+                            DOME_TRAINERS[i].trainerId = gFrontierChampions[randomOrdering[j]];
+                            break;
+                    }
+                    j++;
+                }
+
+                if (j==numLeaders || j==15)
+                    break;
             }
-            else if (DOME_TRAINERS[i].trainerId < 800 || DOME_TRAINERS[i].trainerId > TRAINERS_COUNT)
+        }
+        else
+        {
+            for (i = 0; i < DOME_TOURNAMENT_TRAINERS_COUNT; i++)
             {
-                switch (VarGet(VAR_PWT_MODE))
+                if (DOME_TRAINERS[i].trainerId == TRAINER_PLAYER)
                 {
-                    default:
-                    case PWT_MODE_HOENN:
-                        DOME_TRAINERS[i].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_KANTO:
-                        DOME_TRAINERS[i].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_JOHTO:
-                    DOME_TRAINERS[i].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_SINNOH:
-                        DOME_TRAINERS[i].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_UNOVA:
-                        DOME_TRAINERS[i].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_WORLD_LEADERS:
-                        DOME_TRAINERS[i].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
-                        break;
-                    case PWT_MODE_CHAMPIONS:
-                        DOME_TRAINERS[i].trainerId = gFrontierChampions[randomOrdering[j]];
-                        break;
+                    switch (VarGet(VAR_PWT_MODE))
+                    {
+                        default:
+                        case PWT_MODE_HOENN:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_KANTO:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_JOHTO:
+                        DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_SINNOH:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_UNOVA:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_WORLD_LEADERS:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_CHAMPIONS:
+                            DOME_TRAINERS[sIdToOpponentId[i][0]].trainerId = gFrontierChampions[randomOrdering[j]];
+                            break;
+                    }
+                    j++;
+                    break;
                 }
-                j++;
             }
 
-            if (j==numLeaders)
-                break;
+            for (k = 0; k < 8; k++)
+            {
+                if (sTrainerNamePositions[i][0] == sTrainerNamePositions[k][0] && k != i && DOME_TRAINERS[sIdToOpponentId[k][0]].trainerId != TRAINER_PLAYER)
+                {
+                    
+                    switch (VarGet(VAR_PWT_MODE))
+                    {
+                        default:
+                        case PWT_MODE_HOENN:
+                            DOME_TRAINERS[k].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_KANTO:
+                            DOME_TRAINERS[k].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_JOHTO:
+                            DOME_TRAINERS[k].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_SINNOH:
+                            DOME_TRAINERS[k].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_UNOVA:
+                            DOME_TRAINERS[k].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_WORLD_LEADERS:
+                            DOME_TRAINERS[k].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_CHAMPIONS:
+                            DOME_TRAINERS[k].trainerId = gFrontierChampions[randomOrdering[j]];
+                            break;
+                    }
+                    j++;
+                    
+                }
+
+            }
+
+            for (k = 0; k < 8; k++)
+            {
+                if (sTrainerNamePositions[i][0] != sTrainerNamePositions[k][0])
+                {
+                    
+                    switch (VarGet(VAR_PWT_MODE))
+                    {
+                        default:
+                        case PWT_MODE_HOENN:
+                            DOME_TRAINERS[k].trainerId = gFrontierHoennLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_KANTO:
+                            DOME_TRAINERS[k].trainerId = gFrontierKantoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_JOHTO:
+                            DOME_TRAINERS[k].trainerId = gFrontierJohtoLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_SINNOH:
+                            DOME_TRAINERS[k].trainerId = gFrontierSinnohLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_UNOVA:
+                            DOME_TRAINERS[k].trainerId = gFrontierUnovaLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_WORLD_LEADERS:
+                            DOME_TRAINERS[k].trainerId = gFrontierWorldLeaders[randomOrdering[j]];
+                            break;
+                        case PWT_MODE_CHAMPIONS:
+                            DOME_TRAINERS[k].trainerId = gFrontierChampions[randomOrdering[j]];
+                            break;
+                    }
+                    j++;
+                    
+                }
+
+                if (j==numLeaders)
+                    break;
+
+            }
+
         }
+        
 
     }
 

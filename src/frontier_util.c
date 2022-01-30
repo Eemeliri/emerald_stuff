@@ -5905,6 +5905,37 @@ static const u8 sFrontierLeaderObjEventGfx[] =
     [TRAINER_FRONTIER_TATE] = OBJ_EVENT_GFX_TATE,
     [TRAINER_FRONTIER_LIZA] = OBJ_EVENT_GFX_LIZA,
     [TRAINER_FRONTIER_WALLACE] = OBJ_EVENT_GFX_WALLACE,
+
+	[TRAINER_FRONTIER_ROARK]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_GARDENIA]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_MAYLENE]  = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_WAKE]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_FANTINA] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_BYRON]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CANDICE] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_VOLKNER] = OBJ_EVENT_GFX_TUCKER,
+
+	[TRAINER_FRONTIER_CILAN]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CHILI]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CRESS]  = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_LENORA]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_BURGH] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_ELESA]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CLAY] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_SKYLA] = OBJ_EVENT_GFX_TUCKER,
+	[TRAINER_FRONTIER_BRYCEN]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_DRAYDEN]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CHEREN]  = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_ROXIE]   = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_MARLON] = OBJ_EVENT_GFX_TUCKER,
+
+    [TRAINER_FRONTIER_RED]    = OBJ_EVENT_GFX_RED,
+    [TRAINER_FRONTIER_BLUE] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_LANCE] = OBJ_EVENT_GFX_TUCKER,
+	[TRAINER_FRONTIER_STEVEN]    = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_CYNTHIA] = OBJ_EVENT_GFX_TUCKER,
+    [TRAINER_FRONTIER_ALDER] = OBJ_EVENT_GFX_TUCKER,
+	[TRAINER_FRONTIER_IRIS]    = OBJ_EVENT_GFX_TUCKER,
 };
 
 const u16 gFrontierBannedSpecies[] =
@@ -7914,7 +7945,7 @@ void CreateFrontierBrainPokemon(void)
     }
 }
 
-void CreateFrontierGymChampionPokemon(u16 trainerId)
+void CreateFrontierGymLeaderPokemon(u16 trainerId)
 {
     s32 i, j, k = 0;
     s32 selectedMonBits;
@@ -7973,6 +8004,71 @@ void CreateFrontierGymChampionPokemon(u16 trainerId)
         {
             SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierGymLeaderMons[trainerId][k][randomOrdering[i]].moves[j], j);
             if (sFrontierGymLeaderMons[trainerId][k][randomOrdering[i]].moves[j] == MOVE_FRUSTRATION)
+                friendship = 0;
+        }
+        SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+        CalculateMonStats(&gEnemyParty[monPartyId]);
+        monPartyId++;
+
+    }
+}
+
+void CreateFrontierChampionPokemon(u16 trainerId)
+{
+    s32 i, j;
+    s32 selectedMonBits;
+    s32 monPartyId;
+    s32 monLevel = 0;
+    u8 friendship;
+    u8 partysize = 3;
+    u16 randomOrdering[4] = {99};
+
+    if(VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES)
+        partysize = 4;
+
+    randomOrdering[0] = 0;
+    for (i = 1; i < partysize; i++)
+    {
+        randomOrdering[i] = (Random() % 5) + 1;
+
+        // Loop through all the numbers generated so far.
+        for (j = 0; j < i; j++)
+        {
+            if (randomOrdering[i] == randomOrdering[j])
+            {
+                // This number isn't unique; try generating again.
+                i--;
+                break;
+            }
+        }
+    }
+
+    ZeroEnemyPartyMons();
+    monPartyId = 0;
+    monLevel = SetFacilityPtrsGetLevel();
+    for (i = 0; i < partysize; i++)
+    {
+        do
+        {
+            do
+            {
+                j = Random32(); //should just be one while loop, but that doesn't match
+            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+        } while (sFrontierChampionMons[trainerId][randomOrdering[i]].nature != GetNatureFromPersonality(j));
+        CreateMon(&gEnemyParty[monPartyId],
+                  sFrontierChampionMons[trainerId][randomOrdering[i]].species,
+                  monLevel,
+                  sFrontierChampionMons[trainerId][randomOrdering[i]].fixedIV,
+                  TRUE, j,
+                  OT_ID_PRESET, FRONTIER_BRAIN_OTID);
+        SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierChampionMons[trainerId][randomOrdering[i]].heldItem);
+        for (j = 0; j < NUM_STATS; j++)
+            SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierChampionMons[trainerId][randomOrdering[i]].evs[j]);
+        friendship = MAX_FRIENDSHIP;
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierChampionMons[trainerId][randomOrdering[i]].moves[j], j);
+            if (sFrontierChampionMons[trainerId][randomOrdering[i]].moves[j] == MOVE_FRUSTRATION)
                 friendship = 0;
         }
         SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);

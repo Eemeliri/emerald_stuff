@@ -123,7 +123,7 @@ gText_BrockDefeat::
 	.string "I expected…$"
 
 gText_MistyIntro::
-	.string "I'm Misty!\nI'm a user of Water-type Pokémon!\lAre you good enough to beat me?"
+	.string "I'm Misty!\nI'm a user of Water-type Pokémon!\lAre you good enough to beat me?$"
 
 gText_MistyWon::
 	.string "See! This is the Water-type\ntoughness I was talking about!$"
@@ -196,7 +196,7 @@ gText_FalknerDefeat::
 	.string "I understand...\nI'll bow out gracefully.$"
 
 gText_BugsyIntro::
-	.string "I never lose when it comes to\nBug-type Pokémon.\pMy research is going to make me\nthe authority on Bug-type Pokémon!"
+	.string "I never lose when it comes to\nBug-type Pokémon.\pMy research is going to make me\nthe authority on Bug-type Pokémon!$"
 
 gText_BugsyWon::
 	.string "I guess I'm done reporting\nmy research findings!$"
@@ -205,7 +205,7 @@ gText_BugsyDefeat::
 	.string "Aw, that's the end of it…$"
 
 gText_WhitneyIntro::
-	.string "I'm warning you--I'm good!\pIf you lose to me,\nyou'd better not cry!"
+	.string "I'm warning you--I'm good!\pIf you lose to me,\nyou'd better not cry!$"
 
 gText_WhitneyWon::
 	.string "See? Didn't I tell ya?\nMy Pokémon are really strong!$"

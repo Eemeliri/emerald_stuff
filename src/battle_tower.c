@@ -1751,7 +1751,11 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
     }
     else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
     {
-        CreateFrontierGymChampionPokemon(trainerId);
+        if (VarGet(VAR_PWT_MODE) == PWT_MODE_CHAMPIONS)
+            CreateFrontierChampionPokemon(trainerId);
+        else
+            CreateFrontierGymLeaderPokemon(trainerId);
+
         return;
     }
     else
