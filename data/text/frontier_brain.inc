@@ -339,3 +339,256 @@ gText_WallaceWon::
 
 gText_WallaceDefeat::
 	.string "That was wonderful work.\pYou were elegant--infuriatingly so!\pAnd you know, it was utterly glorious!$"
+
+gText_RoarkIntro::
+	.string "Every day, I toughened up my Pokémon\nby digging up Fossils nonstop.\pCould I show you how tough I made them\nin a battle?$"
+
+gText_RoarkWon::
+	.string "See? These are my rocking\nPokémon, my pride and joy!$"
+
+gText_RoarkDefeat::
+	.string "Wh-what? That can't be!\nMy buffed-up Pokémon!$"
+
+gText_GardeniaIntro::
+	.string "My Grass-type Pokémon are\ngrowing good and strong.\pCome on, let's battle!\nA real quick one, Ok?$"
+
+gText_GardeniaWon::
+	.string "Yes! My Pokémon and I are\nperfectly good!$"
+
+gText_GardeniaDefeat::
+	.string "Aww, really?\pMy Grass-type Pokémon are growing good\nand strong, too…$"
+
+gText_MayleneIntro::
+	.string "I'm pleased to meet you.\pI don't really know what it means to\nbe strong.\pBut I will do the best I can as\na Trainer.\pI take battling very seriously.\nWhenever you're ready!$"
+
+gText_MayleneWon::
+	.string "Thank you very much.\nI learned a lot from it.$"
+
+gText_MayleneDefeat::
+	.string "I shall admit defeat…\nYou are much too strong.$"
+
+gText_WakeIntro::
+	.string "I'm Crasher Wake!\pMy Pokémon were toughened up by\nstormy white waters!\pThey'll take everything you can throw\nat them and then pull you under!\pVictory will be ours!\nCome on, let's get it done!$"
+
+gText_WakeWon::
+	.string "I won, but I want more!\nI wanted to battle a lot more.$"
+
+gText_WakeDefeat::
+	.string "Hunwah!\nIt's gone and ended!\pHow will I say this… I want more!\nI wanted to battle a lot more!$"
+
+gText_FantinaIntro::
+	.string "I also study Pokémon very much.\nI have come to be Gym Leader.\pAnd, uh, so it shall be that you\nchallenge me.\lBut I shall win.\pThat is what the Gym Leader of\nHearthome does, non?$"
+
+gText_FantinaWon::
+	.string "You are strong.\nBut it's me who won.$"
+
+gText_FantinaDefeat::
+	.string "You are so fantastically strong.\nI know why I have lost.$"
+
+gText_ByronIntro::
+	.string "Young Trainer!\nI'm Byron.\pAs a wall for young people,\nI'll take your challenge!$"
+
+gText_ByronWon::
+	.string "Gwahahaha!\nHow were my sturdy Pokémon?!$"
+
+gText_ByronDefeat::
+	.string "Hmm!\nMy sturdy Pokémon--defeated!$"
+
+gText_CandiceIntro::
+	.string "You're the opponent of Candice?\pSure thing!\nI was waiting for someone tough!\pBut I should tell you, I'm tough,\nbecause I know how to focus.$"
+
+gText_CandiceWon::
+	.string "I sensed your will to win,\nbut I don't lose!$"
+
+gText_CandiceDefeat::
+	.string "You're mighty!\nYou're worthy of lots of respect.$"
+
+gText_VolknerIntro::
+	.string "The next opponent is you…\pI hope you're the Trainer who'll make\nme remember how fun it is to battle!$"
+
+gText_VolknerWon::
+	.string "It was not shocking at all…\nThat is not what I wanted!$"
+
+gText_VolknerDefeat::
+	.string "You've got me beat…\pYour desire and the noble way\nyour Pokémon battled for you…\pI even felt thrilled during\nour match.\pThat was a very good battle.$"
+
+gText_CilanIntro::
+	.string " So, um, if you're Ok with me, I'll, um,\nput everything I've got into being, er,\lyou know, your opponent.$"
+
+gText_CilanWon::
+	.string "Huh?\nDid I win?$"
+
+gText_CilanDefeat::
+	.string "Huh?\nIs it over?$"
+
+gText_ChiliIntro::
+	.string "Yeeeeooow!\pTime to play with FIRE!!\nI'm the strongest of the brothers!$"
+
+gText_ChiliWon::
+	.string "I'm on fire!\nPlay with me, and you'll get burned!$"
+
+gText_ChiliDefeat::
+	.string "You got me.\pI am…burned…out…$"
+
+gText_CressIntro::
+	.string "What incredible luck for you--you get to\nbattle the best among the three of us.$"
+
+gText_CressWon::
+	.string "This is the appropriate\nresult when I'm your opponent.$"
+
+gText_CressDefeat::
+	.string "Lose? Me?\nI don't believe this.$"
+
+gText_LenoraIntro::
+	.string "Well then, Trainer, I'm going to research\nhow you battle with the Pokémon\lyou've so lovingly raised!$"
+
+gText_LenoraWon::
+	.string "What's wrong? Could it be you misread\nwhat moves I was going to use?$"
+
+gText_LenoraDefeat::
+	.string "You're impressive!\nAnd quite charming, aren't you?!$"
+
+gText_BurghIntro::
+	.string "If the battle brings out the beauty in\nBug-type Pokémon, it will be a scene that\lmakes my heart flutter, win or lose.\pMy bug Pokémon are abuzz\nwith anticipation.\pLet's get straight to it!$"
+
+gText_BurghWon::
+	.string "Wow…\nIt's beautiful somehow, isn't it…$"
+
+gText_BurghDefeat::
+	.string "Is it over?\nHas my muse abandoned me?$"
+
+gText_ElesaIntro::
+	.string "I am me, and Pokémon are Pokémon!\pI feel that strongly when I\nbattle with Pokémon moves,\land that's why I do it.\pNow, my beloved Pokémon are\ngoing to make your head spin!$"
+
+gText_ElesaWon::
+	.string "That was unsatisfying somehow…\nWill you give it your all next time?$"
+
+gText_ElesaDefeat::
+	.string "I meant to make your head spin,\nbut you shocked me instead.$"
+
+gText_ClayIntro::
+	.string "How much stronger ya get comes\nfrom how much you want to win!\pAlways be loyal to that desire,\nya hear?$"
+
+gText_ClayWon::
+	.string "It's simple, hear!\nI wanted to win more than ya did!$"
+
+gText_ClayDefeat::
+	.string "Well, I've had enough… And just so you\nknow, I didn't go easy on you.$"
+
+gText_SkylaIntro::
+	.string "What I like is having fun!\pI love doing things like flying\nin the sky with Pokémon\land bringing out their best!\pSo, how about you and I\nhave some fun?$"
+
+gText_SkylaWon::
+	.string "Win or lose, you always gain\nsomething from a battle, right?$"
+
+gText_SkylaDefeat::
+	.string "Being your opponent in battle is a new\nsource of strength to me. Thank you!$"
+
+gText_BrycenIntro::
+	.string "You appear ready to face a battle.\pBring it!$"
+
+gText_BrycenWon::
+	.string "Extreme conditions really test you\nand train you!$"
+
+gText_BrycenDefeat::
+	.string "The wonderful combination\nof you and your Pokémon!\lWhat a beautiful friendship!$"
+
+gText_DraydenIntro::
+	.string "Thinking about aging is thinking\nabout the time you have left.\pNow, since there are\nfewer things I can do,\pwhat I want to find is a young Trainer\nwho can show me a bright future.$"
+
+gText_DraydenWon::
+	.string "Harrumph! I know your ability is greater\nthan that!$"
+
+gText_DraydenDefeat::
+	.string "This intense feeling that floods\nme after a defeat…\lI don't know how to describe it.$"
+
+gText_CherenIntro::
+	.string "Do you want to show how strong you\nare by winning, or do you want to\llearn what battling really means?\pPokémon battles have no meaning if\nyou don't think about why you battle.\pOr better said, it makes battling\ntogether with Pokémon meaningless.$"
+
+gText_CherenWon::
+	.string "Even when you lose, your Pokémon\nare still brimming with fighting spirit.$"
+
+gText_CherenDefeat::
+	.string "Thank you!\pI feel like I saw a little of\nthe way toward my ideals.$"
+
+gText_RoxieIntro::
+	.string "Fight with this Pokémon this way…\nUse this item that way…\lAre you letting others decide that\lfor you?\pWell, whatever, but what's important\nis figuring out what you want to do!\pGet ready! 'Cause I'm going to knock\nthe common sense outta you and drag\lyou into a brand new world!$"
+
+gText_RoxieWon::
+	.string "Hey, c'mon! Get serious!\nYou gotta put more out there!$"
+
+gText_RoxieDefeat::
+	.string "Wild!\pYour reason's already\nmore toxic than mine!$"
+
+gText_MarlonIntro::
+	.string "I'm strong like the ocean's wide.\nYou're gonna get swept away, fo' sho'.\pEh, that's enough talk! I'll prove it!\nLet's get started, 'K?$"
+
+gText_MarlonWon::
+	.string "You're tough, but it's not\nenough to sway the sea, 'K!$"
+
+gText_MarlonDefeat::
+	.string "You're strong as a gnarly wave\nand as nice as a glassy sea.$"
+
+gText_RedIntro::
+	.string "…$"
+
+gText_RedWon::
+	.string "…?$"
+
+gText_RedDefeat::
+	.string "…!!$"
+
+gText_BlueIntro::
+	.string "But, I'm a Trainer.\pIf I see a strong opponent, it makes me\nwant to battle.$"
+
+gText_BlueWon::
+	.string "This is what I, Kanto's top-level\nTrainer, can really do!$"
+
+gText_BlueDefeat::
+	.string "How the heck did I lose to you?$"
+
+gText_LanceIntro::
+	.string "You are brimming with love\nand trust toward Pokémon.\pI think we will be able to\nhave a fantastic battle!$"
+
+gText_LanceWon::
+	.string "I never give up, no matter what.\nYou must be the same?$"
+
+gText_LanceDefeat::
+	.string "…It's over.$"
+
+gText_StevenIntro::
+	.string "My name is Steven.\pI'm interested in rare Stones, so\nI travel here and there.$"
+
+gText_StevenWon::
+	.string "When it comes down to it,\nI'm still the strongest!$"
+
+gText_StevenDefeat::
+	.string "You are a truly noble Pokémon Trainer!$"
+
+gText_CynthiaIntro::
+	.string "One look at you tells\nme many things about you.\pTogether, you and your Pokémon\novercame all the challenges you\lfaced, however difficult.\pI, Cynthia, accept your challenge!\pThere won't be any letup from me!$"
+
+gText_CynthiaWon::
+	.string "What's necessary to become\nstronger?\p think it's important to never lose\nyour love of Pokémon.$"
+
+gText_CynthiaDefeat::
+	.string "Aww!\pNo matter how fun the battle is,\nit will always end sometime…$"
+
+gText_AlderIntro::
+	.string "I've really been looking forward\nto deciding who's the strongest\lPokémon Trainer in this tournament!\pKiai!$"
+
+gText_AlderWon::
+	.string "That was an extraordinary effort\nfrom both you and your Pokémon!$"
+
+gText_AlderDefeat::
+	.string "Well done!\nYou certainly are an unmatched talent!$"
+
+gText_IrisIntro::
+	.string "I really look forward to having\nserious battles with strong Trainers!\pThe Trainers who make it here\nare Trainers who desire victory\lwith every fiber of their being!$"
+
+gText_IrisWon::
+	.string "Did you not seriously try to\nwin?$"
+
+gText_IrisDefeat::
+	.string "Aghhhh…\nI did my best, but we lost…$"
+
