@@ -12644,7 +12644,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_RED] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Red"),
@@ -12658,7 +12658,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_BLUE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Blue"),
@@ -12672,7 +12672,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_LANCE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Lance"),
@@ -12686,7 +12686,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_STEVEN] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_STEVEN,
         .trainerName = _("Steven"),
@@ -12700,7 +12700,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_CYNTHIA] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Cynthia"),
@@ -12714,7 +12714,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_ALDER] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Alder"),
@@ -12728,7 +12728,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_FRONTIER_IRIS] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_LEADER,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_DOME_ACE_TUCKER,
         .trainerName = _("Iris"),
