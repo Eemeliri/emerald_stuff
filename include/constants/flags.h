@@ -1388,7 +1388,7 @@
 #define FLAG_DEFEATED_HOENN_PWT                     (SYSTEM_FLAGS + 0x24)
 #define FLAG_DEFEATED_SINNOH_PWT                    (SYSTEM_FLAGS + 0x25)
 #define FLAG_DEFEATED_UNOVA_PWT                     (SYSTEM_FLAGS + 0x26)
-#define FLAG_DEFEATED_WORLDS_SEVEN_PWT              (SYSTEM_FLAGS + 0x27)
+#define FLAG_DEFEATED_WORLDS_TEN_PWT                (SYSTEM_FLAGS + 0x27)
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)
 #define FLAG_SYS_USE_STRENGTH                       (SYSTEM_FLAGS + 0x29)

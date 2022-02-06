@@ -604,7 +604,7 @@ static void CreatePWTMultichoice(void)
         selectionCount++;
     }
 
-    if (FlagGet(FLAG_DEFEATED_WORLDS_SEVEN_PWT) == TRUE)
+    if (FlagGet(FLAG_DEFEATED_WORLDS_TEN_PWT) == TRUE)
     {
         sPWTSelections[selectionCount] = PWT_SELECTION_CHAMPIONS;
         selectionCount++;

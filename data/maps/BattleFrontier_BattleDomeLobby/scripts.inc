@@ -113,11 +113,11 @@ BattleFrontier_BattleDomeLobby_EventScript_DefeatedUnovaPWT::
 
 BattleFrontier_BattleDomeLobby_EventScript_DefeatedWorldsPWT::
 	addvar VAR_PWT_COUNTER, 1
-	call_if_eq VAR_PWT_COUNTER, 7, BattleFrontier_BattleDomeLobby_EventScript_UnlockChampionsPWT
+	call_if_eq VAR_PWT_COUNTER, 10, BattleFrontier_BattleDomeLobby_EventScript_UnlockChampionsPWT
 	goto BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle
 
 BattleFrontier_BattleDomeLobby_EventScript_UnlockChampionsPWT::
-	setflag FLAG_DEFEATED_WORLDS_SEVEN_PWT
+	setflag FLAG_DEFEATED_WORLDS_TEN_PWT
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_DefeatedChampionsPWT::
