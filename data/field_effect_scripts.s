@@ -72,6 +72,9 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_RayquazaSpotlight         @ FLDEFF_RAYQUAZA_SPOTLIGHT
 	.4byte gFieldEffectScript_DestroyDeoxysRock         @ FLDEFF_DESTROY_DEOXYS_ROCK
 	.4byte gFieldEffectScript_MoveDeoxysRock            @ FLDEFF_MOVE_DEOXYS_ROCK
+  .4byte gFieldEffectScript_TracksSlither             @ FLDEFF_TRACKS_SLITHER
+	.4byte gFieldEffectScript_TracksBug                 @ FLDEFF_TRACKS_BUG
+	.4byte gFieldEffectScript_TracksSpot                @ FLDEFF_TRACKS_SPOT
 
 gFieldEffectScript_ExclamationMarkIcon1:: @ 82DBAE0
 	field_eff_loadfadedpalnotint_callnative gSpritePalette_ArrowEmotionsFieldEffect, FldEff_ExclamationMarkIcon
@@ -127,6 +130,14 @@ gFieldEffectScript_JumpTallGrass::
 
 gFieldEffectScript_SandFootprints::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_SandFootprints
+	field_eff_end
+
+gFieldEffectScript_TracksBug::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksBug
+	field_eff_end
+
+gFieldEffectScript_TracksSpot::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSpot
 	field_eff_end
 
 gFieldEffectScript_JumpBigSplash::
@@ -216,6 +227,10 @@ gFieldEffectScript_FeetInFlowingWater::
 
 gFieldEffectScript_BikeTireTracks::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_BikeTireTracks
+	field_eff_end
+
+gFieldEffectScript_TracksSlither::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSlither
 	field_eff_end
 
 gFieldEffectScript_SandDisguisePlaceholder::
