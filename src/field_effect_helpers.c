@@ -132,7 +132,7 @@ void LoadSpecialReflectionPalette(struct Sprite *sprite)
 		pal[i] = RGB(R, G, B);
 	}
 	reflectionPalette.data = gReflectionPaletteBuffer;
-	reflectionPalette.tag = GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) + 0x1000;
+	reflectionPalette.tag = GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) + 0x2000;
 	LoadSpritePaletteDayNight(&reflectionPalette);
 	sprite->oam.paletteNum = IndexOfSpritePaletteTag(reflectionPalette.tag);
 	UpdatePaletteGammaType(sprite->oam.paletteNum, GAMMA_ALT);
@@ -141,10 +141,10 @@ void LoadSpecialReflectionPalette(struct Sprite *sprite)
 
 static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
 {
-    struct ObjectEvent *objectEvent = &gObjectEvents[reflectionSprite->data[0]];
+    struct ObjectEvent *objectEvent = &gObjectEvents[reflectionSprite->sReflectionObjEventId];
     struct Sprite *mainSprite = &gSprites[objectEvent->spriteId];
 
-    if (!objectEvent->active || !objectEvent->hasReflection || objectEvent->localId != reflectionSprite->data[1])
+    if (!objectEvent->active || !objectEvent->hasReflection || objectEvent->localId != reflectionSprite->sReflectionObjEventLocalId)
     {
         reflectionSprite->inUse = FALSE;
     }
@@ -169,7 +169,7 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
             reflectionSprite->invisible = TRUE;
 
         // Check if the reflection is not still.
-        if (reflectionSprite->data[7] == FALSE)
+        if (reflectionSprite->sIsStillReflection == FALSE)
         {
         // Sets the reflection sprite's rot/scale matrix to the appropriate
         // matrix based on whether or not the main sprite is horizontally flipped.
