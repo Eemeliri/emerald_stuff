@@ -447,7 +447,9 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_LUGIA                   0x1121
 #define OBJ_EVENT_PAL_TAG_RS_BRENDAN              0x1122
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
-#define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
+#define OBJ_EVENT_PAL_TAG_LATIAS                  0x1124
+#define OBJ_EVENT_PAL_TAG_LATIOS                  0x1125
+#define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1126
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -496,9 +498,11 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
-    {gObjectEventPal_Npc1, OBJ_EVENT_PAL_TAG_DYNAMIC},
-    {gObjectEventPaletteEmotes, OBJ_EVENT_PAL_TAG_EMOTES},
-    {NULL,                  OBJ_EVENT_PAL_TAG_NONE},
+    {gObjectEventPal_Latias,                OBJ_EVENT_PAL_TAG_LATIAS},
+    {gObjectEventPal_Latios,                OBJ_EVENT_PAL_TAG_LATIOS},
+    {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_DYNAMIC},
+    {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
+    {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 };
 
 #include "data/object_events/berry_tree_graphics_tables.h"
