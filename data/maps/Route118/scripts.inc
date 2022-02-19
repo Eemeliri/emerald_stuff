@@ -1,4 +1,5 @@
 .set LOCALID_STEVEN, 19
+.set LOCALID_LATIAS, 23
 
 Route118_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route118_OnTransition
@@ -24,7 +25,7 @@ Route118_OnFrame:
 	map_script_2 VAR_ROUTE118_STATE, 3, LatiEventEnd
 	.2byte 0
 
-Route118_OnWarp: @ 81E58DB
+Route118_OnWarp:
 	map_script_2 VAR_ROUTE118_STATE, 3, Route118_EventScript_ChangeDir
 	.2byte 0
 
@@ -112,6 +113,7 @@ Route118_EventScript_StevenTrigger2::
 	end
 
 Route118_EventScript_StevenTrigger::
+	addobject LOCALID_LATIAS
 	playse SE_LEDGE
 	applymovement LOCALID_STEVEN, Route118_Movement_StevenJumpLedge
 	waitmovement 0
@@ -121,7 +123,7 @@ Route118_EventScript_StevenTrigger::
 	playmoncry SPECIES_LATIAS, 0
 	delay 90
 	playse SE_PIN
-	applymovement 19, Common_Movement_ExclamationMark
+	applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
 	delay 30
 	compare VAR_0x8008, 0
 	call_if_eq Route118_EventScript_StevenExit0
@@ -129,6 +131,10 @@ Route118_EventScript_StevenTrigger::
 	call_if_eq Route118_EventScript_StevenExit1
 	compare VAR_0x8008, 2
 	call_if_eq Route118_EventScript_StevenExit2
+	applymovement LOCALID_LATIAS, Route118_Movement_LatiasEnter
+	waitmovement 0
+	playmoncry SPECIES_LATIAS, 0
+	delay 90
 	msgbox Route118_Text_StevenLatias1, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq Route118_EventScript_StevenTurn0
@@ -138,7 +144,6 @@ Route118_EventScript_StevenTrigger::
 	call_if_eq Route118_EventScript_StevenTurn1
 	msgbox Route118_Text_StevenLatias2, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE
-	clearflag FLAG_HIDE_SOUTHERN_ISLAND_UNCHOSEN_EON_DUO_MON
 	setflag FLAG_SOUTHERNISLAND_SHIP
 	warp MAP_SOUTHERN_ISLAND_EXTERIOR, 255, 15, 20
 	end
@@ -150,24 +155,24 @@ Route118_EventScript_StevenExit0::
 	return
 
 Route118_EventScript_StevenExit1::
-	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_TurnToStevenLeft
 	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit1
 	waitmovement 0
 	return
 
 Route118_EventScript_StevenExit2::
-	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_TurnToStevenLeft
 	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit2
 	waitmovement 0
 	return
 
-Route118_EventScript_StevenTurn0:: @ 81F3F28
+Route118_EventScript_StevenTurn0::
 	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerTurnsRight
 	applymovement 19, Route118_Movement_PlayerTurnsLeft
 	waitmovement 0
 	return
 
-Route118_EventScript_StevenTurn1:: @ 81F3F28
+Route118_EventScript_StevenTurn1::
 	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerTurnsLeft
 	applymovement 19, Route118_Movement_PlayerTurnsRight
 	waitmovement 0
@@ -186,7 +191,7 @@ Route118_Movement_PlayerWatchStevenExit:
 	walk_in_place_faster_right
 	step_end
 
-Route118_Movement_TurnToStevenLeft: @ 81F3F5E
+Route118_Movement_TurnToStevenLeft:
 	delay_16
 	walk_in_place_faster_left
 	step_end
@@ -205,22 +210,30 @@ Route118_Movement_StevenJumpLedge:
 	walk_down
 	step_end
 
-Route118_Movement_StevenExit0: @ 81F3F69
+Route118_Movement_LatiasEnter:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route118_Movement_StevenExit0:
 	walk_right
 	walk_down
 	step_end
 
-Route118_Movement_StevenExit1: @ 81F3F74
+Route118_Movement_StevenExit1:
 	walk_left
 	walk_down
 	step_end
 
-Route118_Movement_StevenExit2: @ 81F3F7E
+Route118_Movement_StevenExit2:
 	walk_left
 	walk_down
 	step_end
 
-Route118_Movement_StevenExitFinal: @ 81F3F7E
+Route118_Movement_StevenExitFinal:
 	walk_right
 	walk_right
 	walk_right
@@ -315,13 +328,13 @@ Route118_Text_StevenQuestions:
 	.string "It would be nice if we were to meet\n"
 	.string "again somewhere.$"
 
-Route118_Text_StevenLatias1: @ 81F40BE
+Route118_Text_StevenLatias1:
 	.string "…Hm?\p"
 	.string "Latias!!\p"
 	.string "Do you…want us to soar somewhere\n"
 	.string "with you?$"
 
-Route118_Text_StevenLatias2: @ 81F40BE
+Route118_Text_StevenLatias2:
 	.string "{PLAYER}{KUN}.\p"
 	.string "Come with me.\p"
 	.string "Latias…\n"
@@ -329,7 +342,7 @@ Route118_Text_StevenLatias2: @ 81F40BE
 	.string "help.\p"
 	.string "If that's the case, let's go!$"
 
-Route118_Text_StevenGoodbye: @ 81F40BE
+Route118_Text_StevenGoodbye:
 	.string "Thank you for your help {PLAYER}{KUN}.\p"
 	.string "In the end you were a far greater\n"
 	.string "help than I expected you might be.\p"
