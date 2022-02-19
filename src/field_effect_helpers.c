@@ -159,6 +159,8 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         reflectionSprite->invisible = mainSprite->invisible;
         reflectionSprite->x = mainSprite->x;
         reflectionSprite->y = mainSprite->y + GetReflectionVerticalOffset(objectEvent) + reflectionSprite->sReflectionVerticalOffset;
+        if (mainSprite->oam.size > 0x02)
+             reflectionSprite->y = mainSprite->y + 62 + reflectionSprite->sReflectionVerticalOffset;
         reflectionSprite->centerToCornerVecX = mainSprite->centerToCornerVecX;
         reflectionSprite->centerToCornerVecY = mainSprite->centerToCornerVecY;
         reflectionSprite->x2 = mainSprite->x2;
