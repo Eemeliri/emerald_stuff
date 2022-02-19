@@ -2,6 +2,7 @@
 #include "constants/songs.h"
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
+#include "day_night.h"
 #include "decompress.h"
 #include "event_object_movement.h"
 #include "event_data.h"
@@ -260,7 +261,7 @@ static void LoadEonGraphics(void)
 	}
 
 	LoadCompressedSpriteSheet(&sEonSpriteSheet);
-	LoadCompressedSpritePalette(&sEonSpritePalette);
+	LoadCompressedSpritePaletteDayNight(&sEonSpritePalette);
 	sEonSpriteId = CreateSprite(&sEonSpriteTemplate, DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, 0);
 	gSprites[sEonSpriteId].data[0] = 0;
 	gSprites[sEonSpriteId].data[1] = 0;
@@ -299,7 +300,7 @@ static void CB2_LoadSoarGraphics(void)
 		}
 
 		// load palette
-		LoadPalette(sRegionMapBkgnd_Pal, 0x70, 64);
+		LoadPaletteDayNight(sRegionMapBkgnd_Pal, 0x70, 64);
 
 		// Create sprites
 		LoadEonGraphics();
