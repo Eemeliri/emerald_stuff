@@ -4536,11 +4536,11 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
       switch (sprite->sState2)
       {
       case 0:
-          sprite->y += 1;
+          sprite->y2 -= 1;
           sprite->sState2++;
           break;
       default:
-          sprite->y -= 1;
+          sprite->y2 += 1;
           sprite->sState2 = 0;
           break;
       }
@@ -4581,11 +4581,11 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     switch (sprite->sState2)
     {
     case 0:
-        sprite->y += 1;
+        sprite->y2 -= 1;
         sprite->sState2++;
         break;
     default:
-        sprite->y -= 1;
+        sprite->y2 += 1;
         sprite->sState2 = 0;
         break;
     }
