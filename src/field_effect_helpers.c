@@ -74,7 +74,7 @@ void SetUpReflection(struct ObjectEvent *objectEvent, struct Sprite *sprite, boo
     LoadObjectReflectionPalette(objectEvent, reflectionSprite);
 
     if (objectEvent->extra.mon.species > 0){
-        reflectionSprite->subpriority = 60;
+        //reflectionSprite->subpriority = 153;
     }
 
     if (!stillReflection)
