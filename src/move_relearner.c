@@ -15,6 +15,7 @@
 #include "menu_specialized.h"
 #include "overworld.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "pokemon_summary_screen.h"
 #include "script.h"
 #include "sound.h"
@@ -131,6 +132,8 @@
 #define MENU_STATE_CONFIRM_DELETE_OLD_MOVE 18
 #define MENU_STATE_PRINT_WHICH_MOVE_PROMPT 19
 #define MENU_STATE_SHOW_MOVE_SUMMARY_SCREEN 20
+#define MENU_STATE_RETURN_TO_PARTY_MENU 21
+#define MENU_STATE_CHOOSE_AGAIN 22
 // States 21, 22, and 23 are skipped.
 #define MENU_STATE_PRINT_STOP_TEACHING 24
 #define MENU_STATE_WAIT_FOR_STOP_TEACHING 25
@@ -516,7 +519,7 @@ static void DoMoveRelearnerMain(void)
                 if (GiveMoveToMon(&gPlayerParty[sMoveRelearnerStruct->partyMon], GetCurrentSelectedMove()) != MON_HAS_MAX_MOVES)
                 {
                     FormatAndPrintText(gText_MoveRelearnerPkmnLearnedMove);
-                    gSpecialVar_0x8004 = TRUE;
+                    gSpecialVar_0x8006 = TRUE;
                     sMoveRelearnerStruct->state = MENU_STATE_PRINT_TEXT_THEN_FANFARE;
                 }
                 else
@@ -550,7 +553,7 @@ static void DoMoveRelearnerMain(void)
 
             if (selection == 0)
             {
-                gSpecialVar_0x8004 = FALSE;
+                gSpecialVar_0x8006 = FALSE;
                 sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
             }
             else if (selection == -1 || selection == 1)
@@ -655,18 +658,25 @@ static void DoMoveRelearnerMain(void)
             FreeMoveRelearnerResources();
         }
         break;
-    case 21:
-        if (!MoveRelearnerRunTextPrinters())
+    case MENU_STATE_RETURN_TO_PARTY_MENU:
+        if (!gPaletteFade.active)
         {
-            sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
+            FreeMoveRelearnerResources();
+            SetMainCallback2(CB2_ReturnToPartyMenuFromSummaryScreen);
         }
         break;
-    case 22:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    case MENU_STATE_CHOOSE_AGAIN:
+        CreateLearnableMovesList();
+        sMoveRelearnerStruct->moveListMenuTask = ListMenuInit(&gMultiuseListMenuTemplate, sMoveRelearnerMenuSate.listOffset, sMoveRelearnerMenuSate.listRow);
+        sMoveRelearnerStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
         break;
     case MENU_STATE_FADE_AND_RETURN:
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sMoveRelearnerStruct->state++;
+        if(FlagGet(FLAG_TEMP_1) == TRUE){
+            sMoveRelearnerStruct->state++;
+        } else {
+            sMoveRelearnerStruct->state = MENU_STATE_RETURN_TO_PARTY_MENU;
+        }
         break;
     case MENU_STATE_RETURN_TO_FIELD:
         if (!gPaletteFade.active)
@@ -706,7 +716,7 @@ static void DoMoveRelearnerMain(void)
                 StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
                 FormatAndPrintText(gText_MoveRelearnerAndPoof);
                 sMoveRelearnerStruct->state = MENU_STATE_DOUBLE_FANFARE_FORGOT_MOVE;
-                gSpecialVar_0x8004 = TRUE;
+                gSpecialVar_0x8006 = TRUE;
             }
         }
         break;
@@ -735,7 +745,7 @@ static void DoMoveRelearnerMain(void)
         if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
+            sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_AGAIN;
         }
         break;
     }
