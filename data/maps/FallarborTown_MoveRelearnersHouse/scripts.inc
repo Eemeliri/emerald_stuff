@@ -34,6 +34,7 @@ FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon::
 	end
 
 FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove::
+	setflag FLAG_MOVE_RELEARNER
 	msgbox FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove, MSGBOX_DEFAULT
 	special TeachMoveRelearnerMove
 	waitstate
@@ -54,6 +55,7 @@ FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg::
 	end
 
 FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale::
+	clearflag FLAG_MOVE_RELEARNER
 	msgbox FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale, MSGBOX_DEFAULT
 	releaseall
 	end

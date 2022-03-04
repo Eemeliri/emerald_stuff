@@ -519,7 +519,8 @@ static void DoMoveRelearnerMain(void)
                 if (GiveMoveToMon(&gPlayerParty[sMoveRelearnerStruct->partyMon], GetCurrentSelectedMove()) != MON_HAS_MAX_MOVES)
                 {
                     FormatAndPrintText(gText_MoveRelearnerPkmnLearnedMove);
-                    gSpecialVar_0x8006 = TRUE;
+                    if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE)
+                        gSpecialVar_0x8004 = TRUE;
                     sMoveRelearnerStruct->state = MENU_STATE_PRINT_TEXT_THEN_FANFARE;
                 }
                 else
@@ -553,7 +554,8 @@ static void DoMoveRelearnerMain(void)
 
             if (selection == 0)
             {
-                gSpecialVar_0x8006 = FALSE;
+                if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE)
+                    gSpecialVar_0x8004 = FALSE;
                 sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
             }
             else if (selection == -1 || selection == 1)
@@ -672,7 +674,7 @@ static void DoMoveRelearnerMain(void)
         break;
     case MENU_STATE_FADE_AND_RETURN:
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        if(FlagGet(FLAG_TEMP_1) == TRUE){
+        if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE){
             sMoveRelearnerStruct->state++;
         } else {
             sMoveRelearnerStruct->state = MENU_STATE_RETURN_TO_PARTY_MENU;
@@ -716,7 +718,8 @@ static void DoMoveRelearnerMain(void)
                 StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
                 FormatAndPrintText(gText_MoveRelearnerAndPoof);
                 sMoveRelearnerStruct->state = MENU_STATE_DOUBLE_FANFARE_FORGOT_MOVE;
-                gSpecialVar_0x8006 = TRUE;
+                if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE)
+                    gSpecialVar_0x8004 = TRUE;
             }
         }
         break;
@@ -745,7 +748,11 @@ static void DoMoveRelearnerMain(void)
         if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_AGAIN;
+            if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE){
+                sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
+            } else {
+                sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_AGAIN;
+            }
         }
         break;
     }
