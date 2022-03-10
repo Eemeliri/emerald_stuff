@@ -13571,7 +13571,8 @@ static void Cmd_displaydexinfo(void)
             FreeAllWindowBuffers();
             gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(SpeciesToNationalPokedexNum(species),
                                                                         gBattleMons[GetCatchingBattler()].otId,
-                                                                        gBattleMons[GetCatchingBattler()].personality);
+                                                                        gBattleMons[GetCatchingBattler()].personality,
+                                                                        GetFormIdFromFormSpeciesId(species));
             gBattleCommunication[0]++;
         }
         break;

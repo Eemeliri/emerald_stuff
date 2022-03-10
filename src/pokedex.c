@@ -3927,17 +3927,19 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 #define tDexNum        data[1]
 #define tPalTimer      data[2]
 #define tMonSpriteId   data[3]
+#define tFormNum       data[4]
 #define tOtIdLo        data[12]
 #define tOtIdHi        data[13]
 #define tPersonalityLo data[14]
 #define tPersonalityHi data[15]
 
-u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality)
+u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality, u16 formNum)
 {
     u8 taskId = CreateTask(Task_DisplayCaughtMonDexPage, 0);
 
     gTasks[taskId].tState = 0;
     gTasks[taskId].tDexNum = dexNum;
+    gTasks[taskId].tFormNum = formNum;
     gTasks[taskId].tOtIdLo = otId;
     gTasks[taskId].tOtIdHi = otId >> 16;
     gTasks[taskId].tPersonalityLo = personality;
@@ -3991,7 +3993,10 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+        if (gTasks[taskId].tFormNum == 0)
+            spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+        else
+            spriteId = CreateMonFormSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0, gTasks[taskId].tFormNum);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
@@ -4084,6 +4089,7 @@ static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 #undef tDexNum
 #undef tPalTimer
 #undef tMonSpriteId
+#undef tFormNum
 #undef tOtIdLo
 #undef tOtIdHi
 #undef tPersonalityLo
@@ -4141,7 +4147,59 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         description = gExpandedPlaceholder_PokedexDescription;
     PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
 }
+/*
+static void PrintMonFormInfo(u32 num, u32 value, u32 owned, u32 newEntry, u32 form)
+{
+    u8 str[0x10];
+    u8 str2[0x30];
+    u16 natNum;
+    const u8 *name;
+    const u8 *category;
+    const u8 *description;
 
+    if (newEntry)
+        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
+    if (value == 0)
+        value = NationalToHoennOrder(num);
+    else
+        value = num;
+    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
+    PrintInfoScreenText(str, 0x60, 0x19);
+    natNum = NationalPokedexNumToSpecies(num);
+    if (natNum)
+        name = gSpeciesNames[natNum];
+    else
+        name = sText_TenDashes2;
+    PrintInfoScreenText(name, 0x84, 0x19);
+    if (owned)
+    {
+        CopyMonCategoryText(num, str2);
+        category = str2;
+    }
+    else
+    {
+        category = gText_5MarksPokemon;
+    }
+    PrintInfoScreenText(category, 0x64, 0x29);
+    PrintInfoScreenText(gText_HTHeight, 0x60, 0x39);
+    PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
+    if (owned)
+    {
+        PrintMonHeight(gPokedexEntries[num].height, 0x81, 0x39);
+        PrintMonWeight(gPokedexEntries[num].weight, 0x81, 0x49);
+    }
+    else
+    {
+        PrintInfoScreenText(gText_UnkHeight, 0x81, 0x39);
+        PrintInfoScreenText(gText_UnkWeight, 0x81, 0x49);
+    }
+    if (owned)
+        description = gPokedexEntries[num].description;
+    else
+        description = gExpandedPlaceholder_PokedexDescription;
+    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
+}
+*/
 static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
     u8 buffer[16];
@@ -4620,6 +4678,13 @@ static u32 GetPokedexMonPersonality(u16 species)
 u16 CreateMonSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
 {
     nationalNum = NationalPokedexNumToSpecies(nationalNum);
+    return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
+}
+
+u16 CreateMonFormSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot, u16 formNum)
+{
+    nationalNum = NationalPokedexNumToSpecies(nationalNum);
+    nationalNum = GetFormSpeciesId(nationalNum, formNum);
     return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
 }
 
