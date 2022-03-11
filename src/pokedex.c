@@ -3927,19 +3927,17 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 #define tDexNum        data[1]
 #define tPalTimer      data[2]
 #define tMonSpriteId   data[3]
-#define tFormNum       data[4]
 #define tOtIdLo        data[12]
 #define tOtIdHi        data[13]
 #define tPersonalityLo data[14]
 #define tPersonalityHi data[15]
 
-u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality, u16 formNum)
+u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality)
 {
     u8 taskId = CreateTask(Task_DisplayCaughtMonDexPage, 0);
 
     gTasks[taskId].tState = 0;
     gTasks[taskId].tDexNum = dexNum;
-    gTasks[taskId].tFormNum = formNum;
     gTasks[taskId].tOtIdLo = otId;
     gTasks[taskId].tOtIdHi = otId >> 16;
     gTasks[taskId].tPersonalityLo = personality;
@@ -3993,10 +3991,7 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        if (gTasks[taskId].tFormNum == 0)
-            spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-        else
-            spriteId = CreateMonFormSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0, gTasks[taskId].tFormNum);
+        spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
@@ -4089,7 +4084,6 @@ static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 #undef tDexNum
 #undef tPalTimer
 #undef tMonSpriteId
-#undef tFormNum
 #undef tOtIdLo
 #undef tOtIdHi
 #undef tPersonalityLo
@@ -4105,12 +4099,15 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     const u8 *category;
     const u8 *description;
 
+    natNum = NationalPokedexNumToSpecies(num);
+    natNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(natNum));
+
     if (newEntry)
         PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
     if (value == 0)
-        value = NationalToHoennOrder(num);
+        value = NationalToHoennOrder(natNum);
     else
-        value = num;
+        value = natNum;
     ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
     PrintInfoScreenText(str, 0x60, 0x19);
     natNum = NationalPokedexNumToSpecies(num);
@@ -4678,13 +4675,6 @@ static u32 GetPokedexMonPersonality(u16 species)
 u16 CreateMonSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
 {
     nationalNum = NationalPokedexNumToSpecies(nationalNum);
-    return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
-}
-
-u16 CreateMonFormSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot, u16 formNum)
-{
-    nationalNum = NationalPokedexNumToSpecies(nationalNum);
-    nationalNum = GetFormSpeciesId(nationalNum, formNum);
     return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
 }
 

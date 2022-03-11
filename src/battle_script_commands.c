@@ -5615,7 +5615,7 @@ static void Cmd_switchinanim(void)
                                  | BATTLE_TYPE_RECORDED_LINK
                                  | BATTLE_TYPE_TRAINER_HILL
                                  | BATTLE_TYPE_FRONTIER)))
-            HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gActiveBattler].species), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
+            HandleSetPokedexFlag(SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(gBattleMons[gActiveBattler].species)), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
 
     gAbsentBattlerFlags &= ~(gBitTable[gActiveBattler]);
 
@@ -13283,7 +13283,7 @@ static void Cmd_handleballthrow(void)
             #endif
             break;
         case ITEM_REPEAT_BALL:
-            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))
+            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species)), FLAG_GET_CAUGHT))
                 #if B_REPEAT_BALL_MODIFIER >= GEN_7
                     ballMultiplier = 35;
                 #else
@@ -13541,7 +13541,7 @@ static void Cmd_givecaughtmon(void)
 
 static void Cmd_trysetcaughtmondexflags(void)
 {
-    u16 species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL);
+    u16 species = GET_BASE_SPECIES_ID(GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL));
     u32 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_PERSONALITY, NULL);
 
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
@@ -13571,8 +13571,7 @@ static void Cmd_displaydexinfo(void)
             FreeAllWindowBuffers();
             gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(SpeciesToNationalPokedexNum(species),
                                                                         gBattleMons[GetCatchingBattler()].otId,
-                                                                        gBattleMons[GetCatchingBattler()].personality,
-                                                                        GetFormIdFromFormSpeciesId(species));
+                                                                        gBattleMons[GetCatchingBattler()].personality);
             gBattleCommunication[0]++;
         }
         break;

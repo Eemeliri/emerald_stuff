@@ -2810,7 +2810,7 @@ static void PrintNotEggInfo(void)
     u8 strArray[16];
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    u16 dexNum = SpeciesToPokedexNum(summary->species);
+    u16 dexNum = SpeciesToPokedexNum(GET_BASE_SPECIES_ID(summary->species));
 
     if (dexNum != 0xFFFF)
     {

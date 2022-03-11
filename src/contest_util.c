@@ -970,7 +970,7 @@ static void Task_SetSeenWinnerMon(u8 taskId)
         {
             for (i = 0; i < CONTESTANT_COUNT; i++)
             {
-                nationalDexNum = SpeciesToNationalPokedexNum(gContestMons[i].species);
+                nationalDexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(gContestMons[i].species));
                 GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
             }
         }

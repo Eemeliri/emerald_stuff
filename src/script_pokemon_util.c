@@ -71,7 +71,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
     sentToPc = GiveMonToPlayer(&mon);
-    nationalDexNum = SpeciesToNationalPokedexNum(species);
+    nationalDexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
 
     // Don't set Pokédex flag for MON_CANT_GIVE
     switch(sentToPc)
@@ -325,7 +325,7 @@ u8 ScriptGiveCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 a
     }
 
     sentToPc = GiveMonToPlayer(&mon);
-    nationalDexNum = SpeciesToNationalPokedexNum(species);
+    nationalDexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
     switch (sentToPc)
     {
     case MON_GIVEN_TO_PARTY:
