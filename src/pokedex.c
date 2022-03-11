@@ -2254,11 +2254,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_HEAVIEST:
         for (i = ARRAY_COUNT(gPokedexOrder_Weight) - 1; i >= 0; i--)
         {
-            temp_dexNum = gPokedexOrder_Weight[i];
+            temp_dexNum = NationalPokedexNumToSpecies(gPokedexOrder_Weight[i]);
+            temp_dexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(temp_dexNum));
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = gPokedexOrder_Weight[i];
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
@@ -2268,11 +2269,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_LIGHTEST:
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Weight); i++)
         {
-            temp_dexNum = gPokedexOrder_Weight[i];
+            temp_dexNum = NationalPokedexNumToSpecies(gPokedexOrder_Weight[i]);
+            temp_dexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(temp_dexNum));
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = gPokedexOrder_Weight[i];
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
@@ -2282,11 +2284,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_TALLEST:
         for (i = ARRAY_COUNT(gPokedexOrder_Height) - 1; i >= 0; i--)
         {
-            temp_dexNum = gPokedexOrder_Height[i];
+            temp_dexNum = NationalPokedexNumToSpecies(gPokedexOrder_Height[i]);
+            temp_dexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(temp_dexNum));
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = gPokedexOrder_Height[i];
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
@@ -2296,11 +2299,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_SMALLEST:
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Height); i++)
         {
-            temp_dexNum = gPokedexOrder_Height[i];
+            temp_dexNum = NationalPokedexNumToSpecies(gPokedexOrder_Height[i]);
+            temp_dexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(temp_dexNum));
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = gPokedexOrder_Height[i];
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
@@ -2421,7 +2425,8 @@ static void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
     u16 dexNum;
 
     memcpy(text, sText_No000, ARRAY_COUNT(text));
-    dexNum = sPokedexView->pokedexList[entryNum].dexNum;
+    dexNum = NationalPokedexNumToSpecies(sPokedexView->pokedexList[entryNum].dexNum);
+    dexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(dexNum));
     if (sPokedexView->dexMode == DEX_MODE_HOENN)
         dexNum = NationalToHoennOrder(dexNum);
     text[2] = CHAR_0 + dexNum / 100;
