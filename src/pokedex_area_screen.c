@@ -910,6 +910,8 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             while(DrawAreaGlow()==TRUE)
                 DrawAreaGlow();
             CreateAreaMarkerSprites();
+            LoadAreaUnknownGraphics();
+            CreateAreaUnknownSprites();
             StartAreaGlow();
             return;
         }
@@ -926,6 +928,8 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             while(DrawAreaGlow()==TRUE)
                 DrawAreaGlow();
             CreateAreaMarkerSprites();
+            LoadAreaUnknownGraphics();
+            CreateAreaUnknownSprites();
             StartAreaGlow();
             return;
         }
