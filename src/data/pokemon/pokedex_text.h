@@ -5376,7 +5376,7 @@ const u8 gRaichuAlolanPokedexText[] = _(
 
 const u8 gSandshrewAlolanPokedexText[] = _(
     "It lives on snowy mountains. Its steel\n"
-    "shell is very hard—so much so, it can’t\n"
+    "shell is very hard-so much so, it can't\n"
     "roll its body up into a ball.");
 
 const u8 gSandslashAlolanPokedexText[] = _(
@@ -5388,7 +5388,7 @@ const u8 gSandslashAlolanPokedexText[] = _(
 const u8 gVulpixAlolanPokedexText[] = _(
     "It exhales air colder than -58 degrees\n"
     "Fahrenheit. Elderly people in Alola\n"
-    "call this Pokémon by an older name—\n"
+    "call this Pokémon by an older name-\n"
     "Keokeo.");
 
 const u8 gNinetalesAlolanPokedexText[] = _(
@@ -5405,7 +5405,7 @@ const u8 gDiglettAlolanPokedexText[] = _(
 
 const u8 gDugtrioAlolanPokedexText[] = _(
     "Its shining gold hair provides it\n"
-    "with protection. It’s reputed that\n"
+    "with protection. It's reputed that\n"
     "keeping any of its fallen hairs\n"
     "will bring bad luck.");
 
@@ -5413,11 +5413,11 @@ const u8 gMeowthAlolanPokedexText[] = _(
     "This Pokémon was not originally found\n"
     "in Alola. Human actions caused a surge\n"
     "in their numbers, and they went feral.\n"
-    "They’re prideful and crafty.");
+    "They're prideful and crafty.");
 
 const u8 gPersianAlolanPokedexText[] = _(
-    "Its round face and smooth coat—softer\n"
-    "than the most high-class velvet—have\n"
+    "Its round face and smooth coat-softer\n"
+    "than the most high-class velvet-have\n"
     "made this a very popular Pokémon in\n"
     "Alola.");
 
@@ -5435,7 +5435,7 @@ const u8 gGravelerAlolanPokedexText[] = _(
 
 const u8 gGolemAlolanPokedexText[] = _(
     "It fires rocks charged with electricity.\n"
-    "Even if the rock isn’t fired that\n"
+    "Even if the rock isn't fired that\n"
     "accurately, just grazing an opponent\n"
     "will cause numbness and fainting.");
 
@@ -5458,7 +5458,7 @@ const u8 gExeggutorAlolanPokedexText[] = _(
 
 const u8 gMarowakAlolanPokedexText[] = _(
     "The bones it possesses were once its\n"
-    "mother’s. Its mother’s regrets have\n"
+    "mother's. Its mother's regrets have\n"
     "become like a vengeful spirit\n"
     "protecting this Pokémon.");
 
@@ -5514,18 +5514,18 @@ const u8 gArticunoGalarianPokedexText[] = _(
 const u8 gZapdosGalarianPokedexText[] = _(
     "When its feathers rub together, they\n"
     "produce a crackling sound like the zapping\n"
-    "of electricity. That’s why this Pokémon is\n"
+    "of electricity. That's why this Pokémon is\n"
     "called Zapdos.");
 
 const u8 gMoltresGalarianPokedexText[] = _(
-    "This Pokémon’s sinister, flame-like aura will\n"
+    "This Pokémon's sinister, flame-like aura will\n"
     "consume the spirit of any creature it hits.\n"
     "Victims become burned-out shadows of\n"
     "themselves.");
 
 const u8 gSlowkingGalarianPokedexText[] = _(
     "A combination of toxins and the shock of\n"
-    "evolving has increased Shellder’s\n"
+    "evolving has increased Shellder's\n"
     "intelligence to the point that Shellder\n"
     "now controls Slowking.");
 
