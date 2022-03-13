@@ -17,11 +17,11 @@
 
 #define ENGLISH
 
-#ifdef ENGLISH
-#define UNITS_IMPERIAL
-#else
+//#ifdef ENGLISH
+//#define UNITS_IMPERIAL
+//#else
 #define UNITS_METRIC
-#endif
+//#endif
 
 // Uncomment to fix some identified minor bugs
 //#define BUGFIX
