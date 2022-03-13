@@ -371,6 +371,8 @@ static void SoarVBlankCallback(void)
 static void SoarHBlankCallback(void)
 {
 	const unsigned int bldcntFog = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_BD | BLDCNT_TGT1_BG2;
+	const unsigned int bldcntDarkFog = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BD | BLDCNT_TGT1_BG2;
+
 	const unsigned int bldcntShadow = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG2;
 	int sinYaw = gSineTable[sPlayerYaw];
 	int cosYaw = gSineTable[sPlayerYaw + 64];
@@ -383,7 +385,10 @@ static void SoarHBlankCallback(void)
 	if (currScanline < 32)  // draw gradient for sky
 	{
 		REG_DISPCNT &= ~DISPCNT_BG2_ON;
-		REG_BLDCNT = bldcntFog;
+		if(GetCurrentTimeOfDay() == 2)
+			REG_BLDCNT = bldcntDarkFog;
+		else
+			REG_BLDCNT = bldcntFog;
 		REG_BLDY = currScanline / 2;
 		return;
 	}
@@ -393,7 +398,10 @@ static void SoarHBlankCallback(void)
 
 	if (currScanline <= 16 * 6)
 	{
-		REG_BLDCNT = bldcntFog;
+		if(GetCurrentTimeOfDay() == 2)
+			REG_BLDCNT = bldcntDarkFog;
+		else
+			REG_BLDCNT = bldcntFog;
 		REG_BLDY = 16 - (currScanline / 6);
 	}
 	else
