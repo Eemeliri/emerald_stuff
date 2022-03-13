@@ -5355,3 +5355,214 @@ const u8 gCalyrexPokedexText[] = _(
     "providing healing and blessings. It\n"
     "reigned over the Galar region in times\n"
     "of yore.");
+
+const u8 gRattataAlolanPokedexText[] = _(
+    "With ita incisors, it gnamws through\n"
+    "doors and infiltrates people's homes.\n"
+    "Then with a twitch of its whiskers, it\n"
+    "steals whatever food it finds.");
+
+const u8 gRaticateAlolanPokedexText[] = _(
+    "It forms a group of Rattata, which it\n"
+    "assumes command of. Each group has its\n"
+    "own territory, and disputes over food\n"
+    "happen often.");
+
+const u8 gRaichuAlolanPokedexText[] = _(
+    "It only evolves to this form in the\n"
+    "Alola region. According to researchers,\n"
+    "its diet is one of the causes of this\n"
+    "change.");
+
+const u8 gSandshrewAlolanPokedexText[] = _(
+    "It lives on snowy mountains. Its steel\n"
+    "shell is very hard—so much so, it can’t\n"
+    "roll its body up into a ball.");
+
+const u8 gSandslashAlolanPokedexText[] = _(
+    "Fleeing a volcanic eruption, it settled\n"
+    "on a snowy mountain. As it races\n"
+    "through the snowfields, it sends up a\n"
+    "spray of snow.");
+
+const u8 gVulpixAlolanPokedexText[] = _(
+    "It exhales air colder than -58 degrees\n"
+    "Fahrenheit. Elderly people in Alola\n"
+    "call this Pokémon by an older name—\n"
+    "Keokeo.");
+
+const u8 gNinetalesAlolanPokedexText[] = _(
+    "It creates drops of ice in its coat\n"
+    "and showers them over its enemies.\n"
+    "Anyone who angers it will be frozen\n"
+    "stiff in an instant.");
+
+const u8 gDiglettAlolanPokedexText[] = _(
+    "Its head sports an altered form of\n"
+    "whiskers made of metal. When in\n"
+    "communication with its comrades,\n"
+    "its whiskers wobble to and fro.");
+
+const u8 gDugtrioAlolanPokedexText[] = _(
+    "Its shining gold hair provides it\n"
+    "with protection. It’s reputed that\n"
+    "keeping any of its fallen hairs\n"
+    "will bring bad luck.");
+
+const u8 gMeowthAlolanPokedexText[] = _(
+    "This Pokémon was not originally found\n"
+    "in Alola. Human actions caused a surge\n"
+    "in their numbers, and they went feral.\n"
+    "They’re prideful and crafty.");
+
+const u8 gPersianAlolanPokedexText[] = _(
+    "Its round face and smooth coat—softer\n"
+    "than the most high-class velvet—have\n"
+    "made this a very popular Pokémon in\n"
+    "Alola.");
+
+const u8 gGeodudeAlolanPokedexText[] = _(
+    "Its body is a magnetic stone. Iron\n"
+    "sand attaches firmly to the portions\n"
+    "of its body that are particularly\n"
+    "magnetic.");
+
+const u8 gGravelerAlolanPokedexText[] = _(
+    "Its preferred food is dravite. After\n"
+    "it has eaten this mineral, crystals\n"
+    "form inside the Pokémon, rising to the\n"
+    "surface of part of its body.");
+
+const u8 gGolemAlolanPokedexText[] = _(
+    "It fires rocks charged with electricity.\n"
+    "Even if the rock isn’t fired that\n"
+    "accurately, just grazing an opponent\n"
+    "will cause numbness and fainting.");
+
+const u8 gGrimerAlolanPokedexText[] = _(
+    "A Grimer, which had been brought in\n"
+    "to solve a problem with garbage,\n"
+    "developed over time into this form.");
+     
+const u8 gMukAlolanPokedexText[] = _(
+    "The garbage it eats causes\n"
+    "continuous chemical changes in its\n"
+    "body, which produce its exceedingly\n"
+    "vivid coloration.");
+
+const u8 gExeggutorAlolanPokedexText[] = _(
+    "Alola is the best environment for\n"
+    "this Pokémon. Local people take pride\n"
+    "in its appearance, saying this is how\n"
+    "Exeggutor ought to look.");
+
+const u8 gMarowakAlolanPokedexText[] = _(
+    "The bones it possesses were once its\n"
+    "mother’s. Its mother’s regrets have\n"
+    "become like a vengeful spirit\n"
+    "protecting this Pokémon.");
+
+const u8 gMeowthGalarianPokedexText[] = _(
+    "Living with a savage, seafaring people\n"
+    "has toughened this Pokémon's body so much\n"
+    "that parts of it have turned to iron.");
+
+const u8 gPonytaGalarianPokedexText[] = _(
+    "Its small horn hides a healing power. With\n"
+    "a few rubs from this Pokémon's horn, any\n"
+    "slight wound you have will be healed.");
+
+const u8 gRapidashGalarianPokedexText[] = _(
+    "Little can stand up to its psycho cut.\n"
+    "Unleashed from this Pokémon's horn, the\n"
+    "move will punch a hole right through a\n"
+    "thick metal sheet.");
+
+const u8 gSlowpokeGalarianPokedexText[] = _(
+    "Although this Pokémon is normally zoned\n"
+    "out, its expression abruptly sharpens on\n"
+    "occasion. The cause for this seems to lie\n"
+    "in Slowpoke's diet.");
+
+const u8 gSlowbroGalarianPokedexText[] = _(
+    "A Shellder bite set off a chemical reaction\n"
+    "with the spices inside Slowbro's body,\n"
+    "causing Slowbro to become a Poison-type\n"
+    "Pokémon.");
+
+const u8 gFarfetchdGalarianPokedexText[] = _(
+    "The Farfetch'd of the Galar region are\n"
+    "brave warriors, and they wield thick,\n"
+    "tough leeks in battle.");
+
+const u8 gWeezingGalarianPokedexText[] = _(
+    "This Pokémon consumes particles that\n"
+    "contaminate the air. Instead of leaving\n"
+    "droppings, it expels clean air.");
+
+const u8 gMrMimeGalarianPokedexText[] = _(
+    "Its talent is tap-dancing. It can also\n"
+    "manipulate temperatures to create a floor\n"
+    "of ice, which this Pokémon can kick up to\n"
+    "use as a barrier.");
+
+const u8 gArticunoGalarianPokedexText[] = _(
+    "Its feather-like blades are composed of\n"
+    "psychic energy and can shear through thick\n"
+    "iron sheets as if they were paper.");
+
+const u8 gZapdosGalarianPokedexText[] = _(
+    "When its feathers rub together, they\n"
+    "produce a crackling sound like the zapping\n"
+    "of electricity. That’s why this Pokémon is\n"
+    "called Zapdos.");
+
+const u8 gMoltresGalarianPokedexText[] = _(
+    "This Pokémon’s sinister, flame-like aura will\n"
+    "consume the spirit of any creature it hits.\n"
+    "Victims become burned-out shadows of\n"
+    "themselves.");
+
+const u8 gSlowkingGalarianPokedexText[] = _(
+    "A combination of toxins and the shock of\n"
+    "evolving has increased Shellder’s\n"
+    "intelligence to the point that Shellder\n"
+    "now controls Slowking.");
+
+const u8 gCorsolaGalarianPokedexText[] = _(
+    "Watch your step when wandering areas oceans\n"
+    "once covered. What looks like a stone could\n"
+    "be this Pokémon, and it will curse you if\n"
+    "you kick it.");
+
+const u8 gZigzagoonGalarianPokedexText[] = _(
+    "Its restlessness has it constantly running\n"
+    "around. If it sees another Pokémon, it will\n"
+    "purposely run into them in order to start a\n"
+    "fight.");
+
+const u8 gLinooneGalarianPokedexText[] = _(
+    "It uses its long tongue to taunt opponents.\n"
+    "Once the opposition is enraged, this Pokémon\n"
+    "hurls itself at the opponent, tackling them\n"
+    "forcefully.");
+
+const u8 gDarumakaGalarianPokedexText[] = _(
+    "It lived in snowy areas for so long that its\n"
+    "fire sac cooled off and atrophied. It now\n"
+    "has an organ that generates cold instead.");
+
+const u8 gDarmanitanGalarianPokedexText[] = _(
+    "On days when blizzards blow through, it comes\n"
+    "down to where people live. It stashes food in\n"
+    "the snowball on its head, taking it home for\n"
+    "later.");
+
+const u8 gYamaskGalarianPokedexText[] = _(
+    "A clay slab with cursed engravings took\n"
+    "possession of a Yamask. The slab is said to\n"
+    "be absorbing the Yamask's dark power.");
+
+const u8 gStunfiskGalarianPokedexText[] = _(
+    "Living in mud with a high iron content has\n"
+    "given it a strong steel body.");
