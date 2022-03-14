@@ -6,17 +6,18 @@ This is a decompilation of Pokémon Emerald.
 
 It builds the following ROM:
 
-* pokeemerald.gba `sha1: 0d2b6dcd61e37da42ae30a51049a3df364276f91`
+* pokeemerald.gba `sha1: fde3f0731c9d2241c0df6b5df5de8b9b16b11418`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ### Updated/Qol Features
 * Built upon [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion)
 * [**Day Night System**](https://github.com/Sierraffinity/pokeemerald/tree/daynight) (Credit: Sierraffinity)
-* [**Following Pokemon**](https://github.com/aarant/pokeemerald) (Credit: aarant/merrp)
+* [**Following Pokemon**](https://github.com/aarant/pokeemerald), edited to have large followers and also have their own palette (Credit: aarant/merrp)
 * [**ipatix's High Quality Audio Mixer**](https://github.com/pret/pokeemerald/wiki/Implementing-ipatix's-High-Quality-Audio-Mixer)
 * [**Decapitalisation**](https://github.com/AsparagusEduardo/pokeemerald/tree/Decapitalization) (Credit: Wyrserth and AsparagusEduardo)
-* Lati@s soaring (Credit: camthesaxman)
+* The Pokemon World Tournament from BW2 can be found in the Battle Dome
+* Lati@s soaring, now has a dark sky at night (Credit: camthesaxman)
 * Flying to Routes
 * [**Running indoors**](https://www.pokecommunity.com/showpost.php?p=9990848&postcount=14) (Credit: TheXaman)
 * [**Auto-run**](https://www.pokecommunity.com/showpost.php?p=10161076&postcount=72) (Credit: ghoulslash)
@@ -46,32 +47,40 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Eggs hatch at Lv 1
 * [**Pokecenters don't count eggs**](https://github.com/pret/pokeemerald/wiki/Pokecenters-Disregard-Eggs) (Credit: ghoulslash)
 * [**Keyboard swaps to lowercase after the first letter**](https://www.pokecommunity.com/showpost.php?p=10199896&postcount=139) (Credit: Jaizu)
+* Use L and R to swap to Alolan form and back in the Pokedex
+* Use L and R to change time of day in the Pokedex area screen
+* Change Pokemon moves from the party menu
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
 * [**Disabled the union room check when entering Pokecenters**](https://github.com/pret/pokeemerald/wiki/Disabling-Union-Room-check-when-entering-Pok%C3%A9mon-Centers.)
-* e-Reader functionality
+* e-Reader functionality (Credit: CitrusBolt & Sierraffinity)
 * [**givecustommon**](https://www.pokecommunity.com/showpost.php?p=10203404&postcount=143) (Credit: ghoulslash)
-* Sbird's TM serialisation
+* Sbird's TM serialisation (Credit: Sbird)
 * [**Increased save spave**](https://github.com/pret/pokeemerald/wiki/Extra-save-space-with-two-lines-of-code)
 * Rival gives you strength, guy that gave you strength in Rusturf tunnel gives you Aggronite (like in ORAS)
 * The Southern Island Event from ORAS is implemented
-* Receive the Eon Flute from Steven
-* Steven also gives you the Mega Stone for your starter
-* TMs and Mega Stones are as close to their ORAS locations as possible, except for a few
+* Receive the Eon Flute from Steven in Sootopolis
+* Steven also gives you the Mega Stone for your starter on Route 120
+* TMs and Mega Stones are as close to their ORAS locations as possible, except for a few (mainly Mirage Spot ones)
 * Wallace is a Gym Leader again (sorry Juan) and Steven's the Champion
 * Changed regi sprites to their doll sprites (they just look more accurate!)
-* You can recieve both bikees from Rydel in the same way as in ORAS
+* You can recieve both bikes from Rydel in the same way as in ORAS
 * Some Berry Trees next to the Berry Master's house hade to be removed because following pokemon pushed the number of overworlds over the limit
 * Random Safari Zone encounters that change daily
+* Wally only attacks Ralts once to avoid fainting it
 
 ### Changes (Planned)
 * Dexnav
 * Incorporate Primal Kyogre/Groudon & Mega Rayquaza
-* Change Team Leader and Admin sprites
+* Only catch Rayquaza after the E4
+* Change Team Leader and Admin sprites (maybe)
 * Update Trainer teams to ORAS
 * Change Battle Frontier Pokemon to include up to gen 6
-* Have the Pokemon World Tournament like in BW2
+* Have a time of day indicator in the Pokedex area screen
+* Have Alolan Pokemon searchable in the Pokedex (semi-implemented)
+* Increase the number of mass outbreaks and have more interesting Pokemon
+* A more readable TM learnset file...
 
 ## See also
 
