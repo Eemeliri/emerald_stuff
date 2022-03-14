@@ -237,6 +237,8 @@ extern const u8 gText_InGameClockUsable[];
 
 // reset rtc screen texts
 extern const u8 gText_Day[];
+extern const u8 gText_Morning[];
+extern const u8 gText_Night[];
 extern const u8 gText_Colon3[];
 extern const u8 gText_Confirm2[];
 extern const u8 gText_PresentTime[];

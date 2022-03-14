@@ -51,6 +51,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Use L and R to change time of day in the Pokedex area screen
 * Change Pokemon moves from the party menu
 * No need to water berry trees on rainy routes (Credit: BuffelSalt)
+* Reset clock by pressing R
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)

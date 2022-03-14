@@ -12,8 +12,10 @@
 #include "pokedex_area_screen.h"
 #include "region_map.h"
 #include "roamer.h"
+#include "strings.h"
 #include "sound.h"
 #include "string_util.h"
+#include "text_window.h"
 #include "trig.h"
 #include "pokedex_area_region_map.h"
 #include "wild_encounter.h"
@@ -293,6 +295,20 @@ static const struct SpriteTemplate sAreaUnknownSpriteTemplate =
     NULL,
     gDummySpriteAffineAnimTable,
     SpriteCallbackDummy
+};
+
+static u8 windid;
+static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, 5};
+
+static const struct WindowTemplate sTimeOfDayWindowTemplate =
+{
+    .bg = 1,
+    .tilemapLeft = 24,
+    .tilemapTop = 3,
+    .width = 7,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0x16C
 };
 
 static void ResetDrawAreaGlowState(void)
@@ -865,6 +881,12 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
             ShowBg(2);
             ShowBg(3); // TryShowPokedexAreaMap will have done this already
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
+            windid = AddWindow(&sTimeOfDayWindowTemplate);
+            DrawTextBorderInner(windid, 0x242, 12);
+            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
+            PutWindowTilemap(windid);
+            AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
+            CopyWindowToVram(windid, COPYWIN_FULL);
             break;
         case 11:
             gTasks[taskId].func = Task_HandlePokedexAreaScreenInput;
@@ -899,9 +921,18 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             PlaySE(SE_DEX_PAGE);
         }
         else if (JOY_NEW(R_BUTTON)){
+            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
             sPokedexAreaScreen->state++;
-            if(sPokedexAreaScreen->state==3)
+            if(sPokedexAreaScreen->state==3){
                 sPokedexAreaScreen->state=TIME_MORNING;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
+            }
+            else if(sPokedexAreaScreen->state==2){
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Night);
+            }
+            else{
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
+            }
 
             PlaySE(SE_DEX_PAGE);
             DestroyAreaMarkerSprites();
@@ -913,13 +944,23 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             LoadAreaUnknownGraphics();
             CreateAreaUnknownSprites();
             StartAreaGlow();
+            CopyWindowToVram(windid, COPYWIN_FULL);
             return;
         }
         else if (JOY_NEW(L_BUTTON)){
-            if(sPokedexAreaScreen->state==TIME_MORNING)
+            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
+            if(sPokedexAreaScreen->state==TIME_MORNING){
                 sPokedexAreaScreen->state=TIME_NIGHT;
-            else
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Night);
+            }
+            else if(sPokedexAreaScreen->state==TIME_DAY){
                 sPokedexAreaScreen->state--;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
+            }
+            else {
+                sPokedexAreaScreen->state--;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
+            }
 
             PlaySE(SE_DEX_PAGE);
             DestroyAreaMarkerSprites();
@@ -931,6 +972,7 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             LoadAreaUnknownGraphics();
             CreateAreaUnknownSprites();
             StartAreaGlow();
+            CopyWindowToVram(windid, COPYWIN_FULL);
             return;
         }
         else
@@ -943,6 +985,7 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         if (gPaletteFade.active)
             return;
         DestroyAreaMarkerSprites();
+        ClearWindowTilemap(windid);
         sPokedexAreaScreen->screenSwitchState[0] = gTasks[taskId].data[1];
         ResetPokedexAreaMapBg();
         DestroyTask(taskId);
