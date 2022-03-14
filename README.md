@@ -50,6 +50,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Use L and R to swap to Alolan form and back in the Pokedex
 * Use L and R to change time of day in the Pokedex area screen
 * Change Pokemon moves from the party menu
+* No need to water berry trees on rainy routes (Credit: BuffelSalt)
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
@@ -69,6 +70,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Some Berry Trees next to the Berry Master's house hade to be removed because following pokemon pushed the number of overworlds over the limit
 * Random Safari Zone encounters that change daily
 * Wally only attacks Ralts once to avoid fainting it
+* Sbird's TM learnset method for 100TMs (Credit: Sbird)
 
 ### Changes (Planned)
 * Dexnav
