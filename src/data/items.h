@@ -7563,10 +7563,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM22_SOLARBEAM] =
+    [ITEM_TM22_SOLAR_BEAM] =
     {
         .name = _("TM22"),
-        .itemId = ITEM_TM22_SOLARBEAM,
+        .itemId = ITEM_TM22_SOLAR_BEAM,
         .price = 3000,
         .description = sTM22Desc,
         .importance = 1,
@@ -8031,10 +8031,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM61_WILLOWISP] =
+    [ITEM_TM61_WILL_O_WISP] =
     {
         .name = _("TM61"),
-        .itemId = ITEM_TM61_WILLOWISP,
+        .itemId = ITEM_TM61_WILL_O_WISP,
         .price = 2000,
         .description = sTM61Desc,
         .importance = 1,
