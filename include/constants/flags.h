@@ -1536,10 +1536,10 @@
 #define FLAG_VISITED_ROUTE133                           (SYSTEM_FLAGS + 0xA5) 
 #define FLAG_VISITED_ROUTE134                           (SYSTEM_FLAGS + 0xA6) 
 #define FLAG_VISITED_MT_CHIMNEY                         (SYSTEM_FLAGS + 0xA7) 
-#define FLAG_UNUSED_0x908                           (SYSTEM_FLAGS + 0xA8) // Unused Flag
-#define FLAG_UNUSED_0x909                           (SYSTEM_FLAGS + 0xA9) // Unused Flag
-#define FLAG_UNUSED_0x90A                           (SYSTEM_FLAGS + 0xAA) // Unused Flag
-#define FLAG_UNUSED_0x90B                           (SYSTEM_FLAGS + 0xAB) // Unused Flag
+#define FLAG_SYS_DEXNAV_SEARCH                          (SYSTEM_FLAGS + 0xA8)
+#define FLAG_SHINY_CREATION                             (SYSTEM_FLAGS + 0xA9) //Force shiny pokemon creation
+#define FLAG_SYS_DETECTOR_MODE                          (SYSTEM_FLAGS + 0xAA) // allow player to find hidden mons
+#define FLAG_SYS_DEXNAV_GET                             (SYSTEM_FLAGS + 0xAB) // dexnav shows in start menu
 #define FLAG_UNUSED_0x90C                           (SYSTEM_FLAGS + 0xAC) // Unused Flag
 #define FLAG_UNUSED_0x90D                           (SYSTEM_FLAGS + 0xAD) // Unused Flag
 #define FLAG_UNUSED_0x90E                           (SYSTEM_FLAGS + 0xAE) // Unused Flag

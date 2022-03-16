@@ -266,8 +266,8 @@
 #define VAR_SAFARI_ZONE_SEED                 0x40F7
 #define VAR_PWT_MODE                         0x40F8
 #define VAR_PWT_COUNTER                      0x40F9
-#define VAR_UNUSED_0x40FA                    0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                    0x40FB // Unused Var
+#define VAR_DEXNAV_SPECIES                   0x40FA // Registered dexnav species
+#define VAR_DEXNAV_STEP_COUNTER              0x40FB // steps for finding hidden pokemon
 #define VAR_UNUSED_0x40FC                    0x40FC // Unused Var
 #define VAR_UNUSED_0x40FD                    0x40FD // Unused Var
 #define VAR_UNUSED_0x40FE                    0x40FE // Unused Var

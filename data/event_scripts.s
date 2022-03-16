@@ -1069,3 +1069,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+    .include "data/scripts/dexnav.inc"
+    
