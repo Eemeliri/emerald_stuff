@@ -282,6 +282,7 @@ SlateportCity_EventScript_Woman1AquaGone::
 
 SlateportCity_EventScript_BattleTentSign::
 	msgbox SlateportCity_Text_BattleTentSign, MSGBOX_SIGN
+	setflag FLAG_SYS_DEXNAV_GET
 	end
 
 SlateportCity_EventScript_SternsShipyardSign::

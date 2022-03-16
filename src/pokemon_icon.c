@@ -2718,7 +2718,7 @@ void TryLoadAllMonIconPalettesAtOffset(u16 offset)
     s32 i;
     const struct SpritePalette* monIconPalettePtr;
 
-    if (offset <= 0xA0)
+    if (offset <= 0x1A0)
     {
         monIconPalettePtr = gMonIconPaletteTable;
         for(i = ARRAY_COUNT(gMonIconPaletteTable) - 1; i >= 0; i--)
