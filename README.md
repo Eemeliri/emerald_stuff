@@ -14,6 +14,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Built upon [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion)
 * [**Day Night System**](https://github.com/Sierraffinity/pokeemerald/tree/daynight) (Credit: Sierraffinity)
 * [**Following Pokemon**](https://github.com/aarant/pokeemerald), edited to have large followers and also have their own palette (Credit: aarant/merrp)
+* [**DexNav**](https://github.com/ghoulslash/pokeemerald/tree/dexnav) (Credit: ghoulslash)
 * [**ipatix's High Quality Audio Mixer**](https://github.com/pret/pokeemerald/wiki/Implementing-ipatix's-High-Quality-Audio-Mixer)
 * [**Decapitalisation**](https://github.com/AsparagusEduardo/pokeemerald/tree/Decapitalization) (Credit: Wyrserth and AsparagusEduardo)
 * The Pokemon World Tournament from BW2 can be found in the Battle Dome
@@ -74,16 +75,13 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Sbird's TM learnset method for 100TMs (Credit: Sbird)
 
 ### Changes (Planned)
-* Dexnav
 * Incorporate Primal Kyogre/Groudon & Mega Rayquaza
 * Only catch Rayquaza after the E4
-* Change Team Leader and Admin sprites (maybe)
 * Update Trainer teams to ORAS
 * Change Battle Frontier Pokemon to include up to gen 6
-* Have a time of day indicator in the Pokedex area screen
 * Have Alolan Pokemon searchable in the Pokedex (semi-implemented)
 * Increase the number of mass outbreaks and have more interesting Pokemon
-* A more readable TM learnset file...
+* Add more follower sprites
 
 ## See also
 
