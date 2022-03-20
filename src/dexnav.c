@@ -33,6 +33,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
+#include "pokenav.h"
 #include "random.h"
 #include "region_map.h"
 #include "scanline_effect.h"
@@ -2490,6 +2491,22 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
     {
         CleanupOverworldWindowsAndTilemaps();
         DexNavGuiInit(CB2_ReturnToFieldWithOpenMenu);
+        DestroyTask(taskId);
+    }
+}
+
+u32 PokeNavMenuDexNavCallback(void)
+{
+    CreateTask(Task_OpenDexNavFromPokenav, 0);
+    return TRUE;
+}
+
+void Task_OpenDexNavFromPokenav(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        DexNavGuiInit(CB2_InitPokeNav);
         DestroyTask(taskId);
     }
 }
