@@ -3307,6 +3307,16 @@ static const union AnimCmd sAnim_BRELOOM_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_SPINDA_1[] =
+{
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_WINGULL_1[] =
 {
     ANIMCMD_FRAME(0, 17),
@@ -10782,6 +10792,7 @@ static const union AnimCmd *const sAnims_BRELOOM[] ={
 
 static const union AnimCmd *const sAnims_SPINDA[] ={
     sAnim_GeneralFrame0,
+    sAnim_SPINDA_1,
 };
 
 static const union AnimCmd *const sAnims_WINGULL[] ={
