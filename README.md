@@ -53,6 +53,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Change Pokemon moves from the party menu
 * No need to water berry trees on rainy routes (Credit: BuffelSalt)
 * Reset clock by pressing R
+* Check EVs and IVs in PC by pressing Start
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
@@ -73,6 +74,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 * Random Safari Zone encounters that change daily
 * Wally only attacks Ralts once to avoid fainting it
 * Sbird's TM learnset method for 100TMs (Credit: Sbird)
+* Spinda has a second frame (Credit Dat.H A and ShinyDragonHunter)
 
 ### Changes (Planned)
 * Incorporate Primal Kyogre/Groudon & Mega Rayquaza
