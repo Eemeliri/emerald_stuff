@@ -7189,7 +7189,7 @@ static u8 InBoxInput_Normal(void)
             }
             break;
         }
-        else if (JOY_NEW(START_BUTTON))
+        else if (JOY_NEW(START_BUTTON) && FlagGet(FLAG_IS_CHAMPION))
         {
             sStorage->infostate++;
             if(sStorage->infostate==3){
@@ -7529,7 +7529,7 @@ static u8 HandleInput_InParty(void)
             ToggleCursorAutoAction();
             return INPUT_NONE;
         }
-        else if (JOY_NEW(START_BUTTON))
+        else if (JOY_NEW(START_BUTTON) && FlagGet(FLAG_IS_CHAMPION))
         {
             sStorage->infostate++;
             if(sStorage->infostate==3){
