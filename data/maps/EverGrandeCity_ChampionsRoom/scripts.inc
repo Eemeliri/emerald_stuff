@@ -72,6 +72,7 @@ EverGrandeCity_ChampionsRoom_EventScript_FirstDefeat:: @ 8228A61
 	giveitem ITEM_METAGROSSITE
 	msgbox EverGrandeCity_ChampionsRoom_Text_FirstPostBattleSpeech, MSGBOX_DEFAULT
 	closemessage
+	setvar VAR_SKY_PILLAR_STATE, 4
 	playse SE_DOOR
 	checkplayergender
 	compare VAR_RESULT, MALE
