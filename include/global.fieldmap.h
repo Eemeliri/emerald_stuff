@@ -215,9 +215,9 @@ struct ObjectEvent
     /*0x23*/ union __attribute__((packed)) {
         u8 playerCopyableMovement; // COPY_MOVE_*
         struct __attribute__((packed)) {
-            u16 species:10; // 11 bits; 1024 species
-            u16 form:5; // Used for Deoxys, Unown, etc
-            u16 shiny:1;
+            u32 species:11; // 11 bits; 1024 species
+            u32 form:5; // Used for Deoxys, Unown, etc
+            u32 shiny:1;
         } mon;
         u16 asU16;
     } extra;
