@@ -44,12 +44,12 @@ static void FillWestConnection(struct MapHeader const *mapHeader, struct MapHead
 static void FillEastConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
 static void InitBackupMapLayoutConnections(struct MapHeader *mapHeader);
 static void LoadSavedMapView(void);
-static bool8 SkipCopyingMetatileFromSavedMap(u16* mapMetatilePtr, u16 mapWidth, u8 yMode);
+static bool8 SkipCopyingMetatileFromSavedMap(u16* mapBlock, u16 mapWidth, u8 yMode);
 static struct MapConnection *GetIncomingConnection(u8 direction, int x, int y);
 static bool8 IsPosInIncomingConnectingMap(u8 direction, int x, int y, struct MapConnection *connection);
 static bool8 IsCoordInIncomingConnectingMap(int coord, int srcMax, int destMax, int offset);
 
-#define MapGridGetBorderTileAt(x, y) ({                                                            \
+#define GetBorderBlockAt(x, y)({                                                                   \
     u16 block;                                                                                     \
     int i;                                                                                         \
     u16 *border = gMapHeader.mapLayout->border;                                                    \
@@ -57,12 +57,12 @@ static bool8 IsCoordInIncomingConnectingMap(int coord, int srcMax, int destMax, 
     i = (x + 1) & 1;                                                                               \
     i += ((y + 1) & 1) * 2;                                                                        \
                                                                                                    \
-    block = gMapHeader.mapLayout->border[i] | METATILE_COLLISION_MASK;                             \
+    block = gMapHeader.mapLayout->border[i] | MAPGRID_COLLISION_MASK;                              \
 })
 
 #define AreCoordsWithinMapGridBounds(x, y) (x >= 0 && x < gBackupMapLayout.width && y >= 0 && y < gBackupMapLayout.height)
 
-#define MapGridGetTileAt(x, y) (AreCoordsWithinMapGridBounds(x, y) ? gBackupMapLayout.map[x + gBackupMapLayout.width * y] : MapGridGetBorderTileAt(x, y))
+#define GetMapGridBlockAt(x, y) (AreCoordsWithinMapGridBounds(x, y) ? gBackupMapLayout.map[x + gBackupMapLayout.width * y] : GetBorderBlockAt(x, y))
 
 struct MapHeader const *const GetMapHeaderFromConnection(struct MapConnection *connection)
 {
@@ -88,13 +88,13 @@ void InitMapFromSavedGame(void)
 
 void InitBattlePyramidMap(bool8 setPlayerPosition)
 {
-    CpuFastFill(METATILE_ID_UNDEFINED << 16 | METATILE_ID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
+    CpuFastFill(MAPGRID_UNDEFINED << 16 | MAPGRID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
     GenerateBattlePyramidFloorLayout(gBackupMapData, setPlayerPosition);
 }
 
 void InitTrainerHillMap(void)
 {
-    CpuFastFill(METATILE_ID_UNDEFINED << 16 | METATILE_ID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
+    CpuFastFill(MAPGRID_UNDEFINED << 16 | MAPGRID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
     GenerateTrainerHillFloorLayout(gBackupMapData);
 }
 
@@ -104,7 +104,7 @@ static void InitMapLayoutData(struct MapHeader *mapHeader)
     int width;
     int height;
     mapLayout = mapHeader->mapLayout;
-    CpuFastFill16(METATILE_ID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
+    CpuFastFill16(MAPGRID_UNDEFINED, gBackupMapData, sizeof(gBackupMapData));
     gBackupMapLayout.map = gBackupMapData;
     width = mapLayout->width + MAP_OFFSET_W;
     gBackupMapLayout.width = width;
@@ -343,46 +343,46 @@ static void FillEastConnection(struct MapHeader const *mapHeader, struct MapHead
     }
 }
 
-u8 MapGridGetZCoordAt(int x, int y)
+u8 MapGridGetElevationAt(int x, int y)
 {
-    u16 block = MapGridGetTileAt(x, y);
+    u16 block = GetMapGridBlockAt(x, y);
 
-    if (block == METATILE_ID_UNDEFINED)
+    if (block == MAPGRID_UNDEFINED)
         return 0;
 
-    return block >> METATILE_ELEVATION_SHIFT;
+    return block >> MAPGRID_ELEVATION_SHIFT;
 }
 
 bool8 MapGridIsImpassableAt(int x, int y)
 {
-    u16 block = MapGridGetTileAt(x, y);
+    u16 block = GetMapGridBlockAt(x, y);
 
-    if (block == METATILE_ID_UNDEFINED)
+    if (block == MAPGRID_UNDEFINED)
         return TRUE;
 
-    return (block & METATILE_COLLISION_MASK) >> METATILE_COLLISION_SHIFT;
+    return (block & MAPGRID_COLLISION_MASK) >> MAPGRID_COLLISION_SHIFT;
 }
 
 u32 MapGridGetMetatileIdAt(int x, int y)
 {
-    u16 block = MapGridGetTileAt(x, y);
+    u16 block = GetMapGridBlockAt(x, y);
 
-    if (block == METATILE_ID_UNDEFINED)
-        return MapGridGetBorderTileAt(x, y) & METATILE_ID_MASK;
+    if (block == MAPGRID_UNDEFINED)
+        return GetBorderBlockAt(x, y) & MAPGRID_METATILE_ID_MASK;
 
-    return block & METATILE_ID_MASK;
+    return block & MAPGRID_METATILE_ID_MASK;
 }
 
 u32 MapGridGetMetatileBehaviorAt(int x, int y)
 {
     u16 metatile = MapGridGetMetatileIdAt(x, y);
-    return GetBehaviorByMetatileId(metatile) & METATILE_BEHAVIOR_MASK;
+    return GetMetatileAttributesById(metatile) & METATILE_ATTR_BEHAVIOR_MASK;
 }
 
 u8 MapGridGetMetatileLayerTypeAt(int x, int y)
 {
     u16 metatile = MapGridGetMetatileIdAt(x, y);
-    return (GetBehaviorByMetatileId(metatile) & METATILE_ELEVATION_MASK) >> METATILE_ELEVATION_SHIFT;
+    return (GetMetatileAttributesById(metatile) & METATILE_ATTR_LAYER_MASK) >> METATILE_ATTR_LAYER_SHIFT;
 }
 
 void MapGridSetMetatileIdAt(int x, int y, u16 metatile)
@@ -391,7 +391,7 @@ void MapGridSetMetatileIdAt(int x, int y, u16 metatile)
     if (AreCoordsWithinMapGridBounds(x, y))
     {
         i = x + y * gBackupMapLayout.width;
-        gBackupMapLayout.map[i] = (gBackupMapLayout.map[i] & METATILE_ELEVATION_MASK) | (metatile & ~METATILE_ELEVATION_MASK);
+        gBackupMapLayout.map[i] = (gBackupMapLayout.map[i] & MAPGRID_ELEVATION_MASK) | (metatile & ~MAPGRID_ELEVATION_MASK);
     }
 }
 
@@ -405,7 +405,7 @@ void MapGridSetMetatileEntryAt(int x, int y, u16 metatile)
     }
 }
 
-u16 GetBehaviorByMetatileId(u16 metatile)
+u16 GetMetatileAttributesById(u16 metatile)
 {
     u16 *attributes;
     if (metatile < NUM_METATILES_IN_PRIMARY)
@@ -566,7 +566,7 @@ static void MoveMapViewToBackup(u8 direction)
 
 int GetMapBorderIdAt(int x, int y)
 {
-    if (MapGridGetTileAt(x, y) == METATILE_ID_UNDEFINED)
+    if (GetMapGridBlockAt(x, y) == MAPGRID_UNDEFINED)
         return CONNECTION_INVALID;
 
     if (x >= (gBackupMapLayout.width - (MAP_OFFSET + 1)))
@@ -818,23 +818,23 @@ void MapGridSetMetatileImpassabilityAt(int x, int y, bool32 impassable)
     if (AreCoordsWithinMapGridBounds(x, y))
     {
         if (impassable)
-            gBackupMapLayout.map[x + gBackupMapLayout.width * y] |= METATILE_COLLISION_MASK;
+            gBackupMapLayout.map[x + gBackupMapLayout.width * y] |= MAPGRID_COLLISION_MASK;
         else
-            gBackupMapLayout.map[x + gBackupMapLayout.width * y] &= ~METATILE_COLLISION_MASK;
+            gBackupMapLayout.map[x + gBackupMapLayout.width * y] &= ~MAPGRID_COLLISION_MASK;
     }
 }
 
-static bool8 SkipCopyingMetatileFromSavedMap(u16* mapMetatilePtr, u16 mapWidth, u8 yMode)
+static bool8 SkipCopyingMetatileFromSavedMap(u16* mapBlock, u16 mapWidth, u8 yMode)
 {
     if (yMode == 0xFF)
         return FALSE;
 
     if (yMode == 0)
-        mapMetatilePtr -= mapWidth;
+        mapBlock -= mapWidth;
     else
-        mapMetatilePtr += mapWidth;
+        mapBlock += mapWidth;
 
-    if (IsLargeBreakableDecoration(*mapMetatilePtr & METATILE_ID_MASK, yMode) == TRUE)
+    if (IsLargeBreakableDecoration(*mapBlock & MAPGRID_METATILE_ID_MASK, yMode) == TRUE)
         return TRUE;
     return FALSE;
 }

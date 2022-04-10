@@ -670,7 +670,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                 {
                     if (currMapType == MAP_TYPE_UNDERGROUND)
                     { // inside (cave)
-                        if (IsZCoordMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
+                        if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                             break; //occurs at same z coord
                         
                         scale = 440 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2)  - (2 * (topX + topY));
@@ -687,7 +687,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                 if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehaviour))
                 {
                     u8 scale = 320 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2);
-                    if (IsZCoordMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
+                    if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                         break;
 
                     weight = (Random() % scale <= 1) && !MapGridIsImpassableAt(topX, topY);
@@ -793,7 +793,7 @@ static void LoadSearchIconData(void)
 {
     // palettes clash with mon icon, so must load manually
     LoadSpriteSheet(&gSpriteSheet_HeldItem);
-    LoadPalette(gHeldItemPalette, 0x100 + (16 * sHeldItemOam.paletteNum), 32);
+    LoadPalette(sHeldItemPalette, 0x100 + (16 * sHeldItemOam.paletteNum), 32);
     LoadCompressedSpriteSheetUsingHeap(&sPotentialStarSpriteSheet);
     //LoadCompressedSpriteSheetUsingHeap(&sSightSpriteSheet);   //eye replaced with arrow
     LoadCompressedSpriteSheetUsingHeap(&sOwnedIconSpriteSheet);

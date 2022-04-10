@@ -2,6 +2,7 @@
 #define GUARD_WILD_ENCOUNTER_H
 
 #include "constants/day_night.h"
+#include "constants/wild_encounter.h"
 
 #define LAND_WILD_COUNT     12
 #define WATER_WILD_COUNT    5

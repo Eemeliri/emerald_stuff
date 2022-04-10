@@ -22,6 +22,7 @@ struct Item
     u8 battleUsage;
     ItemUseFunc battleUseFunc;
     u8 secondaryId;
+    u8 flingPower;
 };
 
 struct BagPocket
@@ -78,8 +79,9 @@ ItemUseFunc ItemId_GetFieldFunc(u16 itemId);
 u8 ItemId_GetBattleUsage(u16 itemId);
 ItemUseFunc ItemId_GetBattleFunc(u16 itemId);
 u8 ItemId_GetSecondaryId(u16 itemId);
-bool32 IsPinchBerryItemEffect(u16 holdEffect);
+//bool32 IsPinchBerryItemEffect(u16 holdEffect);
 void ItemId_GetHoldEffectParam_Script();
 void DeserializeTmHmItemSlots(void);
+u8 ItemId_GetFlingPower(u16 itemId);
 
 #endif // GUARD_ITEM_H
