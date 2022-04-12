@@ -1499,6 +1499,48 @@ static const struct ObjectEventGraphicsInfo * SpeciesToGraphicsInfo(u16 species,
       form %= NUM_UNOWN_FORMS;
       graphicsInfo = &gPokemonObjectGraphics[form ? SPECIES_UNOWN_B + form - 1 : species];
       break;
+    case SPECIES_COMBEE: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_COMBEE];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[722];
+      break;
+    case SPECIES_HIPPOPOTAS: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_HIPPOPOTAS];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[723];
+      break;
+    case SPECIES_HIPPOWDON: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_HIPPOWDON];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[724];
+      break;
+    case SPECIES_UNFEZANT: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_UNFEZANT];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[725];
+      break;
+    case SPECIES_FRILLISH: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_FRILLISH];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[726];
+      break;
+    case SPECIES_JELLICENT: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_JELLICENT];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[727];
+      break;
+    case SPECIES_PYROAR: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_PYROAR];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[728];
+      break;
     default:
       graphicsInfo = &gPokemonObjectGraphics[species];
       break;
@@ -1511,7 +1553,18 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
     u8 paletteNum;
     // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
     // so that palette tags do not overlap
-    const struct CompressedSpritePalette *spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
+    const struct CompressedSpritePalette *spritePalette;
+
+    if(species==SPECIES_COMBEE || species==SPECIES_HIPPOPOTAS || species==SPECIES_HIPPOWDON || species==SPECIES_UNFEZANT || species==SPECIES_FRILLISH || species==SPECIES_JELLICENT || species==SPECIES_PYROAR){
+        if(form==0)
+            spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
+        else
+            spritePalette = &(shiny ? gFollowMonShinyPaletteTableFemale : gFollowMonPaletteTableFemale)[species];
+    }
+    else
+        spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
+
+    //const struct CompressedSpritePalette *spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
     if ((paletteNum = IndexOfSpritePaletteTag(spritePalette->tag)) == 0xFF) { // Load compressed palette
       LoadCompressedSpritePaletteDayNight(spritePalette);
       //LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
@@ -1553,7 +1606,25 @@ static bool8 GetFollowerInfo(u16 *species, u8 *form, u8 *shiny) {
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon);
-    *form = *species == SPECIES_UNOWN ? GET_UNOWN_LETTER(mon->box.personality) : 0;
+    switch(*species){
+        case SPECIES_UNOWN:
+            *form = GET_UNOWN_LETTER(mon->box.personality);
+            break;
+        case SPECIES_COMBEE:
+        case SPECIES_HIPPOPOTAS:
+        case SPECIES_HIPPOWDON:
+        case SPECIES_UNFEZANT:
+        case SPECIES_FRILLISH:
+        case SPECIES_JELLICENT:
+        case SPECIES_PYROAR:
+            *form = GetMonGender(mon);
+            break;
+        default:
+            *form = 0;
+            break;
+    }
+
+    //*form = *species == SPECIES_UNOWN ? GET_UNOWN_LETTER(mon->box.personality) : 0;
     return TRUE;
 }
 

@@ -2459,7 +2459,7 @@ const struct CompressedSpritePalette gFollowMonPaletteTable[] =
     SPECIES_PAL(FURFROU_KABUKI_TRIM, gFollowMonPalette_FurfrouKabukiTrim),
     SPECIES_PAL(FURFROU_PHARAOH_TRIM, gFollowMonPalette_FurfrouPharaohTrim),
 
-    SPECIES_PAL(MEOWSTIC_FEMALE, gMonPalette_MeowsticFemale),
+    SPECIES_PAL(MEOWSTIC_FEMALE, gFollowMonPalette_MeowsticFemale),
 
     SPECIES_PAL(AEGISLASH_BLADE, gMonPalette_AegislashBlade),
 
@@ -2570,10 +2570,10 @@ const struct CompressedSpritePalette gFollowMonPaletteTable[] =
 
     SPECIES_PAL(EGG, gMonPalette_Egg),
 };
-/*
+
 const struct CompressedSpritePalette gFollowMonPaletteTableFemale[] =
 {
-    SPECIES_PAL(EEVEE, gFollowMonPalette_Eevee),
+    //SPECIES_PAL(EEVEE, gFollowMonPalette_Eevee),
     SPECIES_PAL(COMBEE, gFollowMonPalette_Combee),
     SPECIES_PAL(HIPPOPOTAS, gFollowMonPalette_HippopotasF),
     SPECIES_PAL(HIPPOWDON, gFollowMonPalette_HippowdonF),
@@ -2581,4 +2581,4 @@ const struct CompressedSpritePalette gFollowMonPaletteTableFemale[] =
     SPECIES_PAL(FRILLISH, gFollowMonPalette_FrillishF),
     SPECIES_PAL(JELLICENT, gFollowMonPalette_JellicentF),
     SPECIES_PAL(PYROAR, gFollowMonPalette_PyroarF),
-};*/
+};
