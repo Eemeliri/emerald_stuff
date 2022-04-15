@@ -2071,10 +2071,10 @@ static void DexNavLoadEncounterData(void)
     const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
     
     // nop struct data
-    memset(sDexNavUiDataPtr->landSpecies, 0, sizeof(sDexNavUiDataPtr->landSpecies));
-    memset(sDexNavUiDataPtr->waterSpecies, 0, sizeof(sDexNavUiDataPtr->waterSpecies));
-    memset(sDexNavUiDataPtr->hiddenSpecies, 0, sizeof(sDexNavUiDataPtr->hiddenSpecies));
-    
+    memset(sDexNavUiDataPtr->landSpecies, SPECIES_NONE, sizeof(sDexNavUiDataPtr->landSpecies));
+    memset(sDexNavUiDataPtr->waterSpecies, SPECIES_NONE, sizeof(sDexNavUiDataPtr->waterSpecies));
+    memset(sDexNavUiDataPtr->hiddenSpecies, SPECIES_NONE, sizeof(sDexNavUiDataPtr->hiddenSpecies));
+
     // land mons
     if (landMonsInfo != NULL && landMonsInfo->encounterRate != 0)
     {
@@ -2144,22 +2144,22 @@ static void DrawSpeciesIcons(void)
 	while(i < LAND_WILD_COUNT)
     {
         species = sDexNavUiDataPtr->landSpecies[i];
+        if(species==SPECIES_NONE)
+			break;
         x = 20 + (24 * (i % 6));
         y = ROW_WATER_ICON_Y + (i > 5 ? 28 : 0);
         TryDrawIconInSlot(species, x, y);
-		if(species==SPECIES_NONE)
-			break;
 		i++;
     }
 	
 	while(j < WATER_WILD_COUNT)
     {
         species = sDexNavUiDataPtr->waterSpecies[j];
+        if(species==SPECIES_NONE)
+			break;
         x = 20 + (24 * (i % 6));
         y = ROW_WATER_ICON_Y + (i > 5 ? 28 : 0);
         TryDrawIconInSlot(species, x, y);
-		if(species==SPECIES_NONE)
-			break;
 		i++;
 		j++;
     }
@@ -2169,14 +2169,12 @@ static void DrawSpeciesIcons(void)
 	while(j < HIDDEN_WILD_COUNT)
     {
         species = sDexNavUiDataPtr->hiddenSpecies[j];
+        if(species==SPECIES_NONE)
+			break;
         x = 20 + (24 * (i % 6));
         y = ROW_WATER_ICON_Y + (i > 5 ? 28 : 0);
         if (FlagGet(FLAG_SYS_DETECTOR_MODE))
             TryDrawIconInSlot(species, x, y);
-        else if (species == SPECIES_NONE)
-            CreateNoDataIcon(x, y);
-        else
-            CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark if detector mode inactive
 		i++;
 		j++;
 	}
@@ -2184,20 +2182,32 @@ static void DrawSpeciesIcons(void)
 
 static u16 DexNavGetSpecies(void)
 {
-    u16 species;
+    u16 species = SPECIES_NONE;
    	u8 xypos;
 	u8 landcount = 0;
 	u8 watercount = 0;
-	
+    u8 hiddencount = 0;
+	u32 i;
+
 	xypos = sDexNavUiDataPtr->cursorCol + (6*sDexNavUiDataPtr->cursorRow);
-    
-    while(sDexNavUiDataPtr->landSpecies[landcount] != SPECIES_NONE){
-		landcount++;
+
+    for(i=0; i<LAND_WILD_COUNT; i++){
+        if(sDexNavUiDataPtr->landSpecies[i] != SPECIES_NONE)
+            landcount++;
+    }
+    for(i=0; i<WATER_WILD_COUNT; i++){
+        if(sDexNavUiDataPtr->waterSpecies[i] != SPECIES_NONE)
+            watercount++;
+    }
+    for(i=0; i<HIDDEN_WILD_COUNT; i++){
+        if(sDexNavUiDataPtr->hiddenSpecies[i] != SPECIES_NONE)
+            hiddencount++;
+    }
+
+    if (xypos>=(landcount+watercount+hiddencount)){
+		return SPECIES_NONE;
 	}
-	while(sDexNavUiDataPtr->landSpecies[watercount] != SPECIES_NONE){
-		watercount++;
-	}
-	
+
 	if (xypos>=(landcount+watercount)){
 		species = sDexNavUiDataPtr->hiddenSpecies[xypos-landcount-watercount];
 		sDexNavUiDataPtr->environment = ENCOUNTER_TYPE_HIDDEN;
@@ -2210,6 +2220,9 @@ static u16 DexNavGetSpecies(void)
 		species = sDexNavUiDataPtr->landSpecies[xypos];
 		sDexNavUiDataPtr->environment = ENCOUNTER_TYPE_LAND;
 	}
+
+    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        return SPECIES_NONE;
     
     return species;
 }
