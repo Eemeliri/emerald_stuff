@@ -414,7 +414,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 		}
 		else
 		{
-            if (sPokedexAreaScreen->state == TIME_MORNING && info->landMonsMorningInfo != NULL){
+            if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->landMonsMorningInfo != NULL){
                 if (MonListHasSpecies(info->landMonsMorningInfo, species, 12))
                     return TRUE;
             }
@@ -434,7 +434,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 		}
 		else
 		{
-			if (sPokedexAreaScreen->state==TIME_MORNING && info->waterMonsMorningInfo != NULL){
+			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->waterMonsMorningInfo != NULL){
                 if (MonListHasSpecies(info->waterMonsMorningInfo, species, 12))
 	    		    return TRUE;
             }
@@ -454,7 +454,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 		}
 		else
 		{
-			if (sPokedexAreaScreen->state==TIME_MORNING && info->fishingMonsMorningInfo != NULL){
+			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->fishingMonsMorningInfo != NULL){
                 if (MonListHasSpecies(info->fishingMonsMorningInfo, species, 12))
 	    		    return TRUE;
             }
@@ -474,7 +474,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 		}
 		else
 		{
-			if (sPokedexAreaScreen->state==TIME_MORNING && info->rockSmashMonsMorningInfo != NULL){
+			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->rockSmashMonsMorningInfo != NULL){
                 if (MonListHasSpecies(info->rockSmashMonsMorningInfo, species, 12))
 	    		    return TRUE;
             }
@@ -491,7 +491,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 	else
 	{
 
-        if (sPokedexAreaScreen->state==TIME_MORNING && info->landMonsMorningInfo != NULL){
+        if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->landMonsMorningInfo != NULL){
             if (MonListHasSpecies(info->landMonsMorningInfo, species, 12))
 			    return TRUE;
         }
@@ -504,7 +504,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 			    return TRUE;
         }
 
-        if (sPokedexAreaScreen->state==TIME_MORNING && info->waterMonsMorningInfo != NULL){
+        if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->waterMonsMorningInfo != NULL){
             if (MonListHasSpecies(info->waterMonsMorningInfo, species, 12))
 			    return TRUE;
         }
@@ -517,7 +517,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 			    return TRUE;
         }
 
-        if (sPokedexAreaScreen->state==TIME_MORNING && info->fishingMonsMorningInfo != NULL){
+        if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->fishingMonsMorningInfo != NULL){
             if (MonListHasSpecies(info->fishingMonsMorningInfo, species, 12))
 			    return TRUE;
         }
@@ -530,7 +530,7 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 			    return TRUE;
         }
 
-        if (sPokedexAreaScreen->state==TIME_MORNING && info->rockSmashMonsMorningInfo != NULL){
+        if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->rockSmashMonsMorningInfo != NULL){
             if (MonListHasSpecies(info->rockSmashMonsMorningInfo, species, 12))
 			    return TRUE;
         }
@@ -862,12 +862,15 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         else if (JOY_NEW(R_BUTTON)){
             FillWindowPixelBuffer(windid, PIXEL_FILL(7));
             sPokedexAreaScreen->state++;
-            if(sPokedexAreaScreen->state==3){
+            if(sPokedexAreaScreen->state==TIMES_OF_DAY_COUNT){
                 sPokedexAreaScreen->state=TIME_MORNING;
                 AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
             }
-            else if(sPokedexAreaScreen->state==2){
+            else if(sPokedexAreaScreen->state==TIME_NIGHT){
                 AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Night);
+            }
+            else if(sPokedexAreaScreen->state==TIME_EVENING){
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Evening);
             }
             else{
                 AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
@@ -896,9 +899,13 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
                 sPokedexAreaScreen->state--;
                 AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
             }
-            else {
+            else if(sPokedexAreaScreen->state==TIME_EVENING){
                 sPokedexAreaScreen->state--;
                 AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
+            }
+            else {
+                sPokedexAreaScreen->state--;
+                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Evening);
             }
 
             PlaySE(SE_DEX_PAGE);

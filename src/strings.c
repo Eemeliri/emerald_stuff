@@ -1538,6 +1538,7 @@ const u8 gText_GoldCard[] = _("Gold");
 const u8 gText_Day[] = _("Day");
 const u8 gText_Morning[] = _("Morning");
 const u8 gText_Night[] = _("Night");
+const u8 gText_Evening[] = _("Evening");
 const u8 gText_Colon3[] = _(":");
 const u8 gText_Confirm2[] = _("Confirm");
 const u8 gText_Days[] = _("Days"); // Unused
