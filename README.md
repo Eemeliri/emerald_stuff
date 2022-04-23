@@ -57,6 +57,7 @@ The pokeemerald Expansion is a collection of feature branches that can be integr
 * No need to water berry trees on rainy routes (Credit: BuffelSalt)
 * Reset clock by pressing R
 * Check EVs and IVs in PC by pressing Start
+* Move name instead of TM name in shops (Credit: Duke)
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
