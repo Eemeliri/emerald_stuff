@@ -12505,6 +12505,17 @@ extern const u16 gPokenavMessageBox_Pal[];
 extern const u32 gPokenavOptions_Gfx[];
 extern const u16 gPokenavOptions_Pal[];
 
+// DexNav
+extern const u16 gDexNav_Gui_Pal[];
+extern const u32 gDexNav_Gui_Gfx[];
+extern const u32 gDexNav_Gui_Tilemap[];
+extern const u16 gDexNav_Default_Pal[];
+extern const u32 gDexNav_Default_Gfx[];
+extern const u32 gDexNav_Default_Tilemap[];
+extern const u16 gDexNav_Route101_Pal[];
+extern const u32 gDexNav_Route101_Gfx[];
+extern const u32 gDexNav_Route101_Tilemap[];
+
 // Battle Factory Screen
 extern const u8 gFrontierFactorySelectMenu_Gfx[];
 extern const u8 gFrontierFactorySelectMenu_Tilemap[];

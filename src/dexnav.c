@@ -158,13 +158,13 @@ static void DrawHiddenSearchWindow(u8 width);
 
 //// Const Data
 // gui image data
-static const u32 sDexNavGuiTiles[] = INCBIN_U32("graphics/dexnav/gui_tiles.4bpp.lz");
-static const u32 sDexNavGuiTilemap[] = INCBIN_U32("graphics/dexnav/gui_tilemap.bin.lz");
-static const u32 sDexNavGuiPal[] = INCBIN_U32("graphics/dexnav/gui.gbapal");
+//static const u32 gDexNav_Gui_Gfx[] = INCBIN_U32("graphics/dexnav/gui_tiles.4bpp.lz");
+//static const u32 gDexNav_Gui_Tilemap[] = INCBIN_U32("graphics/dexnav/gui_tilemap.bin.lz");
+//static const u32 gDexNav_Gui_Pal[] = INCBIN_U32("graphics/dexnav/gui.gbapal");
 
-static const u32 sDexNavBgTiles[] = INCBIN_U32("graphics/dexnav/bg_tiles.4bpp.lz");
-static const u32 sDexNavBgTilemap[] = INCBIN_U32("graphics/dexnav/bg_tilemap.bin.lz");
-static const u32 sDexNavBgPal[] = INCBIN_U32("graphics/dexnav/bg.gbapal");
+//static const u32 sDexNavBgTiles[] = INCBIN_U32("graphics/dexnav/bg_tiles.4bpp.lz");
+//static const u32 sDexNavBgTilemap[] = INCBIN_U32("graphics/dexnav/bg_tilemap.bin.lz");
+//static const u32 gDexNav_Route101_Pal[] = INCBIN_U32("graphics/dexnav/bg.gbapal");
 
 static const u32 sSelectionCursorGfx[] = INCBIN_U32("graphics/dexnav/cursor.4bpp.lz");
 static const u16 sSelectionCursorPal[] = INCBIN_U16("graphics/dexnav/cursor.gbapal");
@@ -1668,27 +1668,69 @@ static bool8 DexNav_InitBgs(void)
     return TRUE;
 }
 
+void LoadDexnavBg()
+{
+    u8 i = GetCurrentRegionMapSectionId();
+
+    switch(i)
+    {
+        case MAPSEC_ROUTE_101:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route101_Gfx, 0, 0, 0);
+            break;
+        default:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Default_Gfx, 0, 0, 0);
+    }
+}
+
+void LoadDexnavBgTilemap()
+{
+    u8 i = GetCurrentRegionMapSectionId();
+
+    switch(i)
+    {
+        case MAPSEC_ROUTE_101:
+            LZDecompressWram(gDexNav_Route101_Tilemap, sBg2TilemapBuffer);
+            break;
+        default:
+            LZDecompressWram(gDexNav_Default_Tilemap, sBg2TilemapBuffer);
+    }
+}
+
+void LoadDexnavBgPal()
+{
+    u8 i = GetCurrentRegionMapSectionId();
+
+    switch(i)
+    {
+        case MAPSEC_ROUTE_101:
+            LoadPalette(gDexNav_Route101_Pal, 16, 32);
+            break;
+        default:
+            LoadPalette(gDexNav_Default_Pal, 16, 32);
+    }
+}
+
 static bool8 DexNav_LoadGraphics(void)
 {
     switch (sDexNavUiDataPtr->state)
     {
     case 0:
         ResetTempTileDataBuffers();
-        DecompressAndCopyTileDataToVram(1, sDexNavGuiTiles, 0, 0, 0);
-        DecompressAndCopyTileDataToVram(2, sDexNavBgTiles, 0, 0, 0);
+        DecompressAndCopyTileDataToVram(1, gDexNav_Gui_Gfx, 0, 0, 0);
+        LoadDexnavBg();
         sDexNavUiDataPtr->state++;
         break;
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            LZDecompressWram(sDexNavGuiTilemap, sBg1TilemapBuffer);
-            LZDecompressWram(sDexNavBgTilemap, sBg2TilemapBuffer);
+            LZDecompressWram(gDexNav_Gui_Tilemap, sBg1TilemapBuffer);
+            LoadDexnavBgTilemap();
             sDexNavUiDataPtr->state++;
         }
         break;
     case 2:
-        LoadPalette(sDexNavGuiPal, 0, 32);
-        LoadPalette(sDexNavBgPal, 16, 32);
+        LoadPalette(gDexNav_Gui_Pal, 0, 32);
+        LoadDexnavBgPal();
         sDexNavUiDataPtr->state++;
         break;
     default:
@@ -1740,18 +1782,20 @@ static void CreateSelectionCursor(void)
     u8 spriteId;
     struct CompressedSpriteSheet spriteSheet;
     
+    //if there's no wild mons don't make cursoridk why these numbers work, don't ask
     spriteSheet.data = sSelectionCursorGfx;
     spriteSheet.size = 0x200;
     spriteSheet.tag = SELECTION_CURSOR_TAG;
     LoadCompressedSpriteSheet(&spriteSheet);
-    
+        
     LoadPalette(sSelectionCursorPal, (16 * sSelectionCursorOam.paletteNum) + 0x100, 32);
-    
+        
     spriteId = CreateSprite(&sSelectionCursorSpriteTemplate, 12, 32, 0);  
     //gSprites[spriteId].data[1] = -1;
-    
+        
     sDexNavUiDataPtr->cursorSpriteId = spriteId;
     UpdateCursorPosition();
+
 }
 
 static void CreateNoDataIcon(s16 x, s16 y)
@@ -2459,9 +2503,11 @@ static bool8 DexNav_DoGfxSetup(void)
     case 10:
         LoadMonIconPalettes();
         TryLoadAllMonIconPalettesAtOffset(0x160);
-        DrawSpeciesIcons();
-        CreateSelectionCursor();
-        DexNavLoadCapturedAllSymbols();
+        if(sDexNavUiDataPtr->landSpecies[0]!=0x3401 || sDexNavUiDataPtr->waterSpecies[0]!=0x3401){ 
+            DrawSpeciesIcons();
+            CreateSelectionCursor();
+            DexNavLoadCapturedAllSymbols();
+        }
         gMain.state++;
         break;
     case 11:
@@ -2535,6 +2581,7 @@ static void Task_DexNavMain(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
     u16 species;
+    //u16 species2;
     
     if (IsSEPlaying())
         return;
@@ -2545,132 +2592,137 @@ static void Task_DexNavMain(u8 taskId)
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         task->func = Task_DexNavFadeAndExit;
     }
-    else if (JOY_NEW(DPAD_UP))
+    //species=sDexNavUiDataPtr->landSpecies[0];
+    //species2=sDexNavUiDataPtr->waterSpecies[0];
+    if(sDexNavUiDataPtr->landSpecies[0]!=0x3401 || sDexNavUiDataPtr->waterSpecies[0]!=0x3401)
     {
-        if (sDexNavUiDataPtr->cursorRow == ROW_WATER)
+        if (JOY_NEW(DPAD_UP))
         {
-            sDexNavUiDataPtr->cursorRow = ROW_HIDDEN;
-            if (sDexNavUiDataPtr->cursorCol >= COL_HIDDEN_COUNT)
-                sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
-        }
-        else
-        {
-            if (sDexNavUiDataPtr->cursorRow == ROW_LAND_TOP && sDexNavUiDataPtr->cursorCol == COL_LAND_MAX)
-                sDexNavUiDataPtr->cursorCol = COL_WATER_MAX;
+            if (sDexNavUiDataPtr->cursorRow == ROW_WATER)
+            {
+                sDexNavUiDataPtr->cursorRow = ROW_HIDDEN;
+                if (sDexNavUiDataPtr->cursorCol >= COL_HIDDEN_COUNT)
+                    sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
+            }
+            else
+            {
+                if (sDexNavUiDataPtr->cursorRow == ROW_LAND_TOP && sDexNavUiDataPtr->cursorCol == COL_LAND_MAX)
+                    sDexNavUiDataPtr->cursorCol = COL_WATER_MAX;
+                
+                sDexNavUiDataPtr->cursorRow--;
+            }
             
-            sDexNavUiDataPtr->cursorRow--;
+            PlaySE(SE_RG_BAG_CURSOR);
+            UpdateCursorPosition();
         }
-        
-        PlaySE(SE_RG_BAG_CURSOR);
-        UpdateCursorPosition();
-    }
-    else if (JOY_NEW(DPAD_DOWN))
-    {
-        if (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN)
+        else if (JOY_NEW(DPAD_DOWN))
         {
-            sDexNavUiDataPtr->cursorRow = ROW_WATER;
-        }
-        else if (sDexNavUiDataPtr->cursorRow == ROW_LAND_BOT)
-        {
-            if (sDexNavUiDataPtr->cursorCol >= COL_HIDDEN_COUNT)
-                sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
+            if (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN)
+            {
+                sDexNavUiDataPtr->cursorRow = ROW_WATER;
+            }
+            else if (sDexNavUiDataPtr->cursorRow == ROW_LAND_BOT)
+            {
+                if (sDexNavUiDataPtr->cursorCol >= COL_HIDDEN_COUNT)
+                    sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
+                
+                sDexNavUiDataPtr->cursorRow++;
+            }
+            else
+            {
+                sDexNavUiDataPtr->cursorRow++;
+            }
             
-            sDexNavUiDataPtr->cursorRow++;
+            PlaySE(SE_RG_BAG_CURSOR);
+            UpdateCursorPosition();
         }
-        else
+        else if (JOY_NEW(DPAD_LEFT))
         {
-            sDexNavUiDataPtr->cursorRow++;
+            if (sDexNavUiDataPtr->cursorCol == 0)
+            {
+                switch (sDexNavUiDataPtr->cursorRow)
+                {
+                case ROW_WATER:
+                    sDexNavUiDataPtr->cursorCol = COL_WATER_MAX;
+                    break;
+                case ROW_HIDDEN:
+                    sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
+                    break;
+                default:
+                    sDexNavUiDataPtr->cursorCol = COL_LAND_MAX;
+                    break;
+                }
+            }
+            else
+            {
+                sDexNavUiDataPtr->cursorCol--;
+            }
+            
+            PlaySE(SE_RG_BAG_CURSOR);
+            UpdateCursorPosition();
         }
-        
-        PlaySE(SE_RG_BAG_CURSOR);
-        UpdateCursorPosition();
-    }
-    else if (JOY_NEW(DPAD_LEFT))
-    {
-        if (sDexNavUiDataPtr->cursorCol == 0)
+        else if (JOY_NEW(DPAD_RIGHT))
         {
             switch (sDexNavUiDataPtr->cursorRow)
             {
             case ROW_WATER:
-                sDexNavUiDataPtr->cursorCol = COL_WATER_MAX;
+                if (sDexNavUiDataPtr->cursorCol == COL_WATER_MAX)
+                    sDexNavUiDataPtr->cursorCol = 0;
+                else
+                    sDexNavUiDataPtr->cursorCol++;
                 break;
             case ROW_HIDDEN:
-                sDexNavUiDataPtr->cursorCol = COL_HIDDEN_MAX;
+                if (sDexNavUiDataPtr->cursorCol == COL_HIDDEN_MAX)
+                    sDexNavUiDataPtr->cursorCol = 0;
+                else
+                    sDexNavUiDataPtr->cursorCol++;
                 break;
             default:
-                sDexNavUiDataPtr->cursorCol = COL_LAND_MAX;
+                if (sDexNavUiDataPtr->cursorCol == COL_LAND_MAX)
+                    sDexNavUiDataPtr->cursorCol = 0;
+                else
+                    sDexNavUiDataPtr->cursorCol++;
                 break;
             }
-        }
-        else
-        {
-            sDexNavUiDataPtr->cursorCol--;
-        }
-        
-        PlaySE(SE_RG_BAG_CURSOR);
-        UpdateCursorPosition();
-    }
-    else if (JOY_NEW(DPAD_RIGHT))
-    {
-        switch (sDexNavUiDataPtr->cursorRow)
-        {
-        case ROW_WATER:
-            if (sDexNavUiDataPtr->cursorCol == COL_WATER_MAX)
-                sDexNavUiDataPtr->cursorCol = 0;
-            else
-                sDexNavUiDataPtr->cursorCol++;
-            break;
-        case ROW_HIDDEN:
-            if (sDexNavUiDataPtr->cursorCol == COL_HIDDEN_MAX)
-                sDexNavUiDataPtr->cursorCol = 0;
-            else
-                sDexNavUiDataPtr->cursorCol++;
-            break;
-        default:
-            if (sDexNavUiDataPtr->cursorCol == COL_LAND_MAX)
-                sDexNavUiDataPtr->cursorCol = 0;
-            else
-                sDexNavUiDataPtr->cursorCol++;
-            break;
-        }
-        
-        PlaySE(SE_RG_BAG_CURSOR);
-        UpdateCursorPosition();
-    }
-    else if (JOY_NEW(R_BUTTON))
-    {
-        // check selection is valid. Play sound if invalid
-        species = DexNavGetSpecies();
-        
-        if (species != SPECIES_NONE)
-        {            
-            PrintSearchableSpecies(species);
-            //PlaySE(SE_DEX_SEARCH);
-            PlayCry_Script(species, 0);
             
-            // create value to store in a var
-            VarSet(VAR_DEXNAV_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            PlaySE(SE_RG_BAG_CURSOR);
+            UpdateCursorPosition();
         }
-        else
+        else if (JOY_NEW(R_BUTTON))
         {
-            PlaySE(SE_FAILURE);
+            // check selection is valid. Play sound if invalid
+            species = DexNavGetSpecies();
+            
+            if (species != SPECIES_NONE)
+            {            
+                PrintSearchableSpecies(species);
+                //PlaySE(SE_DEX_SEARCH);
+                PlayCry_Script(species, 0);
+                
+                // create value to store in a var
+                VarSet(VAR_DEXNAV_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            }
+            else
+            {
+                PlaySE(SE_FAILURE);
+            }
         }
-    }
-    else if (JOY_NEW(A_BUTTON))
-    {
-        species = DexNavGetSpecies();
-        if (species == SPECIES_NONE)
+        else if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_FAILURE);
-        }
-        else
-        {
-            gSpecialVar_0x8000 = species;
-            gSpecialVar_0x8001 = sDexNavUiDataPtr->environment;
-            gSpecialVar_0x8002 = (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN) ? TRUE : FALSE;
-            PlaySE(SE_DEX_SEARCH);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-            task->func = Task_DexNavExitAndSearch;
+            species = DexNavGetSpecies();
+            if (species == SPECIES_NONE)
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else
+            {
+                gSpecialVar_0x8000 = species;
+                gSpecialVar_0x8001 = sDexNavUiDataPtr->environment;
+                gSpecialVar_0x8002 = (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN) ? TRUE : FALSE;
+                PlaySE(SE_DEX_SEARCH);
+                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+                task->func = Task_DexNavExitAndSearch;
+            }
         }
     }
 }

@@ -2018,6 +2018,17 @@ const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.g
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
 
+// DexNav
+const u16 gDexNav_Gui_Pal[] = INCBIN_U16("graphics/dexnav/gui.gbapal");
+const u32 gDexNav_Gui_Gfx[] = INCBIN_U32("graphics/dexnav/gui_tiles.4bpp.lz");
+const u32 gDexNav_Gui_Tilemap[] = INCBIN_U32("graphics/dexnav/gui_tilemap.bin.lz");
+const u16 gDexNav_Default_Pal[] = INCBIN_U16("graphics/dexnav/default_pal.gbapal");
+const u32 gDexNav_Default_Gfx[] = INCBIN_U32("graphics/dexnav/default_tiles.4bpp.lz");
+const u32 gDexNav_Default_Tilemap[] = INCBIN_U32("graphics/dexnav/default_tilemap.bin.lz");
+const u16 gDexNav_Route101_Pal[] = INCBIN_U16("graphics/dexnav/bg.gbapal");
+const u32 gDexNav_Route101_Gfx[] = INCBIN_U32("graphics/dexnav/bg_tiles.4bpp.lz");
+const u32 gDexNav_Route101_Tilemap[] = INCBIN_U32("graphics/dexnav/bg_tilemap.bin.lz");
+
 // random garbage at the end.
 static const u8 sEmpty3[0x54BAC] = {0};
 static const u8 sUnused1[]       = {0x0D, 0x00, 0x58, 0x02};
