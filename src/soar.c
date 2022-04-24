@@ -385,7 +385,7 @@ static void SoarHBlankCallback(void)
 	if (currScanline < 32)  // draw gradient for sky
 	{
 		REG_DISPCNT &= ~DISPCNT_BG2_ON;
-		if(GetCurrentTimeOfDay() == 2)
+		if(GetCurrentTimeOfDay() == 3)
 			REG_BLDCNT = bldcntDarkFog;
 		else
 			REG_BLDCNT = bldcntFog;
@@ -398,7 +398,7 @@ static void SoarHBlankCallback(void)
 
 	if (currScanline <= 16 * 6)
 	{
-		if(GetCurrentTimeOfDay() == 2)
+		if(GetCurrentTimeOfDay() == 3)
 			REG_BLDCNT = bldcntDarkFog;
 		else
 			REG_BLDCNT = bldcntFog;
