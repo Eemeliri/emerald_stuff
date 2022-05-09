@@ -2,16 +2,7 @@
 This is a branch of the [**pokeemerald**](https://travis-ci.org/pret/pokeemerald) dissasembly that is meant to act as somewhat of a demake of ORAS, with as many of their mechanics as possible, but with Emerald's story.
 It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion) branch as a base.
 
-## What is the pokeemerald Expansion?
-
-The pokeemerald Expansion is a collection of feature branches that can be integrated into existing [pokeemerald](https://github.com/pret/pokeemerald) projects.
-
 * pokeemerald.gba `sha1: fde3f0731c9d2241c0df6b5df5de8b9b16b11418`
-
-- **[Battle Engine Upgrade](../tree/battle_engine):** Upgrades the battle engine in pokeemerald to newer Generation games' standards. It also adds newer moves and abilities.
-- **[Pokémon Expansion](../tree/pokemon_expansion):** Adds Pokémon from newer Generations and makes them available in the National Dex. It also updates base stats and other Pokémon info.
-- **[Item Expansion](../tree/item_expansion):** Adds items from newer Generations and also updates item effects for field use.
-- **[master](../tree/master):** Combines the above branches into one single branch for the sake of convenience. Note that this branch is only updated once in a while, so you must merge manually if you want the latest features.
 
 ### Updated/Qol Features
 * Built upon [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion)
@@ -79,26 +70,13 @@ The pokeemerald Expansion is a collection of feature branches that can be integr
 * Wally only attacks Ralts once to avoid fainting it
 * Sbird's TM learnset method for 100TMs (Credit: Sbird)
 * Spinda has a second frame (Credit Dat.H A and ShinyDragonHunter)
+* Only catch Rayquaza after the E4
 
 ### Changes (Planned)
 * Incorporate Primal Kyogre/Groudon & Mega Rayquaza
-* Only catch Rayquaza after the E4
 * Update Trainer teams to ORAS
 * Change Battle Frontier Pokemon to include up to gen 6
 * Have Alolan Pokemon searchable in the Pokedex (semi-implemented)
 * Increase the number of mass outbreaks and have more interesting Pokemon
-* Add more follower sprites
+* There's a few missing follower sprites
 
-The project was originally started by DizzyEgg alongside other contributors.
-
-The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
-
-## Can I contribute even if I'm not a member of ROM Hacking Hideout?
-
-Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Please note that PRs to master are not accepted, as master is only intended to be a merged branch.
-
-## What is ROM Hacking Hideout?
-
-A Discord-based ROM hacking community that has many members who hack using the disassembly and decompilation projects for Pokémon. Quite a few contributors to the original feature branches by DizzyEgg were members of ROM Hacking Hideout. You can call it RHH for short!
-
-[Click here to join the RHH Discord Server!](https://discord.gg/UEMwRa2edW)
