@@ -1586,6 +1586,8 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
       //LoadSpritePaletteDayNight(spritePalette);
       //DoLoadSpritePaletteDayNight(spritePalette->data, spritePalette->tag * 16);
       paletteNum = IndexOfSpritePaletteTag(spritePalette->tag); // Tag is always present
+      if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
+        UpdateSpritePaletteWithWeather(paletteNum);
     }
     return paletteNum;
 }
