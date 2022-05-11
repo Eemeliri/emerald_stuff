@@ -46,7 +46,6 @@ struct LinkPlayerObjectEvent
 
 extern struct WarpData gLastUsedWarp;
 extern struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4];
-extern struct Coords16 gLightMetatiles[32];
 
 extern u16 *gOverworldTilemapBuffer_Bg2;
 extern u16 *gOverworldTilemapBuffer_Bg1;
