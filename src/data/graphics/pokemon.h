@@ -7526,6 +7526,9 @@ const u32 gFollowMonPalette_GrimerAlolan[] = INCBIN_U32("graphics/pokemon/alolan
 const u32 gFollowMonPalette_MukAlolan[] = INCBIN_U32("graphics/pokemon/alolan_muk/follow_normal.gbapal.lz");
 const u32 gFollowMonPalette_ExeggutorAlolan[] = INCBIN_U32("graphics/pokemon/alolan_exeggutor/follow_normal.gbapal.lz");
 const u32 gFollowMonPalette_MarowakAlolan[] = INCBIN_U32("graphics/pokemon/alolan_marowak/follow_normal.gbapal.lz");
+const u32 gFollowMonPalette_CastformSunny[] = INCBIN_U32("graphics/pokemon/castform/sunny/follow_normal.gbapal.lz");
+const u32 gFollowMonPalette_CastformRainy[] = INCBIN_U32("graphics/pokemon/castform/rainy/follow_normal.gbapal.lz");
+const u32 gFollowMonPalette_CastformSnowy[] = INCBIN_U32("graphics/pokemon/castform/snowy/follow_normal.gbapal.lz");
 
 /*
 const u32 gFollowMonPalette_Rowlet[] = INCBIN_U32("graphics/pokemon/bulbasuar/follow_normal.gbapal.lz");
@@ -8800,6 +8803,9 @@ const u32 gFollowMonShinyPalette_GrimerAlolan[] = INCBIN_U32("graphics/pokemon/a
 const u32 gFollowMonShinyPalette_MukAlolan[] = INCBIN_U32("graphics/pokemon/alolan_muk/follow_shiny.gbapal.lz");
 const u32 gFollowMonShinyPalette_ExeggutorAlolan[] = INCBIN_U32("graphics/pokemon/alolan_exeggutor/follow_shiny.gbapal.lz");
 const u32 gFollowMonShinyPalette_MarowakAlolan[] = INCBIN_U32("graphics/pokemon/alolan_marowak/follow_shiny.gbapal.lz");
+const u32 gFollowMonShinyPalette_CastformSunny[] = INCBIN_U32("graphics/pokemon/castform/sunny/follow_shiny.gbapal.lz");
+const u32 gFollowMonShinyPalette_CastformRainy[] = INCBIN_U32("graphics/pokemon/castform/rainy/follow_shiny.gbapal.lz");
+const u32 gFollowMonShinyPalette_CastformSnowy[] = INCBIN_U32("graphics/pokemon/castform/snowy/follow_shiny.gbapal.lz");
 
 /*
 const u32 gFollowMonShinyPalette_Rowlet[] = INCBIN_U32("graphics/pokemon/bulbasuar/follow_shiny.gbapal.lz");

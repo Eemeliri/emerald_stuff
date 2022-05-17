@@ -2333,9 +2333,9 @@ const struct CompressedSpritePalette gFollowMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(UNOWN_EMARK, gFollowMonShinyPalette_Unown),
     SPECIES_SHINY_PAL(UNOWN_QMARK, gFollowMonShinyPalette_Unown),
 
-    SPECIES_SHINY_PAL(CASTFORM_SUNNY, gMonShinyPalette_CastformSunny),
-    SPECIES_SHINY_PAL(CASTFORM_RAINY, gMonShinyPalette_CastformRainy),
-    SPECIES_SHINY_PAL(CASTFORM_SNOWY, gMonShinyPalette_CastformSnowy),
+    SPECIES_SHINY_PAL(CASTFORM_SUNNY, gFollowMonShinyPalette_CastformSunny),
+    SPECIES_SHINY_PAL(CASTFORM_RAINY, gFollowMonShinyPalette_CastformRainy),
+    SPECIES_SHINY_PAL(CASTFORM_SNOWY, gFollowMonShinyPalette_CastformSnowy),
 
     SPECIES_SHINY_PAL(DEOXYS_ATTACK, gFollowMonShinyPalette_DeoxysAttack),
     SPECIES_SHINY_PAL(DEOXYS_DEFENSE, gFollowMonShinyPalette_DeoxysDefense),

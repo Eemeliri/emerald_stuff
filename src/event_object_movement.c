@@ -18,6 +18,7 @@
 #include "field_weather.h"
 #include "fieldmap.h"
 #include "follower_helper.h"
+#include "gpu_regs.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -32,6 +33,8 @@
 #include "trainer_see.h"
 #include "trainer_hill.h"
 #include "util.h"
+#include "wild_encounter.h"
+#include "constants/event_object_movement.h"
 #include "constants/abilities.h"
 #include "constants/event_object_movement.h"
 #include "constants/battle.h"
@@ -156,6 +159,7 @@ static struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8, u8,
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *);
 static void SpawnObjectEventOnReturnToField(u8, s16, s16);
 static void SetPlayerAvatarObjectEventIdAndObjectId(u8, u8);
+static u8 UpdateSpritePalette(const struct SpritePalette * spritePalette, struct Sprite * sprite);
 static void ResetObjectEventFldEffData(struct ObjectEvent *);
 static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *, bool8 shouldTint);
 static u8 FindObjectEventPaletteIndexByTag(u16);
@@ -1554,6 +1558,11 @@ static const struct ObjectEventGraphicsInfo * SpeciesToGraphicsInfo(u16 species,
         graphicsInfo = &gPokemonObjectGraphics[SPECIES_PYROAR];
       else
         graphicsInfo = &gPokemonObjectGraphics[728];
+    case SPECIES_CASTFORM: // Sunny, rainy, snowy forms stored separately
+      if(form==0)
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_CASTFORM];
+      else
+        graphicsInfo = &gPokemonObjectGraphics[SPECIES_CASTFORM_SUNNY-1+form];
       break;
     default:
       graphicsInfo = &gPokemonObjectGraphics[species];
@@ -1574,6 +1583,21 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
             spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
         else
             spritePalette = &(shiny ? gFollowMonShinyPaletteTableFemale : gFollowMonPaletteTableFemale)[species];
+    }
+    else if(species==SPECIES_CASTFORM){
+        switch(form % NUM_CASTFORM_FORMS){
+            case CASTFORM_FIRE:
+                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_SUNNY];
+                break;
+            case CASTFORM_WATER:
+                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_RAINY];
+                break;
+            case CASTFORM_ICE:
+                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_SNOWY];
+                break;
+            case CASTFORM_NORMAL:
+                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM];
+        }
     }
     else
         spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
@@ -1608,7 +1632,56 @@ static void FollowerSetGraphics(struct ObjectEvent *objEvent, u16 species, u8 fo
       FieldEffectFreePaletteIfUnused(sprite->oam.paletteNum);
       sprite->inUse = TRUE;
       sprite->oam.paletteNum = LoadDynamicFollowerPalette(species, form, shiny);
-  }
+  } else if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
+      UpdateSpritePaletteWithWeather(gSprites[objEvent->spriteId].oam.paletteNum);
+}
+
+// Like FollowerSetGraphics, but does not reposition sprite; intended to be used for mid-movement form changes, etc.
+// TODO: Reposition sprite if size changes
+static void RefreshFollowerGraphics(struct ObjectEvent *objEvent) {
+    u16 species = objEvent->extra.mon.species;
+    u8 form = objEvent->extra.mon.form;
+    u8 shiny = objEvent->extra.mon.shiny;
+    const struct ObjectEventGraphicsInfo *graphicsInfo = SpeciesToGraphicsInfo(species, form);
+    struct Sprite *sprite = &gSprites[objEvent->spriteId];
+    u8 i = FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
+
+    sprite->oam.shape = graphicsInfo->oam->shape;
+    sprite->oam.size = graphicsInfo->oam->size;
+    sprite->images = graphicsInfo->images;
+    sprite->anims = graphicsInfo->anims;
+    sprite->subspriteTables = graphicsInfo->subspriteTables;
+    objEvent->inanimate = graphicsInfo->inanimate;
+    sprite->centerToCornerVecX = -(graphicsInfo->width >> 1);
+    sprite->centerToCornerVecY = -(graphicsInfo->height >> 1);
+
+    if (graphicsInfo->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC) {
+        sprite->inUse = FALSE;
+        FieldEffectFreePaletteIfUnused(sprite->oam.paletteNum);
+        sprite->inUse = TRUE;
+        sprite->oam.paletteNum = LoadDynamicFollowerPalette(species, form, shiny);
+    } else if (i != 0xFF) {
+        UpdateSpritePalette(&sObjectEventSpritePalettes[i], sprite);
+        if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
+          UpdateSpritePaletteWithWeather(sprite->oam.paletteNum);
+    }
+}
+
+// Like CastformDataTypeChange, but for overworld weather
+static u8 GetOverworldCastformForm(void) {
+    switch (GetCurrentWeather())
+    {
+    case WEATHER_SUNNY_CLOUDS:
+    case WEATHER_DROUGHT:
+        return CASTFORM_FIRE;
+    case WEATHER_RAIN:
+    case WEATHER_RAIN_THUNDERSTORM:
+    case WEATHER_DOWNPOUR:
+        return CASTFORM_WATER;
+    case WEATHER_SNOW:
+        return CASTFORM_ICE;
+    }
+    return CASTFORM_NORMAL;
 }
 
 // Retrieve graphic information about the following pokemon, if any
@@ -1635,6 +1708,9 @@ static bool8 GetFollowerInfo(u16 *species, u8 *form, u8 *shiny) {
         case SPECIES_PYROAR:
             *form = GetMonGender(mon);
             break;
+        case SPECIES_CASTFORM: // form is based on overworld weather
+            *form = GetOverworldCastformForm();
+            break;
         default:
             *form = 0;
             break;
@@ -1651,7 +1727,7 @@ void UpdateFollowingPokemon(void) { // Update following pokemon if any
   bool8 shiny;
   u8 form;
   // Avoid spawning large (64x64) follower pokemon inside buildings
-  if (GetFollowerInfo(&species, &form, &shiny) && !(gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, 0)->width == 64)) {
+  if (GetFollowerInfo(&species, &form, &shiny) && !(gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, 0)->height == 64)) {
     if (objEvent == NULL) { // Spawn follower
       struct ObjectEventTemplate template = {
         .localId = OBJ_EVENT_ID_FOLLOWER,
@@ -4642,6 +4718,74 @@ bool8 CopyablePlayerMovement_Jump2(struct ObjectEvent *objectEvent, struct Sprit
     return TRUE;
 }
 
+static bool8 EndFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
+    if (!sprite)
+        return FALSE;
+    SetGpuReg(REG_OFFSET_MOSAIC, 0);
+    if (!sprite->data[7])
+        return FALSE;
+    sprite->data[7] = VarGet(VAR_TEMP_A);
+    sprite->oam.mosaic = FALSE;
+    return FALSE;
+}
+
+static bool8 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
+    u32 multi;
+    if (objectEvent->extra.mon.species == SPECIES_CASTFORM && objectEvent->extra.mon.form != (multi = GetOverworldCastformForm())) {
+        VarSet(VAR_TEMP_A,sprite->data[7]);
+        sprite->data[7] = TRANSFORM_TYPE_PERMANENT << 8;
+        objectEvent->extra.mon.form = multi;
+        return TRUE;
+    } else if ((gRngValue >> 16) < 18 && GetLocalWildMon(FALSE)
+            && (objectEvent->extra.mon.species == SPECIES_MEW || objectEvent->extra.mon.species == SPECIES_DITTO)) {
+        sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
+        PlaySE(SE_M_MINIMIZE);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool8 UpdateFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
+    u8 type = sprite->data[7] >> 8;
+    u8 frames = sprite->data[7] & 0xFF;
+    u8 stretch;
+    u32 multi;
+    if (!type)
+        return TryStartFollowerTransformEffect(objectEvent, sprite);
+    sprite->oam.mosaic = TRUE;
+    if (frames < 8)
+        stretch = frames >> 1;
+    else if (frames < 16)
+        stretch = (16 - frames) >> 1;
+    else {
+        return EndFollowerTransformEffect(objectEvent, sprite);
+    }
+    if (frames == 8) {
+        switch (type)
+        {
+        case TRANSFORM_TYPE_PERMANENT:
+            RefreshFollowerGraphics(objectEvent);
+            break;
+        case TRANSFORM_TYPE_RANDOM_WILD:
+            multi = objectEvent->extra.asU16;
+            objectEvent->extra.mon.species = GetLocalWildMon(FALSE);
+            if (!objectEvent->extra.mon.species) {
+                objectEvent->extra.asU16 = multi;
+                break;
+            }
+            objectEvent->extra.mon.form = 0;
+            RefreshFollowerGraphics(objectEvent);
+            objectEvent->extra.asU16 = multi;
+            break;
+        }
+    }
+
+    SetGpuReg(REG_OFFSET_MOSAIC, (stretch << 12) | (stretch << 8));
+    frames++;
+    sprite->data[7] = (sprite->data[7] & 0xFF00) | frames;
+    return TRUE;
+}
+
 movement_type_def(MovementType_FollowPlayer, gMovementTypeFuncs_FollowPlayer)
 
 bool8 MovementType_FollowPlayer_Shadow(struct ObjectEvent *objectEvent, struct Sprite *sprite)
@@ -4698,6 +4842,8 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
         if (sprite->data[1]) { // restore nonzero state
           sprite->data[1] = 1;
         }
+    } else if (objectEvent->movementActionId != MOVEMENT_ACTION_EXIT_POKEBALL) {
+        UpdateFollowerTransformEffect(objectEvent, sprite);
     }
     return FALSE;
 }
@@ -4709,17 +4855,19 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
     u8 direction;
     if (!objectEvent->singleMovementActive) { // walk in place
 
-      // Bounce up and down
-      switch (sprite->sState2)
-      {
-      case 0:
-          sprite->y2 -= 1;
-          sprite->sState2++;
-          break;
-      default:
-          sprite->y2 += 1;
-          sprite->sState2 = 0;
-          break;
+      if(sprite->oam.mosaic == FALSE){
+        // Bounce up and down
+        switch (sprite->sState2)
+        {
+        case 0:
+            sprite->y2 -= 1;
+            sprite->sState2++;
+            break;
+        default:
+            sprite->y2 += 1;
+            sprite->sState2 = 0;
+            break;
+        }
       }
       ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkInPlaceNormalMovementAction(objectEvent->facingDirection));
       sprite->data[1] = 1;
@@ -4728,6 +4876,7 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
     } else if (ObjectEventExecSingleMovementAction(objectEvent, sprite)) { // finish movement action
         objectEvent->singleMovementActive = 0;
     }
+    UpdateFollowerTransformEffect(objectEvent, sprite);
     return FALSE;
 }
 
@@ -4754,17 +4903,19 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     y = objectEvent->currentCoords.y;
     ClearObjectEventMovement(objectEvent, sprite);
 
-    // Bounce up and down
-    switch (sprite->sState2)
-    {
-    case 0:
-        sprite->y2 -= 1;
-        sprite->sState2++;
-        break;
-    default:
-        sprite->y2 += 1;
-        sprite->sState2 = 0;
-        break;
+    if(sprite->oam.mosaic == FALSE){
+      // Bounce up and down
+      switch (sprite->sState2)
+      {
+      case 0:
+          sprite->y2 -= 1;
+          sprite->sState2++;
+          break;
+      default:
+          sprite->y2 += 1;
+          sprite->sState2 = 0;
+          break;
+      }
     }
 
     if (objectEvent->invisible) { // Animate exiting pokeball
@@ -6419,6 +6570,7 @@ bool8 MovementAction_EnterPokeball_Step0(struct ObjectEvent *objectEvent, struct
     u8 direction = objectEvent->facingDirection;
     InitMoveInPlace(objectEvent, sprite, direction, GetMoveDirectionFasterAnimNum(direction), 16);
     sprite->data[6] = direction == DIR_EAST ? 3 : 2; // affine animation number
+    EndFollowerTransformEffect(objectEvent, sprite);
     return MovementAction_EnterPokeball_Step1(objectEvent, sprite);
 }
 
