@@ -1677,6 +1677,201 @@ void LoadDexnavBg()
         case MAPSEC_ROUTE_101:
             DecompressAndCopyTileDataToVram(2, gDexNav_Route101_Gfx, 0, 0, 0);
             break;
+        case MAPSEC_ROUTE_102:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route102_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_103:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route103_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_104:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route104_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_105:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route105_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_106:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route106_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_107:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route107_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_108:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route108_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_109:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route109_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_110:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route110_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_111:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route111_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_112:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route112_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_113:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route113_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_114:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route114_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_115:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route115_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_116:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route116_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_117:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route117_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_118:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route118_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_119:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route119_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_120:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route120_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_121:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route121_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_122:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route122_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_123:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route123_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_124:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route124_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_125:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route125_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_126:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route126_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_127:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route127_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_128:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route128_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_129:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route129_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_130:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route130_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_131:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route131_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_132:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route132_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_133:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route133_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ROUTE_134:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Route134_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_DEWFORD_TOWN:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Dewford_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_PACIFIDLOG_TOWN:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Pacifidlog_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_PETALBURG_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Petalburg_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_SLATEPORT_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Slateport_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_LILYCOVE_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Lilycove_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_MOSSDEEP_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Mossdeep_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_SOOTOPOLIS_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Sootopolis_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_EVER_GRANDE_CITY:
+            DecompressAndCopyTileDataToVram(2, gDexNav_EverGrande_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_UNDERWATER_124:
+        case MAPSEC_UNDERWATER_126:
+        case MAPSEC_UNDERWATER_127:
+        case MAPSEC_UNDERWATER_128:
+            DecompressAndCopyTileDataToVram(2, gDexNav_Underwater_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_GRANITE_CAVE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_GraniteCave_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_BATTLE_FRONTIER:
+            DecompressAndCopyTileDataToVram(2, gDexNav_BattleFrontier_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_PETALBURG_WOODS:
+            DecompressAndCopyTileDataToVram(2, gDexNav_PetalburgWoods_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_RUSTURF_TUNNEL:
+            DecompressAndCopyTileDataToVram(2, gDexNav_RusturfTunnel_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ABANDONED_SHIP:
+            DecompressAndCopyTileDataToVram(2, gDexNav_AbandonedShip_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_NEW_MAUVILLE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_NewMauville_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_METEOR_FALLS:
+        case MAPSEC_METEOR_FALLS2:
+            DecompressAndCopyTileDataToVram(2, gDexNav_MeteorFalls_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_MT_PYRE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_MtPyreInside_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_SHOAL_CAVE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_ShoalCaveLow_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_SEAFLOOR_CAVERN:
+            DecompressAndCopyTileDataToVram(2, gDexNav_SeafloorCavern_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_VICTORY_ROAD:
+            DecompressAndCopyTileDataToVram(2, gDexNav_VictoryRoad_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_MIRAGE_ISLAND:
+            DecompressAndCopyTileDataToVram(2, gDexNav_MirageIsland_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_FIERY_PATH:
+        case MAPSEC_FIERY_PATH2:
+            DecompressAndCopyTileDataToVram(2, gDexNav_FieryPath_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_JAGGED_PASS:
+        case MAPSEC_JAGGED_PASS2:
+            DecompressAndCopyTileDataToVram(2, gDexNav_JaggedPass_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_SKY_PILLAR:
+            DecompressAndCopyTileDataToVram(2, gDexNav_SkyPillar_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_AQUA_HIDEOUT:
+            DecompressAndCopyTileDataToVram(2, gDexNav_AquaHideout_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_MAGMA_HIDEOUT:
+            DecompressAndCopyTileDataToVram(2, gDexNav_MagmaHideout_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_MIRAGE_TOWER:
+            DecompressAndCopyTileDataToVram(2, gDexNav_MirageTower_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ARTISAN_CAVE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_ArtisanCave_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_DESERT_UNDERPASS:
+            DecompressAndCopyTileDataToVram(2, gDexNav_DesertUnderpass_Gfx, 0, 0, 0);
+            break;
+        case MAPSEC_ALTERING_CAVE:
+            DecompressAndCopyTileDataToVram(2, gDexNav_AlteringCave_Gfx, 0, 0, 0);
+            break;
         default:
             DecompressAndCopyTileDataToVram(2, gDexNav_Default_Gfx, 0, 0, 0);
     }
@@ -1691,6 +1886,201 @@ void LoadDexnavBgTilemap()
         case MAPSEC_ROUTE_101:
             LZDecompressWram(gDexNav_Route101_Tilemap, sBg2TilemapBuffer);
             break;
+        case MAPSEC_ROUTE_102:
+            LZDecompressWram(gDexNav_Route102_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_103:
+            LZDecompressWram(gDexNav_Route103_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_104:
+            LZDecompressWram(gDexNav_Route104_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_105:
+            LZDecompressWram(gDexNav_Route105_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_106:
+            LZDecompressWram(gDexNav_Route106_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_107:
+            LZDecompressWram(gDexNav_Route107_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_108:
+            LZDecompressWram(gDexNav_Route108_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_109:
+            LZDecompressWram(gDexNav_Route109_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_110:
+            LZDecompressWram(gDexNav_Route110_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_111:
+            LZDecompressWram(gDexNav_Route111_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_112:
+            LZDecompressWram(gDexNav_Route112_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_113:
+            LZDecompressWram(gDexNav_Route113_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_114:
+            LZDecompressWram(gDexNav_Route114_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_115:
+            LZDecompressWram(gDexNav_Route115_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_116:
+            LZDecompressWram(gDexNav_Route116_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_117:
+            LZDecompressWram(gDexNav_Route117_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_118:
+            LZDecompressWram(gDexNav_Route118_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_119:
+            LZDecompressWram(gDexNav_Route119_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_120:
+            LZDecompressWram(gDexNav_Route120_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_121:
+            LZDecompressWram(gDexNav_Route121_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_122:
+            LZDecompressWram(gDexNav_Route122_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_123:
+            LZDecompressWram(gDexNav_Route123_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_124:
+            LZDecompressWram(gDexNav_Route124_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_125:
+            LZDecompressWram(gDexNav_Route125_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_126:
+            LZDecompressWram(gDexNav_Route126_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_127:
+            LZDecompressWram(gDexNav_Route127_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_128:
+            LZDecompressWram(gDexNav_Route128_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_129:
+            LZDecompressWram(gDexNav_Route129_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_130:
+            LZDecompressWram(gDexNav_Route130_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_131:
+            LZDecompressWram(gDexNav_Route131_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_132:
+            LZDecompressWram(gDexNav_Route132_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_133:
+            LZDecompressWram(gDexNav_Route133_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ROUTE_134:
+            LZDecompressWram(gDexNav_Route134_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_DEWFORD_TOWN:
+            LZDecompressWram(gDexNav_Dewford_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_PACIFIDLOG_TOWN:
+            LZDecompressWram(gDexNav_Pacifidlog_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_PETALBURG_CITY:
+            LZDecompressWram(gDexNav_Petalburg_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_SLATEPORT_CITY:
+            LZDecompressWram(gDexNav_Slateport_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_LILYCOVE_CITY:
+            LZDecompressWram(gDexNav_Lilycove_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_MOSSDEEP_CITY:
+            LZDecompressWram(gDexNav_Mossdeep_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_SOOTOPOLIS_CITY:
+            LZDecompressWram(gDexNav_Sootopolis_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_EVER_GRANDE_CITY:
+            LZDecompressWram(gDexNav_EverGrande_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_UNDERWATER_124:
+        case MAPSEC_UNDERWATER_126:
+        case MAPSEC_UNDERWATER_127:
+        case MAPSEC_UNDERWATER_128:
+            LZDecompressWram(gDexNav_Underwater_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_GRANITE_CAVE:
+            LZDecompressWram(gDexNav_GraniteCave_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_BATTLE_FRONTIER:
+            LZDecompressWram(gDexNav_BattleFrontier_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_PETALBURG_WOODS:
+            LZDecompressWram(gDexNav_PetalburgWoods_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_RUSTURF_TUNNEL:
+            LZDecompressWram(gDexNav_RusturfTunnel_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ABANDONED_SHIP:
+            LZDecompressWram(gDexNav_AbandonedShip_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_NEW_MAUVILLE:
+            LZDecompressWram(gDexNav_NewMauville_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_METEOR_FALLS:
+        case MAPSEC_METEOR_FALLS2:
+            LZDecompressWram(gDexNav_MeteorFalls_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_MT_PYRE:
+            LZDecompressWram(gDexNav_MtPyreInside_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_SHOAL_CAVE:
+            LZDecompressWram(gDexNav_ShoalCaveLow_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_SEAFLOOR_CAVERN:
+            LZDecompressWram(gDexNav_SeafloorCavern_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_VICTORY_ROAD:
+            LZDecompressWram(gDexNav_VictoryRoad_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_MIRAGE_ISLAND:
+            LZDecompressWram(gDexNav_MirageIsland_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_FIERY_PATH:
+        case MAPSEC_FIERY_PATH2:
+            LZDecompressWram(gDexNav_FieryPath_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_JAGGED_PASS:
+        case MAPSEC_JAGGED_PASS2:
+            LZDecompressWram(gDexNav_JaggedPass_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_SKY_PILLAR:
+            LZDecompressWram(gDexNav_SkyPillar_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_AQUA_HIDEOUT:
+            LZDecompressWram(gDexNav_AquaHideout_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_MAGMA_HIDEOUT:
+            LZDecompressWram(gDexNav_MagmaHideout_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_MIRAGE_TOWER:
+            LZDecompressWram(gDexNav_MirageTower_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ARTISAN_CAVE:
+            LZDecompressWram(gDexNav_ArtisanCave_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_DESERT_UNDERPASS:
+            LZDecompressWram(gDexNav_DesertUnderpass_Tilemap, sBg2TilemapBuffer);
+            break;
+        case MAPSEC_ALTERING_CAVE:
+            LZDecompressWram(gDexNav_AlteringCave_Tilemap, sBg2TilemapBuffer);
+            break;
         default:
             LZDecompressWram(gDexNav_Default_Tilemap, sBg2TilemapBuffer);
     }
@@ -1704,6 +2094,201 @@ void LoadDexnavBgPal()
     {
         case MAPSEC_ROUTE_101:
             LoadPalette(gDexNav_Route101_Pal, 16, 32);
+            break;
+        case MAPSEC_ROUTE_102:
+            LoadPalette(gDexNav_Route102_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_103:
+            LoadPalette(gDexNav_Route103_Pal, 16, 96);
+            break;
+        case MAPSEC_ROUTE_104:
+            LoadPalette(gDexNav_Route104_Pal, 16, 96);
+            break;
+        case MAPSEC_ROUTE_105:
+            LoadPalette(gDexNav_Route105_Pal, 16, 128);
+            break;
+        case MAPSEC_ROUTE_106:
+            LoadPalette(gDexNav_Route106_Pal, 16, 96);
+            break;
+        case MAPSEC_ROUTE_107:
+            LoadPalette(gDexNav_Route107_Pal, 16, 160);
+            break;
+        case MAPSEC_ROUTE_108:
+            LoadPalette(gDexNav_Route108_Pal, 16, 128);
+            break;
+        case MAPSEC_ROUTE_109:
+            LoadPalette(gDexNav_Route109_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_110:
+            LoadPalette(gDexNav_Route110_Pal, 16, 160);
+            break;
+        case MAPSEC_ROUTE_111:
+            LoadPalette(gDexNav_Route111_Pal, 16, 96);
+            break;
+        case MAPSEC_ROUTE_112:
+            LoadPalette(gDexNav_Route112_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_113:
+            LoadPalette(gDexNav_Route113_Pal, 16, 96);
+            break;
+        case MAPSEC_ROUTE_114:
+            LoadPalette(gDexNav_Route114_Pal, 16, 32);
+            break;
+        case MAPSEC_ROUTE_115:
+            LoadPalette(gDexNav_Route115_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_116:
+            LoadPalette(gDexNav_Route116_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_117:
+            LoadPalette(gDexNav_Route117_Pal, 16, 128);
+            break;
+        case MAPSEC_ROUTE_118:
+            LoadPalette(gDexNav_Route118_Pal, 16, 128);
+            break;
+        case MAPSEC_ROUTE_119:
+            LoadPalette(gDexNav_Route119_Pal, 16, 128);
+            break;
+        case MAPSEC_ROUTE_120:
+            LoadPalette(gDexNav_Route120_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_121:
+            LoadPalette(gDexNav_Route121_Pal, 16, 32);
+            break;
+        case MAPSEC_ROUTE_122:
+            LoadPalette(gDexNav_Route122_Pal, 16, 160);
+            break;
+        case MAPSEC_ROUTE_123:
+            LoadPalette(gDexNav_Route123_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_124:
+            LoadPalette(gDexNav_Route124_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_125:
+            LoadPalette(gDexNav_Route125_Pal, 16, 32);
+            break;
+        case MAPSEC_ROUTE_126:
+            LoadPalette(gDexNav_Route126_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_127:
+            LoadPalette(gDexNav_Route127_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_128:
+            LoadPalette(gDexNav_Route128_Pal, 16, 32);
+            break;
+        case MAPSEC_ROUTE_129:
+            LoadPalette(gDexNav_Route129_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_130:
+            LoadPalette(gDexNav_Route130_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_131:
+            LoadPalette(gDexNav_Route131_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_132:
+            LoadPalette(gDexNav_Route132_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_133:
+            LoadPalette(gDexNav_Route133_Pal, 16, 64);
+            break;
+        case MAPSEC_ROUTE_134:
+            LoadPalette(gDexNav_Route134_Pal, 16, 32);
+            break;
+        case MAPSEC_DEWFORD_TOWN:
+            LoadPalette(gDexNav_Dewford_Pal, 16, 160);
+            break;
+        case MAPSEC_PACIFIDLOG_TOWN:
+            LoadPalette(gDexNav_Pacifidlog_Pal, 16, 160);
+            break;
+        case MAPSEC_PETALBURG_CITY:
+            LoadPalette(gDexNav_Petalburg_Pal, 16, 160);
+            break;
+        case MAPSEC_SLATEPORT_CITY:
+            LoadPalette(gDexNav_Slateport_Pal, 16, 96);
+            break;
+        case MAPSEC_LILYCOVE_CITY:
+            LoadPalette(gDexNav_Lilycove_Pal, 16, 128);
+            break;
+        case MAPSEC_MOSSDEEP_CITY:
+            LoadPalette(gDexNav_Mossdeep_Pal, 16, 64);
+            break;
+        case MAPSEC_SOOTOPOLIS_CITY:
+            LoadPalette(gDexNav_Sootopolis_Pal, 16, 64);
+            break;
+        case MAPSEC_EVER_GRANDE_CITY:
+            LoadPalette(gDexNav_EverGrande_Pal, 16, 160);
+            break;
+        case MAPSEC_UNDERWATER_124:
+        case MAPSEC_UNDERWATER_126:
+        case MAPSEC_UNDERWATER_127:
+        case MAPSEC_UNDERWATER_128:
+            LoadPalette(gDexNav_Underwater_Pal, 16, 32);
+            break;
+        case MAPSEC_GRANITE_CAVE:
+            LoadPalette(gDexNav_GraniteCave_Pal, 16, 32);
+            break;
+        case MAPSEC_BATTLE_FRONTIER:
+            LoadPalette(gDexNav_BattleFrontier_Pal, 16, 96);
+            break;
+        case MAPSEC_PETALBURG_WOODS:
+            LoadPalette(gDexNav_PetalburgWoods_Pal, 16, 32);
+            break;
+        case MAPSEC_RUSTURF_TUNNEL:
+            LoadPalette(gDexNav_RusturfTunnel_Pal, 16, 32);
+            break;
+        case MAPSEC_ABANDONED_SHIP:
+            LoadPalette(gDexNav_AbandonedShip_Pal, 16, 160);
+            break;
+        case MAPSEC_NEW_MAUVILLE:
+            LoadPalette(gDexNav_NewMauville_Pal, 16, 96);
+            break;
+        case MAPSEC_METEOR_FALLS:
+        case MAPSEC_METEOR_FALLS2:
+            LoadPalette(gDexNav_MeteorFalls_Pal, 16, 96);
+            break;
+        case MAPSEC_MT_PYRE:
+            LoadPalette(gDexNav_MtPyreInside_Pal, 16, 32);
+            break;
+        case MAPSEC_SHOAL_CAVE:
+            LoadPalette(gDexNav_ShoalCaveLow_Pal, 16, 32);
+            break;
+        case MAPSEC_SEAFLOOR_CAVERN:
+            LoadPalette(gDexNav_SeafloorCavern_Pal, 16, 64);
+            break;
+        case MAPSEC_VICTORY_ROAD:
+            LoadPalette(gDexNav_VictoryRoad_Pal, 16, 64);
+            break;
+        case MAPSEC_MIRAGE_ISLAND:
+            LoadPalette(gDexNav_MirageIsland_Pal, 16, 32);
+            break;
+        case MAPSEC_FIERY_PATH:
+        case MAPSEC_FIERY_PATH2:
+            LoadPalette(gDexNav_FieryPath_Pal, 16, 32);
+            break;
+        case MAPSEC_JAGGED_PASS:
+        case MAPSEC_JAGGED_PASS2:
+            LoadPalette(gDexNav_JaggedPass_Pal, 16, 64);
+            break;
+        case MAPSEC_SKY_PILLAR:
+            LoadPalette(gDexNav_SkyPillar_Pal, 16, 32);
+            break;
+        case MAPSEC_AQUA_HIDEOUT:
+            LoadPalette(gDexNav_AquaHideout_Pal, 16, 96);
+            break;
+        case MAPSEC_MAGMA_HIDEOUT:
+            LoadPalette(gDexNav_MagmaHideout_Pal, 16, 32);
+            break;
+        case MAPSEC_MIRAGE_TOWER:
+            LoadPalette(gDexNav_MirageTower_Pal, 16, 32);
+            break;
+        case MAPSEC_ARTISAN_CAVE:
+            LoadPalette(gDexNav_ArtisanCave_Pal, 16, 32);
+            break;
+        case MAPSEC_DESERT_UNDERPASS:
+            LoadPalette(gDexNav_DesertUnderpass_Pal, 16, 32);
+            break;
+        case MAPSEC_ALTERING_CAVE:
+            LoadPalette(gDexNav_AlteringCave_Pal, 16, 32);
             break;
         default:
             LoadPalette(gDexNav_Default_Pal, 16, 32);
