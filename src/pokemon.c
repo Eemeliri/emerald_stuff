@@ -4163,6 +4163,13 @@ u32 GetUnownSpeciesId(u32 personality)
     return unownLetter + SPECIES_UNOWN_B - 1;
 }
 
+u32 GetArbokVariant(u8 metGame)
+{
+    if (metGame == VERSION_FIRE_RED || metGame == VERSION_LEAF_GREEN)
+        return SPECIES_ARBOK_KANTO;
+    return SPECIES_ARBOK;
+}
+
 void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
 {
     if (gMonSpritesGfxPtr != NULL)

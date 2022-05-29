@@ -893,7 +893,8 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
             &gMonFrontPicTable[species],
             gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
             species,
-            personality);
+            personality,
+            GetMonData(gContestMons[i], MON_DATA_MET_GAME));
 
         pokePal = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
         LoadCompressedSpritePalette(pokePal);
@@ -2564,7 +2565,7 @@ void ShowContestEntryMonPic(void)
         taskId = CreateTask(Task_ShowContestEntryMonPic, 0x50);
         gTasks[taskId].data[0] = 0;
         gTasks[taskId].data[1] = species;
-        HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], species, personality);
+        HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], species, personality,GetMonData(gContestMons[gSpecialVar_0x8006], MON_DATA_MET_GAME));
 
         palette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
         LoadCompressedSpritePalette(palette);

@@ -568,6 +568,7 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     u32 monsPersonality, currentPersonality, otId, species, paletteOffset, position;
     const void *lzPaletteData;
     struct Pokemon *illusionMon = GetIllusionMonPtr(battlerId);
+    u8 metGame = VERSION_EMERALD;
     if (illusionMon != NULL)
         mon = illusionMon;
 
@@ -581,6 +582,7 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     {
         species = gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies;
         currentPersonality = gTransformedPersonalities[battlerId];
+        metGame = GetMonData(mon, MON_DATA_MET_GAME);
     }
 
     otId = GetMonData(mon, MON_DATA_OT_ID);
@@ -589,13 +591,15 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     {
         HandleLoadSpecialPokePic(&gMonFrontPicTable[species],
                                  gMonSpritesGfxPtr->sprites.ptr[position],
-                                 species, currentPersonality);
+                                 species, currentPersonality,
+                                 metGame);
     }
     else
     {
         HandleLoadSpecialPokePic(&gMonBackPicTable[species],
                                  gMonSpritesGfxPtr->sprites.ptr[position],
-                                 species, currentPersonality);
+                                 species, currentPersonality,
+                                 metGame);
     }
 
     paletteOffset = 0x100 + battlerId * 16;
@@ -872,7 +876,8 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
         HandleLoadSpecialPokePic(&gMonBackPicTable[targetSpecies],
                                  gMonSpritesGfxPtr->sprites.ptr[position],
                                  targetSpecies,
-                                 gContestResources->moveAnim->targetPersonality);
+                                 gContestResources->moveAnim->targetPersonality,
+                                 VERSION_EMERALD);
     }
     else
     {
@@ -891,7 +896,8 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(&gMonBackPicTable[targetSpecies],
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     gTransformedPersonalities[battlerAtk],
+                                     VERSION_EMERALD);
         }
         else
         {
@@ -901,7 +907,8 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(&gMonFrontPicTable[targetSpecies],
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     gTransformedPersonalities[battlerAtk],
+                                     GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerAtk]], MON_DATA_MET_GAME));
         }
     }
 

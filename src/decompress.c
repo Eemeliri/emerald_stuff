@@ -86,7 +86,7 @@ void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
         DecompressPicFromTable(&gMonFrontPicTable[species], buffer, species);
 }
 
-void HandleLoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality)
+void HandleLoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, u8 metGame)
 {
     bool8 isFrontPic;
 
@@ -95,10 +95,10 @@ void HandleLoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *des
     else
         isFrontPic = FALSE; // backPic
 
-    LoadSpecialPokePic(src, dest, species, personality, isFrontPic);
+    LoadSpecialPokePic(src, dest, species, personality, isFrontPic, metGame);
 }
 
-void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic)
+void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic, u8 metGame)
 {
     if (species == SPECIES_UNOWN)
     {
@@ -108,6 +108,11 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
             LZ77UnCompWram(gMonBackPicTable[id].data, dest);
         else
             LZ77UnCompWram(gMonFrontPicTable[id].data, dest);
+    }
+    else if (species == SPECIES_ARBOK && isFrontPic)
+    {
+        // Arbok from Kanto are different to Arbok from Hoenn.
+        LZ77UnCompWram(gMonFrontPicTable[GetArbokVariant(metGame)].data, dest);
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);

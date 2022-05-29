@@ -552,7 +552,7 @@ struct PokemonStorageSystemData
     struct ItemIcon itemIcons[MAX_ITEM_ICONS];
     u16 movingItemId;
     u16 itemInfoWindowOffset;
-    u8 unkUnused2; // Unused
+    u8 displayMonMetGame; // Unused
     u16 displayMonPalOffset;
     u16 *displayMonTilePtr;
     struct Sprite *displayMonSprite;
@@ -864,7 +864,7 @@ static bool8 IsDisplayMosaicActive(void);
 static void ShowYesNoWindow(s8);
 static void UpdateCloseBoxButtonTilemap(bool8);
 static void PrintMessage(u8 id);
-static void LoadDisplayMonGfx(u16, u32);
+static void LoadDisplayMonGfx(u16, u32, u8 metGame);
 static void SpriteCB_DisplayMonMosaic(struct Sprite *);
 static void SetPartySlotTilemap(u8, bool8);
 
@@ -3912,7 +3912,7 @@ static void CreateWaveformSprites(void)
 
 static void RefreshDisplayMonData(void)
 {
-    LoadDisplayMonGfx(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
+    LoadDisplayMonGfx(sStorage->displayMonSpecies, sStorage->displayMonPersonality, sStorage->displayMonMetGame);
     PrintDisplayMonInfo();
     UpdateWaveformAnimation();
     ScheduleBgCopyTilemapToVram(0);
@@ -3992,14 +3992,14 @@ static void CreateDisplayMonSprite(void)
     }
 }
 
-static void LoadDisplayMonGfx(u16 species, u32 pid)
+static void LoadDisplayMonGfx(u16 species, u32 pid, u8 metGame)
 {
     if (sStorage->displayMonSprite == NULL)
         return;
 
     if (species != SPECIES_NONE)
     {
-        LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
+        LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE, metGame);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
@@ -6984,6 +6984,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
                 ConvertIntToDecimalStringN(sStorage->displayMonSpAtkEV, GetMonData(mon, MON_DATA_SPATK_IV), STR_CONV_MODE_RIGHT_ALIGN, 3);
                 ConvertIntToDecimalStringN(sStorage->displayMonSpDefEV, GetMonData(mon, MON_DATA_SPDEF_IV), STR_CONV_MODE_RIGHT_ALIGN, 3);
             }
+            sStorage->displayMonMetGame = GetMonData(mon, MON_DATA_MET_GAME);
         }
     }
     else if (mode == MODE_BOX)
@@ -7023,7 +7024,8 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
                 ConvertIntToDecimalStringN(sStorage->displayMonSpdEV, GetBoxMonData(boxMon, MON_DATA_SPEED_IV), STR_CONV_MODE_RIGHT_ALIGN, 3);
                 ConvertIntToDecimalStringN(sStorage->displayMonSpAtkEV, GetBoxMonData(boxMon, MON_DATA_SPATK_IV), STR_CONV_MODE_RIGHT_ALIGN, 3);
                 ConvertIntToDecimalStringN(sStorage->displayMonSpDefEV, GetBoxMonData(boxMon, MON_DATA_SPDEF_IV), STR_CONV_MODE_RIGHT_ALIGN, 3);
-            }
+            }\
+            sStorage->displayMonMetGame = GetBoxMonData(boxMon, MON_DATA_MET_GAME);
         }
     }
     else
@@ -10221,10 +10223,11 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
 
     // Update front sprite
     sStorage->displayMonSpecies = species;
+    sStorage->displayMonMetGame = GetBoxMonData(boxMon, MON_DATA_MET_GAME);;
     sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
     if (!sJustOpenedBag)
     {
-        LoadDisplayMonGfx(species, pid);
+        LoadDisplayMonGfx(species, pid, sStorage->displayMonMetGame);
         StartDisplayMonMosaicEffect();
 
         // Recreate icon sprite

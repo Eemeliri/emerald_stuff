@@ -371,7 +371,8 @@ static void InitContestMonPixels(u16 species, bool8 backPic)
             &gMonFrontPicTable[species],
             gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
             species,
-            gContestPaintingWinner->personality);
+            gContestPaintingWinner->personality,
+            VERSION_EMERALD);
         _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
     else
@@ -380,7 +381,8 @@ static void InitContestMonPixels(u16 species, bool8 backPic)
             &gMonBackPicTable[species],
             gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT],
             species,
-            gContestPaintingWinner->personality);
+            gContestPaintingWinner->personality,
+            VERSION_EMERALD);
         _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
 }

@@ -2149,7 +2149,8 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
                            gMonSpritesGfxPtr->buffer,
                            species,
                            personality,
-                           TRUE);
+                           TRUE,
+                           VERSION_EMERALD);
     }
     else
     {
@@ -2158,7 +2159,8 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
                            gMonSpritesGfxPtr->buffer,
                            species,
                            personality,
-                           FALSE);
+                           FALSE,
+                           VERSION_EMERALD);
     }
 
     RequestDma3Copy(gMonSpritesGfxPtr->buffer, (void *)(OBJ_VRAM0 + (sheet * 0x20)), MON_PIC_SIZE, 1);
