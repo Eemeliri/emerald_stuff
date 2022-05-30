@@ -3,7 +3,8 @@ EventScript_CutTree::
 	lockall
 	goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
 	checkpartymove MOVE_CUT
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CheckTreeCantCut
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnCut
+CanLearnCut::
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	buffermovename STR_VAR_2, MOVE_CUT
@@ -35,6 +36,9 @@ Movement_CutTreeDown:
 	cut_tree
 	step_end
 
+CheckLearnCut::
+	canlearntm ITEM_HM01
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnCut
 EventScript_CheckTreeCantCut::
 	msgbox Text_CantCut, MSGBOX_DEFAULT
 	releaseall
@@ -62,7 +66,8 @@ EventScript_RockSmash::
 	lockall
 	goto_if_unset FLAG_BADGE03_GET, EventScript_CantSmashRock
 	checkpartymove MOVE_ROCK_SMASH
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantSmashRock
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnRockSmash
+CanLearnRockSmash::
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	buffermovename STR_VAR_2, MOVE_ROCK_SMASH
@@ -103,6 +108,9 @@ Movement_SmashRock:
 	rock_smash_break
 	step_end
 
+CheckLearnRockSmash::
+	canlearntm ITEM_HM06
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnRockSmash
 EventScript_CantSmashRock::
 	msgbox Text_CantSmash, MSGBOX_DEFAULT
 	releaseall
@@ -126,7 +134,8 @@ EventScript_StrengthBoulder::
 	goto_if_unset FLAG_BADGE04_GET, EventScript_CantStrength
 	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_CheckActivatedBoulder
 	checkpartymove MOVE_STRENGTH
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantStrength
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnStrength
+CanLearnStrength::
 	setfieldeffectargument 0, VAR_RESULT
 	msgbox Text_WantToStrength, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelStrength
@@ -149,6 +158,9 @@ EventScript_ActivateStrength::
 	releaseall
 	end
 
+CheckLearnStrength::
+	canlearntm ITEM_HM04
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnStrength
 EventScript_CantStrength::
 	msgbox Text_CantStrength, MSGBOX_DEFAULT
 	releaseall
@@ -185,7 +197,8 @@ Text_StrengthActivated:
 EventScript_UseWaterfall::
 	lockall
 	checkpartymove MOVE_WATERFALL
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantWaterfall
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnWaterfall
+CanLearnWaterfall::
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	msgbox Text_WantToWaterfall, MSGBOX_YESNO
@@ -197,6 +210,9 @@ EventScript_UseWaterfall::
 EventScript_CannotUseWaterfall::
 	lockall
 
+CheckLearnWaterfall::
+	canlearntm ITEM_HM05
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnWaterfall
 EventScript_CantWaterfall::
 	msgbox Text_CantWaterfall, MSGBOX_DEFAULT
 
@@ -218,7 +234,8 @@ Text_MonUsedWaterfall:
 EventScript_UseDive::
 	lockall
 	checkpartymove MOVE_DIVE
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantDive
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnDive
+CanLearnDive::
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	setfieldeffectargument 1, 1
@@ -229,6 +246,9 @@ EventScript_UseDive::
 	goto EventScript_EndDive
 	end
 
+CheckLearnDive::
+	canlearntm ITEM_HM07
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnDive
 EventScript_CantDive::
 	msgbox Text_CantDive, MSGBOX_DEFAULT
 	releaseall
@@ -241,7 +261,8 @@ EventScript_EndDive::
 EventScript_UseDiveUnderwater::
 	lockall
 	checkpartymove MOVE_DIVE
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantSurface
+	goto_if_eq VAR_RESULT, PARTY_SIZE, CheckLearnDiveUnderwater
+CanLearnDiveUnderwater::
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	setfieldeffectargument 1, 1
@@ -252,6 +273,9 @@ EventScript_UseDiveUnderwater::
 	goto EventScript_EndSurface
 	end
 
+CheckLearnDiveUnderwater::
+	canlearntm ITEM_HM07
+	goto_if_ne VAR_RESULT, PARTY_SIZE, CanLearnDiveUnderwater
 EventScript_CantSurface::
 	lockall
 	msgbox Text_CantSurface, MSGBOX_DEFAULT

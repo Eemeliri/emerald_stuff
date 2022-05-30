@@ -229,6 +229,7 @@ gScriptCmdTable::
 	.4byte ScrCmd_bufferitemnameplural      @ 0xe2
     .4byte ScrCmd_callfunc                  @ 0xe3
 	.4byte ScrCmd_givecustommon				@ 0xe4
+	.4byte ScrCmd_canlearntm				@ 0xe5
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

@@ -1854,6 +1854,12 @@
     .endif
     .endm
 
+	@ Checks if any of the party can learn a TM (used for ow HM moves)
+	.macro canlearntm tm:req
+	.byte 0xe5
+	.2byte \tm
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
