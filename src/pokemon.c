@@ -4167,6 +4167,10 @@ u32 GetArbokVariant(u8 metGame)
 {
     if (metGame == VERSION_FIRE_RED || metGame == VERSION_LEAF_GREEN)
         return SPECIES_ARBOK_KANTO;
+    if (metGame == VERSION_HEART_GOLD || metGame == VERSION_SOUL_SILVER)
+        return SPECIES_ARBOK_JOHTO;
+    if (metGame == VERSION_DIAMOND || metGame == VERSION_PEARL || metGame == VERSION_PLATINUM)
+        return SPECIES_ARBOK_SINNOH;
     return SPECIES_ARBOK;
 }
 

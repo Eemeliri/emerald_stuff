@@ -92,6 +92,8 @@ extern const u32 gMonFrontPic_Fearow[];
 extern const u32 gMonFrontPic_Ekans[];
 extern const u32 gMonFrontPic_Arbok[];
 extern const u32 gMonFrontPic_ArbokKanto[];
+extern const u32 gMonFrontPic_ArbokJohto[];
+extern const u32 gMonFrontPic_ArbokSinnoh[];
 extern const u32 gMonFrontPic_Pikachu[];
 extern const u32 gMonFrontPic_Raichu[];
 extern const u32 gMonFrontPic_Sandshrew[];

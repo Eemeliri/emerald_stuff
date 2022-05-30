@@ -1343,8 +1343,10 @@
 
 //Arbok
 #define SPECIES_ARBOK_KANTO                  FORMS_START + 309
+#define SPECIES_ARBOK_JOHTO                  FORMS_START + 310
+#define SPECIES_ARBOK_SINNOH                  FORMS_START + 311
 
-#define SPECIES_EGG SPECIES_ARBOK_KANTO + 1
+#define SPECIES_EGG SPECIES_ARBOK_SINNOH + 1
 #define NUM_SPECIES SPECIES_EGG
 
 // Species Flags
