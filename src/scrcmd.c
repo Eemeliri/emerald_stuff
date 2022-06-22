@@ -107,6 +107,7 @@ bool8 ScrCmd_nop1(struct ScriptContext *ctx)
 
 bool8 ScrCmd_end(struct ScriptContext *ctx)
 {
+    FlagClear(FLAG_SAFE_FOLLOWER_MOVEMENT);
     StopScript(ctx);
     return FALSE;
 }
@@ -297,6 +298,7 @@ bool8 ScrCmd_returnram(struct ScriptContext *ctx)
 
 bool8 ScrCmd_endram(struct ScriptContext *ctx)
 {
+    FlagClear(FLAG_SAFE_FOLLOWER_MOVEMENT);
     ClearRamScript();
     StopScript(ctx);
     return TRUE;
@@ -1273,7 +1275,6 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
 {
     u8 playerObjectId;
     struct ObjectEvent *followerObject = GetFollowerObject();
-    FlagClear(FLAG_SAFE_FOLLOWER_MOVEMENT);
     // Release follower from movement iff it exists and is in the shadowing state
     if (followerObject && gSprites[followerObject->spriteId].data[1] == 0)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
@@ -1290,7 +1291,6 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
 {
     u8 playerObjectId;
     struct ObjectEvent *followerObject = GetFollowerObject();
-    FlagClear(FLAG_SAFE_FOLLOWER_MOVEMENT);
     // Release follower from movement iff it exists and is in the shadowing state
     if (followerObject && gSprites[followerObject->spriteId].data[1] == 0)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
