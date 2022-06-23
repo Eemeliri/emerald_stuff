@@ -756,4 +756,13 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_GLACIAL_LANCE] = _("GlacialLance"),
     [MOVE_ASTRAL_BARRAGE] = _("AstrlBarrage"),
     [MOVE_EERIE_SPELL] = _("Eerie Spell"),
+    [MOVE_HIDDEN_POWER_GROUND] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_GRASS] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_FIGHTING] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_FIRE] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_ROCK] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_ELECTRIC] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_ICE] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_WATER] = _("Hidden Power"),
+    [MOVE_HIDDEN_POWER_FLYING] = _("Hidden Power"),
 };

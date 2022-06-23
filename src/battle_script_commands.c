@@ -11065,6 +11065,9 @@ static void Cmd_transformdataexecution(void)
                 gBattleMons[gBattlerAttacker].pp[i] = gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].pp;
             else
                 gBattleMons[gBattlerAttacker].pp[i] = 5;
+
+            if (gBattleMons[gBattlerAttacker].moves[i] >= MOVE_HIDDEN_POWER_GROUND)
+                gBattleMons[gBattlerAttacker].moves[i] = MOVE_HIDDEN_POWER;
         }
 
         gActiveBattler = gBattlerAttacker;
@@ -11122,7 +11125,12 @@ static void Cmd_mimicattackcopy(void)
         if (i == MAX_MON_MOVES)
         {
             gChosenMove = 0xFFFF;
-            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastMoves[gBattlerTarget];
+            
+            if (gLastMoves[gBattlerTarget] >= MOVE_HIDDEN_POWER_GROUND)
+                gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = MOVE_HIDDEN_POWER;
+            else
+                gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastMoves[gBattlerTarget];
+
             if (gBattleMoves[gLastMoves[gBattlerTarget]].pp < 5)
                 gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gLastMoves[gBattlerTarget]].pp;
             else
@@ -11398,7 +11406,11 @@ static void Cmd_copymovepermanently(void) // sketch
         {
             struct MovePpInfo movePpData;
 
-            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
+            if (gLastMoves[gBattlerTarget] >= MOVE_HIDDEN_POWER_GROUND)
+                gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = MOVE_HIDDEN_POWER;
+            else
+                gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
+            
             gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gLastPrintedMoves[gBattlerTarget]].pp;
             gActiveBattler = gBattlerAttacker;
 

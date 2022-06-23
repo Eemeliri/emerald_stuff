@@ -779,6 +779,15 @@ gBattleAnims_Moves::
 	.4byte Move_GLACIAL_LANCE
 	.4byte Move_ASTRAL_BARRAGE
 	.4byte Move_EERIE_SPELL
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
+	.4byte Move_HIDDEN_POWER
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
