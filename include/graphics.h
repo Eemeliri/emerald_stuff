@@ -12464,6 +12464,7 @@ extern const u32 gFrontierPassMedals_Gfx[];
 extern const u16 gFrontierPassCursor_Pal[];
 extern const u16 gFrontierPassMedalsGold_Pal[];
 extern const u16 gFrontierPassMedalsSilver_Pal[];
+extern const u16 gFrontierPassMedalsBronze_Pal[];
 extern const u16 gFrontierPassMapCursor_Pal[];
 
 // Easy Chat Screen
