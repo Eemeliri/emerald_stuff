@@ -313,9 +313,10 @@ struct BattleTowerEReaderTrainer
     /*0x00*/ u8 mode:1;       //0=Regular Mode, 1=League Mode
              u8 levelmode:1;  //0=keep pokemon levels, 1=set to players highest level
              u8 randomise:1;  //0=don't randomise, 1=randomise
-             u8 numpoke:5;    //Number of pokemon eReader Trainer will use
+             u8 padding:5;    //Padding
     /*0x01*/ u8 facilityClass;
-    /*0x02*/ u8 numpokeplayer;      //Number of pokemon player can use
+    /*0x02*/ u8 numpokeplayer:4;    //Number of pokemon player can use
+             u8 numpoke:4;          //Number of pokemon eReader Trainer will use
     /*0x03*/ u8 setlevel;     //Level to set the player's pokemon to
     /*0x04*/ u8 name[PLAYER_NAME_LENGTH + 1];
     /*0x0C*/ u8 trainerId[TRAINER_ID_LENGTH];

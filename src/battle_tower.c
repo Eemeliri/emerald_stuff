@@ -3018,7 +3018,7 @@ static void FillEReaderTrainerWithPlayerData(void)
     CopyTrainerId(ereaderTrainer->trainerId, gSaveBlock2Ptr->playerTrainerId);
     StringCopy_PlayerName(ereaderTrainer->name, gSaveBlock2Ptr->playerName);
 
-    ereaderTrainer->winStreak = 1;
+    //ereaderTrainer->winStreak = 1;
 
     j = 7;
     for (i = 0; i < 6; i++)
