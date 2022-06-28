@@ -19,4 +19,5 @@ gMysteryEventScriptCmdTable::
 	.4byte MEScrCmd_enableresetrtc      @ 0x0e
 	.4byte MEScrCmd_checksum            @ 0x0f
 	.4byte MEScrCmd_crc                 @ 0x10
+	.4byte MEScrCmd_addbattledometrainer @ 0x11
 gMysteryEventScriptCmdTableEnd::

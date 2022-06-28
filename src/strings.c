@@ -1867,3 +1867,4 @@ const u8 gText_SinnohLeaders[] = _("Sinnoh Leaders");
 const u8 gText_UnovaLeaders[] = _("Unova Leaders");
 const u8 gText_WorldLeaders[] = _("World Leaders");
 const u8 gText_Champions[] = _("Champions");
+const u8 gText_Special[] = _("Special");

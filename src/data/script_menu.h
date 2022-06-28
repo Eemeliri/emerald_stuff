@@ -983,7 +983,8 @@ static const u8 *const sPWTOptions[PWT_SELECTION_COUNT] =
     [PWT_SELECTION_UNOVA]     = gText_UnovaLeaders,
     [PWT_SELECTION_WORLDS]    = gText_WorldLeaders,
     [PWT_SELECTION_CHAMPIONS] = gText_Champions,
-    [PWT_SELECTION_EXIT]  = gText_Exit,
+    [PWT_SELECTION_SPECIAL]   = gText_Special,
+    [PWT_SELECTION_EXIT]      = gText_Exit,
 };
 
 static const u8 *const sCableClubOptions_WithRecordMix[] =

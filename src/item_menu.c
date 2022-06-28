@@ -1022,7 +1022,7 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
         else
         {
             // Print registered icon
-            if (gSaveBlock1Ptr->registeredItem && gSaveBlock1Ptr->registeredItem == itemId)
+            if (gSaveBlock2Ptr->registeredItem && gSaveBlock2Ptr->registeredItem == itemId)
                 BlitBitmapToWindow(windowId, sRegisteredSelect_Gfx, 96, y - 1, 24, 16);
         }
     }
@@ -1677,7 +1677,7 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_KeyItemsPocket);
                 memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocket, sizeof(sContextMenuItems_KeyItemsPocket));
-                if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
+                if (gSaveBlock2Ptr->registeredItem == gSpecialVar_ItemId)
                     gBagMenu->contextMenuItemsBuffer[1] = ACTION_DESELECT;
                 if (gSpecialVar_ItemId == ITEM_MACH_BIKE || gSpecialVar_ItemId == ITEM_ACRO_BIKE)
                 {
@@ -1980,10 +1980,10 @@ static void ItemMenu_Register(u8 taskId)
     u16* scrollPos = &gBagPosition.scrollPosition[gBagPosition.pocket];
     u16* cursorPos = &gBagPosition.cursorPosition[gBagPosition.pocket];
 
-    if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
-        gSaveBlock1Ptr->registeredItem = 0;
+    if (gSaveBlock2Ptr->registeredItem == gSpecialVar_ItemId)
+        gSaveBlock2Ptr->registeredItem = 0;
     else
-        gSaveBlock1Ptr->registeredItem = gSpecialVar_ItemId;
+        gSaveBlock2Ptr->registeredItem = gSpecialVar_ItemId;
     DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
     LoadBagItemListBuffers(gBagPosition.pocket);
     tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
@@ -2112,22 +2112,22 @@ bool8 UseRegisteredKeyItemOnField(void)
         return FALSE;
     HideMapNamePopUpWindow();
     ChangeBgY_ScreenOff(0, 0, BG_COORD_SET);
-    if (gSaveBlock1Ptr->registeredItem != ITEM_NONE)
+    if (gSaveBlock2Ptr->registeredItem != ITEM_NONE)
     {
-        if (CheckBagHasItem(gSaveBlock1Ptr->registeredItem, 1) == TRUE)
+        if (CheckBagHasItem(gSaveBlock2Ptr->registeredItem, 1) == TRUE)
         {
             ScriptContext2_Enable();
             FreezeObjectEvents();
             PlayerFreeze();
             StopPlayerAvatar();
-            gSpecialVar_ItemId = gSaveBlock1Ptr->registeredItem;
-            taskId = CreateTask(ItemId_GetFieldFunc(gSaveBlock1Ptr->registeredItem), 8);
+            gSpecialVar_ItemId = gSaveBlock2Ptr->registeredItem;
+            taskId = CreateTask(ItemId_GetFieldFunc(gSaveBlock2Ptr->registeredItem), 8);
             gTasks[taskId].tUsingRegisteredKeyItem = TRUE;
             return TRUE;
         }
         else
         {
-            gSaveBlock1Ptr->registeredItem = ITEM_NONE;
+            gSaveBlock2Ptr->registeredItem = ITEM_NONE;
         }
     }
     ScriptContext1_SetupScript(EventScript_SelectWithoutRegisteredItem);
@@ -2358,16 +2358,16 @@ static void PrepareBagForWallyTutorial(void)
     u32 i;
 
     sTempWallyBag = AllocZeroed(sizeof(*sTempWallyBag));
-    memcpy(sTempWallyBag->bagPocket_Medicine, gSaveBlock1Ptr->bagPocket_Medicine, sizeof(gSaveBlock1Ptr->bagPocket_Medicine));
-    memcpy(sTempWallyBag->bagPocket_PokeBalls, gSaveBlock1Ptr->bagPocket_PokeBalls, sizeof(gSaveBlock1Ptr->bagPocket_PokeBalls));
+    memcpy(sTempWallyBag->bagPocket_Medicine, gSaveBlock2Ptr->bagPocket_Medicine, sizeof(gSaveBlock2Ptr->bagPocket_Medicine));
+    memcpy(sTempWallyBag->bagPocket_PokeBalls, gSaveBlock2Ptr->bagPocket_PokeBalls, sizeof(gSaveBlock2Ptr->bagPocket_PokeBalls));
     sTempWallyBag->pocket = gBagPosition.pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
     {
         sTempWallyBag->cursorPosition[i] = gBagPosition.cursorPosition[i];
         sTempWallyBag->scrollPosition[i] = gBagPosition.scrollPosition[i];
     }
-    ClearItemSlots(gSaveBlock1Ptr->bagPocket_Medicine, BAG_MEDICINE_COUNT);
-    ClearItemSlots(gSaveBlock1Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT);
+    ClearItemSlots(gSaveBlock2Ptr->bagPocket_Medicine, BAG_MEDICINE_COUNT);
+    ClearItemSlots(gSaveBlock2Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT);
     ResetBagScrollPositions();
 }
 
@@ -2375,8 +2375,8 @@ static void RestoreBagAfterWallyTutorial(void)
 {
     u32 i;
 
-    memcpy(gSaveBlock1Ptr->bagPocket_Medicine, sTempWallyBag->bagPocket_Medicine, sizeof(sTempWallyBag->bagPocket_Medicine));
-    memcpy(gSaveBlock1Ptr->bagPocket_PokeBalls, sTempWallyBag->bagPocket_PokeBalls, sizeof(sTempWallyBag->bagPocket_PokeBalls));
+    memcpy(gSaveBlock2Ptr->bagPocket_Medicine, sTempWallyBag->bagPocket_Medicine, sizeof(sTempWallyBag->bagPocket_Medicine));
+    memcpy(gSaveBlock2Ptr->bagPocket_PokeBalls, sTempWallyBag->bagPocket_PokeBalls, sizeof(sTempWallyBag->bagPocket_PokeBalls));
     gBagPosition.pocket = sTempWallyBag->pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
     {
@@ -3284,31 +3284,31 @@ static void SortItemsInBag(u8 pocket, u8 type)
     switch (pocket)
     {
     case ITEMS_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_Items;
+        itemMem = gSaveBlock2Ptr->bagPocket_Items;
         itemAmount = BAG_ITEMS_COUNT;
         break;
     case MEDICINE_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_Medicine;
+        itemMem = gSaveBlock2Ptr->bagPocket_Medicine;
         itemAmount = BAG_MEDICINE_COUNT;
         break;
     case KEYITEMS_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_KeyItems;
+        itemMem = gSaveBlock2Ptr->bagPocket_KeyItems;
         itemAmount = BAG_KEYITEMS_COUNT;
         break;
     case BALLS_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_PokeBalls;
+        itemMem = gSaveBlock2Ptr->bagPocket_PokeBalls;
         itemAmount = BAG_POKEBALLS_COUNT;
         break;
     case BATTLEITEMS_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_BattleItems;
+        itemMem = gSaveBlock2Ptr->bagPocket_BattleItems;
         itemAmount = BAG_BATTLEITEMS_COUNT;
         break;
     case BERRIES_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_Berries;
+        itemMem = gSaveBlock2Ptr->bagPocket_Berries;
         itemAmount = BAG_BERRIES_COUNT;
         break;
     case MEGASTONES_POCKET:
-        itemMem = gSaveBlock1Ptr->bagPocket_MegaStones;
+        itemMem = gSaveBlock2Ptr->bagPocket_MegaStones;
         itemAmount = BAG_MEGASTONES_COUNT;
         break;
     case TMHM_POCKET:

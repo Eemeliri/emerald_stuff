@@ -610,6 +610,8 @@ static void CreatePWTMultichoice(void)
         selectionCount++;
     }
 
+    sPWTSelections[selectionCount] = PWT_SELECTION_SPECIAL;
+    selectionCount++;
     sPWTSelections[selectionCount] = PWT_SELECTION_EXIT;
     selectionCount++;
 

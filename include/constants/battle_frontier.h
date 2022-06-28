@@ -34,6 +34,7 @@
 #define PWT_MODE_WORLD_LEADERS     6
 #define PWT_MODE_WORLDS_BEST       7
 #define PWT_MODE_CHAMPIONS         8
+#define PWT_MODE_SPECIAL           9
 
 // Challenge Statuses
 #define CHALLENGE_STATUS_SAVING   1

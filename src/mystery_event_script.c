@@ -3,6 +3,7 @@
 #include "battle_tower.h"
 #include "easy_chat.h"
 #include "event_data.h"
+#include "constants/flags.h"
 #include "mail.h"
 #include "mystery_event_script.h"
 #include "pokedex.h"
@@ -343,9 +344,24 @@ bool8 MEScrCmd_givepokemon(struct ScriptContext *ctx)
 bool8 MEScrCmd_addtrainer(struct ScriptContext *ctx)
 {
     u32 data = ScriptReadWord(ctx) - ctx->mOffset + ctx->mScriptBase;
-    memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, (void *)data, sizeof(gSaveBlock2Ptr->frontier.ereaderTrainer));
+    memcpy(&gSaveBlock1Ptr->frontier.ereaderTrainer[0], (void *)data, sizeof(gSaveBlock1Ptr->frontier.ereaderTrainer[0]));
     ValidateEReaderTrainer();
     StringExpandPlaceholders(gStringVar4, gText_MysteryEventNewTrainer);
+    ctx->mStatus = MEVENT_STATUS_SUCCESS;
+    return FALSE;
+}
+
+bool8 MEScrCmd_addbattledometrainer(struct ScriptContext *ctx)
+{
+    u32 data = ScriptReadWord(ctx) - ctx->mOffset + ctx->mScriptBase;
+    memcpy(&gSaveBlock1Ptr->frontier.ereaderTrainer[VarGet(VAR_DOME_TRAINER)+1], (void *)data, sizeof(gSaveBlock1Ptr->frontier.ereaderTrainer[0]));
+    ValidateEReaderTrainer();
+    VarSet(VAR_DOME_TRAINER, VarGet(VAR_DOME_TRAINER)+1);
+    if(VarGet(VAR_DOME_TRAINER)==8){
+        VarSet(VAR_DOME_TRAINER,0);
+    }
+    FlagSet(FLAG_SPECIAL_PWT);
+    StringExpandPlaceholders(gStringVar4, gText_MysteryEventNewBattleDomeTrainer);
     ctx->mStatus = MEVENT_STATUS_SUCCESS;
     return FALSE;
 }

@@ -268,7 +268,7 @@
 #define VAR_PWT_COUNTER                      0x40F9
 #define VAR_DEXNAV_SPECIES                   0x40FA // Registered dexnav species
 #define VAR_DEXNAV_STEP_COUNTER              0x40FB // steps for finding hidden pokemon
-#define VAR_UNUSED_0x40FC                    0x40FC // Unused Var
+#define VAR_DOME_TRAINER                     0x40FC // Counter for eReader Dome Trainers
 #define VAR_UNUSED_0x40FD                    0x40FD // Unused Var
 #define VAR_UNUSED_0x40FE                    0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var

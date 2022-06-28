@@ -1273,7 +1273,7 @@ static void OpponentHandleDrawTrainerPic(void)
         {
 
             if (gActiveBattler == 1)
-               trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_B);
             

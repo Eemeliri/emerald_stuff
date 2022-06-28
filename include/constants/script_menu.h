@@ -141,8 +141,9 @@
 #define PWT_SELECTION_UNOVA                4
 #define PWT_SELECTION_WORLDS               5
 #define PWT_SELECTION_CHAMPIONS            6
-#define PWT_SELECTION_EXIT                 7
-#define PWT_SELECTION_COUNT                8
+#define PWT_SELECTION_SPECIAL              7
+#define PWT_SELECTION_EXIT                 8
+#define PWT_SELECTION_COUNT                9
 
 // Std String Ids
 #define STDSTRING_COOL             0

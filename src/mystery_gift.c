@@ -136,7 +136,7 @@ void ClearSavedWonderCardAndRelated(void)
     ClearRamScript();
     ClearMysteryGiftFlags();
     ClearMysteryGiftVars();
-    ClearEReaderTrainer(&gSaveBlock2Ptr->frontier.ereaderTrainer);
+    ClearEReaderTrainer(&gSaveBlock1Ptr->frontier.ereaderTrainer[0]);
 }
 
 bool32 SaveWonderCard(const struct WonderCard *card)

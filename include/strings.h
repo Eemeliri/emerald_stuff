@@ -3230,5 +3230,6 @@ extern const u8 gText_SinnohLeaders[];
 extern const u8 gText_UnovaLeaders[];
 extern const u8 gText_WorldLeaders[];
 extern const u8 gText_Champions[];
+extern const u8 gText_Special[];
 
 #endif // GUARD_STRINGS_H

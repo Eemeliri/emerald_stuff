@@ -1908,8 +1908,8 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         {
             for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.domeRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.domeRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.domeRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.domeRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_B_DOME - 1;
@@ -1921,8 +1921,8 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
     #endif
         for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.pikeRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.pikeRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.pikeRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.pikeRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_B_PIKE - 1;
         break;
@@ -1931,8 +1931,8 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         {
             for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.towerRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.towerRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.towerRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.towerRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
@@ -1942,8 +1942,8 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         {
             for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.palaceRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.palaceRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.palaceRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.palaceRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
@@ -1957,8 +1957,8 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         {
             for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.factoryRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.factoryRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
@@ -1966,16 +1966,16 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
     case FRONTIER_FACILITY_ARENA:
         for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.arenaRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.arenaRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.arenaRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.arenaRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
         break;
     case FRONTIER_FACILITY_PYRAMID:
         for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.pyramidRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.pyramidRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.pyramidRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.pyramidRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_B_PYRAMID - 1;
         break;

@@ -130,7 +130,9 @@ BattleFrontier_BattleDomeLobby_EventScript_LostChallenge::
 	message BattleFrontier_BattleDomeLobby_Text_RecordWillBeSaved
 	waitmessage
 	special LoadPlayerParty
-	frontier_setpartyorder FRONTIER_PARTY_SIZE
+	setvar VAR_TEMP_2, FRONTIER_PARTY_SIZE
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleDomeLobby_EventScript_SetPartySize
+	frontier_setpartyorder VAR_TEMP_2
 	frontier_checkairshow
 	goto_if_ne VAR_PWT_MODE, 0, BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT
 	dome_set DOME_DATA_WIN_STREAK_ACTIVE, FALSE
@@ -150,6 +152,10 @@ BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle::
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_SetPartySize::
+	setvar VAR_TEMP_2, FRONTIER_DOUBLES_PARTY_SIZE
+	return
 
 BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT::
 	special LoadPlayerParty
@@ -209,7 +215,8 @@ BattleFrontier_BattleDomeLobby_EventScript_RightAttendant::
 	case 4, BattleFrontier_BattleDomeLobby_EventScript_TryEnterUnovaChallenge
 	case 5, BattleFrontier_BattleDomeLobby_EventScript_TryEnterWorldsChallenge
 	case 6, BattleFrontier_BattleDomeLobby_EventScript_TryEnterChampionsChallenge
-	case 7, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case 7, BattleFrontier_BattleDomeLobby_EventScript_TryEnterSpecialChallenge
+	case 8, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 
 
@@ -289,6 +296,10 @@ BattleFrontier_BattleDomeLobby_EventScript_TryEnterWorldsChallenge::
 	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterPWTChallenge
 BattleFrontier_BattleDomeLobby_EventScript_TryEnterChampionsChallenge::
 	setvar VAR_PWT_MODE, PWT_MODE_CHAMPIONS
+	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterPWTChallenge
+BattleFrontier_BattleDomeLobby_EventScript_TryEnterSpecialChallenge::
+	goto_if_unset FLAG_SPECIAL_PWT, BattleFrontier_BattleDomeLobby_EventScript_NoSpecial
+	setvar VAR_PWT_MODE, PWT_MODE_SPECIAL
 BattleFrontier_BattleDomeLobby_EventScript_TryEnterPWTChallenge::
 	message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
 	waitmessage
@@ -384,6 +395,11 @@ BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMonsLvOpen::
 BattleFrontier_BattleDomeLobby_EventScript_CancelChallengeSaveFailed::
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
 	goto BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_NoSpecial::
+	msgbox BattleFrontier_BattleDomeLobby_Text_NoSpecial, MSGBOX_DEFAULT
+	release
+	end
 
 BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge::
 	special LoadPlayerParty
@@ -865,3 +881,8 @@ BattleFrontier_BattleDomeLobby_Text_TakeSinglesOrDoubles:
 	.string "You can compete in the singles\n"
 	.string "or doubles division.\l"
 	.string "Which would you like?$"
+
+BattleFrontier_BattleDomeLobby_Text_NoSpecial:
+	.string "Unfortunately there is no other\n"
+	.string "trainers in this tournament at\l"
+	.string "this time.$"
