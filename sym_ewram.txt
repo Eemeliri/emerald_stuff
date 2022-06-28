@@ -152,3 +152,4 @@
 	.include "src/dexnav.o"
 	.include "src/global_trade_station.o"
 	.include "src/debug.o"
+	.include "src/sound_check_menu.o"
