@@ -195,6 +195,7 @@ static const struct {
     u16 moves[MAX_MON_MOVES];
     u8 level;
     u8 location;
+    u8 encounterType;
 } sPokeOutbreakSpeciesList[] = {
     {
         .species = SPECIES_SEEDOT,
@@ -1684,8 +1685,8 @@ void EndMassOutbreak(void)
     gSaveBlock1Ptr->outbreakLocationMapNum = 0;
     gSaveBlock1Ptr->outbreakLocationMapGroup = 0;
     gSaveBlock1Ptr->outbreakPokemonLevel = 0;
-    gSaveBlock1Ptr->outbreakUnused1 = 0;
-    gSaveBlock1Ptr->outbreakUnused2 = 0;
+    gSaveBlock1Ptr->outbreakShinyRolls = 0;
+    gSaveBlock1Ptr->outbreakEncounterType = 0;
     gSaveBlock1Ptr->outbreakPokemonMoves[0] = MOVE_NONE;
     gSaveBlock1Ptr->outbreakPokemonMoves[1] = MOVE_NONE;
     gSaveBlock1Ptr->outbreakPokemonMoves[2] = MOVE_NONE;

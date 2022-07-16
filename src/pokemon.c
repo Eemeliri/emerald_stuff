@@ -3221,12 +3221,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         #else
         u32 shinyRolls = 1;
         #endif
-
-        if(species==gSaveBlock1Ptr->outbreakPokemonSpecies){
-            shinyRolls=shinyRolls+gSaveBlock1Ptr->outbreakShinyRolls;
-        }
-
         u32 i;
+
+        if(species==gSaveBlock1Ptr->outbreakPokemonSpecies)
+            shinyRolls = shinyRolls + gSaveBlock1Ptr->outbreakShinyRolls;
         
         value = gSaveBlock2Ptr->playerTrainerId[0]
                   | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
