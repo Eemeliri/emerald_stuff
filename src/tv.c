@@ -195,6 +195,7 @@ static const struct {
     u16 moves[MAX_MON_MOVES];
     u8 level;
     u8 location;
+    u8 location2;
     u8 encounterType;
 } sPokeOutbreakSpeciesList[] = {
     {
@@ -202,6 +203,7 @@ static const struct {
         .moves = {MOVE_BIDE, MOVE_HARDEN, MOVE_LEECH_SEED},
         .level = 3,
         .location = MAP_NUM(ROUTE102),
+        .location2 = MAP_GROUP(ROUTE102),
         .encounterType = 0,
     },
     {
@@ -209,6 +211,7 @@ static const struct {
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 15,
         .location = MAP_NUM(ROUTE114),
+        .location2 = MAP_GROUP(ROUTE114),
         .encounterType = 0,
     },
     {
@@ -216,6 +219,7 @@ static const struct {
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 13,
         .location = MAP_NUM(ROUTE117),
+        .location2 = MAP_GROUP(ROUTE117),
         .encounterType = 0,
     },
     {
@@ -223,6 +227,7 @@ static const struct {
         .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLAR_BEAM, MOVE_LEECH_SEED},
         .level = 25,
         .location = MAP_NUM(ROUTE120),
+        .location2 = MAP_GROUP(ROUTE120),
         .encounterType = 0,
     },
     {
@@ -230,6 +235,7 @@ static const struct {
         .moves = {MOVE_GROWL, MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_ATTRACT},
         .level = 8,
         .location = MAP_NUM(ROUTE116),
+        .location2 = MAP_GROUP(ROUTE116),
         .encounterType = 0,
     }
 };
@@ -1667,7 +1673,7 @@ static void TryStartRandomMassOutbreak(void)
                 show->massOutbreak.moves[2] = sPokeOutbreakSpeciesList[outbreakIdx].moves[2];
                 show->massOutbreak.moves[3] = sPokeOutbreakSpeciesList[outbreakIdx].moves[3];
                 show->massOutbreak.locationMapNum = sPokeOutbreakSpeciesList[outbreakIdx].location;
-                show->massOutbreak.locationMapGroup = 0;
+                show->massOutbreak.locationMapGroup = sPokeOutbreakSpeciesList[outbreakIdx].location2;
                 show->massOutbreak.unused4 = 0;
                 show->massOutbreak.probability = 50;
                 show->massOutbreak.unused5 = 0;
