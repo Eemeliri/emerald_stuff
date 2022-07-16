@@ -375,6 +375,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil::
 	hidemonpic
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
+	giveitem ITEM_SHINY_CHARM
 	releaseall
 	end
 
@@ -416,6 +417,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile::
 	hidemonpic
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
+	giveitem ITEM_SHINY_CHARM
 	releaseall
 	end
 
@@ -457,6 +459,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
 	hidemonpic
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
+	giveitem ITEM_SHINY_CHARM
 	releaseall
 	end
 
@@ -948,7 +951,9 @@ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting:
 	.string "There is no end to the road\n"
 	.string "that is Pokémon.\p"
 	.string "Somewhere, there is a grassy patch\n"
-	.string "that's waiting for you!$"
+	.string "that's waiting for you!\p"
+	.string "And to help you, take this small\n"
+	.string "gift as well.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BetterLeaveOthersAlone:
 	.string "You received the promised Pokémon.\n"
