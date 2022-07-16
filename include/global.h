@@ -310,10 +310,10 @@ struct BattleTowerInterview
 
 struct BattleTowerEReaderTrainer
 {
-    /*0x00*/ u8 mode:1;       //0=Regular Mode, 1=League Mode
+    /*0x00*/ u8 mode:2;       //0=Regular Mode, 1=League Mode, 2=VGC Mode
              u8 levelmode:1;  //0=keep pokemon levels, 1=set to players highest level
              u8 randomise:1;  //0=don't randomise, 1=randomise
-             u8 padding:5;    //Padding
+             u8 padding:4;    //Padding
     /*0x01*/ u8 facilityClass;
     /*0x02*/ u8 numpokeplayer:4;    //Number of pokemon player can use
              u8 numpoke:4;          //Number of pokemon eReader Trainer will use
@@ -992,8 +992,8 @@ struct SaveBlock1
     /*0x2B92*/ u8 outbreakLocationMapNum;
     /*0x2B93*/ u8 outbreakLocationMapGroup;
     /*0x2B94*/ u8 outbreakPokemonLevel;
-    /*0x2B95*/ u8 outbreakUnused1;
-    /*0x2B96*/ u16 outbreakUnused2;
+    /*0x2B95*/ u8 outbreakShinyRolls;
+    /*0x2B96*/ u16 outbreakEncounterType;
     /*0x2B98*/ u16 outbreakPokemonMoves[MAX_MON_MOVES];
     /*0x2BA0*/ u8 outbreakUnused3;
     /*0x2BA1*/ u8 outbreakPokemonProbability;

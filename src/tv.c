@@ -200,31 +200,36 @@ static const struct {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_BIDE, MOVE_HARDEN, MOVE_LEECH_SEED},
         .level = 3,
-        .location = MAP_NUM(ROUTE102)
+        .location = MAP_NUM(ROUTE102),
+        .encounterType = 0,
     },
     {
         .species = SPECIES_NUZLEAF,
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 15,
         .location = MAP_NUM(ROUTE114),
+        .encounterType = 0,
     },
     {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 13,
         .location = MAP_NUM(ROUTE117),
+        .encounterType = 0,
     },
     {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLAR_BEAM, MOVE_LEECH_SEED},
         .level = 25,
         .location = MAP_NUM(ROUTE120),
+        .encounterType = 0,
     },
     {
         .species = SPECIES_SKITTY,
         .moves = {MOVE_GROWL, MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_ATTRACT},
         .level = 8,
         .location = MAP_NUM(ROUTE116),
+        .encounterType = 0,
     }
 };
 
@@ -1553,8 +1558,8 @@ void StartMassOutbreak(void)
     gSaveBlock1Ptr->outbreakLocationMapNum = show->massOutbreak.locationMapNum;
     gSaveBlock1Ptr->outbreakLocationMapGroup = show->massOutbreak.locationMapGroup;
     gSaveBlock1Ptr->outbreakPokemonLevel = show->massOutbreak.level;
-    gSaveBlock1Ptr->outbreakUnused1 = show->massOutbreak.unused1;
-    gSaveBlock1Ptr->outbreakUnused2 = show->massOutbreak.unused2;
+    gSaveBlock1Ptr->outbreakShinyRolls = show->massOutbreak.shinyRolls;
+    gSaveBlock1Ptr->outbreakEncounterType = show->massOutbreak.encounterType;
     gSaveBlock1Ptr->outbreakPokemonMoves[0] = show->massOutbreak.moves[0];
     gSaveBlock1Ptr->outbreakPokemonMoves[1] = show->massOutbreak.moves[1];
     gSaveBlock1Ptr->outbreakPokemonMoves[2] = show->massOutbreak.moves[2];
@@ -1652,10 +1657,10 @@ static void TryStartRandomMassOutbreak(void)
                 show->massOutbreak.kind = TVSHOW_MASS_OUTBREAK;
                 show->massOutbreak.active = TRUE;
                 show->massOutbreak.level = sPokeOutbreakSpeciesList[outbreakIdx].level;
-                show->massOutbreak.unused1 = 0;
+                show->massOutbreak.shinyRolls = 3;
                 show->massOutbreak.unused3 = 0;
                 show->massOutbreak.species = sPokeOutbreakSpeciesList[outbreakIdx].species;
-                show->massOutbreak.unused2 = 0;
+                show->massOutbreak.encounterType = sPokeOutbreakSpeciesList[outbreakIdx].encounterType;
                 show->massOutbreak.moves[0] = sPokeOutbreakSpeciesList[outbreakIdx].moves[0];
                 show->massOutbreak.moves[1] = sPokeOutbreakSpeciesList[outbreakIdx].moves[1];
                 show->massOutbreak.moves[2] = sPokeOutbreakSpeciesList[outbreakIdx].moves[2];

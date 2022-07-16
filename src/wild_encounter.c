@@ -661,7 +661,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
 					BattleSetup_StartRoamerBattle();
 					return TRUE;
 				}
-				else if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+				else if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE && gSaveBlock1Ptr->outbreakEncounterType != 1)
 				{
 					BattleSetup_StartWildBattle();
 					return TRUE;
@@ -722,6 +722,11 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
 						return FALSE;
 		
 					BattleSetup_StartRoamerBattle();
+					return TRUE;
+				}
+                else if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE && gSaveBlock1Ptr->outbreakEncounterType != 0)
+				{
+					BattleSetup_StartWildBattle();
 					return TRUE;
 				}
                 else if (GetSafariZoneFlag())
@@ -831,7 +836,7 @@ bool8 SweetScentWildEncounter(void)
                 return TRUE;
             }
 
-            if (DoMassOutbreakEncounterTest() == TRUE)
+            if (DoMassOutbreakEncounterTest() == TRUE && gSaveBlock1Ptr->outbreakEncounterType != 1)
                 SetUpMassOutbreakEncounter(0);
             else if (IsNationalPokedexEnabled() && (GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[headerId].landMonsNatMorningInfo != NULL)
                 TryGenerateWildMon(gWildMonHeaders[headerId].landMonsNatMorningInfo, WILD_AREA_LAND, 0);
@@ -862,7 +867,9 @@ bool8 SweetScentWildEncounter(void)
                 return TRUE;
             }
 
-            if (IsNationalPokedexEnabled() && (GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[headerId].landMonsNatMorningInfo != NULL)
+            if (DoMassOutbreakEncounterTest() == TRUE && gSaveBlock1Ptr->outbreakEncounterType != 0)
+                SetUpMassOutbreakEncounter(0);
+            else if (IsNationalPokedexEnabled() && (GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[headerId].landMonsNatMorningInfo != NULL)
 				TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsNatMorningInfo, WILD_AREA_WATER, 0);
 			else if (IsNationalPokedexEnabled() && GetCurrentTimeOfDay() == TIME_NIGHT && gWildMonHeaders[headerId].landMonsNatNightInfo != NULL)
 				TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsNatNightInfo, WILD_AREA_WATER, 0);
