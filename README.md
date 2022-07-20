@@ -80,3 +80,20 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 * Increase the number of mass outbreaks and have more interesting Pokemon
 * There's a few missing follower sprites
 
+
+# RHH ReadMe
+## Who maintains the project?
+
+The project was originally started by DizzyEgg alongside other contributors.
+
+The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
+
+## Can I contribute even if I'm not a member of ROM Hacking Hideout?
+
+Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Please note that PRs to master are not accepted, as master is only intended to be a merged branch.
+
+## What is ROM Hacking Hideout?
+
+A Discord-based ROM hacking community that has many members who hack using the disassembly and decompilation projects for Pokémon. Quite a few contributors to the original feature branches by DizzyEgg were members of ROM Hacking Hideout. You can call it RHH for short!
+
+[Click here to join the RHH Discord Server!](https://discord.gg/6CzjAG6GZk)
