@@ -516,6 +516,10 @@ int GetPokenavMenuType(void)
 int GetPokenavCursorPos(void)
 {
     struct Pokenav_Menu *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_MAIN_MENU_HANDLER);
+    if(FlagGet(FLAG_TEMP_1)){
+        menu->cursorPos = 1;
+        FlagClear(FLAG_TEMP_1);
+    }
     return menu->cursorPos;
 }
 

@@ -3142,6 +3142,7 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
 
 u32 PokeNavMenuDexNavCallback(void)
 {
+    FlagSet(FLAG_TEMP_1);
     CreateTask(Task_OpenDexNavFromPokenav, 0);
     return TRUE;
 }
