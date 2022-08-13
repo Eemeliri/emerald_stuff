@@ -49,6 +49,7 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 * Reset clock by pressing R
 * Check EVs and IVs in PC by pressing Start
 * Move name instead of TM name in shops (Credit: Duke)
+* Changed Battle Frontier Pokemon to include up to Gen 6
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
@@ -75,10 +76,11 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 ### Changes (Planned)
 * Incorporate Primal Kyogre/Groudon & Mega Rayquaza
 * Update Trainer teams to ORAS
-* Change Battle Frontier Pokemon to include up to gen 6
 * Have Alolan Pokemon searchable in the Pokedex (semi-implemented)
 * Increase the number of mass outbreaks and have more interesting Pokemon
 * There's a few missing follower sprites
+* More box wallpapers
+* Implement GTS?
 
 
 # RHH ReadMe
