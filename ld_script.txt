@@ -336,6 +336,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/soar.o(.text);
 		src/dexnav.o(.text);
+        src/global_trade_station.o(.text)
     } =0
 
     script_data :
@@ -702,6 +703,7 @@ SECTIONS {
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
 		src/dexnav.o(.rodata);
+        src/global_trade_station.o(.rodata)
     } =0
 
     song_data :

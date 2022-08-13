@@ -1759,6 +1759,9 @@ ALIGNED(4) const u8 gText_WonderNewsThrownAway[] = _("The Wonder News was thrown
 ALIGNED(4) const u8 gText_MysteryGift[] = _("Mystery Gift");
 ALIGNED(4) const u8 gText_PickOKExit[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Ok {B_BUTTON}Exit");
 ALIGNED(4) const u8 gText_PickOKCancel[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Ok {B_BUTTON}Cancel");
+ALIGNED(4) const u8 gText_GlobalTradeStation[] = _("Global Trade Station");
+ALIGNED(4) const u8 gText_PokemonWillBeSent[] = _("{STR_VAR_1} will be deposited.");
+ALIGNED(4) const u8 gText_ChooseGTSPokemon[] = _("Please choose the Pokémon you want.");
 const u8 gText_PlayersBattleResults[] = _("{PLAYER}'s battle results");
 const u8 gText_TotalRecordWLD[] = _("Total record W:{STR_VAR_1} L:{STR_VAR_2} D:{STR_VAR_3}");
 const u8 gText_WinLoseDraw[] = _("{CLEAR_TO 0x53}Win{CLEAR_TO 0x80}Lose{CLEAR_TO 0xB0}Draw");
@@ -1868,3 +1871,8 @@ const u8 gText_UnovaLeaders[] = _("Unova Leaders");
 const u8 gText_WorldLeaders[] = _("World Leaders");
 const u8 gText_Champions[] = _("Champions");
 const u8 gText_Special[] = _("Special");
+
+//Global Trade Station
+const u8 gText_SearchPokemon[] = _("Search Pokémon");
+
+

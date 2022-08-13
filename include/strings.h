@@ -3232,4 +3232,11 @@ extern const u8 gText_WorldLeaders[];
 extern const u8 gText_Champions[];
 extern const u8 gText_Special[];
 
+//Global Trade Station
+extern const u8 gText_GlobalTradeStation[];
+extern const u8 gText_SearchPokemon[];
+extern const u8 gText_PokemonWillBeSent[];
+extern const u8 gText_ChooseGTSPokemon[];
+
+
 #endif // GUARD_STRINGS_H
