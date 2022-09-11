@@ -1213,10 +1213,22 @@ static void Task_GlobalTradeStation(u8 taskId)
     case GTS_STATE_DEPOSIT_POKEMON:
         if (!gPaletteFade.active)
         {
+            //ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_REGISTER, CB2_ReturnToGlobalTradeStation);
+            DestroyTask(taskId);
+            FreeAllWindowBuffers();
+            Free(GetBgTilemapBuffer(0));
+            Free(GetBgTilemapBuffer(1));
+            Free(GetBgTilemapBuffer(2));
+            Free(GetBgTilemapBuffer(3));
             ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_REGISTER, CB2_ReturnToGlobalTradeStation);
         }
         break;
     case GTS_STATE_PICK_WANTED_POKEMON:
+        if(gSpecialVar_0x8004 > PARTY_SIZE){
+            gSpecialVar_0x8004=0;
+            data->state = GTS_STATE_MAIN_MENU;
+            break;
+        }
         if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemon))
             {
                 data->state = GTS_STATE_DEPOSITING_POKEMON;
