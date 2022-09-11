@@ -30,8 +30,8 @@ OldaleTown_EventScript_MoveMartEmployee::
 	setobjectmovementtype LOCALID_MART_EMPLOYEE, MOVEMENT_TYPE_FACE_DOWN
 	return
 
-OldaleTown_EventScript_CitySign::
-	msgbox OldaleTown_Text_CitySign, MSGBOX_SIGN
+OldaleTown_EventScript_TownSign::
+	msgbox OldaleTown_Text_TownSign, MSGBOX_SIGN
 	end
 
 OldaleTown_EventScript_Girl::
@@ -396,7 +396,7 @@ OldaleTown_Text_BrendanLetsGoBack:
 	.string "Lab now.\l"
 	.string "{PLAYER}, you should hustle back, too.$"
 
-OldaleTown_Text_CitySign:
+OldaleTown_Text_TownSign:
 	.string "Oldale Town\n"
 	.string "“Where things start off scarce.”$"
 

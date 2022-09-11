@@ -122,7 +122,7 @@ static const struct OamData sOamData_Icons =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -329,6 +329,9 @@ static const struct SpriteTemplate sSpriteTemplate_Emote = {
 bool8 CheckForTrainersWantingBattle(void)
 {
     u8 i;
+
+    if (FlagGet(OW_FLAG_NO_TRAINER_SEE))
+        return FALSE;
 
     gNoOfApproachingTrainers = 0;
     gApproachingTrainerId = 0;
@@ -798,7 +801,7 @@ void DoTrainerApproach(void)
 static void Task_EndTrainerApproach(u8 taskId)
 {
     DestroyTask(taskId);
-    EnableBothScriptContexts();
+    ScriptContext_Enable();
 }
 
 void TryPrepareSecondApproachingTrainer(void)

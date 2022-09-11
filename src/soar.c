@@ -229,7 +229,7 @@ void CB2_InitSoar(void)
 
 void ItemUseOnFieldCB_EonFlute(u8 taskId)
 {
-	ScriptContext2_Enable();
+	LockPlayerFieldControls();
 	FreezeObjectEvents();
 	SetMainCallback2(CB2_InitSoar);
 }

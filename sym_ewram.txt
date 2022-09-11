@@ -151,3 +151,4 @@
 	.include "src/rayquaza_scene.o"
 	.include "src/dexnav.o"
 	.include "src/global_trade_station.o"
+	.include "src/debug.o"

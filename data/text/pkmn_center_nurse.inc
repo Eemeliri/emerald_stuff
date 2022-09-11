@@ -15,7 +15,7 @@ gText_RestoredPkmnToFullHealth::
     .string "to full health.$"
 
 gText_WeHopeToSeeYouAgain::
-    .string "We hope to see you again!$"
+	.string "We hope to see you again!$"
 
 gText_WelcomeCutShort::
     .string "Hello, and welcome to\n"
@@ -37,15 +37,15 @@ gText_NoticesGoldCard::
     .string "the honor of resting your Pokémon!$"
 
 gText_YouWantTheUsual::
-    .string "I'm delighted to see you, {PLAYER}!\n"
-    .string "You want the usual, am I right?$"
+	.string "I'm delighted to see you, {PLAYER}!\n"
+	.string "You want the usual, am I right?$"
 
 gText_IllTakeYourPkmn2::
     .string "Okay, I'll take your Pokémon\n"
     .string "for a few seconds.$"
 
 gText_ThankYouForWaiting::
-    .string "Thank you for waiting.$"
+	.string "Thank you for waiting.$"
 
 gText_WeHopeToSeeYouAgain2::
-    .string "We hope to see you again!$"
+	.string "We hope to see you again!$"
