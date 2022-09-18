@@ -12086,8 +12086,6 @@ extern const u32 gBattleAnimSpriteGfx_MegaStone[];
 extern const u32 gBattleAnimSpritePal_MegaStone[];
 extern const u32 gBattleAnimSpriteGfx_MegaParticles[];
 extern const u32 gBattleAnimSpritePal_MegaParticles[];
-extern const u32 gBattleAnimSpriteGfx_PrimalParticles[];
-extern const u32 gBattleAnimSpritePal_PrimalParticles[];
 extern const u32 gBattleAnimSpriteGfx_MegaSymbol[];
 extern const u32 gBattleAnimSpritePal_MegaSymbol[];
 extern const u32 gBattleAnimSpriteGfx_FlashCannonBall[];
@@ -12539,9 +12537,6 @@ extern const u16 gSlotMachineReelTimePikachu_Pal[];
 
 extern const u32 gBattleAnimBgTilemap_Sandstorm[];
 extern const u32 gBattleAnimBgImage_Sandstorm[];
-
-extern const u32 gBattleAnimBgTilemap_Windstorm[];
-extern const u32 gBattleAnimBgImage_Windstorm[];
 
 // Pokedex Area Screen
 extern const u32 gPokedexAreaScreenAreaUnknown_Gfx[];

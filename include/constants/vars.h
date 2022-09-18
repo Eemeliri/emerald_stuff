@@ -46,27 +46,27 @@
 #define VAR_OBJ_GFX_ID_F           0x401F
 
 // general purpose vars
-#define VAR_RECYCLE_GOODS                    0x4020
-#define VAR_REPEL_STEP_COUNT                 0x4021
-#define VAR_ICE_STEP_COUNT                   0x4022
-#define VAR_STARTER_MON                      0x4023 // 0=Treecko, 1=Torchic, 2=Mudkip
-#define VAR_MIRAGE_RND_H                     0x4024
-#define VAR_MIRAGE_RND_L                     0x4025
-#define VAR_SECRET_BASE_MAP                  0x4026
-#define VAR_CYCLING_ROAD_RECORD_COLLISIONS   0x4027
-#define VAR_CYCLING_ROAD_RECORD_TIME_L       0x4028
-#define VAR_CYCLING_ROAD_RECORD_TIME_H       0x4029
-#define VAR_FRIENDSHIP_STEP_COUNTER          0x402A
-#define VAR_POISON_STEP_COUNTER              0x402B
-#define VAR_RESET_RTC_ENABLE                 0x402C
-#define VAR_ENIGMA_BERRY_AVAILABLE           0x402D
-#define VAR_WONDER_NEWS_COUNTER              0x402E
+#define VAR_RECYCLE_GOODS                                0x4020
+#define VAR_REPEL_STEP_COUNT                             0x4021
+#define VAR_ICE_STEP_COUNT                               0x4022
+#define VAR_STARTER_MON                                  0x4023 // 0=Treecko, 1=Torchic, 2=Mudkip
+#define VAR_MIRAGE_RND_H                                 0x4024
+#define VAR_MIRAGE_RND_L                                 0x4025
+#define VAR_SECRET_BASE_MAP                              0x4026
+#define VAR_CYCLING_ROAD_RECORD_COLLISIONS               0x4027
+#define VAR_CYCLING_ROAD_RECORD_TIME_L                   0x4028
+#define VAR_CYCLING_ROAD_RECORD_TIME_H                   0x4029
+#define VAR_FRIENDSHIP_STEP_COUNTER                      0x402A
+#define VAR_POISON_STEP_COUNTER                          0x402B
+#define VAR_RESET_RTC_ENABLE                             0x402C
+#define VAR_ENIGMA_BERRY_AVAILABLE                       0x402D
+#define VAR_WONDER_NEWS_COUNTER                          0x402E
 
-#define VAR_FRONTIER_MANIAC_FACILITY         0x402F
-#define VAR_FRONTIER_GAMBLER_CHALLENGE       0x4030
-#define VAR_FRONTIER_GAMBLER_SET_CHALLENGE   0x4031
-#define VAR_FRONTIER_GAMBLER_AMOUNT_BET      0x4032
-#define VAR_FRONTIER_GAMBLER_STATE           0x4033
+#define VAR_FRONTIER_MANIAC_FACILITY                     0x402F
+#define VAR_FRONTIER_GAMBLER_CHALLENGE                   0x4030
+#define VAR_FRONTIER_GAMBLER_SET_CHALLENGE               0x4031
+#define VAR_FRONTIER_GAMBLER_AMOUNT_BET                  0x4032
+#define VAR_FRONTIER_GAMBLER_STATE                       0x4033
 
 #define VAR_DEOXYS_ROCK_STEP_COUNT           0x4034
 #define VAR_DEOXYS_ROCK_LEVEL                0x4035
@@ -273,8 +273,8 @@
 #define VAR_UNUSED_0x40FE                    0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
-#define VARS_END                             0x40FF
-#define VARS_COUNT                           (VARS_END - VARS_START + 1)
+#define VARS_END                                         0x40FF
+#define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
 // special vars

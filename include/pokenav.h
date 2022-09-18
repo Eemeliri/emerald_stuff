@@ -116,23 +116,23 @@ enum
 #define POKENAV_MENU_IDS_START 100000
 enum
 {
-	POKENAV_MAIN_MENU = POKENAV_MENU_IDS_START, // The main menu where the player selects Hoenn Map/Condition/Match Call/Ribbons 
-	POKENAV_MAIN_MENU_CURSOR_ON_MAP,
+    POKENAV_MAIN_MENU = POKENAV_MENU_IDS_START, // The main menu where the player selects Hoenn Map/Condition/Match Call/Ribbons
+    POKENAV_MAIN_MENU_CURSOR_ON_MAP,
     POKENAV_MAIN_MENU_CURSOR_ON_DEXNAV,
-	POKENAV_CONDITION_MENU,                     // The first Condition screen where the player selects Party or Search
-	POKENAV_CONDITION_SEARCH_MENU,              // The Condition search menu where the player selects a search parameter
-	POKENAV_MAIN_MENU_CURSOR_ON_MATCH_CALL,
-	POKENAV_MAIN_MENU_CURSOR_ON_RIBBONS,
-	POKENAV_REGION_MAP,
+    POKENAV_CONDITION_MENU,                     // The first Condition screen where the player selects Party or Search
+    POKENAV_CONDITION_SEARCH_MENU,              // The Condition search menu where the player selects a search parameter
+    POKENAV_MAIN_MENU_CURSOR_ON_MATCH_CALL,
+    POKENAV_MAIN_MENU_CURSOR_ON_RIBBONS,
+    POKENAV_REGION_MAP,
     POKENAV_DEXNAV,
-	POKENAV_CONDITION_GRAPH_PARTY,              // The Condition graph screen when Party has been selected
-	POKENAV_CONDITION_SEARCH_RESULTS,           // The list of results from a Condition search
-	POKENAV_CONDITION_GRAPH_SEARCH,             // The Condition graph screen when a search result has been selected
-	POKENAV_RETURN_CONDITION_SEARCH,            // Exited the graph screen back to the list of Condition search results
-	POKENAV_MATCH_CALL,
-	POKENAV_RIBBONS_MON_LIST,                   // The list of Pokémon with ribbons
-	POKENAV_RIBBONS_SUMMARY_SCREEN,             // The ribbon summary screen shown when a Pokémon has been selected
-	POKENAV_RIBBONS_RETURN_TO_MON_LIST,         // Exited the summary screen back to the ribbon list
+    POKENAV_CONDITION_GRAPH_PARTY,              // The Condition graph screen when Party has been selected
+    POKENAV_CONDITION_SEARCH_RESULTS,           // The list of results from a Condition search
+    POKENAV_CONDITION_GRAPH_SEARCH,             // The Condition graph screen when a search result has been selected
+    POKENAV_RETURN_CONDITION_SEARCH,            // Exited the graph screen back to the list of Condition search results
+    POKENAV_MATCH_CALL,
+    POKENAV_RIBBONS_MON_LIST,                   // The list of Pokémon with ribbons
+    POKENAV_RIBBONS_SUMMARY_SCREEN,             // The ribbon summary screen shown when a Pokémon has been selected
+    POKENAV_RIBBONS_RETURN_TO_MON_LIST,         // Exited the summary screen back to the ribbon list
 };
 
 enum
