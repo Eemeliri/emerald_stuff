@@ -83,9 +83,7 @@ void SetUpReflection(struct ObjectEvent *objectEvent, struct Sprite *sprite, boo
     reflectionSprite->sIsStillReflection = stillReflection;
     LoadObjectReflectionPalette(objectEvent, reflectionSprite);
 
-    if (objectEvent->extra.mon.species > 0){
-        //reflectionSprite->subpriority = 153;
-    }
+
 
     if (!stillReflection)
         reflectionSprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;

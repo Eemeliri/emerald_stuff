@@ -401,6 +401,10 @@
 // will display correctly under bridges, etc.
 #define LARGE_OW_SUPPORT TRUE
 
+#define OBJ_EVENT_GFX_MON_BASE  0x200 // 512
+
+#define OW_SPECIES(x) (x->graphicsId - OBJ_EVENT_GFX_MON_BASE)
+
 #define SHADOW_SIZE_S   0
 #define SHADOW_SIZE_M   1
 #define SHADOW_SIZE_L   2

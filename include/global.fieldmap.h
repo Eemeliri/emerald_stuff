@@ -195,7 +195,9 @@ struct ObjectEvent
              u32 disableJumpLandingGroundEffect:1;
              u32 fixedPriority:1;
              u32 hideReflection:1;
-    /*0x04*/ u16 graphicsId;
+             u32 shiny:1; // OW mon shininess
+    /*0x04*/ u16 graphicsId:11; // 11 bits; 2048 entries
+    /*0x05*/ u16 form:5;
     /*0x06*/ u8 movementType;
     /*0x07*/ u8 trainerType;
     /*0x08*/ u8 localId;
@@ -219,16 +221,8 @@ struct ObjectEvent
     /*0x20*/ u8 previousMovementDirection:4;
              u8 directionOverwrite:4;
     /*0x21*/ u8 directionSequenceIndex;
-    /*0x22*/ u8 spriteId;
-    /*0x23*/ union __attribute__((packed)) {
-        u8 playerCopyableMovement; // COPY_MOVE_*
-        struct __attribute__((packed)) {
-            u32 species:11; // 11 bits; 1024 species
-            u32 form:5; // Used for Deoxys, Unown, etc
-            u32 shiny:1;
-        } mon;
-        u16 asU16;
-    } extra;
+    /*0x22*/ u8 playerCopyableMovement; // COPY_MOVE_*
+    /*0x23*/ u8 spriteId;
     /*size = 0x24*/
 };
 
