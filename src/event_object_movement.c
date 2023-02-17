@@ -467,7 +467,17 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
 #define OBJ_EVENT_PAL_TAG_LATIAS                  0x1124
 #define OBJ_EVENT_PAL_TAG_LATIOS                  0x1125
-#define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1126
+#define OBJ_EVENT_PAL_TAG_BROCK                   0x1126
+#define OBJ_EVENT_PAL_TAG_MISTY                   0x1127
+#define OBJ_EVENT_PAL_TAG_SURGE                   0x1128
+#define OBJ_EVENT_PAL_TAG_ERIKA                   0x1129
+#define OBJ_EVENT_PAL_TAG_KOGA                    0x112A
+#define OBJ_EVENT_PAL_TAG_JANINE                  0x112B
+#define OBJ_EVENT_PAL_TAG_SABRINA                 0x112C
+#define OBJ_EVENT_PAL_TAG_BLAINE                  0x112D
+#define OBJ_EVENT_PAL_TAG_GIOVANNI                0x112E
+#define OBJ_EVENT_PAL_TAG_BLUE                    0x112F
+#define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1130
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -518,6 +528,16 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
     {gObjectEventPal_Latias,                OBJ_EVENT_PAL_TAG_LATIAS},
     {gObjectEventPal_Latios,                OBJ_EVENT_PAL_TAG_LATIOS},
+    {gObjectEventPal_Brock,                 OBJ_EVENT_PAL_TAG_BROCK},
+    {gObjectEventPal_Misty,                 OBJ_EVENT_PAL_TAG_MISTY},
+    {gObjectEventPal_Surge,                 OBJ_EVENT_PAL_TAG_SURGE},
+    {gObjectEventPal_Erika,                 OBJ_EVENT_PAL_TAG_ERIKA},
+    {gObjectEventPal_Koga,                  OBJ_EVENT_PAL_TAG_KOGA},
+    {gObjectEventPal_Janine,                OBJ_EVENT_PAL_TAG_JANINE},
+    {gObjectEventPal_Sabrina,               OBJ_EVENT_PAL_TAG_SABRINA},
+    {gObjectEventPal_Blaine,                OBJ_EVENT_PAL_TAG_BLAINE},
+    {gObjectEventPal_Giovanni,              OBJ_EVENT_PAL_TAG_GIOVANNI},
+    {gObjectEventPal_Blue,                  OBJ_EVENT_PAL_TAG_BLUE},
     {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_DYNAMIC},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
