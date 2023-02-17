@@ -25,7 +25,7 @@ static void SetUnionRoomObjectFacingDirection(s32, s32, u8);
 
 // + 2 is just to match, those elements are empty and never read
 // Graphics ids should correspond with the classes in gUnionRoomFacilityClasses
-static const u8 sUnionRoomObjGfxIds[GENDER_COUNT][NUM_UNION_ROOM_CLASSES + 2] = {
+static const u16 sUnionRoomObjGfxIds[GENDER_COUNT][NUM_UNION_ROOM_CLASSES + 2] = {
     [MALE] = {
         OBJ_EVENT_GFX_MAN_3,
         OBJ_EVENT_GFX_BLACK_BELT,
@@ -131,7 +131,7 @@ static bool32 IsPlayerStandingStill(void)
 }
 
 // Gender and trainer id are used to determine which sprite a player appears as
-static u8 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
+static u16 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
 {
     return sUnionRoomObjGfxIds[gender][id % NUM_UNION_ROOM_CLASSES];
 }
