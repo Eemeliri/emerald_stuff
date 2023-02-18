@@ -524,6 +524,8 @@ struct Pokeblock
 
 struct SaveBlock2
 {
+             u16 saveVersion;
+             u32 uniqueID;
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x08*/ u8 playerGender; // MALE, FEMALE
     /*0x09*/ u8 specialSaveWarpFlags;
@@ -566,7 +568,6 @@ struct SaveBlock2
               struct ItemSlot bagPocket_MegaStones[BAG_MEGASTONES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
     /*0xF2C*/ bool8 autoRun;
-              u32 uniqueID;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
