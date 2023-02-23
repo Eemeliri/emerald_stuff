@@ -1253,7 +1253,7 @@ void SetBattleFacilityTrainerGfxId(u16 trainerId, u8 tempVarId)
         SetFrontierBrainObjEventGfx_2();
         return;
     }
-    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
     {
         SetFrontierLeaderObjEventGfx(trainerId);
         return;
@@ -1665,7 +1665,7 @@ void GetFrontierTrainerName(u8 *dst, u16 trainerId)
             return;
         }
     }
-    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
     {
         for (i = 0; i < PLAYER_NAME_LENGTH; i++)
             dst[i] = gTrainers[trainerId].trainerName[i];
@@ -1800,7 +1800,7 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         }
         return;
     }
-    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
     {
         if (VarGet(VAR_PWT_MODE) == PWT_MODE_CHAMPIONS)
             CreateFrontierChampionPokemon(trainerId);
@@ -2094,7 +2094,7 @@ static void GetOpponentIntroSpeech(void)
         FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
     else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         FrontierSpeechToString(gSaveBlock1Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
-    else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         StringCopy(gStringVar4, sFrontierLeaderIntroTexts[trainerId]);
     else if (trainerId > 500)
         FrontierSpeechToString(gSaveBlock1Ptr->frontier.ereaderTrainer[trainerId-500].greeting);
