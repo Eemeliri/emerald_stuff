@@ -6105,7 +6105,7 @@ static const u8 *const sFrontierLeaderWonTexts[] =
     [TRAINER_FRONTIER_JANINE] = gText_JanineWon,
     [TRAINER_FRONTIER_SABRINA]    = gText_SabrinaWon,
     [TRAINER_FRONTIER_BLAINE] = gText_BlaineWon,
-    [TRAINER_FRONTIER_GIOVANNI] = gText_GiovanniDefeat,
+    [TRAINER_FRONTIER_GIOVANNI] = gText_GiovanniWon,
 
     [TRAINER_FRONTIER_FALKNER]   = gText_FalknerWon,
     [TRAINER_FRONTIER_BUGSY]    = gText_BugsyWon,
