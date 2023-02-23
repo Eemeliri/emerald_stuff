@@ -40,6 +40,8 @@
 #include "constants/rgb.h"
 #include "field_screen_effect.h"
 #include "trade.h"
+#include "trainer_pokemon_sprites.h"
+#include "trig.h"
 
 #define LIST_MENU_TILE_NUM 10
 #define LIST_MENU_PAL_NUM 224
@@ -1053,6 +1055,269 @@ static u16 GetNextPositionGTS(u8 direction, u16 position, u16 min, u16 max)
     return position;
 }
 
+static u16 GetPokemonSpriteToDisplay(u16 species)
+{
+    if (species >= NATIONAL_DEX_COUNT || sGTSPokedexView->pokedexList[species].dexNum == 0xFFFF)
+        return 0xFFFF;
+    else if (sGTSPokedexView->pokedexList[species].seen)
+        return sGTSPokedexView->pokedexList[species].dexNum;
+    else
+        return 0;
+}
+
+static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
+{
+    u8 i;
+
+    for (i = 0; i < MAX_MONS_ON_SCREEN; i++)
+    {
+        if (sGTSPokedexView->monSpriteIds[i] == 0xFFFF)
+        {
+            u8 spriteId = CreateMonSpriteFromNationalDexNumber(num, x, y, i);
+
+            gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+            gSprites[spriteId].oam.priority = 3;
+            gSprites[spriteId].data[0] = 0;
+            gSprites[spriteId].data[1] = i;
+            gSprites[spriteId].data[2] = NationalPokedexNumToSpecies(num);
+            sGTSPokedexView->monSpriteIds[i] = spriteId;
+            return spriteId;
+        }
+    }
+    return 0xFFFF;
+}
+
+static void SpriteCB_PokedexListMonSprite(struct Sprite *sprite)
+{
+    u8 monId = sprite->data[1];
+
+    u32 var;
+    sprite->x2 = gSineTable[(u8)sprite->data[5]] * 76 / 256;
+    var = SAFE_DIV(0x10000, gSineTable[sprite->data[5] + 64]);
+    if (var > 0xFFFF)
+        var = 0xFFFF;
+    //SetOamMatrix(sprite->data[1] + 1, 0x100, 0, 0, var);
+    SetOamMatrix(sprite->data[1] + 1, var, 0, 0, 0x100);
+    sprite->oam.matrixNum = monId + 1;
+
+    if (sprite->data[5] > -64 && sprite->data[5] < 64)
+    {
+        sprite->invisible = FALSE;
+        sprite->data[0] = 1;
+    }
+    else
+    {
+        sprite->invisible = TRUE;
+    }
+
+    if ((sprite->data[5] <= -64 || sprite->data[5] >= 64) && sprite->data[0] != 0)
+    {
+        FreeAndDestroyMonPicSprite(sGTSPokedexView->monSpriteIds[monId]);
+        sGTSPokedexView->monSpriteIds[monId] = 0xFFFF;
+    }
+}
+
+static u16 GetNextPosition(u8 direction, u16 position, u16 min, u16 max)
+{
+    switch (direction)
+    {
+    case 1: // Up/Left
+        if (position > min)
+            position--;
+        break;
+    case 0: // Down/Right
+        if (position < max)
+            position++;
+        break;
+    case 3: // Up/Left with loop (unused)
+        if (position > min)
+            position--;
+        else
+            position = max;
+        break;
+    case 2: // Down/Right with loop (unused)
+        if (position < max)
+            position++;
+        else
+            position = min;
+        break;
+    }
+    return position;
+}
+
+
+// u16 ignored is passed but never used
+static void CreateMonSpritesAtPos(u16 selectedMon, u16 ignored)
+{
+    u8 i;
+    u16 dexNum;
+    u8 spriteId;
+
+    gPaletteFade.bufferTransferDisabled = TRUE;
+
+    for (i = 0; i < MAX_MONS_ON_SCREEN; i++)
+        sGTSPokedexView->monSpriteIds[i] = 0xFFFF;
+    sGTSPokedexView->selectedMonSpriteId = 0xFFFF;
+
+    // Create top mon sprite
+    if (selectedMon == 0)
+        dexNum = 0xFFFF;
+    else
+        dexNum = sGTSPokedexView->pokedexList[selectedMon - 1].dexNum;
+    if (dexNum != 0xFFFF)
+    {
+        spriteId = CreatePokedexMonSprite(dexNum, 0xB4, 0x40);
+        gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].data[5] = -32;
+    }
+
+    // Create mid mon sprite
+    dexNum = sGTSPokedexView->pokedexList[selectedMon].dexNum;
+    if (dexNum != 0xFFFF)
+    {
+        spriteId = CreatePokedexMonSprite(dexNum, 0xB4, 0x40);
+        gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].data[5] = 0;
+    }
+
+    // Create bottom mon sprite
+    dexNum = sGTSPokedexView->pokedexList[selectedMon + 1].dexNum;
+    if (dexNum != 0xFFFF)
+    {
+        spriteId = CreatePokedexMonSprite(dexNum, 0xB4, 0x40);
+        gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].data[5] = 32;
+    }
+
+    //CreateMonListEntry(0, selectedMon, ignored);
+    SetGpuReg(REG_OFFSET_BG2VOFS, sGTSPokedexView->initialVOffset);
+
+    sGTSPokedexView->listVOffset = 0;
+    sGTSPokedexView->listMovingVOffset = 0;
+
+    gPaletteFade.bufferTransferDisabled = FALSE;
+}
+
+static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
+{
+    u16 dexNum;
+    u8 spriteId;
+
+    sGTSPokedexView->listMovingVOffset = sGTSPokedexView->listVOffset;
+    switch (direction)
+    {
+    case 1: // up
+        dexNum = sGTSPokedexView->pokedexList[selectedMon - 1].dexNum;
+        if (dexNum != 0xFFFF  && selectedMon != 0)
+        {
+            spriteId = CreatePokedexMonSprite(dexNum, 0xB4, 0x40);
+            gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+            gSprites[spriteId].data[5] = -64;
+        }
+        if (sGTSPokedexView->listVOffset > 0)
+            sGTSPokedexView->listVOffset--;
+        else
+            sGTSPokedexView->listVOffset = LIST_SCROLL_STEP - 1;
+        break;
+    case 2: // down
+        dexNum = sGTSPokedexView->pokedexList[selectedMon + 1].dexNum;
+        if (dexNum != 0xFFFF)
+        {
+            spriteId = CreatePokedexMonSprite(dexNum, 0xB4, 0x40);
+            gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+            gSprites[spriteId].data[5] = 64;
+        }
+        if (sGTSPokedexView->listVOffset < LIST_SCROLL_STEP - 1)
+            sGTSPokedexView->listVOffset++;
+        else
+            sGTSPokedexView->listVOffset = 0;
+        break;
+    }
+}
+
+// u16 ignored is passed but never used
+static u16 TryDoGTSSpriteScroll(u16 selectedMon, u16 ignored)
+{
+    u8 scrollTimer;
+    u8 scrollMonIncrement;
+    u8 i;
+    u16 startingPos;
+    u8 scrollDir = 0;
+
+    if (JOY_NEW(DPAD_LEFT) && (selectedMon > 0))
+    {
+        scrollDir = 1;
+        selectedMon = GetNextPosition(1, selectedMon, 0, sGTSPokedexView->pokemonListCount - 1);
+        CreateScrollingPokemonSprite(1, selectedMon);
+        //CreateMonListEntry(1, selectedMon, ignored);
+        PlaySE(SE_DEX_SCROLL);
+    }
+    else if (JOY_NEW(DPAD_RIGHT) && (selectedMon < sGTSPokedexView->pokemonListCount - 1))
+    {
+        scrollDir = 2;
+        selectedMon = GetNextPosition(0, selectedMon, 0, sGTSPokedexView->pokemonListCount - 1);
+        CreateScrollingPokemonSprite(2, selectedMon);
+        //CreateMonListEntry(2, selectedMon, ignored);
+        PlaySE(SE_DEX_SCROLL);
+    }
+
+    if (scrollDir == 0)
+    {
+        // Left/right input just snaps up/down, no scrolling
+        sGTSPokedexView->scrollSpeed = 0;
+        return selectedMon;
+    }
+
+    scrollMonIncrement = sScrollMonIncrements[sGTSPokedexView->scrollSpeed / 4];
+    scrollTimer = sScrollTimers[sGTSPokedexView->scrollSpeed / 4];
+    sGTSPokedexView->scrollTimer = scrollTimer;
+    sGTSPokedexView->maxScrollTimer = scrollTimer;
+    sGTSPokedexView->scrollMonIncrement = scrollMonIncrement;
+    sGTSPokedexView->scrollDirection = scrollDir;
+    //sPokedexView->pokeBallRotationStep = scrollMonIncrement / 2;
+    //UpdateDexListScroll(sPokedexView->scrollDirection, sPokedexView->scrollMonIncrement, sPokedexView->maxScrollTimer);
+    if (sGTSPokedexView->scrollSpeed < 12)
+        sGTSPokedexView->scrollSpeed++;
+    return selectedMon;
+}
+
+static bool8 UpdateDexListScrollSprites(u8 direction, u8 monMoveIncrement, u8 scrollTimerMax)
+{
+    u16 i;
+    u8 step;
+
+    if (sGTSPokedexView->scrollTimer)
+    {
+        sGTSPokedexView->scrollTimer--;
+        switch (direction)
+        {
+        case 1: // Up
+            for (i = 0; i < MAX_MONS_ON_SCREEN; i++)
+            {
+                if (sGTSPokedexView->monSpriteIds[i] != 0xFFFF)
+                    gSprites[sGTSPokedexView->monSpriteIds[i]].data[5] += monMoveIncrement;
+            }
+            step = LIST_SCROLL_STEP * (scrollTimerMax - sGTSPokedexView->scrollTimer) / scrollTimerMax;
+            SetGpuReg(REG_OFFSET_BG2VOFS, sGTSPokedexView->initialVOffset + sGTSPokedexView->listMovingVOffset * LIST_SCROLL_STEP - step);
+            break;
+        case 2: // Down
+            for (i = 0; i < MAX_MONS_ON_SCREEN; i++)
+            {
+                if (sGTSPokedexView->monSpriteIds[i] != 0xFFFF)
+                    gSprites[sGTSPokedexView->monSpriteIds[i]].data[5] -= monMoveIncrement;
+            }
+            step = LIST_SCROLL_STEP * (scrollTimerMax - sGTSPokedexView->scrollTimer) / scrollTimerMax;
+            SetGpuReg(REG_OFFSET_BG2VOFS, sGTSPokedexView->initialVOffset + sGTSPokedexView->listMovingVOffset * LIST_SCROLL_STEP + step);
+            break;
+        }
+        return FALSE;
+    }
+    else
+    {
+        SetGpuReg(REG_OFFSET_BG2VOFS, sGTSPokedexView->initialVOffset + sGTSPokedexView->listVOffset * LIST_SCROLL_STEP);
+        return TRUE;
+    }
+}
 
 static void VBlankCB_MysteryGiftEReader(void)
 {
@@ -1261,12 +1526,19 @@ bool32 PrintGTSMenuMessage(u8 *textState, const u8 *str)
         break;
     case 1:
         DrawDownArrow(1, DOWN_ARROW_X, DOWN_ARROW_Y, 1, FALSE, &sDownArrowCounterAndYCoordIdx[0], &sDownArrowCounterAndYCoordIdx[1]);
-        if (({JOY_NEW(A_BUTTON | B_BUTTON);}))
+        if (({JOY_NEW(A_BUTTON);}))
             (*textState)++;
+        if (({JOY_NEW(B_BUTTON);}))
+            (*textState)==3;
         break;
     case 2:
         DrawDownArrow(1, DOWN_ARROW_X, DOWN_ARROW_Y, 1, TRUE, &sDownArrowCounterAndYCoordIdx[0], &sDownArrowCounterAndYCoordIdx[1]);
         *textState = 0;
+        //ClearTextWindow();
+        return TRUE;
+    case 3:
+        //DrawDownArrow(1, DOWN_ARROW_X, DOWN_ARROW_Y, 1, TRUE, &sDownArrowCounterAndYCoordIdx[0], &sDownArrowCounterAndYCoordIdx[1]);
+        //*textState = 3;
         //ClearTextWindow();
         return TRUE;
     case 0xFF:
@@ -1765,6 +2037,8 @@ enum {
     GTS_STATE_SEARCH_POKEMON,
     GTS_STATE_SEARCH_POKEMON_LIST,
     GTS_STATE_SEARCH_POKEMON_LEVEL_LIST,
+    GTS_STATE_FETCHING_POKEMON,
+    GTS_STATE_SELECT_FETCHED_POKEMON,
     GTS_STATE_START_SEARCH,
     GTS_STATE_SUCCESSFUL_SEARCH,
     GTS_STATE_UNSUCCESSFUL_SEARCH,
@@ -1854,14 +2128,14 @@ static void RecreateGlobalTradeStationTask(void)
     data->clientMsg = AllocZeroed(CLIENT_MAX_MSG_SIZE);
     sGTSPokedexView = AllocZeroed(sizeof(struct GTSPokedexView));
     ResetPokedexViewGTS(sGTSPokedexView);
-    sGTSPokedexView->windowid = AddWindow(&sWindowTemplate_PokemonSelect);
+    sGTSPokedexView->windowid = AddWindow(&sWindowTemplate_PokemonSelect); //Add Pokemon list box (empty for now)
     FillWindowPixelBuffer(sGTSPokedexView->windowid, 0x11);
     //FillWindowPixelRect(sGTSPokedexView->windowid, PIXEL_FILL(1), 0, 0, 8, 16);
     //AddTextPrinterParameterized4(sGTSPokedexView->windowid, FONT_NORMAL, 0, 1, 0, 0, sGTS_Ereader_TextColor_2, 0, gStringVar4);
-    DrawTextBorderOuter(sGTSPokedexView->windowid, 0x001, 0x0F);
-    CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_MAP);
-    CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_GFX);
-    PutWindowTilemap(sGTSPokedexView->windowid);
+    //DrawTextBorderOuter(sGTSPokedexView->windowid, 0x001, 0x0F);
+    //CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_MAP);
+    //CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_GFX);
+    //PutWindowTilemap(sGTSPokedexView->windowid);
 }
 
 
@@ -1870,6 +2144,7 @@ static void Task_GlobalTradeStation(u8 taskId)
     struct GlobalTradeStationTaskData *data = (void *)gTasks[taskId].data;
     u32 successMsg, input;
     const u8 *msg;
+    bool8 j = TRUE;
 
     switch (data->state)
     {
@@ -1926,7 +2201,16 @@ static void Task_GlobalTradeStation(u8 taskId)
         break;
     case GTS_STATE_SEEKING:
         sGTSPokedexView->dexMode = DoGTSListMenu(&sWindowTemplate_ABCSelect, &sListMenu_ABCMenu, 1, LIST_MENU_TILE_NUM, LIST_MENU_PAL_NUM);
-        if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemon))
+        if (sGTSPokedexView->dexMode == LIST_CANCEL) {
+            ClearStdWindowAndFrame(sGTSPokedexView->windowid, FALSE);
+            ClearStdWindowAndFrame(1, FALSE);
+            data->textState = 0;
+            sGTSPokedexView->dexMode = 0;
+            PlaySE(SE_SELECT);
+            //BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            data->state = GTS_STATE_MAIN_MENU;
+        } 
+        else if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemon))
         {
             data->state = GTS_STATE_SEARCH_POKEMON;
             PrintGTSTopMenu(FALSE, TRUE);
@@ -1937,6 +2221,10 @@ static void Task_GlobalTradeStation(u8 taskId)
         if(sGTSPokedexView->pokemonListCount != 0){
             CreateMonListEntryGTS(0, 0);
             data->state = GTS_STATE_SEARCH_POKEMON_LIST;
+        }
+        else {
+            PlaySE(SE_FAILURE);
+            data->state = GTS_STATE_SEEKING;
         }
         break;
     case GTS_STATE_SEARCH_POKEMON_LIST:
@@ -1951,7 +2239,7 @@ static void Task_GlobalTradeStation(u8 taskId)
         }
         if (JOY_NEW(B_BUTTON))
         {
-            data->state = GTS_STATE_MAIN_MENU;
+            data->state = GTS_STATE_SEEKING;
             FillWindowPixelRect(sGTSPokedexView->windowid, PIXEL_FILL(1), 0, 0, 80, 80);
             CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_GFX);
             //RemoveWindow(0);
@@ -1959,7 +2247,17 @@ static void Task_GlobalTradeStation(u8 taskId)
         break;
     case GTS_STATE_SEARCH_POKEMON_LEVEL_LIST:
        sGTSPokedexView->dexMode = DoGTSListMenu(&sWindowTemplate_LevelSelect, &sListMenu_Levels, 1, LIST_MENU_TILE_NUM, LIST_MENU_PAL_NUM);
-        if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemonLevel))
+       if (sGTSPokedexView->dexMode == LIST_CANCEL) {
+            PlaySE(SE_SELECT);
+            //BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            ResetPokedexViewGTS(sGTSPokedexView);
+            sGTSPokedexView->windowid = AddWindow(&sWindowTemplate_PokemonSelect); //Add Pokemon list box (empty for now)
+            FillWindowPixelBuffer(sGTSPokedexView->windowid, 0x11);
+            sGTSPokedexView->dexMode = 0;
+            data->textState = 0;
+            data->state = GTS_STATE_SEEK_SETUP;
+        }
+        else if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemonLevel))
         {
             //GetMonData(mon, MON_DATA_NICKNAME, name);
             StringCopy_Nickname(gStringVar1, gPlayerParty[sGTSPokedexView->offerPokemon].box.nickname);
@@ -1967,10 +2265,44 @@ static void Task_GlobalTradeStation(u8 taskId)
             sGTSPokedexView->cursorRelPos = 0;
             sGTSPokedexView->atTop = 1;
             sGTSPokedexView->atBottom = 0;
-            sGTSPokedexView->selectedPokemon = 0;
+            //sGTSPokedexView->selectedPokemon = 0;
             sGTSPokedexView->pokemonListCount = 0;
-            data->state = GTS_STATE_CONFIRM_OFFER;
+            sGTSPokedexView->scrollTimer = 0;
+            sGTSPokedexView->maxScrollTimer = 0;
+            sGTSPokedexView->scrollMonIncrement = 0;
+            sGTSPokedexView->scrollDirection = 0;
+            data->state = GTS_STATE_FETCHING_POKEMON;
             //RemoveWindow(sGTSPokedexView->windowid);
+        }
+        break;
+    case GTS_STATE_FETCHING_POKEMON:
+        GTSAddTextPrinterToWindow1(gText_Communicating);
+        sGTSPokedexView->pokedexList[0].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[1].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[2].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[3].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[4].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[5].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[6].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[7].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[8].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[9].dexNum = sGTSPokedexView->pokedexList[sGTSPokedexView->selectedPokemon].dexNum;
+        sGTSPokedexView->pokedexList[10].dexNum = 0xFFFF;
+        sGTSPokedexView->pokedexList[11].dexNum = 0xFFFF;
+        sGTSPokedexView->selectedPokemon = 0;
+        sGTSPokedexView->pokemonListCount = 10;
+        CreateMonSpritesAtPos(sGTSPokedexView->selectedPokemon, 0xE);
+        data->state = GTS_STATE_SELECT_FETCHED_POKEMON;
+        break;
+    case GTS_STATE_SELECT_FETCHED_POKEMON:
+        if (j) {
+            sGTSPokedexView->selectedPokemon = TryDoGTSSpriteScroll(sGTSPokedexView->selectedPokemon, 0xE);
+            j=FALSE;
+        }
+        if (sGTSPokedexView->scrollTimer) {
+            if (UpdateDexListScrollSprites(sGTSPokedexView->scrollDirection, sGTSPokedexView->scrollMonIncrement, sGTSPokedexView->maxScrollTimer)){
+                j = TRUE;
+            }
         }
         break;
     case GTS_STATE_DEPOSIT_POKEMON:
@@ -1990,15 +2322,24 @@ static void Task_GlobalTradeStation(u8 taskId)
         if(gSpecialVar_0x8004 > PARTY_SIZE){
             gSpecialVar_0x8004=0;
             data->state = GTS_STATE_MAIN_MENU;
-            break;
         }
-        sGTSPokedexView->offerPokemon = gSpecialVar_0x8004;//gSpecialVar_0x8004;
-        //PrintSearchText(sDexSearchNameOptions[searchParamId].title, 0x2D, 0x11);
-        sGTSPokedexView->dexMode = DoGTSListMenu(&sWindowTemplate_ABCSelect, &sListMenu_ABCMenu, 1, LIST_MENU_TILE_NUM, LIST_MENU_PAL_NUM);
-        if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemon))
-        {
-            data->state = GTS_STATE_DEPOSITING_POKEMON;
-            PrintGTSTopMenu(FALSE, TRUE);
+        else {
+            DrawTextBorderOuter(sGTSPokedexView->windowid, 0x001, 0x0F);
+            CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_MAP);
+            CopyWindowToVram(sGTSPokedexView->windowid, COPYWIN_GFX);
+            PutWindowTilemap(sGTSPokedexView->windowid);
+            sGTSPokedexView->offerPokemon = gSpecialVar_0x8004;//gSpecialVar_0x8004;
+            //PrintSearchText(sDexSearchNameOptions[searchParamId].title, 0x2D, 0x11);
+            sGTSPokedexView->dexMode = DoGTSListMenu(&sWindowTemplate_ABCSelect, &sListMenu_ABCMenu, 1, LIST_MENU_TILE_NUM, LIST_MENU_PAL_NUM);
+        
+            if (sGTSPokedexView->dexMode == LIST_CANCEL) {
+                PlaySE(SE_SELECT);
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+                data->state = GTS_STATE_DEPOSIT_POKEMON;
+            } else if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemon)) {
+                data->state = GTS_STATE_DEPOSITING_POKEMON;
+                PrintGTSTopMenu(FALSE, TRUE);
+            }
         }
         break;
     case GTS_STATE_DEPOSITING_POKEMON:
@@ -2008,7 +2349,12 @@ static void Task_GlobalTradeStation(u8 taskId)
         //CreatePokedexListGTS();
         if(sGTSPokedexView->pokemonListCount != 0){
             CreateMonListEntryGTS(0, 0);
+            sGTSPokedexView->atTop = 1;
             data->state = GTS_STATE_POKEMON_LIST;
+        }
+        else {
+            PlaySE(SE_FAILURE);
+            data->state = GTS_STATE_PICK_WANTED_POKEMON;
         }
         //if (PrintGTSMenuMessage(&data->textState, gText_PokemonWillBeSent))
         //{
@@ -2036,7 +2382,17 @@ static void Task_GlobalTradeStation(u8 taskId)
         break;
     case GTS_STATE_POKEMON_LEVEL_LIST:
         sGTSPokedexView->dexMode = DoGTSListMenu(&sWindowTemplate_LevelSelect, &sListMenu_LevelsWanted, 1, LIST_MENU_TILE_NUM, LIST_MENU_PAL_NUM);
-        if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemonLevel))
+        if (sGTSPokedexView->dexMode == LIST_CANCEL) {
+            PlaySE(SE_SELECT);
+            //BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            ResetPokedexViewGTS(sGTSPokedexView);
+            sGTSPokedexView->windowid = AddWindow(&sWindowTemplate_PokemonSelect); //Add Pokemon list box (empty for now)
+            FillWindowPixelBuffer(sGTSPokedexView->windowid, 0x11);
+            sGTSPokedexView->dexMode = 0;
+            data->textState = 0;
+            data->state = GTS_STATE_PICK_WANTED_POKEMON;
+        }
+        else if (PrintGTSMenuMessage(&data->textState, gText_ChooseGTSPokemonLevel))
         {
             //GetMonData(mon, MON_DATA_NICKNAME, name);
             StringCopy_Nickname(gStringVar1, gPlayerParty[sGTSPokedexView->offerPokemon].box.nickname);
@@ -2075,7 +2431,7 @@ static void Task_GlobalTradeStation(u8 taskId)
         case MENU_B_PRESSED:
             MysteryGiftClient_SetParam(TRUE);
             MysteryGiftClient_AdvanceState();
-            data->state = GTS_STATE_CLIENT_COMMUNICATING;
+            data->state = GTS_STATE_POKEMON_LEVEL_LIST;
             break;
         }
         break;

@@ -1,5 +1,6 @@
 #ifndef GUARD_GTS_MENU_H
 #define GUARD_GTS_MENU_H
+#define MAX_MONS_ON_SCREEN 4
 
 u16 GetGTSBaseBlock(void);
 void CB2_MysteryGiftEReader(void);
@@ -26,12 +27,13 @@ struct GTSPokedexView
     u16 pokemonListCount; //keep
     u16 selectedPokemon;
     u16 offerPokemon;
-    u16 dexMode;
+    s16 dexMode;
     u16 windowid;
     u16 dexOrder;
     u16 dexOrderBackup;
     u16 seenCount;
     u16 ownCount;
+    u16 monSpriteIds[MAX_MONS_ON_SCREEN];
     u16 selectedMonSpriteId;
     u16 cursorRelPos;
     u8 atTop;
