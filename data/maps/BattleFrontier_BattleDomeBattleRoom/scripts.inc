@@ -454,7 +454,6 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_DoDomeBattle::
 	setvar VAR_TEMP_9, 0
 	dome_restorehelditems
 	special HealPlayerParty
-	dome_resetsketch
 	return
 
 BattleFrontier_BattleDomeBattleRoom_OnWarp:
