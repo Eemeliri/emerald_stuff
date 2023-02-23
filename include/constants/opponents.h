@@ -946,5 +946,7 @@
 
 #define TRAINERS_COUNT                      928
 #define MAX_TRAINERS_COUNT                  928
+#define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
+#define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

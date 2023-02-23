@@ -1282,7 +1282,7 @@ static void OpponentHandleDrawTrainerPic(void)
         }
         else
         {
-            if (gTrainerBattleOpponent_A > 800 && gTrainerBattleOpponent_A < TRAINERS_COUNT)
+            if (gTrainerBattleOpponent_A >= FIRST_PWT_TRAINER && gTrainerBattleOpponent_A <= LAST_PWT_TRAINER)
                 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
@@ -1369,7 +1369,7 @@ static void OpponentHandleTrainerSlide(void)
         }
         else
         {
-            if (gTrainerBattleOpponent_A > 800 && gTrainerBattleOpponent_A < TRAINERS_COUNT)
+            if (gTrainerBattleOpponent_A >= FIRST_PWT_TRAINER && gTrainerBattleOpponent_A <= LAST_PWT_TRAINER)
                 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
             else
                 trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);

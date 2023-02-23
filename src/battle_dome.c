@@ -4520,7 +4520,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
-    else if (trainerId  > 800 && trainerId  < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(gTrainers[trainerId].trainerPic, TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
     else
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerId), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
@@ -4549,7 +4549,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                                                                   0, 0);
             gSprites[sInfoCard->spriteIds[2 + i + arrId]].oam.priority = 0;
         }
-        else if (trainerId  > 500 && trainerId  < TRAINERS_COUNT)
+        else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         {
             sInfoCard->spriteIds[2 + i + arrId] = CreateMonIcon(0,
                                                                   SpriteCB_MonIconDomeInfo,
@@ -4591,7 +4591,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         j = gFacilityClassToTrainerClass[FACILITY_CLASS_BRENDAN];
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         j = GetDomeBrainTrainerClass();
-    else if (trainerId  > 800 && trainerId  < TRAINERS_COUNT)
+    else if (trainerId > FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         j = gTrainers[trainerId].trainerClass;
     else
         j = GetFrontierOpponentClass(trainerId);
@@ -4610,7 +4610,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         CopyDomeBrainTrainerName(gStringVar2);
         StringAppend(gStringVar1, gStringVar2);
     }
-    else if (trainerId > 500 && trainerId < TRAINERS_COUNT)
+    else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
     {
         CopyDomeTrainerName(gStringVar2, trainerId);
         StringAppend(gStringVar1, gStringVar2);
@@ -4638,7 +4638,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
             textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
         else if (trainerId == TRAINER_FRONTIER_BRAIN)
             textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
-        else if (trainerId  > 500 && trainerId  < TRAINERS_COUNT)
+        else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
             textPrinter.currentChar = gSpeciesNames[0];//gSpeciesNames[0];
         else
             textPrinter.currentChar = gSpeciesNames[gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species];
@@ -5013,7 +5013,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
     else if (trainerIds[0] == TRAINER_FRONTIER_BRAIN)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
-    else if (trainerIds[0] > TRAINER_EREADER && trainerIds[0] < 600)
+    else if (trainerIds[0] > TRAINER_EREADER && trainerIds[0] < FIRST_PWT_TRAINER)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[0]), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
     else if (trainerIds[0] > FRONTIER_TRAINERS_COUNT)
         sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(gTrainers[trainerIds[0]].trainerPic, TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
@@ -5030,7 +5030,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
         sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
     else if (trainerIds[1] == TRAINER_FRONTIER_BRAIN)
         sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
-    else if (trainerIds[1] > TRAINER_EREADER && trainerIds[1] < 600)
+    else if (trainerIds[1] > TRAINER_EREADER && trainerIds[1] < FIRST_PWT_TRAINER)
         sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[1]), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
     else if (trainerIds[1] > FRONTIER_TRAINERS_COUNT)
         sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(gTrainers[trainerIds[1]].trainerPic, TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
@@ -5063,7 +5063,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
                                                                   0, 0);
             gSprites[sInfoCard->spriteIds[2 + i + arrId]].oam.priority = 0;
         }
-        else if (trainerIds[0]  > 500 && trainerIds[0]  < TRAINERS_COUNT)
+        else if (trainerIds[0] >= FIRST_PWT_TRAINER && trainerIds[0] <= LAST_PWT_TRAINER)
         {
             sInfoCard->spriteIds[2 + i + arrId] = CreateMonIcon(0,
                                                                   SpriteCB_MonIconDomeInfo,
@@ -5112,7 +5112,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
                                                                   0, 0);
             gSprites[sInfoCard->spriteIds[5 + i + arrId]].oam.priority = 0;
         }
-        else if (trainerIds[1]  > 500 && trainerIds[1]  < TRAINERS_COUNT)
+        else if (trainerIds[1] >= FIRST_PWT_TRAINER && trainerIds[1] <= LAST_PWT_TRAINER)
         {
             sInfoCard->spriteIds[5 + i + arrId] = CreateMonIcon(0,
                                                                   SpriteCB_MonIconDomeInfo,
@@ -5166,7 +5166,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
         StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
     else if (trainerIds[0] == TRAINER_FRONTIER_BRAIN)
         CopyDomeBrainTrainerName(gStringVar1);
-    else if (trainerIds[0]  > 500 && trainerIds[0]  < TRAINERS_COUNT)
+    else if (trainerIds[0] >= FIRST_PWT_TRAINER && trainerIds[0] <= LAST_PWT_TRAINER)
         CopyDomeTrainerName(gStringVar1, trainerIds[0]);
     else
         CopyDomeTrainerName(gStringVar1, trainerIds[0]);
@@ -5186,7 +5186,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
         StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
     else if (trainerIds[1] == TRAINER_FRONTIER_BRAIN)
         CopyDomeBrainTrainerName(gStringVar1);
-    else if (trainerIds[1]  > 500 && trainerIds[1]  < TRAINERS_COUNT)
+    else if (trainerIds[1] >= FIRST_PWT_TRAINER && trainerIds[1] <= LAST_PWT_TRAINER)
         CopyDomeTrainerName(gStringVar1, trainerIds[1]);
     else
         CopyDomeTrainerName(gStringVar1, trainerIds[1]);
@@ -6274,9 +6274,9 @@ static void DecideRoundWinners(u8 roundId)
             gSaveBlock1Ptr->frontier.domeWinningMoves[tournamentId1] = GetWinningMove(tournamentId2, tournamentId1, roundId);
         }
         // Gym Champion always wins, check tournamentId1.
-        else if (DOME_TRAINERS[tournamentId1].trainerId > 500 && DOME_TRAINERS[tournamentId1].trainerId < TRAINERS_COUNT && tournamentId2 != 0xFF)
+        else if (DOME_TRAINERS[tournamentId1].trainerId >= FIRST_PWT_TRAINER && DOME_TRAINERS[tournamentId1].trainerId <= LAST_PWT_TRAINER && tournamentId2 != 0xFF)
         {
-            if(DOME_TRAINERS[tournamentId2].trainerId > 500 && DOME_TRAINERS[tournamentId2].trainerId < TRAINERS_COUNT && tournamentId1 != 0xFF)
+            if(DOME_TRAINERS[tournamentId2].trainerId >= FIRST_PWT_TRAINER && DOME_TRAINERS[tournamentId2].trainerId <= LAST_PWT_TRAINER && tournamentId1 != 0xFF)
             {
                 int rand = Random() % 2;
                 if (rand == 0){
@@ -6404,12 +6404,12 @@ static void CopyDomeTrainerName(u8 *str, u16 trainerId)
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
                 str[i] = gFacilityTrainers[trainerId].trainerName[i];
         }
-        else if (trainerId > 800 && trainerId < TRAINERS_COUNT)
+        else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         {
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
                 str[i] = gTrainers[trainerId].trainerName[i];
         }
-        else if (trainerId > TRAINER_EREADER && trainerId < 600)
+        else if (trainerId > TRAINER_EREADER && trainerId < FIRST_PWT_TRAINER)
         {
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
                 str[i] = gSaveBlock1Ptr->frontier.ereaderTrainer[trainerId-500].name[i];
