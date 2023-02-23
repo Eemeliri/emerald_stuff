@@ -130,17 +130,13 @@ BattleFrontier_BattleDomeLobby_EventScript_LostChallenge::
 	msgbox BattleFrontier_BattleDomeLobby_Text_ThankYouForPlaying, MSGBOX_DEFAULT
 	message BattleFrontier_BattleDomeLobby_Text_RecordWillBeSaved
 	waitmessage
-	special LoadPlayerParty
-	setvar VAR_TEMP_2, FRONTIER_PARTY_SIZE
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleDomeLobby_EventScript_SetPartySize
-	frontier_setpartyorder VAR_TEMP_2
 	frontier_checkairshow
 	goto_if_ne VAR_PWT_MODE, 0, BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT
 	dome_set DOME_DATA_WIN_STREAK_ACTIVE, FALSE
 	dome_set DOME_DATA_ATTEMPTED_CHALLENGE, TRUE
 	special LoadPlayerParty
 	special HealPlayerParty
-  callnative UpdateFollowingPokemon
+    callnative UpdateFollowingPokemon
 BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle::
 	dome_save 0
 	playse SE_SAVE
@@ -154,10 +150,6 @@ BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle::
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
-
-BattleFrontier_BattleDomeLobby_EventScript_SetPartySize::
-	setvar VAR_TEMP_2, FRONTIER_DOUBLES_PARTY_SIZE
-	return
 
 BattleFrontier_BattleDomeLobby_EventScript_LostChallengePWT::
 	special LoadPlayerParty
