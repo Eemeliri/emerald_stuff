@@ -5866,7 +5866,7 @@ static const struct WindowTemplate sRankingHallRecordsWindowTemplate =
 };
 
 // Second field - whether the character is female.
-static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
+static const u16 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
 {
     [FRONTIER_FACILITY_TOWER]   = {OBJ_EVENT_GFX_ANABEL,  TRUE},
     [FRONTIER_FACILITY_DOME]    = {OBJ_EVENT_GFX_TUCKER,  FALSE},
@@ -5877,7 +5877,7 @@ static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
     [FRONTIER_FACILITY_PYRAMID] = {OBJ_EVENT_GFX_BRANDON, FALSE},
 };
 
-static const u8 sFrontierLeaderObjEventGfx[] =
+static const u16 sFrontierLeaderObjEventGfx[] =
 {
     [TRAINER_FRONTIER_BROCK]   = OBJ_EVENT_GFX_BROCK,
     [TRAINER_FRONTIER_MISTY]    = OBJ_EVENT_GFX_MISTY,
