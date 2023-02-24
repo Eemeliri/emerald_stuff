@@ -2624,13 +2624,6 @@ static void Task_GlobalTradeStation(u8 taskId)
         // input var re-used, here it is TRUE if the message is finished
         if (input)
         {
-            if (data->msgId == CLI_MSG_NEWS_RECEIVED)
-            {
-                if (data->sourceIsFriend == TRUE)
-                    GenerateRandomWonderNews(WONDER_NEWS_RECV_FRIEND);
-                else
-                    GenerateRandomWonderNews(WONDER_NEWS_RECV_WIRELESS);
-            }
             if (!successMsg)
             {
                 // Did not receive card/news, return to main menu
@@ -2832,19 +2825,6 @@ static void Task_GlobalTradeStation(u8 taskId)
         }
         break;
     case GTS_STATE_SERVER_RESULT_MSG:
-        if (PrintServerResultMessage(&data->textState, &data->var, data->sourceIsFriend, data->msgId))
-        {
-            if (data->sourceIsFriend == TRUE && data->msgId == SVR_MSG_NEWS_SENT)
-            {
-                GenerateRandomWonderNews(WONDER_NEWS_SENT);
-                data->state = GTS_STATE_SAVE_LOAD_GIFT;
-            }
-            else
-            {
-                data->state = GTS_STATE_TO_MAIN_MENU;
-                PrintGTSTopMenu(FALSE, FALSE);
-            }
-        }
         break;
     case GTS_STATE_CLIENT_ERROR:
     case GTS_STATE_SERVER_ERROR:

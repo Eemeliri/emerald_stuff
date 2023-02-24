@@ -1933,3 +1933,18 @@ const u32 gItemIconPalette_Sapphire[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_EonFlute[] = INCBIN_U32("graphics/items/icons/eon_flute.4bpp.lz");
 const u32 gItemIconPalette_EonFlute[] = INCBIN_U32("graphics/items/icon_palettes/eon_flute.gbapal.lz");
+
+//const u32 gItemIcon_AbilityShield[] = INCBIN_U32("graphics/items/icons/ability_shield.4bpp.lz");
+//const u32 gItemIconPalette_AbilityShield[] = INCBIN_U32("graphics/items/icon_palettes/ability_shield.gbapal.lz");
+
+//const u32 gItemIcon_ClearAmulet[] = INCBIN_U32("graphics/items/icons/clear_amulet.4bpp.lz");
+//const u32 gItemIconPalette_ClearAmulet[] = INCBIN_U32("graphics/items/icon_palettes/clear_amulet.gbapal.lz");
+
+//const u32 gItemIcon_PunchingGlove[] = INCBIN_U32("graphics/items/icons/punching_glove.4bpp.lz");
+//const u32 gItemIconPalette_PunchingGlove[] = INCBIN_U32("graphics/items/icon_palettes/punching_glove.gbapal.lz");
+
+//const u32 gItemIcon_CovertCloak[] = INCBIN_U32("graphics/items/icons/covert_cloak.4bpp.lz");
+//const u32 gItemIconPalette_CovertCloak[] = INCBIN_U32("graphics/items/icon_palettes/covert_cloak.gbapal.lz");
+
+//const u32 gItemIcon_LoadedDice[] = INCBIN_U32("graphics/items/icons/loaded_dice.4bpp.lz");
+//const u32 gItemIconPalette_LoadedDice[] = INCBIN_U32("graphics/items/icon_palettes/loaded_dice.gbapal.lz");

@@ -5698,99 +5698,45 @@ static const struct FrontierBrainMon sFrontierChampionMons[][6] =
     },    
 };
 
-static const u8 sBattlePointAwards[][NUM_FRONTIER_FACILITIES][FRONTIER_MODE_COUNT] =
+static const u8 sBattlePointAwards[NUM_FRONTIER_FACILITIES][FRONTIER_MODE_COUNT][30] =
 {
+    /* facility, mode, tier */
+    [FRONTIER_FACILITY_TOWER] = /* Tier: 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 */
     {
-        {1, 2, 3, 3}, {1, 1}, {4, 5}, {1}, {3, 4}, {1}, {5}
+        [FRONTIER_MODE_SINGLES]     = {  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_DOUBLES]     = {  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_MULTIS]      = {  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_LINK_MULTIS] = {  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
+    [FRONTIER_FACILITY_DOME] =
     {
-        {2, 3, 4, 4}, {1, 1}, {4, 5}, {1}, {3, 4}, {1}, {5}
+        [FRONTIER_MODE_SINGLES]     = {  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15 },
+        [FRONTIER_MODE_DOUBLES]     = {  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15 },
     },
+    [FRONTIER_FACILITY_PALACE] =
     {
-        {3, 4, 5, 5}, {2, 2}, {5, 6}, {1}, {4, 5}, {2}, {6}
+        [FRONTIER_MODE_SINGLES]     = {  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_DOUBLES]     = {  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
+    [FRONTIER_FACILITY_ARENA] =
     {
-        {4, 5, 6, 6}, {2, 2}, {5, 6}, {2}, {4, 5}, {2}, {6}
+        [FRONTIER_MODE_SINGLES]     = {  1,  1,  1,  2,  2,  2,  3,  3,  4,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
+    [FRONTIER_FACILITY_FACTORY] =
     {
-        {5, 6, 7, 7}, {3, 3}, {6, 7}, {2}, {5, 6}, {2}, {7}
+        [FRONTIER_MODE_SINGLES]     = {  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_DOUBLES]     = {  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
+    [FRONTIER_FACILITY_PIKE] =
     {
-        {6, 7, 8, 8}, {3, 3}, {6, 7}, {2}, {5, 6}, {4}, {7}
+        [FRONTIER_MODE_SINGLES]     = {  1,  1,  2,  2,  2,  4,  4,  4,  8,  8,  8,  8, 10, 10, 10, 10, 12, 12, 12, 12, 12, 14, 14, 14, 14, 15, 15, 15, 15, 15 },
     },
+    [FRONTIER_FACILITY_PYRAMID] =
     {
-        {7, 8, 9, 9}, {4, 4}, {7, 8}, {3}, {6, 7}, {4}, {8}
-    },
-    {
-        {8, 9, 10, 10}, {4, 4}, {7, 8}, {3},{6, 7}, {4}, {8}
-    },
-    {
-        {9, 10, 11, 11}, {5, 5}, {8, 9}, {4}, {7, 8}, {8}, {9}
-    },
-    {
-        {10, 11, 12, 12}, {5, 5}, {8, 9}, {4}, {7, 8}, {8}, {9}
-    },
-    {
-        {11, 12, 13, 13}, {6, 6}, {9, 10}, {5,0}, {8, 9}, {8}, {10}
-    },
-    {
-        {12, 13, 14, 14}, {6, 6}, {9, 10}, {6,0}, {8, 9}, {8}, {10}
-    },
-    {
-        {13, 14, 15, 15}, {7, 7}, {10, 11}, {7}, {9, 10}, {10}, {11}
-    },
-    {
-        {14, 15, 15, 15}, {7, 7}, {10, 11}, {8}, {9, 10}, {10}, {11}
-    },
-    {
-        {15, 15, 15, 15}, {8, 8}, {11, 12}, {9}, {10, 11}, {10}, {12}
-    },
-    {
-        {15, 15, 15, 15}, {8, 8}, {11, 12}, {10}, {10, 11}, {10}, {12}
-    },
-    {
-        {15, 15, 15, 15}, {9, 9}, {12, 13}, {11}, {11, 12}, {12}, {13}
-    },
-    {
-        {15, 15, 15, 15}, {9, 9}, {12, 13}, {12}, {11, 12}, {12}, {13}
-    },
-    {
-        {15, 15, 15, 15}, {10, 10}, {13, 14}, {13}, {12, 13}, {12}, {14}
-    },
-    {
-        {15, 15, 15, 15}, {10, 10}, {13, 14}, {14}, {12, 13}, {12}, {14}
-    },
-    {
-        {15, 15, 15, 15}, {11, 11}, {14, 15}, {15}, {13, 14}, {12}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {11, 11}, {14, 15}, {15}, {13, 14}, {14}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {12, 12}, {15, 15}, {15}, {14, 15}, {14}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {12, 12}, {15, 15}, {15}, {14, 15}, {14}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {13, 13}, {15, 15}, {15}, {15, 15}, {14}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {13, 13}, {15, 15}, {15}, {15, 15}, {15}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {14, 14}, {15, 15}, {15}, {15, 15}, {15}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {14, 14}, {15, 15}, {15}, {15, 15}, {15}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {15, 15}, {15, 15}, {15}, {15, 15}, {15}, {15}
-    },
-    {
-        {15, 15, 15, 15}, {15, 15}, {15, 15}, {15}, {15, 15}, {15}, {15}
+        [FRONTIER_MODE_SINGLES]     = {  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
 };
+
 
 // Flags to change the conversation when the Frontier Brain is encountered for a battle
 // First bit is has battled them before and not won yet, second bit is has battled them and won (obtained a Symbol)
@@ -7288,10 +7234,10 @@ static void GiveBattlePoints(void)
 
     if (challengeNum != 0)
         challengeNum--;
-    if (challengeNum >= ARRAY_COUNT(sBattlePointAwards))
-        challengeNum = ARRAY_COUNT(sBattlePointAwards) - 1;
+    if (challengeNum >= ARRAY_COUNT(sBattlePointAwards[0][0]))
+        challengeNum = ARRAY_COUNT(sBattlePointAwards[0][0]) - 1;
 
-    points = sBattlePointAwards[challengeNum][facility][battleMode];
+    points = sBattlePointAwards[facility][battleMode][challengeNum];
     if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
         points += 10;
     gSaveBlock1Ptr->frontier.battlePoints += points;
@@ -7300,8 +7246,8 @@ static void GiveBattlePoints(void)
         gSaveBlock1Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
 
     points = gSaveBlock1Ptr->frontier.cardBattlePoints;
-    points += sBattlePointAwards[challengeNum][facility][battleMode];
-    IncrementDailyBattlePoints(sBattlePointAwards[challengeNum][facility][battleMode]);
+    points += sBattlePointAwards[facility][battleMode][challengeNum];
+    IncrementDailyBattlePoints(sBattlePointAwards[facility][battleMode][challengeNum]);
     if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
     {
         points += 10;
@@ -7525,7 +7471,7 @@ static void IncrementWinStreak(void)
             gSaveBlock1Ptr->frontier.towerWinStreaks[battleMode][lvlMode]++;
             if (battleMode == FRONTIER_MODE_SINGLES)
             {
-                SetGameStat(GAME_STAT_BATTLE_TOWER_BEST_STREAK, gSaveBlock1Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
+                SetGameStat(GAME_STAT_BATTLE_TOWER_SINGLES_STREAK, gSaveBlock1Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
                 gSaveBlock1Ptr->frontier.towerSinglesStreak = gSaveBlock1Ptr->frontier.towerWinStreaks[battleMode][lvlMode];
             }
         }
@@ -7674,7 +7620,7 @@ static void Fill1PRecords(struct RankingHall1P *dst, s32 hallFacilityId, s32 lvl
 {
     s32 i, j;
     struct RankingHall1P record1P[HALL_RECORDS_COUNT + 1];
-    struct PlayerHallRecords *playerHallRecords = calloc(1, sizeof(struct PlayerHallRecords));
+    struct PlayerHallRecords *playerHallRecords = AllocZeroed(sizeof(struct PlayerHallRecords));
     GetPlayerHallRecords(playerHallRecords);
 
     for (i = 0; i < HALL_RECORDS_COUNT; i++)
@@ -7701,14 +7647,14 @@ static void Fill1PRecords(struct RankingHall1P *dst, s32 hallFacilityId, s32 lvl
         record1P[highestId].winStreak = 0;
     }
 
-    free(playerHallRecords);
+    Free(playerHallRecords);
 }
 
 static void Fill2PRecords(struct RankingHall2P *dst, s32 lvlMode)
 {
     s32 i, j;
     struct RankingHall2P record2P[HALL_RECORDS_COUNT + 1];
-    struct PlayerHallRecords *playerHallRecords = calloc(1, sizeof(struct PlayerHallRecords));
+    struct PlayerHallRecords *playerHallRecords = AllocZeroed(sizeof(struct PlayerHallRecords));
     GetPlayerHallRecords(playerHallRecords);
 
     for (i = 0; i < HALL_RECORDS_COUNT; i++)
@@ -7735,7 +7681,7 @@ static void Fill2PRecords(struct RankingHall2P *dst, s32 lvlMode)
         record2P[highestId].winStreak = 0;
     }
 
-    free(playerHallRecords);
+    Free(playerHallRecords);
 }
 
 static void PrintHallRecords(s32 hallFacilityId, s32 lvlMode)
@@ -7824,7 +7770,7 @@ void ClearRankingHallRecords(void)
 void SaveGameFrontier(void)
 {
     s32 i;
-    struct Pokemon *monsParty = calloc(PARTY_SIZE, sizeof(struct Pokemon));
+    struct Pokemon *monsParty = AllocZeroed(sizeof(struct Pokemon) * PARTY_SIZE);
 
     for (i = 0; i < PARTY_SIZE; i++)
         monsParty[i] = gPlayerParty[i];
@@ -7839,7 +7785,7 @@ void SaveGameFrontier(void)
     for (i = 0; i < PARTY_SIZE; i++)
         gPlayerParty[i] = monsParty[i];
 
-    free(monsParty);
+    Free(monsParty);
 }
 
 // Frontier Brain functions.

@@ -3892,3 +3892,28 @@ static const u8 sEonFluteDesc[] = _(
     "A flute that can\n"
     "summon Latias or\n"
     "Latios.");
+
+static const u8 sAbilityShieldDesc[] = _(
+    "Ability changes are\n"
+    "prevented for this\n"
+    "items's holder.");
+
+static const u8 sClearAmuletDesc[] = _(
+    "Stat lowering is\n"
+    "prevented for this\n"
+    "items's holder.");
+
+static const u8 sPunchingGloveDesc[] = _(
+    "Powers up punching\n"
+    "moves and removes\n"
+    "their contact.");
+
+static const u8 sCovertCloakDesc[] = _(
+    "Protects the holder\n"
+    "from secondary\n"
+    "move effects.");
+
+static const u8 sLoadedDiceDesc[] = _(
+    "Rolls high numbers.\n"
+    "Multihit strikes\n"
+    "hit more times.");

@@ -978,8 +978,18 @@
 #define ITEM_SAPPHIRE 757
 #define ITEM_EON_FLUTE 758
 
-#define ITEMS_COUNT 759
+#define ITEM_ABILITY_SHIELD 759
+#define ITEM_CLEAR_AMULET 760
+#define ITEM_PUNCHING_GLOVE 761
+#define ITEM_COVERT_CLOAK 762
+#define ITEM_LOADED_DICE 763
+
+#define ITEMS_COUNT 764
 #define ITEM_FIELD_ARROW ITEMS_COUNT
+
+// A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
+// Its icon is defined at ITEMS_COUNT as the "return to field" arrow
+#define ITEM_LIST_END 0xFFFF
 
 // Range of berries given out by various NPCS
 #define FIRST_BERRY_MASTER_BERRY      ITEM_POMEG_BERRY

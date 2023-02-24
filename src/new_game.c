@@ -185,7 +185,7 @@ void NewGameInitData(void)
     ResetPokemonStorageSystem();
     ClearRoamerData();
     ClearRoamerLocationData();
-    gSaveBlock2Ptr->registeredItem = 0;
+    gSaveBlock2Ptr->registeredItem = ITEM_NONE;
     ClearBag();
     NewGameInitPCItems();
     ClearPokeblocks();

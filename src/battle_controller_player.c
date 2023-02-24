@@ -31,7 +31,6 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
-#include "constants/battle_config.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -331,8 +330,8 @@ static void HandleInputChooseAction(void)
     {
         SwapHpBarsWithHpText();
     }
-#if B_ENABLE_DEBUG == TRUE
-    else if (gMain.newKeys & SELECT_BUTTON)
+#if DEBUG_BATTLE_MENU == TRUE
+    else if (JOY_NEW(SELECT_BUTTON))
     {
         BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_DEBUG, 0);
         PlayerBufferExecCompleted();
@@ -544,7 +543,7 @@ static void HandleInputShowEntireFieldTargets(void)
         HideMegaTriggerSprite();
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
         HideAllTargets();
@@ -573,7 +572,7 @@ static void HandleInputShowTargets(void)
         TryHideLastUsedBall();
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
         HideShownTargets();
@@ -598,12 +597,12 @@ static void HandleInputChooseMove(void)
     u32 canSelectTarget = 0;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
 
-    if (gMain.heldKeys & DPAD_ANY && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_CURSE)
@@ -884,6 +883,7 @@ static void HandleMoveSwitching(void)
 
     if (JOY_NEW(A_BUTTON | SELECT_BUTTON))
     {
+        struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
         PlaySE(SE_SELECT);
 
         if (gMoveSelectionCursor[gActiveBattler] != gMultiUsePlayerCursor)
@@ -975,6 +975,7 @@ static void HandleMoveSwitching(void)
         MoveSelectionDisplayPpString();
         MoveSelectionDisplayPpNumber();
         MoveSelectionDisplayMoveType();
+        GetUsableZMoves(gActiveBattler, moveInfo->moves);
     }
     else if (JOY_NEW(B_BUTTON | SELECT_BUTTON))
     {
@@ -1386,7 +1387,7 @@ static void Task_GiveExpToMon(u8 taskId)
         u16 species = GetMonData(mon, MON_DATA_SPECIES);
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         u32 currExp = GetMonData(mon, MON_DATA_EXP);
-        u32 nextLvlExp = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+        u32 nextLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
 
         if (currExp + gainedExp >= nextLvlExp)
         {
@@ -1429,11 +1430,11 @@ static void Task_PrepareToGiveExpWithExpBar(u8 taskId)
     u8 level = GetMonData(mon, MON_DATA_LEVEL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 exp = GetMonData(mon, MON_DATA_EXP);
-    u32 currLvlExp = gExperienceTables[gBaseStats[species].growthRate][level];
+    u32 currLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
     u32 expToNextLvl;
 
     exp -= currLvlExp;
-    expToNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1] - currLvlExp;
+    expToNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - currLvlExp;
     SetBattleBarStruct(battlerId, gHealthboxSpriteIds[battlerId], expToNextLvl, exp, -gainedExp);
     PlaySE(SE_EXP);
     gTasks[taskId].func = Task_GiveExpWithExpBar;
@@ -1465,7 +1466,7 @@ static void Task_GiveExpWithExpBar(u8 taskId)
             level = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
             currExp = GetMonData(&gPlayerParty[monId], MON_DATA_EXP);
             species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
-            expOnNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+            expOnNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
 
             if (currExp + gainedExp >= expOnNextLvl)
             {
@@ -1868,6 +1869,7 @@ static u32 CopyPlayerMonData(u8 monId, u8 *dst)
         battleMon.spDefense = GetMonData(&gPlayerParty[monId], MON_DATA_SPDEF);
         battleMon.abilityNum = GetMonData(&gPlayerParty[monId], MON_DATA_ABILITY_NUM);
         battleMon.otId = GetMonData(&gPlayerParty[monId], MON_DATA_OT_ID);
+        battleMon.metLevel = GetMonData(&gPlayerParty[monId], MON_DATA_MET_LEVEL);
         GetMonData(&gPlayerParty[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&gPlayerParty[monId], MON_DATA_OT_NAME, battleMon.otName);
@@ -2932,7 +2934,7 @@ static void PlayerHandleChoosePokemon(void)
         *(&gBattleStruct->battlerPreventingSwitchout) = gBattleResources->bufferA[gActiveBattler][1] >> 4;
         *(&gBattleStruct->prevSelectedPartySlot) = gBattleResources->bufferA[gActiveBattler][2];
         *(&gBattleStruct->abilityPreventingSwitchout) = (gBattleResources->bufferA[gActiveBattler][3] & 0xFF) | (gBattleResources->bufferA[gActiveBattler][7] << 8);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         gBattlerControllerFuncs[gActiveBattler] = OpenPartyMenuToChooseMon;
         gBattlerInMenuId = gActiveBattler;
     }
@@ -3211,7 +3213,7 @@ static void PlayerHandleIntroTrainerBallThrow(void)
     StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], ShouldDoSlideInAnim() ? 2 : 1);
 
     paletteNum = AllocSpritePalette(0xD6F8);
-    LoadCompressedPalette(gTrainerBackPicPaletteTable[gSaveBlock2Ptr->playerGender].data, 0x100 + paletteNum * 16, 32);
+    LoadCompressedPalette(gTrainerBackPicPaletteTable[gSaveBlock2Ptr->playerGender].data, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = paletteNum;
 
     taskId = CreateTask(Task_StartSendOutAnim, 5);

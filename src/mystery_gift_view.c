@@ -226,9 +226,9 @@ s32 WonderCard_Enter(void)
             return 0;
         break;
     case 2:
-        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, 30, 20);
+        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -240,11 +240,11 @@ s32 WonderCard_Enter(void)
     case 3:
         if (FreeTempTileDataBuffersIfPossible())
             return 0;
-        LoadPalette(GetTextWindowPalette(1), 0x20, 0x20);
+        LoadPalette(GetTextWindowPalette(1), BG_PLTT_ID(2), PLTT_SIZE_4BPP);
         gPaletteFade.bufferTransferDisabled = TRUE;
-        LoadPalette(sWonderCardData->gfx->pal, 0x10, 0x20);
+        LoadPalette(sWonderCardData->gfx->pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         LZ77UnCompWram(sWonderCardData->gfx->map, sWonderCardData->bgTilemapBuffer);
-        CopyRectToBgTilemapBufferRect(2, sWonderCardData->bgTilemapBuffer, 0, 0, 30, 20, 0, 0, 30, 20, 1, 0x008, 0);
+        CopyRectToBgTilemapBufferRect(2, sWonderCardData->bgTilemapBuffer, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT, 1, 0x008, 0);
         CopyBgTilemapBufferToVram(2);
         break;
     case 4:
@@ -291,9 +291,9 @@ s32 WonderCard_Exit(bool32 useCancel)
             return 0;
         break;
     case 2:
-        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, 30, 20);
+        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -310,7 +310,7 @@ s32 WonderCard_Exit(bool32 useCancel)
         FreeMonIconPalettes();
         break;
     case 5:
-        PrintMysteryGiftOrEReaderTopMenu(gGiftIsFromEReader, useCancel);
+        PrintMysteryGiftOrEReaderHeader(gGiftIsFromEReader, useCancel);
         CopyBgTilemapBufferToVram(0);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         break;
@@ -595,7 +595,7 @@ static const struct WindowTemplate sNews_WindowTemplates[] = {
         .tilemapLeft = 1,
         .tilemapTop = 3,
         .width = 28,
-        .height = 20,
+        .height = DISPLAY_TILE_HEIGHT,
         .paletteNum = 2,
         .baseBlock = 0x07C
     }
@@ -688,10 +688,10 @@ s32 WonderNews_Enter(void)
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
         break;
     case 2:
-        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(3, 0x000, 0, 0, 30, 20);
+        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(3, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -703,12 +703,12 @@ s32 WonderNews_Enter(void)
     case 3:
         if (FreeTempTileDataBuffersIfPossible())
             return 0;
-        LoadPalette(GetTextWindowPalette(1), 0x20, 0x20);
+        LoadPalette(GetTextWindowPalette(1), BG_PLTT_ID(2), PLTT_SIZE_4BPP);
         gPaletteFade.bufferTransferDisabled = TRUE;
-        LoadPalette(sWonderNewsData->gfx->pal, 0x10, 0x20);
+        LoadPalette(sWonderNewsData->gfx->pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         LZ77UnCompWram(sWonderNewsData->gfx->map, sWonderNewsData->bgTilemapBuffer);
-        CopyRectToBgTilemapBufferRect(1, sWonderNewsData->bgTilemapBuffer, 0, 0, 30, 3, 0, 0, 30, 3, 1, 8, 0);
-        CopyRectToBgTilemapBufferRect(3, sWonderNewsData->bgTilemapBuffer, 0, 3, 30, 23, 0, 3, 30, 23, 1, 8, 0);
+        CopyRectToBgTilemapBufferRect(1, sWonderNewsData->bgTilemapBuffer, 0, 0, DISPLAY_TILE_WIDTH, 3, 0, 0, DISPLAY_TILE_WIDTH, 3, 1, 8, 0);
+        CopyRectToBgTilemapBufferRect(3, sWonderNewsData->bgTilemapBuffer, 0, 3, DISPLAY_TILE_WIDTH, 3 + DISPLAY_TILE_HEIGHT, 0, 3, DISPLAY_TILE_WIDTH, 3 + DISPLAY_TILE_HEIGHT, 1, 8, 0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(3);
         break;
@@ -760,10 +760,10 @@ s32 WonderNews_Exit(bool32 useCancel)
         ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
         break;
     case 2:
-        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 30, 20);
-        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, 30, 24);
-        FillBgTilemapBufferRect_Palette0(3, 0x000, 0, 0, 30, 24);
+        FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+        FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT + 4);
+        FillBgTilemapBufferRect_Palette0(3, 0x000, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT + 4);
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
@@ -785,7 +785,7 @@ s32 WonderNews_Exit(bool32 useCancel)
         }
         break;
     case 5:
-        PrintMysteryGiftOrEReaderTopMenu(gGiftIsFromEReader, useCancel);
+        PrintMysteryGiftOrEReaderHeader(gGiftIsFromEReader, useCancel);
         MG_DrawCheckerboardPattern(3);
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(3);

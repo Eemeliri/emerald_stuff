@@ -59,23 +59,23 @@ struct PlayerRecordRS
     struct RecordMixingDaycareMail daycareMail;
     struct RSBattleTowerRecord battleTowerRecord;
     u16 giftItem;
-    u16 padding[50];
+    u16 filler[50];
 };
 
 struct PlayerRecordEmerald
 {
     /* 0x0000 */ struct SecretBase secretBases[SECRET_BASES_COUNT];
-    /* 0x0c80 */ TVShow tvShows[TV_SHOWS_COUNT];
+    /* 0x0C80 */ TVShow tvShows[TV_SHOWS_COUNT];
     /* 0x1004 */ PokeNews pokeNews[POKE_NEWS_COUNT];
     /* 0x1044 */ OldMan oldMan;
     /* 0x1084 */ struct DewfordTrend dewfordTrends[SAVED_TRENDS_COUNT];
-    /* 0x10ac */ struct RecordMixingDaycareMail daycareMail;
+    /* 0x10AC */ struct RecordMixingDaycareMail daycareMail;
     /* 0x1124 */ struct EmeraldBattleTowerRecord battleTowerRecord;
     /* 0x1210 */ u16 giftItem;
     /* 0x1214 */ LilycoveLady lilycoveLady;
     /* 0x1254 */ struct Apprentice apprentices[2];
-    /* 0x12dc */ struct PlayerHallRecords hallRecords;
-    /* 0x1434 */ u8 padding[16];
+    /* 0x12DC */ struct PlayerHallRecords hallRecords;
+    /* 0x1434 */ u8 filler_1434[16];
 }; // 0x1444
 
 union PlayerRecord
@@ -315,8 +315,8 @@ static void Task_RecordMixing_Main(u8 taskId)
     switch (tState)
     {
     case 0: // init
-        sSentRecord = malloc(sizeof(*sSentRecord));
-        sReceivedRecords = malloc(sizeof(*sReceivedRecords) * MAX_LINK_PLAYERS);
+        sSentRecord = Alloc(sizeof(*sSentRecord));
+        sReceivedRecords = Alloc(sizeof(*sReceivedRecords) * MAX_LINK_PLAYERS);
         SetLocalLinkPlayerId(gSpecialVar_0x8005);
         VarSet(VAR_TEMP_0, 1);
         sReadyToReceive = FALSE;
@@ -358,8 +358,8 @@ static void Task_RecordMixing_Main(u8 taskId)
     case 5: // Wait for the task created by CreateTask_ReestablishCableClubLink
         if (!gTasks[tLinkTaskId].isActive)
         {
-            free(sReceivedRecords);
-            free(sSentRecord);
+            Free(sReceivedRecords);
+            Free(sSentRecord);
             SetLinkWaitingForScript();
             if (gWirelessCommType != 0)
                 CreateTask(Task_ReturnToFieldRecordMixing, 10);
@@ -689,7 +689,7 @@ static void ReceiveLilycoveLadyData(LilycoveLady *records, size_t recordSize, u8
 
     if (GetLilycoveLadyId() == 0)
     {
-        lilycoveLady = malloc(sizeof(*lilycoveLady));
+        lilycoveLady = Alloc(sizeof(*lilycoveLady));
         if (lilycoveLady == NULL)
             return;
 
@@ -705,7 +705,7 @@ static void ReceiveLilycoveLadyData(LilycoveLady *records, size_t recordSize, u8
     if (lilycoveLady != NULL)
     {
         QuizLadyClearQuestionForRecordMix(lilycoveLady);
-        free(lilycoveLady);
+        Free(lilycoveLady);
     }
 }
 

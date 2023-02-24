@@ -14,19 +14,19 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "down",
+      "map": "MAP_MAUVILLE_CITY",
       "offset": 0,
-      "map": "MAP_MAUVILLE_CITY"
+      "direction": "down"
     },
     {
-      "direction": "left",
+      "map": "MAP_ROUTE113",
       "offset": 0,
-      "map": "MAP_ROUTE113"
+      "direction": "left"
     },
     {
-      "direction": "left",
+      "map": "MAP_ROUTE112",
       "offset": 20,
-      "map": "MAP_ROUTE112"
+      "direction": "left"
     }
   ],
   "object_events": [
@@ -648,35 +648,35 @@
       "y": 113,
       "elevation": 0,
       "dest_map": "MAP_ROUTE111_WINSTRATE_FAMILYS_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 29,
       "y": 87,
       "elevation": 0,
       "dest_map": "MAP_DESERT_RUINS",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 26,
       "y": 18,
       "elevation": 0,
       "dest_map": "MAP_ROUTE111_OLD_LADYS_REST_STOP",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 19,
       "y": 58,
       "elevation": 0,
       "dest_map": "MAP_MIRAGE_TOWER_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 31,
       "y": 113,
       "elevation": 0,
       "dest_map": "MAP_TRAINER_HILL_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -685,7 +685,7 @@
       "x": 12,
       "y": 62,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -721,7 +721,7 @@
       "x": 7,
       "y": 63,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -775,7 +775,7 @@
       "x": 18,
       "y": 32,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -784,7 +784,7 @@
       "x": 17,
       "y": 31,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -793,7 +793,7 @@
       "x": 9,
       "y": 37,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -802,7 +802,7 @@
       "x": 10,
       "y": 36,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -829,7 +829,7 @@
       "x": 8,
       "y": 64,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -838,7 +838,7 @@
       "x": 9,
       "y": 65,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -847,7 +847,7 @@
       "x": 10,
       "y": 65,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -856,7 +856,7 @@
       "x": 11,
       "y": 66,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -865,7 +865,7 @@
       "x": 12,
       "y": 67,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -874,7 +874,7 @@
       "x": 13,
       "y": 68,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -883,7 +883,7 @@
       "x": 14,
       "y": 69,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SunTrigger"
     },
@@ -892,7 +892,7 @@
       "x": 10,
       "y": 61,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -901,7 +901,7 @@
       "x": 11,
       "y": 62,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -910,7 +910,7 @@
       "x": 13,
       "y": 62,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -919,7 +919,7 @@
       "x": 14,
       "y": 62,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -928,7 +928,7 @@
       "x": 17,
       "y": 38,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -937,7 +937,7 @@
       "x": 16,
       "y": 39,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -946,7 +946,7 @@
       "x": 15,
       "y": 40,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -955,7 +955,7 @@
       "x": 14,
       "y": 41,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -964,7 +964,7 @@
       "x": 13,
       "y": 42,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -973,7 +973,7 @@
       "x": 12,
       "y": 43,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     },
@@ -982,7 +982,7 @@
       "x": 11,
       "y": 44,
       "elevation": 3,
-      "var": "0",
+      "var": "TRIGGER_RUN_IMMEDIATELY",
       "var_value": "0",
       "script": "Route111_EventScript_SandstormTrigger"
     }

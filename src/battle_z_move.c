@@ -31,7 +31,6 @@
 #include "constants/battle_anim.h"
 #include "constants/rgb.h"
 #include "battle_debug.h"
-#include "constants/battle_config.h"
 #include "data.h"
 #include "pokemon_summary_screen.h"
 #include "constants/songs.h"
@@ -51,9 +50,10 @@ static u16 GetSignatureZMove(u16 move, u16 species, u16 item);
 static u16 GetTypeBasedZMove(u16 move, u8 battler);
 static void ZMoveSelectionDisplayPpNumber(void);
 static void ZMoveSelectionDisplayPower(u16 move, u16 zMove);
-static void ShowZMoveTriggerSprite(void);
+static void ShowZMoveTriggerSprite(u8 battleId);
 static bool32 AreStatsMaxed(u8 battlerId, u8 n);
 static u8 GetZMoveScore(u8 battlerAtk, u8 battlerDef, u16 baseMove, u16 zMove);
+static void ZMoveSelectionDisplayMoveType(u16 zMove);
 
 // Const Data
 static const struct SignatureZMove sSignatureZMoves[] =
@@ -165,19 +165,25 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     u32 item;
     u16 holdEffect;
     u16 species;
+    int moveSlotIndex;
+
+    species = gBattleMons[battlerId].species;
+    item = gBattleMons[battlerId].item;
+
+    for (moveSlotIndex = 0; moveSlotIndex < MAX_MON_MOVES; moveSlotIndex++)
+    {
+        if (gBattleMons[battlerId].moves[moveSlotIndex] == move && gBattleMons[battlerId].pp[moveSlotIndex] == 0)
+            return FALSE;
+    }
 
     if (gBattleStruct->zmove.used[battlerId])
         return FALSE;
 
-    species = gBattleMons[battlerId].species;
-    item = gBattleMons[battlerId].item;
     if (gBattleTypeFlags & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER))
         return FALSE;
 
-    #ifdef ITEM_Z_RING
-    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_RING, 1))
+    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
         return FALSE;
-    #endif
 
     if (mega->alreadyEvolved[battlerPosition])
         return FALSE;   // Trainer has mega evolved
@@ -188,7 +194,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
             return FALSE;   // Partner has mega evolved or is about to mega evolve
     }
 
-#if B_ENABLE_DEBUG == TRUE
+#if DEBUG_BATTLE_MENU == TRUE
     if (gBattleStruct->debugHoldEffects[battlerId])
         holdEffect = gBattleStruct->debugHoldEffects[battlerId];
     else
@@ -198,11 +204,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     else
         holdEffect = ItemId_GetHoldEffect(item);
 
-    #ifdef ITEM_ULTRANECROZIUM_Z
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || item == ITEM_ULTRANECROZIUM_Z)
-    #else
     if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
-    #endif
     {
         u16 zMove = GetSignatureZMove(move, gBattleMons[battlerId].species, item);
         if (zMove != MOVE_NONE)
@@ -252,7 +254,7 @@ bool32 TryChangeZIndicator(u8 battlerId, u8 moveIndex)
     if (gBattleStruct->zmove.viable && !viableZMove)
         HideZMoveTriggerSprite();   // Was a viable z move, now is not -> slide out
     else if (!gBattleStruct->zmove.viable && viableZMove)
-        ShowZMoveTriggerSprite();   // Was not a viable z move, now is -> slide back in
+        ShowZMoveTriggerSprite(battlerId);   // Was not a viable z move, now is -> slide back in
 }
 
 #define SINGLES_Z_TRIGGER_POS_X_OPTIMAL     (29)
@@ -362,11 +364,11 @@ void HideZMoveTriggerSprite(void)
     gBattleStruct->zmove.viable = FALSE;
 }
 
-static void ShowZMoveTriggerSprite(void)
+static void ShowZMoveTriggerSprite(u8 battlerId)
 {
     struct Sprite *sprite = &gSprites[gBattleStruct->zmove.triggerSpriteId];
     gBattleStruct->zmove.viable = TRUE;
-    CreateZMoveTriggerSprite(sprite->tBattler, TRUE);
+    CreateZMoveTriggerSprite(battlerId, TRUE);
 }
 
 void DestroyZMoveTriggerSprite(void)
@@ -522,6 +524,7 @@ bool32 MoveSelectionDisplayZMove(u16 zmove)
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_1);
 
         ZMoveSelectionDisplayPpNumber();
+        ZMoveSelectionDisplayMoveType(zmove);
         MoveSelectionCreateCursorAt(0, 0);
         return TRUE;
     }
@@ -559,6 +562,23 @@ static void ZMoveSelectionDisplayPpNumber(void)
     *(txtPtr)++ = CHAR_SLASH;
     ConvertIntToDecimalStringN(txtPtr, 1, STR_CONV_MODE_RIGHT_ALIGN, 2);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
+}
+
+static void ZMoveSelectionDisplayMoveType(u16 zMove)
+{
+    u8 *txtPtr;
+    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
+    u8 zMoveType;
+
+    GET_MOVE_TYPE(zMove, zMoveType);
+
+    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
+    *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+    *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+    *(txtPtr)++ = FONT_NORMAL;
+
+    StringCopy(txtPtr, gTypeNames[zMoveType]);
+    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
 
 const u8 *GetZMoveName(u16 move)

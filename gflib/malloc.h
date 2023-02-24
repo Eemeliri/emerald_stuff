@@ -8,7 +8,7 @@
 
 #define FREE_AND_SET_NULL(ptr)          \
 {                                       \
-    free(ptr);                          \
+    Free(ptr);                          \
     ptr = NULL;                         \
 }
 

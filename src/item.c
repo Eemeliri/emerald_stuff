@@ -16,15 +16,12 @@
 #include "constants/items.h"
 #include "constants/hold_effects.h"
 
-// this file's functions
 static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count);
 static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 
-// EWRAM variables
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 EWRAM_DATA struct ItemSlot gTmHmItemSlots[BAG_TMHM_COUNT] = {0};
 
-// rodata
 #include "data/text/item_descriptions.h"
 #include "data/items.h"
 
@@ -923,11 +920,6 @@ const u8 *ItemId_GetName(u16 itemId)
     return gItems[SanitizeItemId(itemId)].name;
 }
 
-u16 ItemId_GetId(u16 itemId)
-{
-    return gItems[SanitizeItemId(itemId)].itemId;
-}
-
 u16 ItemId_GetPrice(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].price;
@@ -953,7 +945,7 @@ u8 ItemId_GetImportance(u16 itemId)
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
-// unused
+// Unused
 u8 ItemId_GetRegistrability(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].registrability;
