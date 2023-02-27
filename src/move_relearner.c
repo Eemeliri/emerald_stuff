@@ -675,6 +675,9 @@ static void DoMoveRelearnerMain(void)
         }
         break;
     case MENU_STATE_CHOOSE_AGAIN:
+        sMoveRelearnerMenuSate.listOffset = 0;
+        sMoveRelearnerMenuSate.listRow = 0;
+        sMoveRelearnerMenuSate.showContestInfo = FALSE;
         CreateLearnableMovesList();
         sMoveRelearnerStruct->moveListMenuTask = ListMenuInit(&gMultiuseListMenuTemplate, sMoveRelearnerMenuSate.listOffset, sMoveRelearnerMenuSate.listRow);
         sMoveRelearnerStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
