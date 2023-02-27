@@ -221,7 +221,7 @@ void ProcessImmediateTimeEvents(void)
 {
     s8 hour, nextHour;
     u8 hourPhase;
-    u16 period;
+    u16 period, paletteIndex;
     u8 timeOfDay = GetCurrentTimeOfDay();
 
     if (ShouldTintOverworld())
@@ -282,9 +282,11 @@ void ProcessImmediateTimeEvents(void)
             TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sDNSystemControl.currRGBTint[0], sDNSystemControl.currRGBTint[1], sDNSystemControl.currRGBTint[2], TRUE);
             LoadPaletteOverrides();
             
-            if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
-                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
+            if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN && gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT) {
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
+                for (paletteIndex = 0; paletteIndex < 13; paletteIndex++)
+                    ApplyWeatherColorMapToPal(paletteIndex);
+            }
         }
     }
 
