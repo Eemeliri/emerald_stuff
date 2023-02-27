@@ -994,13 +994,13 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
     case MAP_TYPE_ROUTE:
     case MAP_TYPE_UNDERWATER:
     case MAP_TYPE_OCEAN_ROUTE:
-        sRegionMap->mapSecId = gMapHeader.regionMapSectionId;
+        *mapSectionId = gMapHeader.regionMapSectionId;
         sRegionMap->playerIsInCave = FALSE;
         mapWidth = gMapHeader.mapLayout->width;
         mapHeight = gMapHeader.mapLayout->height;
         x = gSaveBlock1Ptr->pos.x;
         y = gSaveBlock1Ptr->pos.y;
-        if (sRegionMap->mapSecId == MAPSEC_UNDERWATER_SEAFLOOR_CAVERN || sRegionMap->mapSecId == MAPSEC_UNDERWATER_MARINE_CAVE)
+        if (*mapSectionId == MAPSEC_UNDERWATER_SEAFLOOR_CAVERN || *mapSectionId == MAPSEC_UNDERWATER_MARINE_CAVE)
             sRegionMap->playerIsInCave = TRUE;
         break;
     case MAP_TYPE_UNDERGROUND:
@@ -1008,7 +1008,7 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         if (gMapHeader.allowEscaping)
         {
             mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
-            sRegionMap->mapSecId = mapHeader->regionMapSectionId;
+            *mapSectionId = mapHeader->regionMapSectionId;
             sRegionMap->playerIsInCave = TRUE;
             mapWidth = mapHeader->mapLayout->width;
             mapHeight = mapHeader->mapLayout->height;
@@ -1017,7 +1017,7 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         }
         else
         {
-            sRegionMap->mapSecId = gMapHeader.regionMapSectionId;
+            *mapSectionId = gMapHeader.regionMapSectionId;
             sRegionMap->playerIsInCave = TRUE;
             mapWidth = 1;
             mapHeight = 1;
@@ -1027,7 +1027,7 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         break;
     case MAP_TYPE_SECRET_BASE:
         mapHeader = Overworld_GetMapHeaderByGroupAndId((u16)gSaveBlock1Ptr->dynamicWarp.mapGroup, (u16)gSaveBlock1Ptr->dynamicWarp.mapNum);
-        sRegionMap->mapSecId = mapHeader->regionMapSectionId;
+        *mapSectionId = mapHeader->regionMapSectionId;
         sRegionMap->playerIsInCave = TRUE;
         mapWidth = mapHeader->mapLayout->width;
         mapHeight = mapHeader->mapLayout->height;
@@ -1035,8 +1035,8 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         y = gSaveBlock1Ptr->dynamicWarp.y;
         break;
     case MAP_TYPE_INDOOR:
-        sRegionMap->mapSecId = gMapHeader.regionMapSectionId;
-        if (sRegionMap->mapSecId != MAPSEC_DYNAMIC)
+        *mapSectionId = gMapHeader.regionMapSectionId;
+        if (*mapSectionId != MAPSEC_DYNAMIC)
         {
             warp = &gSaveBlock1Ptr->escapeWarp;
             mapHeader = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum);
@@ -1045,7 +1045,7 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         {
             warp = &gSaveBlock1Ptr->dynamicWarp;
             mapHeader = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum);
-            sRegionMap->mapSecId = mapHeader->regionMapSectionId;
+            *mapSectionId = mapHeader->regionMapSectionId;
         }
 
         if (IsPlayerInAquaHideout(sRegionMap->mapSecId))
@@ -1062,29 +1062,29 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
 
     xOnMap = x;
 
-    dimensionScale = mapWidth / gRegionMapEntries[sRegionMap->mapSecId].width;
+    dimensionScale = mapWidth / gRegionMapEntries[*mapSectionId].width;
     if (dimensionScale == 0)
     {
         dimensionScale = 1;
     }
     x /= dimensionScale;
-    if (x >= gRegionMapEntries[sRegionMap->mapSecId].width)
+    if (x >= gRegionMapEntries[*mapSectionId].width)
     {
-        x = gRegionMapEntries[sRegionMap->mapSecId].width - 1;
+        x = gRegionMapEntries[*mapSectionId].width - 1;
     }
 
-    dimensionScale = mapHeight / gRegionMapEntries[sRegionMap->mapSecId].height;
+    dimensionScale = mapHeight / gRegionMapEntries[*mapSectionId].height;
     if (dimensionScale == 0)
     {
         dimensionScale = 1;
     }
     y /= dimensionScale;
-    if (y >= gRegionMapEntries[sRegionMap->mapSecId].height)
+    if (y >= gRegionMapEntries[*mapSectionId].height)
     {
-        y = gRegionMapEntries[sRegionMap->mapSecId].height - 1;
+        y = gRegionMapEntries[*mapSectionId].height - 1;
     }
 
-    switch (sRegionMap->mapSecId)
+    switch (*mapSectionId)
     {
     case MAPSEC_ROUTE_114:
         if (y != 0)
@@ -1117,8 +1117,8 @@ void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPo
         GetMarineCaveCoords(&sRegionMap->cursorPosX, &sRegionMap->cursorPosY);
         return;
     }
-    sRegionMap->cursorPosX = gRegionMapEntries[sRegionMap->mapSecId].x + x + MAPCURSOR_X_MIN;
-    sRegionMap->cursorPosY = gRegionMapEntries[sRegionMap->mapSecId].y + y + MAPCURSOR_Y_MIN;
+    *cursorPosX = gRegionMapEntries[*mapSectionId].x + x + MAPCURSOR_X_MIN;
+    *cursorPosY = gRegionMapEntries[*mapSectionId].y + y + MAPCURSOR_Y_MIN;
 }
 
 static void InitMapBasedOnPlayerLocation(void) {
