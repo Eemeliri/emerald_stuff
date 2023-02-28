@@ -5359,7 +5359,7 @@ const u8 gCalyrexPokedexText[] = _(
     "of yore.");
 
 const u8 gRattataAlolanPokedexText[] = _(
-    "With ita incisors, it gnamws through\n"
+    "With ita incisors, it gnaws through\n"
     "doors and infiltrates people's homes.\n"
     "Then with a twitch of its whiskers, it\n"
     "steals whatever food it finds.");
