@@ -3431,41 +3431,49 @@ static void Task_HandleInfoScreenInput(u8 taskId)
         if(species > NATIONAL_DEX_COUNT){
             if(form==1){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
             else {
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(species, form - 1));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
         }
         else{
             if(species == GET_BASE_SPECIES_ID(GetFormSpeciesId(species,2))){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(species, 2));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
             else if(species == GET_BASE_SPECIES_ID(GetFormSpeciesId(species,1))){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(species, 1));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
         }
         return;
@@ -3477,41 +3485,49 @@ static void Task_HandleInfoScreenInput(u8 taskId)
         if(species > NATIONAL_DEX_COUNT){
             if(form==2){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
             else if(species == GET_BASE_SPECIES_ID(GetFormSpeciesId(species,2))){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(species, 2));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
             else{
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(GET_BASE_SPECIES_ID(species), 0));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
         }
         else{
             if(species == GET_BASE_SPECIES_ID(GetFormSpeciesId(species,1))){
                 sPokedexListItem->dexNum=SpeciesToNationalPokedexNum(GetFormSpeciesId(species, 1));
-                FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
-                FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
-                PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-                CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
-                gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
-                PlaySE(SE_DEX_PAGE);
+                if(species!=NationalPokedexNumToSpecies(sPokedexListItem->dexNum)){
+                    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+                    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+                    PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+                    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+                    gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+                    PlaySE(SE_DEX_PAGE);
+                }
             }
         }
         return;
