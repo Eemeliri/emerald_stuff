@@ -460,10 +460,10 @@ Script_PlayerLostTheFight::
 	waitstate
 
 Enemy1DefeatText::
-	.string "F.$"
+	.string "That's just too strong, right?!$"
 
 Enemy2DefeatText::
-	.string "Big F.$"
+	.string "...Slurp.$"
 
 Text_PlayerLostTheFight::
 	.string "{PLAYER}{KUN} lost the battle.$"
