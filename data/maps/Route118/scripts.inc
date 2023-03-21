@@ -338,7 +338,7 @@ Route118_Text_StevenLatias2:
 	.string "{PLAYER}{KUN}.\p"
 	.string "Come with me.\p"
 	.string "Latias…\n"
-	.string "I believe that it sough us out for\l"
+	.string "I believe that it sought us out for\l"
 	.string "help.\p"
 	.string "If that's the case, let's go!$"
 
