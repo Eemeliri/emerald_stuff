@@ -445,10 +445,10 @@ LavaridgeTown_Text_DanceAndSoul:
 
 LavaridgeTown_Text_GoodKid:
 	.string "OK! OK!\n"
-	.string "You good kid!"
+	.string "You good kid!$"
 
 LavaridgeTown_Text_SoSad:
-	.string "Oh..."
+	.string "Oh...\n"
 	.string "I so sad and wretched...\p"
 	.string "You take this and you understand\n"
 	.string "way of karate of me, fool Trainer!$"
