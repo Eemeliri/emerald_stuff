@@ -199,6 +199,7 @@ SouthernIsland_Interior_TriggerScript_EnterMain::
 	msgbox SouthernIsland_Interior_Text_Steven3, MSGBOX_DEFAULT
 	closemessage
 	multi_fixed_2_vs_2 TRAINER_COURTNEY, Enemy2DefeatText, TRAINER_GRUNT_SOUTHERNISLAND, Enemy1DefeatText, TRAINER_STEVEN_SOUTHERNISLAND, TRAINER_BACK_PIC_STEVEN
+	special LoadPlayerParty
 	specialvar VAR_RESULT, GetBattleOutcome
     compare VAR_RESULT, B_OUTCOME_LOST
     goto_if_eq Script_PlayerLostTheFight
