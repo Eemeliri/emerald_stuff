@@ -53,6 +53,7 @@ Route119_WeatherInstitute_2F_EventScript_Shelly::
 Route119_WeatherInstitute_2F_EventScript_ShellyDefeated::
 	msgbox Route119_WeatherInstitute_2F_Text_ShellyPostBattle, MSGBOX_DEFAULT
 	closemessage
+	callnative RemoveFollowingPokemon
 	addobject LOCALID_GRUNT_3
 	applymovement LOCALID_GRUNT_3, Route119_WeatherInstitute_2F_Movement_GruntApproachShelly
 	applymovement OBJ_EVENT_ID_PLAYER, Route119_WeatherInstitute_2F_Movement_ShovePlayerOutOfWay
