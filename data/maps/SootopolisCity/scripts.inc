@@ -1662,7 +1662,7 @@ SootopolisCity_Text_AfterAllOurScheming:
 
 SootopolisCity_Text_KyogreCalmDown:
 	.string "Archie: Kyogre! What's wrong?!\n"
-	.string "Look over here! It's the Red Orb!\l"
+	.string "Look over here! It's the Blue Orb!\l"
 	.string "Calm down! Kyogre!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
