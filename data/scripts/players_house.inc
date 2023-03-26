@@ -466,8 +466,8 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	closemessage
 	call_if_eq VAR_0x8008, MALE, PlayersHouse_1F_EventScript_PlayerApproachTVForLatiMale
 	call_if_eq VAR_0x8008, FEMALE, PlayersHouse_1F_EventScript_PlayerApproachTVForLatiFemale
-	goto_if_set FLAG_EON_LATI, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatias
-	msgbox PlayersHouse_1F_Text_LatiosEmergencyNewsFlash, MSGBOX_DEFAULT
+	goto_if_set FLAG_EON_LATI, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatios
+	msgbox PlayersHouse_1F_Text_LatiasEmergencyNewsFlash, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_SYS_TV_LATIAS_LATIOS
 	setflag FLAG_LATIOS_OR_LATIAS_ROAMING
@@ -484,8 +484,8 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	releaseall
 	end
 
-PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatias::
-	msgbox PlayersHouse_1F_Text_LatiasEmergencyNewsFlash, MSGBOX_DEFAULT
+PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatios::
+	msgbox PlayersHouse_1F_Text_LatiosEmergencyNewsFlash, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_SYS_TV_LATIAS_LATIOS
 	setflag FLAG_LATIOS_OR_LATIAS_ROAMING
