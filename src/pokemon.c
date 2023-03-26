@@ -7588,6 +7588,35 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     return numMoves;
 }
 
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 learnedMoves[4];
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    int i, j, k;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    for (i = 0; i < 185; i++)
+    {
+        if (gTeachableLearnsets[species][i] == MOVE_UNAVAILABLE)
+            break;
+        
+        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gTeachableLearnsets[species][i]; j++)
+        ;
+
+        if(IsMoveTmHm(gTeachableLearnsets[species][i]))
+            continue;
+        
+        if (j == MAX_MON_MOVES) {
+            moves[numMoves++] = gTeachableLearnsets[species][i];
+        }
+    }
+
+    return numMoves;
+}
+
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
 {
     u8 numMoves = 0;
@@ -7640,6 +7669,35 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
     }
 
     return numMoves;
+}
+
+u8 CanLearnTutorMoves(struct Pokemon *mon)
+{
+    u16 learnedMoves[4];
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    int i, j, k;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    for (i = 0; i < 40; i++)
+    {
+        if (gTeachableLearnsets[species][i] == MOVE_UNAVAILABLE)
+            break;
+        
+        for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gTeachableLearnsets[species][i]; j++)
+            ;
+
+        if(IsMoveTmHm(gTeachableLearnsets[species][i]))
+            continue;
+        
+        if (j == MAX_MON_MOVES) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 u16 SpeciesToPokedexNum(u16 species)

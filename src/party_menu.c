@@ -949,10 +949,14 @@ static void DisplayPartyPokemonDataForContest(u8 slot)
 
 static void DisplayPartyPokemonDataForRelearner(u8 slot)
 {
-    if (GetNumberOfRelearnableMoves(&gPlayerParty[slot]) == 0)
+    if (CanLearnTutorMoves(&gPlayerParty[slot]) == FALSE){
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
-    else
+        FlagSet(FLAG_TEMP_2);
+    }
+    else{
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+        FlagClear(FLAG_TEMP_2);
+    }
 }
 
 static void DisplayPartyPokemonDataForWirelessMinigame(u8 slot)
@@ -4926,6 +4930,18 @@ bool8 IsMoveHm(u16 move)
     for (i = 0; i < NUM_HIDDEN_MACHINES; i++)
     {
         if (sTMHMMoves[i + NUM_TECHNICAL_MACHINES] == move)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 IsMoveTmHm(u16 move)
+{
+    u8 i;
+
+    for (i = 0; i < TMHM_COUNT; i++)
+    {
+        if (sTMHMMoves[i] == move)
             return TRUE;
     }
     return FALSE;

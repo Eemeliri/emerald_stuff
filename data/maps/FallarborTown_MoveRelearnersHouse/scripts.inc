@@ -29,7 +29,7 @@ FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon::
 	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
 	special IsSelectedMonEgg
 	goto_if_eq VAR_RESULT, TRUE, FallarborTown_MoveRelearnersHouse_EventScript_CantTeachEgg
-	goto_if_eq VAR_0x8005, 0, FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon
+	goto_if_set FLAG_TEMP_2, FallarborTown_MoveRelearnersHouse_EventScript_NoMoveToTeachMon
 	goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMove
 	end
 
