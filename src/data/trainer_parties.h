@@ -3245,7 +3245,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = {
     .iv = 255,
     .lvl = 52,
     .species = SPECIES_ABSOL,
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_NONE,
     .moves = {MOVE_AERIAL_ACE, MOVE_NIGHT_SLASH, MOVE_PSYCHO_CUT, MOVE_SLASH}
     }
 };
@@ -3283,7 +3283,7 @@ static const struct TrainerMonItemCustomMoves sParty_Phoebe[] = {
     .iv = 255,
     .lvl = 53,
     .species = SPECIES_DUSKNOIR,
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_NONE,
     .moves = {MOVE_HEX, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH}
     }
 };
@@ -3321,7 +3321,7 @@ static const struct TrainerMonItemCustomMoves sParty_Glacia[] = {
     .iv = 255,
     .lvl = 54,
     .species = SPECIES_WALREIN,
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_NONE,
     .moves = {MOVE_SURF, MOVE_BODY_SLAM, MOVE_BLIZZARD, MOVE_SHEER_COLD}
     }
 };
@@ -3359,7 +3359,7 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     .iv = 255,
     .lvl = 55,
     .species = SPECIES_SALAMENCE,
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_NONE,
     .moves = {MOVE_DRAGON_RUSH, MOVE_ZEN_HEADBUTT, MOVE_CRUNCH, MOVE_THUNDER_FANG}
     }
 };
@@ -4451,7 +4451,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
     .iv = 255,
     .lvl = 59,
     .species = SPECIES_METAGROSS,
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_METAGROSSITE,
     .moves = {MOVE_BULLET_PUNCH, MOVE_ZEN_HEADBUTT, MOVE_METEOR_MASH, MOVE_GIGA_IMPACT}
     }
 };
