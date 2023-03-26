@@ -44,7 +44,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre::
 	waitstate
 	setvar VAR_RESULT, 1
 	playse SE_M_DETECT
-	dofieldeffectsparkle 16, 42, 0
+	dofieldeffectsparkle 18, 42, 0
 	waitfieldeffect FLDEFF_SPARKLE
 	closemessage
 	setvar VAR_RESULT, 1

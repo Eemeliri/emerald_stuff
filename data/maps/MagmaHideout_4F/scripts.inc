@@ -17,7 +17,7 @@ MagmaHideout_4F_EventScript_Maxie::
 	delay 20
 	setvar VAR_RESULT, 1
 	playse SE_M_DETECT
-	dofieldeffectsparkle 18, 42, 0
+	dofieldeffectsparkle 16, 42, 0
 	waitfieldeffect FLDEFF_SPARKLE
 	setvar VAR_RESULT, 0
 	playfanfare MUS_AWAKEN_LEGEND
