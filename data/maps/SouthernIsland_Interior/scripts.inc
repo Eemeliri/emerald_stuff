@@ -521,8 +521,8 @@ SouthernIsland_Interior_Text_Magma2::
 
 SouthernIsland_Interior_Text_Magma3::
 	.string "Magma Grunt: Puyah?!\p"
-	.string "As anticipated.\p"
-	.string "Courtney: Unanticipated.\p"
+	.string "Courtney: As anticipated.\p"
+	.string "Unanticipated.\p"
 	.string "You.\n"
 	.string "Target lock...completed.\p"
 	.string "Commencing...experiment.\p"
@@ -557,8 +557,9 @@ SouthernIsland_Interior_Text_Steven7::
 SouthernIsland_Interior_Text_Steven3::
 	.string "Let's protect Latias and Latios from\n"
 	.string "these beasts together.\p"
-	.string "We cannot allow them or even a Mega Stone\n"
-	.string "to fall into the hands of such villains!\p"
+	.string "We cannot allow them or even a Mega\n"
+	.string "Stone to fall into the hands of such\l"
+	.string "villains!\p"
 	.string "Courtney: ...\p"
 	.string "Well then...\p"
 	.string "Deleting...$"
