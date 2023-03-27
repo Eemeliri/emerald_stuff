@@ -3088,7 +3088,7 @@ static bool8 DexNav_DoGfxSetup(void)
     case 10:
         LoadMonIconPalettes();
         TryLoadAllMonIconPalettesAtOffset(0x160);
-        if(sDexNavUiDataPtr->landSpecies[0]!=0x3401 || sDexNavUiDataPtr->waterSpecies[0]!=0x3401){ 
+        if(sDexNavUiDataPtr->landSpecies[0]<0x3401 || sDexNavUiDataPtr->waterSpecies[0]<0x3401){ 
             DrawSpeciesIcons();
             CreateSelectionCursor();
             DexNavLoadCapturedAllSymbols();
@@ -3180,7 +3180,7 @@ static void Task_DexNavMain(u8 taskId)
     }
     //species=sDexNavUiDataPtr->landSpecies[0];
     //species2=sDexNavUiDataPtr->waterSpecies[0];
-    if(sDexNavUiDataPtr->landSpecies[0]!=0x3401 || sDexNavUiDataPtr->waterSpecies[0]!=0x3401)
+    if(sDexNavUiDataPtr->landSpecies[0]<0x3401 || sDexNavUiDataPtr->waterSpecies[0]<0x3401)
     {
         if (JOY_NEW(DPAD_UP))
         {
