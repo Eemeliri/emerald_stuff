@@ -25006,19 +25006,20 @@ General_PrimalReversion_Alpha:
 	call MegaEvolutionParticles
 	call MegaEvolutionParticles
 	waitforvisualfinish
+	clearmonbg ANIM_ATK_PARTNER
+	blendoff
 	playsewithpan SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER
 	createsprite gAlphaStoneSpriteTemplate, ANIM_ATTACKER, 41, 0, 0, 0, 0
 	delay 20
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 0, 16, RGB_WHITEALPHA
-	waitforvisualfinish
+	delay 40
 	createvisualtask AnimTask_TransformMon, 2, 0, 1
+	delay 50
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, RGB_WHITEALPHA
 	createvisualtask AnimTask_HorizontalShake, 5, 1, 5, 14
 	waitforvisualfinish
 	createsprite gAlphaSymbolSpriteTemplate ANIM_ATTACKER, 2
 	waitforvisualfinish
-	clearmonbg ANIM_ATK_PARTNER
-	blendoff
 	end
 General_PrimalReversion_Omega:
 	loadspritegfx ANIM_TAG_OMEGA_STONE
@@ -25032,12 +25033,15 @@ General_PrimalReversion_Omega:
 	call MegaEvolutionParticles
 	call MegaEvolutionParticles
 	waitforvisualfinish
+	clearmonbg ANIM_ATK_PARTNER
+	blendoff
 	playsewithpan SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER
 	createsprite gOmegaStoneSpriteTemplate, ANIM_ATTACKER, 41, 0, 0, 0, 0
 	delay 20
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 0, 16, RGB_WHITEALPHA
-	waitforvisualfinish
+	delay 40
 	createvisualtask AnimTask_TransformMon, 2, 0, 1
+	delay 50
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, RGB_WHITEALPHA
 	createvisualtask AnimTask_HorizontalShake, 5, 1, 5, 14
 	waitforvisualfinish
