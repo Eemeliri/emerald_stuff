@@ -721,16 +721,6 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
 					BattleSetup_StartWildBattle();
 					return TRUE;
 				}
-				else if (GetSafariZoneFlag())
-                {
-                    int wildMonIndex = ChooseWildMonIndex_Land();
-                    int level = ChooseWildMonLevel(gSafariZone_South_LandMons,wildMonIndex,WILD_AREA_LAND);
-                    SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex+gSaveBlock1Ptr->location.mapNum);
-                    wildMonIndex = Random2() % 213;
-                    CreateWildMon(gSafariZone_GrassEncounters[wildMonIndex], level);
-                    BattleSetup_StartWildBattle();
-                    return TRUE;
-                }
                 else if (TryGenerateWildMon(wildPokemonInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
 				{
 					BattleSetup_StartWildBattle();
@@ -784,16 +774,6 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
 					BattleSetup_StartWildBattle();
 					return TRUE;
 				}
-                else if (GetSafariZoneFlag())
-                {
-                    int wildMonIndex = ChooseWildMonIndex_WaterRock();
-                    int level = ChooseWildMonLevel(gSafariZone_Southwest_WaterMons,wildMonIndex,WILD_AREA_WATER);
-                    SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
-                    wildMonIndex = Random2() % 12;
-                    CreateWildMon(gSafariZone_WaterEncounters[wildMonIndex], level);
-                    BattleSetup_StartWildBattle();
-                    return TRUE;
-                }
                 else if (TryGenerateWildMon(wildPokemonInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
                     BattleSetup_StartWildBattle();
@@ -959,40 +939,27 @@ void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    if (GetSafariZoneFlag())
+    if (CheckFeebas() == TRUE)
     {
-        int wildMonIndex = ChooseWildMonIndex_Fishing(rod);
-        int level = ChooseWildMonLevel(gSafariZone_Southwest_FishingMons, wildMonIndex, WILD_AREA_FISHING);
-        SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED)+wildMonIndex);
-        wildMonIndex = Random2() % 10;
-        CreateWildMon(gSafariZone_FishingEncounters[wildMonIndex], level);
-        species = gSafariZone_FishingEncounters[wildMonIndex];
+        u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
+
+        species = sWildFeebas.species;
+        CreateWildMon(species, level);
     }
     else
     {
-        if (CheckFeebas() == TRUE)
-        {
-            u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
-
-            species = sWildFeebas.species;
-            CreateWildMon(species, level);
-        }
+        if (IsNationalPokedexEnabled() && (GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatMorningInfo != NULL)
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatMorningInfo, rod);
+        else if (IsNationalPokedexEnabled() && GetCurrentTimeOfDay() == TIME_NIGHT && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatNightInfo != NULL)
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatNightInfo, rod);
+        else if (IsNationalPokedexEnabled() && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatInfo != NULL)
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatInfo, rod);
+        else if ((GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsMorningInfo != NULL)
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsMorningInfo, rod);
+        else if (GetCurrentTimeOfDay() == TIME_NIGHT && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNightInfo != NULL)
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNightInfo, rod);
         else
-        {
-            if (IsNationalPokedexEnabled() && (GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatMorningInfo != NULL)
-    			species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatMorningInfo, rod);
-	    	else if (IsNationalPokedexEnabled() && GetCurrentTimeOfDay() == TIME_NIGHT && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatNightInfo != NULL)
-		    	species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatNightInfo, rod);
-    		else if (IsNationalPokedexEnabled() && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatInfo != NULL)
-	    		species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNatInfo, rod);
-		    else if ((GetCurrentTimeOfDay() == TIME_MORNING || GetCurrentTimeOfDay() == TIME_EVENING) && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsMorningInfo != NULL)
-    			species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsMorningInfo, rod);
-	    	else if (GetCurrentTimeOfDay() == TIME_NIGHT && gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNightInfo != NULL)
-		    	species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsNightInfo, rod);
-    		else
-	    		species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
-    
-        }
+            species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     }
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
     SetPokemonAnglerSpecies(species);
