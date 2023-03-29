@@ -67,20 +67,23 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 * Changed regi sprites to their doll sprites (they just look more accurate!)
 * You can recieve both bikes from Rydel in the same way as in ORAS
 * Some Berry Trees next to the Berry Master's house hade to be removed because following pokemon pushed the number of overworlds over the limit
-* Random Safari Zone encounters that change daily
 * Wally only attacks Ralts once to avoid fainting it
 * Sbird's TM learnset method for 100TMs (Credit: Sbird)
 * Spinda has a second frame (Credit Dat.H A and ShinyDragonHunter)
 * Only catch Rayquaza after the E4
 
 ### Changes (Planned)
-* Incorporate Primal Kyogre/Groudon & Mega Rayquaza
-* Update Trainer teams to ORAS
-* Have Alolan Pokemon searchable in the Pokedex (semi-implemented)
-* Increase the number of mass outbreaks and have more interesting Pokemon
-* There's a few missing follower sprites
-* More box wallpapers
-* Implement GTS?
+* Soaring encounters
+* Mirage Spots
+* Soaring music
+* Update Frontier Pokemon
+* PWT Fixes and Improvements
+* Wild encounter and Mass outbreak changes
+* Put in regional forms somewhere
+* Ways to change forms (eg. Deoxys, Rotom)
+* Fix up followers
+* Do something for legendaries
+* Use Rare Candy on Lv 100 Pokemon to evolve them
 
 
 # RHH ReadMe
