@@ -48,8 +48,7 @@ InsideOfTruck_EventScript_SetIntroFlagsFemale::
 	end
 
 InsideOfTruck_EventScript_MovingBox::
-	special CheckSavefileSize
-	msgbox EventScript_Text_CheckSavefileSize, MSGBOX_SIGN
+	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo
 	end
 
 InsideOfTruck_Text_BoxPrintedWithMonLogo:
