@@ -702,6 +702,11 @@ static void CreatePWTMultichoice(void)
         gSpecialVar_0x8004 = SCROLL_MULTI_PWT_OPTIONS2;
         ShowScrollableMultichoice();
     }
+    else if (count == PWT_SELECTION_COUNT-2)
+    {
+        gSpecialVar_0x8004 = SCROLL_MULTI_PWT_OPTIONS3;
+        ShowScrollableMultichoice();
+    }
     else
     {
         pixelWidth = 0;
