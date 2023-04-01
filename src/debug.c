@@ -1161,7 +1161,7 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
 
 static void DebugAction_Util_CheckSaveBlock(u8 taskId)
 {
-    static const u8 sDebugText_SaveBlockSize[] =  _("SaveBlock1 is {STR_VAR_1} bytes long.\nMax size is 15872 bytes.\pSaveBlock2 is {STR_VAR_2} bytes long.\nMax size is 3968 bytes.\pPokemonStorage is {STR_VAR_3} bytes long.\nMax size is 35712 bytes.");
+    static const u8 sDebugText_SaveBlockSize[] =  _("SaveBlock1 size: {STR_VAR_1}/16336 bytes.\nSaveBlock2 size: {STR_VAR_2}/4084 bytes.\p{PKMN}Storage size: {STR_VAR_3}/36756 bytes.");
 
     ConvertIntToDecimalStringN(gStringVar1, sizeof(struct SaveBlock1), STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, sizeof(struct SaveBlock2), STR_CONV_MODE_LEFT_ALIGN, 6);

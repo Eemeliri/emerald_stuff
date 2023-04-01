@@ -55,6 +55,7 @@ Debug_FlagsNotSetMessage_Text:
 	.string "'include/constants/overworld{UNDERSCORE}config.h'!$"
 
 Debug_Script_1::
+    special Special_InitGTS
 	end
 
 Debug_Script_2::
