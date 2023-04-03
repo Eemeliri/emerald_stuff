@@ -6433,13 +6433,13 @@ static void CopyDomeTrainerName(u8 *str, u16 trainerId)
         }
         else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
         {
-            for (i = 0; i < PLAYER_NAME_LENGTH; i++)
+            for (i = 0; i < 9; i++)
                 str[i] = gTrainers[trainerId].trainerName[i];
         }
         else if (trainerId > TRAINER_EREADER && trainerId < FIRST_PWT_TRAINER)
         {
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-                str[i] = gSaveBlock1Ptr->frontier.ereaderTrainer[trainerId-500].name[i];
+                str[i] = gSaveBlock1Ptr->frontier.ereaderTrainer[trainerId-TRAINER_EREADER].name[i];
         }
         else
         {
