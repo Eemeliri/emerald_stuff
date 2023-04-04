@@ -407,86 +407,106 @@ static bool8 MapHasSpecies(const struct WildPokemonHeader *info, u16 species)
 	
 	if (IsNationalPokedexEnabled())
 	{
-		if (info->landMonsNatInfo != NULL)
-		{
-			if (MonListHasSpecies(info->landMonsNatInfo, species, 12) || MonListHasSpecies(info->landMonsNatMorningInfo, species, 12) || MonListHasSpecies(info->landMonsNatNightInfo, species, 12))
-				return TRUE;
-		}
-		else
-		{
-            if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->landMonsMorningInfo != NULL){
-                if (MonListHasSpecies(info->landMonsMorningInfo, species, 12))
-                    return TRUE;
-            }
-            else if (sPokedexAreaScreen->state == TIME_NIGHT && info->landMonsNightInfo != NULL){
-                if (MonListHasSpecies(info->landMonsNightInfo, species, 12))
-                    return TRUE;
-            }
-            else{
-                if (MonListHasSpecies(info->landMonsInfo, species, 12))
-                    return TRUE;
-            }
+        if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->landMonsNatMorningInfo != NULL){
+            if (MonListHasSpecies(info->landMonsNatMorningInfo, species, 12))
+                return TRUE;
         }
-		if (info->waterMonsNatInfo != NULL)
-		{
-			if (MonListHasSpecies(info->waterMonsNatInfo, species, 5) || MonListHasSpecies(info->waterMonsNatMorningInfo, species, 5) || MonListHasSpecies(info->waterMonsNatNightInfo, species, 5))
-				return TRUE;
-		}
-		else
-		{
-			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->waterMonsMorningInfo != NULL){
-                if (MonListHasSpecies(info->waterMonsMorningInfo, species, 12))
-	    		    return TRUE;
-            }
-            else if (sPokedexAreaScreen->state==TIME_NIGHT && info->waterMonsNightInfo != NULL){
-                if (MonListHasSpecies(info->waterMonsNightInfo, species, 12))
-		    	    return TRUE;
-            } 
-            else {
-                if (MonListHasSpecies(info->waterMonsInfo, species, 12))
-		    	    return TRUE;
-            }
-		}
-		if (info->fishingMonsNatInfo != NULL)
-		{
-			if (MonListHasSpecies(info->fishingMonsNatInfo, species, 12) || MonListHasSpecies(info->fishingMonsNatMorningInfo, species, 12) || MonListHasSpecies(info->fishingMonsNatNightInfo, species, 12))
-				return TRUE;
-		}
-		else
-		{
-			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->fishingMonsMorningInfo != NULL){
-                if (MonListHasSpecies(info->fishingMonsMorningInfo, species, 12))
-	    		    return TRUE;
-            }
-            else if (sPokedexAreaScreen->state==TIME_NIGHT && info->fishingMonsNightInfo != NULL){
-                if (MonListHasSpecies(info->fishingMonsNightInfo, species, 12))
-		    	    return TRUE;
-            } 
-            else {
-                if (MonListHasSpecies(info->fishingMonsInfo, species, 12))
-			        return TRUE;
-            }
-		}
-		if (info->rockSmashMonsNatInfo != NULL)
-		{
-			if (MonListHasSpecies(info->rockSmashMonsNatInfo, species, 5) || MonListHasSpecies(info->rockSmashMonsNatMorningInfo, species, 5) || MonListHasSpecies(info->rockSmashMonsNatNightInfo, species, 5))
-				return TRUE;
-		}
-		else
-		{
-			if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->rockSmashMonsMorningInfo != NULL){
-                if (MonListHasSpecies(info->rockSmashMonsMorningInfo, species, 12))
-	    		    return TRUE;
-            }
-            else if (sPokedexAreaScreen->state==TIME_NIGHT && info->rockSmashMonsNightInfo != NULL){
-                if (MonListHasSpecies(info->rockSmashMonsNightInfo, species, 12))
-		    	    return TRUE;
-            } 
-            else {
-                if (MonListHasSpecies(info->rockSmashMonsInfo, species, 12))
-			        return TRUE;
-            }
-		}
+        else if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->landMonsMorningInfo != NULL){
+            if (MonListHasSpecies(info->landMonsMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state == TIME_NIGHT && info->landMonsNatNightInfo != NULL){
+            if (MonListHasSpecies(info->landMonsNatNightInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state == TIME_NIGHT && info->landMonsNightInfo != NULL){
+            if (MonListHasSpecies(info->landMonsNightInfo, species, 12))
+                return TRUE;
+        }
+        else if (info->landMonsNatInfo != NULL){
+            if (MonListHasSpecies(info->landMonsNatInfo, species, 12))
+                return TRUE;
+        }
+        else{
+            if (MonListHasSpecies(info->landMonsInfo, species, 12))
+                return TRUE;
+        }
+
+        if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->waterMonsNatMorningInfo != NULL){
+            if (MonListHasSpecies(info->waterMonsNatMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->waterMonsMorningInfo != NULL){
+            if (MonListHasSpecies(info->waterMonsMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state == TIME_NIGHT && info->waterMonsNatNightInfo != NULL){
+            if (MonListHasSpecies(info->waterMonsNatNightInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state==TIME_NIGHT && info->waterMonsNightInfo != NULL){
+            if (MonListHasSpecies(info->waterMonsNightInfo, species, 12))
+                return TRUE;
+        } 
+        else if (info->waterMonsNatInfo != NULL){
+            if (MonListHasSpecies(info->waterMonsNatInfo, species, 12))
+                return TRUE;
+        }
+        else {
+            if (MonListHasSpecies(info->waterMonsInfo, species, 12))
+                return TRUE;
+        }
+
+        if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->fishingMonsNatMorningInfo != NULL){
+            if (MonListHasSpecies(info->fishingMonsNatMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->fishingMonsMorningInfo != NULL){
+            if (MonListHasSpecies(info->fishingMonsMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state == TIME_NIGHT && info->fishingMonsNatNightInfo != NULL){
+            if (MonListHasSpecies(info->fishingMonsNatNightInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state==TIME_NIGHT && info->fishingMonsNightInfo != NULL){
+            if (MonListHasSpecies(info->fishingMonsNightInfo, species, 12))
+                return TRUE;
+        } 
+        else if (info->fishingMonsNatInfo != NULL){
+            if (MonListHasSpecies(info->fishingMonsNatInfo, species, 12))
+                return TRUE;
+        }
+        else {
+            if (MonListHasSpecies(info->fishingMonsInfo, species, 12))
+                return TRUE;
+        }
+
+        if ((sPokedexAreaScreen->state == TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->rockSmashMonsNatMorningInfo != NULL){
+            if (MonListHasSpecies(info->rockSmashMonsNatMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if ((sPokedexAreaScreen->state==TIME_MORNING || sPokedexAreaScreen->state == TIME_EVENING) && info->rockSmashMonsMorningInfo != NULL){
+            if (MonListHasSpecies(info->rockSmashMonsMorningInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state == TIME_NIGHT && info->rockSmashMonsNatNightInfo != NULL){
+            if (MonListHasSpecies(info->rockSmashMonsNatNightInfo, species, 12))
+                return TRUE;
+        }
+        else if (sPokedexAreaScreen->state==TIME_NIGHT && info->rockSmashMonsNightInfo != NULL){
+            if (MonListHasSpecies(info->rockSmashMonsNightInfo, species, 12))
+                return TRUE;
+        } 
+        else if (info->rockSmashMonsNatInfo != NULL){
+            if (MonListHasSpecies(info->rockSmashMonsNatInfo, species, 12))
+                return TRUE;
+        }
+        else {
+            if (MonListHasSpecies(info->rockSmashMonsInfo, species, 12))
+                return TRUE;
+        }
+
 	}
 	else
 	{
