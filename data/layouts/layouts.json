@@ -4410,6 +4410,186 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_PLAIN_A",
+      "name": "MirageSpot_Plain_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Plain_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Plain_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_PLAIN_B",
+      "name": "MirageSpot_Plain_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Plain_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Plain_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_WOODS_A",
+      "name": "MirageSpot_Woods_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Woods_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Woods_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_WOODS_B",
+      "name": "MirageSpot_Woods_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Woods_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Woods_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_ASH_A",
+      "name": "MirageSpot_Ash_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/MirageSpot_Ash_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Ash_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_ASH_B",
+      "name": "MirageSpot_Ash_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/MirageSpot_Ash_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Ash_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_DESERT_A",
+      "name": "MirageSpot_Desert_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Desert_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Desert_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_DESERT_B",
+      "name": "MirageSpot_Desert_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Desert_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Desert_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_TALL_GRASS_A",
+      "name": "MirageSpot_TallGrass_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/MirageSpot_TallGrass_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_TallGrass_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_TALL_GRASS_B",
+      "name": "MirageSpot_TallGrass_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/MirageSpot_TallGrass_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_TallGrass_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_ISLAND_A",
+      "name": "MirageSpot_Island_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Island_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Island_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_ISLAND_B",
+      "name": "MirageSpot_Island_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Island_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Island_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_BEACH_A",
+      "name": "MirageSpot_Beach_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Beach_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Beach_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_BEACH_B",
+      "name": "MirageSpot_Beach_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Beach_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Beach_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_CAVE_A",
+      "name": "MirageSpot_Cave_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Cave_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Cave_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_CAVE_B",
+      "name": "MirageSpot_Cave_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Cave_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Cave_B/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_SNOW_A",
+      "name": "MirageSpot_Snow_A_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Snow_A/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Snow_A/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_SPOT_SNOW_B",
+      "name": "MirageSpot_Snow_B_Layout",
+      "width": 48,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/MirageSpot_Snow_B/border.bin",
+      "blockdata_filepath": "data/layouts/MirageSpot_Snow_B/map.bin"
     }
   ]
 }

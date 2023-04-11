@@ -531,7 +531,6 @@
     {
       "map_section": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "Aqua Hideout",
-      "name_clone": true,
       "x": 19,
       "y": 3,
       "width": 1,
@@ -796,7 +795,6 @@
     {
       "map_section": "MAPSEC_ROUTE_4_POKECENTER",
       "name": "Route 4",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -805,7 +803,6 @@
     {
       "map_section": "MAPSEC_ROUTE_10_POKECENTER",
       "name": "Route 10",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1046,7 +1043,6 @@
     {
       "map_section": "MAPSEC_UNDERGROUND_PATH_2",
       "name": "Underground Path",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1063,7 +1059,6 @@
     {
       "map_section": "MAPSEC_KANTO_VICTORY_ROAD",
       "name": "Victory Road",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1096,7 +1091,6 @@
     {
       "map_section": "MAPSEC_KANTO_SAFARI_ZONE",
       "name": "Safari Zone",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1441,7 +1435,6 @@
     {
       "map_section": "MAPSEC_TRAINER_TOWER_2",
       "name": "Trainer Tower",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1708,6 +1701,150 @@
       "name": "Trainer Hill",
       "x": 8,
       "y": 4,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_PLAIN_A",
+      "name": "Mirage Spot",
+      "x": 11,
+      "y": 8,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_PLAIN_B",
+      "name": "Mirage Spot",
+      "x": 11,
+      "y": 8,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_WOODS_A",
+      "name": "Mirage Spot",
+      "x": 2,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_WOODS_B",
+      "name": "Mirage Spot",
+      "x": 2,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_ASH_A",
+      "name": "Mirage Spot",
+      "x": 4,
+      "y": 2,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_ASH_B",
+      "name": "Mirage Spot",
+      "x": 4,
+      "y": 2,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_DESERT_A",
+      "name": "Mirage Spot",
+      "x": 9,
+      "y": 2,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_DESERT_B",
+      "name": "Mirage Spot",
+      "x": 9,
+      "y": 2,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_TALLGRASS_A",
+      "name": "Mirage Spot",
+      "x": 15,
+      "y": 1,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_TALLGRASS_B",
+      "name": "Mirage Spot",
+      "x": 15,
+      "y": 1,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_ISLAND_A",
+      "name": "Mirage Spot",
+      "x": 20,
+      "y": 9,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_ISLAND_B",
+      "name": "Mirage Spot",
+      "x": 20,
+      "y": 9,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_BEACH_A",
+      "name": "Mirage Spot",
+      "x": 26,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_BEACH_B",
+      "name": "Mirage Spot",
+      "x": 26,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_CAVE_A",
+      "name": "Mirage Spot",
+      "x": 6,
+      "y": 10,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_CAVE_B",
+      "name": "Mirage Spot",
+      "x": 6,
+      "y": 10,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_SNOW_A",
+      "name": "Mirage Spot",
+      "x": 27,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_MIRAGE_SPOT_SNOW_B",
+      "name": "Mirage Spot",
+      "x": 27,
+      "y": 14,
       "width": 1,
       "height": 1
     }
