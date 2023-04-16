@@ -710,6 +710,12 @@ void ClearBag(void)
     {
         ClearItemSlots(gBagPockets[i].itemSlots, gBagPockets[i].capacity);
     }
+    
+    for (i = 0; i < 14; i++)
+    {
+        gSaveBlock2Ptr->bagPocket_TMHMOwnedFlags[i]=0;
+    }
+
 }
 
 u16 CountTotalItemQuantityInBag(u16 itemId)
