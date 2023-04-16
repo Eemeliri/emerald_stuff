@@ -2,7 +2,7 @@
   "id": "MAP_MIRAGE_SPOT_ASH_B",
   "name": "MirageSpot_Ash_B",
   "layout": "LAYOUT_MIRAGE_SPOT_ASH_B",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_ROUTE113",
   "region_map_section": "MAPSEC_MIRAGE_SPOT_ASH_B",
   "requires_flash": false,
   "weather": "WEATHER_VOLCANIC_ASH",
