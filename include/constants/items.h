@@ -1056,6 +1056,8 @@
 #define ITEM_B_USE_OTHER    2
 
 // Check if the item is one that can be used on a Pokemon.
-#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= LAST_BERRY_INDEX)
+#define ITEM_HAS_EFFECT(item) (((item) >= ITEM_POTION && (item) <= LAST_BERRY_INDEX) || (item) == ITEM_BLACK_AUGURITE \
+ || (item) == ITEM_PEAT_BLOCK || (item) == ITEM_GALARICA_CUFF || (item) == ITEM_GALARICA_WREATH \
+ || (item) == ITEM_LINKING_CORD)
 
 #endif  // GUARD_CONSTANTS_ITEMS_H
