@@ -274,7 +274,6 @@ static const u8 *const sPokeNewsTextGroup_Upcoming[NUM_POKENEWS_TYPES + 1] = {
     [POKENEWS_NONE]        = NULL,
     [POKENEWS_SLATEPORT]   = gPokeNewsTextSlateport_Upcoming,
     [POKENEWS_GAME_CORNER] = gPokeNewsTextGameCorner_Upcoming,
-    [POKENEWS_LILYCOVE]    = gPokeNewsTextLilycove_Upcoming,
     [POKENEWS_BLENDMASTER] = gPokeNewsTextBlendMaster_Upcoming
 };
 
@@ -282,7 +281,6 @@ static const u8 *const sPokeNewsTextGroup_Ongoing[NUM_POKENEWS_TYPES + 1] = {
     [POKENEWS_NONE]        = NULL,
     [POKENEWS_SLATEPORT]   = gPokeNewsTextSlateport_Ongoing,
     [POKENEWS_GAME_CORNER] = gPokeNewsTextGameCorner_Ongoing,
-    [POKENEWS_LILYCOVE]    = gPokeNewsTextLilycove_Ongoing,
     [POKENEWS_BLENDMASTER] = gPokeNewsTextBlendMaster_Ongoing
 };
 
@@ -290,7 +288,6 @@ static const u8 *const sPokeNewsTextGroup_Ending[NUM_POKENEWS_TYPES + 1] = {
     [POKENEWS_NONE]        = NULL,
     [POKENEWS_SLATEPORT]   = gPokeNewsTextSlateport_Ending,
     [POKENEWS_GAME_CORNER] = gPokeNewsTextGameCorner_Ending,
-    [POKENEWS_LILYCOVE]    = gPokeNewsTextLilycove_Ending,
     [POKENEWS_BLENDMASTER] = gPokeNewsTextBlendMaster_Ending
 };
 
@@ -2669,17 +2666,11 @@ bool8 IsPokeNewsActive(u8 newsKind)
 // For any other type of PokeNews this is always TRUE.
 static bool8 ShouldApplyPokeNewsEffect(u8 newsKind)
 {
-    switch (newsKind)
+    if(newsKind == POKENEWS_SLATEPORT)
     {
-    case POKENEWS_SLATEPORT:
         if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SLATEPORT_CITY)
          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(SLATEPORT_CITY)
          && gSpecialVar_LastTalked == LOCALID_SLATEPORT_ENERGY_GURU)
-            return TRUE;
-        return FALSE;
-    case POKENEWS_LILYCOVE:
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_DEPARTMENT_STORE_ROOFTOP)
-         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_ROOFTOP))
             return TRUE;
         return FALSE;
     }
