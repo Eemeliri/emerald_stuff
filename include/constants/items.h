@@ -984,7 +984,11 @@
 #define ITEM_COVERT_CLOAK 762
 #define ITEM_LOADED_DICE 763
 
-#define ITEMS_COUNT 764
+#define ITEM_BLACK_AUGURITE 764
+#define ITEM_LINKING_CORD 765
+#define ITEM_PEAT_BLOCK 766
+
+#define ITEMS_COUNT 767
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

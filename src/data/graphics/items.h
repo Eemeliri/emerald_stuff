@@ -1948,3 +1948,12 @@ const u32 gItemIconPalette_EonFlute[] = INCBIN_U32("graphics/items/icon_palettes
 
 //const u32 gItemIcon_LoadedDice[] = INCBIN_U32("graphics/items/icons/loaded_dice.4bpp.lz");
 //const u32 gItemIconPalette_LoadedDice[] = INCBIN_U32("graphics/items/icon_palettes/loaded_dice.gbapal.lz");
+
+const u32 gItemIcon_BlackAugurite[] = INCBIN_U32("graphics/items/icons/black_augurite.4bpp.lz");
+const u32 gItemIconPalette_BlackAugurite[] = INCBIN_U32("graphics/items/icon_palettes/black_augurite.gbapal.lz");
+
+const u32 gItemIcon_LinkingCord[] = INCBIN_U32("graphics/items/icons/linking_cord.4bpp.lz");
+const u32 gItemIconPalette_LinkingCord[] = INCBIN_U32("graphics/items/icon_palettes/linking_cord.gbapal.lz");
+
+const u32 gItemIcon_PeatBlock[] = INCBIN_U32("graphics/items/icons/peat_block.4bpp.lz");
+const u32 gItemIconPalette_PeatBlock[] = INCBIN_U32("graphics/items/icon_palettes/peat_block.gbapal.lz");

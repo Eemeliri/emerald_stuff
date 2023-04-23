@@ -3917,3 +3917,18 @@ static const u8 sLoadedDiceDesc[] = _(
     "Rolls high numbers.\n"
     "Multihit strikes\n"
     "hit more times.");
+
+static const u8 sBlackAuguriteDesc[] = _(
+    "A black stone that\n"
+    "makes some Pokémon\n"
+    "evolve.");;
+
+static const u8 sLinkingCordDesc[] = _(
+    "A mysterious string\n"
+    "that makes some\n"
+    "Pokémon evolve.");
+
+static const u8 sPeatBlockDesc[] = _(
+    "A block of material\n"
+    "that makes some\n"
+    "Pokémon evolve.");
