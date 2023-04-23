@@ -1903,3 +1903,13 @@ const u8 gText_Level91to100[] = _("Lv. 91 to 100");
 const u8 gText_ConfirmOffer[] = _("Offer {STR_VAR_1} for {STR_VAR_2}?");
 const u8 gText_OfferPokemon[] = _("{STR_VAR_1} will be put on offer.");
 const u8 gText_ByeByeVar2[] = _("Bye-bye, {STR_VAR_1}!");
+
+
+//Days of Week
+const u8 gText_Monday[] = _("Monday");
+const u8 gText_Tuesday[] = _("Tuesday");
+const u8 gText_Wednesday[] = _("Wednesday");
+const u8 gText_Thursday[] = _("Thursday");
+const u8 gText_Friday[] = _("Friday");
+const u8 gText_Saturday[] = _("Saturday");
+const u8 gText_Sunday[] = _("Sunday");

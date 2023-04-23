@@ -2,6 +2,7 @@
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "event_data.h"
 
 // iwram bss
 static u16 sErrorStatus;
@@ -370,4 +371,10 @@ u32 RtcGetMinuteCount(void)
 u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
+}
+
+void RtcGetDayOfWeek(void)
+{
+    RtcGetInfo(&sRtc);
+    gSpecialVar_Result = sRtc.dayOfWeek;
 }
