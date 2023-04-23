@@ -13,9 +13,11 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "random.h"
 #include "region_map.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
+#include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "script_menu.h"
@@ -40,6 +42,14 @@
 #define BG0_IMAGE_OFFSET 0x4000
 // 32x32 map with 2 bytes per entry (0x800 bytes)
 #define BG0_TILEMAP_OFFSET 0xB800
+
+// movement limits
+#define MIN_Z Q_8_7(4, 0)
+#define MAX_Z Q_8_7(50, 0)
+#define MIN_X Q_8_7(0, 0)
+#define MAX_X Q_8_7(30*8, 0)
+#define MIN_Y Q_8_7(0, 0)
+#define MAX_Y Q_8_7(20*8, 0)
 
 static void CB2_LoadSoarGraphics(void);
 static void DoSoarFieldEffectsCB2(void);
@@ -170,6 +180,8 @@ static u16 sStartMapSection;
 static u8 sEonSpriteId;
 static u8 sShadowSpriteId;
 
+static u8 sMirageSpots[3];
+
 #define Q_8_7(iPart, fPart) (((iPart) << 8) | (fPart))
 #define IPART(n) ((n) >> 8)
 #define FPART(n) ((n) & 0xFFFF)
@@ -200,7 +212,10 @@ void CB2_InitSoar(void)
 		if (!UpdatePaletteFade())
 		{
 			u16 cursorX, cursorY;
+			u8 i,j=0;
 			bool8 inCave;
+			struct SiiRtcInfo rtc;
+            RtcGetDateTime(&rtc);
 			ClearDialogWindowAndFrame(0, 1);
 			RegionMap_GetSectionCoordsFromCurrFieldPos(&sPrevMapSection, &cursorX, &cursorY, &inCave);
 			sStartMapSection = sPrevMapSection;
@@ -211,6 +226,19 @@ void CB2_InitSoar(void)
 			sPlayerPosZ = Q_8_7(8, 0);
 			sPlayerYaw = 0;
 			sPlayerPitch = 0;
+
+		
+			VarSet(VAR_SAFARI_ZONE_SEED, (1+rtc.month)*rtc.year+(31*rtc.day));
+			SeedRng2(VarGet(VAR_SAFARI_ZONE_SEED));
+            for(i=0; i < 3; i++){
+				sMirageSpots[i] = MAPSEC_MIRAGE_SPOT_PLAIN_A + (2*(Random2() % 9));
+				for(j=0; j < i; j++){
+					if(sMirageSpots[i]==sMirageSpots[j]){
+						i--;
+						break;
+					}
+				}
+			}
 
 			if(FlagGet(FLAG_IS_CHAMPION)){
 				FlagSet(FLAG_TEMP_1);
@@ -499,7 +527,16 @@ static void UpdateMapSectionPopup(void)
 
 	if (mapSection != sPrevMapSection)
 	{
-		if (mapSection >= MAPSEC_NONE)
+		if (FlagGet(FLAG_TEMP_1) && (mapSection == sMirageSpots[0] || mapSection == sMirageSpots[1] || mapSection == sMirageSpots[2]))
+		{
+			GetMapName(gStringVar4, mapSection, 50);
+			DrawStdFrameWithCustomTileAndPalette(windid, 0, 1, 14);
+			AddTextPrinterParameterized(windid, 1, gStringVar4, 4, 0, TEXT_SKIP_DRAW, NULL);
+
+			CopyWindowToVram(windid, 3);
+			REG_DISPCNT |= DISPCNT_BG0_ON;
+		}
+		else if (mapSection >= MAPSEC_NONE)
 		{
 			REG_DISPCNT &= ~DISPCNT_BG0_ON;
 		}
@@ -525,20 +562,12 @@ static void ExitSoar(void)
 	SetMainCallback2(WarpCB2);
 }
 
-// movement limits
-#define MIN_Z Q_8_7(4, 0)
-#define MAX_Z Q_8_7(50, 0)
-#define MIN_X Q_8_7(0, 0)
-#define MAX_X Q_8_7(30*8, 0)
-#define MIN_Y Q_8_7(0, 0)
-#define MAX_Y Q_8_7(20*8, 0)
-
 static void CB2_HandleInput(void)
 {
 	int sinYaw;
 	int cosYaw;
 
-	if ((gMain.newKeys & A_BUTTON) && sPrevMapSection != MAPSEC_NONE && sPrevMapSection != MAPSEC_ROUTE_126 && sPrevMapSection != MAPSEC_ROUTE_128 && sPrevMapSection != MAPSEC_ROUTE_129 && sPrevMapSection != MAPSEC_ROUTE_130 && sPrevMapSection != MAPSEC_ROUTE_131 && (GetMapsecType(sPrevMapSection) == MAPSECTYPE_CITY_CANFLY || GetMapsecType(sPrevMapSection) == MAPSECTYPE_BATTLE_FRONTIER))
+	if ((gMain.newKeys & A_BUTTON) && sPrevMapSection != MAPSEC_NONE && sPrevMapSection != MAPSEC_ROUTE_126 && sPrevMapSection != MAPSEC_ROUTE_128 && sPrevMapSection != MAPSEC_ROUTE_129 && sPrevMapSection != MAPSEC_ROUTE_130 && sPrevMapSection != MAPSEC_ROUTE_131 && (GetMapsecType(sPrevMapSection) == MAPSECTYPE_CITY_CANFLY || GetMapsecType(sPrevMapSection) == MAPSECTYPE_BATTLE_FRONTIER || (FlagGet(FLAG_TEMP_1) && (sPrevMapSection == sMirageSpots[0] || sPrevMapSection == sMirageSpots[1] || sPrevMapSection == sMirageSpots[2]))))
 	{
 		PlaySE(SE_SELECT);
 
@@ -673,6 +702,8 @@ static void WarpCB2(void)
 		break;
 	default:
 		SetWarpDestinationToHealLocation(sMapHealLocations[sPrevMapSection][2]);
+		if(sPrevMapSection==sMirageSpots[2])
+		    SetWarpDestinationToHealLocation(sMapHealLocations[sPrevMapSection+1][2]);
 
 	}
 
