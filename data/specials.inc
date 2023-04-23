@@ -540,3 +540,4 @@ gSpecials::
 	def_special GetPWTSelection
 	def_special Special_InitGTS
 	def_special TrySpecialOverworldEvo
+	def_special RtcGetDayOfWeek
