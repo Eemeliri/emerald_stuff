@@ -1943,6 +1943,36 @@
               }
             ]
           },
+          "rock_smash_mons_nat": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 15,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              }
+            ]
+          },
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -1995,36 +2025,6 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_BARBOACH"
-              }
-            ]
-          },
-          "rock_smash_mons_nat": {
-            "encounter_rate": 20,
-            "mons": [
-              {
-                "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_GEODUDE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 10,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
               }
             ]
           }
@@ -2620,6 +2620,36 @@
               }
             ]
           },
+          "rock_smash_mons_nat": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 15,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE_ALOLAN"
+              }
+            ]
+          },
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -2672,36 +2702,6 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_BARBOACH"
-              }
-            ]
-          },
-          "rock_smash_mons_nat": {
-            "encounter_rate": 20,
-            "mons": [
-              {
-                "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_GEODUDE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 10,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
-              },
-              {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE_ALOLAN"
               }
             ]
           }
@@ -4489,71 +4489,6 @@
               }
             ]
           },
-          "land_mons_nat_night": {
-            "encounter_rate": 25,
-            "mons": [
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_EXEGGCUTE"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_EXEGGCUTE"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_GIRAFARIG"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_GIRAFARIG"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_NATU"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_DODUO"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_MEOWTH_ALOLAN"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_WOBBUFFET"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_PIKACHU"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_WOBBUFFET"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_PIKACHU"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_CHANSEY"
-              }
-            ]
-          },
           "land_mons_nat_morning": {
             "encounter_rate": 25,
             "mons": [
@@ -4611,6 +4546,71 @@
                 "min_level": 31,
                 "max_level": 31,
                 "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_CHANSEY"
+              }
+            ]
+          },
+          "land_mons_nat_night": {
+            "encounter_rate": 25,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_EXEGGCUTE"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_EXEGGCUTE"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_DODUO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_MEOWTH_ALOLAN"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_WOBBUFFET"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_PIKACHU"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_WOBBUFFET"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_PIKACHU"
               },
               {
                 "min_level": 29,
@@ -6266,6 +6266,71 @@
               }
             ]
           },
+          "land_mons_nat_morning": {
+            "encounter_rate": 15,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_LINOONE"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_ZIGZAGOON"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_FARFETCHD_GALARIAN"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_LINOONE"
+              },
+              {
+                "min_level": 26,
+                "max_level": 26,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 24,
+                "max_level": 24,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_TROPIUS"
+              },
+              {
+                "min_level": 26,
+                "max_level": 26,
+                "species": "SPECIES_TROPIUS"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_YANMA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 25,
+                "species": "SPECIES_KECLEON"
+              }
+            ]
+          },
           "land_mons_nat_night": {
             "encounter_rate": 15,
             "mons": [
@@ -6413,71 +6478,6 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_CARVANHA"
-              }
-            ]
-          },
-          "land_mons_nat_morning": {
-            "encounter_rate": 15,
-            "mons": [
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_ZIGZAGOON"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_LINOONE"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_ZIGZAGOON"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_FARFETCHD_GALARIAN"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_LINOONE"
-              },
-              {
-                "min_level": 26,
-                "max_level": 26,
-                "species": "SPECIES_ODDISH"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_ODDISH"
-              },
-              {
-                "min_level": 24,
-                "max_level": 24,
-                "species": "SPECIES_ODDISH"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_TROPIUS"
-              },
-              {
-                "min_level": 26,
-                "max_level": 26,
-                "species": "SPECIES_TROPIUS"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_YANMA"
-              },
-              {
-                "min_level": 25,
-                "max_level": 25,
-                "species": "SPECIES_KECLEON"
               }
             ]
           }
@@ -11036,33 +11036,68 @@
               }
             ]
           },
-          "rock_smash_mons": {
+          "land_mons_nat_morning": {
             "encounter_rate": 25,
             "mons": [
               {
-                "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_PHANPY"
               },
               {
-                "min_level": 5,
-                "max_level": 10,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
-                "min_level": 15,
-                "max_level": 20,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_PHANPY"
               },
               {
-                "min_level": 20,
-                "max_level": 25,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
-                "min_level": 25,
-                "max_level": 30,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_MEOWTH_GALARIAN"
+              },
+              {
+                "min_level": 31,
+                "max_level": 31,
+                "species": "SPECIES_KANGASKHAN"
+              },
+              {
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 27,
+                "max_level": 27,
+                "species": "SPECIES_HERACROSS"
+              },
+              {
+                "min_level": 31,
+                "max_level": 31,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 29,
+                "max_level": 29,
+                "species": "SPECIES_CHANSEY"
               }
             ]
           },
@@ -11131,6 +11166,36 @@
               }
             ]
           },
+          "rock_smash_mons": {
+            "encounter_rate": 25,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 15,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_GEODUDE"
+              }
+            ]
+          },
           "rock_smash_mons_nat": {
             "encounter_rate": 25,
             "mons": [
@@ -11158,71 +11223,6 @@
                 "min_level": 25,
                 "max_level": 30,
                 "species": "SPECIES_GEODUDE_ALOLAN"
-              }
-            ]
-          },
-          "land_mons_nat_morning": {
-            "encounter_rate": 25,
-            "mons": [
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_PHANPY"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_EXEGGCUTE"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_PHANPY"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_EXEGGCUTE"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_NATU"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_MEOWTH_GALARIAN"
-              },
-              {
-                "min_level": 31,
-                "max_level": 31,
-                "species": "SPECIES_KANGASKHAN"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_NATU"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_XATU"
-              },
-              {
-                "min_level": 27,
-                "max_level": 27,
-                "species": "SPECIES_HERACROSS"
-              },
-              {
-                "min_level": 31,
-                "max_level": 31,
-                "species": "SPECIES_XATU"
-              },
-              {
-                "min_level": 29,
-                "max_level": 29,
-                "species": "SPECIES_CHANSEY"
               }
             ]
           }
