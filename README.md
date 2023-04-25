@@ -2,7 +2,7 @@
 This is a branch of the [**pokeemerald**](https://github.com/pret/pokeemerald) dissasembly that is meant to act as somewhat of a demake of ORAS, with as many of their mechanics as possible, but with Emerald's story.
 It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion) branch as a base.
 
-* pokeemerald.gba `sha1: b670b24fa030782345db1e15837a55eced650c3f`
+* pokeemerald.gba `sha1: 095175c7572fa51dbb39b76646d3f34f0b53c341`
 
 ### Updated/Qol Features
 * Built upon [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion)
