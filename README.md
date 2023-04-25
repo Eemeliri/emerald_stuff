@@ -1,18 +1,25 @@
 # About this branch
-This is a branch of the [**pokeemerald**](https://travis-ci.org/pret/pokeemerald) dissasembly that is meant to act as somewhat of a demake of ORAS, with as many of their mechanics as possible, but with Emerald's story.
+This is a branch of the [**pokeemerald**](https://github.com/pret/pokeemerald) dissasembly that is meant to act as somewhat of a demake of ORAS, with as many of their mechanics as possible, but with Emerald's story.
 It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion) branch as a base.
 
-* pokeemerald.gba `sha1: 2f28add972daed1ff6eb59685de042252d7db10e`
+* pokeemerald.gba `sha1: b670b24fa030782345db1e15837a55eced650c3f`
 
 ### Updated/Qol Features
 * Built upon [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemerald-expansion)
+    - Fairy Type.
+    - Physical/Special/Status Category Split.
+    - New moves and abilities up to ORAS.
+    - Mega Evolution and Primal Reversion.
+    - Updates Hoenn's Regional Dex to match ORAS'.
+    - New evolution methods.
+    - Items from newer Generations and updated item effects for battle and field use.
 * [**Day Night System**](https://github.com/Sierraffinity/pokeemerald/tree/daynight) (Credit: Sierraffinity)
 * [**Following Pokemon**](https://github.com/aarant/pokeemerald), edited to have large followers and also have their own palette (Credit: aarant/merrp)
 * [**DexNav**](https://github.com/ghoulslash/pokeemerald/tree/dexnav) (Credit: ghoulslash)
 * [**ipatix's High Quality Audio Mixer**](https://github.com/pret/pokeemerald/wiki/Implementing-ipatix's-High-Quality-Audio-Mixer)
 * [**Decapitalisation**](https://github.com/AsparagusEduardo/pokeemerald/tree/Decapitalization) (Credit: Wyrserth and AsparagusEduardo)
 * The Pokemon World Tournament from BW2 can be found in the Battle Dome
-* Lati@s soaring, now has a dark sky at night (Credit: camthesaxman)
+* Lati@s soaring with the Eon Flute, you can now encounter Mirage Spots after defeating the Elite Four which change daily (Credit: camthesaxman)
 * Flying to Routes
 * [**Running indoors**](https://www.pokecommunity.com/showpost.php?p=9990848&postcount=14) (Credit: TheXaman)
 * [**Auto-run**](https://www.pokecommunity.com/showpost.php?p=10161076&postcount=72) (Credit: ghoulslash)
@@ -50,6 +57,7 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 * Check EVs and IVs in PC by pressing Start
 * Move name instead of TM name in shops (Credit: Duke)
 * Changed Battle Frontier Pokemon to include up to Gen 6
+* More wild encounters after the Elite Four for Gen I-VI Pokemon
 
 ### Other Changes
 * [**Overworld expansion**](https://github.com/ghoulslash/pokeemerald/tree/overworld-expansion)
@@ -74,37 +82,16 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 
 ### Changes (Planned)
 * Soaring encounters
-* Mirage Spots
 * Soaring music
 * Update Frontier Pokemon
 * PWT Fixes and Improvements
-* Wild encounter and Mass outbreak changes
-* Put in regional forms somewhere
+* Mass outbreak changes
 * Ways to change forms (eg. Deoxys, Rotom)
 * Fix up followers
 * Do something for legendaries
-* Use Rare Candy on Lv 100 Pokemon to evolve them
 
-
-# RHH ReadMe
-The Pokeemerald Expansion is a collection of feature branches that can be integrated into existing [pokeemerald](https://github.com/pret/pokeemerald) projects.
-
-## What features are included?
-- Upgraded battle engine.
-    - Fairy Type.
-    - Physical/Special/Status Category Split.
-    - New moves and abilities up to SwSh.
-    - Options to change behaviors and data by generation.
-    - Mega Evolution and Primal Reversion
-    - Z-Moves
-- Pokémon Species from newer Generations (with the option to disable them if needed).
-    - Updates Hoenn's Regional Dex to match ORAS'.
-    - Updates National Dex incorporating all the new species.
-    - Option to change base stats by generation.
-    - New evolution methods.
-    - Hidden Abilities data (How to make them available is up to the user).
-- Items from newer Generations and updated item effects for battle and field use.
-
-Certain mechanics, moves, abilities and species sprites are missing. For more information, see [the project's milestones](https://github.com/rh-hideout/pokeemerald-expansion/milestones).
-
-### [Documentation on features can be found here](https://github.com/rh-hideout/pokeemerald-expansion/wiki)
+### Bugs
+* Any known pokeemerald-expansion bug
+* Followers don't have the correct reflection palette if they come out next to a reflective surface (probably from me messing with their palette system)
+* In the PWT the info cards will say that Gym Leaders won with a move none of their Pokémon have.
+* The overworld ash and snow weather effects will occasionally use the wrong palette.
