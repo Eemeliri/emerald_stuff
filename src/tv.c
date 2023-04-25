@@ -199,6 +199,30 @@ static const struct {
     u8 encounterType;
 } sPokeOutbreakSpeciesList[] = {
     {
+        .species = SPECIES_TREECKO,
+        .moves = {MOVE_ABSORB, MOVE_POUND, MOVE_LEER},
+        .level = 6,
+        .location = MAP_NUM(PETALBURG_WOODS),
+        .location2 = MAP_GROUP(PETALBURG_WOODS),
+        .encounterType = 0,
+    },
+    {
+        .species = SPECIES_TORCHIC,
+        .moves = {MOVE_FIRE_SPIN, MOVE_PECK, MOVE_SAND_ATTACK,MOVE_EMBER},
+        .level = 21,
+        .location = MAP_NUM(JAGGED_PASS),
+        .location2 = MAP_GROUP(JAGGED_PASS),
+        .encounterType = 0,
+    },
+    {
+        .species = SPECIES_MUDKIP,
+        .moves = {MOVE_ROCK_THROW, MOVE_BIDE, MOVE_WATER_GUN, MOVE_MUD_SLAP},
+        .level = 25,
+        .location = MAP_NUM(ROUTE120),
+        .location2 = MAP_GROUP(ROUTE120),
+        .encounterType = 0,
+    },
+    {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_BIDE, MOVE_HARDEN, MOVE_LEECH_SEED},
         .level = 3,
