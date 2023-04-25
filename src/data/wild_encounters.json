@@ -1809,7 +1809,7 @@
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_CACNEA"
+                "species": "SPECIES_AERODACTYL"
               },
               {
                 "min_level": 22,
@@ -1874,7 +1874,7 @@
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_CACNEA"
+                "species": "SPECIES_AERODACTYL"
               },
               {
                 "min_level": 22,
@@ -4862,7 +4862,7 @@
               {
                 "min_level": 10,
                 "max_level": 10,
-                "species": "SPECIES_SABLEYE"
+                "species": "SPECIES_KABUTO"
               },
               {
                 "min_level": 12,
@@ -12505,7 +12505,7 @@
               {
                 "min_level": 32,
                 "max_level": 32,
-                "species": "SPECIES_SPHEAL"
+                "species": "SPECIES_OMANYTE"
               },
               {
                 "min_level": 32,
@@ -12639,7 +12639,7 @@
               {
                 "min_level": 32,
                 "max_level": 32,
-                "species": "SPECIES_SPHEAL"
+                "species": "SPECIES_OMANYTE"
               },
               {
                 "min_level": 32,
@@ -12773,7 +12773,7 @@
               {
                 "min_level": 32,
                 "max_level": 32,
-                "species": "SPECIES_SPHEAL"
+                "species": "SPECIES_OMANYTE"
               },
               {
                 "min_level": 32,
