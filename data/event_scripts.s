@@ -1091,3 +1091,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/text/birch_speech.inc"
     .include "data/scripts/dexnav.inc"
     
+
+	.include "data/maps/OneIsland/scripts.inc"
+
+	.include "data/maps/TestMap/scripts.inc"
