@@ -4610,6 +4610,16 @@
       "secondary_tileset": "gTileset_Lilycove",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
+    },
+    {
+      "id": "LAYOUT_ONE_ISLAND_FRLG",
+      "name": "OneIslandFRLG_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_FRLG",
+      "secondary_tileset": "gTileset_FRLG_Secondary",
+      "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
+      "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     }
   ]
 }

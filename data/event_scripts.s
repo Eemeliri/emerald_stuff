@@ -1095,3 +1095,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/OneIsland/scripts.inc"
 
 	.include "data/maps/TestMap/scripts.inc"
+
+	.include "data/maps/OneIslandFRLG/scripts.inc"
