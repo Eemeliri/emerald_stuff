@@ -219,3 +219,6 @@ const u16 gMetatileAttributes_FRLG_Secondary[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_Snow[] = INCBIN_U16("data/tilesets/secondary/snow/metatiles.bin");
 const u16 gMetatileAttributes_Snow[] = INCBIN_U16("data/tilesets/secondary/snow/metatile_attributes.bin");
+
+const u16 gMetatiles_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatiles.bin");
+const u16 gMetatileAttributes_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatile_attributes.bin");

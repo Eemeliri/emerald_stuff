@@ -4616,8 +4616,8 @@
       "name": "OneIslandFRLG_Layout",
       "width": 45,
       "height": 45,
-      "primary_tileset": "gTileset_FRLG",
-      "secondary_tileset": "gTileset_FRLG_Secondary",
+      "primary_tileset": "gTileset_General_snow",
+      "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     }
