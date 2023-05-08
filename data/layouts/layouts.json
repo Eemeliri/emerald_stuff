@@ -4607,7 +4607,7 @@
       "width": 55,
       "height": 55,
       "primary_tileset": "gTileset_Saturated_Tileset",
-      "secondary_tileset": "gTileset_Lilycove",
+      "secondary_tileset": "gTileset_Snow",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
     },
@@ -4616,8 +4616,8 @@
       "name": "OneIslandFRLG_Layout",
       "width": 45,
       "height": 45,
-      "primary_tileset": "gTileset_General_snow",
-      "secondary_tileset": "gTileset_Cave",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Snow",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     }
