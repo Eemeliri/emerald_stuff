@@ -1729,3 +1729,22 @@ const u16 gTilesetPalettes_General_snow[][16] =
 };
 
 const u32 gTilesetTiles_General_snow[] = INCBIN_U32("data/tilesets/primary/general_snow/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_general_firered[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/general_firered/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_general_firered[] = INCBIN_U32("data/tilesets/primary/general_firered/tiles.4bpp.lz");

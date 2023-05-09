@@ -131,7 +131,7 @@
 #define B_DUSK_BALL_MODIFIER        GEN_8 // In Gen7+, Dusk Ball's catch multiplier is x3 instead of x3.5.
 #define B_QUICK_BALL_MODIFIER       GEN_8 // In Gen5+, Quick Ball's catch multiplier is x5 instead of x4.
 #define B_LURE_BALL_MODIFIER        GEN_8 // In Gen7+, Lure Ball's catch multiplier is x5 instead of x3.
-#define B_HEAVY_BALL_MODIFIER       GEN_GEN_8LATEST // In Gen7+, Heavy Ball's ranges change. See Cmd_handleballthrow.
+#define B_HEAVY_BALL_MODIFIER       GEN_8 // In Gen7+, Heavy Ball's ranges change. See Cmd_handleballthrow.
 #define B_DREAM_BALL_MODIFIER       GEN_8 // In Gen8, Dream Ball's catch multiplier is x4 when the target is asleep or has the ability Comatose.
 #define B_SPORT_BALL_MODIFIER       GEN_8 // In Gen8, Sport Ball's catch multiplier was reduced from x1.5 to x1.
 #define B_SERENE_GRACE_BOOST        GEN_8 // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.

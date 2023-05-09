@@ -222,3 +222,6 @@ const u16 gMetatileAttributes_Snow[] = INCBIN_U16("data/tilesets/secondary/snow/
 
 const u16 gMetatiles_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatiles.bin");
 const u16 gMetatileAttributes_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatile_attributes.bin");
+
+const u16 gMetatiles_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatiles.bin");
+const u16 gMetatileAttributes_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatile_attributes.bin");
