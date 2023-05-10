@@ -1,0 +1,46 @@
+Everyone who worked on the Pret disassembly and RHH expansion
+Sierraffinity - Day/Night System, e-Reader functionality
+Merrp - Following Pokemon
+ghoulslash - DexNav, Auto-run, Mart Items by Badge Count, Bag Sorting, Repeated Field Medicine Use, Pokecenters don't count eggs, Overworld Expansion, givecustommon 
+ipatix - High Quality Audio Mixer
+Wyserth - Decapitalisation
+AsparagusEduardo - Decapitalisation, PoryMoves, More Bag Pockets, 'Move Pokemon' is the first PC option
+camthesaxman - Lati@s Soaring
+TheXaman - Running indoors
+Lunos - Reusable TMs, Buying TMs once, Press select to rearrange party pokemon
+Buffel Salt - LGPE-style Premier Balls, No need to water berry trees on rainy routes
+DizzyEgg - BW Repel System
+Zeturic - XY-style Wrapping Summary Screen, 'Move Item' option in party menu
+Bassoonian - Pokemon date met in summary screen 
+Jaizu - Keyboard swaps to lowercase after the first letter, and for some firered tiles
+Duke - Move name instead of TM name in shops
+GriffinR - Disabled the union room check when entering Pokecenters
+CitrusBolt - e-Reader functionality, last used ball gfx
+Sbird - TM serialisation, TM learnset method
+Dat.H A - Spinda Second Frame
+ShinyDragonHunter - Spinda Second Frame, Arbok variants
+Dreadwing93 - Arbok variant sprites
+
+Kymotonian - Gen V follower sprites
+cSc-A7X - Gen V follower sprites
+2and2makes5 - Gen V follower sprites
+Pokegirl4ever - Gen V follower sprites
+Fernandojl - Gen V follower sprites
+Silver-Skie - Gen V follower sprites
+TyranitarDark - Gen V follower sprites
+Getsuei-H - Gen V follower sprites
+Milomilotic11 - Gen V follower sprites
+Kyt666 - Gen V follower sprites
+kidiamo11 - Gen V follower sprites
+Chocosrawloid - Gen V follower sprites
+SyleDude - Gen V follower sprites
+Gallanty - Gen V follower sprites
+Gizamimi-Pichu - Gen V follower sprites
+Princess-Pheonix - Gen VI follower sprites, Gen VII follower sprites
+Larryturbo - Gen VII follower sprites
+Kidakatt - Gen VII follower sprites
+Zender1752 - Gen VII follower sprites
+SageDeoxys - Gen VII follower sprites
+
+
+If I've missed someone let me know!

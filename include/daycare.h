@@ -3,10 +3,17 @@
 
 #include "constants/daycare.h"
 
+struct RecordMixingDaycareMail
+{
+    struct DaycareMail mail[DAYCARE_MON_COUNT];
+    u32 numDaycareMons;
+    bool16 cantHoldItem[DAYCARE_MON_COUNT];
+};
+
 u8 *GetMonNickname2(struct Pokemon *mon, u8 *dest);
 u8 *GetBoxMonNickname(struct BoxPokemon *mon, u8 *dest);
 u8 CountPokemonInDaycare(struct DayCare *daycare);
-void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDaycareMail *daycareMail);
+void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDaycareMail *mixMail);
 void StoreSelectedPokemonInDaycare(void);
 u16 TakePokemonFromDaycare(void);
 void GetDaycareCost(void);
@@ -23,5 +30,6 @@ void SetDaycareCompatibilityString(void);
 bool8 NameHasGenderSymbol(const u8 *name, u8 genderRatio);
 void ShowDaycareLevelMenu(void);
 void ChooseSendDaycareMon(void);
+u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves);
 
 #endif // GUARD_DAYCARE_H

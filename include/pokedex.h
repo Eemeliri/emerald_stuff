@@ -3,6 +3,7 @@
 
 extern u8 gUnusedPokedexU8;
 extern void (*gPokedexVBlankCB)(void);
+extern const u8 *const gMonFootprintTable[];
 
 enum
 {
@@ -20,7 +21,7 @@ enum
 
 struct PokedexEntry
 {
-    /*0x00*/ u8 categoryName[12];
+    /*0x00*/ u8 categoryName[13];
     /*0x0C*/ u16 height; //in decimeters
     /*0x0E*/ u16 weight; //in hectograms
     /*0x10*/ const u8 *description;
@@ -38,6 +39,7 @@ u16 GetHoennPokedexCount(u8);
 u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality);
 s8 GetSetPokedexFlag(u16 nationalNum, u8 caseId);
 u16 CreateMonSpriteFromNationalDexNumber(u16, s16, s16, u16);
+u16 CreateMonFormSpriteFromNationalDexNumber(u16, s16, s16, u16, u16);
 bool16 HasAllHoennMons(void);
 void ResetPokedexScrollPositions(void);
 bool16 HasAllMons(void);

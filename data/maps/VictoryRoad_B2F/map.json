@@ -104,6 +104,19 @@
       "trainer_sight_or_berry_tree_id": "2",
       "script": "VictoryRoad_B2F_EventScript_Felix",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TM_BALL",
+      "x": 44,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VictoryRoad_B2F_EventScript_ItemTM81",
+      "flag": "FLAG_ITEM_VICTORYROAD_BF2_TM81"
     }
   ],
   "warp_events": [
@@ -112,28 +125,28 @@
       "y": 25,
       "elevation": 3,
       "dest_map": "MAP_VICTORY_ROAD_B1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 43,
       "y": 2,
       "elevation": 3,
       "dest_map": "MAP_VICTORY_ROAD_B1F",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     },
     {
       "x": 19,
       "y": 12,
       "elevation": 3,
       "dest_map": "MAP_VICTORY_ROAD_B1F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 5,
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_VICTORY_ROAD_B1F",
-      "dest_warp_id": 6
+      "dest_warp_id": "6"
     }
   ],
   "coord_events": [],

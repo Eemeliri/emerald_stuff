@@ -388,17 +388,37 @@ u8 (*const gMovementTypeFuncs_CopyPlayer[])(struct ObjectEvent *, struct Sprite 
 };
 
 bool8 (*const gCopyPlayerMovementFuncs[])(struct ObjectEvent *, struct Sprite *, u8, bool8(u8)) = {
-    CopyablePlayerMovement_None,
-    CopyablePlayerMovement_FaceDirection,
-    CopyablePlayerMovement_GoSpeed0,
-    CopyablePlayerMovement_GoSpeed1,
-    CopyablePlayerMovement_GoSpeed2,
-    CopyablePlayerMovement_Slide,
-    cph_IM_DIFFERENT,
-    CopyablePlayerMovement_GoSpeed4,
-    CopyablePlayerMovement_Jump,
-    CopyablePlayerMovement_None,
-    CopyablePlayerMovement_None,
+    [COPY_MOVE_NONE]          = CopyablePlayerMovement_None,
+    [COPY_MOVE_FACE]          = CopyablePlayerMovement_FaceDirection,
+    [COPY_MOVE_WALK]          = CopyablePlayerMovement_WalkNormal,
+    [COPY_MOVE_WALK_FAST]     = CopyablePlayerMovement_WalkFast,
+    [COPY_MOVE_WALK_FASTER]   = CopyablePlayerMovement_WalkFaster,
+    [COPY_MOVE_SLIDE]         = CopyablePlayerMovement_Slide,
+    [COPY_MOVE_JUMP_IN_PLACE] = CopyablePlayerMovement_JumpInPlace,
+    [COPY_MOVE_JUMP]          = CopyablePlayerMovement_Jump,
+    [COPY_MOVE_JUMP2]         = CopyablePlayerMovement_Jump2,
+    [COPY_MOVE_EMPTY_1]       = CopyablePlayerMovement_None,
+    [COPY_MOVE_EMPTY_2]       = CopyablePlayerMovement_None,
+};
+
+u8 (*const gMovementTypeFuncs_FollowPlayer[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementType_FollowPlayer_Shadow,
+    MovementType_FollowPlayer_Active,
+    MovementType_FollowPlayer_Moving,
+};
+
+bool8 (*const gFollowPlayerMovementFuncs[])(struct ObjectEvent *, struct Sprite *, u8, bool8(u8)) = {
+    [COPY_MOVE_NONE] = FollowablePlayerMovement_Idle,
+    [COPY_MOVE_FACE] = FollowablePlayerMovement_Idle,
+    [COPY_MOVE_WALK] = FollowablePlayerMovement_Step,
+    [COPY_MOVE_WALK_FAST] = FollowablePlayerMovement_GoSpeed1,
+    [COPY_MOVE_WALK_FASTER] = FollowablePlayerMovement_GoSpeed2,
+    [COPY_MOVE_SLIDE] = FollowablePlayerMovement_Slide,
+    [COPY_MOVE_JUMP_IN_PLACE] = fph_IM_DIFFERENT,
+    [COPY_MOVE_JUMP] = FollowablePlayerMovement_GoSpeed4,
+    [COPY_MOVE_JUMP2] = FollowablePlayerMovement_Step,
+    [COPY_MOVE_EMPTY_1] = FollowablePlayerMovement_Idle,
+    [COPY_MOVE_EMPTY_2] = FollowablePlayerMovement_Idle,
 };
 
 u8 (*const gMovementTypeFuncs_CopyPlayerInGrass[])(struct ObjectEvent *, struct Sprite *) = {

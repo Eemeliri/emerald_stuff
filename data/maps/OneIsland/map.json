@@ -1,0 +1,57 @@
+{
+  "id": "MAP_ONE_ISLAND",
+  "name": "OneIsland",
+  "layout": "LAYOUT_ONE_ISLAND",
+  "music": "MUS_RG_SEVII_123",
+  "region_map_section": "MAPSEC_SEVII_ISLE_22",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 20,
+      "y": 65,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 60,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 52,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    },
+    {
+      "type": "hidden_item",
+      "x": 32,
+      "y": 52,
+      "elevation": 0,
+      "item": "ITEM_ELIXIR",
+      "flag": "FLAG_TEMP_1"
+    }
+  ]
+}

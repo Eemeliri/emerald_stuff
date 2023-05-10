@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "main.h"
 #include "pokeblock.h"
+#include "rtc.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "string_util.h"
@@ -57,10 +58,18 @@ void EnterSafariMode(void)
     IncrementGameStat(GAME_STAT_ENTERED_SAFARI_ZONE);
     SetSafariZoneFlag();
     ClearAllPokeblockFeeders();
+    FillEncounterTables();
     gNumSafariBalls = 30;
     sSafariZoneStepCounter = 500;
     sSafariZoneCaughtMons = 0;
     sSafariZonePkblkUses = 0;
+}
+
+void FillEncounterTables(void)
+{
+    struct SiiRtcInfo rtc;
+    RtcGetDateTime(&rtc);
+    VarSet(VAR_SAFARI_ZONE_SEED, (1+rtc.month)*rtc.year+(31*rtc.day));
 }
 
 void ExitSafariMode(void)
@@ -83,7 +92,7 @@ bool8 SafariZoneTakeStep(void)
     sSafariZoneStepCounter--;
     if (sSafariZoneStepCounter == 0)
     {
-        ScriptContext1_SetupScript(SafariZone_EventScript_TimesUp);
+        ScriptContext_SetupScript(SafariZone_EventScript_TimesUp);
         return TRUE;
     }
     return FALSE;
@@ -91,7 +100,7 @@ bool8 SafariZoneTakeStep(void)
 
 void SafariZoneRetirePrompt(void)
 {
-    ScriptContext1_SetupScript(SafariZone_EventScript_RetirePrompt);
+    ScriptContext_SetupScript(SafariZone_EventScript_RetirePrompt);
 }
 
 void CB2_EndSafariBattle(void)
@@ -105,15 +114,15 @@ void CB2_EndSafariBattle(void)
     }
     else if (gBattleOutcome == B_OUTCOME_NO_SAFARI_BALLS)
     {
-        ScriptContext2_RunNewScript(SafariZone_EventScript_OutOfBallsMidBattle);
+        RunScriptImmediately(SafariZone_EventScript_OutOfBallsMidBattle);
         WarpIntoMap();
         gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
         SetMainCallback2(CB2_LoadMap);
     }
     else if (gBattleOutcome == B_OUTCOME_CAUGHT)
     {
-        ScriptContext1_SetupScript(SafariZone_EventScript_OutOfBalls);
-        ScriptContext1_Stop();
+        ScriptContext_SetupScript(SafariZone_EventScript_OutOfBalls);
+        ScriptContext_Stop();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
 }
@@ -215,7 +224,7 @@ void SafariZoneActivatePokeblockFeeder(u8 pkblId)
             // Initialize Pokeblock feeder
             GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
             sPokeblockFeeders[i].mapNum = gSaveBlock1Ptr->location.mapNum;
-            sPokeblockFeeders[i].pokeblock = gSaveBlock1Ptr->pokeblocks[pkblId];
+            sPokeblockFeeders[i].pokeblock = gSaveBlock2Ptr->pokeblocks[pkblId];
             sPokeblockFeeders[i].stepCounter = 100;
             sPokeblockFeeders[i].x = x;
             sPokeblockFeeders[i].y = y;

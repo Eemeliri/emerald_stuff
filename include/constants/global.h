@@ -1,5 +1,12 @@
 #ifndef GUARD_CONSTANTS_GLOBAL_H
 #define GUARD_CONSTANTS_GLOBAL_H
+
+#include "config/battle.h"
+#include "config/debug.h"
+#include "config/item.h"
+#include "config/pokemon.h"
+#include "config/overworld.h"
+
 // Invalid Versions show as "----------" in Gen 4 and Gen 5's summary screen.
 // In Gens 6 and 7, invalid versions instead show "a distant land" in the summary screen.
 // In Gen 4 only, migrated Pokemon with Diamond, Pearl, or Platinum's ID show as "----------".
@@ -17,6 +24,19 @@
 #define VERSION_PLATINUM 12
 #define VERSION_GAMECUBE 15
 
+// Version ID modifiers used for identifying unofficial games.
+// The idea is that each unofficial game will have its own number they can use in conjunction with one of the official origin game IDs
+// so that they do not have to requisition a new ID for every project
+#define MODIFIER_NONE                 0 // official games
+#define MODIFIER_HELIODOR             1 // 3-1 is Heliodor
+#define MODIFIER_DX                   2 // 4-2 is FireRed DX and 5-2 is LeafGreen DX
+#define MODIFIER_CRYSTAL_DUST         3 // Reserved for on-the-fly loading CrystalDust into this system
+#define MODIFIER_EMERALD_CROSS        4 // 3-4 is Emerald Cross
+#define MODIFIER_GLIMMERING_EMERALD  13 // 3-13 is Glimmering Emerald i.e. this game
+#define MODIFIER_TOBA               222 // Reserved by AquaticTyphoon#7935 for their TOBA region.
+
+#define VERSION_MODIFIER (MODIFIER_GLIMMERING_EMERALD)
+
 #define LANGUAGE_JAPANESE 1
 #define LANGUAGE_ENGLISH  2
 #define LANGUAGE_FRENCH   3
@@ -26,23 +46,38 @@
 #define LANGUAGE_SPANISH  7
 #define NUM_LANGUAGES     7
 
+#define SAVE_VERSION_1_0_0 1
+
 #define GAME_VERSION (VERSION_EMERALD)
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
+#define SAVE_VERSION (SAVE_VERSION_1_0_0)
+
+// party sizes
+#define PARTY_SIZE 6
+#define MULTI_PARTY_SIZE (PARTY_SIZE / 2)
+#define FRONTIER_PARTY_SIZE         3
+#define FRONTIER_DOUBLES_PARTY_SIZE 4
+#define FRONTIER_MULTI_PARTY_SIZE   2
+#define MAX_FRONTIER_PARTY_SIZE     4
+#define UNION_ROOM_PARTY_SIZE       2
 
 // capacities of various saveblock objects
 #define DAYCARE_MON_COUNT 2
 #define POKEBLOCKS_COUNT 40
 #define OBJECT_EVENTS_COUNT 16
-#define MAIL_COUNT 16
-#define SECRET_BASES_COUNT 20
+#define MAIL_COUNT (5 + PARTY_SIZE)
+#define SECRET_BASES_COUNT 5
 #define TV_SHOWS_COUNT 25
 #define POKE_NEWS_COUNT 16
-#define PC_ITEMS_COUNT 50
-#define BAG_ITEMS_COUNT 30
+#define PC_ITEMS_COUNT 10
+#define BAG_ITEMS_COUNT 110
 #define BAG_KEYITEMS_COUNT 30
-#define BAG_POKEBALLS_COUNT 16
-#define BAG_TMHM_COUNT 64
-#define BAG_BERRIES_COUNT 46
+#define BAG_POKEBALLS_COUNT 24
+#define BAG_TMHM_COUNT 128
+#define BAG_BERRIES_COUNT 67
+#define BAG_MEDICINE_COUNT 38
+#define BAG_BATTLEITEMS_COUNT 100
+#define BAG_MEGASTONES_COUNT 48
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
 #define DECOR_MAX_SECRET_BASE 16
 #define DECOR_MAX_PLAYERS_HOUSE 12
@@ -53,13 +88,23 @@
 #define UNION_ROOM_KB_ROW_COUNT 10
 #define GIFT_RIBBONS_COUNT 11
 #define SAVED_TRENDS_COUNT 5
-
 #define PYRAMID_BAG_ITEMS_COUNT 10
-#define HALL_FACILITIES_COUNT 9 // 7 facilities for single mode + tower double mode + tower multi mode.
+
+// Number of facilities for Ranking Hall.
+// 7 facilities for single mode + tower double mode + tower multi mode.
+// Excludes link modes. See RANKING_HALL_* in include/constants/battle_frontier.h
+#define HALL_FACILITIES_COUNT 9
+// Received via record mixing, 1 for each player other than yourself
+#define HALL_RECORDS_COUNT 3
+
+// Battle Frontier level modes.
+#define FRONTIER_LVL_50         0
+#define FRONTIER_LVL_OPEN       1
+#define FRONTIER_LVL_MODE_COUNT 2
+#define FRONTIER_LVL_TENT       FRONTIER_LVL_MODE_COUNT // Special usage for indicating Battle Tent
 
 #define TRAINER_ID_LENGTH 4
 #define MAX_MON_MOVES 4
-#define NUM_STATS 6
 
 #define CONTESTANT_COUNT 4
 #define CONTEST_CATEGORY_COOL     0
@@ -69,23 +114,32 @@
 #define CONTEST_CATEGORY_TOUGH    4
 #define CONTEST_CATEGORIES_COUNT  5
 
-// party sizes
-#define PARTY_SIZE 6
-#define MULTI_PARTY_SIZE (PARTY_SIZE / 2)
-#define FRONTIER_PARTY_SIZE         3
-#define FRONTIER_DOUBLES_PARTY_SIZE 4
-#define FRONTIER_MULTI_PARTY_SIZE   2
-#define MAX_FRONTIER_PARTY_SIZE     FRONTIER_DOUBLES_PARTY_SIZE
-#define UNION_ROOM_PARTY_SIZE       2
-
 // string lengths
 #define ITEM_NAME_LENGTH 14
 #define POKEMON_NAME_LENGTH 10
 #define PLAYER_NAME_LENGTH 7
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
+#if B_EXPANDED_MOVE_NAMES == TRUE
+#define MOVE_NAME_LENGTH 16
+#else
 #define MOVE_NAME_LENGTH 12
+#endif
 #define NUM_QUESTIONNAIRE_WORDS 4
+#define QUIZ_QUESTION_LEN 9
+#define WONDER_CARD_TEXT_LENGTH 40
+#define WONDER_NEWS_TEXT_LENGTH 40
+#define WONDER_CARD_BODY_TEXT_LINES 4
+#define WONDER_NEWS_BODY_TEXT_LINES 10
+#define TYPE_NAME_LENGTH 6
+#if B_EXPANDED_ABILITY_NAMES == TRUE
+#define ABILITY_NAME_LENGTH 16
+#else
+#define ABILITY_NAME_LENGTH 12
+#endif
+#define TRAINER_NAME_LENGTH 10
+
+#define MAX_STAMP_CARD_STAMPS 7
 
 #define MALE 0
 #define FEMALE 1
@@ -94,6 +148,8 @@
 #define BARD_SONG_LENGTH       6
 #define NUM_STORYTELLER_TALES  4
 #define NUM_TRADER_ITEMS       4
+#define GIDDY_MAX_TALES       10
+#define GIDDY_MAX_QUESTIONS    8
 
 #define OPTIONS_BUTTON_MODE_NORMAL 0
 #define OPTIONS_BUTTON_MODE_LR 1
@@ -118,5 +174,14 @@
 #define DIR_SOUTHEAST   6
 #define DIR_NORTHWEST   7
 #define DIR_NORTHEAST   8
+
+#define CONNECTION_INVALID -1
+#define CONNECTION_NONE     0
+#define CONNECTION_SOUTH    1
+#define CONNECTION_NORTH    2
+#define CONNECTION_WEST     3
+#define CONNECTION_EAST     4
+#define CONNECTION_DIVE     5
+#define CONNECTION_EMERGE   6
 
 #endif // GUARD_CONSTANTS_GLOBAL_H

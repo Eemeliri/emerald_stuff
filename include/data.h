@@ -3,7 +3,20 @@
 
 #include "constants/moves.h"
 
-#define SPECIES_SHINY_TAG 500
+#define SPECIES_SHINY_TAG 5000
+#define N_FOLLOWER_HAPPY_MESSAGES 31
+#define N_FOLLOWER_NEUTRAL_MESSAGES 14
+#define N_FOLLOWER_SAD_MESSAGES 3
+#define N_FOLLOWER_UPSET_MESSAGES 3
+#define N_FOLLOWER_ANGRY_MESSAGES 5
+#define N_FOLLOWER_PENSIVE_MESSAGES 20
+#define N_FOLLOWER_LOVE_MESSAGES 10
+#define N_FOLLOWER_SURPRISE_MESSAGES 20
+#define N_FOLLOWER_CURIOUS_MESSAGES 7
+#define N_FOLLOWER_MUSIC_MESSAGES 14
+#define N_FOLLOWER_POISONED_MESSAGES 1
+
+#define MAX_TRAINER_ITEMS 4
 
 enum {
     BATTLER_AFFINE_NORMAL,
@@ -18,6 +31,10 @@ struct MonCoords
     u8 size; // u8 width:4, height:4;
     u8 y_offset;
 };
+
+#define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
+#define GET_MON_COORDS_WIDTH(size)((size >> 4) * 8)
+#define GET_MON_COORDS_HEIGHT(size)((size & 0xF) * 8)
 
 struct TrainerMonNoItemDefaultMoves
 {
@@ -51,6 +68,11 @@ struct TrainerMonItemCustomMoves
     u16 moves[MAX_MON_MOVES];
 };
 
+#define NO_ITEM_DEFAULT_MOVES(party) { .NoItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = 0
+#define NO_ITEM_CUSTOM_MOVES(party) { .NoItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET
+#define ITEM_DEFAULT_MOVES(party) { .ItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_HELD_ITEM
+#define ITEM_CUSTOM_MOVES(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM
+
 union TrainerMonPtr
 {
     const struct TrainerMonNoItemDefaultMoves *NoItemDefaultMoves;
@@ -65,8 +87,8 @@ struct Trainer
     /*0x01*/ u8 trainerClass;
     /*0x02*/ u8 encounterMusic_gender; // last bit is gender
     /*0x03*/ u8 trainerPic;
-    /*0x04*/ u8 trainerName[12];
-    /*0x10*/ u16 items[4];
+    /*0x04*/ u8 trainerName[TRAINER_NAME_LENGTH + 1];
+    /*0x10*/ u16 items[MAX_TRAINER_ITEMS];
     /*0x18*/ bool8 doubleBattle;
     /*0x1C*/ u32 aiFlags;
     /*0x20*/ u8 partySize;
@@ -74,6 +96,19 @@ struct Trainer
 };
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
+
+struct FollowerMsgInfo {
+    const u8 *text;
+    const u8 *script;
+};
+
+struct FollowerMessagePool
+{
+    const struct FollowerMsgInfo * messages;
+    const u8 * script;
+    u16 length;
+};
+
 
 extern const u16 gMinigameDigits_Pal[];
 extern const u32 gMinigameDigits_Gfx[];
@@ -97,11 +132,17 @@ extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const struct MonCoords gMonFrontPicCoords[];
-extern const struct CompressedSpriteSheet gMonStillFrontPicTable[];
 extern const struct MonCoords gMonBackPicCoords[];
 extern const struct CompressedSpriteSheet gMonBackPicTable[];
+extern const struct CompressedSpriteSheet gMonBackPicTableFemale[];
 extern const struct CompressedSpritePalette gMonPaletteTable[];
+extern const struct CompressedSpritePalette gMonPaletteTableFemale[];
 extern const struct CompressedSpritePalette gMonShinyPaletteTable[];
+extern const struct CompressedSpritePalette gMonShinyPaletteTableFemale[];
+extern const struct CompressedSpritePalette gFollowMonPaletteTable[];
+extern const struct CompressedSpritePalette gFollowMonShinyPaletteTable[];
+extern const struct CompressedSpritePalette gFollowMonPaletteTableFemale[];
+extern const struct CompressedSpritePalette gFollowMonShinyPaletteTableFemale[];
 extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
 extern const struct MonCoords gTrainerFrontPicCoords[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
@@ -115,10 +156,25 @@ extern const u8 gEnemyMonElevation[NUM_SPECIES];
 
 extern const union AnimCmd *const *const gMonFrontAnimsPtrTable[];
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableFemale[];
 
 extern const struct Trainer gTrainers[];
 extern const u8 gTrainerClassNames[][13];
 extern const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1];
 extern const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1];
+extern const u8 *const gZMoveNames[];
+
+// Follower text messages
+extern const struct FollowerMsgInfo gFollowerHappyMessages[];
+extern const struct FollowerMsgInfo gFollowerNeutralMessages[];
+extern const struct FollowerMsgInfo gFollowerSadMessages[];
+extern const struct FollowerMsgInfo gFollowerUpsetMessages[];
+extern const struct FollowerMsgInfo gFollowerAngryMessages[];
+extern const struct FollowerMsgInfo gFollowerPensiveMessages[];
+extern const struct FollowerMsgInfo gFollowerLoveMessages[];
+extern const struct FollowerMsgInfo gFollowerSurpriseMessages[];
+extern const struct FollowerMsgInfo gFollowerCuriousMessages[];
+extern const struct FollowerMsgInfo gFollowerMusicMessages[];
+extern const struct FollowerMsgInfo gFollowerPoisonedMessages[];
 
 #endif // GUARD_DATA_H

@@ -14,19 +14,19 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "up",
+      "map": "MAP_ROUTE119",
       "offset": 40,
-      "map": "MAP_ROUTE119"
+      "direction": "up"
     },
     {
-      "direction": "left",
+      "map": "MAP_MAUVILLE_CITY",
       "offset": 0,
-      "map": "MAP_MAUVILLE_CITY"
+      "direction": "left"
     },
     {
-      "direction": "right",
+      "map": "MAP_ROUTE123",
       "offset": 0,
-      "map": "MAP_ROUTE123"
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -302,6 +302,32 @@
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route118_EventScript_Deandre",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
+      "x": 44,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LatiEventEnd",
+      "flag": "FLAG_HIDE_ROUTE_118_STEVEN2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LATIAS",
+      "x": 44,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE"
     }
   ],
   "warp_events": [
@@ -310,14 +336,14 @@
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 9,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

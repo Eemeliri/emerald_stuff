@@ -14,29 +14,29 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "down",
+      "map": "MAP_ROUTE126",
       "offset": 0,
-      "map": "MAP_ROUTE126"
+      "direction": "down"
     },
     {
-      "direction": "left",
+      "map": "MAP_LILYCOVE_CITY",
       "offset": 10,
-      "map": "MAP_LILYCOVE_CITY"
+      "direction": "left"
     },
     {
-      "direction": "right",
+      "map": "MAP_ROUTE125",
       "offset": 0,
-      "map": "MAP_ROUTE125"
+      "direction": "right"
     },
     {
-      "direction": "right",
+      "map": "MAP_MOSSDEEP_CITY",
       "offset": 40,
-      "map": "MAP_MOSSDEEP_CITY"
+      "direction": "right"
     },
     {
-      "direction": "dive",
+      "map": "MAP_UNDERWATER_ROUTE124",
       "offset": 0,
-      "map": "MAP_UNDERWATER_ROUTE124"
+      "direction": "dive"
     }
   ],
   "object_events": [
@@ -195,6 +195,19 @@
       "trainer_sight_or_berry_tree_id": "7",
       "script": "Route124_EventScript_Isabella",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGASTONE_SPARKLE",
+      "x": 38,
+      "y": 63,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route124_EventScript_ItemPinsirite",
+      "flag": "FLAG_ITEM_PINSIRITE"
     }
   ],
   "warp_events": [
@@ -203,7 +216,7 @@
       "y": 48,
       "elevation": 3,
       "dest_map": "MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

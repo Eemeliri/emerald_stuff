@@ -40,9 +40,12 @@
 #define SCROLL_MULTI_BF_MOVE_TUTOR_2                      10
 #define SCROLL_MULTI_SS_TIDAL_DESTINATION                 11
 #define SCROLL_MULTI_BATTLE_TENT_RULES                    12
+#define SCROLL_MULTI_PWT_OPTIONS                          13
+#define SCROLL_MULTI_PWT_OPTIONS2                         14
+#define SCROLL_MULTI_PWT_OPTIONS3                         15
 
 #define MAX_SCROLL_MULTI_ON_SCREEN 6
-#define MAX_SCROLL_MULTI_LENGTH 16
+#define MAX_SCROLL_MULTI_LENGTH 32
 
 // Dept Store Floor Numbers
 #define DEPT_STORE_FLOORNUM_B4F       0
@@ -79,5 +82,11 @@
 #define FANCOUNTER_BATTLED_AT_BASE   1
 #define FANCOUNTER_FINISHED_CONTEST  2
 #define FANCOUNTER_USED_BATTLE_TOWER 3
+
+// Return values for DoDeoxysRockInteraction
+#define DEOXYS_ROCK_FAILED     0
+#define DEOXYS_ROCK_PROGRESSED 1
+#define DEOXYS_ROCK_SOLVED     2
+#define DEOXYS_ROCK_COMPLETE   3
 
 #endif // GUARD_CONSTANTS_FIELD_SPECIALS_H

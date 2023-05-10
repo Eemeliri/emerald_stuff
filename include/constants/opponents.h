@@ -569,7 +569,7 @@
 #define TRAINER_CATHERINE_5                 565
 #define TRAINER_JULIO                       566
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_5     567
-#define TRAINER_GRUNT_UNUSED                568
+#define TRAINER_GRUNT_SOUTHERNISLAND        568
 #define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
 #define TRAINER_MARC                        571
@@ -856,12 +856,120 @@
 #define TRAINER_LEAF                        852
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
+#define TRAINER_COURTNEY                    855
+#define TRAINER_STEVEN_SOUTHERNISLAND       856
+
+#define TRAINER_SIDNEY_2                    857
+#define TRAINER_PHOEBE_2                    858
+#define TRAINER_GLACIA_2                    859
+#define TRAINER_DRAKE_2                     860
+#define TRAINER_STEVEN_2                    861
+#define TRAINER_SIDNEY_3                    862
+#define TRAINER_PHOEBE_3                    863
+#define TRAINER_GLACIA_3                    864
+#define TRAINER_DRAKE_3                     865
+#define TRAINER_STEVEN_3                    866
+#define TRAINER_SIDNEY_4                    867
+#define TRAINER_PHOEBE_4                    868
+#define TRAINER_GLACIA_4                    869
+#define TRAINER_DRAKE_4                     870
+#define TRAINER_STEVEN_4                    871
+#define TRAINER_SIDNEY_5                    872
+#define TRAINER_PHOEBE_5                    873
+#define TRAINER_GLACIA_5                    874
+#define TRAINER_DRAKE_5                     875
+#define TRAINER_STEVEN_5                    876
+
+#define REGULAR_TRAINER_END                 TRAINER_STEVEN_5
+
+#define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
+#define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
+#define TRAINER_FRONTIER_SURGE              REGULAR_TRAINER_END + 3
+#define TRAINER_FRONTIER_ERIKA              REGULAR_TRAINER_END + 4
+#define TRAINER_FRONTIER_JANINE             REGULAR_TRAINER_END + 5
+#define TRAINER_FRONTIER_SABRINA            REGULAR_TRAINER_END + 6
+#define TRAINER_FRONTIER_BLAINE             REGULAR_TRAINER_END + 7
+#define TRAINER_FRONTIER_GIOVANNI           REGULAR_TRAINER_END + 8
+
+#define TRAINER_FRONTIER_FALKNER            REGULAR_TRAINER_END + 9
+#define TRAINER_FRONTIER_BUGSY              REGULAR_TRAINER_END + 10
+#define TRAINER_FRONTIER_WHITNEY            REGULAR_TRAINER_END + 11
+#define TRAINER_FRONTIER_MORTY              REGULAR_TRAINER_END + 12
+#define TRAINER_FRONTIER_CHUCK              REGULAR_TRAINER_END + 13
+#define TRAINER_FRONTIER_JASMINE            REGULAR_TRAINER_END + 14
+#define TRAINER_FRONTIER_PRYCE              REGULAR_TRAINER_END + 15
+#define TRAINER_FRONTIER_CLAIR              REGULAR_TRAINER_END + 16
+
+#define TRAINER_FRONTIER_ROXANNE            REGULAR_TRAINER_END + 17
+#define TRAINER_FRONTIER_BRAWLY             REGULAR_TRAINER_END + 18
+#define TRAINER_FRONTIER_WATTSON            REGULAR_TRAINER_END + 19
+#define TRAINER_FRONTIER_FLANNERY           REGULAR_TRAINER_END + 20
+#define TRAINER_FRONTIER_NORMAN             REGULAR_TRAINER_END + 21
+#define TRAINER_FRONTIER_WINONA             REGULAR_TRAINER_END + 22
+#define TRAINER_FRONTIER_TATE               REGULAR_TRAINER_END + 23
+#define TRAINER_FRONTIER_LIZA               REGULAR_TRAINER_END + 24
+#define TRAINER_FRONTIER_WALLACE            REGULAR_TRAINER_END + 25
+
+#define TRAINER_FRONTIER_ROARK              REGULAR_TRAINER_END + 26
+#define TRAINER_FRONTIER_GARDENIA           REGULAR_TRAINER_END + 27
+#define TRAINER_FRONTIER_MAYLENE            REGULAR_TRAINER_END + 28
+#define TRAINER_FRONTIER_WAKE               REGULAR_TRAINER_END + 29
+#define TRAINER_FRONTIER_FANTINA            REGULAR_TRAINER_END + 30
+#define TRAINER_FRONTIER_BYRON              REGULAR_TRAINER_END + 31
+#define TRAINER_FRONTIER_CANDICE            REGULAR_TRAINER_END + 32
+#define TRAINER_FRONTIER_VOLKNER            REGULAR_TRAINER_END + 33
+
+#define TRAINER_FRONTIER_CILAN              REGULAR_TRAINER_END + 34
+#define TRAINER_FRONTIER_CHILI              REGULAR_TRAINER_END + 35
+#define TRAINER_FRONTIER_CRESS              REGULAR_TRAINER_END + 36
+#define TRAINER_FRONTIER_LENORA             REGULAR_TRAINER_END + 37
+#define TRAINER_FRONTIER_BURGH              REGULAR_TRAINER_END + 38
+#define TRAINER_FRONTIER_ELESA              REGULAR_TRAINER_END + 39
+#define TRAINER_FRONTIER_CLAY               REGULAR_TRAINER_END + 40
+#define TRAINER_FRONTIER_SKYLA              REGULAR_TRAINER_END + 41
+#define TRAINER_FRONTIER_BRYCEN             REGULAR_TRAINER_END + 42
+#define TRAINER_FRONTIER_DRAYDEN            REGULAR_TRAINER_END + 43
+#define TRAINER_FRONTIER_CHEREN             REGULAR_TRAINER_END + 44
+#define TRAINER_FRONTIER_ROXIE              REGULAR_TRAINER_END + 45
+#define TRAINER_FRONTIER_MARLON             REGULAR_TRAINER_END + 46
+
+#define TRAINER_FRONTIER_LORELEI            REGULAR_TRAINER_END + 47
+#define TRAINER_FRONTIER_BRUNO              REGULAR_TRAINER_END + 48
+#define TRAINER_FRONTIER_AGATHA             REGULAR_TRAINER_END + 49
+#define TRAINER_FRONTIER_WILL               REGULAR_TRAINER_END + 50
+#define TRAINER_FRONTIER_KOGA               REGULAR_TRAINER_END + 51
+#define TRAINER_FRONTIER_KAREN              REGULAR_TRAINER_END + 52
+#define TRAINER_FRONTIER_SIDNEY             REGULAR_TRAINER_END + 53
+#define TRAINER_FRONTIER_PHOEBE             REGULAR_TRAINER_END + 54
+#define TRAINER_FRONTIER_GLACIA             REGULAR_TRAINER_END + 55
+#define TRAINER_FRONTIER_DRAKE              REGULAR_TRAINER_END + 56
+#define TRAINER_FRONTIER_AARON              REGULAR_TRAINER_END + 57
+#define TRAINER_FRONTIER_BERTHA             REGULAR_TRAINER_END + 58
+#define TRAINER_FRONTIER_FLINT              REGULAR_TRAINER_END + 59
+#define TRAINER_FRONTIER_LUCIAN             REGULAR_TRAINER_END + 60
+#define TRAINER_FRONTIER_SHAUNTAL           REGULAR_TRAINER_END + 61
+#define TRAINER_FRONTIER_GRIMSLEY           REGULAR_TRAINER_END + 62
+#define TRAINER_FRONTIER_CAITLIN            REGULAR_TRAINER_END + 63
+#define TRAINER_FRONTIER_MARSHAL            REGULAR_TRAINER_END + 64
+
+#define TRAINER_FRONTIER_RED                REGULAR_TRAINER_END + 65
+#define TRAINER_FRONTIER_BLUE               REGULAR_TRAINER_END + 66
+#define TRAINER_FRONTIER_LANCE              REGULAR_TRAINER_END + 67
+#define TRAINER_FRONTIER_STEVEN             REGULAR_TRAINER_END + 68
+#define TRAINER_FRONTIER_CYNTHIA            REGULAR_TRAINER_END + 69
+#define TRAINER_FRONTIER_ALDER              REGULAR_TRAINER_END + 70
+#define TRAINER_FRONTIER_IRIS               REGULAR_TRAINER_END + 71
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      855
-#define MAX_TRAINERS_COUNT                  864
+//#define TRAINERS_COUNT                      857
+//#define MAX_TRAINERS_COUNT                  864
+
+#define TRAINERS_COUNT                      948
+#define MAX_TRAINERS_COUNT                  952
+#define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
+#define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

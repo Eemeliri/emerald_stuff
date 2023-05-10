@@ -40,9 +40,10 @@ struct Main
     /*0x439*/ u8 anyLinkBattlerHasFrontierPass:1;
 };
 
+#define GAME_CODE_LENGTH 4
 extern const u8 gGameVersion;
 extern const u8 gGameLanguage;
-extern const u8 RomHeaderGameCode[4];
+extern const u8 RomHeaderGameCode[GAME_CODE_LENGTH];
 extern const u8 RomHeaderSoftwareVersion;
 
 extern u16 gKeyRepeatStartDelay;
@@ -56,6 +57,7 @@ extern u32 IntrMain_Buffer[];
 extern s8 gPcmDmaCounter;
 
 void AgbMain(void);
+void AgbMainLoop(void);
 void SetMainCallback2(MainCallback callback);
 void InitKeys(void);
 void SetVBlankCallback(IntrCallback callback);
@@ -71,6 +73,5 @@ void RestoreSerialTimer3IntrHandlers(void);
 void StartTimer1(void);
 void SeedRngAndSetTrainerId(void);
 u16 GetGeneratedTrainerIdLower(void);
-void sub_819789C(void);
 
 #endif // GUARD_MAIN_H

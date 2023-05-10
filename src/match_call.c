@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_setup.h"
 #include "bg.h"
+#include "day_night.h"
 #include "data.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -29,10 +30,16 @@
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/event_objects.h"
-#include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+
+// In this file only the values normally associated with Battle Pike and Factory are swapped.
+// Note that this is *not* a bug, because they are properly swapped consistently in this file.
+// There would only be an issue if anything in this file interacted with something expecting
+// the usual value order, or vice versa.
+#define MATCH_CALL_FACTORY  FRONTIER_FACILITY_PIKE
+#define MATCH_CALL_PIKE     FRONTIER_FACILITY_FACTORY
 
 // Each match call message has variables that can be populated randomly or
 // dependent on the trainer. The below are IDs for how to populate the vars
@@ -1051,8 +1058,8 @@ static bool32 CheckMatchCallChance(void)
     int callChance = 1;
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG) && GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
         callChance = 2;
-    
-    if (Random() % 10 < callChance * 3) 
+
+    if (Random() % 10 < callChance * 3)
         return TRUE;
     else
         return FALSE;
@@ -1062,7 +1069,7 @@ static bool32 MapAllowsMatchCall(void)
 {
     if (!Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) || gMapHeader.regionMapSectionId == MAPSEC_SAFARI_ZONE)
         return FALSE;
-    
+
     if (gMapHeader.regionMapSectionId == MAPSEC_SOOTOPOLIS_CITY
      && FlagGet(FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA) == TRUE
      && FlagGet(FLAG_NEVER_SET_0x0DC) == FALSE)
@@ -1177,20 +1184,20 @@ static void StartMatchCall(void)
 {
     if (!sMatchCallState.triggeredFromScript)
     {
-        ScriptContext2_Enable();
+        LockPlayerFieldControls();
         FreezeObjectEvents();
         PlayerFreeze();
-        sub_808BCF4();
+        StopPlayerAvatar();
     }
 
     PlaySE(SE_POKENAV_CALL);
     CreateTask(ExecuteMatchCall, 1);
 }
 
-static const u16 sMatchCallWindow_Pal[] = INCBIN_U16("graphics/pokenav/match_call_window.gbapal");
-static const u8 sMatchCallWindow_Gfx[] = INCBIN_U8("graphics/pokenav/match_call_window.4bpp");
-static const u16 sPokenavIcon_Pal[] = INCBIN_U16("graphics/pokenav/icon.gbapal");
-static const u32 sPokenavIcon_Gfx[] = INCBIN_U32("graphics/pokenav/icon.4bpp.lz");
+static const u16 sMatchCallWindow_Pal[] = INCBIN_U16("graphics/pokenav/match_call/window.gbapal");
+static const u8 sMatchCallWindow_Gfx[] = INCBIN_U8("graphics/pokenav/match_call/window.4bpp");
+static const u16 sPokenavIcon_Pal[] = INCBIN_U16("graphics/pokenav/match_call/nav_icon.gbapal");
+static const u32 sPokenavIcon_Gfx[] = INCBIN_U32("graphics/pokenav/match_call/nav_icon.4bpp.lz");
 
 static const u8 sText_PokenavCallEllipsis[] = _("………………\p");
 
@@ -1261,9 +1268,9 @@ static bool32 MatchCall_LoadGfx(u8 taskId)
     }
 
     FillWindowPixelBuffer(tWindowId, PIXEL_FILL(8));
-    LoadPalette(sMatchCallWindow_Pal, 0xE0, sizeof(sMatchCallWindow_Pal));
-    LoadPalette(sPokenavIcon_Pal, 0xF0, sizeof(sPokenavIcon_Pal));
-    ChangeBgY(0, -0x2000, 0);
+    LoadPalette(sMatchCallWindow_Pal, BG_PLTT_ID(14), sizeof(sMatchCallWindow_Pal));
+    LoadPalette(sPokenavIcon_Pal, BG_PLTT_ID(15), sizeof(sPokenavIcon_Pal));
+    ChangeBgY(0, -0x2000, BG_COORD_SET);
     return TRUE;
 }
 
@@ -1277,7 +1284,7 @@ static bool32 MatchCall_DrawWindow(u8 taskId)
     DrawMatchCallTextBoxBorder_Internal(tWindowId, TILE_MC_WINDOW, 14);
     WriteSequenceToBgTilemapBuffer(0, (0xF << 12) | TILE_POKENAV_ICON, 1, 15, 4, 4, 17, 1);
     tIconTaskId = CreateTask(Task_SpinPokenavIcon, 10);
-    CopyWindowToVram(tWindowId, 2);
+    CopyWindowToVram(tWindowId, COPYWIN_GFX);
     CopyBgTilemapBufferToVram(0);
     return TRUE;
 }
@@ -1297,9 +1304,9 @@ static bool32 MatchCall_ReadyIntro(u8 taskId)
 
 static bool32 MatchCall_SlideWindowIn(u8 taskId)
 {
-    if (ChangeBgY(0, 0x600, 1) >= 0)
+    if (ChangeBgY(0, 0x600, BG_COORD_ADD) >= 0)
     {
-        ChangeBgY(0, 0, 0);
+        ChangeBgY(0, 0, BG_COORD_SET);
         return TRUE;
     }
 
@@ -1312,7 +1319,7 @@ static bool32 MatchCall_PrintIntro(u8 taskId)
     if (!RunMatchCallTextPrinter(tWindowId))
     {
         FillWindowPixelBuffer(tWindowId, PIXEL_FILL(8));
-        
+
         // Ready the message
         if (!sMatchCallState.triggeredFromScript)
             SelectMatchCallMessage(sMatchCallState.trainerId, gStringVar4);
@@ -1329,7 +1336,7 @@ static bool32 MatchCall_PrintMessage(u8 taskId)
     if (!RunMatchCallTextPrinter(tWindowId) && !IsSEPlaying() && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         FillWindowPixelBuffer(tWindowId, PIXEL_FILL(8));
-        CopyWindowToVram(tWindowId, 2);
+        CopyWindowToVram(tWindowId, COPYWIN_GFX);
         PlaySE(SE_POKENAV_HANG_UP);
         return TRUE;
     }
@@ -1340,7 +1347,7 @@ static bool32 MatchCall_PrintMessage(u8 taskId)
 static bool32 MatchCall_SlideWindowOut(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    if (ChangeBgY(0, 0x600, 2) <= -0x2000)
+    if (ChangeBgY(0, 0x600, BG_COORD_SUB) <= -0x2000)
     {
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
         DestroyTask(tIconTaskId);
@@ -1357,7 +1364,7 @@ static bool32 MatchCall_EndCall(u8 taskId)
     u8 playerObjectId;
     if (!IsDma3ManagerBusyWithBgCopy() && !IsSEPlaying())
     {
-        ChangeBgY(0, 0, 0);
+        ChangeBgY(0, 0, BG_COORD_SET);
         if (!sMatchCallState.triggeredFromScript)
         {
             LoadMessageBoxAndBorderGfx();
@@ -1365,7 +1372,7 @@ static bool32 MatchCall_EndCall(u8 taskId)
             ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
             ScriptMovement_UnfreezeObjectEvents();
             UnfreezeObjectEvents();
-            ScriptContext2_Disable();
+            UnlockPlayerFieldControls();
         }
 
         return TRUE;
@@ -1401,7 +1408,7 @@ static void InitMatchCallTextPrinter(int windowId, const u8 *str)
     struct TextPrinterTemplate printerTemplate;
     printerTemplate.currentChar = str;
     printerTemplate.windowId = windowId;
-    printerTemplate.fontId = 1;
+    printerTemplate.fontId = FONT_NORMAL;
     printerTemplate.x = 32;
     printerTemplate.y = 1;
     printerTemplate.currentX = 32;
@@ -1499,7 +1506,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
 {
     u32 matchCallId;
     const struct MatchCallText *matchCallText;
-    bool32 retVal = FALSE;
+    bool32 newRematchRequest = FALSE;
 
     matchCallId = GetTrainerMatchCallId(trainerId);
     sBattleFrontierStreakInfo.facilityId = 0;
@@ -1517,7 +1524,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
     else if (ShouldTrainerRequestBattle(matchCallId))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
-        retVal = TRUE;
+        newRematchRequest = TRUE;
         UpdateRematchIfDefeated(matchCallId);
     }
     else if (Random() % 3)
@@ -1532,7 +1539,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
     }
 
     BuildMatchCallString(matchCallId, matchCallText, str);
-    return retVal;
+    return newRematchRequest;
 }
 
 static int GetTrainerMatchCallId(int trainerId)
@@ -1569,7 +1576,7 @@ static const struct MatchCallText *GetBattleMatchCallText(int matchCallId, u8 *s
 {
     int mask;
     u32 textId, topic, id;
-    
+
     topic = Random() % 3;
     textId = sMatchCallTrainers[matchCallId].battleTopicTextIds[topic];
     if (!textId)
@@ -1591,6 +1598,7 @@ static const struct MatchCallText *GetGeneralMatchCallText(int matchCallId, u8 *
     rand = Random();
     if (!(rand & 1))
     {
+        // Count the number of facilities with a win streak
         for (count = 0, i = 0; i < NUM_FRONTIER_FACILITIES; i++)
         {
             if (GetFrontierStreakInfo(i, &topic) > 1)
@@ -1599,6 +1607,8 @@ static const struct MatchCallText *GetGeneralMatchCallText(int matchCallId, u8 *
 
         if (count)
         {
+            // At least one facility with a win streak
+            // Randomly choose one to have a call about
             count = Random() % count;
             for (i = 0; i < NUM_FRONTIER_FACILITIES; i++)
             {
@@ -1737,6 +1747,10 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
     int numSpecies;
     u8 slot;
     int i = 0;
+    u8 timeOfDay;
+    
+    RtcCalcLocalTime();
+    timeOfDay = GetCurrentTimeOfDay();
 
     if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED)) // ??? This check is nonsense.
     {
@@ -1808,15 +1822,15 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
     StringCopy(destStr, speciesName);
 }
 
-static const u8 *const sBattleFrontierFacilityNames[] =
+static const u8 *const sBattleFrontierFacilityNames[NUM_FRONTIER_FACILITIES] =
 {
-    gText_BattleTower2,
-    gText_BattleDome,
-    gText_BattlePalace,
-    gText_BattleArena,
-    gText_BattlePike,
-    gText_BattleFactory,
-    gText_BattlePyramid,
+    [FRONTIER_FACILITY_TOWER]   = gText_BattleTower2,
+    [FRONTIER_FACILITY_DOME]    = gText_BattleDome,
+    [FRONTIER_FACILITY_PALACE]  = gText_BattlePalace,
+    [FRONTIER_FACILITY_ARENA]   = gText_BattleArena,
+    [MATCH_CALL_PIKE]           = gText_BattlePike,
+    [MATCH_CALL_FACTORY]        = gText_BattleFactory,
+    [FRONTIER_FACILITY_PYRAMID] = gText_BattlePyramid,
 };
 
 static void PopulateBattleFrontierFacilityName(int matchCallId, u8 *destStr)
@@ -1833,7 +1847,7 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
         streak /= 10;
         i++;
     }
-    
+
     ConvertIntToDecimalStringN(destStr, sBattleFrontierStreakInfo.streak, STR_CONV_MODE_LEFT_ALIGN, i);
 }
 
@@ -1900,78 +1914,70 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
     switch (facilityId)
     {
     case FRONTIER_FACILITY_DOME:
-        for (i = 0; i < 2; i++)
+        for (i = 0; i < (int)ARRAY_COUNT(gSaveBlock1Ptr->frontier.domeRecordWinStreaks); i++)
         {
-            for (j = 0; j < 2; j++)
+            for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.domeRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.domeRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.domeRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.domeRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_B_DOME - 1;
         break;
-    #ifdef BUGFIX
-    case FRONTIER_FACILITY_PIKE:
-    #else
-    case FRONTIER_FACILITY_FACTORY:
-    #endif
-        for (i = 0; i < 2; i++)
+    case MATCH_CALL_PIKE:
+        for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.pikeRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.pikeRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.pikeRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.pikeRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_B_PIKE - 1;
         break;
     case FRONTIER_FACILITY_TOWER:
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < (int)ARRAY_COUNT(gSaveBlock1Ptr->frontier.towerRecordWinStreaks); i++)
         {
-            for (j = 0; j < 2; j++)
+            for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.towerRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.towerRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.towerRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.towerRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
         break;
     case FRONTIER_FACILITY_PALACE:
-        for (i = 0; i < 2; i++)
+        for (i = 0; i < (int)ARRAY_COUNT(gSaveBlock1Ptr->frontier.palaceRecordWinStreaks); i++)
         {
-            for (j = 0; j < 2; j++)
+            for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.palaceRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.palaceRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.palaceRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.palaceRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
         break;
-    #ifdef BUGFIX
-    case FRONTIER_FACILITY_FACTORY:
-    #else
-    case FRONTIER_FACILITY_PIKE:
-    #endif
-        for (i = 0; i < 2; i++)
+    case MATCH_CALL_FACTORY:
+        for (i = 0; i < (int)ARRAY_COUNT(gSaveBlock1Ptr->frontier.factoryRecordWinStreaks); i++)
         {
-            for (j = 0; j < 2; j++)
+            for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             {
-                if (streak < gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j])
-                    streak = gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j];
+                if (streak < gSaveBlock1Ptr->frontier.factoryRecordWinStreaks[i][j])
+                    streak = gSaveBlock1Ptr->frontier.factoryRecordWinStreaks[i][j];
             }
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
         break;
     case FRONTIER_FACILITY_ARENA:
-        for (i = 0; i < 2; i++)
+        for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.arenaRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.arenaRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.arenaRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.arenaRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_STREAK_RECORD - 1;
         break;
     case FRONTIER_FACILITY_PYRAMID:
-        for (i = 0; i < 2; i++)
+        for (i = 0; i < FRONTIER_LVL_MODE_COUNT; i++)
         {
-            if (streak < gSaveBlock2Ptr->frontier.pyramidRecordStreaks[i])
-                streak = gSaveBlock2Ptr->frontier.pyramidRecordStreaks[i];
+            if (streak < gSaveBlock1Ptr->frontier.pyramidRecordStreaks[i])
+                streak = gSaveBlock1Ptr->frontier.pyramidRecordStreaks[i];
         }
         *topicTextId = GEN_TOPIC_B_PYRAMID - 1;
         break;
@@ -2022,7 +2028,7 @@ static u8 GetPokedexRatingLevel(u16 numSeen)
         return 18;
     if (numSeen < 200)
         return 19;
-    
+
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT))
         numSeen--;
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_JIRACHI), FLAG_GET_CAUGHT))
@@ -2101,7 +2107,7 @@ void LoadMatchCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
 {
     u8 bg = GetWindowAttribute(windowId, WINDOW_BG);
     LoadBgTiles(bg, sMatchCallWindow_Gfx, 0x100, destOffset);
-    LoadPalette(sMatchCallWindow_Pal, paletteId << 4, sizeof(sMatchCallWindow_Pal));
+    LoadPalette(sMatchCallWindow_Pal, BG_PLTT_ID(paletteId), sizeof(sMatchCallWindow_Pal));
 }
 
 void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)

@@ -4,22 +4,24 @@
 .set LOCALID_AQUA_GRUNT_1, 8
 .set LOCALID_AQUA_GRUNT_2, 9
 
-MeteorFalls_1F_1R_MapScripts:: @ 822BD2A
+MeteorFalls_1F_1R_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
 	.byte 0
 
-MeteorFalls_1F_1R_OnLoad: @ 822BD30
+MeteorFalls_1F_1R_OnLoad:
+	setflag FLAG_VISITED_ROUTE114
+	setflag FLAG_VISITED_ROUTE115
 	call_if_set FLAG_SYS_GAME_CLEAR, MeteorFalls_1F_1R_EventScript_OpenStevensCave
 	end
 
-MeteorFalls_1F_1R_EventScript_OpenStevensCave:: @ 822BD3A
-	setmetatile 4, 1, METATILE_MeteorFalls_CaveEntrance_Top, 1
-	setmetatile 3, 2, METATILE_MeteorFalls_CaveEntrance_Left, 1
-	setmetatile 4, 2, METATILE_MeteorFalls_CaveEntrance_Bottom, 0
-	setmetatile 5, 2, METATILE_MeteorFalls_CaveEntrance_Right, 1
+MeteorFalls_1F_1R_EventScript_OpenStevensCave::
+	setmetatile 4, 1, METATILE_MeteorFalls_CaveEntrance_Top, TRUE
+	setmetatile 3, 2, METATILE_MeteorFalls_CaveEntrance_Left, TRUE
+	setmetatile 4, 2, METATILE_MeteorFalls_CaveEntrance_Bottom, FALSE
+	setmetatile 5, 2, METATILE_MeteorFalls_CaveEntrance_Right, TRUE
 	return
 
-MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
+MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene::
 	lockall
 	playbgm MUS_ENCOUNTER_MAGMA, FALSE
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
@@ -29,8 +31,8 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_WithThisMeteorite, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFastestUp
-	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFasterUp
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	playse SE_PIN
 	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_ExclamationMark
@@ -43,9 +45,9 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_HoldItRightThereMagma, MSGBOX_DEFAULT
 	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFastestLeft
-	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	addobject LOCALID_ARCHIE
 	addobject LOCALID_AQUA_GRUNT_1
@@ -55,8 +57,8 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive
 	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive
 	waitmovement 0
-	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFastestLeft
-	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua, MSGBOX_DEFAULT
 	closemessage
@@ -74,10 +76,10 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma, MSGBOX_DEFAULT
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestDown
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo, MSGBOX_DEFAULT
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_ArchieFarewell, MSGBOX_DEFAULT
 	closemessage
@@ -96,26 +98,13 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	releaseall
 	end
 
-MeteorFalls_1F_1R_Movement_MagmaGruntApproachPlayer: @ 822BEC0
+MeteorFalls_1F_1R_Movement_MagmaGruntApproachPlayer:
 	walk_right
 	walk_right
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	step_end
 
-MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit: @ 822BEC4
-	walk_fast_up
-	walk_fast_up
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	step_end
-
-MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit: @ 822BECE
-	walk_fast_up
+MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit:
 	walk_fast_up
 	walk_fast_up
 	walk_fast_right
@@ -127,7 +116,20 @@ MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit: @ 822BECE
 	walk_fast_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_ArchieArrive: @ 822BED9
+MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_ArchieArrive:
 	walk_right
 	walk_right
 	walk_right
@@ -136,7 +138,7 @@ MeteorFalls_1F_1R_Movement_ArchieArrive: @ 822BED9
 	walk_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive: @ 822BEE0
+MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive:
 	delay_16
 	delay_16
 	walk_right
@@ -146,7 +148,7 @@ MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive: @ 822BEE0
 	walk_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive: @ 822BEE8
+MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive:
 	delay_16
 	delay_16
 	walk_right
@@ -156,7 +158,7 @@ MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive: @ 822BEE8
 	walk_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_ArchieExit: @ 822BEF0
+MeteorFalls_1F_1R_Movement_ArchieExit:
 	walk_right
 	walk_right
 	walk_right
@@ -166,35 +168,15 @@ MeteorFalls_1F_1R_Movement_ArchieExit: @ 822BEF0
 	walk_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_ArchieApproachPlayer: @ 822BEF8
+MeteorFalls_1F_1R_Movement_ArchieApproachPlayer:
 	walk_right
 	walk_right
 	walk_up
 	walk_up
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
-MeteorFalls_1F_1R_Movement_AquaGrunt1Exit: @ 822BEFE
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie: @ 822BF08
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_fastest_up
-	step_end
-
-MeteorFalls_1F_1R_Movement_AquaGrunt2Exit: @ 822BF0D
-	walk_up
+MeteorFalls_1F_1R_Movement_AquaGrunt1Exit:
 	walk_up
 	walk_up
 	walk_right
@@ -206,24 +188,44 @@ MeteorFalls_1F_1R_Movement_AquaGrunt2Exit: @ 822BF0D
 	walk_right
 	step_end
 
-MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie: @ 822BF18
+MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie:
 	walk_right
 	walk_right
 	walk_right
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	step_end
 
-MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay: @ 822BF1D
-	walk_in_place_fastest_down
+MeteorFalls_1F_1R_Movement_AquaGrunt2Exit:
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie:
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_faster_up
+	step_end
+
+MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay:
+	walk_in_place_faster_down
 	delay_4
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	lock_facing_direction
 	walk_left
 	unlock_facing_direction
 	face_right
 	step_end
 
-MeteorFalls_1F_1R_EventScript_ProfCozmo:: @ 822BF25
+MeteorFalls_1F_1R_EventScript_ProfCozmo::
 	lock
 	faceplayer
 	goto_if_set FLAG_MET_PROF_COZMO, MeteorFalls_1F_1R_EventScript_MetCozmo
@@ -232,84 +234,84 @@ MeteorFalls_1F_1R_EventScript_ProfCozmo:: @ 822BF25
 	release
 	end
 
-MeteorFalls_1F_1R_EventScript_MetCozmo:: @ 822BF3D
+MeteorFalls_1F_1R_EventScript_MetCozmo::
 	msgbox MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney, MSGBOX_DEFAULT
 	release
 	end
 
-MeteorFalls_1F_1R_Text_WithThisMeteorite: @ 822BF47
+MeteorFalls_1F_1R_Text_WithThisMeteorite:
 	.string "Hehehe!\p"
-	.string "With this METEORITE, that thing in\n"
-	.string "MT. CHIMNEY will…$"
+	.string "With this Meteorite, that thing in\n"
+	.string "Mt. Chimney will…$"
 
-MeteorFalls_1F_1R_Text_DontExpectMercyFromMagma: @ 822BF84
+MeteorFalls_1F_1R_Text_DontExpectMercyFromMagma:
 	.string "Heh?\p"
 	.string "I don't know who you are, but if you get\n"
-	.string "in the way of TEAM MAGMA, don't\l"
+	.string "in the way of Team Magma, don't\l"
 	.string "expect any mercy!$"
 
-MeteorFalls_1F_1R_Text_HoldItRightThereMagma: @ 822BFE4
-	.string "Hold it right there, TEAM MAGMA!\p"
+MeteorFalls_1F_1R_Text_HoldItRightThereMagma:
+	.string "Hold it right there, Team Magma!\p"
 	.string "You're badly mistaken if you think you\n"
 	.string "can have your way with the world!$"
 
-MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua: @ 822C04E
+MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua:
 	.string "Hehehe!\n"
-	.string "Even TEAM AQUA joins us!\p"
+	.string "Even Team Aqua joins us!\p"
 	.string "But it's too much trouble to deal with\n"
 	.string "you all…\p"
 	.string "Heh, it doesn't matter!\p"
-	.string "We've got the METEORITE, so off to\n"
-	.string "MT. CHIMNEY we go!\p"
-	.string "Hehehe! Be seeing you, you TEAM\n"
-	.string "AQUA dingbats!$"
+	.string "We've got the Meteorite, so off to\n"
+	.string "Mt. Chimney we go!\p"
+	.string "Hehehe! Be seeing you, you Team\n"
+	.string "Aqua dingbats!$"
 
-MeteorFalls_1F_1R_Text_ArchieSeenYouBefore: @ 822C11C
-	.string "ARCHIE: Didn't I see you before?\n"
-	.string "At SLATEPORT's MUSEUM?\p"
+MeteorFalls_1F_1R_Text_ArchieSeenYouBefore:
+	.string "Archie: Didn't I see you before?\n"
+	.string "At Slateport's Museum?\p"
 	.string "Ah, so your name is {PLAYER}.\p"
 	.string "At the time, I thought you were one\n"
-	.string "of TEAM MAGMA's goons.\p"
+	.string "of Team Magma's goons.\p"
 	.string "Humph…\n"
 	.string "You're one odd kid.\p"
-	.string "TEAM MAGMA is a dangerous group of\n"
+	.string "Team Magma is a dangerous group of\n"
 	.string "total fanatics.\p"
 	.string "They engage in destruction, claiming\n"
 	.string "to expand the land mass.\p"
 	.string "They are the rivals to us,\n"
-	.string "the sea-loving TEAM AQUA!$"
+	.string "the sea-loving Team Aqua!$"
 
-MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma: @ 822C268
-	.string "BOSS, we should give chase to\n"
-	.string "TEAM MAGMA…$"
+MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma:
+	.string "Boss, we should give chase to\n"
+	.string "Team Magma…$"
 
-MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo: @ 822C292
-	.string "ARCHIE: Yes, yes, we must!\n"
+MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo:
+	.string "Archie: Yes, yes, we must!\n"
 	.string "We've got to hurry.\p"
-	.string "There's no telling what TEAM MAGMA\n"
-	.string "will do at MT. CHIMNEY!$"
+	.string "There's no telling what Team Magma\n"
+	.string "will do at Mt. Chimney!$"
 
-MeteorFalls_1F_1R_Text_ArchieFarewell: @ 822C2FC
-	.string "ARCHIE: {PLAYER}, you should keep\n"
-	.string "an eye out for TEAM MAGMA, too.\p"
+MeteorFalls_1F_1R_Text_ArchieFarewell:
+	.string "Archie: {PLAYER}, you should keep\n"
+	.string "an eye out for Team Magma, too.\p"
 	.string "Farewell!$"
 
-MeteorFalls_1F_1R_Text_MeetProfCozmo: @ 822C342
-	.string "I… I'm COZMO…\n"
-	.string "I'm a PROFESSOR…\p"
-	.string "TEAM MAGMA asked me to guide them\n"
-	.string "to METEOR FALLS…\p"
+MeteorFalls_1F_1R_Text_MeetProfCozmo:
+	.string "I… I'm Cozmo…\n"
+	.string "I'm a Professor…\p"
+	.string "Team Magma asked me to guide them\n"
+	.string "to Meteor Falls…\p"
 	.string "But they tricked me.\n"
-	.string "They even took my METEORITE away…\p"
+	.string "They even took my Meteorite away…\p"
 	.string "And then another similar bunch,\n"
-	.string "TEAM AQUA showed up.\p"
+	.string "Team Aqua showed up.\p"
 	.string "After that…\n"
 	.string "I don't understand any of it.\p"
-	.string "But that TEAM MAGMA…\p"
+	.string "But that Team Magma…\p"
 	.string "What are they going to do with that\n"
-	.string "METEORITE at MT. CHIMNEY?$"
+	.string "Meteorite at Mt. Chimney?$"
 
-MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney: @ 822C47D
-	.string "PROF. COZMO: But that TEAM MAGMA…\p"
+MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney:
+	.string "Prof. Cozmo: But that Team Magma…\p"
 	.string "What are they going to do with that\n"
-	.string "METEORITE at MT. CHIMNEY?$"
+	.string "Meteorite at Mt. Chimney?$"

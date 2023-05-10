@@ -5,7 +5,8 @@ extern const u8 gCgb3Vol[];
 
 #define BSS_CODE __attribute__((section(".bss.code")))
 
-BSS_CODE ALIGNED(4) char SoundMainRAM_Buffer[0x800] = {0};
+BSS_CODE ALIGNED(4) char SoundMainRAM_Buffer[0xB40] = {0};
+BSS_CODE ALIGNED(4) u32 hq_buffer_ptr[0x130] = {0};
 
 struct SoundInfo gSoundInfo;
 struct PokemonCrySong gPokemonCrySongs[MAX_POKEMON_CRIES];
@@ -76,14 +77,14 @@ void m4aSoundInit(void)
     SoundInit(&gSoundInfo);
     MPlayExtender(gCgbChans);
     m4aSoundMode(SOUND_MODE_DA_BIT_8
-               | SOUND_MODE_FREQ_13379
+               | SOUND_MODE_FREQ_18157
                | (12 << SOUND_MODE_MASVOL_SHIFT)
-               | (5 << SOUND_MODE_MAXCHN_SHIFT));
+               | (15 << SOUND_MODE_MAXCHN_SHIFT));
 
     for (i = 0; i < NUM_MUSIC_PLAYERS; i++)
     {
         struct MusicPlayerInfo *mplayInfo = gMPlayTable[i].info;
-        MPlayOpen(mplayInfo, gMPlayTable[i].track, gMPlayTable[i].unk_8);
+        MPlayOpen(mplayInfo, gMPlayTable[i].track, gMPlayTable[i].numTracks);
         mplayInfo->unk_B = gMPlayTable[i].unk_A;
         mplayInfo->memAccArea = gMPlayMemAccArea;
     }
@@ -906,7 +907,6 @@ void CgbSound(void)
 {
     s32 ch;
     struct CgbChannel *channels;
-    s32 envelopeStepTimeAndDir;
     s32 prevC15;
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu8 *nrx0ptr;
@@ -914,6 +914,7 @@ void CgbSound(void)
     vu8 *nrx2ptr;
     vu8 *nrx3ptr;
     vu8 *nrx4ptr;
+    s32 envelopeStepTimeAndDir;
 
     // Most comparision operations that cast to s8 perform 'and' by 0xFF.
     int mask = 0xff;
@@ -1178,7 +1179,7 @@ void CgbSound(void)
                 *nrx3ptr = channels->frequency;
             else
                 *nrx3ptr = (*nrx3ptr & 0x08) | channels->frequency;
-            channels->n4 = (channels->n4 & 0xC0) + (*((u8*)(&channels->frequency) + 1));
+            channels->n4 = (channels->n4 & 0xC0) + (*((u8 *)(&channels->frequency) + 1));
             *nrx4ptr = (s8)(channels->n4 & mask);
         }
 
@@ -1198,8 +1199,8 @@ void CgbSound(void)
             }
             else
             {
-                envelopeStepTimeAndDir &= 0xf;
-                *nrx2ptr = (channels->envelopeVolume << 4) + envelopeStepTimeAndDir;
+                u32 envMask = 0xF;
+                *nrx2ptr = (envelopeStepTimeAndDir & envMask) + (channels->envelopeVolume << 4);
                 *nrx4ptr = channels->n4 | 0x80;
                 if (ch == 1 && !(*nrx0ptr & 0x08))
                     *nrx4ptr = channels->n4 | 0x80;

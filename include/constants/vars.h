@@ -46,27 +46,27 @@
 #define VAR_OBJ_GFX_ID_F           0x401F
 
 // general purpose vars
-#define VAR_RECYCLE_GOODS                    0x4020
-#define VAR_REPEL_STEP_COUNT                 0x4021
-#define VAR_ICE_STEP_COUNT                   0x4022
-#define VAR_STARTER_MON                      0x4023 // 0=Treecko, 1=Torchic, 2=Mudkip
-#define VAR_MIRAGE_RND_H                     0x4024
-#define VAR_MIRAGE_RND_L                     0x4025
-#define VAR_SECRET_BASE_MAP                  0x4026
-#define VAR_CYCLING_ROAD_RECORD_COLLISIONS   0x4027
-#define VAR_CYCLING_ROAD_RECORD_TIME_L       0x4028
-#define VAR_CYCLING_ROAD_RECORD_TIME_H       0x4029
-#define VAR_FRIENDSHIP_STEP_COUNTER          0x402A
-#define VAR_POISON_STEP_COUNTER              0x402B
-#define VAR_RESET_RTC_ENABLE                 0x402C
-#define VAR_ENIGMA_BERRY_AVAILABLE           0x402D
-#define VAR_0x402E                           0x402E
+#define VAR_RECYCLE_GOODS                                0x4020
+#define VAR_REPEL_STEP_COUNT                             0x4021
+#define VAR_ICE_STEP_COUNT                               0x4022
+#define VAR_STARTER_MON                                  0x4023 // 0=Treecko, 1=Torchic, 2=Mudkip
+#define VAR_MIRAGE_RND_H                                 0x4024
+#define VAR_MIRAGE_RND_L                                 0x4025
+#define VAR_SECRET_BASE_MAP                              0x4026
+#define VAR_CYCLING_ROAD_RECORD_COLLISIONS               0x4027
+#define VAR_CYCLING_ROAD_RECORD_TIME_L                   0x4028
+#define VAR_CYCLING_ROAD_RECORD_TIME_H                   0x4029
+#define VAR_FRIENDSHIP_STEP_COUNTER                      0x402A
+#define VAR_POISON_STEP_COUNTER                          0x402B
+#define VAR_RESET_RTC_ENABLE                             0x402C
+#define VAR_ENIGMA_BERRY_AVAILABLE                       0x402D
+#define VAR_WONDER_NEWS_STEP_COUNTER                     0x402E
 
-#define VAR_FRONTIER_MANIAC_FACILITY         0x402F
-#define VAR_FRONTIER_GAMBLER_CHALLENGE       0x4030
-#define VAR_FRONTIER_GAMBLER_SET_CHALLENGE   0x4031
-#define VAR_FRONTIER_GAMBLER_AMOUNT_BET      0x4032
-#define VAR_FRONTIER_GAMBLER_STATE           0x4033
+#define VAR_FRONTIER_MANIAC_FACILITY                     0x402F
+#define VAR_FRONTIER_GAMBLER_CHALLENGE                   0x4030
+#define VAR_FRONTIER_GAMBLER_SET_CHALLENGE               0x4031
+#define VAR_FRONTIER_GAMBLER_AMOUNT_BET                  0x4032
+#define VAR_FRONTIER_GAMBLER_STATE                       0x4033
 
 #define VAR_DEOXYS_ROCK_STEP_COUNT           0x4034
 #define VAR_DEOXYS_ROCK_LEVEL                0x4035
@@ -94,7 +94,7 @@
 #define VAR_POKELOT_RND1                     0x404B
 #define VAR_POKELOT_RND2                     0x404C
 #define VAR_POKELOT_PRIZE_PLACE              0x404D
-#define VAR_UNUSED_0x404E                    0x404E // Unused Var
+#define VAR_REPEL_LAST_USED                  0x404E
 #define VAR_LOTAD_SIZE_RECORD                0x404F
 #define VAR_LITTLEROOT_TOWN_STATE            0x4050
 #define VAR_OLDALE_TOWN_STATE                0x4051
@@ -149,7 +149,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY      0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                  0x4084
-#define VAR_PETALBURG_GYM_STATE              0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman 
+#define VAR_PETALBURG_GYM_STATE              0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
 #define VAR_CONTEST_HALL_STATE               0x4086
 #define VAR_CABLE_CLUB_STATE                 0x4087
 #define VAR_CONTEST_TYPE                     0x4088
@@ -231,20 +231,20 @@
 #define VAR_SS_TIDAL_SCOTT_STATE             0x40D4 // Always equal to FLAG_MET_SCOTT_ON_SS_TIDAL
 #define VAR_ROAMER_POKEMON                   0x40D5 // 0 = Latias, 1 = Latios
 #define VAR_TRAINER_HILL_IS_ACTIVE           0x40D6
-#define VAR_SKY_PILLAR_RAQUAZA_CRY_DONE      0x40D7
+#define VAR_SKY_PILLAR_RAYQUAZA_CRY_DONE     0x40D7
 #define VAR_SOOTOPOLIS_WALLACE_STATE         0x40D8
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
 #define VAR_REGISTER_BIRCH_STATE             0x40DA
 #define VAR_UNUSED_0x40DB                    0x40DB // Unused Var
 #define VAR_UNUSED_0x40DC                    0x40DC // Unused Var
-#define VAR_EVENT_PICHU_SLOT                 0x40DD
-#define VAR_NEVER_READ_0x40DE                0x40DE // Var is written to, but never read
-#define VAR_NEVER_READ_0x40DF                0x40DF // Var is written to, but never read
-#define VAR_NEVER_READ_0x40E0                0x40E0 // Var is written to, but never read
-#define VAR_NEVER_READ_0x40E1                0x40E1 // Var is written to, but never read
-#define VAR_NEVER_READ_0x40E2                0x40E2 // Var is written to, but never read
-#define VAR_NEVER_READ_0x40E3                0x40E3 // Var is written to, but never read
-#define VAR_NEVER_READ_0x40E4                0x40E4 // var is written to, but never read
+#define VAR_GIFT_PICHU_SLOT                  0x40DD
+#define VAR_GIFT_UNUSED_1                    0x40DE // Var is written to, but never read
+#define VAR_GIFT_UNUSED_2                    0x40DF // Var is written to, but never read
+#define VAR_GIFT_UNUSED_3                    0x40E0 // Var is written to, but never read
+#define VAR_GIFT_UNUSED_4                    0x40E1 // Var is written to, but never read
+#define VAR_GIFT_UNUSED_5                    0x40E2 // Var is written to, but never read
+#define VAR_GIFT_UNUSED_6                    0x40E3 // Var is written to, but never read
+#define VAR_GIFT_UNUSED_7                    0x40E4 // var is written to, but never read
 #define VAR_UNUSED_0x40E5                    0x40E5 // Unused Var
 #define VAR_DAILY_SLOTS                      0x40E6
 #define VAR_DAILY_WILDS                      0x40E7
@@ -263,18 +263,18 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER        0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER       0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER 0x40F6
-#define VAR_UNUSED_0x40F7                    0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                    0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                    0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                    0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                    0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                    0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                    0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                    0x40FE // Unused Var
+#define VAR_SAFARI_ZONE_SEED                 0x40F7
+#define VAR_PWT_MODE                         0x40F8
+#define VAR_PWT_COUNTER                      0x40F9
+#define VAR_DEXNAV_SPECIES                   0x40FA // Registered dexnav species
+#define VAR_DEXNAV_STEP_COUNTER              0x40FB // steps for finding hidden pokemon
+#define VAR_DOME_TRAINER                     0x40FC // Counter for eReader Dome Trainers
+#define VAR_DEPOSIT_SPECIES                  0x40FD // Species of pokemon deposited to GTS, for detecting Shelmet/Karrablast evolution
+#define VAR_HALL_OF_FAMES                    0x40FE // How many times made to Hall of fame
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
-#define VARS_END                             0x40FF
-#define VARS_COUNT                           (VARS_END - VARS_START + 1)
+#define VARS_END                                         0x40FF
+#define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
 // special vars
@@ -303,5 +303,11 @@
 #define VAR_TRAINER_BATTLE_OPPONENT_A 0x8015 // Alias of gTrainerBattleOpponent_A
 
 #define SPECIAL_VARS_END              0x8015
+
+// If an overworld trigger uses this pseudo-variable as the trigger check,
+// then the script will be run using RunScriptImmediately instead of in the
+// global script context. This means it will run faster, but cannot do any
+// cutscenes nor call a wait command. Used for weather effects in vanilla.
+#define TRIGGER_RUN_IMMEDIATELY   0
 
 #endif // GUARD_CONSTANTS_VARS_H

@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "down",
+      "map": "MAP_ROUTE118",
       "offset": -40,
-      "map": "MAP_ROUTE118"
+      "direction": "down"
     },
     {
-      "direction": "right",
+      "map": "MAP_FORTREE_CITY",
       "offset": 0,
-      "map": "MAP_FORTREE_CITY"
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -583,6 +583,45 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_119_SCOTT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGASTONE_SPARKLE",
+      "x": 22,
+      "y": 122,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route119_EventScript_ItemVenusaurite",
+      "flag": "FLAG_ITEM_VENUSAURITE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TM_BALL",
+      "x": 6,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route119_EventScript_ItemTM62",
+      "flag": "FLAG_ITEM_ROUTE_119_TM_62"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 10,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route119_EventScript_AcroBikeGuy",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -591,14 +630,14 @@
       "y": 32,
       "elevation": 0,
       "dest_map": "MAP_ROUTE119_WEATHER_INSTITUTE_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 33,
       "y": 109,
       "elevation": 0,
       "dest_map": "MAP_ROUTE119_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

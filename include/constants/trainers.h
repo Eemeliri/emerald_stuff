@@ -15,6 +15,7 @@
 #define TRAINER_LINK_OPPONENT               2048
 #define TRAINER_UNION_ROOM                  3072
 #define TRAINER_STEVEN_PARTNER              3075
+#define TRAINER_CUSTOM_PARTNER              3076
 
 #define TRAINER_PIC_HIKER                  0
 #define TRAINER_PIC_AQUA_GRUNT_M           1
@@ -109,7 +110,52 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
+#define TRAINER_PIC_LEADER_BROCK          93
+#define TRAINER_PIC_LEADER_MISTY          94
+#define TRAINER_PIC_LEADER_SURGE          95
+#define TRAINER_PIC_LEADER_ERIKA          96
+#define TRAINER_PIC_LEADER_JANINE         97
+#define TRAINER_PIC_LEADER_SABRINA        98
+#define TRAINER_PIC_LEADER_BLAINE         99
+#define TRAINER_PIC_LEADER_GIOVANNI       100
+#define TRAINER_PIC_LEADER_FALKNER        101
+#define TRAINER_PIC_LEADER_BUGSY          102
+#define TRAINER_PIC_LEADER_WHITNEY        103
+#define TRAINER_PIC_LEADER_MORTY          104
+#define TRAINER_PIC_LEADER_CHUCK          105
+#define TRAINER_PIC_LEADER_JASMINE        106
+#define TRAINER_PIC_LEADER_PRYCE          107
+#define TRAINER_PIC_LEADER_CLAIR          108
+#define TRAINER_PIC_LEADER_TATE           109
+#define TRAINER_PIC_LEADER_LIZA           110
+#define TRAINER_PIC_LEADER_ROARK          111
+#define TRAINER_PIC_LEADER_GARDENIA       112
+#define TRAINER_PIC_LEADER_MAYLENE        113
+#define TRAINER_PIC_LEADER_WAKE           114
+#define TRAINER_PIC_LEADER_FANTINA        115
+#define TRAINER_PIC_LEADER_BYRON          116
+#define TRAINER_PIC_LEADER_CANDICE        117
+#define TRAINER_PIC_LEADER_VOLKNER        118
+#define TRAINER_PIC_LEADER_CILAN          119
+#define TRAINER_PIC_LEADER_CHILI          120
+#define TRAINER_PIC_LEADER_CRESS          121
+#define TRAINER_PIC_LEADER_LENORA         122
+#define TRAINER_PIC_LEADER_BURGH          123
+#define TRAINER_PIC_LEADER_ELESA          124
+#define TRAINER_PIC_LEADER_CLAY           125
+#define TRAINER_PIC_LEADER_SKYLA          126
+#define TRAINER_PIC_LEADER_BRYCEN         127
+#define TRAINER_PIC_LEADER_DRAYDEN        128
+#define TRAINER_PIC_LEADER_CHEREN         129
+#define TRAINER_PIC_LEADER_ROXIE          130
+#define TRAINER_PIC_LEADER_MARLON         131
+#define TRAINER_PIC_CHAMPION_BLUE         132
+#define TRAINER_PIC_CHAMPION_LANCE        133
+#define TRAINER_PIC_CHAMPION_CYNTHIA      134
+#define TRAINER_PIC_CHAMPION_ALDER        135
+#define TRAINER_PIC_CHAMPION_IRIS         136
 
+// The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
 #define TRAINER_BACK_PIC_MAY                    1
 #define TRAINER_BACK_PIC_RED                    2
@@ -334,7 +380,7 @@
 #define TRAINER_CLASS_SAILOR         0x2f
 #define TRAINER_CLASS_COOLTRAINER_2  0x30 // Used for only one trainer.
 #define TRAINER_CLASS_MAGMA_ADMIN    0x31
-#define TRAINER_CLASS_PKMN_TRAINER_3 0x32
+#define TRAINER_CLASS_RIVAL          0x32
 #define TRAINER_CLASS_BUG_CATCHER    0x33
 #define TRAINER_CLASS_PKMN_RANGER    0x34
 #define TRAINER_CLASS_MAGMA_LEADER   0x35
@@ -350,6 +396,7 @@
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
+#define TRAINER_CLASS_COUNT          0x42
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music

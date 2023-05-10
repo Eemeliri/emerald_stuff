@@ -23,6 +23,7 @@
 #include "sound.h"
 #include "util.h"
 #include "title_screen.h"
+#include "expansion_intro.h"
 #include "constants/rgb.h"
 #include "constants/battle_anim.h"
 
@@ -37,7 +38,6 @@
 */
 
 // Scene 1 main tasks
-static void Task_Scene1_Load(u8);
 static void Task_Scene1_FadeIn(u8);
 static void Task_Scene1_WaterDrops(u8);
 static void Task_Scene1_PanUp(u8);
@@ -216,7 +216,7 @@ static const struct OamData sOamData_Sparkle =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -284,7 +284,7 @@ static const struct OamData sOamData_Volbeat =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -320,7 +320,7 @@ static const struct OamData sOamData_Torchic =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -380,7 +380,7 @@ static const struct OamData sOamData_Manectric =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
@@ -428,7 +428,7 @@ static const struct OamData sOamData_Lightning =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -519,7 +519,7 @@ static const struct OamData sOamData_Bubbles =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x32),
     .x = 0,
@@ -558,7 +558,7 @@ static const struct OamData sOamData_WaterDrop =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -660,7 +660,7 @@ static const struct OamData sOamData_GameFreakLetter =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_DOUBLE,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -676,7 +676,7 @@ static const struct OamData sOamData_PresentsLetter =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .x = 0,
@@ -692,7 +692,7 @@ static const struct OamData sOamData_GameFreakLogo =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_DOUBLE,
     .objMode = ST_OAM_OBJ_BLEND,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x64),
     .x = 0,
@@ -931,7 +931,7 @@ static const struct OamData sOamData_FlygonSilhouette =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x32),
     .x = 0,
@@ -983,7 +983,7 @@ static const struct OamData sOamData_RayquazaOrb =
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
@@ -1033,13 +1033,13 @@ static void VBlankCB_Intro(void)
     ScanlineEffect_InitHBlankDmaTransfer();
 }
 
-static void MainCB2_Intro(void)
+void MainCB2_Intro(void)
 {
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    if (gMain.newKeys && !gPaletteFade.active)
+    if (gMain.newKeys != 0 && !gPaletteFade.active)
         SetMainCallback2(MainCB2_EndIntro);
     else if (gIntroFrameCounter != -1)
         gIntroFrameCounter++;
@@ -1051,11 +1051,11 @@ static void MainCB2_EndIntro(void)
         SetMainCallback2(CB2_InitTitleScreen);
 }
 
-static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 paletteAddress)
+static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 paletteOffset)
 {
     LZ77UnCompVram(gIntroCopyright_Gfx, (void *)(VRAM + tilesetAddress));
     LZ77UnCompVram(gIntroCopyright_Tilemap, (void *)(VRAM + tilemapAddress));
-    LoadPalette(gIntroCopyright_Pal, paletteAddress, 32);
+    LoadPalette(gIntroCopyright_Pal, paletteOffset, PLTT_SIZE_4BPP);
 }
 
 static void SerialCB_CopyrightScreen(void)
@@ -1080,7 +1080,7 @@ static u8 SetUpCopyrightScreen(void)
         CpuFill32(0, (void *)OAM, OAM_SIZE);
         CpuFill16(0, (void *)(PLTT + 2), PLTT_SIZE - 2);
         ResetPaletteFade();
-        LoadCopyrightGraphics(0, 0x3800, 0);
+        LoadCopyrightGraphics(0, 0x3800, BG_PLTT_ID(0));
         ScanlineEffect_Stop();
         ResetTasks();
         ResetSpriteData();
@@ -1112,8 +1112,13 @@ static u8 SetUpCopyrightScreen(void)
     case 141:
         if (UpdatePaletteFade())
             break;
+#if EXPANSION_INTRO == TRUE
+        SetMainCallback2(CB2_ExpansionIntro);
+        CreateTask(Task_HandleExpansionIntro, 0);
+#else
         CreateTask(Task_Scene1_Load, 0);
         SetMainCallback2(MainCB2_Intro);
+#endif
         if (gMultibootProgramStruct.gcmb_field_2 != 0)
         {
             if (gMultibootProgramStruct.gcmb_field_2 == 2)
@@ -1142,10 +1147,10 @@ void CB2_InitCopyrightScreenAfterBootup(void)
 {
     if (!SetUpCopyrightScreen())
     {
-        SetSaveBlocksPointers(sub_815355C());
+        SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
         ResetMenuAndMonGlobals();
         Save_ResetSaveCounters();
-        Save_LoadGameData(SAVE_NORMAL);
+        LoadGameSave(SAVE_NORMAL);
         if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
             Sav2_ClearSetDefault();
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
@@ -1160,7 +1165,7 @@ void CB2_InitCopyrightScreenAfterTitleScreen(void)
 
 #define sBigDropSpriteId data[0]
 
-static void Task_Scene1_Load(u8 taskId)
+void Task_Scene1_Load(u8 taskId)
 {
     SetVBlankCallback(NULL);
     sIntroCharacterGender = Random() & 1;
@@ -1178,7 +1183,7 @@ static void Task_Scene1_Load(u8 taskId)
     DmaClear16(3, BG_SCREEN_ADDR(21), BG_SCREEN_SIZE);
     LZ77UnCompVram(sIntro1Bg3_Tilemap, (void *)(BG_SCREEN_ADDR(22)));
     DmaClear16(3, BG_SCREEN_ADDR(23), BG_SCREEN_SIZE);
-    LoadPalette(sIntro1Bg_Pal, 0, sizeof(sIntro1Bg_Pal));
+    LoadPalette(sIntro1Bg_Pal, BG_PLTT_ID(0), sizeof(sIntro1Bg_Pal));
     SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(22) | BGCNT_16COLOR | BGCNT_TXT256x512);
     SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(20) | BGCNT_16COLOR | BGCNT_TXT256x512);
     SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(18) | BGCNT_16COLOR | BGCNT_TXT256x512);
@@ -1421,7 +1426,7 @@ static void Task_Scene2_BikeRide(u8 taskId)
         gIntroCredits_MovingSceneryState = INTROCRED_SCENERY_FROZEN;
         DestroyTask(gTasks[taskId].tBgAnimTaskId);
     }
-    
+
     if (gIntroFrameCounter > TIMER_END_SCENE_2)
     {
         // Fade out to next scene
@@ -1490,8 +1495,8 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
         sprite->sState++;
         // fallthrough
     case VOLBEAT_ENTER:
-        sprite->pos1.x -= 4;
-        if (sprite->pos1.x == 60)
+        sprite->x -= 4;
+        if (sprite->x == 60)
         {
             sprite->sState = VOLBEAT_WAIT_STATE;
             sprite->sStateDelay = 20;
@@ -1499,9 +1504,9 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
         }
         break;
     case VOLBEAT_ZIP_BACKWARD:
-        sprite->pos1.x += 8;
-        sprite->pos1.y -= 2;
-        if (sprite->pos1.x == 124)
+        sprite->x += 8;
+        sprite->y -= 2;
+        if (sprite->x == 124)
         {
             sprite->sState = VOLBEAT_WAIT_STATE;
             sprite->sStateDelay = 20;
@@ -1509,8 +1514,8 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
         }
         break;
     case VOLBEAT_ZIP_DOWN:
-        sprite->pos1.y += 4;
-        if (sprite->pos1.y == 80)
+        sprite->y += 4;
+        if (sprite->y == 80)
         {
             sprite->sState = VOLBEAT_WAIT_STATE;
             sprite->sStateDelay = 10;
@@ -1518,9 +1523,9 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
         }
         break;
     case VOLBEAT_ZIP_FORWARD:
-        sprite->pos1.x -= 8;
-        sprite->pos1.y -= 2;
-        if (sprite->pos1.x == 60)
+        sprite->x -= 8;
+        sprite->y -= 2;
+        if (sprite->x == 60)
         {
             sprite->sState = VOLBEAT_WAIT_STATE;
             sprite->sStateDelay = 10;
@@ -1528,15 +1533,15 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
         }
         break;
     case VOLBEAT_INIT_FIGURE_8:
-        sprite->pos1.x += 60;
+        sprite->x += 60;
         sprite->sSinXIdx = 0xC0;
         sprite->sSinYIdx = 0x80;
         sprite->sFig8Loops = 3;
         sprite->sState++;
         // fallthrough
     case VOLBEAT_FIGURE_8:
-        sprite->pos2.x = Sin((u8)sprite->sSinXIdx, 0x3C);
-        sprite->pos2.y = Sin((u8)sprite->sSinYIdx, 0x14);
+        sprite->x2 = Sin((u8)sprite->sSinXIdx, 0x3C);
+        sprite->y2 = Sin((u8)sprite->sSinYIdx, 0x14);
         sprite->sSinXIdx += 2;
         sprite->sSinYIdx += 4;
         if ((sprite->sSinXIdx & 0xFF) == 64)
@@ -1544,22 +1549,22 @@ static void SpriteCB_Volbeat(struct Sprite *sprite)
             sprite->hFlip = FALSE;
             if (--sprite->sFig8Loops == 0)
             {
-                sprite->pos1.x += sprite->pos2.x;
-                sprite->pos2.x = 0;
+                sprite->x += sprite->x2;
+                sprite->x2 = 0;
                 sprite->sState++;
             }
         }
         break;
     case VOLBEAT_EXIT:
-        sprite->pos1.x -= 2;
-        sprite->pos2.y = Sin((u8)sprite->sSinYIdx, 0x14);
+        sprite->x -= 2;
+        sprite->y2 = Sin((u8)sprite->sSinYIdx, 0x14);
         sprite->sSinYIdx += 4;
-        if (sprite->pos1.x < -16)
+        if (sprite->x < -16)
             DestroySprite(sprite);
         break;
     case VOLBEAT_WAIT_STATE:
         // Wait for state progression, fly idly until then
-        sprite->pos2.y = Cos((u8)sprite->sCosYIdx, 2);
+        sprite->y2 = Cos((u8)sprite->sCosYIdx, 2);
         if (!--sprite->sStateDelay)
             sprite->sState = sprite->sNextState;
         break;
@@ -1598,7 +1603,7 @@ static void SpriteCB_Torchic(struct Sprite *sprite)
             sprite->sMoveTimer += 64;
             if (sprite->sMoveTimer & 0xFF00)
             {
-                sprite->pos1.x--;
+                sprite->x--;
                 sprite->sMoveTimer &= 0xFF;
             }
         }
@@ -1609,7 +1614,7 @@ static void SpriteCB_Torchic(struct Sprite *sprite)
             sprite->sMoveTimer += 32;
             if (sprite->sMoveTimer & 0xFF00)
             {
-                sprite->pos1.x++;
+                sprite->x++;
                 sprite->sMoveTimer &= 0xFF;
             }
         }
@@ -1626,7 +1631,7 @@ static void SpriteCB_Torchic(struct Sprite *sprite)
             sprite->sMoveTimer += 64;
             if (sprite->sMoveTimer & 0xFF00)
             {
-                sprite->pos1.x--;
+                sprite->x--;
                 sprite->sMoveTimer &= 0xFF;
             }
         }
@@ -1638,9 +1643,9 @@ static void SpriteCB_Torchic(struct Sprite *sprite)
         break;
     case 4:
         if (sprite->animEnded)
-            sprite->pos1.x += 4;
+            sprite->x += 4;
 
-        if (sprite->pos1.x > 336)
+        if (sprite->x > 336)
         {
             StartSpriteAnim(sprite, TORCHIC_ANIM_RUN);
             sprite->sState++;
@@ -1648,7 +1653,7 @@ static void SpriteCB_Torchic(struct Sprite *sprite)
         break;
     case 5:
         if (gIntroFrameCounter >= TIMER_TORCHIC_EXIT)
-            sprite->pos1.x -= 2;
+            sprite->x -= 2;
         break;
     }
 }
@@ -1668,18 +1673,18 @@ static void SpriteCB_Manectric(struct Sprite *sprite)
             sprite->sState++;
         break;
     case 1:
-        sprite->pos1.x -= 2;
+        sprite->x -= 2;
         if (gIntroFrameCounter != TIMER_MANECTRIC_RUN_CIRCULAR)
             break;
-        
+
         // Initialize circular pattern running
-        sprite->pos1.y -= 12;
+        sprite->y -= 12;
         sprite->sSinIdx = 0x80;
         sprite->sCosIdx = 0;
         sprite->sState++;
         // fallthrough
     case 2:
-        if (sprite->pos1.x + sprite->pos2.x <= -32)
+        if (sprite->x + sprite->x2 <= -32)
         {
             // Manectric is offscreen now, destroy it
             DestroySprite(sprite);
@@ -1689,16 +1694,16 @@ static void SpriteCB_Manectric(struct Sprite *sprite)
             // Run in circular pattern
             if ((sprite->sSinIdx & 0xFF) < 64)
             {
-                sprite->pos2.x = Sin((u8)sprite->sSinIdx, 16);
+                sprite->x2 = Sin((u8)sprite->sSinIdx, 16);
             }
             else
             {
                 if ((sprite->sSinIdx & 0xFF) == 64)
-                    sprite->pos1.x -= 48;
-                sprite->pos2.x = Sin((u8)sprite->sSinIdx, 64);
+                    sprite->x -= 48;
+                sprite->x2 = Sin((u8)sprite->sSinIdx, 64);
             }
             sprite->sSinIdx++;
-            sprite->pos2.y = Cos((u8)sprite->sCosIdx, 12);
+            sprite->y2 = Cos((u8)sprite->sCosIdx, 12);
             sprite->sCosIdx++;
         }
         break;
@@ -1717,7 +1722,7 @@ static void Task_Scene3_Load(u8 taskId)
     IntroResetGpuRegs();
     LZ77UnCompVram(sIntroPokeball_Gfx, (void *)VRAM);
     LZ77UnCompVram(sIntroPokeball_Tilemap, (void *)(BG_CHAR_ADDR(1)));
-    LoadPalette(sIntroPokeball_Pal, 0, sizeof(sIntroPokeball_Pal));
+    LoadPalette(sIntroPokeball_Pal, BG_PLTT_ID(0), sizeof(sIntroPokeball_Pal));
     gTasks[taskId].tAlpha = 0;
     gTasks[taskId].tZoomDiv = 0;
     gTasks[taskId].tZoomDivSpeed = 0;
@@ -1848,7 +1853,7 @@ static void Task_Scene3_StartGroudon(u8 taskId)
 {
     gTasks[taskId].tState = 0;
     gTasks[taskId].func = Task_Scene3_Groudon;
-    ScanlineEffect_InitWave(0, 160, 4, 4, 1, 4, 0);
+    ScanlineEffect_InitWave(0, 160, 4, 4, 1, SCANLINE_EFFECT_REG_BG1HOFS, FALSE);
 }
 
 #define tScreenX data[1]
@@ -1925,7 +1930,7 @@ static void Task_Scene3_Groudon(u8 taskId)
             tScreenX = 80;
             tScreenY = 41;
             tDelay = 16;
-            PlayCryInternal(SPECIES_GROUDON, 0, 100, 10, 0);
+            PlayCryInternal(SPECIES_GROUDON, 0, 100, CRY_PRIORITY_NORMAL, CRY_MODE_NORMAL);
             tState++;
         }
         break;
@@ -2001,14 +2006,14 @@ static void SpriteCB_GroudonRocks(struct Sprite *sprite)
     // Introduce some wobble to the floating
     sprite->sTimer++;
     if (sprite->sTimer % 2 == 0)
-        sprite->pos2.y ^= 3;
+        sprite->y2 ^= 3;
 
     switch(sprite->sState)
     {
     case 0:
         // Rock floats up
         sprite->sSpeed += sGroudonRockData[sprite->sRockId][2];
-        sprite->pos1.y -= (sprite->sSpeed & 0xFF00) >> 8;
+        sprite->y -= (sprite->sSpeed & 0xFF00) >> 8;
         sprite->sSpeed &= 0xFF;
 
         // Check if Groudon scene is ending
@@ -2017,15 +2022,15 @@ static void SpriteCB_GroudonRocks(struct Sprite *sprite)
         break;
     case 1:
         // Scene zooms in, move rock offscreen
-        if (sprite->pos1.x < DISPLAY_WIDTH / 2)
-            sprite->pos1.x -= 2;
+        if (sprite->x < DISPLAY_WIDTH / 2)
+            sprite->x -= 2;
         else
-            sprite->pos1.x += 2;
+            sprite->x += 2;
 
-        if (sprite->pos1.y < DISPLAY_HEIGHT / 2)
-            sprite->pos1.y -= 2;
+        if (sprite->y < DISPLAY_HEIGHT / 2)
+            sprite->y -= 2;
         else
-            sprite->pos1.y += 2;
+            sprite->y += 2;
         break;
     }
 }
@@ -2058,7 +2063,7 @@ static void Task_Scene3_LoadKyogre(u8 taskId)
     gTasks[taskId].tDelay = 16;
     gTasks[taskId].tZoom = 256;
     PanFadeAndZoomScreen(gTasks[taskId].tScreenX, gTasks[taskId].tScreenY, gTasks[taskId].tZoom, 0);
-    ScanlineEffect_InitWave(0, 0xA0, 4, 4, 1, 6, 0);
+    ScanlineEffect_InitWave(0, 0xA0, 4, 4, 1, SCANLINE_EFFECT_REG_BG1VOFS, FALSE);
 }
 
 static void Task_Scene3_Kyogre(u8 taskId)
@@ -2127,7 +2132,7 @@ static void Task_Scene3_Kyogre(u8 taskId)
             {
                 tDelay = 1;
                 tState++;
-                PlayCryInternal(SPECIES_KYOGRE, 0, 120, 10, 0);
+                PlayCryInternal(SPECIES_KYOGRE, 0, 120, CRY_PRIORITY_NORMAL, CRY_MODE_NORMAL);
             }
         }
         break;
@@ -2205,7 +2210,7 @@ static void Task_Scene3_Kyogre(u8 taskId)
     }
 }
 
-#undef tScreenX 
+#undef tScreenX
 #undef tScreenY
 #undef tZoom
 #undef tDelay
@@ -2219,7 +2224,7 @@ static void Task_Scene3_Kyogre(u8 taskId)
 #define sUnk    data[7] // Never read
 
 // taskId is used inconsistently for these two functions.
-// The sprite callback for the bubbles will always read it, unless delay is 0 to 
+// The sprite callback for the bubbles will always read it, unless delay is 0 to
 // start (it never is), but the first function is often passed 0 instead of a
 // taskId, and the second function doesn't take/assign a taskId at all.
 // The only time an actual taskId is given is when it actually needs the
@@ -2233,9 +2238,9 @@ static void CreateKyogreBubbleSprites_Body(u8 taskId)
 
     for (i = 0; i < NUM_BUBBLES_IN_SET; i++)
     {
-        spriteId = CreateSprite(&sSpriteTemplate_Bubbles, 
-                                sKyogreBubbleData[i][0], 
-                                sKyogreBubbleData[i][1], 
+        spriteId = CreateSprite(&sSpriteTemplate_Bubbles,
+                                sKyogreBubbleData[i][0],
+                                sKyogreBubbleData[i][1],
                                 i);
         gSprites[spriteId].invisible = TRUE;
         gSprites[spriteId].sTaskId = taskId;
@@ -2252,14 +2257,14 @@ static void CreateKyogreBubbleSprites_Fins(void)
 
     for (i = 0; i < NUM_BUBBLES_IN_SET; i++)
     {
-        spriteId = CreateSprite(&sSpriteTemplate_Bubbles, 
-                                sKyogreBubbleData[i + NUM_BUBBLES_IN_SET][0], 
-                                sKyogreBubbleData[i + NUM_BUBBLES_IN_SET][1], 
+        spriteId = CreateSprite(&sSpriteTemplate_Bubbles,
+                                sKyogreBubbleData[i + NUM_BUBBLES_IN_SET][0],
+                                sKyogreBubbleData[i + NUM_BUBBLES_IN_SET][1],
                                 i);
         gSprites[spriteId].invisible = TRUE;
 #ifdef BUGFIX
         gSprites[spriteId].sDelay = sKyogreBubbleData[i + NUM_BUBBLES_IN_SET][2];
-#else        
+#else
         gSprites[spriteId].sDelay = sKyogreBubbleData[i][2]; // Using the wrong set of delays here
 #endif
         gSprites[spriteId].sUnk = 64;
@@ -2275,9 +2280,9 @@ static void SpriteCB_KyogreBubbles(struct Sprite *sprite)
         {
             // Animation has started, float bubbles up
             sprite->sSinIdx = (sprite->sSinIdx + 11) & 0xFF;
-            sprite->pos2.x = Sin(sprite->sSinIdx, 4);
+            sprite->x2 = Sin(sprite->sSinIdx, 4);
             sprite->sBaseY += 48;
-            sprite->pos2.y = -(sprite->sBaseY >> 8);
+            sprite->y2 = -(sprite->sBaseY >> 8);
             if (sprite->animEnded)
                 DestroySprite(sprite);
         }
@@ -2295,17 +2300,17 @@ static void SpriteCB_KyogreBubbles(struct Sprite *sprite)
         break;
     case 1:
         // Scene zooms in, move bubbles offscreen
-        if (sprite->pos1.x < DISPLAY_WIDTH / 2)
-            sprite->pos1.x -= 3;
+        if (sprite->x < DISPLAY_WIDTH / 2)
+            sprite->x -= 3;
         else
-            sprite->pos1.x += 3;
+            sprite->x += 3;
 
-        if (sprite->pos1.y < DISPLAY_HEIGHT / 2)
-            sprite->pos1.y -= 3;
+        if (sprite->y < DISPLAY_HEIGHT / 2)
+            sprite->y -= 3;
         else
-            sprite->pos1.y += 3;
+            sprite->y += 3;
 
-        if ((u16)(sprite->pos1.y - 20) > DISPLAY_HEIGHT - 20)
+        if ((u16)(sprite->y - 20) > DISPLAY_HEIGHT - 20)
             DestroySprite(sprite);
         break;
     }
@@ -2663,10 +2668,10 @@ static void Task_RayquazaAttack(u8 taskId)
         {
             if (--data[3] != 0)
             {
-                BlendPalette(0x50, 16, data[3], RGB(9, 10, 10));
-                CpuCopy16(&gIntro3Bg_Pal[0x1AC], &gPlttBufferFaded[94], 2);
-                CpuCopy16(&gIntro3Bg_Pal[0x1AC], &gPlttBufferFaded[88], 2);
-                CpuCopy16(&gIntro3Bg_Pal[0x18C], &gPlttBufferFaded[92], 2);
+                BlendPalette(BG_PLTT_ID(5), 16, data[3], RGB(9, 10, 10));
+                CpuCopy16(&gIntro3Bg_Pal[428], &gPlttBufferFaded[BG_PLTT_ID(5) + 14], PLTT_SIZEOF(1));
+                CpuCopy16(&gIntro3Bg_Pal[428], &gPlttBufferFaded[BG_PLTT_ID(5) + 8], PLTT_SIZEOF(1));
+                CpuCopy16(&gIntro3Bg_Pal[396], &gPlttBufferFaded[BG_PLTT_ID(5) + 12], PLTT_SIZEOF(1));
             }
             else
             {
@@ -2853,8 +2858,8 @@ static void SpriteCB_WaterDropHalf(struct Sprite *sprite)
     if (gSprites[sprite->data[7]].data[7] != 0)
     {
         sprite->invisible = TRUE;
-        sprite->pos1.x += sprite->pos2.x;
-        sprite->pos1.y += sprite->pos2.y;
+        sprite->x += sprite->x2;
+        sprite->y += sprite->y2;
         StartSpriteAnim(sprite, DROP_ANIM_RIPPLE);
         sprite->data[2] = 1024;
         sprite->data[3] = 8 * (sprite->data[1] & 3);
@@ -2865,10 +2870,10 @@ static void SpriteCB_WaterDropHalf(struct Sprite *sprite)
     }
     else
     {
-        sprite->pos2.x = gSprites[sprite->data[7]].pos2.x;
-        sprite->pos2.y = gSprites[sprite->data[7]].pos2.y;
-        sprite->pos1.x = gSprites[sprite->data[7]].pos1.x;
-        sprite->pos1.y = gSprites[sprite->data[7]].pos1.y;
+        sprite->x2 = gSprites[sprite->data[7]].x2;
+        sprite->y2 = gSprites[sprite->data[7]].y2;
+        sprite->x = gSprites[sprite->data[7]].x;
+        sprite->y = gSprites[sprite->data[7]].y;
     }
 }
 
@@ -2881,12 +2886,12 @@ static void SpriteCB_WaterDrop(struct Sprite *sprite)
 
 static void SpriteCB_WaterDrop_Slide(struct Sprite *sprite)
 {
-    if (sprite->pos1.x <= 116)
+    if (sprite->x <= 116)
     {
-        sprite->pos1.y += sprite->pos2.y;
-        sprite->pos2.y = 0;
-        sprite->pos1.x += 4;
-        sprite->pos2.x = -4;
+        sprite->y += sprite->y2;
+        sprite->y2 = 0;
+        sprite->x += 4;
+        sprite->x2 = -4;
         sprite->data[4] = 128;
         sprite->callback = SpriteCB_WaterDrop_ReachLeafEnd;
     }
@@ -2909,10 +2914,10 @@ static void SpriteCB_WaterDrop_Slide(struct Sprite *sprite)
         sin1 = gSineTable[(u8)data4];
         sin2 = gSineTable[(u8)(data4 + 64)];
         sprite->data[4] += 2;
-        sprite->pos2.y = sin1 / 32;
-        sprite->pos1.x--;
-        if (sprite->pos1.x & 1)
-            sprite->pos1.y++;
+        sprite->y2 = sin1 / 32;
+        sprite->x--;
+        if (sprite->x & 1)
+            sprite->y++;
         temp = -sin2 / 16;
         data2 = sprite->data[2];
         data3 = sprite->data[3];
@@ -2933,13 +2938,13 @@ static void SpriteCB_WaterDrop_ReachLeafEnd(struct Sprite *sprite)
     SetOamMatrix(sprite->data[1], sprite->data[6] + 64, 0, 0, sprite->data[6] + 64);
     SetOamMatrix(sprite->data[1] + 1, sprite->data[6] + 64, 0, 0, sprite->data[6] + 64);
     SetOamMatrix(sprite->data[1] + 2, sprite->data[6] + 64, 0, 0, sprite->data[6] + 64);
-    if (sprite->data[4] != 64)
+    if (sprite->data[4] != MAX_SPRITES)
     {
         u16 sinIdx;
         sprite->data[4] -= 8;
         sinIdx = sprite->data[4];
-        sprite->pos2.x = gSineTable[(u8)(sinIdx + 64)] / 64;
-        sprite->pos2.y = gSineTable[(u8)sinIdx] / 64;
+        sprite->x2 = gSineTable[(u8)(sinIdx + 64)] / 64;
+        sprite->y2 = gSineTable[(u8)sinIdx] / 64;
     }
     else
     {
@@ -2956,8 +2961,8 @@ static void SpriteCB_WaterDrop_DangleFromLeaf(struct Sprite *sprite)
 
         sprite->data[4] += 8;
         r2 = gSineTable[(u8)sprite->data[4]] / 16 + 64;
-        sprite->pos2.x = gSineTable[(u8)(r2 + 64)] / 64;
-        sprite->pos2.y = gSineTable[(u8)r2] / 64;
+        sprite->x2 = gSineTable[(u8)(r2 + 64)] / 64;
+        sprite->y2 = gSineTable[(u8)r2] / 64;
     }
     else
     {
@@ -2967,16 +2972,16 @@ static void SpriteCB_WaterDrop_DangleFromLeaf(struct Sprite *sprite)
 
 static void SpriteCB_WaterDrop_Fall(struct Sprite *sprite)
 {
-    if (sprite->pos1.y < sprite->data[5])
+    if (sprite->y < sprite->data[5])
     {
-        sprite->pos1.y += 4;
+        sprite->y += 4;
     }
     else
     {
         sprite->data[7] = 1;
         sprite->invisible = TRUE;
-        sprite->pos1.x += sprite->pos2.x;
-        sprite->pos1.y += sprite->pos2.y;
+        sprite->x += sprite->x2;
+        sprite->y += sprite->y2;
         StartSpriteAnim(sprite, DROP_ANIM_RIPPLE);
         sprite->data[2] = 1024;
         sprite->data[3] = 8 * (sprite->data[1] & 3);
@@ -2991,16 +2996,16 @@ static void SpriteCB_WaterDrop_Fall(struct Sprite *sprite)
 // Used by the 2nd and 3rd water drops to skip the leaf slide
 static void SpriteCB_WaterDropShort(struct Sprite *sprite)
 {
-    if (sprite->pos1.y < sprite->data[5])
+    if (sprite->y < sprite->data[5])
     {
-        sprite->pos1.y += 4;
+        sprite->y += 4;
     }
     else
     {
         sprite->data[7] = 1;
         sprite->invisible = TRUE;
-        sprite->pos1.x += sprite->pos2.x;
-        sprite->pos1.y += sprite->pos2.y;
+        sprite->x += sprite->x2;
+        sprite->y += sprite->y2;
         StartSpriteAnim(sprite, DROP_ANIM_RIPPLE);
         sprite->data[2] = 1024;
         sprite->data[3] = 8 * (sprite->data[1] & 3);
@@ -3071,27 +3076,27 @@ static void SpriteCB_PlayerOnBicycle(struct Sprite *sprite)
     case 0:
         // Move forwards
         StartSpriteAnimIfDifferent(sprite, 0);
-        sprite->pos1.x--;
+        sprite->x--;
         break;
     case 1:
         // Drift backwards slowly
         StartSpriteAnimIfDifferent(sprite, 0);
         if (gIntroFrameCounter & 7)
             return;
-        sprite->pos1.x++;
+        sprite->x++;
         break;
     case 2:
         // Move backwards
-        if (sprite->pos1.x <= 120 || gIntroFrameCounter & 7)
-            sprite->pos1.x++;
+        if (sprite->x <= 120 || gIntroFrameCounter & 7)
+            sprite->x++;
         break;
     case 3:
         // Bike in place
         break;
     case 4:
         // Exit to the left
-        if (sprite->pos1.x > -32)
-            sprite->pos1.x -= 2;
+        if (sprite->x > -32)
+            sprite->x -= 2;
         break;
     }
 
@@ -3099,10 +3104,10 @@ static void SpriteCB_PlayerOnBicycle(struct Sprite *sprite)
         return;
 
     // Adjust y position
-    if (sprite->pos2.y != 0)
+    if (sprite->y2 != 0)
     {
         // Return to neutral after wobble
-        sprite->pos2.y = 0;
+        sprite->y2 = 0;
     }
     else
     {
@@ -3110,14 +3115,14 @@ static void SpriteCB_PlayerOnBicycle(struct Sprite *sprite)
         switch (Random() & 3)
         {
         case 0:
-            sprite->pos2.y = -1;
+            sprite->y2 = -1;
             break;
         case 1:
-            sprite->pos2.y = 1;
+            sprite->y2 = 1;
             break;
         case 2:
         case 3:
-            sprite->pos2.y = 0;
+            sprite->y2 = 0;
             break;
         }
     }
@@ -3133,23 +3138,23 @@ static void SpriteCB_Flygon(struct Sprite *sprite)
     case 0:
         break;
     case 1:
-        if (sprite->pos2.x + sprite->pos1.x < DISPLAY_WIDTH + 64)
-            sprite->pos2.x += 8;
+        if (sprite->x2 + sprite->x < DISPLAY_WIDTH + 64)
+            sprite->x2 += 8;
         else
             sprite->sState = 2;
         break;
     case 2:
-        if (sprite->pos2.x + sprite->pos1.x > 120)
-            sprite->pos2.x -= 1;
+        if (sprite->x2 + sprite->x > 120)
+            sprite->x2 -= 1;
         else
             sprite->sState = 3;
         break;
     case 3:
-        if (sprite->pos2.x > 0)
-            sprite->pos2.x -= 2;
+        if (sprite->x2 > 0)
+            sprite->x2 -= 2;
         break;
     }
-    sprite->pos2.y = Sin((u8)sprite->sSinIdx, 8) - sFlygonYOffset;
+    sprite->y2 = Sin((u8)sprite->sSinIdx, 8) - sFlygonYOffset;
     sprite->sSinIdx += 4;
 }
 
@@ -3249,12 +3254,12 @@ static void SpriteCB_LogoLetter(struct Sprite *sprite)
     case 5:
         // Spread the letters out as they grow
         sprite->sLetterX += sGameFreakLettersMoveSpeed[sprite->sLetterId];
-        sprite->pos2.x = (sprite->sLetterX & 0xFF00) >> 8;
+        sprite->x2 = (sprite->sLetterX & 0xFF00) >> 8;
         if (sprite->sLetterId < 4)
         {
             // Is in first 4 letters, i.e. "Game"
-            s16 temp = sprite->pos2.x;
-            sprite->pos2.x = -temp;
+            s16 temp = sprite->x2;
+            sprite->x2 = -temp;
         }
         if (sprite->affineAnimEnded)
             DestroySprite(sprite);
@@ -3322,24 +3327,29 @@ static u8 CreateGameFreakLogoSprites(s16 x, s16 y, s16 unused)
 #undef sLetterX
 #undef COLOR_CHANGES
 
+#define sScale   data[1]
+#define sRot     data[2]
+#define sPos     data[3]
+#define sTimer   data[7]
+
 static void SpriteCB_FlygonSilhouette(struct Sprite *sprite)
 {
-    sprite->data[7]++;
+    sprite->sTimer++;
 
     if (sprite->sState != 0)
     {
-        s16 sin1;
-        s16 sin2;
+        s16 sin;
+        s16 cos;
 
         s16 a, b, c, d;
-
-        sin1 = gSineTable[(u8)sprite->data[2]];
-        sin2 = gSineTable[(u8)(sprite->data[2] + 64)];
-
-        d = Q_8_8_TO_INT(sin2 * sprite->data[1]);
-        c = Q_8_8_TO_INT(-sin1 * sprite->data[1]);
-        b = Q_8_8_TO_INT(sin1 * sprite->data[1]);
-        a = Q_8_8_TO_INT(sin2 * sprite->data[1]);
+        // Determines rotation of the sprite
+        sin = gSineTable[(u8)sprite->sRot];
+        cos = gSineTable[(u8)(sprite->sRot + 64)];
+        // Converts rotation and scale into the OAM matrix
+        d = Q_8_8_TO_INT( cos * sprite->sScale);
+        c = Q_8_8_TO_INT(-sin * sprite->sScale);
+        b = Q_8_8_TO_INT( sin * sprite->sScale);
+        a = Q_8_8_TO_INT( cos * sprite->sScale);
 
         SetOamMatrix(1, a, b, c, d);
     }
@@ -3353,35 +3363,40 @@ static void SpriteCB_FlygonSilhouette(struct Sprite *sprite)
         CalcCenterToCornerVec(sprite, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
         sprite->invisible = FALSE;
         sprite->sState = 1;
-        sprite->data[1] = 0x80;
-        sprite->data[2] = 0;
-        sprite->data[3] = 0;
+        sprite->sScale = 128;
+        sprite->sRot = 0;
+        sprite->sPos = 0;
         break;
     case 1:
-        sprite->pos2.x = -Sin((u8)sprite->data[3], 140);
-        sprite->pos2.y = -Sin((u8)sprite->data[3], 120);
-        sprite->data[1] += 7;
-        sprite->data[3] += 3;
-        if (sprite->pos1.x + sprite->pos2.x <= -16)
+        sprite->x2 = -Sin((u8)sprite->sPos, 140);
+        sprite->y2 = -Sin((u8)sprite->sPos, 120);
+        sprite->sScale += 7;
+        sprite->sPos += 3;
+        if (sprite->x + sprite->x2 <= -16)
         {
             sprite->oam.priority = 3;
             sprite->sState++;
-            sprite->pos1.x = 20;
-            sprite->pos1.y = 40;
-            sprite->data[1] = 0x200;
-            sprite->data[2] = 0;
-            sprite->data[3] = 0x10;
+            sprite->x = 20;
+            sprite->y = 40;
+            sprite->sScale = 512;
+            sprite->sRot = 0;
+            sprite->sPos = 16;
         }
         break;
     case 2:
-        sprite->pos2.x = Sin((u8)sprite->data[3], 34);
-        sprite->pos2.y = -Cos((u8)sprite->data[3], 60);
-        sprite->data[1] += 2;
-        if (sprite->data[7] % 5 == 0)
-            sprite->data[3]++;
+        sprite->x2 = Sin((u8)sprite->sPos, 34);
+        sprite->y2 = -Cos((u8)sprite->sPos, 60);
+        sprite->sScale += 2;
+        if (sprite->sTimer % 5 == 0)
+            sprite->sPos++;
         break;
     }
 }
+
+#undef sScale
+#undef sRot
+#undef sPos
+#undef sTimer
 
 static void SpriteCB_RayquazaOrb(struct Sprite *sprite)
 {

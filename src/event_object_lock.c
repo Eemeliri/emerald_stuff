@@ -34,13 +34,13 @@ bool8 IsFreezePlayerFinished(void)
     }
     else
     {
-        sub_808BCF4();
+        StopPlayerAvatar();
         return TRUE;
     }
 }
 
 
-void ScriptFreezeObjectEvents(void)
+void FreezeObjects_WaitForPlayer(void)
 {
     FreezeObjectEvents();
     CreateTask(Task_FreezePlayer, 80);
@@ -77,12 +77,14 @@ bool8 IsFreezeSelectedObjectAndPlayerFinished(void)
     }
     else
     {
-        sub_808BCF4();
+        StopPlayerAvatar();
         return TRUE;
     }
 }
 
-void LockSelectedObjectEvent(void)
+// Freeze all objects immediately except the selected object and the player.
+// The selected object and player are frozen once their movement is finished.
+void FreezeObjects_WaitForPlayerAndSelected(void)
 {
     u8 taskId;
     FreezeObjectEventsExceptOne(gSelectedObjectEvent);
@@ -144,9 +146,12 @@ static void Task_FreezeObjectAndPlayer(u8 taskId)
         DestroyTask(taskId);
 }
 
+// Freeze all objects immediately except the player and the approaching trainers.
+// The approaching trainers and player are frozen once their movement is finished
 void FreezeForApproachingTrainers(void)
 {
     u8 trainerObjectId1, trainerObjectId2, taskId;
+    struct ObjectEvent *followerObj = GetFollowerObject();
     trainerObjectId1 = GetChosenApproachingTrainerObjectEventId(0);
 
     if (gNoOfApproachingTrainers == 2)
@@ -184,6 +189,8 @@ void FreezeForApproachingTrainers(void)
             gTasks[taskId].tObjectFrozen = TRUE;
         }
     }
+    if (followerObj) // Unfreeze follower so it can move behind player
+      UnfreezeObjectEvent(followerObj);
 }
 
 bool8 IsFreezeObjectAndPlayerFinished(void)
@@ -194,7 +201,7 @@ bool8 IsFreezeObjectAndPlayerFinished(void)
     }
     else
     {
-        sub_808BCF4();
+        StopPlayerAvatar();
         return TRUE;
     }
 }

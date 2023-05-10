@@ -1,7 +1,7 @@
 	.section script_data, "aw", %progbits
 
 	.align 2
-gMysteryEventScriptCmdTable:: @ 82DED2C
+gMysteryEventScriptCmdTable::
 	.4byte MEScrCmd_nop                 @ 0x00
 	.4byte MEScrCmd_checkcompat         @ 0x01
 	.4byte MEScrCmd_end                 @ 0x02
@@ -19,4 +19,5 @@ gMysteryEventScriptCmdTable:: @ 82DED2C
 	.4byte MEScrCmd_enableresetrtc      @ 0x0e
 	.4byte MEScrCmd_checksum            @ 0x0f
 	.4byte MEScrCmd_crc                 @ 0x10
+	.4byte MEScrCmd_addbattledometrainer @ 0x11
 gMysteryEventScriptCmdTableEnd::

@@ -17,7 +17,7 @@
 #define MULTI_BASE_PC_WITH_REGISTRY        6
 #define MULTI_REGISTER_MENU                7
 #define MULTI_SSTIDAL_LILYCOVE             8 // Exit only, populated by CreateLilycoveSSTidalMultichoice
-#define MULTI_UNUSED_9                     9
+#define MULTI_PWT_OPTIONS                  9
 #define MULTI_UNUSED_10                    10
 #define MULTI_FRONTIER_PASS_INFO           11
 #define MULTI_BIKE                         12
@@ -65,7 +65,7 @@
 #define MULTI_RIGHTLEFT                    54
 #define MULTI_GAME_CORNER_TMS              55
 #define MULTI_SSTIDAL_SLATEPORT_NO_BF      56
-#define MULTI_FLOORS                       57 
+#define MULTI_FLOORS                       57
 #define MULTI_SHARDS_R                     58
 #define MULTI_SHARDS_Y                     59
 #define MULTI_SHARDS_RY                    60
@@ -82,9 +82,9 @@
 #define MULTI_SHARDS_YBG                   71
 #define MULTI_SHARDS_RYBG                  72
 #define MULTI_TOURNEY_WITH_RECORD          73
-#define MULTI_CABLE_CLUB_NO_RECORD_MIX     74 
+#define MULTI_CABLE_CLUB_NO_RECORD_MIX     74
 #define MULTI_WIRELESS_NO_RECORD_BERRY     75
-#define MULTI_CABLE_CLUB_WITH_RECORD_MIX   76 
+#define MULTI_CABLE_CLUB_WITH_RECORD_MIX   76
 #define MULTI_WIRELESS_NO_BERRY            77
 #define MULTI_WIRELESS_NO_RECORD           78
 #define MULTI_WIRELESS_ALL_SERVICES        79
@@ -97,7 +97,7 @@
 #define MULTI_FORCED_START_MENU            86
 #define MULTI_FRONTIER_GAMBLER_BET         87
 #define MULTI_TENT                         88
-#define MULTI_UNUSED_SSTIDAL_1             89 // These 4 were replaced by CreateLilycoveSSTidalMultichoice
+#define MULTI_PWT_MODE                     89 // These 4 were replaced by CreateLilycoveSSTidalMultichoice
 #define MULTI_UNUSED_SSTIDAL_2             90 //
 #define MULTI_UNUSED_SSTIDAL_3             91 //
 #define MULTI_UNUSED_SSTIDAL_4             92 //
@@ -133,6 +133,18 @@
 #define SSTIDAL_SELECTION_EXIT             6
 #define SSTIDAL_SELECTION_COUNT            7
 
+// Lilycove SS Tidal Multichoice Selections
+#define PWT_SELECTION_KANTO                0
+#define PWT_SELECTION_JOHTO                1
+#define PWT_SELECTION_HOENN                2
+#define PWT_SELECTION_SINNOH               3
+#define PWT_SELECTION_UNOVA                4
+#define PWT_SELECTION_WORLDS               5
+#define PWT_SELECTION_CHAMPIONS            6
+#define PWT_SELECTION_SPECIAL              7
+#define PWT_SELECTION_EXIT                 8
+#define PWT_SELECTION_COUNT                9
+
 // Std String Ids
 #define STDSTRING_COOL             0
 #define STDSTRING_BEAUTY           1
@@ -164,5 +176,9 @@
 #define STDSTRING_BATTLE_ARENA     27
 #define STDSTRING_BATTLE_PIKE      28
 #define STDSTRING_BATTLE_PYRAMID   29
+
+#define STDSTRING_MEDICINE         30
+#define STDSTRING_BATTLEITEMS      31
+#define STDSTRING_MEGASTONES       32
 
 #endif //GUARD_SCRIPT_MENU_CONSTANTS_H

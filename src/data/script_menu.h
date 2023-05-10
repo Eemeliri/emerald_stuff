@@ -110,35 +110,35 @@ static const struct MenuAction MultichoiceList_Mechadoll1_Q1[] =
     {gTrickHouse_Mechadoll_Taillow},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll1_Q2[] = 
+static const struct MenuAction MultichoiceList_Mechadoll1_Q2[] =
 {
     {gTrickHouse_Mechadoll_Azurill},
     {gTrickHouse_Mechadoll_Lotad},
     {gTrickHouse_Mechadoll_Wingull},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll1_Q3[] = 
+static const struct MenuAction MultichoiceList_Mechadoll1_Q3[] =
 {
     {gTrickHouse_Mechadoll_Dustox},
     {gTrickHouse_Mechadoll_Zubat},
     {gTrickHouse_Mechadoll_Nincada},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll2_Q1[] = 
+static const struct MenuAction MultichoiceList_Mechadoll2_Q1[] =
 {
     {gTrickHouse_Mechadoll_Ralts},
     {gTrickHouse_Mechadoll_Zigzagoon},
     {gTrickHouse_Mechadoll_Slakoth},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll2_Q2[] = 
+static const struct MenuAction MultichoiceList_Mechadoll2_Q2[] =
 {
     {gTrickHouse_Mechadoll_Poochyena2},
     {gTrickHouse_Mechadoll_Shroomish},
     {gTrickHouse_Mechadoll_Zigzagoon2},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll2_Q3[] = 
+static const struct MenuAction MultichoiceList_Mechadoll2_Q3[] =
 {
     {gTrickHouse_Mechadoll_Poochyena3},
     {gTrickHouse_Mechadoll_Zubat2},
@@ -152,56 +152,56 @@ static const struct MenuAction MultichoiceList_Mechadoll3_Q1[] =
     {gTrickHouse_Mechadoll_SamePrice},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll3_Q2[] = 
+static const struct MenuAction MultichoiceList_Mechadoll3_Q2[] =
 {
     {gTrickHouse_Mechadoll_60Yen},
     {gTrickHouse_Mechadoll_55Yen},
     {gTrickHouse_Mechadoll_Nothing},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll3_Q3[] = 
+static const struct MenuAction MultichoiceList_Mechadoll3_Q3[] =
 {
     {gTrickHouse_Mechadoll_CostMore},
     {gTrickHouse_Mechadoll_CostLess},
     {gTrickHouse_Mechadoll_SamePrice2},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll4_Q1[] = 
+static const struct MenuAction MultichoiceList_Mechadoll4_Q1[] =
 {
     {gTrickHouse_Mechadoll_Male},
     {gTrickHouse_Mechadoll_Female},
     {gTrickHouse_Mechadoll_Neither},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll4_Q2[] = 
+static const struct MenuAction MultichoiceList_Mechadoll4_Q2[] =
 {
     {gTrickHouse_Mechadoll_ElderlyMen},
     {gTrickHouse_Mechadoll_ElderlyLadies},
     {gTrickHouse_Mechadoll_SameNumber},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll4_Q3[] = 
+static const struct MenuAction MultichoiceList_Mechadoll4_Q3[] =
 {
     {gTrickHouse_Mechadoll_None},
     {gTrickHouse_Mechadoll_One},
     {gTrickHouse_Mechadoll_Two},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll5_Q1[] = 
+static const struct MenuAction MultichoiceList_Mechadoll5_Q1[] =
 {
     {gTrickHouse_Mechadoll_Two2},
     {gTrickHouse_Mechadoll_Three},
     {gTrickHouse_Mechadoll_Four},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll5_Q2[] = 
+static const struct MenuAction MultichoiceList_Mechadoll5_Q2[] =
 {
     {gTrickHouse_Mechadoll_Six},
     {gTrickHouse_Mechadoll_Seven},
     {gTrickHouse_Mechadoll_Eight},
 };
 
-static const struct MenuAction MultichoiceList_Mechadoll5_Q3[] = 
+static const struct MenuAction MultichoiceList_Mechadoll5_Q3[] =
 {
     {gTrickHouse_Mechadoll_Six2},
     {gTrickHouse_Mechadoll_Seven2},
@@ -477,6 +477,13 @@ static const struct MenuAction MultichoiceList_BattleMode[] =
     {gText_DoubleBattle},
     {gText_MultiBattle},
     {gText_Info2},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_PWTMode[] =
+{
+    {gText_SingleBattle},
+    {gText_DoubleBattle},
     {gText_Exit},
 };
 
@@ -793,7 +800,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BASE_PC_WITH_REGISTRY]      = MULTICHOICE(MultichoiceList_BasePCWithRegistry),
     [MULTI_REGISTER_MENU]              = MULTICHOICE(MultichoiceList_RegisterMenu),
     [MULTI_SSTIDAL_LILYCOVE]           = MULTICHOICE(MultichoiceList_Exit),
-    [MULTI_UNUSED_9]                   = MULTICHOICE(MultichoiceList_Exit),
+    [MULTI_PWT_OPTIONS]                = MULTICHOICE(MultichoiceList_Exit),
     [MULTI_UNUSED_10]                  = MULTICHOICE(MultichoiceList_Exit),
     [MULTI_FRONTIER_PASS_INFO]         = MULTICHOICE(MultichoiceList_FrontierPassInfo),
     [MULTI_BIKE]                       = MULTICHOICE(MultichoiceList_Bike),
@@ -873,7 +880,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FORCED_START_MENU]          = MULTICHOICE(MultichoiceList_ForcedStartMenu),
     [MULTI_FRONTIER_GAMBLER_BET]       = MULTICHOICE(MultichoiceList_FrontierGamblerBet),
     [MULTI_TENT]                       = MULTICHOICE(MultichoiceList_Tent),
-    [MULTI_UNUSED_SSTIDAL_1]           = MULTICHOICE(MultichoiceList_UnusedSSTidal1),
+    [MULTI_PWT_MODE]                   = MULTICHOICE(MultichoiceList_PWTMode),
     [MULTI_UNUSED_SSTIDAL_2]           = MULTICHOICE(MultichoiceList_UnusedSSTidal2),
     [MULTI_UNUSED_SSTIDAL_3]           = MULTICHOICE(MultichoiceList_UnusedSSTidal3),
     [MULTI_UNUSED_SSTIDAL_4]           = MULTICHOICE(MultichoiceList_UnusedSSTidal4),
@@ -932,16 +939,20 @@ const u8 *const gStdStrings[] =
     [STDSTRING_BATTLE_ARENA] = gText_BattleArena,
     [STDSTRING_BATTLE_PIKE] = gText_BattlePike,
     [STDSTRING_BATTLE_PYRAMID] = gText_BattlePyramid,
+
+    [STDSTRING_MEDICINE] = gText_Medicine,
+    [STDSTRING_BATTLEITEMS] = gText_BattleItems,
+    [STDSTRING_MEGASTONES] = gText_MegaStones,
 };
 
-static const u8 sLinkServicesMultichoiceIds[] = 
-{ 
-    MULTI_CABLE_CLUB_NO_RECORD_MIX, 
-    MULTI_WIRELESS_NO_RECORD_BERRY, 
-    MULTI_CABLE_CLUB_WITH_RECORD_MIX, 
-    MULTI_WIRELESS_NO_BERRY, 
-    MULTI_WIRELESS_NO_RECORD, 
-    MULTI_WIRELESS_ALL_SERVICES 
+static const u8 sLinkServicesMultichoiceIds[] =
+{
+    MULTI_CABLE_CLUB_NO_RECORD_MIX,
+    MULTI_WIRELESS_NO_RECORD_BERRY,
+    MULTI_CABLE_CLUB_WITH_RECORD_MIX,
+    MULTI_WIRELESS_NO_BERRY,
+    MULTI_WIRELESS_NO_RECORD,
+    MULTI_WIRELESS_ALL_SERVICES
 };
 
 static const u8 *const sPCNameStrings[] =
@@ -961,6 +972,19 @@ static const u8 *const sLilycoveSSTidalDestinations[SSTIDAL_SELECTION_COUNT] =
     [SSTIDAL_SELECTION_BIRTH_ISLAND]    = gText_BirthIsland,
     [SSTIDAL_SELECTION_FARAWAY_ISLAND]  = gText_FarawayIsland,
     [SSTIDAL_SELECTION_EXIT]            = gText_Exit,
+};
+
+static const u8 *const sPWTOptions[PWT_SELECTION_COUNT] =
+{
+    [PWT_SELECTION_KANTO]     = gText_KantoLeaders,
+    [PWT_SELECTION_JOHTO]     = gText_JohtoLeaders,
+    [PWT_SELECTION_HOENN]     = gText_HoennLeaders,
+    [PWT_SELECTION_SINNOH]    = gText_SinnohLeaders,
+    [PWT_SELECTION_UNOVA]     = gText_UnovaLeaders,
+    [PWT_SELECTION_WORLDS]    = gText_WorldLeaders,
+    [PWT_SELECTION_CHAMPIONS] = gText_Champions,
+    [PWT_SELECTION_SPECIAL]   = gText_Special,
+    [PWT_SELECTION_EXIT]      = gText_Exit,
 };
 
 static const u8 *const sCableClubOptions_WithRecordMix[] =

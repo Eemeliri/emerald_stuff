@@ -31,6 +31,9 @@ static void VCountIntr(void);
 static void SerialIntr(void);
 static void IntrDummy(void);
 
+// Defined in the linker script so that the test build can override it.
+extern void gInitialMainCB2(void);
+
 const u8 gGameVersion = GAME_VERSION;
 
 const u8 gGameLanguage = GAME_LANGUAGE; // English
@@ -57,7 +60,7 @@ const IntrFunc gIntrTableTemplate[] =
 
 #define INTR_COUNT ((int)(sizeof(gIntrTableTemplate)/sizeof(IntrFunc)))
 
-static u16 gUnknown_03000000;
+static u16 sUnusedVar; // Never read
 
 u16 gKeyRepeatStartDelay;
 bool8 gLinkTransferringData;
@@ -68,8 +71,9 @@ IntrFunc gIntrTable[INTR_COUNT];
 u8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 s8 gPcmDmaCounter;
+void *gAgbMainLoop_sp;
 
-static EWRAM_DATA u16 gTrainerId = 0;
+static EWRAM_DATA u16 sTrainerId = 0;
 
 //EWRAM_DATA void (**gFlashTimerIntrFunc)(void) = NULL;
 
@@ -117,15 +121,28 @@ void AgbMain()
         SetMainCallback2(NULL);
 
     gLinkTransferringData = FALSE;
-    gUnknown_03000000 = 0xFC0;
+    sUnusedVar = 0xFC0;
 
+#ifndef NDEBUG
+#if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
+    (void) MgbaOpen();
+#elif (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
+    AGBPrintfInit();
+#endif
+#endif
+    gAgbMainLoop_sp = __builtin_frame_address(0);
+    AgbMainLoop();
+}
+
+void AgbMainLoop(void)
+{
     for (;;)
     {
         ReadKeys();
 
         if (gSoftResetDisabled == FALSE
-         && (gMain.heldKeysRaw & A_BUTTON)
-         && (gMain.heldKeysRaw & B_START_SELECT) == B_START_SELECT)
+         && JOY_HELD_RAW(A_BUTTON)
+         && JOY_HELD_RAW(B_START_SELECT) == B_START_SELECT)
         {
             rfu_REQ_stopMode();
             rfu_waitREQComplete();
@@ -171,9 +188,9 @@ static void InitMainCallbacks(void)
     gTrainerHillVBlankCounter = NULL;
     gMain.vblankCounter2 = 0;
     gMain.callback1 = NULL;
-    SetMainCallback2(CB2_InitCopyrightScreenAfterBootup);
-    gSaveBlock2Ptr = &gSaveblock2;
-    gPokemonStoragePtr = &gPokemonStorage;
+    SetMainCallback2(gInitialMainCB2);
+    gSaveBlock2Ptr = &gSaveblock2.block;
+    gPokemonStoragePtr = &gPokemonStorage.block;
 }
 
 static void CallCallbacks(void)
@@ -201,12 +218,12 @@ void SeedRngAndSetTrainerId(void)
     u16 val = REG_TM1CNT_L;
     SeedRng(val);
     REG_TM1CNT_H = 0;
-    gTrainerId = val;
+    sTrainerId = val;
 }
 
 u16 GetGeneratedTrainerIdLower(void)
 {
-    return gTrainerId;
+    return sTrainerId;
 }
 
 void EnableVCountIntrAtLine150(void)
@@ -278,7 +295,7 @@ static void ReadKeys(void)
             gMain.heldKeys |= A_BUTTON;
     }
 
-    if (gMain.newKeys & gMain.watchedKeysMask)
+    if (JOY_NEW(gMain.watchedKeysMask))
         gMain.watchedKeysPressed = TRUE;
 }
 
@@ -401,9 +418,7 @@ static void IntrDummy(void)
 static void WaitForVBlank(void)
 {
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
-
-    while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
-        ;
+    VBlankIntrWait();
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)
@@ -431,4 +446,14 @@ void DoSoftReset(void)
 void ClearPokemonCrySongs(void)
 {
     CpuFill16(0, gPokemonCrySongs, MAX_POKEMON_CRIES * sizeof(struct PokemonCrySong));
+}
+
+// TODO: Needs to be updated if compiling for a different processor than the GBA's
+bool8 IsAccurateGBA(void) { // tests to see whether running on either an accurate emulator in >=2020, or real hardware
+  u32 code[5] = {0xFF1EE12F, 0xE1DF00B0, 0xE12FFF1E, 0xAAAABBBB, 0xCCCCDDDD}; // ARM: _;ldrh r0, [pc];bx lr
+  u32 func = (u32) &code[0];
+  if (func & 3) // not word aligned; safer to just return false here
+    return FALSE;
+  func = (func & ~3) | 0x2; // misalign PC to test PC-relative loading
+  return ((u32 (*)(void)) func)() == code[3] >> 16;
 }

@@ -100,8 +100,8 @@
 #define MAPSEC_CINNABAR_ISLAND              0x60
 #define MAPSEC_INDIGO_PLATEAU               0x61
 #define MAPSEC_SAFFRON_CITY                 0x62
-#define MAPSEC_ROUTE_4_FLYDUP               0x63
-#define MAPSEC_ROUTE_10_FLYDUP              0x64
+#define MAPSEC_ROUTE_4_POKECENTER           0x63
+#define MAPSEC_ROUTE_10_POKECENTER          0x64
 #define MAPSEC_ROUTE_1                      0x65
 #define MAPSEC_ROUTE_2                      0x66
 #define MAPSEC_ROUTE_3                      0x67
@@ -215,6 +215,24 @@
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
 #define MAPSEC_NONE                         0xD5
+#define MAPSEC_MIRAGE_SPOT_PLAIN_A          0xD6
+#define MAPSEC_MIRAGE_SPOT_PLAIN_B          0xD7
+#define MAPSEC_MIRAGE_SPOT_WOODS_A          0xD8
+#define MAPSEC_MIRAGE_SPOT_WOODS_B          0xD9
+#define MAPSEC_MIRAGE_SPOT_ASH_A            0xDA
+#define MAPSEC_MIRAGE_SPOT_ASH_B            0xDB
+#define MAPSEC_MIRAGE_SPOT_DESERT_A         0xDC
+#define MAPSEC_MIRAGE_SPOT_DESERT_B         0xDD
+#define MAPSEC_MIRAGE_SPOT_TALLGRASS_A      0xDE
+#define MAPSEC_MIRAGE_SPOT_TALLGRASS_B      0xDF
+#define MAPSEC_MIRAGE_SPOT_ISLAND_A         0xE0
+#define MAPSEC_MIRAGE_SPOT_ISLAND_B         0xE1
+#define MAPSEC_MIRAGE_SPOT_BEACH_A          0xE2
+#define MAPSEC_MIRAGE_SPOT_BEACH_B          0xE3
+#define MAPSEC_MIRAGE_SPOT_CAVE_A           0xE4
+#define MAPSEC_MIRAGE_SPOT_CAVE_B           0xE5
+#define MAPSEC_MIRAGE_SPOT_SNOW_A           0xE6
+#define MAPSEC_MIRAGE_SPOT_SNOW_B           0xE7
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

@@ -14,6 +14,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "pokeball.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
@@ -64,18 +65,29 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon mon;
+    u16 targetSpecies;
 
-    CreateMon(&mon, species, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(&mon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
-    sentToPc = GiveMonToPlayer(&mon);
-    nationalDexNum = SpeciesToNationalPokedexNum(species);
 
+    // In case a mon with a form changing item is given. Eg: SPECIES_ARCEUS with ITEM_SPLASH_PLATE will transform into SPECIES_ARCEUS_WATER upon gifted.
+    targetSpecies = GetFormChangeTargetSpecies(&mon, FORM_ITEM_HOLD, 0);
+    if (targetSpecies != SPECIES_NONE)
+    {
+        SetMonData(&mon, MON_DATA_SPECIES, &targetSpecies);
+        CalculateMonStats(&mon);
+    }
+
+    sentToPc = GiveMonToPlayer(&mon);
+    nationalDexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
+
+    // Don't set Pokédex flag for MON_CANT_GIVE
     switch(sentToPc)
     {
-    case 0:
-    case 1:
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
         GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
         GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
         break;
@@ -126,9 +138,9 @@ static bool8 CheckPartyMonHasHeldItem(u16 item)
 
 bool8 DoesPartyHaveEnigmaBerry(void)
 {
-    bool8 hasItem = CheckPartyMonHasHeldItem(ITEM_ENIGMA_BERRY);
+    bool8 hasItem = CheckPartyMonHasHeldItem(ITEM_ENIGMA_BERRY_E_READER);
     if (hasItem == TRUE)
-        GetBerryNameByBerryType(ItemIdToBerryType(ITEM_ENIGMA_BERRY), gStringVar1);
+        GetBerryNameByBerryType(ItemIdToBerryType(ITEM_ENIGMA_BERRY_E_READER), gStringVar1);
 
     return hasItem;
 }
@@ -146,10 +158,38 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
 }
+void CreateScriptedDoubleWildMon(u16 species1, u8 level1, u16 item1, u16 species2, u8 level2, u16 item2)
+{
+    u8 heldItem1[2];
+    u8 heldItem2[2];
+
+    ZeroEnemyPartyMons();
+
+    CreateMon(&gEnemyParty[0], species1, level1, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    if (item1)
+    {
+        heldItem1[0] = item1;
+        heldItem1[1] = item1 >> 8;
+        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem1);
+    }
+
+    CreateMon(&gEnemyParty[3], species2, level2, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    if (item2)
+    {
+        heldItem2[0] = item2;
+        heldItem2[1] = item2 >> 8;
+        SetMonData(&gEnemyParty[3], MON_DATA_HELD_ITEM, heldItem2);
+    }
+}
 
 void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)
 {
+// Allows monIndex to go out of bounds of gPlayerParty. Doesn't occur in vanilla
+#ifdef BUGFIX
+    if (monIndex >= PARTY_SIZE)
+#else
     if (monIndex > PARTY_SIZE)
+#endif
         monIndex = gPlayerPartyCount - 1;
 
     SetMonMoveSlot(&gPlayerParty[monIndex], move, slot);
@@ -219,4 +259,91 @@ void ReducePlayerPartyToSelectedMons(void)
         gPlayerParty[i] = party[i];
 
     CalculatePlayerPartyCount();
+}
+
+u8 ScriptGiveCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8* evs, u8* ivs, u16* moves, bool8 isShiny)
+{
+    u16 nationalDexNum;
+    int sentToPc;
+    u8 heldItem[2];
+    struct Pokemon mon;
+    u8 i;
+    u8 evTotal = 0;
+
+    if (nature == NUM_NATURES || nature == 0xFF)
+        nature = Random() % NUM_NATURES;
+
+    if (isShiny)
+        CreateShinyMonWithNature(&mon, species, level, nature);
+    else
+        CreateMonWithNature(&mon, species, level, 32, nature);
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        // ev
+        if (evs[i] != 0xFF && evTotal < 510)
+        {
+            // only up to 510 evs
+            if ((evTotal + evs[i]) > 510)
+                evs[i] = (510 - evTotal);
+
+            evTotal += evs[i];
+            SetMonData(&mon, MON_DATA_HP_EV + i, &evs[i]);
+        }
+
+        // iv
+        if (ivs[i] != 32 && ivs[i] != 0xFF)
+            SetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);
+    }
+    CalculateMonStats(&mon);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] > MOVES_COUNT)
+            continue;
+
+        SetMonMoveSlot(&mon, moves[i], i);
+    }
+
+    //ability
+    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == 0)
+    {
+        do {
+            abilityNum = Random() % 3;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+    }
+
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    //ball
+    if (ball <= POKEBALL_COUNT)
+        SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+
+    //item
+    heldItem[0] = item;
+    heldItem[1] = item >> 8;
+    SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
+
+    // give player the mon
+    //sentToPc = GiveMonToPlayer(&mon);
+    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            break;
+    }
+
+    sentToPc = GiveMonToPlayer(&mon);
+    nationalDexNum = SpeciesToNationalPokedexNum(GET_BASE_SPECIES_ID(species));
+    switch (sentToPc)
+    {
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        break;
+    }
+
+    return sentToPc;
 }

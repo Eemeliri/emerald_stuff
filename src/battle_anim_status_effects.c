@@ -13,7 +13,6 @@
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
-extern const u8 *const gBattleAnims_StatusConditions[];
 extern const struct OamData gOamData_AffineOff_ObjNormal_8x8;
 extern const struct OamData gOamData_AffineOff_ObjBlend_64x64;
 
@@ -107,7 +106,7 @@ static const union AnimCmd sAnim_SpinningSparkle[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_SpinningSparkle[] =
+const union AnimCmd *const sAnims_SpinningSparkle[] =
 {
     sAnim_SpinningSparkle
 };
@@ -210,35 +209,35 @@ static const struct SpriteTemplate sFlickeringShrinkOrbSpriteTemplate =
 static const struct Subsprite sFrozenIceCubeSubsprites[] =
 {
     {
-        .x = -16, 
-        .y = -16, 
-        .shape = SPRITE_SHAPE(64x64),      
-        .size = SPRITE_SIZE(64x64), 
-        .tileOffset = 0, 
+        .x = -16,
+        .y = -16,
+        .shape = SPRITE_SHAPE(64x64),
+        .size = SPRITE_SIZE(64x64),
+        .tileOffset = 0,
         .priority = 2
     },
     {
-        .x = -16, 
-        .y =  48, 
-        .shape = SPRITE_SHAPE(64x32), 
-        .size = SPRITE_SIZE(64x32), 
-        .tileOffset = 64, 
+        .x = -16,
+        .y =  48,
+        .shape = SPRITE_SHAPE(64x32),
+        .size = SPRITE_SIZE(64x32),
+        .tileOffset = 64,
         .priority = 2
     },
     {
-        .x =  48, 
-        .y = -16, 
-        .shape = SPRITE_SHAPE(32x64), 
+        .x =  48,
+        .y = -16,
+        .shape = SPRITE_SHAPE(32x64),
         .size = SPRITE_SIZE(32x64),
-        .tileOffset = 96, 
+        .tileOffset = 96,
         .priority = 2
     },
     {
-        .x =  48, 
-        .y =  48, 
-        .shape = SPRITE_SHAPE(32x32),   
-        .size = SPRITE_SIZE(32x32), 
-        .tileOffset = 128, 
+        .x =  48,
+        .y =  48,
+        .shape = SPRITE_SHAPE(32x32),
+        .size = SPRITE_SIZE(32x32),
+        .tileOffset = 128,
         .priority = 2
     },
 };
@@ -248,7 +247,7 @@ static const struct SubspriteTable sFrozenIceCubeSubspriteTable[] =
     {ARRAY_COUNT(sFrozenIceCubeSubsprites), sFrozenIceCubeSubsprites},
 };
 
-static const struct SpriteTemplate gFrozenIceCubeSpriteTemplate =
+static const struct SpriteTemplate sFrozenIceCubeSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ICE_CUBE,
     .paletteTag = ANIM_TAG_ICE_CUBE,
@@ -286,7 +285,7 @@ static u8 Task_FlashingCircleImpacts(u8 battlerId, bool8 red)
         gTasks[taskId].data[1] = RGB_RED;
         for (i = 0; i < 10; i++)
         {
-            spriteId = CreateSprite(&sFlashingCircleImpactSpriteTemplate, gSprites[battlerSpriteId].pos1.x, gSprites[battlerSpriteId].pos1.y + 32, 0);
+            spriteId = CreateSprite(&sFlashingCircleImpactSpriteTemplate, gSprites[battlerSpriteId].x, gSprites[battlerSpriteId].y + 32, 0);
             gSprites[spriteId].data[0] = i * 51;
             gSprites[spriteId].data[1] = -256;
             gSprites[spriteId].invisible = TRUE;
@@ -299,7 +298,7 @@ static u8 Task_FlashingCircleImpacts(u8 battlerId, bool8 red)
         gTasks[taskId].data[1] = RGB_BLUE;
         for (i = 0; i < 10; i++)
         {
-            spriteId = CreateSprite(&sFlashingCircleImpactSpriteTemplate, gSprites[battlerSpriteId].pos1.x, gSprites[battlerSpriteId].pos1.y - 32, 0);
+            spriteId = CreateSprite(&sFlashingCircleImpactSpriteTemplate, gSprites[battlerSpriteId].x, gSprites[battlerSpriteId].y - 32, 0);
             gSprites[spriteId].data[0] = i * 51;
             gSprites[spriteId].data[1] = 256;
             gSprites[spriteId].invisible = TRUE;
@@ -316,7 +315,7 @@ static void Task_UpdateFlashingCircleImpacts(u8 taskId)
     if (gTasks[taskId].data[2] == 2)
     {
         gTasks[taskId].data[2] = 0;
-        BlendPalette(0x100 + gTasks[taskId].data[0] * 16, 16, gTasks[taskId].data[4], gTasks[taskId].data[1]);
+        BlendPalette(OBJ_PLTT_ID(gTasks[taskId].data[0]), 16, gTasks[taskId].data[4], gTasks[taskId].data[1]);
         if (gTasks[taskId].data[5] == 0)
         {
             gTasks[taskId].data[4]++;
@@ -360,15 +359,15 @@ static void AnimFlashingCircleImpact(struct Sprite *sprite)
 
 static void AnimFlashingCircleImpact_Step(struct Sprite *sprite)
 {
-    sprite->pos2.x = Cos(sprite->data[0], 32);
-    sprite->pos2.y = Sin(sprite->data[0], 8);
+    sprite->x2 = Cos(sprite->data[0], 32);
+    sprite->y2 = Sin(sprite->data[0], 8);
     if (sprite->data[0] < 128)
         sprite->subpriority = 29;
     else
         sprite->subpriority = 31;
     sprite->data[0] = (sprite->data[0] + 8) & 0xFF;
     sprite->data[5] += sprite->data[1];
-    sprite->pos2.y += sprite->data[5] >> 8;
+    sprite->y2 += sprite->data[5] >> 8;
     sprite->data[2]++;
     if (sprite->data[2] == 52)
     {
@@ -378,6 +377,25 @@ static void AnimFlashingCircleImpact_Step(struct Sprite *sprite)
             DestroySprite(sprite);
     }
 }
+
+void AnimTask_FrozenIceCubeAttacker(u8 taskId)
+{
+    s16 x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2) - 32;
+    s16 y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET) - 36;
+    u8 spriteId;
+
+    if (IsContest())
+        x -= 6;
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
+    spriteId = CreateSprite(&sFrozenIceCubeSpriteTemplate, x, y, 4);
+    if (GetSpriteTileStartByTag(ANIM_TAG_ICE_CUBE) == 0xFFFF)
+        gSprites[spriteId].invisible = TRUE;
+    SetSubspriteTables(&gSprites[spriteId], sFrozenIceCubeSubspriteTable);
+    gTasks[taskId].data[15] = spriteId;
+    gTasks[taskId].func = AnimTask_FrozenIceCube_Step1;
+}
+
 
 void AnimTask_FrozenIceCube(u8 taskId)
 {
@@ -389,7 +407,7 @@ void AnimTask_FrozenIceCube(u8 taskId)
         x -= 6;
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
-    spriteId = CreateSprite(&gFrozenIceCubeSpriteTemplate, x, y, 4);
+    spriteId = CreateSprite(&sFrozenIceCubeSpriteTemplate, x, y, 4);
     if (GetSpriteTileStartByTag(ANIM_TAG_ICE_CUBE) == 0xFFFF)
         gSprites[spriteId].invisible = TRUE;
     SetSubspriteTables(&gSprites[spriteId], sFrozenIceCubeSubspriteTable);
@@ -549,7 +567,7 @@ void LaunchStatusAnimation(u8 battlerId, u8 statusAnimId)
 
     gBattleAnimAttacker = battlerId;
     gBattleAnimTarget = battlerId;
-    LaunchBattleAnimation(gBattleAnims_StatusConditions, statusAnimId, 0);
+    LaunchBattleAnimation(ANIM_TYPE_STATUS, statusAnimId);
     taskId = CreateTask(Task_DoStatusAnimation, 10);
     gTasks[taskId].data[0] = battlerId;
 }

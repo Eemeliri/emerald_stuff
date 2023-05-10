@@ -2,6 +2,7 @@
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "event_data.h"
 
 // iwram bss
 static u16 sErrorStatus;
@@ -131,6 +132,21 @@ void RtcGetInfo(struct SiiRtcInfo *rtc)
         RtcGetRawInfo(rtc);
 }
 
+void RtcGetInfoFast(struct SiiRtcInfo *rtc)
+{
+    if (sErrorStatus & RTC_ERR_FLAG_MASK)
+        *rtc = sRtcDummy;
+    else
+        RtcGetRawInfoFast(rtc);
+}
+
+void RtcGetTime(struct SiiRtcInfo *rtc)
+{
+    RtcDisableInterrupts();
+    SiiRtcGetTime(rtc);
+    RtcRestoreInterrupts();
+}
+
 void RtcGetDateTime(struct SiiRtcInfo *rtc)
 {
     RtcDisableInterrupts();
@@ -149,6 +165,12 @@ void RtcGetRawInfo(struct SiiRtcInfo *rtc)
 {
     RtcGetStatus(rtc);
     RtcGetDateTime(rtc);
+}
+
+void RtcGetRawInfoFast(struct SiiRtcInfo *rtc)
+{
+    RtcGetStatus(rtc);
+    RtcGetTime(rtc);
 }
 
 u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
@@ -293,6 +315,12 @@ void RtcCalcLocalTime(void)
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
 }
 
+void RtcCalcLocalTimeFast(void)
+{
+    RtcGetInfoFast(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)
 {
     RtcCalcLocalTimeOffset(0, hour, minute, 0);
@@ -343,4 +371,10 @@ u32 RtcGetMinuteCount(void)
 u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
+}
+
+void RtcGetDayOfWeek(void)
+{
+    RtcGetInfo(&sRtc);
+    gSpecialVar_Result = sRtc.dayOfWeek;
 }
