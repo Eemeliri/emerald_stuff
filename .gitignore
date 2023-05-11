@@ -33,6 +33,7 @@ build/
 porymap.*.cfg
 prefabs.json
 .vscode/
+agbcc/
 *.ss1
 *.ss2
 *.ss3
