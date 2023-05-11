@@ -1097,3 +1097,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/TestMap/scripts.inc"
 
 	.include "data/maps/OneIslandFRLG/scripts.inc"
+
+	.include "data/maps/SlateportMarket/scripts.inc"
+
+	.include "data/maps/MarketHarbor/scripts.inc"

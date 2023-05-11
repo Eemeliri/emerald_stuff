@@ -2,10 +2,10 @@
   "id": "MAP_SLATEPORT_CITY",
   "name": "SlateportCity",
   "layout": "LAYOUT_SLATEPORT_CITY",
-  "music": "MUS_SLATEPORT",
+  "music": "MUS_HG_VIOLET",
   "region_map_section": "MAPSEC_SLATEPORT_CITY",
   "requires_flash": false,
-  "weather": "WEATHER_SUNNY",
+  "weather": "WEATHER_SNOW",
   "map_type": "MAP_TYPE_CITY",
   "allow_cycling": true,
   "allow_escaping": false,
@@ -27,6 +27,11 @@
       "map": "MAP_ROUTE134",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_SLATEPORT_MARKET",
+      "offset": 18,
+      "direction": "left"
     }
   ],
   "object_events": [

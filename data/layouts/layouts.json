@@ -16,7 +16,7 @@
       "name": "SlateportCity_Layout",
       "width": 40,
       "height": 60,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_Saturated_Tileset",
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/SlateportCity/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity/map.bin"
@@ -246,7 +246,7 @@
       "name": "Route109_Layout",
       "width": 40,
       "height": 63,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_Saturated_Tileset",
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/Route109/border.bin",
       "blockdata_filepath": "data/layouts/Route109/map.bin"
@@ -4620,6 +4620,26 @@
       "secondary_tileset": "gTileset_EverGrande",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_MARKET",
+      "name": "SlateportMarket_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_Saturated_Tileset",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/SlateportMarket/border.bin",
+      "blockdata_filepath": "data/layouts/SlateportMarket/map.bin"
+    },
+    {
+      "id": "LAYOUT_MARKET_HARBOR",
+      "name": "MarketHarbor_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/MarketHarbor/border.bin",
+      "blockdata_filepath": "data/layouts/MarketHarbor/map.bin"
     }
   ]
 }
