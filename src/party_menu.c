@@ -139,11 +139,6 @@ enum {
 };
 
 enum {
-    PARTY_BOX_LEFT_COLUMN,
-    PARTY_BOX_RIGHT_COLUMN,
-};
-
-enum {
     TAG_POKEBALL = 1200,
     TAG_POKEBALL_SMALL,
     TAG_STATUS_ICONS,
@@ -2266,7 +2261,7 @@ static void DrawEmptySlot(u8 windowId)
     if (gPartyMenu.layout == PARTY_LAYOUT_SINGLE) //Custom party menu
         BlitBitmapToPartyWindow(windowId, sEqualEmptySlotTileNums, 14, 0, 0, 14, 5);//
     else
-        BlitBitmapToPartyWindow(windowId, sEmptySlotTileNums, 18, 0, 0, 18, 3);
+        BlitBitmapToPartyWindow(windowId, sSlotTilemap_WideEmpty, 18, 0, 0, 18, 3);
 }
 
 //Custom party menu
