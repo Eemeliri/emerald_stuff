@@ -1,0 +1,24 @@
+mapscripts SlateportMarket_MapScripts {
+    
+}
+
+script HyperTrainer_Lady{
+    lockall
+    faceplayer
+    if (var(VAR_TEMP_2) == 0) {
+        msgbox(format ("Hello there young one. Are you interested in strenghtening your Pokemon? I may not look like it, but I was quite a drill sergeant in my youth! If you find me some silvery bottle caps, I can unlock your Pokemon's true potential."))
+        setvar(VAR_TEMP_2, 1)
+    }
+    msgbox(format("Are you interested in my Hyper Training services?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT == 1)) {
+        msgbox(format ("Alright, Please choose a Pokemon to train."))
+        special(ChoosePartyMon)
+        waitstate
+        copyvar(VAR_RESULT, VAR_0x8004)
+        special(maxAttackIV)
+        msgbox(format("It's done. Your Pokémon looks much stronger now."))
+    }
+    waitmessage
+    releaseall
+    end
+}

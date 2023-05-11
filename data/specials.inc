@@ -463,6 +463,7 @@ gSpecials::
 	def_special BattlePyramidChooseMonHeldItems
 	def_special SetBattleTowerLinkPlayerGfx
 	def_special ShowNatureGirlMessage
+	def_special maxAttackIV
 	def_special ShowBattlePointsWindow
 	def_special UpdateBattlePointsWindow
 	def_special CloseBattlePointsWindow
