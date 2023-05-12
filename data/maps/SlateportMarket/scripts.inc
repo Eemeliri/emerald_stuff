@@ -22,7 +22,7 @@ HyperTrainer_Lady_1:
 	case 3, HyperTrainer_Lady_11
 	case 4, HyperTrainer_Lady_12
 	case 5, HyperTrainer_Lady_13
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_11
 	waitmessage
 	releaseall
 	end
@@ -42,10 +42,14 @@ HyperTrainer_Lady_8:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxHpIV
+	specialvar VAR_0x8008, trymaxHpIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_16
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_4
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -55,10 +59,14 @@ HyperTrainer_Lady_9:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxAttackIV
+	specialvar VAR_0x8008, trymaxAttackIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_19
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_4
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -68,10 +76,14 @@ HyperTrainer_Lady_10:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxDefenseIV
+	specialvar VAR_0x8008, trymaxDefenseIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_22
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_4
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -81,10 +93,14 @@ HyperTrainer_Lady_11:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxSpAtkIV
+	specialvar VAR_0x8008, trymaxSpAtkIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_25
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_4
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -94,10 +110,14 @@ HyperTrainer_Lady_12:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxSpDefIV
+	specialvar VAR_0x8008, trymaxSpDefIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_28
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_4
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -107,10 +127,50 @@ HyperTrainer_Lady_13:
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
-	special maxSpeedIV
+	specialvar VAR_0x8008, trymaxSpeedIV
+	compare VAR_0x8008, FALSE
+	goto_if_eq HyperTrainer_Lady_31
 	special recalculateStats
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_5
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_16:
 	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_19:
+	msgbox HyperTrainer_Lady_Text_6
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_22:
+	msgbox HyperTrainer_Lady_Text_7
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_25:
+	msgbox HyperTrainer_Lady_Text_8
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_28:
+	msgbox HyperTrainer_Lady_Text_9
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_31:
+	msgbox HyperTrainer_Lady_Text_10
 	waitmessage
 	releaseall
 	end
@@ -154,10 +214,34 @@ HyperTrainer_Lady_Text_3:
 	.string "train.$"
 
 HyperTrainer_Lady_Text_4:
+	.string "That Pokémon's HP is already at its\n"
+	.string "peak!$"
+
+HyperTrainer_Lady_Text_5:
 	.string "It's done. Your Pokémon looks much\n"
 	.string "stronger now.$"
 
-HyperTrainer_Lady_Text_5:
+HyperTrainer_Lady_Text_6:
+	.string "That Pokémon's Attack is already at its\n"
+	.string "peak!$"
+
+HyperTrainer_Lady_Text_7:
+	.string "That Pokémon's Defense is already at\n"
+	.string "its peak!$"
+
+HyperTrainer_Lady_Text_8:
+	.string "That Pokémon's Sp. Atk is already at its\n"
+	.string "peak!$"
+
+HyperTrainer_Lady_Text_9:
+	.string "That Pokémon's Sp. Def is already at its\n"
+	.string "peak!$"
+
+HyperTrainer_Lady_Text_10:
+	.string "That Pokémon's Speed is already at its\n"
+	.string "peak!$"
+
+HyperTrainer_Lady_Text_11:
 	.string "Changed your mind? Fine then.$"
 
 OldMan_test_Text_0:

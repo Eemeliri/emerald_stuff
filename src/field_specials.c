@@ -1406,34 +1406,68 @@ void recalculateStats(void) {
     CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
 }
 
-void maxHpIV(void) {
+u8 trymaxHpIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV, &iv);
+    return TRUE;
 }
 
-void maxAttackIV(void) {
+u8 trymaxAttackIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_IV, &iv);
+    return TRUE;
 }
 
-void maxDefenseIV(void) {
+u8 trymaxDefenseIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV, &iv);
+    return TRUE;
 }
 
-void maxSpAtkIV(void) {
+u8 trymaxSpAtkIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV, &iv);
+    return TRUE;
 }
 
-void maxSpDefIV(void) {
+u8 trymaxSpDefIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV, &iv);
+    return TRUE;
 }
 
-void maxSpeedIV(void) {
+u8 trymaxSpeedIV(void) {
     u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV) == 31) {
+        return FALSE;
+    }
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV, &iv);
+    return TRUE;
+}
+
+// This might not work since MON_DATA_IVS is an array
+u8 trymaxAllIVs(void) {
+    u8 iv = 31;
+    if (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IVS) == 31) {
+        return FALSE;
+    }
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IVS, &iv);
+    return TRUE;
 }
 
 bool8 Special_AreLeadMonEVsMaxedOut(void)

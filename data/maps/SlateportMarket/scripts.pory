@@ -25,8 +25,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxHpIV)
+            specialvar(VAR_0x8008, trymaxHpIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's HP is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
@@ -37,8 +45,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxAttackIV)
+            specialvar(VAR_0x8008, trymaxAttackIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Attack is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
@@ -49,8 +65,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxDefenseIV)
+            specialvar(VAR_0x8008, trymaxDefenseIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Defense is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
@@ -61,8 +85,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxSpAtkIV)
+            specialvar(VAR_0x8008, trymaxSpAtkIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Sp. Atk is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
@@ -73,8 +105,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxSpDefIV)
+            specialvar(VAR_0x8008, trymaxSpDefIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Sp. Def is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
@@ -85,8 +125,16 @@ script HyperTrainer_Lady{
             special(ChoosePartyMon)
             waitstate
             copyvar(VAR_RESULT, VAR_0x8004)
-            special(maxSpeedIV)
+            specialvar(VAR_0x8008, trymaxSpeedIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Speed is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
             special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
             removeitem(ITEM_BOTTLE_CAP, 1)
             msgbox(format("It's done. Your Pokémon looks much stronger now."))
             waitmessage
