@@ -9,16 +9,109 @@ script HyperTrainer_Lady{
         msgbox(format ("Hello there young one. Are you interested in strenghtening your Pokemon? I may not look like it, but I was quite a drill sergeant in my youth! If you find me some silvery bottle caps, I can unlock your Pokemon's true potential."))
         setvar(VAR_TEMP_2, 1)
     }
-    msgbox(format("Are you interested in my Hyper Training services?"), MSGBOX_YESNO)
-    if (var(VAR_RESULT == 1)) {
-        msgbox(format ("Alright, Please choose a Pokemon to train."))
-        special(ChoosePartyMon)
-        waitstate
-        copyvar(VAR_RESULT, VAR_0x8004)
-        special(maxAttackIV)
-        msgbox(format("It's done. Your Pokémon looks much stronger now."))
+    checkitem(ITEM_BOTTLE_CAP)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(format("Come back when you have found some bottle caps."))
+        releaseall
+        end
     }
+    msgbox(format("Which stat would you like to train?"))
+    setvar(VAR_0x8004, SCROLL_MULTI_HYPER_TRAINING)
+    special(ShowScrollableMultichoice)
+    waitstate
+    switch(var(VAR_RESULT)) {
+        case 0: // HP
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxHpIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 1: // Attack
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxAttackIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 2: // Defense
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxDefenseIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 3: // SPATK
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxSpAtkIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 4: //SP DEF
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxSpDefIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 5: // SPEED
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_RESULT, VAR_0x8004)
+            special(maxSpeedIV)
+            special(recalculateStats)
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        default:
+            msgbox(format ("Changed your mind? Fine then."))
+            waitmessage
+            releaseall
+            end
+    }
+    
+}
+
+script OldMan_test{
+    lock
+    faceplayer
+    checkitem(ITEM_POTION, 1)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox("You don't have the item!")
+        release
+        end
+    }
+    msgbox("You have a potion!")
     waitmessage
-    releaseall
+    release
     end
 }

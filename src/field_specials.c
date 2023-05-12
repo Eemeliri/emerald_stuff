@@ -1402,9 +1402,38 @@ void GiveLeadMonEffortRibbon(void)
         TryPutSpotTheCutiesOnAir(leadMon, MON_DATA_EFFORT_RIBBON);
 }
 
+void recalculateStats(void) {
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+void maxHpIV(void) {
+    u8 iv = 31;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV, &iv);
+}
+
 void maxAttackIV(void) {
     u8 iv = 31;
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_IV, &iv);
+}
+
+void maxDefenseIV(void) {
+    u8 iv = 31;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV, &iv);
+}
+
+void maxSpAtkIV(void) {
+    u8 iv = 31;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV, &iv);
+}
+
+void maxSpDefIV(void) {
+    u8 iv = 31;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV, &iv);
+}
+
+void maxSpeedIV(void) {
+    u8 iv = 31;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV, &iv);
 }
 
 bool8 Special_AreLeadMonEVsMaxedOut(void)
@@ -2430,6 +2459,16 @@ void ShowScrollableMultichoice(void)
             task->tKeepOpenAfterSelect = FALSE;
             task->tTaskId = taskId;
             break;
+        case SCROLL_MULTI_HYPER_TRAINING:
+            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
+            task->tNumItems = 7;
+            task->tLeft = 19;
+            task->tTop = 1;
+            task->tWidth = 10;
+            task->tHeight = 12;
+            task->tKeepOpenAfterSelect = FALSE;
+            task->tTaskId = taskId;
+            break;
         default:
             gSpecialVar_Result = MULTI_B_PRESSED;
             DestroyTask(taskId);
@@ -2684,6 +2723,16 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_SinnohLeaders,
         gText_UnovaLeaders,
         gText_Special,
+        gText_Exit
+    },
+    [SCROLL_MULTI_HYPER_TRAINING] =
+    {
+        gText_hpIV,
+        gText_attackIV,
+        gText_defenseIV,
+        gText_spatkIV,
+        gText_spdefIV,
+        gText_speedIV,
         gText_Exit
     }
 };

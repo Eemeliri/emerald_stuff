@@ -8,10 +8,21 @@ HyperTrainer_Lady::
 	compare VAR_TEMP_2, 0
 	goto_if_eq HyperTrainer_Lady_2
 HyperTrainer_Lady_1:
-	msgbox HyperTrainer_Lady_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_ne HyperTrainer_Lady_5
-HyperTrainer_Lady_4:
+	checkitem ITEM_BOTTLE_CAP
+	compare VAR_RESULT, FALSE
+	goto_if_eq HyperTrainer_Lady_5
+	msgbox HyperTrainer_Lady_Text_2
+	setvar VAR_0x8004, SCROLL_MULTI_HYPER_TRAINING
+	special ShowScrollableMultichoice
+	waitstate
+	switch VAR_RESULT
+	case 0, HyperTrainer_Lady_8
+	case 1, HyperTrainer_Lady_9
+	case 2, HyperTrainer_Lady_10
+	case 3, HyperTrainer_Lady_11
+	case 4, HyperTrainer_Lady_12
+	case 5, HyperTrainer_Lady_13
+	msgbox HyperTrainer_Lady_Text_5
 	waitmessage
 	releaseall
 	end
@@ -22,13 +33,104 @@ HyperTrainer_Lady_2:
 	goto HyperTrainer_Lady_1
 
 HyperTrainer_Lady_5:
-	msgbox HyperTrainer_Lady_Text_2
+	msgbox HyperTrainer_Lady_Text_1
+	releaseall
+	end
+
+HyperTrainer_Lady_8:
+	msgbox HyperTrainer_Lady_Text_3
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	special maxHpIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_9:
+	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
 	copyvar VAR_RESULT, VAR_0x8004
 	special maxAttackIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_10:
 	msgbox HyperTrainer_Lady_Text_3
-	goto HyperTrainer_Lady_4
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	special maxDefenseIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_11:
+	msgbox HyperTrainer_Lady_Text_3
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	special maxSpAtkIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_12:
+	msgbox HyperTrainer_Lady_Text_3
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	special maxSpDefIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_13:
+	msgbox HyperTrainer_Lady_Text_3
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	special maxSpeedIV
+	special recalculateStats
+	removeitem ITEM_BOTTLE_CAP, 1
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+
+OldMan_test::
+	lock
+	faceplayer
+	checkitem ITEM_POTION, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq OldMan_test_2
+	msgbox OldMan_test_Text_1
+	waitmessage
+	release
+	end
+
+OldMan_test_2:
+	msgbox OldMan_test_Text_0
+	release
+	end
 
 
 HyperTrainer_Lady_Text_0:
@@ -41,13 +143,25 @@ HyperTrainer_Lady_Text_0:
 	.string "potential.$"
 
 HyperTrainer_Lady_Text_1:
-	.string "Are you interested in my Hyper Training\n"
-	.string "services?$"
+	.string "Come back when you have found some\n"
+	.string "bottle caps.$"
 
 HyperTrainer_Lady_Text_2:
+	.string "Which stat would you like to train?$"
+
+HyperTrainer_Lady_Text_3:
 	.string "Alright, Please choose a Pokemon to\n"
 	.string "train.$"
 
-HyperTrainer_Lady_Text_3:
+HyperTrainer_Lady_Text_4:
 	.string "It's done. Your Pokémon looks much\n"
 	.string "stronger now.$"
+
+HyperTrainer_Lady_Text_5:
+	.string "Changed your mind? Fine then.$"
+
+OldMan_test_Text_0:
+	.string "You don't have the item!$"
+
+OldMan_test_Text_1:
+	.string "You have a potion!$"

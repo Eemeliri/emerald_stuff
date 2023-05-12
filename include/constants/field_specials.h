@@ -43,6 +43,7 @@
 #define SCROLL_MULTI_PWT_OPTIONS                          13
 #define SCROLL_MULTI_PWT_OPTIONS2                         14
 #define SCROLL_MULTI_PWT_OPTIONS3                         15
+#define SCROLL_MULTI_HYPER_TRAINING                       16
 
 #define MAX_SCROLL_MULTI_ON_SCREEN 6
 #define MAX_SCROLL_MULTI_LENGTH 32

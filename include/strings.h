@@ -3362,6 +3362,13 @@ extern const u8 gText_WorldLeaders[];
 extern const u8 gText_Champions[];
 extern const u8 gText_Special[];
 
+extern const u8 gText_hpIV[];
+extern const u8 gText_attackIV[];
+extern const u8 gText_defenseIV[];
+extern const u8 gText_spatkIV[];
+extern const u8 gText_spdefIV[];
+extern const u8 gText_speedIV[];
+
 //Global Trade Station
 extern const u8 gText_GlobalTradeStation[];
 extern const u8 gText_SearchPokemon[];
