@@ -275,6 +275,153 @@ Oldman_Mint_Mart_9:
 	goto Oldman_Mint_Mart_1
 
 
+miscItemMartNPC::
+	lock
+	faceplayer
+	msgbox miscItemMartNPC_Text_0
+	pokemart miscItemMart
+	msgbox miscItemMartNPC_Text_1
+	waitmessage
+	release
+	end
+
+
+berryMartNPC::
+	lock
+	faceplayer
+	msgbox berryMartNPC_Text_0
+	pokemart miscBerryMart
+	msgbox berryMartNPC_Text_1
+	waitmessage
+	release
+	end
+
+
+stressedConsumerNPC::
+	lock
+	faceplayer
+	msgbox stressedConsumerNPC_Text_0
+	waitmessage
+	release
+	end
+
+
+sailorShopperNPC::
+	lock
+	faceplayer
+	msgbox sailorShopperNPC_Text_0
+	waitmessage
+	release
+	end
+
+
+sailorWatcherNPC::
+	lock
+	faceplayer
+	msgbox sailorWatcherNPC_Text_0
+	waitmessage
+	release
+	end
+
+
+watcherOldMan::
+	lock
+	msgbox watcherOldMan_Text_0
+	waitmessage
+	release
+	end
+
+
+azumarillPartner::
+	lock
+	faceplayer
+	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
+	waitmoncry
+	release
+	end
+
+
+hyperTrainingSign::
+	msgbox hyperTrainingSign_Text_0, MSGBOX_SIGN
+	end
+
+
+miscItemMartSign::
+	msgbox miscItemMartSign_Text_0, MSGBOX_SIGN
+	end
+
+
+miscBerryMartSign::
+	msgbox miscBerryMartSign_Text_0, MSGBOX_SIGN
+	end
+
+
+mysticTrader::
+	lock
+	faceplayer
+	goto_if_set FLAG_ITEM_ALAKAZITE, mysticTrader_5
+mysticTrader_4:
+	goto_if_set FLAG_ITEM_ALAKAZITE, mysticTrader_3
+	msgbox mysticTrader_Text_2
+	checkitem ITEM_PSYCHIC_GEM
+	compare VAR_RESULT, FALSE
+	goto_if_eq mysticTrader_9
+	msgbox mysticTrader_Text_3
+	giveitem ITEM_ALAKAZITE
+	removeitem ITEM_PSYCHIC_GEM, 1
+	setflag FLAG_ITEM_ALAKAZITE
+	waitmessage
+	releaseall
+	end
+
+mysticTrader_2:
+	msgbox mysticTrader_Text_0
+	release
+	end
+
+mysticTrader_3:
+	msgbox mysticTrader_Text_1
+	release
+	end
+
+mysticTrader_5:
+	goto_if_set FLAG_IS_CHAMPION, mysticTrader_2
+	goto mysticTrader_4
+
+mysticTrader_9:
+	releaseall
+	end
+
+
+mysticSign::
+	lock
+	msgbox mysticSign_Text_0
+	waitmessage
+	release
+	end
+
+
+	.align 2
+miscBerryMart:
+	.2byte ITEM_LIECHI_BERRY
+	.2byte ITEM_GANLON_BERRY
+	.2byte ITEM_SALAC_BERRY
+	.2byte ITEM_PETAYA_BERRY
+	.2byte ITEM_APICOT_BERRY
+	.2byte ITEM_LANSAT_BERRY
+	.2byte ITEM_STARF_BERRY
+	.2byte ITEM_JABOCA_BERRY
+	.2byte ITEM_ROWAP_BERRY
+	.2byte ITEM_NONE
+
+	.align 2
+miscItemMart:
+	.2byte ITEM_LINKING_CORD
+	.2byte ITEM_ABSORB_BULB
+	.2byte ITEM_DESTINY_KNOT
+	.2byte ITEM_COVERT_CLOAK
+	.2byte ITEM_NONE
+
 	.align 2
 MintShopSunday:
 	.2byte ITEM_ADAMANT_MINT
@@ -395,3 +542,72 @@ Oldman_Mint_Mart_Text_2:
 
 Oldman_Mint_Mart_Text_3:
 	.string "Come again soon.$"
+
+miscItemMartNPC_Text_0:
+	.string "Hey you! Take a loot at my wares!$"
+
+miscItemMartNPC_Text_1:
+	.string "Come back to buy more soon!$"
+
+berryMartNPC_Text_0:
+	.string "Greetings. May I interest you with\n"
+	.string "these rare berries?$"
+
+berryMartNPC_Text_1:
+	.string "I hope to see you again!$"
+
+stressedConsumerNPC_Text_0:
+	.string "Ever since this harbor market was built,\n"
+	.string "many strong trainers have started\l"
+	.string "visiting the city.$"
+
+sailorShopperNPC_Text_0:
+	.string "Stocking up supplies for long trips is a\n"
+	.string "must for a sailor. Good thing Slateport\l"
+	.string "offers it all!$"
+
+sailorWatcherNPC_Text_0:
+	.string "Ever seen a Gyarados leap over the bow\n"
+	.string "at sunrise? There's no sight more\l"
+	.string "majestic... or terrifying, if you're not\l"
+	.string "prepared!$"
+
+watcherOldMan_Text_0:
+	.string "This place used to be nothing more than\n"
+	.string "a few houses in my youth. Time truly\l"
+	.string "travels fast when you're with Pokémon.\l"
+	.string "I only wish I had explored the world\l"
+	.string "more.$"
+
+hyperTrainingSign_Text_0:
+	.string "Former drill sergeant offering hyper\n"
+	.string "training services.$"
+
+miscItemMartSign_Text_0:
+	.string "Market goods for affordable prices!\n"
+	.string "Buy!!$"
+
+miscBerryMartSign_Text_0:
+	.string "Rare berries from distant lands.$"
+
+mysticTrader_Text_0:
+	.string "I knew you were destined for greatness,\n"
+	.string "champion of Hoenn.$"
+
+mysticTrader_Text_1:
+	.string "I look forward to seeing your progress.$"
+
+mysticTrader_Text_2:
+	.string "You! Yes you, I sense great potential\n"
+	.string "within you. I can aid your growth\l"
+	.string "towards greatness if you bring me a\l"
+	.string "Psychic Gem.$"
+
+mysticTrader_Text_3:
+	.string "Yes! That is truly a beatiful specimen\n"
+	.string "of a Psychic Gem! As promised I will\l"
+	.string "grant you this stone to foster your\l"
+	.string "growth towards greatness.$"
+
+mysticSign_Text_0:
+	.string "Mystic Maya sees all.$"

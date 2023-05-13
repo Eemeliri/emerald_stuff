@@ -216,6 +216,141 @@ script Oldman_Mint_Mart{
     end
 }
 
+script miscItemMartNPC {
+    lock
+    faceplayer
+    msgbox(format("Hey you! Take a loot at my wares!"))
+    pokemart(miscItemMart)
+    msgbox(format("Come back to buy more soon!"))
+    waitmessage
+    release
+    end
+}
+
+script berryMartNPC {
+    lock
+    faceplayer
+    msgbox(format("Greetings. May I interest you with these rare berries?"))
+    pokemart(miscBerryMart)
+    msgbox(format("I hope to see you again!"))
+    waitmessage
+    release
+    end
+}
+
+script stressedConsumerNPC {
+    lock
+    faceplayer
+    msgbox(format("Ever since this harbor market was built, many strong trainers have started visiting the city."))
+    waitmessage
+    release
+    end
+}
+
+script sailorShopperNPC {
+    lock
+    faceplayer
+    msgbox(format("Stocking up supplies for long trips is a must for a sailor. Good thing Slateport offers it all!"))
+    waitmessage
+    release
+    end
+}
+
+script sailorWatcherNPC {
+    lock
+    faceplayer
+    msgbox(format("Ever seen a Gyarados leap over the bow at sunrise? There's no sight more majestic... or terrifying, if you're not prepared!"))
+    waitmessage
+    release
+    end
+}
+
+script watcherOldMan {
+    lock
+    msgbox(format("This place used to be nothing more than a few houses in my youth. Time truly travels fast when you're with Pokémon. I only wish I had explored the world more."))
+    waitmessage
+    release
+    end
+}
+
+script azumarillPartner {
+    lock
+    faceplayer
+    playmoncry(SPECIES_AZUMARILL, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
+}
+
+script hyperTrainingSign {
+    msgbox(format("Former drill sergeant offering hyper training services."), MSGBOX_SIGN)
+    end
+}
+
+script miscItemMartSign {
+    msgbox(format("Market goods for affordable prices! Buy!!"), MSGBOX_SIGN)
+    end
+}
+
+script miscBerryMartSign {
+    msgbox(format("Rare berries from distant lands."), MSGBOX_SIGN)
+    end
+}
+
+script mysticTrader {
+    lock
+    faceplayer
+    if (flag(FLAG_ITEM_ALAKAZITE) && flag(FLAG_IS_CHAMPION)) {
+        msgbox(format("I knew you were destined for greatness, champion of Hoenn."))
+        release
+        end
+    } elif (flag(FLAG_ITEM_ALAKAZITE)) {
+        msgbox(format("I look forward to seeing your progress."))
+        release
+        end
+    }
+    msgbox(format("You! Yes you, I sense great potential within you. I can aid your growth towards greatness if you bring me a Psychic Gem."))
+    checkitem(ITEM_PSYCHIC_GEM)
+    if (var(VAR_RESULT) == FALSE) {
+        releaseall
+        end
+    }
+    msgbox(format("Yes! That is truly a beatiful specimen of a Psychic Gem! As promised I will grant you this stone to foster your growth towards greatness."))
+    giveitem(ITEM_ALAKAZITE)
+    removeitem(ITEM_PSYCHIC_GEM, 1)
+    setflag(FLAG_ITEM_ALAKAZITE)
+    waitmessage
+    releaseall
+    end
+}
+
+script mysticSign {
+    lock
+    msgbox(format("Mystic Maya sees all.") MSGBOX_SIGN)
+    waitmessage
+    release
+    end
+}
+
+mart miscBerryMart {
+    ITEM_LIECHI_BERRY
+    ITEM_GANLON_BERRY
+    ITEM_SALAC_BERRY
+    ITEM_PETAYA_BERRY
+    ITEM_APICOT_BERRY
+    ITEM_LANSAT_BERRY
+    ITEM_STARF_BERRY
+    ITEM_JABOCA_BERRY
+    ITEM_ROWAP_BERRY
+}
+
+mart miscItemMart {
+    ITEM_LINKING_CORD
+    ITEM_ABSORB_BULB
+    ITEM_DESTINY_KNOT
+    ITEM_COVERT_CLOAK
+}
+
 mart MintShopSunday {
     ITEM_ADAMANT_MINT
     ITEM_BOLD_MINT

@@ -4640,6 +4640,16 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/MarketHarbor/border.bin",
       "blockdata_filepath": "data/layouts/MarketHarbor/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_MARKET_NAMELESS_CAVERN",
+      "name": "Slateport_Market_Nameless_Cavern_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/border.bin",
+      "blockdata_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/map.bin"
     }
   ]
 }

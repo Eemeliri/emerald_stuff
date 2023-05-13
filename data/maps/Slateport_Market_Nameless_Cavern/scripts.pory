@@ -1,0 +1,48 @@
+mapscripts Slateport_Market_Nameless_Cavern_MapScripts {
+
+}
+
+
+script enterNamelessCavern{
+    lockall
+    setvar(VAR_TEMP_2, 1)
+    msgbox(format ("Clear air surrounds the area. It's lifting your spirits."))
+    release
+    end
+}
+
+script spawnAzelf {
+    lockall
+    playbgm(MUS_NONE, FALSE)
+    setvar(VAR_TEMP_0, 1)
+    playmoncry(SPECIES_AZELF, CRY_MODE_NORMAL)
+    waitmoncry
+    applymovement(OBJ_EVENT_ID_PLAYER, player_movement)
+    applymovement(1, azelf_movement)
+    waitmovement(0)
+    copyvar(VAR_0x8000, VAR_LAST_TALKED)
+    playmoncry(SPECIES_AZELF, CRY_MODE_ENCOUNTER)
+    msgbox(format("Azeeeeeeee!!"))
+    waitmoncry
+    seteventmon(SPECIES_AZELF, 40)
+    special(BattleSetup_StartLegendaryBattle)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    // if((var(VAR_RESULT) == B_OUTCOME_WON) || (var(VAR_RESULT) == B_OUTCOME_RAN) || (var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED)) {
+    //     fadescreenswapbuffers(FADE_TO_BLACK)
+    //     removeobject(1)
+    //     fadescreenswapbuffers(FADE_TO_BLACK)
+    // }
+    setflag(FLAG_ENCOUNTERED_AZELF)
+    releaseall
+
+}
+
+movement player_movement {
+    emote_exclamation_mark
+    step_end
+}
+
+movement azelf_movement {
+    walk_slow_down * 4
+    step_end
+}
