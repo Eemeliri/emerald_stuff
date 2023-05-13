@@ -1636,7 +1636,7 @@
       "name": "ShoalCave_LowTideEntranceRoom_Layout",
       "width": 35,
       "height": 35,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/map.bin"
@@ -4596,7 +4596,7 @@
       "name": "OneIsland_Layout",
       "width": 70,
       "height": 100,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/OneIsland/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland/map.bin"
@@ -4606,7 +4606,7 @@
       "name": "TestMap_Layout",
       "width": 55,
       "height": 55,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Snow",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"

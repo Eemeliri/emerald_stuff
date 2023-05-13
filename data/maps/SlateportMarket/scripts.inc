@@ -176,19 +176,20 @@ HyperTrainer_Lady_31:
 	end
 
 
-OldMan_test::
+Oldman_Mint_Mart::
 	lock
 	faceplayer
+	msgbox Oldman_Mint_Mart_Text_0
 	checkitem ITEM_POTION, 1
 	compare VAR_RESULT, FALSE
-	goto_if_eq OldMan_test_2
-	msgbox OldMan_test_Text_1
+	goto_if_eq Oldman_Mint_Mart_2
+	msgbox Oldman_Mint_Mart_Text_2
 	waitmessage
 	release
 	end
 
-OldMan_test_2:
-	msgbox OldMan_test_Text_0
+Oldman_Mint_Mart_2:
+	msgbox Oldman_Mint_Mart_Text_1
 	release
 	end
 
@@ -244,8 +245,12 @@ HyperTrainer_Lady_Text_10:
 HyperTrainer_Lady_Text_11:
 	.string "Changed your mind? Fine then.$"
 
-OldMan_test_Text_0:
+Oldman_Mint_Mart_Text_0:
+	.string "Hello! Are you interested in fresh mints\n"
+	.string "I've harvested today?$"
+
+Oldman_Mint_Mart_Text_1:
 	.string "You don't have the item!$"
 
-OldMan_test_Text_1:
+Oldman_Mint_Mart_Text_2:
 	.string "You have a potion!$"
