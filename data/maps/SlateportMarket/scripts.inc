@@ -22,7 +22,7 @@ HyperTrainer_Lady_1:
 	case 3, HyperTrainer_Lady_11
 	case 4, HyperTrainer_Lady_12
 	case 5, HyperTrainer_Lady_13
-	msgbox HyperTrainer_Lady_Text_11
+	msgbox HyperTrainer_Lady_Text_12
 	waitmessage
 	releaseall
 	end
@@ -41,15 +41,17 @@ HyperTrainer_Lady_8:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_16
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxHpIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_16
+	goto_if_eq HyperTrainer_Lady_34
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -58,15 +60,17 @@ HyperTrainer_Lady_9:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_19
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxAttackIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_19
+	goto_if_eq HyperTrainer_Lady_37
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -75,15 +79,17 @@ HyperTrainer_Lady_10:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_22
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxDefenseIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_22
+	goto_if_eq HyperTrainer_Lady_40
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -92,15 +98,17 @@ HyperTrainer_Lady_11:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_25
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxSpAtkIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_25
+	goto_if_eq HyperTrainer_Lady_43
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -109,15 +117,17 @@ HyperTrainer_Lady_12:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_28
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxSpDefIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_28
+	goto_if_eq HyperTrainer_Lady_46
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -126,15 +136,17 @@ HyperTrainer_Lady_13:
 	msgbox HyperTrainer_Lady_Text_3
 	special ChoosePartyMon
 	waitstate
+	compare VAR_0x8004, PARTY_NOTHING_CHOSEN
+	goto_if_eq HyperTrainer_Lady_31
 	copyvar VAR_RESULT, VAR_0x8004
 	specialvar VAR_0x8008, trymaxSpeedIV
 	compare VAR_0x8008, FALSE
-	goto_if_eq HyperTrainer_Lady_31
+	goto_if_eq HyperTrainer_Lady_49
 	special recalculateStats
 	playfanfare MUS_LEVEL_UP
 	waitfanfare
 	removeitem ITEM_BOTTLE_CAP, 1
-	msgbox HyperTrainer_Lady_Text_5
+	msgbox HyperTrainer_Lady_Text_6
 	waitmessage
 	releaseall
 	end
@@ -146,31 +158,67 @@ HyperTrainer_Lady_16:
 	end
 
 HyperTrainer_Lady_19:
-	msgbox HyperTrainer_Lady_Text_6
+	msgbox HyperTrainer_Lady_Text_4
 	waitmessage
 	releaseall
 	end
 
 HyperTrainer_Lady_22:
-	msgbox HyperTrainer_Lady_Text_7
+	msgbox HyperTrainer_Lady_Text_4
 	waitmessage
 	releaseall
 	end
 
 HyperTrainer_Lady_25:
-	msgbox HyperTrainer_Lady_Text_8
+	msgbox HyperTrainer_Lady_Text_4
 	waitmessage
 	releaseall
 	end
 
 HyperTrainer_Lady_28:
-	msgbox HyperTrainer_Lady_Text_9
+	msgbox HyperTrainer_Lady_Text_4
 	waitmessage
 	releaseall
 	end
 
 HyperTrainer_Lady_31:
+	msgbox HyperTrainer_Lady_Text_4
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_34:
+	msgbox HyperTrainer_Lady_Text_5
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_37:
+	msgbox HyperTrainer_Lady_Text_7
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_40:
+	msgbox HyperTrainer_Lady_Text_8
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_43:
+	msgbox HyperTrainer_Lady_Text_9
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_46:
 	msgbox HyperTrainer_Lady_Text_10
+	waitmessage
+	releaseall
+	end
+
+HyperTrainer_Lady_49:
+	msgbox HyperTrainer_Lady_Text_11
 	waitmessage
 	releaseall
 	end
@@ -180,19 +228,104 @@ Oldman_Mint_Mart::
 	lock
 	faceplayer
 	msgbox Oldman_Mint_Mart_Text_0
-	checkitem ITEM_POTION, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq Oldman_Mint_Mart_2
+	msgbox Oldman_Mint_Mart_Text_1
+	special RtcGetDayOfWeek
+	switch VAR_RESULT
+	case 0, Oldman_Mint_Mart_3
+	case 1, Oldman_Mint_Mart_4
+	case 2, Oldman_Mint_Mart_5
+	case 3, Oldman_Mint_Mart_6
+	case 4, Oldman_Mint_Mart_7
+	case 5, Oldman_Mint_Mart_8
+	case 6, Oldman_Mint_Mart_9
 	msgbox Oldman_Mint_Mart_Text_2
+	pokemart MintShopSunday
+Oldman_Mint_Mart_1:
+	msgbox Oldman_Mint_Mart_Text_3
 	waitmessage
 	release
 	end
 
-Oldman_Mint_Mart_2:
-	msgbox Oldman_Mint_Mart_Text_1
-	release
-	end
+Oldman_Mint_Mart_3:
+	pokemart MintShopSunday
+	goto Oldman_Mint_Mart_1
 
+Oldman_Mint_Mart_4:
+	pokemart MintShopMonday
+	goto Oldman_Mint_Mart_1
+
+Oldman_Mint_Mart_5:
+	pokemart MintShopTuesday
+	goto Oldman_Mint_Mart_1
+
+Oldman_Mint_Mart_6:
+	pokemart MintShopWednesday
+	goto Oldman_Mint_Mart_1
+
+Oldman_Mint_Mart_7:
+	pokemart MintShopThursday
+	goto Oldman_Mint_Mart_1
+
+Oldman_Mint_Mart_8:
+	pokemart MintShopFriday
+	goto Oldman_Mint_Mart_1
+
+Oldman_Mint_Mart_9:
+	pokemart MintShopSaturday
+	goto Oldman_Mint_Mart_1
+
+
+	.align 2
+MintShopSunday:
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_BOLD_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopMonday:
+	.2byte ITEM_BRAVE_MINT
+	.2byte ITEM_CALM_MINT
+	.2byte ITEM_CAREFUL_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopTuesday:
+	.2byte ITEM_GENTLE_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_IMPISH_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopWednesday:
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_LAX_MINT
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopThursday:
+	.2byte ITEM_MILD_MINT
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_NAIVE_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopFriday:
+	.2byte ITEM_NAUGHTY_MINT
+	.2byte ITEM_QUIET_MINT
+	.2byte ITEM_RASH_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+MintShopSaturday:
+	.2byte ITEM_RELAXED_MINT
+	.2byte ITEM_SASSY_MINT
+	.2byte ITEM_SERIOUS_MINT
+	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_NONE
 
 HyperTrainer_Lady_Text_0:
 	.string "Hello there young one. Are you\n"
@@ -215,34 +348,38 @@ HyperTrainer_Lady_Text_3:
 	.string "train.$"
 
 HyperTrainer_Lady_Text_4:
+	.string "Having trouble deciding? Take your\n"
+	.string "time.$"
+
+HyperTrainer_Lady_Text_5:
 	.string "That Pokémon's HP is already at its\n"
 	.string "peak!$"
 
-HyperTrainer_Lady_Text_5:
+HyperTrainer_Lady_Text_6:
 	.string "It's done. Your Pokémon looks much\n"
 	.string "stronger now.$"
 
-HyperTrainer_Lady_Text_6:
+HyperTrainer_Lady_Text_7:
 	.string "That Pokémon's Attack is already at its\n"
 	.string "peak!$"
 
-HyperTrainer_Lady_Text_7:
+HyperTrainer_Lady_Text_8:
 	.string "That Pokémon's Defense is already at\n"
 	.string "its peak!$"
 
-HyperTrainer_Lady_Text_8:
+HyperTrainer_Lady_Text_9:
 	.string "That Pokémon's Sp. Atk is already at its\n"
 	.string "peak!$"
 
-HyperTrainer_Lady_Text_9:
+HyperTrainer_Lady_Text_10:
 	.string "That Pokémon's Sp. Def is already at its\n"
 	.string "peak!$"
 
-HyperTrainer_Lady_Text_10:
+HyperTrainer_Lady_Text_11:
 	.string "That Pokémon's Speed is already at its\n"
 	.string "peak!$"
 
-HyperTrainer_Lady_Text_11:
+HyperTrainer_Lady_Text_12:
 	.string "Changed your mind? Fine then.$"
 
 Oldman_Mint_Mart_Text_0:
@@ -250,7 +387,11 @@ Oldman_Mint_Mart_Text_0:
 	.string "I've harvested today?$"
 
 Oldman_Mint_Mart_Text_1:
-	.string "You don't have the item!$"
+	.string "This is what I have gathered for today.$"
 
 Oldman_Mint_Mart_Text_2:
-	.string "You have a potion!$"
+	.string "It seems you are lost in time. I think I\n"
+	.string "have something for you regardless.$"
+
+Oldman_Mint_Mart_Text_3:
+	.string "Come again soon.$"

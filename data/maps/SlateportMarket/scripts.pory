@@ -24,6 +24,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxHpIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -44,6 +50,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxAttackIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -64,6 +76,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxDefenseIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -84,6 +102,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxSpAtkIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -104,6 +128,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxSpDefIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -124,6 +154,12 @@ script HyperTrainer_Lady{
             msgbox(format ("Alright, Please choose a Pokemon to train."))
             special(ChoosePartyMon)
             waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
             copyvar(VAR_RESULT, VAR_0x8004)
             specialvar(VAR_0x8008, trymaxSpeedIV)
             if (var(VAR_0x8008) == FALSE) {
@@ -153,14 +189,74 @@ script Oldman_Mint_Mart{
     lock
     faceplayer
     msgbox(format("Hello! Are you interested in fresh mints I've harvested today?"))
-    checkitem(ITEM_POTION, 1)
-    if (var(VAR_RESULT) == FALSE) {
-        msgbox("You don't have the item!")
-        release
-        end
+    msgbox(format("This is what I have gathered for today."))
+    special(RtcGetDayOfWeek)
+    switch(var(VAR_RESULT)) {
+        case 0: // Sunday
+            pokemart(MintShopSunday)
+        case 1: // Monday
+            pokemart(MintShopMonday)
+        case 2: // Tuesday
+            pokemart(MintShopTuesday)
+        case 3: // Wednesday 
+            pokemart(MintShopWednesday)
+        case 4: // Thursday
+            pokemart(MintShopThursday)
+        case 5: // Friday
+            pokemart(MintShopFriday)
+        case 6: // Saturday
+            pokemart(MintShopSaturday)
+        default:
+            msgbox(format("It seems you are lost in time. I think I have something for you regardless."))
+            pokemart(MintShopSunday)
     }
-    msgbox("You have a potion!")
+    msgbox("Come again soon.")
     waitmessage
     release
     end
+}
+
+mart MintShopSunday {
+    ITEM_ADAMANT_MINT
+    ITEM_BOLD_MINT
+    ITEM_HASTY_MINT
+    ITEM_MODEST_MINT
+    ITEM_JOLLY_MINT
+}
+
+mart MintShopMonday {
+    ITEM_BRAVE_MINT
+    ITEM_CALM_MINT
+    ITEM_CAREFUL_MINT
+}
+
+mart MintShopTuesday {
+    ITEM_GENTLE_MINT
+    ITEM_HASTY_MINT
+    ITEM_IMPISH_MINT
+}
+
+mart MintShopWednesday {
+    ITEM_JOLLY_MINT
+    ITEM_LAX_MINT
+    ITEM_LONELY_MINT
+}
+
+mart MintShopThursday {
+    ITEM_MILD_MINT
+    ITEM_MODEST_MINT
+    ITEM_NAIVE_MINT
+}
+
+mart MintShopFriday {
+    ITEM_NAUGHTY_MINT
+    ITEM_QUIET_MINT
+    ITEM_RASH_MINT
+}
+
+mart MintShopSaturday {
+    ITEM_RELAXED_MINT
+    ITEM_SASSY_MINT
+    ITEM_SERIOUS_MINT
+    ITEM_TIMID_MINT
 }
