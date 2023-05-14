@@ -1,1 +1,2 @@
 - Fix grass palette in dexnav mode and maybe when walking
+- Add dive route under slateport market
