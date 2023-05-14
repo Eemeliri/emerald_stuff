@@ -25,7 +25,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_ENCOUNTERED_AZELF"
+      "flag": "FLAG_HIDE_AZELF"
     }
   ],
   "warp_events": [
@@ -52,7 +52,7 @@
       "x": 14,
       "y": 12,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "spawnAzelf"
     },

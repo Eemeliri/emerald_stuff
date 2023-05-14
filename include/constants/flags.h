@@ -737,8 +737,8 @@
 #define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_DEFEATED_AZELF 0x2BA // Unused Flag
-#define FLAG_ENCOUNTERED_AZELF  0x2BB 
+#define FLAG_CAUGHT_AZELF 0x2BA 
+#define FLAG_DEFEATED_AZELF  0x2BB 
 
 // Event Flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
@@ -1271,7 +1271,7 @@
 #define FLAG_ITEM_SAFARIZONE_SOUTHEAST_TM93                         0x4C6 // Unused Flag
 #define FLAG_ITEM_AQUAHIDEOUT_TM97                                  0x4C7 // Unused Flag
 #define FLAG_SPECIAL_PWT                                            0x4C8 // Unused Flag
-#define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
+#define FLAG_HIDE_AZELF                                             0x4C9 // Unused Flag
 #define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
 #define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
 #define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
