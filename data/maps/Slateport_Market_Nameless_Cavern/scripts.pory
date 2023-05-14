@@ -1,3 +1,5 @@
+const LOCALID_AZELF = 1
+
 mapscripts Slateport_Market_Nameless_Cavern_MapScripts {
 
 }
@@ -15,26 +17,31 @@ script spawnAzelf {
     lockall
     playbgm(MUS_NONE, FALSE)
     setvar(VAR_TEMP_0, 1)
+    setvar(VAR_LAST_TALKED, LOCALID_AZELF)
     playmoncry(SPECIES_AZELF, CRY_MODE_NORMAL)
     waitmoncry
     applymovement(OBJ_EVENT_ID_PLAYER, player_movement)
     applymovement(1, azelf_movement)
     waitmovement(0)
-    copyvar(VAR_0x8000, VAR_LAST_TALKED)
     playmoncry(SPECIES_AZELF, CRY_MODE_ENCOUNTER)
     msgbox(format("Azeeeeeeee!!"))
     waitmoncry
     seteventmon(SPECIES_AZELF, 40)
     special(BattleSetup_StartLegendaryBattle)
+    waitstate
     specialvar(VAR_RESULT, GetBattleOutcome)
-    // if((var(VAR_RESULT) == B_OUTCOME_WON) || (var(VAR_RESULT) == B_OUTCOME_RAN) || (var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED)) {
-    //     fadescreenswapbuffers(FADE_TO_BLACK)
-    //     removeobject(1)
-    //     fadescreenswapbuffers(FADE_TO_BLACK)
-    // }
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        goto(Common_EventScript_RemoveStaticPokemon)
+    } elif (var(VAR_RESULT) == B_OUTCOME_WON) {
+        goto(Common_EventScript_RemoveStaticPokemon)
+    } elif (var(VAR_RESULT) == B_OUTCOME_RAN) {
+        goto(Common_EventScript_LegendaryFlewAway)
+    } elif (var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED) {
+        goto(Common_EventScript_LegendaryFlewAway)
+    }
     setflag(FLAG_ENCOUNTERED_AZELF)
     releaseall
-
+    end
 }
 
 movement player_movement {
@@ -43,6 +50,6 @@ movement player_movement {
 }
 
 movement azelf_movement {
-    walk_slow_down * 4
+    walk_slow_down * 5
     step_end
 }
