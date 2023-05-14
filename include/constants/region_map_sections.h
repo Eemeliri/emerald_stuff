@@ -233,6 +233,9 @@
 #define MAPSEC_MIRAGE_SPOT_CAVE_B           0xE5
 #define MAPSEC_MIRAGE_SPOT_SNOW_A           0xE6
 #define MAPSEC_MIRAGE_SPOT_SNOW_B           0xE7
+// New locations
+#define MAPSEC_SLATEPORT_MARKET             0xE8
+#define MAPSEC_NAMELESS_CAVERN              0xE9
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

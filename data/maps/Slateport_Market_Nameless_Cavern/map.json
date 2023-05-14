@@ -3,7 +3,7 @@
   "name": "Slateport_Market_Nameless_Cavern",
   "layout": "LAYOUT_SLATEPORT_MARKET_NAMELESS_CAVERN",
   "music": "MUS_SEALED_CHAMBER",
-  "region_map_section": "MAPSEC_SLATEPORT_CITY",
+  "region_map_section": "MAPSEC_NAMELESS_CAVERN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",

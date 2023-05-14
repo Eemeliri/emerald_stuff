@@ -700,6 +700,9 @@ static void WarpCB2(void)
 	case MAPSEC_MT_CHIMNEY:
 		SetWarpDestinationToHealLocation(HEAL_LOCATION_MT_CHIMNEY);
 		break;
+	case MAPSEC_SLATEPORT_MARKET:
+		SetWarpDestinationToHealLocation(HEAL_LOCATION_SLATEPORT_MARKET);
+		break;
 	default:
 		SetWarpDestinationToHealLocation(sMapHealLocations[sPrevMapSection][2]);
 		if(sPrevMapSection==sMirageSpots[2])

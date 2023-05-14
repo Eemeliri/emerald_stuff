@@ -1847,6 +1847,22 @@
       "y": 14,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_SLATEPORT_MARKET",
+      "name": "Slateport Market",
+      "x": 7,
+      "y": 11,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_NAMELESS_CAVERN",
+      "name": "Nameless Cavern",
+      "x": 7,
+      "y": 10,
+      "width": 1,
+      "height": 1
     }
   ]
 }
