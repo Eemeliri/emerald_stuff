@@ -3,7 +3,7 @@
   "name": "SlateportMarket",
   "layout": "LAYOUT_SLATEPORT_MARKET",
   "music": "MUS_HG_VIOLET",
-  "region_map_section": "MAPSEC_SLATEPORT_CITY",
+  "region_map_section": "MAPSEC_SLATEPORT_MARKET",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_TOWN",
@@ -43,7 +43,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Oldman_Mint_Mart",
       "flag": "0"
     },
     {
@@ -56,7 +56,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "mysticTrader",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "miscItemMartNPC",
       "flag": "0"
     },
     {
@@ -82,7 +82,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "berryMartNPC",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "watcherOldMan",
       "flag": "0"
     },
     {
@@ -108,7 +108,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "sailorShopperNPC",
       "flag": "0"
     },
     {
@@ -121,7 +121,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "sailorWatcherNPC",
       "flag": "0"
     },
     {
@@ -134,8 +134,34 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "stressedConsumerNPC",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_AZUMARILL",
+      "x": 1,
+      "y": 34,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "azumarillPartner",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 20,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Slateport_Market_EventScript_ItemWaterMemory",
+      "flag": "FLAG_ITEM_SLATEPORT_MARKET"
     }
   ],
   "warp_events": [
@@ -145,12 +171,50 @@
       "elevation": 0,
       "dest_map": "MAP_MARKET_HARBOR",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_SLATEPORT_MARKET_NAMELESS_CAVERN",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 33,
+      "y": 34,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "hyperTrainingSign"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 34,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "mysticSign"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 34,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "miscItemMartSign"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 34,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "miscBerryMartSign"
+    }
   ]
 }

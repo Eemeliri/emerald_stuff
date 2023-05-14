@@ -51,6 +51,7 @@ const u16 gObjectEventPal_Sabrina[] = INCBIN_U16("graphics/object_events/palette
 const u16 gObjectEventPal_Blaine[] = INCBIN_U16("graphics/object_events/palettes/blaine.gbapal");
 const u16 gObjectEventPal_Giovanni[] = INCBIN_U16("graphics/object_events/palettes/giovanni.gbapal");
 const u16 gObjectEventPal_Blue[] = INCBIN_U16("graphics/object_events/palettes/blue.gbapal");
+const u16 gObjectEventPal_Azelf[] = INCBIN_U16("graphics/object_events/palettes/azelf.gbapal");
 const u16 gUnusedObjectEventPalette[] = INCBIN_U16("graphics/object_events/palettes/unused_palette.gbapal");
 const u16 gObjectEventPal_Null16[16] = {};
 const u16 gObjectEventPal_Null17[16] = {};

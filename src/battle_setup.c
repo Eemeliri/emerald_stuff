@@ -557,6 +557,11 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
+    case SPECIES_AZELF:
+    case SPECIES_UXIE:
+    case SPECIES_MESPRIT:
+        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_DP_VS_UXIE_MESPRIT_AZELF);
+        break;
     }
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);

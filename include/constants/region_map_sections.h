@@ -214,7 +214,7 @@
 #define MAPSEC_ALTERING_CAVE                0xD2
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
-#define MAPSEC_NONE                         0xD5
+#define MAPSEC_SLATEPORT_MARKET             0xD5
 #define MAPSEC_MIRAGE_SPOT_PLAIN_A          0xD6
 #define MAPSEC_MIRAGE_SPOT_PLAIN_B          0xD7
 #define MAPSEC_MIRAGE_SPOT_WOODS_A          0xD8
@@ -233,6 +233,10 @@
 #define MAPSEC_MIRAGE_SPOT_CAVE_B           0xE5
 #define MAPSEC_MIRAGE_SPOT_SNOW_A           0xE6
 #define MAPSEC_MIRAGE_SPOT_SNOW_B           0xE7
+// New locations
+
+#define MAPSEC_NAMELESS_CAVERN              0xE8
+#define MAPSEC_NONE                         0xE9
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

@@ -737,8 +737,8 @@
 #define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
-#define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
+#define FLAG_CAUGHT_AZELF 0x2BA 
+#define FLAG_DEFEATED_AZELF  0x2BB 
 
 // Event Flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
@@ -1271,7 +1271,7 @@
 #define FLAG_ITEM_SAFARIZONE_SOUTHEAST_TM93                         0x4C6 // Unused Flag
 #define FLAG_ITEM_AQUAHIDEOUT_TM97                                  0x4C7 // Unused Flag
 #define FLAG_SPECIAL_PWT                                            0x4C8 // Unused Flag
-#define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
+#define FLAG_HIDE_AZELF                                             0x4C9 // Unused Flag
 #define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
 #define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
 #define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
@@ -1306,7 +1306,7 @@
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
+#define FLAG_ITEM_SLATEPORT_MARKET                                  0x4EC
 #define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
 #define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
 #define FLAG_STONE_SELLER                                           0x4EF
@@ -1497,7 +1497,7 @@
 #define FLAG_ARRIVED_AT_NAVEL_ROCK                  (SYSTEM_FLAGS + 0x81)
 #define FLAG_LANDMARK_TRAINER_HILL                  (SYSTEM_FLAGS + 0x82)
 
-#define FLAG_UNUSED_0x8E3                           (SYSTEM_FLAGS + 0x83) // Unused Flag
+#define FLAG_LANDMARK_SLATEPORT_MARKET              (SYSTEM_FLAGS + 0x83) 
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
@@ -1540,7 +1540,7 @@
 #define FLAG_SHINY_CREATION                             (SYSTEM_FLAGS + 0xA9) //Force shiny pokemon creation
 #define FLAG_SYS_DETECTOR_MODE                          (SYSTEM_FLAGS + 0xAA) // allow player to find hidden mons
 #define FLAG_SYS_DEXNAV_GET                             (SYSTEM_FLAGS + 0xAB) // dexnav shows in start menu
-#define FLAG_UNUSED_0x90C                               (SYSTEM_FLAGS + 0xAC) // Unused Flag
+#define FLAG_VISITED_SLATEPORT_MARKET                   (SYSTEM_FLAGS + 0xAC) 
 #define FLAG_UNUSED_0x90D                           (SYSTEM_FLAGS + 0xAD) // Unused Flag
 #define FLAG_UNUSED_0x90E                           (SYSTEM_FLAGS + 0xAE) // Unused Flag
 #define FLAG_UNUSED_0x90F                           (SYSTEM_FLAGS + 0xAF) // Unused Flag

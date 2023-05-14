@@ -463,7 +463,14 @@ gSpecials::
 	def_special BattlePyramidChooseMonHeldItems
 	def_special SetBattleTowerLinkPlayerGfx
 	def_special ShowNatureGirlMessage
-	def_special maxAttackIV
+	def_special recalculateStats
+	def_special trymaxHpIV
+	def_special trymaxAttackIV
+	def_special trymaxDefenseIV
+	def_special trymaxSpAtkIV
+	def_special trymaxSpDefIV
+	def_special trymaxSpeedIV
+	def_special trymaxAllIVs
 	def_special ShowBattlePointsWindow
 	def_special UpdateBattlePointsWindow
 	def_special CloseBattlePointsWindow

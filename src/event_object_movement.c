@@ -495,6 +495,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_GIOVANNI                0x112E
 #define OBJ_EVENT_PAL_TAG_BLUE                    0x112F
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1130
+#define OBJ_EVENT_PAL_TAG_AZELF                   0x1131
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -555,6 +556,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Blaine,                OBJ_EVENT_PAL_TAG_BLAINE},
     {gObjectEventPal_Giovanni,              OBJ_EVENT_PAL_TAG_GIOVANNI},
     {gObjectEventPal_Blue,                  OBJ_EVENT_PAL_TAG_BLUE},
+    {gObjectEventPal_Azelf,                 OBJ_EVENT_PAL_TAG_AZELF},
     {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_DYNAMIC},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
@@ -1986,14 +1988,14 @@ void RemoveFollowingPokemon(void) { // Remove follower object. Idempotent.
 }
 
 static bool8 IsFollowerVisible(void) { // Determine whether follower *should* be visible
-  return
-  !(TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_MACH_BIKE)
+  return FALSE;
+ /*  !(TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_MACH_BIKE)
   || MetatileBehavior_IsSurfableWaterOrUnderwater(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior)
   || MetatileBehavior_IsSurfableWaterOrUnderwater(gObjectEvents[gPlayerAvatar.objectEventId].previousMetatileBehavior)
   || MetatileBehavior_IsForcedMovementTile(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior)
   || MetatileBehavior_IsForcedMovementTile(gObjectEvents[gPlayerAvatar.objectEventId].previousMetatileBehavior)
   || gWeatherPtr->currWeather == WEATHER_UNDERWATER
-  || gWeatherPtr->currWeather == WEATHER_UNDERWATER_BUBBLES);
+  || gWeatherPtr->currWeather == WEATHER_UNDERWATER_BUBBLES); */
 }
 
 static bool8 SpeciesHasType(u16 species, u8 type) {

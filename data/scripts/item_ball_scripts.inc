@@ -834,6 +834,10 @@ FortreeCity_EventScript_ItemTM86:: @ 82912F0
 	finditem ITEM_TM86
 	end
 
+Slateport_Market_EventScript_ItemWaterMemory::
+	finditem ITEM_WATER_MEMORY
+	end
+
 MeteorFalls_B1F_2R_EventScript_ItemSalamencite:: @ 82911DF
 	finditem ITEM_SALAMENCITE
 	end

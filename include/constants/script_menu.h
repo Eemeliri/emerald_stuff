@@ -145,6 +145,9 @@
 #define PWT_SELECTION_EXIT                 8
 #define PWT_SELECTION_COUNT                9
 
+#define HYPERTRAINING_HP           0
+
+
 // Std String Ids
 #define STDSTRING_COOL             0
 #define STDSTRING_BEAUTY           1

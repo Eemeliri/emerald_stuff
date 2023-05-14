@@ -16,7 +16,7 @@
       "name": "SlateportCity_Layout",
       "width": 40,
       "height": 60,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/SlateportCity/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity/map.bin"
@@ -96,7 +96,7 @@
       "name": "LittlerootTown_Layout",
       "width": 20,
       "height": 20,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/LittlerootTown/border.bin",
       "blockdata_filepath": "data/layouts/LittlerootTown/map.bin"
@@ -106,7 +106,7 @@
       "name": "OldaleTown_Layout",
       "width": 20,
       "height": 20,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/OldaleTown/border.bin",
       "blockdata_filepath": "data/layouts/OldaleTown/map.bin"
@@ -166,7 +166,7 @@
       "name": "Route101_Layout",
       "width": 20,
       "height": 20,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route101/border.bin",
       "blockdata_filepath": "data/layouts/Route101/map.bin"
@@ -176,7 +176,7 @@
       "name": "Route102_Layout",
       "width": 50,
       "height": 20,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route102/border.bin",
       "blockdata_filepath": "data/layouts/Route102/map.bin"
@@ -186,7 +186,7 @@
       "name": "Route103_Layout",
       "width": 80,
       "height": 22,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route103/border.bin",
       "blockdata_filepath": "data/layouts/Route103/map.bin"
@@ -246,7 +246,7 @@
       "name": "Route109_Layout",
       "width": 40,
       "height": 63,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/Route109/border.bin",
       "blockdata_filepath": "data/layouts/Route109/map.bin"
@@ -1636,7 +1636,7 @@
       "name": "ShoalCave_LowTideEntranceRoom_Layout",
       "width": 35,
       "height": 35,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/map.bin"
@@ -4596,7 +4596,7 @@
       "name": "OneIsland_Layout",
       "width": 70,
       "height": 100,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/OneIsland/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland/map.bin"
@@ -4606,7 +4606,7 @@
       "name": "TestMap_Layout",
       "width": 55,
       "height": 55,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Snow",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
@@ -4626,7 +4626,7 @@
       "name": "SlateportMarket_Layout",
       "width": 40,
       "height": 40,
-      "primary_tileset": "gTileset_Saturated_Tileset",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/SlateportMarket/border.bin",
       "blockdata_filepath": "data/layouts/SlateportMarket/map.bin"
@@ -4640,6 +4640,16 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/MarketHarbor/border.bin",
       "blockdata_filepath": "data/layouts/MarketHarbor/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_MARKET_NAMELESS_CAVERN",
+      "name": "Slateport_Market_Nameless_Cavern_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/border.bin",
+      "blockdata_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/map.bin"
     }
   ]
 }

@@ -1939,6 +1939,13 @@ const u8 gText_WorldLeaders[] = _("World Leaders");
 const u8 gText_Champions[] = _("Champions");
 const u8 gText_Special[] = _("Special");
 
+const u8 gText_hpIV[] = _("HP");
+const u8 gText_attackIV[] = _("Attack");
+const u8 gText_defenseIV[] = _("Defense");
+const u8 gText_spatkIV[] = _("Sp. Atk");
+const u8 gText_spdefIV[] = _("Sp. Def");
+const u8 gText_speedIV[] = _("Speed");
+
 //Global Trade Station
 const u8 gText_SearchPokemon[] = _("Search Pokémon");
 const u8 gText_AnyLevel[] = _("Any");

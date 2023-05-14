@@ -9,16 +9,389 @@ script HyperTrainer_Lady{
         msgbox(format ("Hello there young one. Are you interested in strenghtening your Pokemon? I may not look like it, but I was quite a drill sergeant in my youth! If you find me some silvery bottle caps, I can unlock your Pokemon's true potential."))
         setvar(VAR_TEMP_2, 1)
     }
-    msgbox(format("Are you interested in my Hyper Training services?"), MSGBOX_YESNO)
-    if (var(VAR_RESULT == 1)) {
-        msgbox(format ("Alright, Please choose a Pokemon to train."))
-        special(ChoosePartyMon)
-        waitstate
-        copyvar(VAR_RESULT, VAR_0x8004)
-        special(maxAttackIV)
-        msgbox(format("It's done. Your Pokémon looks much stronger now."))
+    checkitem(ITEM_BOTTLE_CAP)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(format("Come back when you have found some bottle caps."))
+        releaseall
+        end
     }
+    msgbox(format("Which stat would you like to train?"))
+    setvar(VAR_0x8004, SCROLL_MULTI_HYPER_TRAINING)
+    special(ShowScrollableMultichoice)
+    waitstate
+    switch(var(VAR_RESULT)) {
+        case 0: // HP
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxHpIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's HP is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 1: // Attack
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxAttackIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Attack is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 2: // Defense
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxDefenseIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Defense is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 3: // SPATK
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxSpAtkIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Sp. Atk is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 4: //SP DEF
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxSpDefIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Sp. Def is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        case 5: // SPEED
+            msgbox(format ("Alright, Please choose a Pokemon to train."))
+            special(ChoosePartyMon)
+            waitstate
+            if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+                msgbox(format("Having trouble deciding? Take your time."))
+                waitmessage
+                releaseall
+                end
+            }
+            copyvar(VAR_RESULT, VAR_0x8004)
+            specialvar(VAR_0x8008, trymaxSpeedIV)
+            if (var(VAR_0x8008) == FALSE) {
+                msgbox(format("That Pokémon's Speed is already at its peak!"))
+                waitmessage
+                releaseall
+                end
+            }
+            special(recalculateStats)
+            playfanfare(MUS_LEVEL_UP)
+            waitfanfare
+            removeitem(ITEM_BOTTLE_CAP, 1)
+            msgbox(format("It's done. Your Pokémon looks much stronger now."))
+            waitmessage
+            releaseall
+            end
+        default:
+            msgbox(format ("Changed your mind? Fine then."))
+            waitmessage
+            releaseall
+            end
+    }
+    
+}
+
+script Oldman_Mint_Mart{
+    lock
+    faceplayer
+    msgbox(format("Hello! Are you interested in fresh mints I've harvested today?"))
+    msgbox(format("This is what I have gathered for today."))
+    special(RtcGetDayOfWeek)
+    switch(var(VAR_RESULT)) {
+        case 0: // Sunday
+            pokemart(MintShopSunday)
+        case 1: // Monday
+            pokemart(MintShopMonday)
+        case 2: // Tuesday
+            pokemart(MintShopTuesday)
+        case 3: // Wednesday 
+            pokemart(MintShopWednesday)
+        case 4: // Thursday
+            pokemart(MintShopThursday)
+        case 5: // Friday
+            pokemart(MintShopFriday)
+        case 6: // Saturday
+            pokemart(MintShopSaturday)
+        default:
+            msgbox(format("It seems you are lost in time. I think I have something for you regardless."))
+            pokemart(MintShopSunday)
+    }
+    msgbox("Come again soon.")
+    waitmessage
+    release
+    end
+}
+
+script miscItemMartNPC {
+    lock
+    faceplayer
+    msgbox(format("Hey you! Take a loot at my wares!"))
+    pokemart(miscItemMart)
+    msgbox(format("Come back to buy more soon!"))
+    waitmessage
+    release
+    end
+}
+
+script berryMartNPC {
+    lock
+    faceplayer
+    msgbox(format("Greetings. May I interest you with these rare berries?"))
+    pokemart(miscBerryMart)
+    msgbox(format("I hope to see you again!"))
+    waitmessage
+    release
+    end
+}
+
+script stressedConsumerNPC {
+    lock
+    faceplayer
+    msgbox(format("Ever since this harbor market was built, many strong trainers have started visiting the city."))
+    waitmessage
+    release
+    end
+}
+
+script sailorShopperNPC {
+    lock
+    faceplayer
+    msgbox(format("Stocking up supplies for long trips is a must for a sailor. Good thing Slateport offers it all!"))
+    waitmessage
+    release
+    end
+}
+
+script sailorWatcherNPC {
+    lock
+    faceplayer
+    msgbox(format("Ever seen a Gyarados leap over the bow at sunrise? There's no sight more majestic... or terrifying, if you're not prepared!"))
+    waitmessage
+    release
+    end
+}
+
+script watcherOldMan {
+    lock
+    msgbox(format("This place used to be nothing more than a few houses in my youth. Time truly travels fast when you're with Pokémon. I only wish I had explored the world more."))
+    waitmessage
+    release
+    end
+}
+
+script azumarillPartner {
+    lock
+    faceplayer
+    playmoncry(SPECIES_AZUMARILL, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
+}
+
+script hyperTrainingSign {
+    msgbox(format("Former drill sergeant offering hyper training services."), MSGBOX_SIGN)
+    end
+}
+
+script miscItemMartSign {
+    msgbox(format("Market goods for affordable prices! Buy!!"), MSGBOX_SIGN)
+    end
+}
+
+script miscBerryMartSign {
+    msgbox(format("Rare berries from distant lands."), MSGBOX_SIGN)
+    end
+}
+
+script mysticTrader {
+    lock
+    faceplayer
+    if (flag(FLAG_ITEM_ALAKAZITE) && flag(FLAG_IS_CHAMPION)) {
+        msgbox(format("I knew you were destined for greatness, champion of Hoenn."))
+        release
+        end
+    } elif (flag(FLAG_ITEM_ALAKAZITE)) {
+        msgbox(format("I look forward to seeing your progress."))
+        release
+        end
+    }
+    msgbox(format("You! Yes you, I sense great potential within you. I can aid your growth towards greatness if you bring me a Psychic Gem."))
+    checkitem(ITEM_PSYCHIC_GEM)
+    if (var(VAR_RESULT) == FALSE) {
+        releaseall
+        end
+    }
+    msgbox(format("Yes! That is truly a beatiful specimen of a Psychic Gem! As promised I will grant you this stone to foster your growth towards greatness."))
+    giveitem(ITEM_ALAKAZITE)
+    removeitem(ITEM_PSYCHIC_GEM, 1)
+    setflag(FLAG_ITEM_ALAKAZITE)
     waitmessage
     releaseall
     end
+}
+
+script mysticSign {
+    lock
+    msgbox(format("Mystic Maya sees all.") MSGBOX_SIGN)
+    waitmessage
+    release
+    end
+}
+
+mart miscBerryMart {
+    ITEM_LIECHI_BERRY
+    ITEM_GANLON_BERRY
+    ITEM_SALAC_BERRY
+    ITEM_PETAYA_BERRY
+    ITEM_APICOT_BERRY
+    ITEM_LANSAT_BERRY
+    ITEM_STARF_BERRY
+    ITEM_JABOCA_BERRY
+    ITEM_ROWAP_BERRY
+}
+
+mart miscItemMart {
+    ITEM_LINKING_CORD
+    ITEM_ABSORB_BULB
+    ITEM_DESTINY_KNOT
+    ITEM_COVERT_CLOAK
+}
+
+mart MintShopSunday {
+    ITEM_ADAMANT_MINT
+    ITEM_BOLD_MINT
+    ITEM_HASTY_MINT
+    ITEM_MODEST_MINT
+    ITEM_JOLLY_MINT
+}
+
+mart MintShopMonday {
+    ITEM_BRAVE_MINT
+    ITEM_CALM_MINT
+    ITEM_CAREFUL_MINT
+}
+
+mart MintShopTuesday {
+    ITEM_GENTLE_MINT
+    ITEM_HASTY_MINT
+    ITEM_IMPISH_MINT
+}
+
+mart MintShopWednesday {
+    ITEM_JOLLY_MINT
+    ITEM_LAX_MINT
+    ITEM_LONELY_MINT
+}
+
+mart MintShopThursday {
+    ITEM_MILD_MINT
+    ITEM_MODEST_MINT
+    ITEM_NAIVE_MINT
+}
+
+mart MintShopFriday {
+    ITEM_NAUGHTY_MINT
+    ITEM_QUIET_MINT
+    ITEM_RASH_MINT
+}
+
+mart MintShopSaturday {
+    ITEM_RELAXED_MINT
+    ITEM_SASSY_MINT
+    ITEM_SERIOUS_MINT
+    ITEM_TIMID_MINT
 }
