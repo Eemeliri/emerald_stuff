@@ -1,2 +1,2 @@
 - Fix grass palette in dexnav mode and maybe when walking
-- Add dive route under slateport market
+- Add daily fossils to underwater in slateport market
