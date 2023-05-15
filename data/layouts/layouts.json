@@ -4606,7 +4606,7 @@
       "name": "TestMap_Layout",
       "width": 55,
       "height": 55,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_general_firered",
       "secondary_tileset": "gTileset_Snow",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
@@ -4660,6 +4660,16 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/SlateportMarket_Underwater/border.bin",
       "blockdata_filepath": "data/layouts/SlateportMarket_Underwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_LAKE_VALOR_1",
+      "name": "LakeValor_1_Layout",
+      "width": 70,
+      "height": 55,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/LakeValor_1/border.bin",
+      "blockdata_filepath": "data/layouts/LakeValor_1/map.bin"
     }
   ]
 }

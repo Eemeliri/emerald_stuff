@@ -33,8 +33,8 @@
       "x": 14,
       "y": 23,
       "elevation": 0,
-      "dest_map": "MAP_SLATEPORT_MARKET",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_LAKE_VALOR_1",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
