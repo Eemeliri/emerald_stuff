@@ -1,0 +1,74 @@
+mapscripts SlateportMarket_Underwater_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_DAILY_FOSSIL)) {
+            goto(hideFossil)
+        }
+
+    }
+}
+
+script hideFossil {
+    removeobject(1)
+    removeobject(2)
+}
+script lootFossilLeft {
+    lockall
+    special(RtcGetDayOfWeek)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            giveitem(ITEM_JAW_FOSSIL)
+        case 1:
+            giveitem(ITEM_CLAW_FOSSIL)
+        case 2:
+            giveitem(ITEM_DOME_FOSSIL)
+        case 3:
+            giveitem(ITEM_ROOT_FOSSIL)
+        case 4:
+            giveitem(ITEM_SAIL_FOSSIL)
+        case 5:
+            giveitem(ITEM_SKULL_FOSSIL)
+        case 6:
+            giveitem(ITEM_PLUME_FOSSIL)
+    }
+    setflag(FLAG_DAILY_FOSSIL)
+    removeobject(1)
+    if (var(VAR_TEMP_1) == 0) {
+        msgbox(format("The seafloor sand seems to shift rapidly, perhaps another day there will be more fossils to collect?"))
+        waitmessage
+        setvar(VAR_TEMP_1, 1)
+    }
+    releaseall
+    end
+}
+
+script lootFossilRight {
+    lockall
+    special(RtcGetDayOfWeek)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            giveitem(ITEM_ARMOR_FOSSIL)
+        case 1:
+            giveitem(ITEM_COVER_FOSSIL)
+        case 2:
+            giveitem(ITEM_HELIX_FOSSIL)
+        case 3:
+            giveitem(ITEM_JAW_FOSSIL)
+        case 4:
+            giveitem(ITEM_CLAW_FOSSIL)
+        case 5:
+            giveitem(ITEM_DOME_FOSSIL)
+        case 6:
+            giveitem(ITEM_ROOT_FOSSIL)
+
+    }
+    removeobject(2)
+    setflag(FLAG_DAILY_FOSSIL)
+    if (var(VAR_TEMP_1) == 0) {
+        msgbox(format("The seafloor sand seems to shift rapidly, perhaps another day there will be more fossils to collect?"))
+        waitmessage
+        setvar(VAR_TEMP_1, 1)
+    }
+    releaseall
+    end
+}
+

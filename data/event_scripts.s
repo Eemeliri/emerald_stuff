@@ -1103,3 +1103,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/MarketHarbor/scripts.inc"
 
 	.include "data/maps/Slateport_Market_Nameless_Cavern/scripts.inc"
+
+	.include "data/maps/SlateportMarket_Underwater/scripts.inc"

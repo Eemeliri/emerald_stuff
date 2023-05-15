@@ -4650,6 +4650,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/border.bin",
       "blockdata_filepath": "data/layouts/Slateport_Market_Nameless_Cavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_MARKET_UNDERWATER",
+      "name": "SlateportMarket_Underwater_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/SlateportMarket_Underwater/border.bin",
+      "blockdata_filepath": "data/layouts/SlateportMarket_Underwater/map.bin"
     }
   ]
 }

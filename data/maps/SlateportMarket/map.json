@@ -17,6 +17,11 @@
       "map": "MAP_SLATEPORT_CITY",
       "offset": -18,
       "direction": "right"
+    },
+    {
+      "map": "MAP_SLATEPORT_MARKET_UNDERWATER",
+      "offset": 0,
+      "direction": "dive"
     }
   ],
   "object_events": [

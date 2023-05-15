@@ -838,6 +838,10 @@ Slateport_Market_EventScript_ItemWaterMemory::
 	finditem ITEM_WATER_MEMORY
 	end
 
+Slateport_Underwater_EventScript_ItemWateriumZ::
+	finditem ITEM_WATERIUM_Z
+	end
+
 MeteorFalls_B1F_2R_EventScript_ItemSalamencite:: @ 82911DF
 	finditem ITEM_SALAMENCITE
 	end

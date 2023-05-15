@@ -183,7 +183,8 @@
     "SlateportCity_PokemonCenter_2F",
     "SlateportCity_Mart",
     "SlateportMarket",
-    "MarketHarbor"
+    "MarketHarbor",
+    "SlateportMarket_Underwater"
   ],
   "gMapGroup_IndoorMauville": [
     "MauvilleCity_Gym",
