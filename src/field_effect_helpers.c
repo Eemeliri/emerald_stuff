@@ -37,7 +37,6 @@ static u32 ShowDisguiseFieldEffect(u8, u8);
 static void LoadFieldEffectPalette_(u8 fieldEffect, bool8 updateGammaType);
 
 void LoadSpecialReflectionPalette(struct Sprite *sprite);
-u32 FldEff_Shadow(void);
 extern u16 gReflectionPaletteBuffer[];
 
 // Used by several field effects to determine which of a group it is
@@ -47,13 +46,6 @@ extern u16 gReflectionPaletteBuffer[];
 #define sReflectionObjEventLocalId  data[1]
 #define sReflectionVerticalOffset   data[2]
 #define sIsStillReflection          data[7]
-
-void SetUpShadow(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
-  gFieldEffectArguments[0] = objectEvent->localId;
-  gFieldEffectArguments[1] = gSaveBlock1Ptr->location.mapNum;
-  gFieldEffectArguments[2] = gSaveBlock1Ptr->location.mapGroup;
-  FldEff_Shadow();
-}
 
 void SetUpReflection(struct ObjectEvent *objectEvent, struct Sprite *sprite, bool8 stillReflection)
 {
@@ -276,7 +268,10 @@ u32 FldEff_Shadow(void)
         gSprites[spriteId].data[1] = gFieldEffectArguments[1];
         gSprites[spriteId].data[2] = gFieldEffectArguments[2];
         gSprites[spriteId].data[3] = (graphicsInfo->height >> 1) - gShadowVerticalOffsets[graphicsInfo->shadowSize];
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
     }
+    SetGpuReg(REG_OFFSET_DISPCNT, 0x1F40);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0x0A10);
     return 0;
 }
 
