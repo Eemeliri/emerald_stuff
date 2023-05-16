@@ -1,3 +1,4 @@
 - Fix grass palette in dexnav mode and maybe when walking
 - Add restoration for other fossils
 - lake valor memory event + rewrite beginning script to have rival go to the lakefront instead of hanging out in r104
+- fix being able to swap to EV/IV screen in all summary screens
