@@ -408,6 +408,7 @@
 #define MAP_METEOR_FALLS_STEVENS_CAVE                (107 | (24 << 8))
 #define MAP_SLATEPORT_MARKET_NAMELESS_CAVERN         (108 | (24 << 8))
 #define MAP_LAKE_VALOR_1                             (109 | (24 << 8))
+#define MAP_LAKE_VALOR2                              (110 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))

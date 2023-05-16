@@ -437,7 +437,8 @@
     "AlteringCave",
     "MeteorFalls_StevensCave",
     "Slateport_Market_Nameless_Cavern",
-    "LakeValor_1"
+    "LakeValor_1",
+    "LakeValor2"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

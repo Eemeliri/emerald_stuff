@@ -1107,3 +1107,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/SlateportMarket_Underwater/scripts.inc"
 
 	.include "data/maps/LakeValor_1/scripts.inc"
+
+	.include "data/maps/LakeValor2/scripts.inc"
