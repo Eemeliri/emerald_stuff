@@ -49,6 +49,7 @@ It uses [**RHH's pokeemerald-expansion**](https://github.com/rh-hideout/pokeemer
 * Eggs hatch at Lv 1
 * [**Pokecenters don't count eggs**](https://github.com/pret/pokeemerald/wiki/Pokecenters-Disregard-Eggs) (Credit: ghoulslash)
 * [**Keyboard swaps to lowercase after the first letter**](https://www.pokecommunity.com/showpost.php?p=10199896&postcount=139) (Credit: Jaizu)
+* Object alpha shadows (Credit: DoNotDisturb)
 * Use L and R to swap to Alolan form and back in the Pokedex
 * Use L and R to change time of day in the Pokedex area screen
 * Change Pokemon moves from the party menu

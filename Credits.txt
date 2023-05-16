@@ -13,6 +13,7 @@ DizzyEgg - BW Repel System
 Zeturic - XY-style Wrapping Summary Screen, 'Move Item' option in party menu
 Bassoonian - Pokemon date met in summary screen 
 Jaizu - Keyboard swaps to lowercase after the first letter, and for some firered tiles
+NotToDisturb - Object alpha shadows
 Hyo-oppa - amazing trainer sprites
 Duke - Move name instead of TM name in shops
 GriffinR - Disabled the union room check when entering Pokecenters
