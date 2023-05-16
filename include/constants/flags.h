@@ -1271,8 +1271,8 @@
 #define FLAG_ITEM_SAFARIZONE_SOUTHEAST_TM93                         0x4C6 // Unused Flag
 #define FLAG_ITEM_AQUAHIDEOUT_TM97                                  0x4C7 // Unused Flag
 #define FLAG_SPECIAL_PWT                                            0x4C8 // Unused Flag
-#define FLAG_HIDE_AZELF                                             0x4C9 // Unused Flag
-#define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
+#define FLAG_HIDE_AZELF                                             0x4C9 // Azelf event
+#define FLAG_EXP_SHARE                                              0x4CA // Exp Share
 #define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
 #define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
 #define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
