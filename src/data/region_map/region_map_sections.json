@@ -1863,6 +1863,22 @@
       "y": 10,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_LAKE_VALOR",
+      "name": "Lake of Valor",
+      "x": 4,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_CAVE_OF_VALOR",
+      "name": "Cave of Valor",
+      "x": 4,
+      "y": 7,
+      "width": 1,
+      "height": 1
     }
   ]
 }
