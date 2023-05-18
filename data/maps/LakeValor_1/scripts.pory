@@ -1,1 +1,24 @@
-mapscripts LakeValor_1_MapScripts {}
+mapscripts LakeValor_1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        goto(LakeOfValorOnTransition)
+    }
+}
+
+script LakeOfValorOnTransition {
+    if (flag(FLAG_LAKE_OF_VALOR)) {
+        setmaplayoutindex(LAYOUT_LAKE_VALOR2)
+        return
+    }
+}
+
+
+script anabelSwapflag {
+    msgbox(format("Toggle flag?"), MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            setflag(FLAG_LAKE_OF_VALOR) 
+        } else {
+            clearflag(FLAG_LAKE_OF_VALOR)
+        }
+    }
+
+

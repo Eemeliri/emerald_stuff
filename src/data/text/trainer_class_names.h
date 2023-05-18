@@ -1,6 +1,6 @@
-const u8 gTrainerClassNames[][13] = {
-    [TRAINER_CLASS_PKMN_TRAINER_1] = _("{PKMN} Trainer"),
-    [TRAINER_CLASS_PKMN_TRAINER_2] = _("{PKMN} Trainer"),
+const u8 gTrainerClassNames[][17] = {
+    [TRAINER_CLASS_GGRUNT_M] = _("Galactic Grunt"),
+    [TRAINER_CLASS_GGRUNT_F] = _("Galactic Grunt"),
     [TRAINER_CLASS_HIKER] = _("Hiker"),
     [TRAINER_CLASS_TEAM_AQUA] = _("Team Aqua"),
     [TRAINER_CLASS_PKMN_BREEDER] = _("{PKMN} Breeder"),
@@ -65,4 +65,5 @@ const u8 gTrainerClassNames[][13] = {
     [TRAINER_CLASS_PIKE_QUEEN] = _("Pike Queen"),
     [TRAINER_CLASS_PYRAMID_KING] = _("Pyramid King"),
     [TRAINER_CLASS_RS_PROTAG] = _("{PKMN} Trainer"),
+    [TRAINER_CLASS_G_ADMIN] = _("Commander"),
 };

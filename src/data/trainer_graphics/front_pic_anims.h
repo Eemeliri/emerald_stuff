@@ -62,6 +62,18 @@ static const union AnimCmd *const sAnims_AromaLady[] ={
     sAnim_GeneralFrame0,
 };
 
+static const union AnimCmd *const sAnims_GGrunt_M[] ={
+    sAnim_GeneralFrame0,
+};
+
+static const union AnimCmd *const sAnims_GGrunt_F[] ={
+    sAnim_GeneralFrame0,
+};
+
+static const union AnimCmd *const sAnims_G_Admin_Saturn[] ={
+    sAnim_GeneralFrame0,
+};
+
 static const union AnimCmd *const sAnims_RuinManiac[] ={
     sAnim_GeneralFrame0,
 };
@@ -461,6 +473,9 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_FACTORY_HEAD_NOLAND] = sAnims_FactoryHeadNoland,
     [TRAINER_PIC_PIKE_QUEEN_LUCY] = sAnims_PikeQueenLucy,
     [TRAINER_PIC_PYRAMID_KING_BRANDON] = sAnims_PyramidKingBrandon,
+    [TRAINER_PIC_GGRUNT_F] = sAnims_GGrunt_F,
+    [TRAINER_PIC_GGRUNT_M] = sAnims_GGrunt_M,
+    [TRAINER_PIC_G_ADMIN_SATURN] = sAnims_G_Admin_Saturn,
     [TRAINER_PIC_RED] = sAnims_Red,
     [TRAINER_PIC_LEAF] = sAnims_Leaf,
     [TRAINER_PIC_RS_BRENDAN] = sAnims_RubySapphireBrendan,

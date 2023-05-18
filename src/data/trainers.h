@@ -2,7 +2,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_NONE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_HIKER,
         .trainerName = _(""),
@@ -10279,7 +10279,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_STEVEN_SOUTHERNISLAND] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_STEVEN,
         .trainerName = _("Steven"),
@@ -10528,6 +10528,54 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
         .party = ITEM_CUSTOM_MOVES(sParty_Steven5),
+    },
+
+    [TRAINER_GGRUNT_1] =
+    {
+        .trainerClass = TRAINER_CLASS_GGRUNT_M,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_M,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party =  NO_ITEM_DEFAULT_MOVES(sParty_GGrunt1),
+    },
+
+    [TRAINER_GGRUNT_2] =
+    {
+        .trainerClass = TRAINER_CLASS_GGRUNT_F,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_F,
+        .trainerName = _(""),
+        .items = {ITEM_FULL_HEAL},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party =  NO_ITEM_DEFAULT_MOVES(sParty_GGrunt2),
+    },
+
+    [TRAINER_GGRUNT_3] =
+    {
+        .trainerClass = TRAINER_CLASS_GGRUNT_M,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_M,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party =  NO_ITEM_DEFAULT_MOVES(sParty_GGrunt3),
+    },
+
+    [TRAINER_GSATURN_1] =
+    {
+        .trainerClass = TRAINER_CLASS_G_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_G_ADMIN_SATURN,
+        .trainerName = _("Saturn"),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party = ITEM_CUSTOM_MOVES(sParty_GSaturn1),
     },
 
     [TRAINER_FRONTIER_BROCK] =

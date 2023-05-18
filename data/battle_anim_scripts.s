@@ -24871,6 +24871,7 @@ General_MegaEvolution:
 	delay 50
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, RGB_WHITEALPHA
 	createvisualtask AnimTask_HorizontalShake, 5, 1, 5, 14
+	createvisualtask SoundTask_PlayCryWithEcho, 5, FALSE
 	waitforvisualfinish
 	createsprite gMegaSymbolSpriteTemplate ANIM_ATTACKER, 2
 	waitforvisualfinish
@@ -25017,6 +25018,7 @@ General_PrimalReversion_Alpha:
 	delay 50
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, RGB_WHITEALPHA
 	createvisualtask AnimTask_HorizontalShake, 5, 1, 5, 14
+	createvisualtask SoundTask_PlayCryWithEcho, 5, FALSE
 	waitforvisualfinish
 	createsprite gAlphaSymbolSpriteTemplate ANIM_ATTACKER, 2
 	waitforvisualfinish
@@ -25044,6 +25046,7 @@ General_PrimalReversion_Omega:
 	delay 50
 	createvisualtask AnimTask_BlendBattleAnimPalExclude, 5, 5, 2, 16, 0, RGB_WHITEALPHA
 	createvisualtask AnimTask_HorizontalShake, 5, 1, 5, 14
+	createvisualtask SoundTask_PlayCryWithEcho, 5, FALSE
 	waitforvisualfinish
 	createsprite gOmegaSymbolSpriteTemplate ANIM_ATTACKER, 2
 	waitforvisualfinish

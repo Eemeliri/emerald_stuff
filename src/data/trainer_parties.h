@@ -12407,6 +12407,99 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Alvaro[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt1[] = {
+    {
+    .iv = 30,
+    .lvl = 32,
+    .species = SPECIES_PURUGLY,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_GOLBAT,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_DRAPION,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt2[] = {
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_TOXICROAK,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_KADABRA,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_MIGHTYENA,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_LIEPARD,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt3[] = {
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_BANETTE,
+    },
+    {
+    .iv = 30,
+    .lvl = 34,
+    .species = SPECIES_WEEZING,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_KROOKODILE,
+    }
+};
+
+
+static const struct TrainerMonItemCustomMoves sParty_GSaturn1[] = {
+    {
+    .iv = 30,
+    .lvl = 36,
+    .species = SPECIES_DUSKNOIR,
+    },
+    {
+    .iv = 30,
+    .lvl = 36,
+    .species = SPECIES_WEEZING_GALARIAN,
+    },
+    {
+    .iv = 30,
+    .lvl = 37,
+    .species = SPECIES_CACTURNE,
+    },
+    {
+    .iv = 30,
+    .lvl = 38,
+    .species = SPECIES_HONCHKROW
+    },
+    {
+    .iv = 30,
+    .lvl = 39,
+    .species = SPECIES_TYRANTRUM
+    },
+    {
+    .iv = 30,
+    .lvl = 39,
+    .species = SPECIES_BLASTOISE
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

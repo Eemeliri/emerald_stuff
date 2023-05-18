@@ -409,6 +409,15 @@ const u32 gTrainerPalette_Alder[] = INCBIN_U32("graphics/trainers/palettes/alder
 const u32 gTrainerFrontPic_Iris[] = INCBIN_U32("graphics/trainers/front_pics/iris_front_pic.4bpp.lz");
 const u32 gTrainerPalette_Iris[] = INCBIN_U32("graphics/trainers/palettes/iris.gbapal.lz");
 
+const u32 gTrainerFrontPic_GalacticGruntM[] = INCBIN_U32("graphics/trainers/front_pics/galactic_grunt_m_front_pic.4bpp.lz");
+const u32 gTrainerPalette_GGrunt_M[] = INCBIN_U32("graphics/trainers/palettes/galactic_grunt_m.gbapal.lz");
+
+const u32 gTrainerFrontPic_GalacticGruntF[] = INCBIN_U32("graphics/trainers/front_pics/galactic_grunt_f_front_pic.4bpp.lz");
+const u32 gTrainerPalette_GGrunt_F[] = INCBIN_U32("graphics/trainers/palettes/galactic_grunt_f.gbapal.lz");
+
+const u32 gTrainerFrontPic_GalacticAdminSaturn[] = INCBIN_U32("graphics/trainers/front_pics/galactic_admin_saturn_front_pic.4bpp.lz");
+const u32 gTrainerPalette_G_Admin_Saturn[] = INCBIN_U32("graphics/trainers/palettes/galactic_admin_saturn.gbapal.lz");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");

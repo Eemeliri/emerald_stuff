@@ -879,8 +879,12 @@
 #define TRAINER_GLACIA_5                    874
 #define TRAINER_DRAKE_5                     875
 #define TRAINER_STEVEN_5                    876
+#define TRAINER_GGRUNT_1                    877
+#define TRAINER_GGRUNT_2                    878
+#define TRAINER_GGRUNT_3                    879
+#define TRAINER_GSATURN_1                   880
 
-#define REGULAR_TRAINER_END                 TRAINER_STEVEN_5
+#define REGULAR_TRAINER_END                 TRAINER_GSATURN_1
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -967,8 +971,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      948
-#define MAX_TRAINERS_COUNT                  952
+#define TRAINERS_COUNT                      953
+#define MAX_TRAINERS_COUNT                  956
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 

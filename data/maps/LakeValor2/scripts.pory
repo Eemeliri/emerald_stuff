@@ -1,1 +1,42 @@
 mapscripts LakeValor2_MapScripts {}
+
+
+script magikarps {
+    lockall
+    playmoncry(SPECIES_MAGIKARP, CRY_MODE_FAINT)
+    releaseall
+    end
+}
+
+script anabelSwapflag2 {
+    lockall
+    msgbox(format("flag toggling off."))
+    clearflag(FLAG_LAKE_OF_VALOR)
+    warp(MAP_ROUTE103, 8, 2)
+    releaseall
+    end
+}
+
+script gGrunt_1 {
+    trainerbattle_single(TRAINER_GGRUNT_1, "todo1", "todo2")
+    msgbox("I'll beat you next time", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script gGrunt_2 {
+    trainerbattle_single(TRAINER_GGRUNT_2, "todo1", "todo2")
+    msgbox("I'll beat you next time", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script gGrunt_3 {
+    trainerbattle_single(TRAINER_GGRUNT_3, "todo1", "todo2")
+    msgbox("I'll beat you next time", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script gCommanderSaturn {
+    trainerbattle_single(TRAINER_GSATURN_1, "todo1", "todo2")
+    msgbox("I'll beat you next time", MSGBOX_AUTOCLOSE)
+    end
+}

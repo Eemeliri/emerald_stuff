@@ -7780,6 +7780,11 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PIKE_QUEEN:
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_HG_VS_FRONTIER_BRAIN;
+        case TRAINER_CLASS_GGRUNT_F:
+        case TRAINER_CLASS_GGRUNT_M:
+            return MUS_DP_VS_GALACTIC;
+        case TRAINER_CLASS_G_ADMIN:
+            return MUS_DP_VS_GALACTIC_COMMANDER;
         default:
             return MUS_DP_VS_TRAINER;
         }
