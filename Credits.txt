@@ -24,6 +24,7 @@ Sbird - TM serialisation, TM learnset method
 Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
 Dreadwing93 - Arbok variant sprites
+Hbdfreitas - BW style hp bars
 
 Kymotonian - Gen V follower sprites
 cSc-A7X - Gen V follower sprites
