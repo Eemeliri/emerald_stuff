@@ -566,6 +566,10 @@ SeafloorCavern_Room9_EventScript_ItemTM26::
 	finditem ITEM_TM26
 	end
 
+LakeValor_EventScript_ItemPidgeotite::
+	finditem ITEM_PIDGEOTITE
+	end
+
 Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail::
 	finditem ITEM_ORANGE_MAIL
 	end
