@@ -4680,6 +4680,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/LakeValor2/border.bin",
       "blockdata_filepath": "data/layouts/LakeValor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_LAKE_VALOR2_CAVE",
+      "name": "LakeValor2_Cave_Layout",
+      "width": 44,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/LakeValor2_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/LakeValor2_Cave/map.bin"
     }
   ]
 }

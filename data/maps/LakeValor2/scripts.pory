@@ -9,13 +9,30 @@ script magikarps {
     end
 }
 
-script anabelSwapflag2 {
+script firstTimeVista {
     lockall
-    msgbox(format("flag toggling off."))
-    clearflag(FLAG_LAKE_OF_VALOR)
-    warp(MAP_ROUTE103, 8, 2)
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, cameraVista)
+    waitmovement(0)
+    delay(120)
+    applymovement(OBJ_EVENT_ID_CAMERA, cameraVista2)
+    waitmovement(0)
+    special(RemoveCameraObject)
+    setvar(VAR_LAKEOFVALOR2_VISTA, 1)
     releaseall
     end
+}
+
+movement cameraVista {
+    emote_exclamation_mark
+    delay_16
+    walk_fast_up *27
+	step_end
+}
+
+movement cameraVista2 {
+    walk_fast_down *27
+	step_end
 }
 
 script gGrunt_1 {
@@ -32,7 +49,7 @@ script gGrunt_2 {
 
 script gGrunt_3 {
     trainerbattle_single(TRAINER_GGRUNT_3, format("I'll punish you in place of our boss for defying Team Galactic!"), "Grr... I took the punishment.")
-    msgbox("We're Team Galactic! The no. 1 syndicate in the world! To defy is to defy the universe!", MSGBOX_AUTOCLOSE)
+    msgbox(format("We're Team Galactic! The no. 1 syndicate in the world! To defy is to defy the universe!"), MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -44,8 +61,10 @@ script grunt_extra1 {
     end
 }
 
-script gCommanderSaturn {
-    trainerbattle_single(TRAINER_GSATURN_1, "todo1", "todo2")
-    msgbox("I'll beat you next time", MSGBOX_AUTOCLOSE)
+script grunt_extra2 {
+    lockall
+    faceplayer
+    msgbox(format("What do you want? You're investigating the explosion? Bah, it doesn't matter who you are. It's too late to make any difference. Things are going to get really interesting now."))
+    releaseall
     end
 }

@@ -1274,7 +1274,7 @@
 #define FLAG_HIDE_AZELF                                             0x4C9 // Azelf event
 #define FLAG_EXP_SHARE                                              0x4CA // Exp Share
 #define FLAG_LAKE_OF_VALOR                                          0x4CB // Lake of Valor
-#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
+#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused
 #define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
 #define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
 #define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag

@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "grunt_extra1",
       "flag": "0"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "grunt_extra2",
       "flag": "0"
     },
     {
@@ -223,29 +223,42 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
-      "x": 46,
-      "y": 32,
+      "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
+      "x": 31,
+      "y": 24,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "anabelSwapflag2",
+      "script": "magikarps",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GALACTIC_COMMANDER_SATURN",
-      "x": 45,
-      "y": 35,
+      "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
+      "x": 30,
+      "y": 23,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "gCommanderSaturn",
+      "script": "magikarps",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
+      "x": 29,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "magikarps",
       "flag": "0"
     }
   ],
@@ -268,12 +281,29 @@
       "x": 46,
       "y": 30,
       "elevation": 0,
-      "dest_map": "MAP_LAKE_VALOR2",
+      "dest_map": "MAP_LAKE_VALOR2_CAVE",
       "dest_warp_id": "0"
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 52,
+      "y": 50,
+      "elevation": 0,
+      "var": "VAR_LAKEOFVALOR2_VISTA",
+      "var_value": "0",
+      "script": "firstTimeVista"
+    },
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 50,
+      "elevation": 0,
+      "var": "VAR_LAKEOFVALOR2_VISTA",
+      "var_value": "0",
+      "script": "firstTimeVista"
+    }
   ],
   "bg_events": [
 

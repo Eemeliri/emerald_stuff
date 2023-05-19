@@ -10,14 +10,81 @@ magikarps::
 	end
 
 
-anabelSwapflag2::
+firstTimeVista::
 	lockall
-	msgbox anabelSwapflag2_Text_0
-	clearflag FLAG_LAKE_OF_VALOR
-	warp MAP_ROUTE103, 8, 2
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, cameraVista
+	waitmovement 0
+	delay 120
+	applymovement OBJ_EVENT_ID_CAMERA, cameraVista2
+	waitmovement 0
+	special RemoveCameraObject
+	setvar VAR_LAKEOFVALOR2_VISTA, 1
 	releaseall
 	end
 
+
+cameraVista:
+	emote_exclamation_mark
+	delay_16
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+cameraVista2:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
 
 gGrunt_1::
 	trainerbattle_single TRAINER_GGRUNT_1, gGrunt_1_Text_0, gGrunt_1_Text_1
@@ -45,17 +112,16 @@ grunt_extra1::
 	end
 
 
-gCommanderSaturn::
-	trainerbattle_single TRAINER_GSATURN_1, gCommanderSaturn_Text_0, gCommanderSaturn_Text_1
-	msgbox gCommanderSaturn_Text_2, MSGBOX_AUTOCLOSE
+grunt_extra2::
+	lockall
+	faceplayer
+	msgbox grunt_extra2_Text_0
+	releaseall
 	end
 
 
 magikarps_Text_0:
 	.string "A Magikarp is weakly flopping about...$"
-
-anabelSwapflag2_Text_0:
-	.string "flag toggling off.$"
 
 gGrunt_1_Text_0:
 	.string "Would you like to join the Magikarp and\n"
@@ -93,17 +159,17 @@ gGrunt_3_Text_1:
 	.string "Grr... I took the punishment.$"
 
 gGrunt_3_Text_2:
-	.string "We're Team Galactic! The no. 1 syndicate in the world! To defy is to defy the universe!$"
+	.string "We're Team Galactic! The no. 1 syndicate\n"
+	.string "in the world! To defy is to defy the\l"
+	.string "universe!$"
 
 grunt_extra1_Text_0:
 	.string "Even Team Galactic has no use for\n"
 	.string "Magikarp! Worthless, all of them!$"
 
-gCommanderSaturn_Text_0:
-	.string "todo1$"
-
-gCommanderSaturn_Text_1:
-	.string "todo2$"
-
-gCommanderSaturn_Text_2:
-	.string "I'll beat you next time$"
+grunt_extra2_Text_0:
+	.string "What do you want? You're investigating\n"
+	.string "the explosion? Bah, it doesn't matter\l"
+	.string "who you are. It's too late to make any\l"
+	.string "difference. Things are going to get\l"
+	.string "really interesting now.$"
