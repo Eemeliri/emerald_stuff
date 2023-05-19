@@ -1071,22 +1071,6 @@ static void Task_DexNavSearch(u8 taskId)
         return;
     }
     
-    if (sDexNavSearchDataPtr->proximity <= CREEPING_PROXIMITY && !gPlayerAvatar.creeping && task->tFrameCount > 60)
-    { //should be creeping but player walks normally
-        if (sDexNavSearchDataPtr->hiddenSearch && !task->tRevealed)
-            EndDexNavSearch(taskId);
-        else
-            EndDexNavSearchSetupScript(EventScript_MovedTooFast, taskId);
-        return;
-    }
-    
-    if (sDexNavSearchDataPtr->proximity <= SNEAKING_PROXIMITY && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_BIKE)) 
-    { // running/biking too close
-        //always do event script, even if player hasn't revealed a hidden mon. It's assumed they would be creeping towards it
-        EndDexNavSearchSetupScript(EventScript_MovedTooFast, taskId);
-        return;
-    }
-    
     if (ArePlayerFieldControlsLocked() == TRUE)
     { // check if script just executed
         //gSaveBlock1Ptr->dexNavChain = 0;  //issue with reusable repels

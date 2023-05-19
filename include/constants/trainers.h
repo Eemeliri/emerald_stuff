@@ -154,6 +154,9 @@
 #define TRAINER_PIC_CHAMPION_CYNTHIA      134
 #define TRAINER_PIC_CHAMPION_ALDER        135
 #define TRAINER_PIC_CHAMPION_IRIS         136
+#define TRAINER_PIC_GGRUNT_M              137
+#define TRAINER_PIC_GGRUNT_F              138
+#define TRAINER_PIC_G_ADMIN_SATURN        139
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -330,8 +333,8 @@
 
 #define RS_FACILITY_CLASSES_COUNT               0x4D
 
-#define TRAINER_CLASS_PKMN_TRAINER_1 0x0  // Unused
-#define TRAINER_CLASS_PKMN_TRAINER_2 0x1  // Unused
+#define TRAINER_CLASS_GGRUNT_M       0x0  // Galactic Grunt M
+#define TRAINER_CLASS_GGRUNT_F       0x1  // Galactic Grunt F
 #define TRAINER_CLASS_HIKER          0x2
 #define TRAINER_CLASS_TEAM_AQUA      0x3
 #define TRAINER_CLASS_PKMN_BREEDER   0x4
@@ -397,6 +400,7 @@
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
 #define TRAINER_CLASS_COUNT          0x42
+#define TRAINER_CLASS_G_ADMIN        0x43
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
@@ -412,6 +416,7 @@
 #define TRAINER_ENCOUNTER_MUSIC_HIKER       11 // used for other trainer classes too
 #define TRAINER_ENCOUNTER_MUSIC_INTERVIEWER 12
 #define TRAINER_ENCOUNTER_MUSIC_RICH        13 // Rich Boys and Gentlemen
+#define TRAINER_ENCOUNTER_GGRUNT            14
 
 #define F_TRAINER_FEMALE (1 << 7)
 

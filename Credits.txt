@@ -13,6 +13,7 @@ DizzyEgg - BW Repel System
 Zeturic - XY-style Wrapping Summary Screen, 'Move Item' option in party menu
 Bassoonian - Pokemon date met in summary screen 
 Jaizu - Keyboard swaps to lowercase after the first letter, and for some firered tiles
+Aveontrainer - Gen 3 style overworld object sprites
 Devolov - Exp all with one message
 NotToDisturb - Object alpha shadows
 Hyo-oppa - amazing trainer sprites
@@ -23,6 +24,7 @@ Sbird - TM serialisation, TM learnset method
 Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
 Dreadwing93 - Arbok variant sprites
+Hbdfreitas - BW style hp bars
 
 Kymotonian - Gen V follower sprites
 cSc-A7X - Gen V follower sprites

@@ -12407,6 +12407,111 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Alvaro[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt1[] = {
+    {
+    .iv = 30,
+    .lvl = 32,
+    .species = SPECIES_PURUGLY,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_GOLBAT,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_DRAPION,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt2[] = {
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_TOXICROAK,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_KADABRA,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_MIGHTYENA,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_LIEPARD,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GGrunt3[] = {
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_BANETTE,
+    },
+    {
+    .iv = 30,
+    .lvl = 34,
+    .species = SPECIES_WEEZING,
+    },
+    {
+    .iv = 30,
+    .lvl = 33,
+    .species = SPECIES_KROOKODILE,
+    }
+};
+
+
+static const struct TrainerMonItemCustomMoves sParty_GSaturn1[] = {
+    {
+    .iv = 30,
+    .lvl = 36,
+    .species = SPECIES_DUSKNOIR,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = {MOVE_SHADOW_PUNCH, MOVE_ICE_PUNCH, MOVE_NIGHT_SHADE, MOVE_FIRE_PUNCH},
+    },
+    {
+    .iv = 30,
+    .lvl = 36,
+    .species = SPECIES_WEEZING_GALARIAN,
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .moves = {MOVE_SLUDGE_WAVE, MOVE_PAIN_SPLIT, MOVE_STRANGE_STEAM, MOVE_WILL_O_WISP},
+    },
+    {
+    .iv = 30,
+    .lvl = 37,
+    .species = SPECIES_CACTURNE,
+    .heldItem = ITEM_ABSORB_BULB,
+    .moves = {MOVE_HAMMER_ARM, MOVE_GIGA_DRAIN, MOVE_DARK_PULSE, MOVE_MEGA_KICK},
+    },
+    {
+    .iv = 30,
+    .lvl = 38,
+    .species = SPECIES_HONCHKROW,
+    .heldItem = ITEM_LUM_BERRY,
+    .moves = {MOVE_SUCKER_PUNCH, MOVE_AERIAL_ACE, MOVE_TAUNT, MOVE_ATTRACT},
+    },
+    {
+    .iv = 30,
+    .lvl = 39,
+    .species = SPECIES_TYRANTRUM,
+    .heldItem = ITEM_SALAC_BERRY,
+    .moves = {MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_BULLDOZE, MOVE_HEADBUTT},
+    },
+    {
+    .iv = 30,
+    .lvl = 39,
+    .species = SPECIES_BLASTOISE,
+    .heldItem = ITEM_GANLON_BERRY,
+    .moves = {MOVE_SURF, MOVE_RAPID_SPIN, MOVE_AURA_SPHERE, MOVE_AURORA_BEAM},
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

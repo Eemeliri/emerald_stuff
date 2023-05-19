@@ -1,0 +1,32 @@
+const LOCALID_SATURN = 1
+
+mapscripts LakeValor2_Cave_MapScripts {}
+
+script gCommanderSaturn {
+    lockall
+    msgbox(format("The mission is proceeding without a hitch. The boss should be pleased. Everything is for everyone, and for the good of Team Galactic!"))
+    waitmessage
+    applymovement(LOCALID_SATURN, saturnMov1)
+    waitmovement(LOCALID_SATURN)
+    delay(60)
+    msgbox(format("Who are you, child?"))
+    msgbox(format("If you're here to meddle in affairs of Team Galactic, then you shall be crushed!"))
+    msgbox(format("Even the very thought of opposition will not be tolerated!"))
+    trainerbattle_no_intro(TRAINER_GSATURN_1, format("You, my friend, are tough! I can see why you defy us so..."))
+    msgbox(format("Gah, Even I, a Commander, only managed to buy us time?"))
+    msgbox(format("But that's fine. "))
+    msgbox(format("A child like you will never be able to stem the flow of time!"))
+    waitmessage
+    clearflag(FLAG_LAKE_OF_VALOR)
+    setvar(VAR_LAKE_OF_VALOR_STATE, 1)
+    removeobject(LOCALID_SATURN)
+    warpsilent(MAP_LAKE_VALOR_1, 52, 49)
+    releaseall
+    end
+}
+
+movement saturnMov1 {
+    emote_exclamation_mark
+    face_down
+    step_end
+}

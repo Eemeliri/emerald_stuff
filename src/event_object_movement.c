@@ -497,6 +497,10 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_BLUE                    0x112F
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1130
 #define OBJ_EVENT_PAL_TAG_AZELF                   0x1131
+#define OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_MALE     0x1132
+#define OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_FEMALE   0x1133
+#define OBJ_EVENT_PAL_TAG_GALACTIC_COMMANDER_SATURN         0x1134
+#define OBJ_EVENT_PAL_TAG_MAGIKARP                0x1135
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -558,6 +562,10 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Giovanni,              OBJ_EVENT_PAL_TAG_GIOVANNI},
     {gObjectEventPal_Blue,                  OBJ_EVENT_PAL_TAG_BLUE},
     {gObjectEventPal_Azelf,                 OBJ_EVENT_PAL_TAG_AZELF},
+    {gObjectEventPal_Magikarp,              OBJ_EVENT_PAL_TAG_MAGIKARP},
+    {gObjectEventPal_Galactic_Grunt_Male,         OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_MALE},
+    {gObjectEventPal_Galactic_Grunt_Female,       OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_FEMALE},
+    {gObjectEventPal_Galactic_Commander_Saturn,   OBJ_EVENT_PAL_TAG_GALACTIC_COMMANDER_SATURN},
     {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_DYNAMIC},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},

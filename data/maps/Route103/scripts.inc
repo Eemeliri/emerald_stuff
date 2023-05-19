@@ -150,6 +150,19 @@ Route103_EventScript_RivalEnd::
 	releaseall
 	end
 
+ShouldWarp::
+	lockall
+	goto_if_set FLAG_LAKE_OF_VALOR, ShouldWarp_2
+	warp MAP_LAKE_VALOR_1, 52, 52
+ShouldWarp_1:
+	releaseall
+	return
+
+ShouldWarp_2:
+	warp MAP_LAKE_VALOR2, 52, 52
+	goto ShouldWarp_1
+
+
 Route103_Movement_RivalExitFacingNorth1:
 	walk_left
 	walk_down

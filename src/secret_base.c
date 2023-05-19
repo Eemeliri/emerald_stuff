@@ -1488,7 +1488,7 @@ static void SortSecretBasesByRegistryStatus(void)
     struct SecretBase *secretBases;
 
     secretBases = gSaveBlock2Ptr->secretBases;
-    for (i = 1; i < SECRET_BASES_COUNT - 1; i++)
+    for (i = 0; i < SECRET_BASES_COUNT; i++)
     {
         for (j = i + 1; j < SECRET_BASES_COUNT; j++)
         {
