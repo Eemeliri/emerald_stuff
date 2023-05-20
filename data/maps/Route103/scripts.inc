@@ -19,6 +19,72 @@ Route103_EventScript_OpenAlteringCave::
 	setmetatile 45, 6, METATILE_General_CaveEntrance_Bottom, FALSE
 	return
 
+rivalVista::
+	lockall
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, cameraVistaRival
+	waitmovement 0
+	delay 60
+	msgbox rivalVista_Text_0
+	msgbox rivalVista_Text_1
+	applymovement 2, moveToForest
+	waitmovement 2
+	playse SE_EXIT
+	removeobject 2
+	waitse
+	delay 30
+	applymovement OBJ_EVENT_ID_CAMERA, cameraVistaRivalReturn
+	waitmovement 0
+	setvar VAR_ROUTE103_SEEN_RIVAL, 1
+	special RemoveCameraObject
+	releaseall
+	end
+
+
+cameraVistaRival:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+moveToForest:
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+cameraVistaRivalReturn:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+rivalVista_Text_0:
+	.string "This should be the way to Lake of Valor.$"
+
+rivalVista_Text_1:
+	.string "Hopefully {PLAYER} finds their way\n"
+	.string "here. I can't wait to battle them!$"
+
+
 Route103_EventScript_Rival::
 	lockall
 	checkplayergender
