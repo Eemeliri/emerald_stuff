@@ -1,4 +1,5 @@
 Everyone who worked on the Pret disassembly and RHH expansion
+SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
 Merrp - Following Pokemon
 ghoulslash - DexNav, Auto-run, Mart Items by Badge Count, Bag Sorting, Repeated Field Medicine Use, Pokecenters don't count eggs, Overworld Expansion, givecustommon 
@@ -19,7 +20,7 @@ NotToDisturb - Object alpha shadows
 Hyo-oppa - amazing trainer sprites
 Duke - Move name instead of TM name in shops
 GriffinR - Disabled the union room check when entering Pokecenters
-CitrusBolt - e-Reader functionality, last used ball gfx
+CitrusBolt - e-Reader functionality, last used ball gfx, Summary page
 Sbird - TM serialisation, TM learnset method
 Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
