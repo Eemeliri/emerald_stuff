@@ -32,10 +32,10 @@
 #define MODIFIER_DX                   2 // 4-2 is FireRed DX and 5-2 is LeafGreen DX
 #define MODIFIER_CRYSTAL_DUST         3 // Reserved for on-the-fly loading CrystalDust into this system
 #define MODIFIER_EMERALD_CROSS        4 // 3-4 is Emerald Cross
-#define MODIFIER_GLIMMERING_EMERALD  13 // 3-13 is Glimmering Emerald i.e. this game
+#define MODIFIER_EMERALD_MEMORIES     13 // 3-13 is Glimmering Emerald i.e. this game
 #define MODIFIER_TOBA               222 // Reserved by AquaticTyphoon#7935 for their TOBA region.
 
-#define VERSION_MODIFIER (MODIFIER_GLIMMERING_EMERALD)
+#define VERSION_MODIFIER (MODIFIER_EMERALD_MEMORIES)
 
 #define LANGUAGE_JAPANESE 1
 #define LANGUAGE_ENGLISH  2
