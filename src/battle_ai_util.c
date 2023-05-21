@@ -413,9 +413,6 @@ static const u16 sInstructBannedMoves[] =
 static const u16 sRechargeMoves[] =
 {
     MOVE_HYPER_BEAM,
-    MOVE_BLAST_BURN,
-    MOVE_HYDRO_CANNON,
-    MOVE_FRENZY_PLANT,
     MOVE_GIGA_IMPACT,
     MOVE_ROCK_WRECKER,
     MOVE_ROAR_OF_TIME,

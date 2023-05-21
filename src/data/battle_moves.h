@@ -5220,11 +5220,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_BLAST_BURN] =
     {
-        .effect = EFFECT_RECHARGE,
-        .power = 150,
+        .effect = EFFECT_HIT,
+        .power = 140,
         .type = TYPE_FIRE,
         .accuracy = 90,
-        .pp = 5,
+        .pp = 2,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -5235,11 +5235,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_HYDRO_CANNON] =
     {
-        .effect = EFFECT_RECHARGE,
-        .power = 150,
+        .effect = EFFECT_HIT,
+        .power = 140,
         .type = TYPE_WATER,
         .accuracy = 90,
-        .pp = 5,
+        .pp = 2,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -5754,11 +5754,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_FRENZY_PLANT] =
     {
-        .effect = EFFECT_RECHARGE,
-        .power = 150,
+        .effect = EFFECT_HIT,
+        .power = 140,
         .type = TYPE_GRASS,
         .accuracy = 90,
-        .pp = 5,
+        .pp = 2,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,

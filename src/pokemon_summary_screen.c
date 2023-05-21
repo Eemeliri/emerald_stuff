@@ -4473,12 +4473,7 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             StringCopy(gStringVar2, sText_TitlePage);
             break;
         case PSS_PAGE_SKILLS:
-            if (!FlagGet(FLAG_SYS_GAME_CLEAR))
-            {
-                StringCopy(gStringVar1, sText_TitleSkills);
-                StringCopy(gStringVar2, sText_TitlePage);
-            }
-            else if (sMonSummaryScreen->currStatIndex == 0)
+            if (sMonSummaryScreen->currStatIndex == 0)
             {
                 StringCopy(gStringVar1, sText_TitleSkills);
                 StringCopy(gStringVar2, sText_TitlePageIVs);
