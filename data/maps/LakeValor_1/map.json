@@ -26,6 +26,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LakeValor_EventScript_ItemPidgeotite",
       "flag": "FLAG_ITEM_LAKE_VALOR"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 59,
+      "y": 49,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "lakeOfValor_EventScript_Rival",
+      "flag": "FLAG_DEFEATED_RIVAL_ROUTE103"
     }
   ],
   "warp_events": [
