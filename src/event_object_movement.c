@@ -8826,7 +8826,6 @@ static const u8 sDisallowedIds[] = {
 };
 
 static const u8 sDisallowedWeathers[] = {
-    WEATHER_RAIN,
     WEATHER_FOG_HORIZONTAL,
 };
 

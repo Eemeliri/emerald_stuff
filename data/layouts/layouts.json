@@ -95,7 +95,7 @@
       "id": "LAYOUT_LITTLEROOT_TOWN",
       "name": "LittlerootTown_Layout",
       "width": 20,
-      "height": 20,
+      "height": 33,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/LittlerootTown/border.bin",
@@ -2417,7 +2417,7 @@
       "width": 58,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "0",
+      "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/UnusedOutdoorArea/border.bin",
       "blockdata_filepath": "data/layouts/UnusedOutdoorArea/map.bin"
     },
@@ -4690,6 +4690,26 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/LakeValor2_Cave/border.bin",
       "blockdata_filepath": "data/layouts/LakeValor2_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_WILDS",
+      "name": "SouthernWilds_Layout",
+      "width": 45,
+      "height": 53,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SourthernWilds",
+      "border_filepath": "data/layouts/SouthernWilds/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernWilds/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_BEACH",
+      "name": "SouthernBeach_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Beach",
+      "border_filepath": "data/layouts/SouthernBeach/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernBeach/map.bin"
     }
   ]
 }

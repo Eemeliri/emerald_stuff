@@ -1,4 +1,5 @@
 Everyone who worked on the Pret disassembly and RHH expansion
+Zeo254 - some tilesets
 SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
 Merrp - Following Pokemon
@@ -26,6 +27,32 @@ Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
 Dreadwing93 - Arbok variant sprites
 Hbdfreitas - BW style hp bars
+
+Ekat's tileset credits:	
+Ekat
+Heartless Dragoon
+Morlockhater
+Nemu
+Ross Hawkins
+Pokemon Dawn
+Slimshady
+Thedeadheroalistar
+The-Red-Ex
+Vurtax
+Zein
+Redblueyellow
+Fabnt
+War8
+Dragoon
+Silverdeoxys563
+SteamyJ
+Anonalpaca
+Pokémon Rejuvenation
+Puggsoy
+Aveontrainer
+Idillio
+Dasani
+Shyin
 
 Kymotonian - Gen V follower sprites
 cSc-A7X - Gen V follower sprites

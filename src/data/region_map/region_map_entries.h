@@ -201,6 +201,7 @@ static const u8 sMapName_Slateport_Market[] = _("Slateport Market");
 static const u8 sMapName_Nameless_Cavern[] = _("Nameless Cavern");
 static const u8 sMapName_Lake_of_Valor[] = _("Lake of Valor");
 static const u8 sMapName_Cave_of_Valor[] = _("Cave of Valor");
+static const u8 sMapName_Southern_Wilds[] = _("Southern Wilds");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_LITTLEROOT_TOWN] = { 4, 11, 1, 1, sMapName_Littleroot_Town},
@@ -438,6 +439,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_NAMELESS_CAVERN] = { 7, 10, 1, 1, sMapName_Nameless_Cavern},
     [MAPSEC_LAKE_VALOR] = { 4, 7, 1, 1, sMapName_Lake_of_Valor},
     [MAPSEC_CAVE_OF_VALOR] = { 4, 7, 1, 1, sMapName_Cave_of_Valor},
+    [MAPSEC_SOUTHERN_WILDS] = { 4, 12, 1, 1, sMapName_Southern_Wilds},
 };
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

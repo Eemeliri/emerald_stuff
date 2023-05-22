@@ -222,3 +222,9 @@ const u16 gMetatileAttributes_General_snow[] = INCBIN_U16("data/tilesets/primary
 
 const u16 gMetatiles_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatiles.bin");
 const u16 gMetatileAttributes_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatile_attributes.bin");
+
+const u16 gMetatiles_SourthernWilds[] = INCBIN_U16("data/tilesets/secondary/sourthern_wilds/metatiles.bin");
+const u16 gMetatileAttributes_SourthernWilds[] = INCBIN_U16("data/tilesets/secondary/sourthern_wilds/metatile_attributes.bin");
+
+const u16 gMetatiles_Beach[] = INCBIN_U16("data/tilesets/secondary/beach/metatiles.bin");
+const u16 gMetatileAttributes_Beach[] = INCBIN_U16("data/tilesets/secondary/beach/metatile_attributes.bin");

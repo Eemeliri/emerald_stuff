@@ -77,6 +77,9 @@
 // gTileset_BattleTent
 #define METATILE_BattleTent_Door  0x26B
 
+// gTileset_Beach
+#define METATILE_Beach_TallGrass  0x205
+
 // gTileset_BikeShop
 #define METATILE_BikeShop_Barrier_Blue_Bottom      0x2CF
 #define METATILE_BikeShop_Barrier_Blue_BottomMid   0x2C7

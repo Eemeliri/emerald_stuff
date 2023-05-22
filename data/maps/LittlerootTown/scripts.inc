@@ -871,6 +871,12 @@ LittlerootTown_Movement_MomExitThroughDoor:
 	walk_up
 	step_end
 
+LittlerootTown_EventScript_TriggerTele::
+	warp MAP_SOUTHERN_WILDS, 25, 6
+	waitstate
+	release
+	end
+
 LittlerootTown_EventScript_Mom::
 	lock
 	faceplayer

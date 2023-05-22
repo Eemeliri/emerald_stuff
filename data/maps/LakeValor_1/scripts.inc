@@ -168,7 +168,7 @@ lakeOfValor_Movement_RivalExit2:
 
 lakeOfValor_Text_MaylakeOfValorPokemon:
 	.string "May: Let's see… The Pokémon found\n"
-	.string "on Route 103 include…$"
+	.string "on Lake of Valor include…$"
 
 lakeOfValor_Text_MayLetsBattle:
 	.string "Oh, hi, {PLAYER}{KUN}!\p"

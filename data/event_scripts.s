@@ -1111,3 +1111,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/LakeValor2/scripts.inc"
 
 	.include "data/maps/LakeValor2_Cave/scripts.inc"
+
+	.include "data/maps/SouthernWilds/scripts.inc"
+
+	.include "data/maps/SouthernBeach/scripts.inc"
