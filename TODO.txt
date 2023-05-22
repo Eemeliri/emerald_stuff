@@ -1,3 +1,5 @@
 - Fix grass palette in dexnav mode and maybe when walking
 - Add restoration for other fossils
 - fix last pokemon slot looking glitchy in select pokemon menu (Battle frontier for example)
+- Add events to slateport market harbor house, mesprit to cave 
+- Add events and trainers to southern wilds and beach
