@@ -1,5 +1,6 @@
 Everyone who worked on the Pret disassembly and RHH expansion
 Zeo254 - some tilesets
+Phyromatical - distortion world tileset
 SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
 Merrp - Following Pokemon

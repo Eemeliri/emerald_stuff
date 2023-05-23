@@ -4740,6 +4740,16 @@
       "secondary_tileset": "gTileset_BikeShop",
       "border_filepath": "data/layouts/NewMauville_Inside2F/border.bin",
       "blockdata_filepath": "data/layouts/NewMauville_Inside2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_DISTORTION_WORLD",
+      "name": "DistortionWorld_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DistortionWorld",
+      "border_filepath": "data/layouts/DistortionWorld/border.bin",
+      "blockdata_filepath": "data/layouts/DistortionWorld/map.bin"
     }
   ]
 }

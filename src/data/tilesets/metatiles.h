@@ -228,3 +228,6 @@ const u16 gMetatileAttributes_SourthernWilds[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_Beach[] = INCBIN_U16("data/tilesets/secondary/beach/metatiles.bin");
 const u16 gMetatileAttributes_Beach[] = INCBIN_U16("data/tilesets/secondary/beach/metatile_attributes.bin");
+
+const u16 gMetatiles_DistortionWorld[] = INCBIN_U16("data/tilesets/secondary/distortion_world/metatiles.bin");
+const u16 gMetatileAttributes_DistortionWorld[] = INCBIN_U16("data/tilesets/secondary/distortion_world/metatile_attributes.bin");

@@ -1121,3 +1121,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/MtChimneyDepths2/scripts.inc"
 
 	.include "data/maps/NewMauville_Inside2F/scripts.inc"
+
+	.include "data/maps/DistortionWorld/scripts.inc"

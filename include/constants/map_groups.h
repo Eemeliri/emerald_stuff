@@ -415,6 +415,7 @@
 #define MAP_MT_CHIMNEY_DEPTHS                        (112 | (24 << 8))
 #define MAP_MT_CHIMNEY_DEPTHS2                       (113 | (24 << 8))
 #define MAP_NEW_MAUVILLE_INSIDE2F                    (114 | (24 << 8))
+#define MAP_DISTORTION_WORLD                         (115 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))
