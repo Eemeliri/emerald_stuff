@@ -6,3 +6,5 @@
 - Custom follower dialogue to new areas
 - Improve moltres dungeon and event and maybe block it off until 6th gym?
 - Fix Mt. Chimney tiles
+- Reduce gen 5 and some gen 1 level requirements
+- Add electrodes to new mauville zapdos room.

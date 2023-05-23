@@ -504,6 +504,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_MOLTRES                 0x1136
 #define OBJ_EVENT_PAL_TAG_ZAPDOS                  0x1137
 #define OBJ_EVENT_PAL_TAG_ARTICUNO                0x1138
+#define OBJ_EVENT_PAL_TAG_ELECTRODE                0x1139
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -569,6 +570,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Moltres,              OBJ_EVENT_PAL_TAG_MOLTRES},
     {gObjectEventPal_Zapdos,              OBJ_EVENT_PAL_TAG_ZAPDOS},
     {gObjectEventPal_Articuno,              OBJ_EVENT_PAL_TAG_ARTICUNO},
+    {gObjectEventPal_Electrode,              OBJ_EVENT_PAL_TAG_ELECTRODE},
     {gObjectEventPal_Galactic_Grunt_Male,         OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_MALE},
     {gObjectEventPal_Galactic_Grunt_Female,       OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_FEMALE},
     {gObjectEventPal_Galactic_Commander_Saturn,   OBJ_EVENT_PAL_TAG_GALACTIC_COMMANDER_SATURN},

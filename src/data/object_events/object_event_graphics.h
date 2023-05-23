@@ -56,6 +56,7 @@ const u16 gObjectEventPal_Magikarp[] = INCBIN_U16("graphics/object_events/palett
 const u16 gObjectEventPal_Moltres[] = INCBIN_U16("graphics/object_events/palettes/moltres.gbapal");
 const u16 gObjectEventPal_Zapdos[] = INCBIN_U16("graphics/object_events/palettes/zapdos.gbapal");
 const u16 gObjectEventPal_Articuno[] = INCBIN_U16("graphics/object_events/palettes/articuno.gbapal");
+const u16 gObjectEventPal_Electrode[] = INCBIN_U16("graphics/object_events/palettes/electrode.gbapal");
 const u32 gObjectEventPic_Galactic_Grunt_Male[] = INCBIN_U32("graphics/object_events/pics/people/galactic_grunt_male.4bpp");
 const u32 gObjectEventPic_Galactic_Grunt_Female[] = INCBIN_U32("graphics/object_events/pics/people/galactic_grunt_female.4bpp");
 const u32 gObjectEventPic_Galactic_Commander_Saturn[] = INCBIN_U32("graphics/object_events/pics/people/galactic_commander_saturn.4bpp");

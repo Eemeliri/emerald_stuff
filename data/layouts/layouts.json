@@ -4730,6 +4730,16 @@
       "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/MtChimneyDepths2/border.bin",
       "blockdata_filepath": "data/layouts/MtChimneyDepths2/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAUVILLE_INSIDE2F",
+      "name": "NewMauville_Inside2F_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BikeShop",
+      "border_filepath": "data/layouts/NewMauville_Inside2F/border.bin",
+      "blockdata_filepath": "data/layouts/NewMauville_Inside2F/map.bin"
     }
   ]
 }

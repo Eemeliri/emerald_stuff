@@ -139,6 +139,13 @@
       "elevation": 3,
       "dest_map": "MAP_NEW_MAUVILLE_ENTRANCE",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 36,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_NEW_MAUVILLE_INSIDE2F",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
