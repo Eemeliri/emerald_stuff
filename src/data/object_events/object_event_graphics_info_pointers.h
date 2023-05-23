@@ -524,6 +524,9 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_GALACTIC_GRUNT_FEMALE] =    &gObjectEventGraphicsInfo_Galactic_Grunt_Female,
     [OBJ_EVENT_GFX_GALACTIC_COMMANDER_SATURN] = &gObjectEventGraphicsInfo_Galactic_Commander_Saturn,
     [OBJ_EVENT_GFX_MAGIKARP] =                 &gObjectEventGraphicsInfo_Magikarp,
+    [OBJ_EVENT_GFX_MOLTRES] =                 &gObjectEventGraphicsInfo_Moltres,
+    [OBJ_EVENT_GFX_ZAPDOS] =                 &gObjectEventGraphicsInfo_Zapdos,
+    [OBJ_EVENT_GFX_ARTICUNO] =                 &gObjectEventGraphicsInfo_Articuno,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

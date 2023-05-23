@@ -4710,6 +4710,26 @@
       "secondary_tileset": "gTileset_Beach",
       "border_filepath": "data/layouts/SouthernBeach/border.bin",
       "blockdata_filepath": "data/layouts/SouthernBeach/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_CHIMNEY_DEPTHS",
+      "name": "MtChimneyDepths_Layout",
+      "width": 55,
+      "height": 55,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/MtChimneyDepths/border.bin",
+      "blockdata_filepath": "data/layouts/MtChimneyDepths/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_CHIMNEY_DEPTHS2",
+      "name": "MtChimneyDepths2_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/MtChimneyDepths2/border.bin",
+      "blockdata_filepath": "data/layouts/MtChimneyDepths2/map.bin"
     }
   ]
 }

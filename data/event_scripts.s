@@ -1115,3 +1115,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/SouthernWilds/scripts.inc"
 
 	.include "data/maps/SouthernBeach/scripts.inc"
+
+	.include "data/maps/MtChimneyDepths/scripts.inc"
+
+	.include "data/maps/MtChimneyDepths2/scripts.inc"

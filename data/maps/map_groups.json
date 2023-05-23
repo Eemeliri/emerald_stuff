@@ -441,7 +441,9 @@
     "Slateport_Market_Nameless_Cavern",
     "LakeValor_1",
     "LakeValor2",
-    "LakeValor2_Cave"
+    "LakeValor2_Cave",
+    "MtChimneyDepths",
+    "MtChimneyDepths2"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

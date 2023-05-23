@@ -652,12 +652,12 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 #define FLAG_HIDDEN_ITEM_LAKE_VALOR                          (FLAG_HIDDEN_ITEMS_START + 0x70) 
 
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
-#define FLAG_UNUSED_0x269  0x269 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
+#define FLAG_CAUGHT_MOLTRES  0x265 
+#define FLAG_DEFEATED_MOLTRES  0x266 
+#define FLAG_CAUGHT_ZAPDOS  0x267 
+#define FLAG_DEFEATED_ZAPDOS  0x268 
+#define FLAG_CAUGHT_ARTICUNO  0x269 
+#define FLAG_DEFEATED_ARTICUNO  0x26A 
 #define FLAG_UNUSED_0x26B  0x26B // Unused Flag
 #define FLAG_UNUSED_0x26C  0x26C // Unused Flag
 #define FLAG_UNUSED_0x26D  0x26D // Unused Flag
@@ -1274,9 +1274,9 @@
 #define FLAG_HIDE_AZELF                                             0x4C9 // Azelf event
 #define FLAG_EXP_SHARE                                              0x4CA // Exp Share
 #define FLAG_LAKE_OF_VALOR                                          0x4CB // Lake of Valor
-#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused
-#define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
-#define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
+#define FLAG_HIDE_MOLTRES                                           0x4CC // Unused
+#define FLAG_HIDE_ARTICUNO                                           0x4CD // Unused Flag
+#define FLAG_HIDE_ZAPDOS                                           0x4CE // Unused Flag
 #define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
 #define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
 #define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag

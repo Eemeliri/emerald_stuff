@@ -412,6 +412,8 @@
 #define MAP_LAKE_VALOR_1                             (109 | (24 << 8))
 #define MAP_LAKE_VALOR2                              (110 | (24 << 8))
 #define MAP_LAKE_VALOR2_CAVE                         (111 | (24 << 8))
+#define MAP_MT_CHIMNEY_DEPTHS                        (112 | (24 << 8))
+#define MAP_MT_CHIMNEY_DEPTHS2                       (113 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))

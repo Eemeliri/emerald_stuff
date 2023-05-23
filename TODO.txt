@@ -3,3 +3,6 @@
 - fix last pokemon slot looking glitchy in select pokemon menu (Battle frontier for example)
 - Add events to slateport market harbor house, mesprit to cave 
 - Add events and trainers to southern wilds and beach
+- Custom follower dialogue to new areas
+- Improve moltres dungeon and event and maybe block it off until 6th gym?
+- Fix Mt. Chimney tiles

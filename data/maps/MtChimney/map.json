@@ -446,6 +446,13 @@
       "elevation": 3,
       "dest_map": "MAP_JAGGED_PASS",
       "dest_warp_id": "3"
+    },
+    {
+      "x": 31,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_MT_CHIMNEY_DEPTHS",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
