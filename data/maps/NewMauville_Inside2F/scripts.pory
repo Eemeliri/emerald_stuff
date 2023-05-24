@@ -160,6 +160,8 @@ script tempDistortion {
     msgbox(format("Go to distortion world?"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
         warp(MAP_DISTORTION_WORLD, 18, 32)
+    } else {
+        warp(MAP_STARK_MOUNTAIN2, 42, 75)
     }
     release
     end

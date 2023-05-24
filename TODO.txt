@@ -8,3 +8,5 @@
 - Fix Mt. Chimney tiles
 - Reduce gen 5 and some gen 1 level requirements
 - Add electrodes to new mauville zapdos room.
+- fix rock climb follower disappearing
+- stark mountain

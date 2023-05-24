@@ -180,6 +180,7 @@ tempDistortion::
 	msgbox tempDistortion_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq tempDistortion_2
+	warp MAP_STARK_MOUNTAIN2, 42, 75
 tempDistortion_1:
 	release
 	end

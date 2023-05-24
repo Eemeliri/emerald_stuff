@@ -4199,9 +4199,6 @@ static bool8 RockClimb_ContinueRideOrEnd(struct Task *task, struct ObjectEvent *
     if (!ObjectEventClearHeldMovementIfFinished(objectEvent))
         return FALSE;
 
-    #if FOLLOW_ME_IMPLEMENTED
-        TryAttachFollowerToPlayer();
-    #endif
 
     PlayerGetDestCoords(&task->tDestX, &task->tDestY);
     MoveCoords(objectEvent->movementDirection, &task->tDestX, &task->tDestY);
@@ -4242,6 +4239,7 @@ static bool8 RockClimb_WaitStopRockClimb(struct Task *task, struct ObjectEvent *
         gPlayerAvatar.preventStep = FALSE;
         UnfreezeObjectEvents();
         UnlockPlayerFieldControls();
+        UpdateFollowingPokemon();
         DestroySprite(&gSprites[objectEvent->fieldEffectSpriteId]);
         FieldEffectActiveListRemove(FLDEFF_USE_ROCK_CLIMB);
         objectEvent->triggerGroundEffectsOnMove = TRUE; // e.g. if dismount on grass
