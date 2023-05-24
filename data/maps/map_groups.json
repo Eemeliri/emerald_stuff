@@ -445,7 +445,9 @@
     "MtChimneyDepths",
     "MtChimneyDepths2",
     "NewMauville_Inside2F",
-    "DistortionWorld"
+    "DistortionWorld",
+    "StarkMountain1",
+    "StarkMountain2"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

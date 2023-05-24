@@ -4750,6 +4750,26 @@
       "secondary_tileset": "gTileset_DistortionWorld",
       "border_filepath": "data/layouts/DistortionWorld/border.bin",
       "blockdata_filepath": "data/layouts/DistortionWorld/map.bin"
+    },
+    {
+      "id": "LAYOUT_STARK_MOUNTAIN1",
+      "name": "StarkMountain1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/StarkMountain1/border.bin",
+      "blockdata_filepath": "data/layouts/StarkMountain1/map.bin"
+    },
+    {
+      "id": "LAYOUT_STARK_MOUNTAIN2",
+      "name": "StarkMountain2_Layout",
+      "width": 96,
+      "height": 78,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/StarkMountain2/border.bin",
+      "blockdata_filepath": "data/layouts/StarkMountain2/map.bin"
     }
   ]
 }

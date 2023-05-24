@@ -1123,3 +1123,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/NewMauville_Inside2F/scripts.inc"
 
 	.include "data/maps/DistortionWorld/scripts.inc"
+
+	.include "data/maps/StarkMountain1/scripts.inc"
+
+	.include "data/maps/StarkMountain2/scripts.inc"

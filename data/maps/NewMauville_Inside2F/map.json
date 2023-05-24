@@ -26,6 +26,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_Zapdos",
       "flag": "FLAG_HIDE_ZAPDOS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
+      "x": 13,
+      "y": 24,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "tempDistortion",
+      "flag": "0"
     }
   ],
   "warp_events": [

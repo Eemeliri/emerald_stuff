@@ -1,1 +1,12 @@
 mapscripts DistortionWorld_MapScripts {}
+
+script teleportationStone {
+    lock
+    msgbox(format("The stone hums with energy, perhaps it can take you back to your world?"))
+    msgbox(format("Touch the stone?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        warpteleport(MAP_ROUTE101, 15, 24, 1)
+    }
+    release
+    end
+}

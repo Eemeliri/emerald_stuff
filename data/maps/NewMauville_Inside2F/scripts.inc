@@ -173,3 +173,21 @@ TurnOffZapdosGenerator::
 	playse SE_DOOR
 	return
 
+
+tempDistortion::
+	lock
+	faceplayer
+	msgbox tempDistortion_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq tempDistortion_2
+tempDistortion_1:
+	release
+	end
+
+tempDistortion_2:
+	warp MAP_DISTORTION_WORLD, 18, 32
+	goto tempDistortion_1
+
+
+tempDistortion_Text_0:
+	.string "Go to distortion world?$"

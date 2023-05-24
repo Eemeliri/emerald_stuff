@@ -66,6 +66,7 @@ enum {
     JUMP_DISTANCE_IN_PLACE,
     JUMP_DISTANCE_NORMAL,
     JUMP_DISTANCE_FAR,
+    JUMP_DISTANCE_DISTORTED,
 };
 
 // Sprite data used throughout
@@ -8948,28 +8949,28 @@ static u8 GetReflectionTypeByMetatileBehavior(u32 behavior)
         return REFL_TYPE_NONE;
 }
 
-u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction)
+u8 GetLedgeJumpDirection(s16 x, s16 y, u8 z)
 {
-    static bool8 (*const ledgeBehaviorFuncs[])(u8) = {
-        [DIR_SOUTH - 1] = MetatileBehavior_IsJumpSouth,
-        [DIR_NORTH - 1] = MetatileBehavior_IsJumpNorth,
-        [DIR_WEST - 1]  = MetatileBehavior_IsJumpWest,
-        [DIR_EAST - 1]  = MetatileBehavior_IsJumpEast,
+    static bool8 (*const sLedgeJumpBehaviors[])(u8) = {
+        MetatileBehavior_IsJumpSouth,
+        MetatileBehavior_IsJumpNorth,
+        MetatileBehavior_IsJumpWest,
+        MetatileBehavior_IsJumpEast,
     };
 
     u8 behavior;
-    u8 index = direction;
+    u8 direction = z;
 
-    if (index == DIR_NONE)
-        return DIR_NONE;
-    else if (index > DIR_EAST)
-        index -= DIR_EAST;
+    if (direction == 0)
+        return 0;
+    else if (direction > 4)
+        direction -= 4;
 
-    index--;
+    direction--;
     behavior = MapGridGetMetatileBehaviorAt(x, y);
 
-    if (ledgeBehaviorFuncs[index](behavior) == TRUE)
-        return index + 1;
+    if (sLedgeJumpBehaviors[direction](behavior) || MetatileBehavior_IsOmnidirectionalJump(behavior))
+        return direction + 1;
 
     return DIR_NONE;
 }
@@ -9802,11 +9803,13 @@ static u8 DoJumpSpriteMovement(struct Sprite *sprite)
         [JUMP_DISTANCE_IN_PLACE] = 16,
         [JUMP_DISTANCE_NORMAL] = 16,
         [JUMP_DISTANCE_FAR] = 32,
+        [JUMP_DISTANCE_DISTORTED] = 128,
     };
     u8 distanceToShift[] = {
         [JUMP_DISTANCE_IN_PLACE] = 0,
         [JUMP_DISTANCE_NORMAL] = 0,
         [JUMP_DISTANCE_FAR] = 1,
+        [JUMP_DISTANCE_DISTORTED] = 4,
     };
     u8 result = 0;
 
@@ -9844,11 +9847,13 @@ static u8 DoJumpSpecialSpriteMovement(struct Sprite *sprite)
         [JUMP_DISTANCE_IN_PLACE] = 32,
         [JUMP_DISTANCE_NORMAL] = 32,
         [JUMP_DISTANCE_FAR] = 64,
+        [JUMP_DISTANCE_DISTORTED] = 128,
     };
     u8 distanceToShift[] = {
         [JUMP_DISTANCE_IN_PLACE] = 1,
         [JUMP_DISTANCE_NORMAL] = 1,
         [JUMP_DISTANCE_FAR] = 2,
+        [JUMP_DISTANCE_DISTORTED] = 4,
     };
     u8 result = 0;
 
