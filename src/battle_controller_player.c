@@ -2980,7 +2980,8 @@ static void PlayerHandleExpUpdate(void)
     u8 monId = gBattleResources->bufferA[gActiveBattler][1];
     s32 taskId, expPointsToGive;
 
-    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL)
+    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL ||
+        GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= GetCurrentLevelCap())
     {
         PlayerBufferExecCompleted();
     }
