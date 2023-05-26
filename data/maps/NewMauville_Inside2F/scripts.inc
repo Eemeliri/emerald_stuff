@@ -1,94 +1,90 @@
 NewMauville_Inside2F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	map_script MAP_SCRIPT_ON_RESUME, NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_RESUME
+	map_script MAP_SCRIPT_ON_TRANSITION, NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
 
-NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_TRANSITION:
-	call_if_set FLAG_CAUGHT_ZAPDOS, tryHideZapdos
-	call_if_unset FLAG_CAUGHT_ZAPDOS, tryShowZapdos
-	return
-
 NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_RESUME:
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside2F_OnResume
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, TryRemoveElectrode
+	return
+
+NewMauville_Inside2F_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	call_if_unset FLAG_HIDE_ELECTRODE1, ShowElectrode1
+	call_if_unset FLAG_HIDE_ELECTRODE2, ShowElectrode2
 	return
 
 
-tryHideZapdos::
-	setflag FLAG_HIDE_ZAPDOS
+ShowElectrode1::
+	clearflag FLAG_HIDE_ELECTRODE1
 	return
 
 
-tryShowZapdos::
-	goto_if_set FLAG_DEFEATED_ZAPDOS, Common_EventScript_NopReturn
-	clearflag FLAG_HIDE_ZAPDOS
+ShowElectrode2::
+	clearflag FLAG_HIDE_ELECTRODE2
 	return
 
 
-NewMauville_Inside2F_OnResume::
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, tryRemoveZapdos
-	return
-
-
-tryRemoveZapdos::
+TryRemoveElectrode::
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
-	goto_if_ne tryRemoveZapdos_2
-tryRemoveZapdos_1:
-	removeobject 1
+	goto_if_ne TryRemoveElectrode_2
+TryRemoveElectrode_1:
+	removeobject VAR_LAST_TALKED
 	return
 
-tryRemoveZapdos_2:
+TryRemoveElectrode_2:
 	goto Common_EventScript_NopReturn
-	goto tryRemoveZapdos_1
+	goto TryRemoveElectrode_1
 
 
-EventScript_Zapdos::
+Electrode1::
 	lock
 	faceplayer
+	setwildbattle SPECIES_ELECTRODE, 35
 	waitse
-	delay 20
-	playmoncry SPECIES_ZAPDOS, CRY_MODE_ENCOUNTER
+	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
+	delay 40
 	waitmoncry
-	delay 20
-	seteventmon SPECIES_ZAPDOS, 40
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
-	waitstate
+	dowildbattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
-	compare VAR_RESULT, B_OUTCOME_WON
-	goto_if_eq EventScript_Zapdos_2
-	compare VAR_RESULT, B_OUTCOME_RAN
-	goto_if_eq EventScript_Zapdos_3
-	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
-	goto_if_eq EventScript_Zapdos_4
-EventScript_Zapdos_1:
-	setflag FLAG_CAUGHT_ZAPDOS
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedElectrode1
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, defeatedElectrode1
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, defeatedElectrode1
+	setflag FLAG_HIDE_ELECTRODE1
 	release
 	end
 
-EventScript_Zapdos_2:
-	goto defeatedZapdos
-	goto EventScript_Zapdos_1
 
-EventScript_Zapdos_3:
-	goto ranZapdos
-	goto EventScript_Zapdos_1
-
-EventScript_Zapdos_4:
-	goto ranZapdos
-	goto EventScript_Zapdos_1
-
-
-ranZapdos::
-	setvar VAR_0x8004, SPECIES_ZAPDOS
-	goto Common_EventScript_LegendaryFlewAway
+Electrode2::
+	lock
+	faceplayer
+	setwildbattle SPECIES_ELECTRODE, 35
+	waitse
+	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedElectrode2
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, defeatedElectrode2
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, defeatedElectrode2
+	setflag FLAG_HIDE_ELECTRODE2
+	release
 	end
 
 
-defeatedZapdos::
-	setvar VAR_0x8004, SPECIES_ZAPDOS
-	goto Common_EventScript_LegendaryFlewAway
+defeatedElectrode1::
+	setflag FLAG_HIDE_ELECTRODE1
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
+
+defeatedElectrode2::
+	setflag FLAG_HIDE_ELECTRODE2
+	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 

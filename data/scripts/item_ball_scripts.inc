@@ -398,16 +398,16 @@ MeteorFalls_B1F_2R_EventScript_ItemTM02::
 	finditem ITEM_TM02
 	end
 
-NewMauville_Inside_EventScript_ItemUltraBall::
-	finditem ITEM_ULTRA_BALL
+NewMauville_Inside_EventScript_ItemThunderStone::
+	finditem ITEM_THUNDER_STONE
 	end
 
 NewMauville_Inside_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
 
-NewMauville_Inside_EventScript_ItemThunderStone::
-	finditem ITEM_THUNDER_STONE
+NewMauville_Inside_EventScript_ItemElectricMemory::
+	finditem ITEM_ELECTRIC_MEMORY
 	end
 
 NewMauville_Inside_EventScript_ItemFullHeal::
@@ -686,7 +686,7 @@ Route127_EventScript_ItemHeracronite:: @ 82912F0
 	finditem ITEM_HERACRONITE
 	end
 
-Route110_EventScript_ItemManectite:: @ 82912F0
+NewMauville_Inside3F_ItemManectite:: @ 82912F0
 	finditem ITEM_MANECTITE
 	end
 

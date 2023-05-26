@@ -1,0 +1,59 @@
+{
+  "id": "MAP_NEW_MAUVILLE_INSIDE3F",
+  "name": "NewMauville_Inside3F",
+  "layout": "LAYOUT_NEW_MAUVILLE_INSIDE3F",
+  "music": "MUS_MT_PYRE",
+  "region_map_section": "MAPSEC_NEW_MAUVILLE",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ZAPDOS",
+      "x": 13,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_Zapdos",
+      "flag": "FLAG_HIDE_ZAPDOS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGASTONE_SPARKLE",
+      "x": 13,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewMauville_Inside3F_ItemManectite",
+      "flag": "FLAG_ITEM_MANECTITE"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 13,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_NEW_MAUVILLE_INSIDE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

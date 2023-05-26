@@ -1120,7 +1120,7 @@
 #define FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL                        0x430
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_MAX_POTION                       0x431
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_TM_61                            0x432
-#define FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL                           0x433
+#define FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE                        0x433
 #define FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE                          0x434
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL    0x435
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER        0x436
@@ -1155,7 +1155,7 @@
 #define FLAG_ITEM_ROUTE_120_HYPER_POTION                            0x453
 #define FLAG_ITEM_ROUTE_120_NEST_BALL                               0x454
 #define FLAG_ITEM_ROUTE_123_ELIXIR                                  0x455
-#define FLAG_ITEM_NEW_MAUVILLE_THUNDER_STONE                        0x456
+#define FLAG_ITEM_NEW_MAUVILLE_ELECTRIC_MEMORY                      0x456
 #define FLAG_ITEM_FIERY_PATH_FIRE_STONE                             0x457
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM07                          0x458
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE                0x459
@@ -1274,11 +1274,11 @@
 #define FLAG_HIDE_AZELF                                             0x4C9 // Azelf event
 #define FLAG_EXP_SHARE                                              0x4CA // Exp Share
 #define FLAG_LAKE_OF_VALOR                                          0x4CB // Lake of Valor
-#define FLAG_HIDE_MOLTRES                                           0x4CC // Unused
-#define FLAG_HIDE_ARTICUNO                                           0x4CD // Unused Flag
-#define FLAG_HIDE_ZAPDOS                                           0x4CE // Unused Flag
-#define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
-#define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
+#define FLAG_HIDE_MOLTRES                                           0x4CC 
+#define FLAG_HIDE_ARTICUNO                                          0x4CD // Unused Flag
+#define FLAG_HIDE_ZAPDOS                                            0x4CE 
+#define FLAG_HIDE_ELECTRODE1                                        0x4CF // Unused Flag
+#define FLAG_HIDE_ELECTRODE2                                        0x4D0 // Unused Flag
 #define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
 #define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
 #define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag

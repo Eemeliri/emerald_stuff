@@ -4770,6 +4770,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/StarkMountain2/border.bin",
       "blockdata_filepath": "data/layouts/StarkMountain2/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAUVILLE_INSIDE3F",
+      "name": "NewMauville_Inside3F_Layout",
+      "width": 25,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BikeShop",
+      "border_filepath": "data/layouts/NewMauville_Inside3F/border.bin",
+      "blockdata_filepath": "data/layouts/NewMauville_Inside3F/map.bin"
     }
   ]
 }
