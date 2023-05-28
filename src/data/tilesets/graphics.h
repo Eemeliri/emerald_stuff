@@ -1650,6 +1650,18 @@ const u16 gTilesetPalOverride_Slateport10[16] = INCBIN_U16("data/tilesets/second
 
 const u16 gTilesetPalOverride_Slateport12[16] = INCBIN_U16("data/tilesets/secondary/slateport/palettes/12_over.gbapal");
 
+const u16 gTilesetPalOverride_Rustboro10[16] = INCBIN_U16("data/tilesets/secondary/rustboro/palettes/10_over.gbapal");
+
+const u16 gTilesetPalOverride_Rustboro11[16] = INCBIN_U16("data/tilesets/secondary/rustboro/palettes/11_over.gbapal");
+
+const u16 gTilesetPalOverride_Rustboro12[16] = INCBIN_U16("data/tilesets/secondary/rustboro/palettes/12_over.gbapal");
+
+const u16 gTilesetPalOverride_Mauville07[16] = INCBIN_U16("data/tilesets/secondary/mauville/palettes/07_over.gbapal");
+
+const u16 gTilesetPalOverride_Mauville10[16] = INCBIN_U16("data/tilesets/secondary/mauville/palettes/10_over.gbapal");
+
+const u16 gTilesetPalOverride_Fallarbor12[16] = INCBIN_U16("data/tilesets/secondary/fallarbor/palettes/12_over.gbapal");
+
 
 const u16 gTilesetPalettes_FRLG[][16] =
 {

@@ -19,7 +19,7 @@ const struct Tileset gTileset_Petalburg =
     .metatiles = gMetatiles_Petalburg,
     .metatileAttributes = gMetatileAttributes_Petalburg,
     .callback = InitTilesetAnim_Petalburg,
-    .paletteOverrides = gTilesetPalOverrides_Petalburg
+    .paletteOverrides = gTilesetPalOverrides_Petalburg,
 };
 
 const struct Tileset gTileset_Rustboro =
@@ -31,6 +31,7 @@ const struct Tileset gTileset_Rustboro =
     .metatiles = gMetatiles_Rustboro,
     .metatileAttributes = gMetatileAttributes_Rustboro,
     .callback = InitTilesetAnim_Rustboro,
+    .paletteOverrides = gTilesetPalOverrides_Rustboro,
 };
 
 const struct Tileset gTileset_Dewford =
@@ -65,6 +66,7 @@ const struct Tileset gTileset_Mauville =
     .metatiles = gMetatiles_Mauville,
     .metatileAttributes = gMetatileAttributes_Mauville,
     .callback = InitTilesetAnim_Mauville,
+    .paletteOverrides = gTilesetPalOverrides_Mauville,
 };
 
 const struct Tileset gTileset_Lavaridge =
@@ -87,6 +89,7 @@ const struct Tileset gTileset_Fallarbor =
     .metatiles = gMetatiles_Fallarbor,
     .metatileAttributes = gMetatileAttributes_Fallarbor,
     .callback = InitTilesetAnim_Fallarbor,
+    .paletteOverrides = gTilesetPalOverrides_Fallarbor,
 };
 
 const struct Tileset gTileset_Fortree =
