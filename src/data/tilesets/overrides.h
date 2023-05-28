@@ -117,3 +117,54 @@ const struct PaletteOverride gTilesetPalOverrides_Fallarbor[] =
         .slot = 0xFF,
     },
 };
+
+const struct PaletteOverride gTilesetPalOverrides_Mossdeep[] =
+{   
+    {
+        .slot = 8,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_Mossdeep08,
+    },
+    {
+        .slot = 9,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_Mossdeep09,
+    },
+    {
+        .slot = 0xFF,
+    },
+};
+
+const struct PaletteOverride gTilesetPalOverrides_Lilycove[] =
+{   
+    {
+        .slot = 12,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_Lilycove12,
+    },
+    {
+        .slot = 8,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_Lilycove08,
+    },
+    {
+        .slot = 0xFF,
+    },
+};
+
+const struct PaletteOverride gTilesetPalOverrides_EverGrande[] =
+{   
+    {
+        .slot = 8,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_EverGrande08,
+    },
+    {
+        .slot = 0xFF,
+    },
+};

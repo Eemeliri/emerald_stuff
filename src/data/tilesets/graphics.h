@@ -1662,6 +1662,16 @@ const u16 gTilesetPalOverride_Mauville10[16] = INCBIN_U16("data/tilesets/seconda
 
 const u16 gTilesetPalOverride_Fallarbor12[16] = INCBIN_U16("data/tilesets/secondary/fallarbor/palettes/12_over.gbapal");
 
+const u16 gTilesetPalOverride_Mossdeep08[16] = INCBIN_U16("data/tilesets/secondary/mossdeep/palettes/08_over.gbapal");
+
+const u16 gTilesetPalOverride_Mossdeep09[16] = INCBIN_U16("data/tilesets/secondary/mossdeep/palettes/09_over.gbapal");
+
+const u16 gTilesetPalOverride_EverGrande08[16] = INCBIN_U16("data/tilesets/secondary/ever_grande/palettes/08_over.gbapal");
+
+const u16 gTilesetPalOverride_Lilycove08[16] = INCBIN_U16("data/tilesets/secondary/lilycove/palettes/08_over.gbapal");
+
+const u16 gTilesetPalOverride_Lilycove12[16] = INCBIN_U16("data/tilesets/secondary/lilycove/palettes/12_over.gbapal");
+
 
 const u16 gTilesetPalettes_FRLG[][16] =
 {

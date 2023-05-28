@@ -112,6 +112,7 @@ const struct Tileset gTileset_Lilycove =
     .metatiles = gMetatiles_Lilycove,
     .metatileAttributes = gMetatileAttributes_Lilycove,
     .callback = InitTilesetAnim_Lilycove,
+    .paletteOverrides = gTilesetPalOverrides_Lilycove,
 };
 
 const struct Tileset gTileset_Mossdeep =
@@ -123,6 +124,7 @@ const struct Tileset gTileset_Mossdeep =
     .metatiles = gMetatiles_Mossdeep,
     .metatileAttributes = gMetatileAttributes_Mossdeep,
     .callback = InitTilesetAnim_Mossdeep,
+    .paletteOverrides = gTilesetPalOverrides_Mossdeep,
 };
 
 const struct Tileset gTileset_EverGrande =
@@ -134,6 +136,7 @@ const struct Tileset gTileset_EverGrande =
     .metatiles = gMetatiles_EverGrande,
     .metatileAttributes = gMetatileAttributes_EverGrande,
     .callback = InitTilesetAnim_EverGrande,
+    .paletteOverrides = gTilesetPalOverrides_EverGrande,
 };
 
 const struct Tileset gTileset_Pacifidlog =
