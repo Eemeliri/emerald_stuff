@@ -11,12 +11,12 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 
-#define TINT_MORNING Q_8_8(0.7), Q_8_8(0.7), Q_8_8(0.9)
+#define TINT_MORNING Q_8_8(0.73), Q_8_8(0.73), Q_8_8(1.0)
 #define TINT_DAY Q_8_8(1.0), Q_8_8(1.0), Q_8_8(1.0)
-#define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.6), Q_8_8(0.92)
+#define TINT_NIGHT Q_8_8(0.52), Q_8_8(0.52), Q_8_8(0.78)
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
-EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
+EWRAM_DATA const struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 static EWRAM_DATA struct {
     bool8 initialized:1;
@@ -38,23 +38,23 @@ static const u16 sTimeOfDayTints[][3] = {
     [1] =   {TINT_NIGHT},
     [2] =   {TINT_NIGHT},
     [3] =   {TINT_NIGHT},
-    [4] =   {Q_8_8(0.6), Q_8_8(0.65), Q_8_8(1.0)},
+    [4] =   {Q_8_8(0.56), Q_8_8(0.56), Q_8_8(0.87)},
     [5] =   {TINT_MORNING},
     [6] =   {TINT_MORNING},
     [7] =   {TINT_MORNING},
-    [8] =   {Q_8_8(0.9), Q_8_8(0.85), Q_8_8(1.0)},
-    [9] =   {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(1.0)},
-    [10] =  {TINT_DAY},
-    [11] =  {TINT_DAY},
+    [8] =   {Q_8_8(0.88), Q_8_8(0.88), Q_8_8(0.97)},
+    [9] =   {Q_8_8(0.88), Q_8_8(0.88), Q_8_8(0.97)},
+    [10] =  {Q_8_8(0.88), Q_8_8(0.88), Q_8_8(0.97)},
+    [11] =  {Q_8_8(0.88), Q_8_8(0.88), Q_8_8(0.97)},
     [12] =  {TINT_DAY},
     [13] =  {TINT_DAY},
     [14] =  {TINT_DAY},
-    [15] =  {TINT_DAY},
-    [16] =  {TINT_DAY},
-    [17] =  {Q_8_8(1.0), Q_8_8(0.98), Q_8_8(0.9)},
-    [18] =  {Q_8_8(0.9), Q_8_8(0.7), Q_8_8(0.67)},
-    [19] =  {Q_8_8(0.75), Q_8_8(0.66), Q_8_8(0.77)},
-    [20] =  {Q_8_8(0.7), Q_8_8(0.63), Q_8_8(0.82)},
+    [15] =  {Q_8_8(1.0), Q_8_8(1.0), Q_8_8(0.91)},
+    [16] =  {Q_8_8(0.92), Q_8_8(0.85), Q_8_8(0.81)},
+    [17] =  {Q_8_8(0.78), Q_8_8(0.73), Q_8_8(0.53)},
+    [18] =  {Q_8_8(0.74), Q_8_8(0.52), Q_8_8(0.49)},
+    [19] =  {Q_8_8(0.56), Q_8_8(0.56), Q_8_8(0.68)},
+    [20] =  {TINT_NIGHT},
     [21] =  {TINT_NIGHT},
     [22] =  {TINT_NIGHT},
     [23] =  {TINT_NIGHT},
@@ -71,10 +71,8 @@ u8 GetTimeOfDay(s8 hours)
         return TIME_NIGHT;
     else if (hours < HOUR_DAY)
         return TIME_MORNING;
-    else if (hours < HOUR_EVENING)
-        return TIME_DAY;
     else if (hours < HOUR_NIGHT)
-        return TIME_EVENING;
+        return TIME_DAY;
     else
         return TIME_NIGHT;
 }
@@ -122,7 +120,7 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType))
+    if (IsMapTypeOutdoors(gMapHeader.mapType) || gMapHeader.mapType == 7)
         return TRUE;
 
     // more conditions?
@@ -282,8 +280,11 @@ void ProcessImmediateTimeEvents(void)
             TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sDNSystemControl.currRGBTint[0], sDNSystemControl.currRGBTint[1], sDNSystemControl.currRGBTint[2], TRUE);
             LoadPaletteOverrides();
             
-            if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN && gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT) {
+            if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
+                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
+            {
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
+
                 for (paletteIndex = 0; paletteIndex < 13; paletteIndex++)
                     ApplyWeatherColorMapToPal(paletteIndex);
             }
