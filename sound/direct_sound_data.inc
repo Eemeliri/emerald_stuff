@@ -4205,6 +4205,103 @@ Cry_AudinoMega::
 	.incbin "sound/direct_sound_samples/cries/audino.bin"
 .endif
 
+    .align 2
+Cry_VenusaurMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CharizardMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_BlastoiseMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_ButterfreeMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_PikachuMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_MachampMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_GengarMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_KinglerMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_LaprasMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_EeveeMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_SnorlaxMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_GarbodorMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_MelmetalMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_RillaboomMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CinderaceMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_InteleonMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CorviknightMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_OrbeetleMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_DrednawMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CoalossalMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_FlappleMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_AppletunMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_SandacondaMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_ToxtricityMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CentiskorchMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_HattereneMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_GrimmsnarlMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_AlcremieMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_CopperajahMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_DuraludonMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_UrshifuOneMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+    .align 2
+Cry_UrshifuRapidMegaGmax::
+    .incbin "sound/direct_sound_samples/cries/audino.bin"
+
 .if P_GEN_6_POKEMON == TRUE
 	.align 2
 Cry_DiancieMega::
