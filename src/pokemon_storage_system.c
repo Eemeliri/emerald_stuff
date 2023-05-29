@@ -1316,7 +1316,7 @@ static const union AnimCmd *const sAnims_Arrow[] =
     sAnim_Arrow_Right
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Arrow =
+static const struct SpriteTemplate gSpriteTemplate_Arrow =
 {
     .tileTag = GFXTAG_ARROW,
     .paletteTag = PALTAG_MISC_2,
@@ -5716,7 +5716,7 @@ static void CreateBoxScrollArrows(void)
     LoadSpriteSheet(&sSpriteSheet_Arrow);
     for (i = 0; i < 2; i++)
     {
-        u8 spriteId = CreateSprite(&sSpriteTemplate_Arrow, 92 + i * 136, 28, 22);
+        u8 spriteId = CreateSprite(&gSpriteTemplate_Arrow, 92 + i * 136, 28, 22);
         if (spriteId != MAX_SPRITES)
         {
             struct Sprite *sprite = &gSprites[spriteId];
@@ -5840,7 +5840,7 @@ static void SpriteCB_Arrow(struct Sprite *sprite)
 // Arrows for Deposit/Jump Box selection
 static struct Sprite *CreateChooseBoxArrows(u16 x, u16 y, u8 animId, u8 priority, u8 subpriority)
 {
-    u8 spriteId = CreateSprite(&sSpriteTemplate_Arrow, x, y, subpriority);
+    u8 spriteId = CreateSprite(&gSpriteTemplate_Arrow, x, y, subpriority);
     if (spriteId == MAX_SPRITES)
         return NULL;
 

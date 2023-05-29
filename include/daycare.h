@@ -32,4 +32,7 @@ void ShowDaycareLevelMenu(void);
 void ChooseSendDaycareMon(void);
 u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves);
 
+u8 GetEggMovesSpecies(u16 species, u16 *eggMoves);
+bool8 SpeciesCanLearnEggMove(u16 species, u16 move);
+
 #endif // GUARD_DAYCARE_H

@@ -138,6 +138,7 @@ bool8 HandleFaintedMonActions(void);
 void TryClearRageAndFuryCutter(void);
 u8 AtkCanceller_UnableToUseMove(void);
 u8 AtkCanceller_UnableToUseMove2(void);
+bool32 DoesSpeciesUseHoldItemToChangeForm(u16 species, u16 heldItemId);
 bool8 HasNoMonsToSwitch(u8 battlerId, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility);
 u8 AbilityBattleEffects(u8 caseID, u8 battlerId, u16 ability, u8 special, u16 moveArg);
