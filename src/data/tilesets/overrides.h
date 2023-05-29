@@ -168,3 +168,16 @@ const struct PaletteOverride gTilesetPalOverrides_EverGrande[] =
         .slot = 0xFF,
     },
 };
+
+const struct PaletteOverride gTilesetPalOverrides_Sootopolis[] =
+{   
+    {
+        .slot = 6,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_Sootopolis06,
+    },
+    {
+        .slot = 0xFF,
+    },
+};

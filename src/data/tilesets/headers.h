@@ -159,6 +159,7 @@ const struct Tileset gTileset_Sootopolis =
     .metatiles = gMetatiles_Sootopolis,
     .metatileAttributes = gMetatileAttributes_Sootopolis,
     .callback = InitTilesetAnim_Sootopolis,
+    .paletteOverrides = gTilesetPalOverrides_Sootopolis,
 };
 
 const struct Tileset gTileset_BattleFrontierOutsideWest =

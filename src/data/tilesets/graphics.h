@@ -1672,6 +1672,8 @@ const u16 gTilesetPalOverride_Lilycove08[16] = INCBIN_U16("data/tilesets/seconda
 
 const u16 gTilesetPalOverride_Lilycove12[16] = INCBIN_U16("data/tilesets/secondary/lilycove/palettes/12_over.gbapal");
 
+const u16 gTilesetPalOverride_Sootopolis06[16] = INCBIN_U16("data/tilesets/secondary/sootopolis/palettes/06_over.gbapal");
+
 
 const u16 gTilesetPalettes_FRLG[][16] =
 {
