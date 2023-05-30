@@ -970,7 +970,7 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA] = _("Diancie"),
 #endif
-        [SPECIES_VENUSAUR_MEGA_GMAX] = _("Venusaur"),
+    [SPECIES_VENUSAUR_MEGA_GMAX] = _("Venusaur"),
     [SPECIES_CHARIZARD_MEGA_GMAX] = _("Charizard"),
     [SPECIES_BLASTOISE_MEGA_GMAX] = _("Blastoise"),
     [SPECIES_BUTTERFREE_MEGA_GMAX] = _("Butterfree"),
