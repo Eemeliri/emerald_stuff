@@ -71,16 +71,6 @@ const struct PokenavCallbacks PokenavMenuCallbacks[17] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_MAIN_MENU_CURSOR_ON_DEXNAV - POKENAV_MENU_IDS_START] =
-    {
-        .init = PokenavCallback_Init_MainMenuCursorOnDexNav,
-        .callback = GetMenuHandlerCallback,
-        .open = OpenPokenavMenuNotInitial,
-        .createLoopTask = CreateMenuHandlerLoopedTask,
-        .isLoopTaskActive = IsMenuHandlerLoopedTaskActive,
-        .free1 = FreeMenuHandlerSubstruct1,
-        .free2 = FreeMenuHandlerSubstruct2,
-    },
     [POKENAV_CONDITION_MENU - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_ConditionMenu,
@@ -130,16 +120,6 @@ const struct PokenavCallbacks PokenavMenuCallbacks[17] =
         .isLoopTaskActive = IsRegionMapLoopedTaskActive,
         .free1 = FreeRegionMapSubstruct1,
         .free2 = FreeRegionMapSubstruct2,
-    },
-    [POKENAV_DEXNAV - POKENAV_MENU_IDS_START] =
-    {
-        .init = PokeNavMenuDexNavCallback,
-        .callback = GetConditionGraphMenuCallback,
-        .open = OpenConditionGraphMenu,
-        .createLoopTask = CreateConditionGraphMenuLoopedTask,
-        .isLoopTaskActive = IsConditionGraphMenuLoopedTaskActive,
-        .free1 = FreeConditionGraphMenuSubstruct1,
-        .free2 = FreeConditionGraphMenuSubstruct2,
     },
     [POKENAV_CONDITION_GRAPH_PARTY - POKENAV_MENU_IDS_START] =
     {

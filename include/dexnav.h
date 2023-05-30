@@ -65,23 +65,23 @@
 #define ROW_HIDDEN      3
 #define ROWS_COUNT      4
 
-#define ROW_WATER_ICON_X        20
+#define ROW_WATER_ICON_X        30
 #define ROW_WATER_ICON_Y        35
 
 #define ROW_LAND_ICON_X         20
-#define ROW_LAND_TOP_ICON_Y     (ROW_WATER_ICON_Y + 28)
+#define ROW_LAND_TOP_ICON_Y     72
 #define ROW_LAND_BOT_ICON_Y     (ROW_LAND_TOP_ICON_Y + 28)
 
-#define ROW_HIDDEN_ICON_X       20
-#define ROW_HIDDEN_ICON_Y       (ROW_LAND_BOT_ICON_Y + 28)
+#define ROW_HIDDEN_ICON_X       52
+#define ROW_HIDDEN_ICON_Y       138
 
 #define ENCOUNTER_TYPE_LAND     0
 #define ENCOUNTER_TYPE_WATER    1
 #define ENCOUNTER_TYPE_HIDDEN   2   //get from species
 
-#define COL_WATER_COUNT         6
+#define COL_WATER_COUNT         5
 #define COL_LAND_COUNT          6
-#define COL_HIDDEN_COUNT        6
+#define COL_HIDDEN_COUNT        3
 
 #define COL_WATER_MAX           (COL_WATER_COUNT - 1)
 #define COL_LAND_MAX            (COL_LAND_COUNT - 1)
@@ -93,11 +93,11 @@
 #define SCANSIZE_X              12
 #define SCANSIZE_Y              12
 
-#define SPECIES_INFO_Y          6
+#define SPECIES_INFO_Y          5
 #define TYPE_ICONS_Y            (SPECIES_INFO_Y + 24)
 #define SEARCH_LEVEL_Y          (TYPE_ICONS_Y + 24)
-#define CHAIN_BONUS_Y           (SEARCH_LEVEL_Y + 24)
-#define HA_INFO_Y               (CHAIN_BONUS_Y + 24)
+#define HA_INFO_Y               (SEARCH_LEVEL_Y + 24)
+#define CHAIN_BONUS_Y           (HA_INFO_Y + 24)
 
 #define MON_LEVEL_NONEXISTENT   255 //if mon not in area GetEncounterLevel returns this to exit the search
 
@@ -122,14 +122,12 @@
 //funcs
 void EndDexNavSearch(u8 taskId);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
-void Task_OpenDexNavFromPokenav(u8 taskId);
 bool8 TryStartDexnavSearch(void);
-//void TryIncrementSpeciesSearchLevel(u16 dexNum);
+void TryIncrementSpeciesSearchLevel(u16 dexNum);
 void ResetDexNavSearch(void);
 bool8 TryFindHiddenPokemon(void);
 bool8 DexNavTryMakeShinyMon(void);
 void IncrementDexNavChain(void);
-u32 PokeNavMenuDexNavCallback(void);
 
 //ewram
 extern u8 gCurrentDexNavChain;

@@ -141,7 +141,6 @@ static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
 
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
-
 static void PlayerGoSlow(u8 direction);
 
 // .rodata
