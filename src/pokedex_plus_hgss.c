@@ -6536,7 +6536,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
                 preEvolutionOne = i;
                 numPreEvolutions += 1;
                 #ifdef POKEMON_EXPANSION
-                    if (DoesSpeciesUseHoldItemToChangeForm(species, gEvolutionTable[i][j].param))
+                    if (gSpeciesInfo[species].flags & SPECIES_FLAG_MEGA_EVOLUTION)
                     {
                         CopyItemName(gEvolutionTable[i][j].param, gStringVar2); //item
                         isMega = TRUE;
