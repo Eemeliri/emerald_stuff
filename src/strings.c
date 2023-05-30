@@ -986,7 +986,6 @@ const u8 gText_JustOnePkmn[] = _("There is just one Pokémon with you.");
 const u8 gText_PartyFull[] = _("Your party is full!");
 const u8 gText_Box[] = _("Box");
 const u8 gText_CheckMapOfHoenn[] = _("Check the map of the Hoenn region.");
-const u8 gText_DexNavDescription[] = _("Search for wild Pokémon.");
 const u8 gText_CheckPokemonInDetail[] = _("Check Pokémon in detail.");
 const u8 gText_CallRegisteredTrainer[] = _("Call a registered Trainer.");
 const u8 gText_CheckObtainedRibbons[] = _("Check obtained Ribbons.");

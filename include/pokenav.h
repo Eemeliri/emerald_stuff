@@ -150,7 +150,6 @@ enum
 enum
 {
     POKENAV_MENUITEM_MAP,
-    POKENAV_MENUITEM_DEXNAV,
     POKENAV_MENUITEM_CONDITION,
     POKENAV_MENUITEM_MATCH_CALL,
     POKENAV_MENUITEM_RIBBONS,
@@ -388,7 +387,6 @@ void ShutdownPokenav(void);
 
 // pokenav_menu_handler.c
 bool32 PokenavCallback_Init_MainMenuCursorOnMap(void);
-bool32 PokenavCallback_Init_MainMenuCursorOnDexNav(void);
 bool32 PokenavCallback_Init_MainMenuCursorOnMatchCall(void);
 bool32 PokenavCallback_Init_MainMenuCursorOnRibbons(void);
 bool32 PokenavCallback_Init_ConditionMenu(void);
