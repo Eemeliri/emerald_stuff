@@ -1,1 +1,18 @@
 mapscripts SouthernWilds_MapScripts {}
+
+script wallPuzzle1 {
+    lock
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_0x8004, SLIDING_PUZZLE_KABUTO)
+    setvar(VAR_0x8005, FALSE) // or TRUE if you want to display the solved puzzle
+    special(DoSlidingPuzzle)
+    fadescreen(FADE_FROM_BLACK)
+    waitstate
+    goto_if_eq(VAR_RESULT, TRUE, EventScript_Puzzle1Solved)
+    release
+}
+
+script EventScript_Puzzle1Solved {
+    msgbox(format("You did it!"))
+    release
+}

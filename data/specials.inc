@@ -549,3 +549,4 @@ gSpecials::
 	def_special Special_InitGTS
 	def_special TrySpecialOverworldEvo
 	def_special RtcGetDayOfWeek
+	def_special DoSlidingPuzzle
