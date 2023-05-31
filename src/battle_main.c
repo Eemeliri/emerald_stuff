@@ -1968,6 +1968,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 {
     u32 personalityValue;
     u8 fixedIV;
+    u8 scaledLevel;
     s32 i, j;
     u8 monsCount;
     s32 ball = -1;
@@ -2036,7 +2037,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemCustomMoves *partyData = trainer->party.ItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                if (partyData[i].lvl == 0) {
+                    scaledLevel = GetCurrentLevelCap();
+                } else {
+                    scaledLevel = partyData[i].lvl;
+                }
+                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 

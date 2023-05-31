@@ -1,0 +1,85 @@
+{
+  "id": "MAP_VERITY_CAVERN",
+  "name": "VerityCavern",
+  "layout": "LAYOUT_VERITY_CAVERN",
+  "music": "MUS_DP_LAKE_CAVERNS",
+  "region_map_section": "MAPSEC_NAMELESS_CAVERN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GALACTIC_GRUNT_FEMALE",
+      "x": 23,
+      "y": 27,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "grunt2verity",
+      "flag": "FLAG_HIDE_VERITY_GRUNTS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GALACTIC_GRUNT_FEMALE",
+      "x": 19,
+      "y": 27,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "grunt3verity",
+      "flag": "FLAG_HIDE_VERITY_GRUNTS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GALACTIC_GRUNT_MALE",
+      "x": 21,
+      "y": 32,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "grunt1verity",
+      "flag": "FLAG_HIDE_VERITY_GRUNTS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GALACTIC_COMMANDER_SATURN",
+      "x": 21,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "marsverity",
+      "flag": "FLAG_HIDE_VERITY_GRUNTS"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 21,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_SLATEPORT_MARKET",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

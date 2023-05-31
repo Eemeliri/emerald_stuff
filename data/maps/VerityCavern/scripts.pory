@@ -1,0 +1,54 @@
+mapscripts VerityCavern_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        goto_if_eq(VAR_VERITY_CAVERN_STATE, 1, spawnGrunts)
+        goto_if_eq(VAR_VERITY_CAVERN_STATE, 2, spawnMesprit)
+        goto_if_eq(VAR_VERITY_CAVERN_STATE, 0, hideGrunts)
+    }
+}
+
+script spawnGrunts {
+    clearflag(FLAG_HIDE_VERITY_GRUNTS)
+}
+
+script hideGrunts {
+    setflag(FLAG_HIDE_VERITY_GRUNTS)
+}
+
+script spawnMesprit {
+
+}
+
+script grunt1verity {
+    lock
+    faceplayer
+    msgbox(format("Hey"))
+    release
+    end
+}
+
+script grunt2verity {
+    lock
+    faceplayer
+    msgbox(format("Hey"))
+    release
+    end
+}
+
+script grunt3verity {
+    lock
+    faceplayer
+    msgbox(format("Hey"))
+    release
+    end
+}
+
+script marsverity {
+    lock
+    faceplayer
+    msgbox(format("Hey"))
+    trainerbattle_no_intro(TRAINER_GSATURN_1, format("You, my friend, are tough! I can see why you defy us so..."))
+    release
+    end
+}
+
+

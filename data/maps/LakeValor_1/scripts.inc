@@ -242,8 +242,9 @@ triggerThanks::
 	msgbox triggerThanks_Text_1
 	delay 120
 	msgbox triggerThanks_Text_2
-	giveitem ITEM_GRASSIUM_Z
+	giveitem ITEM_GRASS_MEMORY
 	setvar VAR_LAKE_OF_VALOR_STATE, 2
+	setvar VAR_VERITY_CAVERN_STATE, 1
 	releaseall
 	end
 

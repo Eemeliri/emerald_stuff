@@ -313,9 +313,7 @@ struct PokedexView
     u8 statBarsSpriteId; //HGSS_Ui
     u8 statBarsBgSpriteId; //HGSS_Ui
     bool8 justScrolled; //HGSS_Ui
-    #ifdef BATTLE_ENGINE
     u8 splitIconSpriteId;  //HGSS_Ui Physical/Special Split from BE
-    #endif
     u8 numEggMoves; //HGSS_Ui
     u8 numLevelUpMoves; //HGSS_Ui
     u8 numTMHMMoves; //HGSS_Ui
@@ -5023,12 +5021,10 @@ static void Task_LoadStatsScreen(u8 taskId)
         sPokedexView->typeIconSpriteIds[0] = 0xFF;
         sPokedexView->typeIconSpriteIds[1] = 0xFF;
         CreateTypeIconSprites();
-        #ifdef BATTLE_ENGINE
-            sPokedexView->splitIconSpriteId = 0xFF; //Physical/Special Split from BE
-            LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60); //Physical/Special Split from BE
-            LoadCompressedSpriteSheet(&sSpriteSheet_SplitIcons); //Physical/Special Split from BE
-            LoadSpritePalette(&sSpritePal_SplitIcons); //Physical/Special Split from BE
-        #endif
+        sPokedexView->splitIconSpriteId = 0xFF; //Physical/Special Split from BE
+        LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60); //Physical/Special Split from BE
+        LoadCompressedSpriteSheet(&sSpriteSheet_SplitIcons); //Physical/Special Split from BE
+        LoadSpritePalette(&sSpritePal_SplitIcons); //Physical/Special Split from BE
         gMain.state++;
         break;
     case 4:

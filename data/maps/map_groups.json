@@ -186,7 +186,8 @@
     "SlateportCity_Mart",
     "SlateportMarket",
     "MarketHarbor",
-    "SlateportMarket_Underwater"
+    "SlateportMarket_Underwater",
+    "VerityCavern"
   ],
   "gMapGroup_IndoorMauville": [
     "MauvilleCity_Gym",

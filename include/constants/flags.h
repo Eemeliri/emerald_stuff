@@ -658,7 +658,7 @@
 #define FLAG_DEFEATED_ZAPDOS  0x268 
 #define FLAG_CAUGHT_ARTICUNO  0x269 
 #define FLAG_DEFEATED_ARTICUNO  0x26A 
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
+#define FLAG_HIDE_VERITY_GRUNTS  0x26B 
 #define FLAG_UNUSED_0x26C  0x26C // Unused Flag
 #define FLAG_UNUSED_0x26D  0x26D // Unused Flag
 #define FLAG_UNUSED_0x26E  0x26E // Unused Flag

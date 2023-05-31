@@ -4780,6 +4780,16 @@
       "secondary_tileset": "gTileset_BikeShop",
       "border_filepath": "data/layouts/NewMauville_Inside3F/border.bin",
       "blockdata_filepath": "data/layouts/NewMauville_Inside3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERITY_CAVERN",
+      "name": "VerityCavern_Layout",
+      "width": 44,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/VerityCavern/border.bin",
+      "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
     }
   ]
 }
