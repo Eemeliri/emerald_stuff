@@ -405,10 +405,10 @@ static void VBlankCB(void)
     TransferPlttBuffer();
 }
 
-static const u8 sText_TopBar_Main[]         = _("GENERAL");
-static const u8 sText_TopBar_Main_Right[]   = _("{R_BUTTON}CUSTOM");
-static const u8 sText_TopBar_Custom[]       = _("CUSTOM");
-static const u8 sText_TopBar_Custom_Left[]  = _("{L_BUTTON}GENERAL");
+static const u8 sText_TopBar_Main[]         = _("Page 1");
+static const u8 sText_TopBar_Main_Right[]   = _("{R_BUTTON}Next Page");
+static const u8 sText_TopBar_Custom[]       = _("Page 2");
+static const u8 sText_TopBar_Custom_Left[]  = _("{L_BUTTON}Prev Page");
 static void DrawTopBarText(void)
 {
     const u8 color[3] = { TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_OPTIONS_GRAY_FG };
@@ -418,7 +418,7 @@ static void DrawTopBarText(void)
     {
         case MENU_MAIN:
             AddTextPrinterParameterized3(WIN_TOPBAR, FONT_SMALL, 105, 1, color, 0, sText_TopBar_Main);
-            AddTextPrinterParameterized3(WIN_TOPBAR, FONT_SMALL, 190, 1, color, 0, sText_TopBar_Main_Right);
+            AddTextPrinterParameterized3(WIN_TOPBAR, FONT_SMALL, 180, 1, color, 0, sText_TopBar_Main_Right);
             break;
         case MENU_CUSTOM:
             AddTextPrinterParameterized3(WIN_TOPBAR, FONT_SMALL, 105, 1, color, 0, sText_TopBar_Custom);
@@ -999,8 +999,8 @@ static void ReDrawAll(void)
 }
 
 // Process Input functions ****SPECIFIC****
-static const u8 sText_Faster[] = _("FASTER");
-static const u8 sText_Instant[] = _("INSTANT");
+static const u8 sText_Faster[] = _("Faster");
+static const u8 sText_Instant[] = _("Instant");
 static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Faster};
 static void DrawChoices_TextSpeed(int selection, int y)
 {
@@ -1050,7 +1050,7 @@ static void DrawChoices_ButtonMode(int selection, int y)
     DrawOptionMenuChoice(gText_ButtonTypeLEqualsA, GetStringRightAlignXOffset(1, gText_ButtonTypeLEqualsA, 198), y, styles[2], active);
 }
 
-static const u8 sText_Normal[] = _("NORMAL");
+static const u8 sText_Normal[] = _("Normal");
 static void DrawChoices_BarSpeed(int selection, int y) //HP and EXP
 {
     bool8 active = CheckConditions(MENUITEM_CUSTOM_EXP_BAR);
