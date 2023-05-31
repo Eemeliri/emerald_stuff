@@ -149,6 +149,7 @@
 	.include "src/faraway_island.o"
 	.include "src/trainer_hill.o"
 	.include "src/rayquaza_scene.o"
+	.include "src/option_plus_menu.o"
 	.include "src/dexnav.o"
 	.include "src/global_trade_station.o"
 	.include "src/debug.o"

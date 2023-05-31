@@ -4256,83 +4256,51 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 
 static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
-#ifdef UNITS_IMPERIAL
-    u8 buffer[16];
+     u8 buffer[16];
     u32 inches, feet;
-    u8 i = 0;
-
-    inches = (height * 10000) / 254;
-    if (inches % 10 >= 5)
-        inches += 10;
-    feet = inches / 120;
-    inches = (inches - (feet * 120)) / 10;
-
-    buffer[i++] = EXT_CTRL_CODE_BEGIN;
-    buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
-    if (feet / 10 == 0)
-    {
-        buffer[i++] = 18;
-        buffer[i++] = feet + CHAR_0;
-    }
-    else
-    {
-        buffer[i++] = 12;
-        buffer[i++] = feet / 10 + CHAR_0;
-        buffer[i++] = (feet % 10) + CHAR_0;
-    }
-    buffer[i++] = CHAR_SGL_QUOTE_RIGHT;
-    buffer[i++] = (inches / 10) + CHAR_0;
-    buffer[i++] = (inches % 10) + CHAR_0;
-    buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
-    buffer[i++] = EOS;
-    PrintInfoScreenText(buffer, left, top);
-#else
-    u8 buffer[16];
     u8 i = 0;
     int offset;
     u8 result;
     offset = 0;
+        buffer[i++] = EXT_CTRL_CODE_BEGIN;
+        buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
+        i++;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
 
-    buffer[i++] = EXT_CTRL_CODE_BEGIN;
-    buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
-    i++;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_SPACE;
+        result = (height / 1000);
+        if (result == 0)
+        {
+            offset = 6;
+        }
+        else
+        {
+            buffer[i++] = result + CHAR_0;
+        }
 
-    result = (height / 1000);
-    if (result == 0)
-    {
-        offset = 6;
+        result = (height % 1000) / 100;
+        if (result == 0 && offset != 0)
+        {
+            offset += 6;
+        }
+        else
+        {
+            buffer[i++] = result + CHAR_0;
+        }
+
+        buffer[i++] = (((height % 1000) % 100) / 10) + CHAR_0;
+        buffer[i++] = CHAR_COMMA;
+        buffer[i++] = (((height % 1000) % 100) % 10) + CHAR_0;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_m;
+
+        buffer[i++] = EOS;
+        buffer[2] = offset;
+        PrintInfoScreenText(buffer, left, top);   
     }
-    else
-    {
-        buffer[i++] = result + CHAR_0;
-    }
-
-    result = (height % 1000) / 100;
-    if (result == 0 && offset != 0)
-    {
-        offset += 6;
-    }
-    else
-    {
-        buffer[i++] = result + CHAR_0;
-    }
-
-    buffer[i++] = (((height % 1000) % 100) / 10) + CHAR_0;
-    buffer[i++] = CHAR_PERIOD;
-    buffer[i++] = (((height % 1000) % 100) % 10) + CHAR_0;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_m;
-
-    buffer[i++] = EOS;
-    buffer[2] = offset;
-    PrintInfoScreenText(buffer, left, top);
-#endif
-}
 
 static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
