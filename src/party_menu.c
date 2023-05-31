@@ -7290,4 +7290,10 @@ void CursorCb_MoveItem(u8 taskId)
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
+
+}
+
+u16 GetTMHMMoves(u16 position)
+{
+    return sTMHMMoves[position];
 }
