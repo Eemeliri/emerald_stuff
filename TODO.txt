@@ -12,3 +12,4 @@
 - redistribute trainer mons 
 - make curated dex and apply it to wild encounter table 
 - finish hoenn legendary events
+- fix status icons in double battles
