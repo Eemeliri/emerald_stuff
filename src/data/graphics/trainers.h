@@ -418,6 +418,12 @@ const u32 gTrainerPalette_GGrunt_F[] = INCBIN_U32("graphics/trainers/palettes/ga
 const u32 gTrainerFrontPic_GalacticAdminSaturn[] = INCBIN_U32("graphics/trainers/front_pics/galactic_admin_saturn_front_pic.4bpp.lz");
 const u32 gTrainerPalette_G_Admin_Saturn[] = INCBIN_U32("graphics/trainers/palettes/galactic_admin_saturn.gbapal.lz");
 
+const u32 gTrainerFrontPic_GalacticAdminMars[] = INCBIN_U32("graphics/trainers/front_pics/galactic_admin_mars_front_pic.4bpp.lz");
+const u32 gTrainerPalette_G_Admin_Mars[] = INCBIN_U32("graphics/trainers/palettes/galactic_admin_mars.gbapal.lz");
+
+const u32 gTrainerFrontPic_GalacticAdminJupiter[] = INCBIN_U32("graphics/trainers/front_pics/galactic_admin_jupiter_front_pic.4bpp.lz");
+const u32 gTrainerPalette_G_Admin_Jupiter[] = INCBIN_U32("graphics/trainers/palettes/galactic_admin_jupiter.gbapal.lz");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");

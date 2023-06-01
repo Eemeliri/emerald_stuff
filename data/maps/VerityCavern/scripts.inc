@@ -51,7 +51,7 @@ marsverity::
 	lock
 	faceplayer
 	msgbox grunt1verity_Text_0
-	trainerbattle_no_intro TRAINER_GSATURN_1, marsverity_Text_0
+	trainerbattle_no_intro TRAINER_GMARS_1, marsverity_Text_0
 	release
 	end
 

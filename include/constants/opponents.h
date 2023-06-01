@@ -883,8 +883,12 @@
 #define TRAINER_GGRUNT_2                    878
 #define TRAINER_GGRUNT_3                    879
 #define TRAINER_GSATURN_1                   880
+#define TRAINER_VERITY_GRUNT_1              881
+#define TRAINER_VERITY_GRUNT_2              882
+#define TRAINER_VERITY_GRUNT_3              883
+#define TRAINER_GMARS_1                     884
 
-#define REGULAR_TRAINER_END                 TRAINER_GSATURN_1
+#define REGULAR_TRAINER_END                 TRAINER_GMARS_1
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -971,7 +975,7 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      953
+#define TRAINERS_COUNT                      955
 #define MAX_TRAINERS_COUNT                  956
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS

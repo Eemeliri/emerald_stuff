@@ -140,6 +140,8 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_GGRUNT_F] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_GGRUNT_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_G_ADMIN_SATURN] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_G_ADMIN_MARS] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_G_ADMIN_JUPITER] = {.size = 8, .y_offset = 1},
 };
 
 #define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
@@ -226,6 +228,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(GGRUNT_F, gTrainerFrontPic_GalacticGruntF, 0x800),
     TRAINER_SPRITE(GGRUNT_M, gTrainerFrontPic_GalacticGruntM, 0x800),
     TRAINER_SPRITE(G_ADMIN_SATURN, gTrainerFrontPic_GalacticAdminSaturn, 0x800),
+    TRAINER_SPRITE(G_ADMIN_MARS, gTrainerFrontPic_GalacticAdminMars, 0x800),
+    TRAINER_SPRITE(G_ADMIN_JUPITER, gTrainerFrontPic_GalacticAdminJupiter, 0x800),
     TRAINER_SPRITE(LASS, gTrainerFrontPic_Lass, 0x800),
     TRAINER_SPRITE(YOUNG_COUPLE, gTrainerFrontPic_YoungCouple, 0x800),
     TRAINER_SPRITE(OLD_COUPLE, gTrainerFrontPic_OldCouple, 0x800),
@@ -388,6 +392,8 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(GGRUNT_F, gTrainerPalette_GGrunt_F),
     TRAINER_PAL(GGRUNT_M, gTrainerPalette_GGrunt_M),
     TRAINER_PAL(G_ADMIN_SATURN, gTrainerPalette_G_Admin_Saturn),
+    TRAINER_PAL(G_ADMIN_MARS, gTrainerPalette_G_Admin_Mars),
+    TRAINER_PAL(G_ADMIN_JUPITER, gTrainerPalette_G_Admin_Jupiter),
     TRAINER_PAL(LEADER_BROCK, gTrainerPalette_Brock),
     TRAINER_PAL(LEADER_MISTY, gTrainerPalette_Misty),
     TRAINER_PAL(LEADER_SURGE, gTrainerPalette_Surge),

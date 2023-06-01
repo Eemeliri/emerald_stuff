@@ -46,7 +46,7 @@ script marsverity {
     lock
     faceplayer
     msgbox(format("Hey"))
-    trainerbattle_no_intro(TRAINER_GSATURN_1, format("You, my friend, are tough! I can see why you defy us so..."))
+    trainerbattle_no_intro(TRAINER_GMARS_1, format("You, my friend, are tough! I can see why you defy us so..."))
     release
     end
 }

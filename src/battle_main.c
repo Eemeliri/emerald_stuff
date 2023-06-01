@@ -2015,7 +2015,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonNoItemDefaultMoves *partyData = trainer->party.NoItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                if (partyData[i].lvl == 0) {
+                    scaledLevel = GetCurrentLevelCap();
+                } else {
+                    scaledLevel = partyData[i].lvl;
+                }
+                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -2076,7 +2081,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     otIdType = OT_ID_PRESET;
                     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
                 }
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+                if (partyData[i].lvl == 0) {
+                    scaledLevel = GetCurrentLevelCap();
+                } else {
+                    scaledLevel = partyData[i].lvl;
+                }
+                CreateMon(&party[i], partyData[i].species, scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);

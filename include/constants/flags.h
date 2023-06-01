@@ -659,12 +659,12 @@
 #define FLAG_CAUGHT_ARTICUNO  0x269 
 #define FLAG_DEFEATED_ARTICUNO  0x26A 
 #define FLAG_HIDE_VERITY_GRUNTS  0x26B 
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
+#define FLAG_DEFEATED_MESPRIT  0x26C
+#define FLAG_CAUGHT_MESPRIT  0x26D 
+#define FLAG_DEFEATED_UXIE  0x26E 
+#define FLAG_CAUGHT_UXIE  0x26F 
+#define FLAG_HIDE_MESPRIT  0x270 
+#define FLAG_HIDE_UXIE  0x271 
 #define FLAG_UNUSED_0x272  0x272 // Unused Flag
 #define FLAG_UNUSED_0x273  0x273 // Unused Flag
 #define FLAG_UNUSED_0x274  0x274 // Unused Flag

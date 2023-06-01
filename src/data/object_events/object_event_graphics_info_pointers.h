@@ -142,9 +142,13 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blaine;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giovanni;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blue;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Azelf;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mesprit;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Uxie;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Grunt_Male;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Grunt_Female;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Commander_Saturn;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Commander_Mars;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Commander_Jupiter;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wallace;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Steven;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wally;
@@ -520,9 +524,13 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_GIOVANNI] =                 &gObjectEventGraphicsInfo_Giovanni,
     [OBJ_EVENT_GFX_BLUE] =                     &gObjectEventGraphicsInfo_Blue,
     [OBJ_EVENT_GFX_AZELF] =                    &gObjectEventGraphicsInfo_Azelf,
+    [OBJ_EVENT_GFX_MESPRIT] =                    &gObjectEventGraphicsInfo_Mesprit,
+    [OBJ_EVENT_GFX_UXIE] =                    &gObjectEventGraphicsInfo_Uxie,
     [OBJ_EVENT_GFX_GALACTIC_GRUNT_MALE] =      &gObjectEventGraphicsInfo_Galactic_Grunt_Male,
     [OBJ_EVENT_GFX_GALACTIC_GRUNT_FEMALE] =    &gObjectEventGraphicsInfo_Galactic_Grunt_Female,
     [OBJ_EVENT_GFX_GALACTIC_COMMANDER_SATURN] = &gObjectEventGraphicsInfo_Galactic_Commander_Saturn,
+    [OBJ_EVENT_GFX_GALACTIC_COMMANDER_MARS]   = &gObjectEventGraphicsInfo_Galactic_Commander_Mars,
+    [OBJ_EVENT_GFX_GALACTIC_COMMANDER_JUPITER] = &gObjectEventGraphicsInfo_Galactic_Commander_Jupiter,
     [OBJ_EVENT_GFX_MAGIKARP] =                 &gObjectEventGraphicsInfo_Magikarp,
     [OBJ_EVENT_GFX_MOLTRES] =                 &gObjectEventGraphicsInfo_Moltres,
     [OBJ_EVENT_GFX_ZAPDOS] =                 &gObjectEventGraphicsInfo_Zapdos,

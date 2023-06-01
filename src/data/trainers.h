@@ -10578,6 +10578,54 @@ const struct Trainer gTrainers[] = {
         .party = ITEM_CUSTOM_MOVES(sParty_GSaturn1),
     },
 
+        [TRAINER_VERITY_GRUNT_1] =
+    {
+        .trainerClass = TRAINER_CLASS_G_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_M,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party = NO_ITEM_DEFAULT_MOVES(sParty_GGruntVerity1),
+    },
+
+        [TRAINER_VERITY_GRUNT_2] =
+    {
+        .trainerClass = TRAINER_CLASS_G_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_F,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party = NO_ITEM_DEFAULT_MOVES(sParty_GGruntVerity2),
+    },
+
+        [TRAINER_VERITY_GRUNT_3] =
+    {
+        .trainerClass = TRAINER_CLASS_G_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_GGRUNT_F,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party = NO_ITEM_DEFAULT_MOVES(sParty_GGruntVerity3),
+    },
+
+        [TRAINER_GMARS_1] =
+    {
+        .trainerClass = TRAINER_CLASS_G_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_GGRUNT,
+        .trainerPic = TRAINER_PIC_G_ADMIN_MARS,
+        .trainerName = _("Mars"),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
+        .party = ITEM_CUSTOM_MOVES(sParty_GMars1),
+    },
+
     [TRAINER_FRONTIER_BROCK] =
     {
         .partyFlags = 0,
