@@ -7586,30 +7586,45 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             {
                 const struct TrainerMonNoItemDefaultMoves *party = gTrainers[trainerId].party.NoItemDefaultMoves;
                 lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+                if (lastMonLevel == 0) {
+                    lastMonLevel = GetCurrentLevelCap();
+                }
             }
             break;
         case F_TRAINER_PARTY_CUSTOM_MOVESET:
             {
                 const struct TrainerMonNoItemCustomMoves *party = gTrainers[trainerId].party.NoItemCustomMoves;
                 lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+                if (lastMonLevel == 0) {
+                    lastMonLevel = GetCurrentLevelCap();
+                }
             }
             break;
         case F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemDefaultMoves *party = gTrainers[trainerId].party.ItemDefaultMoves;
                 lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+                if (lastMonLevel == 0) {
+                    lastMonLevel = GetCurrentLevelCap();
+                }
             }
             break;
         case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemCustomMoves *party = gTrainers[trainerId].party.ItemCustomMoves;
                 lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+                if (lastMonLevel == 0) {
+                    lastMonLevel = GetCurrentLevelCap();
+                }
             }
             break;
         case F_TRAINER_PARTY_EVERYTHING_CUSTOMIZED:
             {
                 const struct TrainerMonCustomized *party = gTrainers[trainerId].party.EverythingCustomized;
                 lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+                if (lastMonLevel == 0) {
+                    lastMonLevel = GetCurrentLevelCap();
+                }
             }
             break;
         }
