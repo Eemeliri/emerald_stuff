@@ -19,26 +19,17 @@ script spawnMesprit {
 }
 
 script grunt1verity {
-    lock
-    faceplayer
-    msgbox(format("Hey"))
-    release
+    trainerbattle_single(TRAINER_VERITY_GRUNT_1, "Oh no", "Oh no")
     end
 }
 
 script grunt2verity {
-    lock
-    faceplayer
-    msgbox(format("Hey"))
-    release
+    trainerbattle_single(TRAINER_VERITY_GRUNT_2, "Oh no", "Oh no")
     end
 }
 
 script grunt3verity {
-    lock
-    faceplayer
-    msgbox(format("Hey"))
-    release
+    trainerbattle_single(TRAINER_VERITY_GRUNT_3, "Oh no", "Oh no")
     end
 }
 

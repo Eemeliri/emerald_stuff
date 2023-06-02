@@ -24,41 +24,35 @@ spawnMesprit::
 
 
 grunt1verity::
-	lock
-	faceplayer
-	msgbox grunt1verity_Text_0
-	release
+	trainerbattle_single TRAINER_VERITY_GRUNT_1, grunt1verity_Text_0, grunt1verity_Text_0
 	end
 
 
 grunt2verity::
-	lock
-	faceplayer
-	msgbox grunt1verity_Text_0
-	release
+	trainerbattle_single TRAINER_VERITY_GRUNT_2, grunt1verity_Text_0, grunt1verity_Text_0
 	end
 
 
 grunt3verity::
-	lock
-	faceplayer
-	msgbox grunt1verity_Text_0
-	release
+	trainerbattle_single TRAINER_VERITY_GRUNT_3, grunt1verity_Text_0, grunt1verity_Text_0
 	end
 
 
 marsverity::
 	lock
 	faceplayer
-	msgbox grunt1verity_Text_0
-	trainerbattle_no_intro TRAINER_GMARS_1, marsverity_Text_0
+	msgbox marsverity_Text_0
+	trainerbattle_no_intro TRAINER_GMARS_1, marsverity_Text_1
 	release
 	end
 
 
 grunt1verity_Text_0:
-	.string "Hey$"
+	.string "Oh no$"
 
 marsverity_Text_0:
+	.string "Hey$"
+
+marsverity_Text_1:
 	.string "You, my friend, are tough! I can see why\n"
 	.string "you defy us so...$"
