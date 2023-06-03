@@ -1250,6 +1250,8 @@ static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
 
     if (levelBase + levelBonus > MAX_LEVEL)
         return MAX_LEVEL;
+    else if (levelBase + levelBonus > GetCurrentLevelCap())    
+        return GetCurrentLevelCap();
     else
         return levelBase + levelBonus;
 }
