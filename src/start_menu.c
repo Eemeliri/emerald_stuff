@@ -311,7 +311,8 @@ static void BuildNormalStartMenu(void)
     
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
-        AddStartMenuAction(MENU_ACTION_DEXNAV);
+         if (!MapHasNoEncounterData())
+                AddStartMenuAction(MENU_ACTION_DEXNAV);
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
@@ -329,7 +330,8 @@ static void BuildDebugStartMenu(void)
     AddStartMenuAction(MENU_ACTION_DEBUG);
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
-        AddStartMenuAction(MENU_ACTION_DEXNAV);
+        if (!MapHasNoEncounterData())
+                AddStartMenuAction(MENU_ACTION_DEXNAV);
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);

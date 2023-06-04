@@ -1,0 +1,75 @@
+const LOCALID_MESPRIT = 1
+
+mapscripts VerityCavern2_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_CAUGHT_MESPRIT, tryHideMesprit)
+        call_if_unset(FLAG_CAUGHT_MESPRIT, tryShowMesprit)
+    }
+    MAP_SCRIPT_ON_RESUME {
+        call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, VerityCavern2_OnResume)
+    }
+}
+
+
+
+script tryHideMesprit {
+    setflag(FLAG_HIDE_MESPRIT)
+    return
+}
+
+script tryShowMesprit {
+    goto_if_set(FLAG_DEFEATED_MESPRIT, Common_EventScript_NopReturn)
+    clearflag(FLAG_HIDE_MESPRIT)
+    return
+}
+
+script VerityCavern2_OnResume {
+    call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, tryRemoveMesprit)
+}
+
+script tryRemoveMesprit {
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) != B_OUTCOME_CAUGHT) {
+       goto(Common_EventScript_NopReturn)
+    }
+    removeobject(LOCALID_MESPRIT)
+    return
+}
+
+script EventScript_Mesprit {
+    lock
+    faceplayer
+    waitse
+    delay(20)
+    playmoncry(SPECIES_MESPRIT, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    delay(20)
+    seteventmon(SPECIES_MESPRIT, 40)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    special(BattleSetup_StartLegendaryBattle)
+    waitstate
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        goto(defeatedMesprit2)
+    } elif (var(VAR_RESULT) == B_OUTCOME_RAN) {
+        goto(ranMesprit2)
+    } elif (var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED) {
+        goto(ranMesprit2)
+    }
+    setflag(FLAG_CAUGHT_MESPRIT)
+    release
+    end
+}
+
+script ranMesprit2 {
+    setvar(VAR_0x8004, SPECIES_MESPRIT)
+    goto(Common_EventScript_LegendaryFlewAway)
+    end
+}
+
+script defeatedMesprit2 {
+    setvar(VAR_0x8004, SPECIES_MESPRIT)
+    goto(Common_EventScript_LegendaryFlewAway)
+    end
+}

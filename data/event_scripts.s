@@ -1132,3 +1132,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/NewMauville_Inside3F/scripts.inc"
 
 	.include "data/maps/VerityCavern/scripts.inc"
+
+	.include "data/maps/VerityCavern2/scripts.inc"

@@ -4607,7 +4607,7 @@
       "width": 55,
       "height": 55,
       "primary_tileset": "gTileset_general_firered",
-      "secondary_tileset": "gTileset_Snow",
+      "secondary_tileset": "gTileset_Unused1",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
     },
@@ -4617,7 +4617,7 @@
       "width": 45,
       "height": 45,
       "primary_tileset": "gTileset_general_firered",
-      "secondary_tileset": "gTileset_EverGrande",
+      "secondary_tileset": "gTileset_Unused1",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     },
@@ -4790,6 +4790,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/VerityCavern/border.bin",
       "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERITY_CAVERN2",
+      "name": "VerityCavern2_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/VerityCavern2/border.bin",
+      "blockdata_filepath": "data/layouts/VerityCavern2/map.bin"
     }
   ]
 }

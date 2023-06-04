@@ -1,58 +1,331 @@
 VerityCavern_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerityCavern_MapScripts_MAP_SCRIPT_ON_TRANSITION
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerityCavern_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_RESUME, VerityCavernOnResume
 	.byte 0
 
 VerityCavern_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	goto_if_eq VAR_VERITY_CAVERN_STATE, 1, spawnGrunts
-	goto_if_eq VAR_VERITY_CAVERN_STATE, 2, spawnMesprit
 	goto_if_eq VAR_VERITY_CAVERN_STATE, 0, hideGrunts
 	return
 
+VerityCavern_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_VERITY_CAVERN_STATE, 2, spawnMesprit
+	.2byte 0
 
 spawnGrunts::
 	clearflag FLAG_HIDE_VERITY_GRUNTS
 	return
 
+VerityCavernOnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, TryRemoveMesprit
+	end
+
+TryRemoveMesprit::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+	removeobject VAR_LAST_TALKED
+	return
 
 hideGrunts::
 	setflag FLAG_HIDE_VERITY_GRUNTS
 	return
 
-
 spawnMesprit::
-	return
+	lockall
+	delay 60
+	setvar VAR_VERITY_CAVERN_STATE, 3
+	msgbox mesprit1
+	applymovement OBJ_EVENT_ID_PLAYER, confusedPlayer
+	waitmovement OBJ_EVENT_ID_PLAYER
+    playmoncry SPECIES_MESPRIT CRY_MODE_NORMAL
+    waitmoncry 
+    delay 60
+    playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+    delay 60
+    applymovement 5, mespritApproach
+    playmoncry SPECIES_MESPRIT CRY_MODE_NORMAL
+	waitmovement 5
+	delay 60
+	msgbox mesprit2, MSGBOX_AUTOCLOSE
+	waitmessage
+	delay 60
+    applymovement 5, mespritSpin
+    waitmovement 5
+    delay 60
+	clearflag(FLAG_HIDE_VERITY_SCIENTIST)
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark
+	playse SE_PIN
+	applymovement 5, Common_Movement_QuestionMark
+    waitmovement OBJ_EVENT_ID_PLAYER
+	delay 60
+    applymovement OBJ_EVENT_ID_PLAYER, playerLookdownVerity
+	waitmovement OBJ_EVENT_ID_PLAYER
+    delay 60
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, panCameraDownVerity
+	waitmovement OBJ_EVENT_ID_CAMERA
+	msgbox rocketScientist, MSGBOX_AUTOCLOSE
+	waitmessage
+	applymovement 6, rocketLeave
+	waitmovement 6
+	playse SE_EXIT
+	removeobject 6
+	setflag(FLAG_HIDE_VERITY_SCIENTIST)
+	applymovement OBJ_EVENT_ID_CAMERA, panCameraUpVerity
+	waitmovement OBJ_EVENT_ID_CAMERA
+	delay 60
+	special RemoveCameraObject
+	playmoncry SPECIES_MESPRIT, CRY_MODE_NORMAL
+	applymovement OBJ_EVENT_ID_PLAYER, faceplayerupVerity
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 60
+	msgbox mesprit3
+	waitmessage
+	msgbox mesprit4
+	waitmessage
+	releaseall
+	end
+
+confusedPlayerVerity:
+	emote_question_mark
+	delay_16
+	delay_16
+	delay_16
+	face_left
+	delay_16
+	delay_16
+	delay_16
+	face_right
+	delay_16
+	delay_16
+	delay_16
+	face_down
+	delay_16
+	delay_16
+	delay_16
+	face_up
+	step_end
+
+faceplayerupVerity:
+	face_up
+	delay_16
+	step_end
+
+panCameraDownVerity:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+panCameraUpVerity:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+rocketLeave:
+	walk_in_place_fast_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+playerLookdownVerity:
+    face_down
+    delay_16
+    step_end
+
+mespritApproach:
+	walk_slow_down
+	walk_slow_down
+	walk_slow_down
+	walk_slow_down
+	step_end
+
+mespritSpin:
+    walk_in_place_fast_left
+    delay_16
+    delay_16
+    delay_16
+    walk_in_place_fast_up
+    delay_16
+    delay_16
+    delay_16
+    walk_in_place_fast_right
+    delay_16
+    delay_16
+    delay_16
+    walk_in_place_fast_down
+    delay_16
+    delay_16
+    step_end
 
 
 grunt1verity::
-	trainerbattle_single TRAINER_VERITY_GRUNT_1, grunt1verity_Text_0, grunt1verity_Text_0
+	trainerbattle_single TRAINER_VERITY_GRUNT_1, grunt1verity_Text_0, grunt1verity_Text_1
+	msgbox grunt1verity_Text_2, MSGBOX_AUTOCLOSE
 	end
 
 
 grunt2verity::
-	trainerbattle_single TRAINER_VERITY_GRUNT_2, grunt1verity_Text_0, grunt1verity_Text_0
+	trainerbattle_single TRAINER_VERITY_GRUNT_2, grunt2verity_Text_0, grunt2verity_Text_1
+	msgbox grunt2verity_Text_2, MSGBOX_AUTOCLOSE
 	end
 
 
 grunt3verity::
-	trainerbattle_single TRAINER_VERITY_GRUNT_3, grunt1verity_Text_0, grunt1verity_Text_0
+	trainerbattle_single TRAINER_VERITY_GRUNT_3, grunt3verity_Text_0, grunt3verity_Text_1
+	msgbox grunt3verity_Text_2, MSGBOX_AUTOCLOSE
 	end
 
 
 marsverity::
 	lock
-	faceplayer
 	msgbox marsverity_Text_0
-	trainerbattle_no_intro TRAINER_GMARS_1, marsverity_Text_1
+	waitmessage
+	faceplayer
+	msgbox marsverity_Text_1
+	msgbox marsverity_Text_2
+	trainerbattle_no_intro TRAINER_GMARS_1, marsverity_Text_3
+	msgbox marsverity_Text_4
+	msgbox marsverity_Text_5, MSGBOX_AUTOCLOSE
+	setflag FLAG_HIDE_VERITY_GRUNTS
+	setvar VAR_VERITY_CAVERN_STATE, 2
+	clearflag FLAG_HIDE_MESPRIT
+	warpsilent MAP_VERITY_CAVERN, 21, 23
 	release
 	end
 
 
+spawnMesprit_Text_0:
+	.string "...Another memory.$"
+
+spawnMesprit_Text_1:
+	.string "What is the source of them?$"
+
+spawnMesprit_Text_2:
+	.string "Mesprit seems to be grateful for the\n"
+	.string "help, however it too seems uncertain\l"
+	.string "how this all happened.$"
+
 grunt1verity_Text_0:
-	.string "Oh no$"
+	.string "What are you doing here? This was\n"
+	.string "supposed to be a secret!$"
+
+grunt1verity_Text_1:
+	.string "Boss ain't gonna like this...$"
+
+grunt1verity_Text_2:
+	.string "How would you know about us being here?\n"
+	.string "Did something happen to Saturn?$"
+
+grunt2verity_Text_0:
+	.string "Stop right there! You'll go no further\n"
+	.string "interloper!$"
+
+grunt2verity_Text_1:
+	.string "But we were supposed to be the\n"
+	.string "unstoppable duo of Galactic...$"
+
+grunt2verity_Text_2:
+	.string "Hmph! Let's say luck was not on our side\n"
+	.string "today.$"
+
+grunt3verity_Text_0:
+	.string "You won't get past us! We are the\n"
+	.string "unstoppable Galactic duo!$"
+
+grunt3verity_Text_1:
+	.string "But I've never lost during my career in\n"
+	.string "Galactic...$"
+
+grunt3verity_Text_2:
+	.string "Hmph! Let's say you got lucky this time.$"
 
 marsverity_Text_0:
-	.string "Hey$"
+	.string "I take it Saturn failed in his mission\n"
+	.string "then?$"
 
 marsverity_Text_1:
-	.string "You, my friend, are tough! I can see why\n"
-	.string "you defy us so...$"
+	.string "Quite disappointing, I had hoped this\n"
+	.string "would've gone without a hitch.$"
+
+marsverity_Text_2:
+	.string "Don't expect me to be as much of a\n"
+	.string "pushover as Saturn was. Team Galactic\l"
+	.string "must obtain the Trio of lakes!$"
+
+marsverity_Text_3:
+	.string "Again... I can see why Saturn lost to\n"
+	.string "you.$"
+
+marsverity_Text_4:
+	.string "This shouldn't be happening to Team\n"
+	.string "Galactic's Commander...$"
+
+marsverity_Text_5:
+	.string "All of this was for the greater goo- o-\n"
+	.string "o...$"
+
+mesprit1::
+	.string "...Another vision of an old memory.$"
+
+mesprit2::
+	.string "It seems Mesprit was also trapped in a\n"
+	.string "vision of the past, similar to Azelf.$"
+
+rocketScientist::
+	.string "???: The second test was conducted\n"
+	.string "succesfully. Now returning to the base.$"
+
+mesprit3::
+	.string "Mesprit seems keen on joining your\n"
+	.string "team to solve this mystery.$"
+
+mesprit4::
+	.string "After a good old fashioned battle, of\n"
+	.string "course.$"
+
+mespritScript::
+	lock
+	faceplayer
+	waitse
+	delay 20
+	playmoncry SPECIES_MESPRIT, CRY_MODE_ENCOUNTER
+	waitmoncry
+	delay 20
+	seteventmon SPECIES_MESPRIT, 40
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ranMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranMesprit
+	setflag FLAG_CAUGHT_MESPRIT
+	release
+	end
+
+
+ranMesprit::
+	setvar VAR_0x8004, SPECIES_MESPRIT
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
+
+defeatedMesprit::
+	setvar VAR_0x8004, SPECIES_MESPRIT
+	goto Common_EventScript_LegendaryFlewAway
+	end
+

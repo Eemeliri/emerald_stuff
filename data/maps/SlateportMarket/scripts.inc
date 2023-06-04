@@ -224,6 +224,20 @@ HyperTrainer_Lady_49:
 	end
 
 
+ShouldWarpToVerityCave::
+	lockall
+	goto_if_eq VAR_VERITY_CAVERN_STATE, 3, warpToCave2
+	warp MAP_VERITY_CAVERN, 21, 37
+	releaseall
+	return
+
+
+warpToCave2::
+	warp MAP_VERITY_CAVERN2, 18, 32
+	releaseall
+	return
+
+
 Oldman_Mint_Mart::
 	lock
 	faceplayer
