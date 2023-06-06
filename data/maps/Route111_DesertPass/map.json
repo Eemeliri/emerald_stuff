@@ -1,0 +1,167 @@
+{
+  "id": "MAP_ROUTE111_DESERT_PASS",
+  "name": "Route111_DesertPass",
+  "layout": "LAYOUT_ROUTE111_DESERT_PASS",
+  "music": "MUS_HG_LIGHTHOUSE",
+  "region_map_section": "MAPSEC_ROUTE_111",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 15,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 27,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 31,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 36,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 26,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 30,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 30,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "14"
+    },
+    {
+      "x": 35,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "18"
+    },
+    {
+      "x": 23,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 18,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "15"
+    },
+    {
+      "x": 9,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 3,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "16"
+    },
+    {
+      "x": 34,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 38,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 42,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 22,
+      "y": 38,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 38,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE111_DESERT_PASS",
+      "dest_warp_id": "8"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "wallSignRoute"
+    }
+  ]
+}

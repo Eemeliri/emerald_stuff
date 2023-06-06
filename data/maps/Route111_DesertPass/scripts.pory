@@ -1,0 +1,6 @@
+mapscripts Route111_DesertPass_MapScripts {}
+
+
+script wallSignRoute {
+    msgbox(format("Tunnel route to Vajra Desert."))
+}

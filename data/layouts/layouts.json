@@ -4606,7 +4606,7 @@
       "name": "TestMap_Layout",
       "width": 55,
       "height": 55,
-      "primary_tileset": "gTileset_general_firered",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Unused1",
       "border_filepath": "data/layouts/TestMap/border.bin",
       "blockdata_filepath": "data/layouts/TestMap/map.bin"
@@ -4800,6 +4800,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/VerityCavern2/border.bin",
       "blockdata_filepath": "data/layouts/VerityCavern2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE111_DESERT_PASS",
+      "name": "Route111_DesertPass_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Route111_DesertPass/border.bin",
+      "blockdata_filepath": "data/layouts/Route111_DesertPass/map.bin"
     }
   ]
 }

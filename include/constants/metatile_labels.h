@@ -123,6 +123,7 @@
 // gTileset_Cave
 #define METATILE_Cave_CrackedFloor                       0x22F
 #define METATILE_Cave_CrackedFloor_Hole                  0x206
+#define METATILE_Cave_DeepSand_Center                    0x3BA
 #define METATILE_Cave_EntranceCover                      0x229
 #define METATILE_Cave_SealedChamberBraille_Mid           0x235
 #define METATILE_Cave_SealedChamberEntrance_BottomLeft   0x232
@@ -794,5 +795,10 @@
 // gTileset_Underwater
 #define METATILE_Underwater_FloorShadow  0x228
 #define METATILE_Underwater_RockWall     0x21E
+
+// gTileset_Unused1
+#define METATILE_Unused1_CaveEntrance_Bottom  0x25C
+#define METATILE_Unused1_Door                 0x289
+#define METATILE_Unused1_Door_PokeCenter      0x2A9
 
 #endif // GUARD_METATILE_LABELS_H
