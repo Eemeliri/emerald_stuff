@@ -706,7 +706,7 @@ Sootopolis_EventScript_ItemSablenite:: @ 82912F0
 	finditem ITEM_SABLENITE
 	end
 
-GraniteCave_EventScript_ItemSteelixite:: @ 82912F0
+Route111_DesertPass_EventScript_ItemSteelixite:: @ 82912F0
 	finditem ITEM_STEELIXITE
 	end
 
