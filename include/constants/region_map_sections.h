@@ -89,17 +89,17 @@
 #define MAPSEC_SKY_PILLAR                   0x55
 #define MAPSEC_SECRET_BASE                  0x56
 #define MAPSEC_DYNAMIC                      0x57
-#define MAPSEC_PALLET_TOWN                  0x58
-#define MAPSEC_VIRIDIAN_CITY                0x59
-#define MAPSEC_PEWTER_CITY                  0x5A
-#define MAPSEC_CERULEAN_CITY                0x5B
-#define MAPSEC_LAVENDER_TOWN                0x5C
-#define MAPSEC_VERMILION_CITY               0x5D
-#define MAPSEC_CELADON_CITY                 0x5E
-#define MAPSEC_FUCHSIA_CITY                 0x5F
-#define MAPSEC_CINNABAR_ISLAND              0x60
-#define MAPSEC_INDIGO_PLATEAU               0x61
-#define MAPSEC_SAFFRON_CITY                 0x62
+#define MAPSEC_VAJRA_DESERT                 0x58
+#define MAPSEC_VAJRA_PYRAMID                0x59
+#define MAPSEC_VAJRA_VILLAGE                0x5A
+#define MAPSEC_ROUTE_135                    0x5B
+#define MAPSEC_LUMI_VILLAGE                 0x5C
+#define MAPSEC_FROSTWARD_MOUNTAIN           0x5D
+#define MAPSEC_FOGBOUND_LAKE                0x5E
+#define MAPSEC_ACUITY_CAVE                  0x5F
+#define MAPSEC_NEWMOON_ISLAND               0x60
+#define MAPSEC_FULLMOON_ISLAND              0x61
+#define MAPSEC_STARK_MOUNTAIN               0x62
 #define MAPSEC_ROUTE_4_POKECENTER           0x63
 #define MAPSEC_ROUTE_10_POKECENTER          0x64
 #define MAPSEC_ROUTE_1                      0x65
@@ -246,7 +246,7 @@
 #define METLOC_IN_GAME_TRADE                0xFE
 #define METLOC_FATEFUL_ENCOUNTER            0xFF
 
-#define KANTO_MAPSEC_START  MAPSEC_PALLET_TOWN
+#define KANTO_MAPSEC_START  MAPSEC_ROUTE_4_POKECENTER
 #define KANTO_MAPSEC_END    MAPSEC_SPECIAL_AREA
 #define KANTO_MAPSEC_COUNT (KANTO_MAPSEC_END - KANTO_MAPSEC_START + 1)
 

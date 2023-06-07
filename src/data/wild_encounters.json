@@ -19058,7 +19058,7 @@
           "map": "MAP_ROUTE111_DESERT_PASS",
           "base_label": "gRoute111_DesertPass0",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 15,
             "mons": [
               {
                 "min_level": 18,
