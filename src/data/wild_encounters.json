@@ -14871,6 +14871,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_SOUTHERN_WILDS",
+          "base_label": "gSouthernWilds0",
+          "land_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_SIGILYPH"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_YAMASK"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_DARUMAKA"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_BRONZOR"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_GOLETT"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_BALTOY"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_SANDYGAST"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_BRONZONG"
+              },
+              {
+                "min_level": 32,
+                "max_level": 35,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 32,
+                "max_level": 36,
+                "species": "SPECIES_HONEDGE"
+              },
+              {
+                "min_level": 32,
+                "max_level": 36,
+                "species": "SPECIES_SLIGGOO_HISUIAN"
+              }
+            ]
+          }
         }
       ]
     },
