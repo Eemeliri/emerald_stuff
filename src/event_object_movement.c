@@ -1740,10 +1740,13 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevatio
     return spriteId;
 }
 
-struct Pokemon * GetFirstLiveMon(void) { // Return address of first conscious party mon or NULL
+struct Pokemon * GetFirstLiveMon(void) { // Return address of first conscious party mon with sprite (currently goes up to rowlet) or NULL
   u8 i;
   for (i=0; i<PARTY_SIZE;i++) {
-    if (gPlayerParty[i].hp > 0 && !(gPlayerParty[i].box.isEgg || gPlayerParty[i].box.isBadEgg))
+    if (gPlayerParty[i].hp > 0 
+        && (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) < SPECIES_ROWLET) 
+        && (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) >= SPECIES_BULBASAUR) 
+        && !(gPlayerParty[i].box.isEgg || gPlayerParty[i].box.isBadEgg))
       return &gPlayerParty[i];
   }
   return NULL;
