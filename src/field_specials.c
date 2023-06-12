@@ -1478,6 +1478,30 @@ bool8 Special_AreLeadMonEVsMaxedOut(void)
     return FALSE;
 }
 
+void CheckSpecies(void)
+{
+    u8 i;
+    u16 species;
+    struct Pokemon *pokemon;
+    for (i = 0; i < CalculatePlayerPartyCount(); i++)
+    {
+        pokemon = &gPlayerParty[i];
+        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
+        {
+            species = GetMonData(pokemon, MON_DATA_SPECIES);
+            if (species == gSpecialVar_0x8005)
+            {
+                gSpecialVar_Result = TRUE;
+                return;
+            }
+            else
+            {
+                gSpecialVar_Result = FALSE;
+            }
+        }
+    }
+}
+
 u8 TryUpdateRusturfTunnelState(void)
 {
     if (!FlagGet(FLAG_RUSTURF_TUNNEL_OPENED)

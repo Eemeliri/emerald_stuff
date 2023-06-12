@@ -1,8 +1,20 @@
 AlteringCave_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, AlteringCave_OnTransition
+    map_script MAP_SCRIPT_ON_LOAD, AlteringCave_OnLoad
 	.byte 0
 
 AlteringCave_OnTransition:
 	setflag FLAG_LANDMARK_ALTERING_CAVE
 	end
+
+AlteringCave_OnLoad::
+	setvar 0x8005, SPECIES_MEW
+	special CheckSpecies
+	call_if_eq VAR_RESULT, FALSE, AlteringCave_HideUnknownCaveStairs
+	return
+
+
+AlteringCave_HideUnknownCaveStairs::
+	setmetatile 8, 2, METATILE_Cave_CaveFloor, FALSE
+	return
 

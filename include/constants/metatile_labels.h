@@ -121,6 +121,7 @@
 #define METATILE_Building_TV_On   0x003
 
 // gTileset_Cave
+#define METATILE_Cave_CaveFloor                          0x211
 #define METATILE_Cave_CrackedFloor                       0x22F
 #define METATILE_Cave_CrackedFloor_Hole                  0x206
 #define METATILE_Cave_EntranceCover                      0x229

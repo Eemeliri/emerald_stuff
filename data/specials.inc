@@ -550,3 +550,4 @@ gSpecials::
 	def_special TrySpecialOverworldEvo
 	def_special RtcGetDayOfWeek
 	def_special DoSlidingPuzzle
+	def_special CheckSpecies

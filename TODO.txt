@@ -14,3 +14,4 @@
 - fix status icons in double battles
 - repel manipulation for 1% pokemons
 - add actual movesets for stone evolution mons without learnsets
+- Update rival's starter
