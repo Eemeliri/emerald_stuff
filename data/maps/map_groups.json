@@ -451,7 +451,10 @@
     "DistortionWorld",
     "StarkMountain1",
     "StarkMountain2",
-    "NewMauville_Inside3F"
+    "NewMauville_Inside3F",
+    "NamelessCavern1F",
+    "NamelessDungeon2F",
+    "NamelessDungeonB2F"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

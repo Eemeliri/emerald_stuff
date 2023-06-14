@@ -1470,6 +1470,12 @@ u8 trymaxAllIVs(void) {
     return TRUE;
 }
 
+void transformGreensDitto(void) {
+    u8 objId = 3;
+    ObjectEventSetGraphicsId(&gObjectEvents[6], OBJ_EVENT_GFX_DITTO);
+    ObjectEventTurn(&gObjectEvents[6], DIR_WEST);
+}
+
 bool8 Special_AreLeadMonEVsMaxedOut(void)
 {
     if (GetMonEVCount(&gPlayerParty[GetLeadMonIndex()]) >= MAX_TOTAL_EVS)

@@ -267,6 +267,8 @@
 #define OBJ_EVENT_GFX_GALACTIC_COMMANDER_JUPITER 263
 #define OBJ_EVENT_GFX_MESPRIT                    264
 #define OBJ_EVENT_GFX_UXIE                       265
+#define OBJ_EVENT_GFX_MEWTWO                     266
+#define OBJ_EVENT_GFX_DITTO                      267
 
 
 // NOTE: By default, the max value for NUM_OBJ_EVENT_GFX is 239.
@@ -278,7 +280,7 @@
 // object graphics that can be removed. If more graphics are needed, anything that
 // stores graphics ids will need to be increased in size. See wiki entry below:
 // https://github.com/pret/pokeemerald/wiki/Feature-Branches#overworld-expansion
-#define NUM_OBJ_EVENT_GFX                        266
+#define NUM_OBJ_EVENT_GFX                        268
 
 
 // These are dynamic object gfx ids.
@@ -332,6 +334,7 @@
 #define LOCALID_ROUTE111_PLAYER_FALLING 45
 #define LOCALID_BIRTH_ISLAND_EXTERIOR_ROCK 1
 #define LOCALID_FARAWAY_ISLAND_MEW 1
+#define LOCALID_DITTO 1
 #define LOCALID_UNION_ROOM_PLAYER_4 2
 #define LOCALID_UNION_ROOM_PLAYER_8 3
 #define LOCALID_UNION_ROOM_PLAYER_7 4

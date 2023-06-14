@@ -144,6 +144,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blue;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Azelf;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mesprit;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Uxie;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mewtwo;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ditto;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Grunt_Male;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Grunt_Female;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Galactic_Commander_Saturn;
@@ -526,6 +528,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_AZELF] =                    &gObjectEventGraphicsInfo_Azelf,
     [OBJ_EVENT_GFX_MESPRIT] =                    &gObjectEventGraphicsInfo_Mesprit,
     [OBJ_EVENT_GFX_UXIE] =                    &gObjectEventGraphicsInfo_Uxie,
+    [OBJ_EVENT_GFX_MEWTWO] =                    &gObjectEventGraphicsInfo_Mewtwo,
+    [OBJ_EVENT_GFX_DITTO] =                      &gObjectEventGraphicsInfo_Ditto,
     [OBJ_EVENT_GFX_GALACTIC_GRUNT_MALE] =      &gObjectEventGraphicsInfo_Galactic_Grunt_Male,
     [OBJ_EVENT_GFX_GALACTIC_GRUNT_FEMALE] =    &gObjectEventGraphicsInfo_Galactic_Grunt_Female,
     [OBJ_EVENT_GFX_GALACTIC_COMMANDER_SATURN] = &gObjectEventGraphicsInfo_Galactic_Commander_Saturn,

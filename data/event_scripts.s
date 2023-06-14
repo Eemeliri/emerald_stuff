@@ -1136,3 +1136,9 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/VerityCavern2/scripts.inc"
 
 	.include "data/maps/Route111_DesertPass/scripts.inc"
+
+	.include "data/maps/NamelessCavern1F/scripts.inc"
+
+	.include "data/maps/NamelessDungeon2F/scripts.inc"
+
+	.include "data/maps/NamelessDungeonB2F/scripts.inc"

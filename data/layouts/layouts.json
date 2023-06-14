@@ -4616,8 +4616,8 @@
       "name": "OneIslandFRLG_Layout",
       "width": 45,
       "height": 45,
-      "primary_tileset": "gTileset_general_firered",
-      "secondary_tileset": "gTileset_Unused1",
+      "primary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_DesertTown",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     },
@@ -4810,6 +4810,36 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/Route111_DesertPass/border.bin",
       "blockdata_filepath": "data/layouts/Route111_DesertPass/map.bin"
+    },
+    {
+      "id": "LAYOUT_NAMELESS_CAVERN1F",
+      "name": "NamelessCavern1F_Layout",
+      "width": 56,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/NamelessCavern1F/border.bin",
+      "blockdata_filepath": "data/layouts/NamelessCavern1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_NAMELESS_DUNGEON2F",
+      "name": "NamelessDungeon2F_Layout",
+      "width": 60,
+      "height": 31,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/NamelessDungeon2F/border.bin",
+      "blockdata_filepath": "data/layouts/NamelessDungeon2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_NAMELESS_DUNGEON_B2F",
+      "name": "NamelessDungeonB2F_Layout",
+      "width": 57,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/NamelessDungeonB2F/border.bin",
+      "blockdata_filepath": "data/layouts/NamelessDungeonB2F/map.bin"
     }
   ]
 }

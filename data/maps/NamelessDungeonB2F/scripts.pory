@@ -1,0 +1,137 @@
+const LOCALID_MEWTWO = 1
+const LOCALID_DITTO = 3
+
+mapscripts NamelessDungeonB2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_CAUGHT_MEWTWO, tryHideMewtwo)
+        call_if_unset(FLAG_CAUGHT_MEWTWO, tryShowMewtwo)
+    }
+    MAP_SCRIPT_ON_RESUME {
+        call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, NamelessDungeonB2F_OnResume)
+    }
+}
+
+
+
+script tryHideMewtwo {
+    setflag(FLAG_HIDE_MEWTWO)
+    return
+}
+
+script tryShowMewtwo {
+    goto_if_set(FLAG_DEFEATED_MEWTWO, Common_EventScript_NopReturn)
+    clearflag(FLAG_HIDE_MEWTWO)
+    return
+}
+
+script NamelessDungeonB2F_OnResume {
+    call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, tryRemoveMewtwo)
+}
+
+script tryRemoveMewtwo {
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) != B_OUTCOME_CAUGHT) {
+       goto(Common_EventScript_NopReturn)
+    }
+    removeobject(LOCALID_MEWTWO)
+    return
+}
+
+script EventScript_Mewtwo {
+    lock
+    faceplayer
+    waitse
+    delay(20)
+    playmoncry(SPECIES_MEWTWO, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    delay(20)
+    seteventmon(SPECIES_MEWTWO, 40)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    special(BattleSetup_StartLegendaryBattle)
+    waitstate
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        goto(defeatedMewtwo)
+    } elif (var(VAR_RESULT) == B_OUTCOME_RAN) {
+        goto(ranMewtwo)
+    } elif (var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED) {
+        goto(ranMewtwo)
+    }
+    setflag(FLAG_CAUGHT_MEWTWO)
+    release
+    end
+}
+
+script GreenMewTransform {
+    lockall
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, panToGreen)
+    waitmovement(OBJ_EVENT_ID_CAMERA)
+    delay(60)
+    msgbox(format("Green: Alright we made it to the end, good job Ditto!"))
+    waitmessage
+    
+    delay(30)
+    playmoncry(SPECIES_MEW, CRY_MODE_NORMAL)
+    msgbox("Dittodii!", MSGBOX_AUTOCLOSE)
+    
+    applymovement(3, mewJump)
+    waitmoncry
+    delay(30)
+    playse(SE_BALL_OPEN)
+    removeobject(LOCALID_DITTO)
+    addobject(4)
+    setobjectxy(4, 52, 23)
+    delay(60)
+    playmoncry(SPECIES_DITTO, CRY_MODE_NORMAL)
+    waitmoncry
+    delay(60)
+    playse(SE_BALL_OPEN)
+    removeobject(4)
+    delay(30)
+    setflag(FLAG_HIDE_DITTO)
+    applymovement(2, greenNoticePlayer)
+    waitmovement(2)
+    applymovement(OBJ_EVENT_ID_CAMERA, panBackFromGreen)
+    waitmovement(OBJ_EVENT_ID_CAMERA)
+    delay(60)
+    special(RemoveCameraObject)
+    setvar(VAR_NAMELESS_DUNGEON_GREEN_STATE, 1)
+    releaseall
+}
+
+movement panToGreen{
+    walk_right * 4
+    step_end
+}
+
+movement mewJump {
+    jump_in_place_left
+    step_end
+}
+
+movement greenNoticePlayer {
+    emote_exclamation_mark
+    delay_16
+    delay_16
+    face_left
+    step_end
+}
+
+movement panBackFromGreen {
+    walk_left * 4
+    step_end
+}
+
+script ranMewtwo {
+    setvar(VAR_0x8004, SPECIES_MEWTWO)
+    goto(Common_EventScript_LegendaryFlewAway)
+    end
+}
+
+script defeatedMewtwo {
+    setvar(VAR_0x8004, SPECIES_MEWTWO)
+    goto(Common_EventScript_LegendaryFlewAway)
+    end
+}

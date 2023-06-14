@@ -422,6 +422,9 @@
 #define MAP_STARK_MOUNTAIN1                          (116 | (24 << 8))
 #define MAP_STARK_MOUNTAIN2                          (117 | (24 << 8))
 #define MAP_NEW_MAUVILLE_INSIDE3F                    (118 | (24 << 8))
+#define MAP_NAMELESS_CAVERN1F                        (119 | (24 << 8))
+#define MAP_NAMELESS_DUNGEON2F                       (120 | (24 << 8))
+#define MAP_NAMELESS_DUNGEON_B2F                     (121 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))
