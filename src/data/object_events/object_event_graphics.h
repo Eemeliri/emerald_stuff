@@ -60,6 +60,7 @@ const u16 gObjectEventPal_Zapdos[] = INCBIN_U16("graphics/object_events/palettes
 const u16 gObjectEventPal_Articuno[] = INCBIN_U16("graphics/object_events/palettes/articuno.gbapal");
 const u16 gObjectEventPal_Electrode[] = INCBIN_U16("graphics/object_events/palettes/electrode.gbapal");
 const u16 gObjectEventPal_Mewtwo[] = INCBIN_U16("graphics/object_events/palettes/mewtwo.gbapal");
+const u16 gObjectEventPal_Mew[] = INCBIN_U16("graphics/object_events/palettes/mew.gbapal");
 const u16 gObjectEventPal_Ditto[] = INCBIN_U16("graphics/object_events/palettes/ditto.gbapal");
 const u32 gObjectEventPic_Galactic_Grunt_Male[] = INCBIN_U32("graphics/object_events/pics/people/galactic_grunt_male.4bpp");
 const u32 gObjectEventPic_Galactic_Grunt_Female[] = INCBIN_U32("graphics/object_events/pics/people/galactic_grunt_female.4bpp");

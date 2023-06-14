@@ -104,8 +104,12 @@ GreenMewTransform::
 	delay 60
 	playse SE_BALL_OPEN
 	removeobject 4
+	addobject 5
+	setobjectxy 5, 52, 23
 	delay 30
+	removeobject 5
 	setflag FLAG_HIDE_DITTO
+	playse SE_PIN
 	applymovement 2, greenNoticePlayer
 	waitmovement 2
 	applymovement OBJ_EVENT_ID_CAMERA, panBackFromGreen
@@ -114,7 +118,28 @@ GreenMewTransform::
 	special RemoveCameraObject
 	setvar VAR_NAMELESS_DUNGEON_GREEN_STATE, 1
 	releaseall
-	return
+	end
+
+
+challengeGreenFromLeft::
+	lock
+	faceplayer
+	msgbox challengeGreenFromLeft_Text_0
+	msgbox challengeGreenFromLeft_Text_1
+	msgbox challengeGreenFromLeft_Text_2
+	waitmessage
+	applymovement 2, faceGreenUp
+	applymovement OBJ_EVENT_ID_PLAYER, faceGreenUp
+	waitmovement 2
+	msgbox challengeGreenFromLeft_Text_3
+	delay 60
+	applymovement 2, GreenFacePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, facePlayerRightGreen
+	msgbox challengeGreenFromLeft_Text_4
+	msgbox challengeGreenFromLeft_Text_5
+	waitmessage
+	release
+	end
 
 
 panToGreen:
@@ -142,6 +167,22 @@ panBackFromGreen:
 	walk_left
 	step_end
 
+faceGreenUp:
+	face_up
+	step_end
+
+facePlayerUpGreen:
+	face_up
+	step_end
+
+facePlayerRightGreen:
+	face_original_direction
+	step_end
+
+GreenFacePlayer:
+	face_player
+	step_end
+
 ranMewtwo::
 	setvar VAR_0x8004, SPECIES_MEWTWO
 	goto Common_EventScript_LegendaryFlewAway
@@ -155,8 +196,36 @@ defeatedMewtwo::
 
 
 GreenMewTransform_Text_0:
-	.string "Green: Alright we made it to the end,\n"
-	.string "good job Ditto!$"
+	.string "???: Alright we made it to the end, good\n"
+	.string "job Ditto!$"
 
 GreenMewTransform_Text_1:
 	.string "Dittodii!$"
+
+challengeGreenFromLeft_Text_0:
+	.string "???: Basd on making this far, you must\n"
+	.string "be the champion of Hoenn.$"
+
+challengeGreenFromLeft_Text_1:
+	.string "???: It's so nice to finally meet you in\n"
+	.string "person! I'm Green!$"
+
+challengeGreenFromLeft_Text_2:
+	.string "Green: I'm currently travelling across\n"
+	.string "regions to fill up the Pokédex for Prof.\l"
+	.string "Oak and train my partner Pokémon.$"
+
+challengeGreenFromLeft_Text_3:
+	.string "Green: See that strong Pokémon up\n"
+	.string "there? That's Mewtwo, an artificial\l"
+	.string "species created solely for battles. It\l"
+	.string "has been resting in this cave for a\l"
+	.string "very long time.$"
+
+challengeGreenFromLeft_Text_4:
+	.string "Green: How about we fight over who gets\n"
+	.string "to catch it? I'll even throw you a\l"
+	.string "little bonus if you manage to beat me!$"
+
+challengeGreenFromLeft_Text_5:
+	.string "Ready? Don't except an easy fight!$"

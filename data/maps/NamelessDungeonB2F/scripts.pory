@@ -69,7 +69,7 @@ script GreenMewTransform {
     applymovement(OBJ_EVENT_ID_CAMERA, panToGreen)
     waitmovement(OBJ_EVENT_ID_CAMERA)
     delay(60)
-    msgbox(format("Green: Alright we made it to the end, good job Ditto!"))
+    msgbox(format("???: Alright we made it to the end, good job Ditto!"))
     waitmessage
     
     delay(30)
@@ -89,8 +89,12 @@ script GreenMewTransform {
     delay(60)
     playse(SE_BALL_OPEN)
     removeobject(4)
+    addobject(5)
+    setobjectxy(5, 52, 23)
     delay(30)
+    removeobject(5)
     setflag(FLAG_HIDE_DITTO)
+    playse(SE_PIN)
     applymovement(2, greenNoticePlayer)
     waitmovement(2)
     applymovement(OBJ_EVENT_ID_CAMERA, panBackFromGreen)
@@ -99,6 +103,28 @@ script GreenMewTransform {
     special(RemoveCameraObject)
     setvar(VAR_NAMELESS_DUNGEON_GREEN_STATE, 1)
     releaseall
+    end
+}
+
+script challengeGreenFromLeft {
+    lock
+    faceplayer
+    msgbox(format("???: Basd on making this far, you must be the champion of Hoenn."))
+    msgbox(format("???: It's so nice to finally meet you in person! I'm Green!"))
+    msgbox(format("Green: I'm currently travelling across regions to fill up the Pokédex for Prof. Oak and train my partner Pokémon."))
+    waitmessage
+    applymovement(2, faceGreenUp)
+    applymovement(OBJ_EVENT_ID_PLAYER, faceGreenUp)
+    waitmovement(2)
+    msgbox(format("Green: See that strong Pokémon up there? That's Mewtwo, an artificial species created solely for battles. It has been resting in this cave for a very long time."))
+    delay(60)
+    applymovement(2, GreenFacePlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, facePlayerRightGreen)
+    msgbox(format("Green: How about we fight over who gets to catch it? I'll even throw you a little bonus if you manage to beat me!"))
+    msgbox(format("Ready? Don't except an easy fight!"))
+    waitmessage
+    release
+    end
 }
 
 movement panToGreen{
@@ -121,6 +147,26 @@ movement greenNoticePlayer {
 
 movement panBackFromGreen {
     walk_left * 4
+    step_end
+}
+
+movement faceGreenUp {
+    face_up
+    step_end
+}
+
+movement facePlayerUpGreen {
+    face_up
+    step_end
+}
+
+movement facePlayerRightGreen {
+    face_right
+    step_end
+}
+
+movement GreenFacePlayer {
+    face_player
     step_end
 }
 
