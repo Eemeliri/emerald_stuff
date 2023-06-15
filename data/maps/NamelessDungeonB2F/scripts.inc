@@ -131,16 +131,37 @@ challengeGreenFromLeft::
 	applymovement 2, faceGreenUp
 	applymovement OBJ_EVENT_ID_PLAYER, faceGreenUp
 	waitmovement 2
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, panCameraToMewtwo
 	msgbox challengeGreenFromLeft_Text_3
 	delay 60
+	applymovement OBJ_EVENT_ID_CAMERA, panCameraBackFromMewtwo
+	waitmovement OBJ_EVENT_ID_CAMERA
+	delay 20
 	applymovement 2, GreenFacePlayer
 	applymovement OBJ_EVENT_ID_PLAYER, facePlayerRightGreen
+	special RemoveCameraObject
 	msgbox challengeGreenFromLeft_Text_4
+	waitmessage
 	msgbox challengeGreenFromLeft_Text_5
 	waitmessage
 	release
 	end
 
+
+panCameraToMewtwo:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+panCameraBackFromMewtwo:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
 
 panToGreen:
 	walk_right
@@ -176,7 +197,7 @@ facePlayerUpGreen:
 	step_end
 
 facePlayerRightGreen:
-	face_original_direction
+	face_right
 	step_end
 
 GreenFacePlayer:
@@ -203,17 +224,19 @@ GreenMewTransform_Text_1:
 	.string "Dittodii!$"
 
 challengeGreenFromLeft_Text_0:
-	.string "???: Basd on making this far, you must\n"
-	.string "be the champion of Hoenn.$"
+	.string "???: Since you've made it this far, I\n"
+	.string "assume you must be the champion of\l"
+	.string "Hoenn.$"
 
 challengeGreenFromLeft_Text_1:
 	.string "???: It's so nice to finally meet you in\n"
-	.string "person! I'm Green!$"
+	.string "person! My name is Green!$"
 
 challengeGreenFromLeft_Text_2:
 	.string "Green: I'm currently travelling across\n"
-	.string "regions to fill up the Pokédex for Prof.\l"
-	.string "Oak and train my partner Pokémon.$"
+	.string "regions to fill up the Pokédex for\l"
+	.string "Professor Oak and to train my partner\l"
+	.string "Pokémon.$"
 
 challengeGreenFromLeft_Text_3:
 	.string "Green: See that strong Pokémon up\n"
@@ -228,4 +251,5 @@ challengeGreenFromLeft_Text_4:
 	.string "little bonus if you manage to beat me!$"
 
 challengeGreenFromLeft_Text_5:
-	.string "Ready? Don't except an easy fight!$"
+	.string "Green: Ready? Don't except an easy\n"
+	.string "fight!$"

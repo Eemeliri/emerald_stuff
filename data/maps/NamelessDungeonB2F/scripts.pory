@@ -109,22 +109,38 @@ script GreenMewTransform {
 script challengeGreenFromLeft {
     lock
     faceplayer
-    msgbox(format("???: Basd on making this far, you must be the champion of Hoenn."))
-    msgbox(format("???: It's so nice to finally meet you in person! I'm Green!"))
-    msgbox(format("Green: I'm currently travelling across regions to fill up the Pokédex for Prof. Oak and train my partner Pokémon."))
+    msgbox(format("???: Since you've made it this far, I assume you must be the champion of Hoenn."))
+    msgbox(format("???: It's so nice to finally meet you in person! My name is Green!"))
+    msgbox(format("Green: I'm currently travelling across regions to fill up the Pokédex for Professor Oak and to train my partner Pokémon."))
     waitmessage
     applymovement(2, faceGreenUp)
-    applymovement(OBJ_EVENT_ID_PLAYER, faceGreenUp)
     waitmovement(2)
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, panCameraToMewtwo)
     msgbox(format("Green: See that strong Pokémon up there? That's Mewtwo, an artificial species created solely for battles. It has been resting in this cave for a very long time."))
     delay(60)
+    applymovement(OBJ_EVENT_ID_CAMERA, panCameraBackFromMewtwo)
+    waitmovement(OBJ_EVENT_ID_CAMERA)
+    delay(20)
     applymovement(2, GreenFacePlayer)
     applymovement(OBJ_EVENT_ID_PLAYER, facePlayerRightGreen)
+    special(RemoveCameraObject)
     msgbox(format("Green: How about we fight over who gets to catch it? I'll even throw you a little bonus if you manage to beat me!"))
-    msgbox(format("Ready? Don't except an easy fight!"))
+    waitmessage
+    msgbox(format("Green: Ready? Don't except an easy fight!"))
     waitmessage
     release
     end
+}
+
+movement panCameraToMewtwo {
+    walk_up * 4
+    step_end
+}
+
+movement panCameraBackFromMewtwo {
+    walk_down * 4
+    step_end
 }
 
 movement panToGreen{
