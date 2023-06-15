@@ -710,6 +710,42 @@ Route111_DesertPass_EventScript_ItemSteelixite:: @ 82912F0
 	finditem ITEM_STEELIXITE
 	end
 
+NamelessDungeon_EventScript_ItemNugget:: @ 82912F0
+	finditem ITEM_NUGGET
+	end
+
+NamelessDungeon_EventScript_ItemFullRestore:: @ 82912F0
+	finditem ITEM_FULL_RESTORE
+	end
+
+NamelessDungeon_EventScript_ItemDuskStone:: @ 82912F0
+	finditem ITEM_DUSK_STONE
+	end
+
+NamelessDungeon_EventScript_ItemAssaultVest:: @ 82912F0
+	finditem ITEM_ASSAULT_VEST
+	end
+
+NamelessDungeon_EventScript_ItemElectirizer:: @ 82912F0
+	finditem ITEM_ELECTIRIZER
+	end
+
+NamelessDungeon_EventScript_ItemBlackSludge:: @ 82912F0
+	finditem ITEM_BLACK_SLUDGE
+	end
+
+NamelessDungeon_EventScript_ItemPPMax:: @ 82912F0
+	finditem ITEM_PP_MAX
+	end
+
+NamelessDungeon_EventScript_ItemMaxRevive:: @ 82912F0
+	finditem ITEM_MAX_REVIVE
+	end
+
+NamelessDungeon_EventScript_ItemMaxElixir:: @ 82912F0
+	finditem ITEM_MAX_ELIXIR
+	end
+
 Route123_EventScript_ItemAbomasite:: @ 82912F0
 	finditem ITEM_ABOMASITE
 	end
@@ -765,6 +801,8 @@ BatlleFrontier_EventScript_ItemGengarite:: @ 82912F0
 SSTidal_EventScript_ItemBlastoisinite:: @ 82912F0
 	finditem ITEM_BLASTOISINITE
 	end
+
+
 
 Route132_EventScript_ItemTM34:: @ 82912F0
 	finditem ITEM_TM34

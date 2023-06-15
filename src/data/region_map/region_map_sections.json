@@ -1041,14 +1041,6 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CERULEAN_CAVE",
-      "name": "Cerulean Cave",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
-    },
-    {
       "map_section": "MAPSEC_POWER_PLANT",
       "name": "Power Plant",
       "x": 0,
@@ -1893,6 +1885,14 @@
       "name": "Stark Mountain",
       "x": 0,
       "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_CERULEAN_CAVE",
+      "name": "Unknown Dungeon",
+      "x": 0,
+      "y": 0,
       "width": 1,
       "height": 1
     }

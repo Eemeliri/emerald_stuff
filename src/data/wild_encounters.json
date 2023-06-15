@@ -14940,6 +14940,383 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_NAMELESS_CAVERN1F",
+          "base_label": "gNamelessCavern1F0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_KOMMO_O"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_DRAGAPULT"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_SALAMENCE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DRAGONITE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_TYRANITAR"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GARCHOMP"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_HYDREIGON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GOODRA"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DURALUDON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_HAXORUS"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_METAGROSS"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_SLOWKING_GALARIAN"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_MILOTIC"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_BASCULEGION"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_BASCULEGION_FEMALE"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 25,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_BASCULIN"
+              },
+              {
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_KRABBY"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_BARRASKEWDA"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_CLAWITZER"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_NAMELESS_DUNGEON2F",
+          "base_label": "gNamelessDungeon2F0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_KOMMO_O"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_DRAGAPULT"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_SALAMENCE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DRAGONITE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_TYRANITAR"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GARCHOMP"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_HYDREIGON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GOODRA"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DURALUDON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_HAXORUS"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_METAGROSS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_NAMELESS_DUNGEON_B2F",
+          "base_label": "gNamelessDungeonB2F0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_KOMMO_O"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_DRAGAPULT"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_SALAMENCE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DRAGONITE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_TYRANITAR"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GARCHOMP"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_HYDREIGON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GOODRA"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DURALUDON"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_HAXORUS"
+              },
+              {
+                "min_level": 70,
+                "max_level": 76,
+                "species": "SPECIES_METAGROSS"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_SLOWKING_GALARIAN"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_MILOTIC"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_BASCULEGION"
+              },
+              {
+                "min_level": 71,
+                "max_level": 75,
+                "species": "SPECIES_BASCULEGION_FEMALE"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 25,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_BASCULIN"
+              },
+              {
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_KRABBY"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_DRAGALGE"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_BARRASKEWDA"
+              },
+              {
+                "min_level": 70,
+                "max_level": 75,
+                "species": "SPECIES_CLAWITZER"
+              }
+            ]
+          }
         }
       ]
     },

@@ -1277,17 +1277,17 @@
 #define FLAG_HIDE_MOLTRES                                           0x4CC 
 #define FLAG_HIDE_ARTICUNO                                          0x4CD // Unused Flag
 #define FLAG_HIDE_ZAPDOS                                            0x4CE 
-#define FLAG_HIDE_ELECTRODE1                                        0x4CF // Unused Flag
-#define FLAG_HIDE_ELECTRODE2                                        0x4D0 // Unused Flag
-#define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
-#define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
-#define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
-#define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
-#define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
-#define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
-#define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
-#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
-#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
+#define FLAG_HIDE_ELECTRODE1                                        0x4CF 
+#define FLAG_HIDE_ELECTRODE2                                        0x4D0 
+#define FLAG_NAMELESSDUNGEON_ITEM_NUGGET                            0x4D1 
+#define FLAG_NAMELESSDUNGEON_ITEM_FULLRESTORE                       0x4D2
+#define FLAG_NAMELESSDUNGEON_ITEM_DUSKSTONE                         0x4D3 
+#define FLAG_NAMELESSDUNGEON_ITEM_ASSAULTVEST                       0x4D4
+#define FLAG_NAMELESSDUNGEON_ITEM_ELECTIRIZER                       0x4D5 
+#define FLAG_NAMELESSDUNGEON_ITEM_BLACKSLUDGE                       0x4D6 
+#define FLAG_NAMELESSDUNGEON_ITEM_PPMAX                             0x4D7 
+#define FLAG_NAMELESSDUNGEON_ITEM_MAXREVIVE                         0x4D8 
+#define FLAG_NAMELESSDUNGEON_ITEM_MAXELIXIR                         0x4D9 
 #define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
 #define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
 #define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag

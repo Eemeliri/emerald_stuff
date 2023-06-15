@@ -122,7 +122,6 @@ static const u8 sMapName_Pok__mon_League[] = _("Pokémon League");
 static const u8 sMapName_Rock_Tunnel[] = _("Rock Tunnel");
 static const u8 sMapName_Seafoam_Islands[] = _("Seafoam Islands");
 static const u8 sMapName_Pok__mon_Tower[] = _("Pokémon Tower");
-static const u8 sMapName_Cerulean_Cave[] = _("Cerulean Cave");
 static const u8 sMapName_Power_Plant[] = _("Power Plant");
 static const u8 sMapName_One_Island[] = _("One Island");
 static const u8 sMapName_Two_Island[] = _("Two Island");
@@ -203,6 +202,7 @@ static const u8 sMapName_Acuity_Cave[] = _("Acuity Cave");
 static const u8 sMapName_Newmoon_Island[] = _("Newmoon Island");
 static const u8 sMapName_Fullmoon_Island[] = _("Fullmoon Island");
 static const u8 sMapName_Stark_Mountain[] = _("Stark Mountain");
+static const u8 sMapName_Unknown_Dungeon[] = _("Unknown Dungeon");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_LITTLEROOT_TOWN] = { 4, 11, 1, 1, sMapName_Littleroot_Town},
@@ -335,7 +335,6 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_ROCK_TUNNEL] = { 0, 0, 1, 1, sMapName_Rock_Tunnel},
     [MAPSEC_SEAFOAM_ISLANDS] = { 0, 0, 1, 1, sMapName_Seafoam_Islands},
     [MAPSEC_POKEMON_TOWER] = { 0, 0, 1, 1, sMapName_Pok__mon_Tower},
-    [MAPSEC_CERULEAN_CAVE] = { 0, 0, 1, 1, sMapName_Cerulean_Cave},
     [MAPSEC_POWER_PLANT] = { 0, 0, 1, 1, sMapName_Power_Plant},
     [MAPSEC_ONE_ISLAND] = { 0, 0, 1, 1, sMapName_One_Island},
     [MAPSEC_TWO_ISLAND] = { 0, 0, 1, 1, sMapName_Two_Island},
@@ -442,6 +441,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_NEWMOON_ISLAND] = { 14, 12, 1, 1, sMapName_Newmoon_Island},
     [MAPSEC_FULLMOON_ISLAND] = { 26, 12, 1, 1, sMapName_Fullmoon_Island},
     [MAPSEC_STARK_MOUNTAIN] = { 0, 14, 1, 1, sMapName_Stark_Mountain},
+    [MAPSEC_CERULEAN_CAVE] = { 0, 0, 1, 1, sMapName_Unknown_Dungeon},
 };
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
