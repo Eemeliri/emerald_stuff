@@ -403,6 +403,7 @@
 #define TRAINER_CLASS_RS_PROTAG      0x41
 #define TRAINER_CLASS_COUNT          0x42
 #define TRAINER_CLASS_G_ADMIN        0x43
+#define TRAINER_CLASS_PKMN_TRAINER   0x44
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music

@@ -50,7 +50,7 @@ EventScript_Mewtwo::
 	playmoncry SPECIES_MEWTWO, CRY_MODE_ENCOUNTER
 	waitmoncry
 	delay 20
-	seteventmon SPECIES_MEWTWO, 40
+	seteventmon SPECIES_MEWTWO, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
@@ -129,7 +129,6 @@ challengeGreenFromLeft::
 	msgbox challengeGreenFromLeft_Text_2
 	waitmessage
 	applymovement 2, faceGreenUp
-	applymovement OBJ_EVENT_ID_PLAYER, faceGreenUp
 	waitmovement 2
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, panCameraToMewtwo
@@ -144,7 +143,23 @@ challengeGreenFromLeft::
 	msgbox challengeGreenFromLeft_Text_4
 	waitmessage
 	msgbox challengeGreenFromLeft_Text_5
+	trainerbattle_no_intro TRAINER_GREEN_MEWTWO, challengeGreenFromLeft_Text_6
+	msgbox challengeGreenFromLeft_Text_7
+	msgbox challengeGreenFromLeft_Text_8
+	msgbox challengeGreenFromLeft_Text_9
 	waitmessage
+	giveitem ITEM_MEWTWONITE_X
+	waitmessage
+	giveitem ITEM_MEWTWONITE_Y
+	waitmessage
+	msgbox challengeGreenFromLeft_Text_10
+	waitmessage
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_GREEN
+	removeobject 2
+	delay 60
+	fadescreen FADE_FROM_BLACK
+	delay 20
 	release
 	end
 
@@ -253,3 +268,28 @@ challengeGreenFromLeft_Text_4:
 challengeGreenFromLeft_Text_5:
 	.string "Green: Ready? Don't except an easy\n"
 	.string "fight!$"
+
+challengeGreenFromLeft_Text_6:
+	.string "Incredible! You are just as good as I\n"
+	.string "had hoped.$"
+
+challengeGreenFromLeft_Text_7:
+	.string "Green: Even though I lost I don't feel\n"
+	.string "sad or angry, in fact I feel happy to\l"
+	.string "have battled you!$"
+
+challengeGreenFromLeft_Text_8:
+	.string "Green: As promised, you will get to\n"
+	.string "catch Mewtwo, although if you fail I\l"
+	.string "will come to pick up your pieces.$"
+
+challengeGreenFromLeft_Text_9:
+	.string "Green: And that added bonus I was\n"
+	.string "speaking of? Here you go!$"
+
+challengeGreenFromLeft_Text_10:
+	.string "Green: I'm going to head off into\n"
+	.string "another region now, perhaps Alola? I\l"
+	.string "might swing by the Pokémon World\l"
+	.string "Tournament while I'm still here, hope to\l"
+	.string "see you in there for a rematch.$"

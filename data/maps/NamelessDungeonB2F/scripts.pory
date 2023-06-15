@@ -45,7 +45,7 @@ script EventScript_Mewtwo {
     playmoncry(SPECIES_MEWTWO, CRY_MODE_ENCOUNTER)
     waitmoncry
     delay(20)
-    seteventmon(SPECIES_MEWTWO, 40)
+    seteventmon(SPECIES_MEWTWO, 80)
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
     special(BattleSetup_StartLegendaryBattle)
     waitstate
@@ -128,7 +128,23 @@ script challengeGreenFromLeft {
     msgbox(format("Green: How about we fight over who gets to catch it? I'll even throw you a little bonus if you manage to beat me!"))
     waitmessage
     msgbox(format("Green: Ready? Don't except an easy fight!"))
+    trainerbattle_no_intro(TRAINER_GREEN_MEWTWO, format("Incredible! You are just as good as I had hoped."))
+    msgbox(format("Green: Even though I lost I don't feel sad or angry, in fact I feel happy to have battled you!"))
+    msgbox(format("Green: As promised, you will get to catch Mewtwo, although if you fail I will come to pick up your pieces."))
+    msgbox(format("Green: And that added bonus I was speaking of? Here you go!"))
     waitmessage
+    giveitem(ITEM_MEWTWONITE_X)
+    waitmessage
+    giveitem(ITEM_MEWTWONITE_Y)
+    waitmessage
+    msgbox(format("Green: I'm going to head off into another region now, perhaps Alola? I might swing by the Pokémon World Tournament while I'm still here, hope to see you in there for a rematch."))
+    waitmessage
+    fadescreen(FADE_TO_BLACK)
+    setflag(FLAG_HIDE_GREEN)
+    removeobject(2)
+    delay(60)
+    fadescreen(FADE_FROM_BLACK)
+    delay(20)
     release
     end
 }
