@@ -4840,6 +4840,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/NamelessDungeonB2F/border.bin",
       "blockdata_filepath": "data/layouts/NamelessDungeonB2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_TOMB1",
+      "name": "SouthernTomb1_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/SouthernTomb1/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernTomb1/map.bin"
     }
   ]
 }

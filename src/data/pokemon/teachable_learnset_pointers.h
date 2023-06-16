@@ -553,7 +553,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_WHIMSICOTT] = sWhimsicottTeachableLearnset,
     [SPECIES_PETILIL] = sPetililTeachableLearnset,
     [SPECIES_LILLIGANT] = sLilligantTeachableLearnset,
-    [SPECIES_BASCULIN] = sBasculinTeachableLearnset,
+    [SPECIES_BASCULIN] = sBasculinRedStripedTeachableLearnset,
     [SPECIES_SANDILE] = sSandileTeachableLearnset,
     [SPECIES_KROKOROK] = sKrokorokTeachableLearnset,
     [SPECIES_KROOKODILE] = sKrookodileTeachableLearnset,
@@ -789,7 +789,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BRUXISH] = sBruxishTeachableLearnset,
     [SPECIES_DRAMPA] = sDrampaTeachableLearnset,
     [SPECIES_DHELMISE] = sDhelmiseTeachableLearnset,
-    [SPECIES_JANGMO_O] = sJangmoOTeachableLearnset,
+    [SPECIES_JANGMO_O] = sJangmooTeachableLearnset,
     [SPECIES_HAKAMO_O] = sHakamoOTeachableLearnset,
     [SPECIES_KOMMO_O] = sKommoOTeachableLearnset,
     [SPECIES_TAPU_KOKO] = sTapuKokoTeachableLearnset,
@@ -1173,8 +1173,8 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
 #endif
 #if P_GEN_5_POKEMON == TRUE
     // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinTeachableLearnset,
-    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinTeachableLearnset,
+    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinBlueStripedTeachableLearnset,
+    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinWhiteStripedTeachableLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanTeachableLearnset,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianTeachableLearnset,

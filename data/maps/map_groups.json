@@ -454,7 +454,8 @@
     "NewMauville_Inside3F",
     "NamelessCavern1F",
     "NamelessDungeon2F",
-    "NamelessDungeonB2F"
+    "NamelessDungeonB2F",
+    "SouthernTomb1"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
