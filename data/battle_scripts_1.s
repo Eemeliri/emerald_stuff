@@ -647,6 +647,7 @@ BattleScript_EffectSteelBeam::
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_SteelBeamAfterSelfDamage
+	jumpifability BS_ATTACKER, ABILITY_UNSTOPPABLE, BattleScript_SteelBeamAfterSelfDamage
 	call BattleScript_SteelBeamSelfDamage
 BattleScript_SteelBeamAfterSelfDamage::
 	waitstate
@@ -4479,6 +4480,7 @@ BattleScript_AlreadyHasSubstitute::
 BattleScript_EffectRecharge::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	jumpifability BS_ATTACKER, ABILITY_UNSTOPPABLE, BattleScript_HitFromAtkString
 	setmoveeffect MOVE_EFFECT_RECHARGE | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_HitFromAtkString
 
@@ -6434,6 +6436,7 @@ BattleScript_FaintTarget::
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER    @ and as one shadow rider
 	tryactivatebattlebond BS_ATTACKER
+	tryactivaterockyend BS_ATTACKER
 	trytrainerslidefirstdownmsg BS_TARGET
 	return
 
@@ -7441,6 +7444,14 @@ BattleScript_ToxicDebrisActivates::
 	printstring STRINGID_POISONSPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_ToxicDebrisRet:
+	return
+
+BattleScript_RockyEndActivates::
+	call BattleScript_AbilityPopUp
+	pause B_WAIT_TIME_LONG
+	setstealthrock BattleScript_ButItFailed
+	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
 	return
 
 BattleScript_EarthEaterActivates::
@@ -8468,7 +8479,7 @@ BattleScript_MoveEffectRecoilWithStatus::
 	argumentstatuseffect
 BattleScript_MoveEffectRecoil::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
-	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
+	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD | ABILITY_UNSTOPPABLE, BattleScript_RecoilEnd
 BattleScript_DoRecoil::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_ATTACKER

@@ -9524,6 +9524,27 @@ static void Cmd_various(void)
         MarkBattlerForControllerExec(gActiveBattler);
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_ROCKY_END:
+    {
+        VARIOUS_ARGS();
+
+        u16 battlerAbility = GetBattlerAbility(gActiveBattler);
+        u8 targetSide = GetBattlerSide(gBattlerTarget);
+
+        if ((battlerAbility == ABILITY_ROCKY_END)
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty()
+            && (!(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK)))
+            {
+            gBattlerAbility = gBattlerAttacker;
+            gBattlescriptCurrInstr = cmd->nextInstr;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_RockyEndActivates;
+            return;
+                }
+            
+            break;
+    }
     case VARIOUS_TRY_ACTIVATE_MOXIE:    // and chilling neigh + as one ice rider
     {
         VARIOUS_ARGS();
