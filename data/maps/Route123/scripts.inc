@@ -34,6 +34,10 @@ Route123_EventScript_RouteSign::
 	msgbox Route123_Text_RouteSign, MSGBOX_SIGN
 	end
 
+Route123_EventScript_RouteSignRoute135::
+	msgbox Route123_Text_Route135Sign, MSGBOX_SIGN
+	end
+
 Route123_EventScript_RouteSignMtPyre::
 	msgbox Route123_Text_RouteSignMtPyre, MSGBOX_SIGN
 	end
@@ -209,6 +213,10 @@ Route123_Text_RouteSign:
 Route123_Text_RouteSignMtPyre:
 	.string "{UP_ARROW} Mt. Pyre\n"
 	.string "“Forbidden to the faint of heart.”$"
+
+Route123_Text_Route135Sign:
+	.string "{RIGHT_ARROW} Route 135\n"
+	.string "“Snowy roads of Hoenn.”$"
 
 Route123_Text_BerryMastersHouse:
 	.string "Berry Master's House$"
