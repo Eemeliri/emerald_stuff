@@ -3,15 +3,14 @@
 - Add events and trainers to southern wilds and beach
 - Custom follower dialogue to new areas
 - Improve moltres dungeon and event and maybe block it off until 6th gym?
-- Reduce gen 5 and some gen 1 level requirements
 - fix rock climb follower disappearing
 - stark mountain
 - Move ampharosite somewhere
 - rebalance pokemon
-- redistribute trainer mons 
-- make curated dex and apply it to wild encounter table 
-- finish hoenn legendary events
+- redistribute trainer mons  
+- finish hoenn legendary events up to gen 4
 - fix status icons in double battles
-- repel manipulation for 1% pokemons
+- repel manipulation for 1% pokemons (Mostly done)
 - add actual movesets for stone evolution mons without learnsets
 - Update rival's starter
+- Battle bond delphox and chesnaught
