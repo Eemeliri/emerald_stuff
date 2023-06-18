@@ -291,6 +291,10 @@ static const u8 sEarthEaterDescription[] = _("Eats ground to heal HP.");
 static const u8 sMyceliumMightDescription[] = _("Status moves never fail.");
 static const u8 sUnstoppableDescription[] = _("Does not recharge/recoil.");
 static const u8 sRockyEndDescription[] = _("KO's leave rocks.");
+static const u8 sGaleFlamesDescription[] = _("Fire moves go first.");
+static const u8 sTectoniteDescription[] = _("Normal moves become Ground.");
+static const u8 sKickboxingDescription[] = _("Ups power of kicks.");
+static const u8 sSoundwavesDescription[] = _("Ups and resists sound.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -596,6 +600,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MYCELIUM_MIGHT] = _("Mycelium Might"),
     [ABILITY_UNSTOPPABLE] = _("Unstoppable"),
     [ABILITY_ROCKY_END] = _("Rocky End"),
+    [ABILITY_GALE_FLAMES] = _("Gale Flames"),
+    [ABILITY_TECTONITE] = _("Tectonite"),
+    [ABILITY_KICKBOXING] = _("Kickboxing"),
+    [ABILITY_SOUNDWAVES] = _("Soundwaves"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -901,6 +909,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MYCELIUM_MIGHT] = _("MceliumMight"),
     [ABILITY_UNSTOPPABLE] = _("Unstoppable"),
     [ABILITY_ROCKY_END] = _("Rocky End"),
+    [ABILITY_GALE_FLAMES] = _("Gale Flames"),
+    [ABILITY_TECTONITE] = _("Tectonite"),
+    [ABILITY_KICKBOXING] = _("Kickboxing"),
+    [ABILITY_SOUNDWAVES] = _("Soundwaves"),
 };
 #endif
 
@@ -1207,4 +1219,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MYCELIUM_MIGHT] = sMyceliumMightDescription,
     [ABILITY_UNSTOPPABLE] = sUnstoppableDescription,
     [ABILITY_ROCKY_END] = sRockyEndDescription,
+    [ABILITY_GALE_FLAMES] = sGaleFlamesDescription,
+    [ABILITY_TECTONITE] = sTectoniteDescription,
+    [ABILITY_KICKBOXING] = sKickboxingDescription,
+    [ABILITY_SOUNDWAVES] = sSoundwavesDescription,
 };

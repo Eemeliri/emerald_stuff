@@ -1144,3 +1144,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/NamelessDungeonB2F/scripts.inc"
 
 	.include "data/maps/SouthernTomb1/scripts.inc"
+
+	.include "data/maps/Dewford_TrainingGrounds/scripts.inc"

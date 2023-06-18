@@ -245,6 +245,7 @@
 #define FLAG_THREE_STRIKES                        (1 << 28) // A move with this flag will strike thrice, and may apply its effect on each hit
 #define FLAG_WIND_MOVE                            (1 << 29)
 #define FLAG_SLICING_MOVE                         (1 << 30)
+#define FLAG_KICKBOXING_BOOST                         (1 << 31) //Kickboxing
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

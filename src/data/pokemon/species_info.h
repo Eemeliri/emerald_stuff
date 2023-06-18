@@ -3307,7 +3307,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
-        .abilities = {ABILITY_LIMBER, ABILITY_RECKLESS, ABILITY_UNBURDEN},
+        .abilities = {ABILITY_KICKBOXING, ABILITY_RECKLESS, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
@@ -4390,7 +4390,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MEGANIUM] =
     {
-        .baseHP        = 80,
+        .baseHP        = 95,
         .baseAttack    = 82,
         .baseDefense   = 100,
         .baseSpeed     = 80,
@@ -4428,7 +4428,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
-        .abilities = {ABILITY_BLAZE, ABILITY_SAND_RUSH, ABILITY_FLASH_FIRE},
+        .abilities = {ABILITY_FLASH_FIRE, ABILITY_SAND_RUSH, ABILITY_FLAME_BODY},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
@@ -4451,18 +4451,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
-        .abilities = {ABILITY_BLAZE, ABILITY_SAND_RUSH, ABILITY_FLASH_FIRE},
+        .abilities = {ABILITY_FLASH_FIRE, ABILITY_SAND_RUSH, ABILITY_FLAME_BODY},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
 
     [SPECIES_TYPHLOSION] =
     {
-        .baseHP        = 85,
+        .baseHP        = 90,
         .baseAttack    = 84,
         .baseDefense   = 78,
-        .baseSpeed     = 104,
-        .baseSpAttack  = 109,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 114,
         .baseSpDefense = 85,
         .types = { TYPE_FIRE, TYPE_GROUND },
         .catchRate = 45,
@@ -4473,7 +4473,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
-        .abilities = {ABILITY_GALE_WINGS, ABILITY_SAND_RUSH, ABILITY_FLASH_FIRE},
+        .abilities = {ABILITY_FLASH_FIRE, ABILITY_SAND_RUSH, ABILITY_GALE_FLAMES},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
@@ -4526,7 +4526,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_FERALIGATR] =
     {
         .baseHP        = 85,
-        .baseAttack    = 109,
+        .baseAttack    = 114,
         .baseDefense   = 100,
         .baseSpeed     = 81,
         .baseSpAttack  = 79,
@@ -4585,7 +4585,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
-        .abilities = {ABILITY_FUR_COAT, ABILITY_KEEN_EYE, ABILITY_FRISK},
+        .abilities = {ABILITY_FUR_COAT, ABILITY_KEEN_EYE, ABILITY_SOUNDWAVES},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
@@ -8500,7 +8500,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #else
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG},
         #endif
-        .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
+        .abilities = {ABILITY_LEVITATE, ABILITY_TECTONITE, ABILITY_TINTED_LENS},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
@@ -17014,7 +17014,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #else
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING},
         #endif
-        .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
+        .abilities = {ABILITY_SOUNDWAVES, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -17040,7 +17040,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #else
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING},
         #endif
-        .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
+        .abilities = {ABILITY_SOUNDWAVES, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -23615,7 +23615,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ZAPDOS_GALARIAN] =
     {
         .baseHP        = 90,
-        .baseAttack    = 125,
+        .baseAttack    = 145,
         .baseDefense   = 90,
         .baseSpeed     = 100,
         .baseSpAttack  = 85,
@@ -23629,7 +23629,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
-        .abilities = {ABILITY_DEFIANT, ABILITY_NONE},
+        .abilities = {ABILITY_DEFIANT, ABILITY_KICKBOXING, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,

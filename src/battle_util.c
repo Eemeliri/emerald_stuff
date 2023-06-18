@@ -993,6 +993,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_WATER_BUBBLE] = 1,
     [ABILITY_MIRROR_ARMOR] = 1,
     [ABILITY_PUNK_ROCK] = 1,
+    [ABILITY_SOUNDWAVES] = 1,
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
@@ -8153,6 +8154,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
     }
     else if ((atkHoldEffect == HOLD_EFFECT_PUNCHING_GLOVE && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
            || atkHoldEffect == HOLD_EFFECT_PROTECTIVE_PADS
+           || (atkHoldEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS && (gBattleMoves[move].flags & FLAG_KICKBOXING_BOOST))
            || GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH)
     {
         return FALSE;
@@ -8749,6 +8751,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_KICKBOXING:
+         if (gBattleMoves[move].flags & FLAG_KICKBOXING_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_SHEER_FORCE:
         if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -8804,11 +8810,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_TECTONITE:
+        if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_NORMALIZE:
         if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
     case ABILITY_PUNK_ROCK:
+    case ABILITY_SOUNDWAVES:
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(1.3));
         break;
@@ -9392,6 +9403,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_PUNK_ROCK:
+    case ABILITY_SOUNDWAVES:
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;

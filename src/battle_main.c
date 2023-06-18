@@ -4787,10 +4787,12 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
     priority = gBattleMoves[move].priority;
     if (ability == ABILITY_GALE_WINGS
-    #if B_GALE_WINGS >= GEN_7
-        && BATTLER_MAX_HP(battlerId)
-    #endif
         && gBattleMoves[move].type == TYPE_FLYING)
+    {
+        priority++;
+    }
+    else if (ability == ABILITY_GALE_FLAMES
+        && gBattleMoves[move].type == TYPE_FIRE)
     {
         priority++;
     }
@@ -5775,6 +5777,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && ((attackerAbility == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
                  || (attackerAbility == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
                  || (attackerAbility == ABILITY_AERILATE && (ateType = TYPE_FLYING))
+                 || (attackerAbility == ABILITY_TECTONITE && (ateType = TYPE_GROUND))
                  || ((attackerAbility == ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
                 )
              )

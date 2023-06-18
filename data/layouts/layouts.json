@@ -4850,6 +4850,16 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/SouthernTomb1/border.bin",
       "blockdata_filepath": "data/layouts/SouthernTomb1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_TRAINING_GROUNDS",
+      "name": "Dewford_TrainingGrounds_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/Dewford_TrainingGrounds/border.bin",
+      "blockdata_filepath": "data/layouts/Dewford_TrainingGrounds/map.bin"
     }
   ]
 }
