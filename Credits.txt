@@ -1,4 +1,5 @@
 Everyone who worked on the Pret disassembly and RHH expansion
+Paccy - his glimmering emerald was used as a base
 Zeo254 - some tilesets
 Arce_Havrek - Pokedex spreadsheet base
 resetes12 - Options menu code for optional sliding animation
