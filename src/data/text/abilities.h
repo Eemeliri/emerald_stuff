@@ -295,6 +295,7 @@ static const u8 sGaleFlamesDescription[] = _("Fire moves go first.");
 static const u8 sTectoniteDescription[] = _("Normal moves become Ground.");
 static const u8 sKickboxingDescription[] = _("Ups power of kicks.");
 static const u8 sSoundwavesDescription[] = _("Ups and resists sound.");
+static const u8 sPetrifyDescription[] = _("Lowers the foe's Sp. Atk.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -604,6 +605,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_TECTONITE] = _("Tectonite"),
     [ABILITY_KICKBOXING] = _("Kickboxing"),
     [ABILITY_SOUNDWAVES] = _("Soundwaves"),
+    [ABILITY_PETRIFY] = _("Petrify"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -913,6 +915,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_TECTONITE] = _("Tectonite"),
     [ABILITY_KICKBOXING] = _("Kickboxing"),
     [ABILITY_SOUNDWAVES] = _("Soundwaves"),
+    [ABILITY_PETRIFY] = _("Petrify"),
 };
 #endif
 
@@ -1223,4 +1226,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_TECTONITE] = sTectoniteDescription,
     [ABILITY_KICKBOXING] = sKickboxingDescription,
     [ABILITY_SOUNDWAVES] = sSoundwavesDescription,
+    [ABILITY_PETRIFY] = sPetrifyDescription,
 };
