@@ -325,7 +325,7 @@ gText_RainDance::
 gText_Rage::
 	.string "Rage$"
 
-gText_FocusEnergy::
+gText_FocusEnergyUnused::
 	.string "Focus Energy$"
 
 gText_Hypnosis::

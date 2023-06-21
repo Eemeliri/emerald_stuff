@@ -2756,10 +2756,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseHP        = 52,
         .baseDefense   = 55,
         .baseSpeed     = 90,
-        .baseSpAttack  = 99,
+        .baseSpAttack  = 90,
         .baseSpDefense = 62,
         #if P_UPDATED_STATS >= GEN_7
-            .baseAttack    = 90,
+            .baseAttack    = 95,
         #else
             .baseAttack    = 65,
         #endif
@@ -4391,10 +4391,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_MEGANIUM] =
     {
         .baseHP        = 95,
-        .baseAttack    = 82,
+        .baseAttack    = 102,
         .baseDefense   = 100,
         .baseSpeed     = 80,
-        .baseSpAttack  = 100,
+        .baseSpAttack  = 80,
         .baseSpDefense = 100,
         .types = { TYPE_GRASS, TYPE_FAIRY },
         .catchRate = 45,
@@ -4461,7 +4461,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseHP        = 90,
         .baseAttack    = 84,
         .baseDefense   = 78,
-        .baseSpeed     = 95,
+        .baseSpeed     = 80,
         .baseSpAttack  = 114,
         .baseSpDefense = 85,
         .types = { TYPE_FIRE, TYPE_GROUND },
@@ -4563,7 +4563,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_KEEN_EYE, ABILITY_FRISK},
+        .abilities = {ABILITY_RUN_AWAY, ABILITY_KEEN_EYE, ABILITY_SOUNDWAVES},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
@@ -4598,7 +4598,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 50,
         .baseSpDefense = 56,
-        .types = { TYPE_NORMAL, TYPE_FLYING },
+        .types = { TYPE_GHOST, TYPE_FLYING },
         .catchRate = 255,
         .expYield = 52,
         .evYield_HP        = 1,
@@ -4624,7 +4624,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #else
             .baseSpAttack  = 76,
         #endif
-        .types = { TYPE_PSYCHIC, TYPE_FLYING},
+        .types = { TYPE_GHOST, TYPE_FLYING},
         .catchRate = 90,
         .expYield = 158,
         .evYield_HP        = 2,
@@ -4663,11 +4663,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_LEDIAN] =
     {
         .baseHP        = 55,
-        .baseAttack    = 115,
+        .baseAttack    = 79,
         .baseDefense   = 50,
-        .baseSpeed     = 110,
+        .baseSpeed     = 100,
         .baseSpAttack  = 15,
-        .baseSpDefense = 90,
+        .baseSpDefense = 110,
         .types = { TYPE_BUG, TYPE_FLYING },
         .catchRate = 90,
         .expYield = 137,

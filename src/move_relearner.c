@@ -160,7 +160,7 @@ enum {
 #define GFXTAG_UI       5525
 #define PALTAG_UI       5526
 
-#define MAX_RELEARNER_MOVES max(MAX_LEVEL_UP_MOVES, 25)
+#define MAX_RELEARNER_MOVES max(MAX_LEVEL_UP_MOVES, 100)
 
 static EWRAM_DATA struct
 {
