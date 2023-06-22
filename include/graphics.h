@@ -12846,6 +12846,7 @@ extern const u32 gBattleAnimBgPalette_GunkShot[];
 extern const u32 gBattleAnimBgImage_HydroCannon[];
 extern const u32 gBattleAnimBgPalette_HydroCannon[];
 extern const u32 gBattleAnimBgTilemap_HydroCannon[];
+extern const u32 gBattleAnimBgPalette_Chloroblast[];
 extern const u32 gBattleAnimBgImage_HydroPump[];
 extern const u32 gBattleAnimBgPalette_HydroPump[];
 extern const u32 gBattleAnimBgTilemap_HydroPump[];
