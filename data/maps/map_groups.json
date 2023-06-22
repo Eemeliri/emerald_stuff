@@ -628,7 +628,9 @@
     "MirageSpot_Cave_A",
     "MirageSpot_Cave_B",
     "MirageSpot_Snow_A",
-    "MirageSpot_Snow_B"
+    "MirageSpot_Snow_B",
+    "FarawayIsland_Forest",
+    "FarawayIsland_Cave"
   ],
   "gMapGroup_IndoorRoute104Prototype": [
     "Route104_Prototype",

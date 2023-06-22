@@ -1146,3 +1146,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/SouthernTomb1/scripts.inc"
 
 	.include "data/maps/Dewford_TrainingGrounds/scripts.inc"
+
+	.include "data/maps/FarawayIsland_Forest/scripts.inc"
+
+	.include "data/maps/FarawayIsland_Cave/scripts.inc"

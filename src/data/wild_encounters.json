@@ -15317,6 +15317,144 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_FARAWAY_ISLAND_FOREST",
+          "base_label": "gFarawayIsland_Forest0",
+          "land_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_YANMA"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_GLOOM"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_VILEPLUME"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_VIVILLON_JUNGLE"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_VIGOROTH"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_TOUCANNON"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_SWELLOW"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_KROKOROK"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_BELLOSSOM"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_SWAMPERT"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_FARAWAY_ISLAND_CAVE",
+          "base_label": "gFarawayIsland_Cave0",
+          "land_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 51,
+                "max_level": 55,
+                "species": "SPECIES_CARBINK"
+              },
+              {
+                "min_level": 31,
+                "max_level": 35,
+                "species": "SPECIES_LILEEP"
+              },
+              {
+                "min_level": 31,
+                "max_level": 35,
+                "species": "SPECIES_SHIELDON"
+              },
+              {
+                "min_level": 31,
+                "max_level": 35,
+                "species": "SPECIES_CRANIDOS"
+              },
+              {
+                "min_level": 31,
+                "max_level": 35,
+                "species": "SPECIES_ANORITH"
+              },
+              {
+                "min_level": 31,
+                "max_level": 35,
+                "species": "SPECIES_TYRUNT"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_KABUTOPS"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_BASTIODON"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_RAMPARDOS"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_TYRANTRUM"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_RAMPARDOS"
+              },
+              {
+                "min_level": 61,
+                "max_level": 65,
+                "species": "SPECIES_AERODACTYL"
+              }
+            ]
+          }
         }
       ]
     },

@@ -599,6 +599,8 @@
 #define MAP_MIRAGE_SPOT_CAVE_B                              (104 | (26 << 8))
 #define MAP_MIRAGE_SPOT_SNOW_A                              (105 | (26 << 8))
 #define MAP_MIRAGE_SPOT_SNOW_B                              (106 | (26 << 8))
+#define MAP_FARAWAY_ISLAND_FOREST                           (107 | (26 << 8))
+#define MAP_FARAWAY_ISLAND_CAVE                             (108 | (26 << 8))
 
 // gMapGroup_IndoorRoute104Prototype
 #define MAP_ROUTE104_PROTOTYPE                          (0 | (27 << 8))

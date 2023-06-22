@@ -2,7 +2,7 @@
   "id": "MAP_FARAWAY_ISLAND_INTERIOR",
   "name": "FarawayIsland_Interior",
   "layout": "LAYOUT_FARAWAY_ISLAND_INTERIOR",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_DP_ETERNA_FOREST",
   "region_map_section": "MAPSEC_FARAWAY_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
@@ -33,15 +33,15 @@
       "x": 12,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_FARAWAY_ISLAND_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_FARAWAY_ISLAND_FOREST",
+      "dest_warp_id": "3"
     },
     {
       "x": 13,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_FARAWAY_ISLAND_ENTRANCE",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_FARAWAY_ISLAND_FOREST",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
