@@ -212,6 +212,9 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId);
 void CopyMonLevelAndBaseStatsToBattleMon(u32 battler, struct Pokemon *mon);
 void CopyMonAbilityAndTypesToBattleMon(u32 battler, struct Pokemon *mon);
 void RecalcBattlerStats(u32 battler, struct Pokemon *mon);
+void MulModifier(u16 *modifier, u16 val);
+bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
+
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
 bool32 IsRolePlayBannedAbility(u16 ability);
@@ -236,5 +239,6 @@ bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
 void RemoveConfusionStatus(u8 battlerId);
 u8 GetBattlerGender(u8 battlerId);
 bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
+u32 CalcSecondaryEffectChance(u8 battlerId, u8 secondaryEffectChance);
 
 #endif // GUARD_BATTLE_UTIL_H
