@@ -12741,6 +12741,81 @@ static const struct TrainerMonCustomized sParty_GreenMewtwo[] = {
     }
 };
 
+static const struct TrainerMonCustomized sParty_PostgameBlaine[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_NINETALES,
+    .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 4, 252),
+    .heldItem = ITEM_CHARTI_BERRY,
+    .moves = {MOVE_FIRE_BLAST, MOVE_ENERGY_BALL, MOVE_PSYSHOCK, MOVE_WILL_O_WISP},
+    .ability = ABILITY_DROUGHT,
+    .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
+    .isShiny = FALSE,
+    .ball = ITEM_DUSK_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_ARCANINE,
+    .ev = TRAINER_PARTY_EVS(0, 252, 0, 0, 0, 252),
+    .heldItem = ITEM_FOCUS_SASH,
+    .moves = {MOVE_CLOSE_COMBAT, MOVE_EXTREME_SPEED, MOVE_BULLDOZE, MOVE_CLOSE_COMBAT},
+    .ability = ABILITY_INTIMIDATE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_ADAMANT),
+    .isShiny = FALSE,
+    .ball = ITEM_POKE_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_ROTOM_HEAT,
+    .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 0, 252),
+    .heldItem = ITEM_FLAME_ORB,
+    .moves = {MOVE_TRICK, MOVE_THUNDERBOLT, MOVE_PAIN_SPLIT, MOVE_OVERHEAT},
+    .ability = ABILITY_LEVITATE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_TIMID),
+    .isShiny = FALSE,
+    .ball = ITEM_POKE_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_ENTEI,
+    .ev = TRAINER_PARTY_EVS(0, 252, 8, 0, 0, 252),
+    .heldItem = ITEM_CHOICE_BAND,
+    .moves = {MOVE_SACRED_FIRE, MOVE_EXTREME_SPEED, MOVE_STONE_EDGE, MOVE_FLARE_BLITZ},
+    .ability = ABILITY_DROUGHT,
+    .nature = TRAINER_PARTY_NATURE(NATURE_ADAMANT),
+    .isShiny = FALSE,
+    .ball = ITEM_MASTER_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_TYPHLOSION,
+    .ev = TRAINER_PARTY_EVS(4, 0, 0, 252, 0, 252),
+    .heldItem = ITEM_CHOICE_SPECS,
+    .moves = {MOVE_ERUPTION, MOVE_FLAMETHROWER, MOVE_EARTH_POWER, MOVE_FOCUS_BLAST},
+    .ability = ABILITY_GALE_FLAMES,
+    .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
+    .isShiny = TRUE,
+    .ball = ITEM_POKE_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 0,
+    .species = SPECIES_CHARIZARD,
+    .ev = TRAINER_PARTY_EVS(0, 252, 0, 0, 0, 252),
+    .heldItem = ITEM_CHARIZARDITE_X,
+    .moves = {MOVE_DRAGON_DANCE, MOVE_FLARE_BLITZ, MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW},
+    .ability = ABILITY_BLAZE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_JOLLY),
+    .isShiny = FALSE,
+    .ball = ITEM_POKE_BALL,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

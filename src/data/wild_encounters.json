@@ -15322,7 +15322,7 @@
           "map": "MAP_FARAWAY_ISLAND_FOREST",
           "base_label": "gFarawayIsland_Forest0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 15,
             "mons": [
               {
                 "min_level": 61,
@@ -15376,12 +15376,12 @@
               },
               {
                 "min_level": 61,
-                "max_level": 65,
+                "max_level": 66,
                 "species": "SPECIES_BELLOSSOM"
               },
               {
                 "min_level": 61,
-                "max_level": 65,
+                "max_level": 66,
                 "species": "SPECIES_SWAMPERT"
               }
             ]
@@ -15391,7 +15391,7 @@
           "map": "MAP_FARAWAY_ISLAND_CAVE",
           "base_label": "gFarawayIsland_Cave0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 51,
@@ -15445,12 +15445,12 @@
               },
               {
                 "min_level": 61,
-                "max_level": 65,
+                "max_level": 66,
                 "species": "SPECIES_RAMPARDOS"
               },
               {
                 "min_level": 61,
-                "max_level": 65,
+                "max_level": 66,
                 "species": "SPECIES_AERODACTYL"
               }
             ]

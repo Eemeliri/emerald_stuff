@@ -710,6 +710,10 @@ Route111_DesertPass_EventScript_ItemSteelixite:: @ 82912F0
 	finditem ITEM_STEELIXITE
 	end
 
+Faraway_Island_Cave_EventScript_ItemSmoothRock:: @ 82912F0
+	finditem ITEM_SMOOTH_ROCK
+	end
+
 NamelessDungeon_EventScript_ItemNugget:: @ 82912F0
 	finditem ITEM_NUGGET
 	end

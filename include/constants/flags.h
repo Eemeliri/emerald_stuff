@@ -671,7 +671,7 @@
 #define FLAG_HIDE_MEWTWO  0x2756
 #define FLAG_HIDE_GREEN  0x276 
 #define FLAG_HIDE_DITTO  0x277 
-#define FLAG_UNUSED_0x278  0x278 // Unused Flag
+#define FLAG_HIDE_POSTGAME_BLAINE  0x278 
 #define FLAG_UNUSED_0x279  0x279 // Unused Flag
 #define FLAG_UNUSED_0x27A  0x27A // Unused Flag
 #define FLAG_UNUSED_0x27B  0x27B // Unused Flag
@@ -1275,7 +1275,7 @@
 #define FLAG_EXP_SHARE                                              0x4CA // Exp Share
 #define FLAG_LAKE_OF_VALOR                                          0x4CB // Lake of Valor
 #define FLAG_HIDE_MOLTRES                                           0x4CC 
-#define FLAG_HIDE_ARTICUNO                                          0x4CD // Unused Flag
+#define FLAG_HIDE_ARTICUNO                                          0x4CD 
 #define FLAG_HIDE_ZAPDOS                                            0x4CE 
 #define FLAG_HIDE_ELECTRODE1                                        0x4CF 
 #define FLAG_HIDE_ELECTRODE2                                        0x4D0 
@@ -1288,7 +1288,7 @@
 #define FLAG_NAMELESSDUNGEON_ITEM_PPMAX                             0x4D7 
 #define FLAG_NAMELESSDUNGEON_ITEM_MAXREVIVE                         0x4D8 
 #define FLAG_NAMELESSDUNGEON_ITEM_MAXELIXIR                         0x4D9 
-#define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
+#define FLAG_FARAWAY_ISLAND_SMOOTH_ROCK                             0x4DA 
 #define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
 #define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
 #define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag

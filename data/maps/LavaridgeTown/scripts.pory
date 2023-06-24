@@ -1,3 +1,4 @@
+raw `
 .set LOCALID_RIVAL_ON_BIKE, 7
 .set LOCALID_RIVAL, 8
 
@@ -454,111 +455,46 @@ LavaridgeTown_Text_SoSad:
 	.string "way of karate of me, fool Trainer!$"
 
 LavaridgeTown_Text_SuhwordsDance:
-	.string "Suh-words Dance!$"
+	.string "Suh-words Dance!$" 
 
-BlainePostgame::
-	lockall
-	faceplayer
-	goto_if_set FLAG_RECEIVED_OLD_SEA_MAP, BlaineReceivedMap
-	msgbox BlainePostgame_Text_0
-	msgbox BlainePostgame_Text_1
-	msgbox BlainePostgame_Text_2
-	msgbox BlainePostgame_Text_3
-	msgbox BlainePostgame_Text_4, MSGBOX_YESNO
-	switch VAR_RESULT
-	case YES, BlainePostgame_3
-	case NO, BlainePostgame_4
-	case MULTI_B_PRESSED, BlainePostgame_5
-BlainePostgame_1:
-	msgbox BlainePostgame_Text_8
-	msgbox BlainePostgame_Text_9
-	giveitem ITEM_OLD_SEA_MAP
-	setflag FLAG_ENABLE_SHIP_FARAWAY_ISLAND
-	setflag FLAG_RECEIVED_OLD_SEA_MAP
-	msgbox BlainePostgame_Text_10
-	msgbox BlainePostgame_Text_11
-	releaseall
-	end
+`
 
-BlainePostgame_3:
-	msgbox BlainePostgame_Text_5
-	waitmessage
-	trainerbattle_no_intro TRAINER_POSTGAME_BLAINE, BlainePostgame_Text_6
-	goto BlainePostgame_1
+script BlainePostgame {
+    lockall
+    faceplayer
+    goto_if_set(FLAG_RECEIVED_OLD_SEA_MAP, BlaineReceivedMap)
+    msgbox(format("Well if it isn't the new champion of Hoenn, {PLAYER}!"))
+    msgbox(format("My name is Blaine, I'm a gym leader from Kanto region."))
+    msgbox(format("I heard Lavaridge has some of the finest hot springs in the world, so I came to soothe these old aching bones."))
+    msgbox(format("However now that you are here, I'm on the mood for something better than hot springs, how about we battle instead? It's been a while since I got to face a worthy trainer."))
+    msgbox(format("Are you up for a heated battle?"), MSGBOX_YESNO)
+    switch(var(VAR_RESULT)) {
+        case YES:
+            msgbox(format("Hah! Don't except to cool me just because you're the Champion, hope you have a Burn Heal on hand!"))
+            waitmessage
+            trainerbattle_no_intro(TRAINER_POSTGAME_BLAINE, "Scorching! You've burned me to crisp!")
+        case NO:
+            msgbox(format("Not feeling the heat? Perhaps another time then."))
+            releaseall
+            end
+        case MULTI_B_PRESSED:
+            msgbox(format("Not feeling the heat? Perhaps another time then."))
+            releaseall
+            end
+    }
+    msgbox(format("That was a truly blazingly hot battle! You've invigorated my spirit, young champion."))
+    msgbox(format("How about you take this old map as a reward for besting me, It hides a secret worthy of a champion."))
+    giveitem(ITEM_OLD_SEA_MAP)
+	setflag(FLAG_ENABLE_SHIP_FARAWAY_ISLAND)
+	setflag(FLAG_RECEIVED_OLD_SEA_MAP)
+    msgbox(format("I hear Lilycove city's port has a fellow who can help you track down the island marked on this map."))
+    msgbox(format("I'm going to head to the Pokémon World Tournament after I've had enough of the hot springs here, perhaps we can have another heated battle there!"))
+    releaseall
+    end
+}
 
-BlainePostgame_4:
-	msgbox BlainePostgame_Text_7
-	releaseall
-	end
-
-BlainePostgame_5:
-	msgbox BlainePostgame_Text_7
-	releaseall
-	end
-
-
-BlaineReceivedMap::
-	msgbox BlaineReceivedMap_Text_0
-	release
-	end
-
-
-BlainePostgame_Text_0:
-	.string "Well if it isn't the new champion of\n"
-	.string "Hoenn, {PLAYER}!$"
-
-BlainePostgame_Text_1:
-	.string "My name is Blaine, I'm a gym leader from\n"
-	.string "Kanto region.$"
-
-BlainePostgame_Text_2:
-	.string "I heard Lavaridge has some of the\n"
-	.string "finest hot springs in the world, so I\l"
-	.string "came to soothe these old aching bones.$"
-
-BlainePostgame_Text_3:
-	.string "However now that you are here, I'm on\n"
-	.string "the mood for something better than\l"
-	.string "hot springs, how about we battle\l"
-	.string "instead? It's been a while since I got\l"
-	.string "to face a worthy trainer.$"
-
-BlainePostgame_Text_4:
-	.string "Are you up for a heated battle?$"
-
-BlainePostgame_Text_5:
-	.string "Hah! Don't except to cool me just\n"
-	.string "because you're the Champion, hope you\l"
-	.string "have a Burn Heal on hand!$"
-
-BlainePostgame_Text_6:
-	.string "Scorching! You've burned me to crisp!$"
-
-BlainePostgame_Text_7:
-	.string "Not feeling the heat? Perhaps another\n"
-	.string "time then.$"
-
-BlainePostgame_Text_8:
-	.string "That was a truly blazingly hot battle!\n"
-	.string "You've invigorated my spirit, young\l"
-	.string "champion.$"
-
-BlainePostgame_Text_9:
-	.string "How about you take this old map as a\n"
-	.string "reward for besting me, It hides a\l"
-	.string "secret worthy of a champion.$"
-
-BlainePostgame_Text_10:
-	.string "I hear Lilycove city's port has a fellow\n"
-	.string "who can help you track down the island\l"
-	.string "marked on this map.$"
-
-BlainePostgame_Text_11:
-	.string "I'm going to head to the Pokémon World\n"
-	.string "Tournament after I've had enough of\l"
-	.string "the hot springs here, perhaps we can\l"
-	.string "have another heated battle there!$"
-
-BlaineReceivedMap_Text_0:
-	.string "Hey champion! Found the island marked\n"
-	.string "in the map yet?$"
+script BlaineReceivedMap {
+    msgbox(format("Hey champion! Found the island marked in the map yet?"))
+    release
+    end
+}
