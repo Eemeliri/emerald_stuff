@@ -64,6 +64,7 @@ EventScript_Mesprit::
 	goto_if_eq EventScript_Mesprit_4
 EventScript_Mesprit_1:
 	setflag FLAG_CAUGHT_MESPRIT
+	questmenu QUEST_MENU_SET_ACTIVE, QUEST_1
 	release
 	end
 

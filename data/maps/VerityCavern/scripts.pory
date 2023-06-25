@@ -315,6 +315,7 @@ mespritScript::
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranMesprit
 	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranMesprit
 	setflag FLAG_CAUGHT_MESPRIT
+	startquest QUEST_1
 	release
 	end
 

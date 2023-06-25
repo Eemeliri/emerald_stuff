@@ -156,3 +156,4 @@
 	.include "src/sound_check_menu.o"
 	.include "src/sliding_puzzle.o"
 	.include "src/pokedex_plus_hgss.o"
+	.include "src/quests.o"

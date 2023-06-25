@@ -58,6 +58,7 @@ script EventScript_Mesprit {
         goto(ranMesprit2)
     }
     setflag(FLAG_CAUGHT_MESPRIT)
+    questmenu(QUEST_MENU_SET_ACTIVE, QUEST_1)
     release
     end
 }
