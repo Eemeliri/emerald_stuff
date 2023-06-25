@@ -215,6 +215,8 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     gSaveBlock1Ptr->dexNavChain = 0;
     QuestMenu_ResetMenuSaveData();
+    
+    memset(&gSaveBlock2Ptr->itemFlags, 0, sizeof(gSaveBlock2Ptr->itemFlags));
 }
 
 static void ResetMiniGamesRecords(void)
