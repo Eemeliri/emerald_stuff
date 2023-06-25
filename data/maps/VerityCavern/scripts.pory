@@ -2,6 +2,7 @@ raw `
 VerityCavern_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerityCavern_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerityCavern_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_RESUME, VerityCavernOnResume
 	.byte 0
 
 VerityCavern_MapScripts_MAP_SCRIPT_ON_TRANSITION:
@@ -17,6 +18,15 @@ spawnGrunts::
 	clearflag FLAG_HIDE_VERITY_GRUNTS
 	return
 
+VerityCavernOnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, TryRemoveMesprit
+	end
+
+TryRemoveMesprit::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+	removeobject VAR_LAST_TALKED
+	return
 
 hideGrunts::
 	setflag FLAG_HIDE_VERITY_GRUNTS
@@ -24,7 +34,7 @@ hideGrunts::
 
 spawnMesprit::
 	lockall
-	delay 120
+	delay 60
 	setvar VAR_VERITY_CAVERN_STATE, 3
 	msgbox mesprit1
 	applymovement OBJ_EVENT_ID_PLAYER, confusedPlayer
@@ -285,43 +295,39 @@ mesprit3::
 mesprit4::
 	.string "After a good old fashioned battle, of\n"
 	.string "course.$"
+
+mespritScript::
+	lock
+	faceplayer
+	waitse
+	delay 20
+	playmoncry SPECIES_MESPRIT, CRY_MODE_ENCOUNTER
+	waitmoncry
+	delay 20
+	seteventmon SPECIES_MESPRIT, 40
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ranMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranMesprit
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranMesprit
+	setflag FLAG_CAUGHT_MESPRIT
+	release
+	end
+
+
+ranMesprit::
+	setvar VAR_0x8004, SPECIES_MESPRIT
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
+
+defeatedMesprit::
+	setvar VAR_0x8004, SPECIES_MESPRIT
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
 `
-
-script mespritScript {
-    lock
-    faceplayer
-    waitse
-    delay(20)
-    playmoncry(SPECIES_MESPRIT, CRY_MODE_ENCOUNTER)
-    waitmoncry
-    delay(20)
-    seteventmon(SPECIES_MESPRIT, 40)
-    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-    special(BattleSetup_StartLegendaryBattle)
-    waitstate
-    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-    specialvar(VAR_RESULT, GetBattleOutcome)
-    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
-        goto(caughtMesprit)
-    }
-    release
-    end
-}
-
-script ranMesprit {
-    setvar(VAR_0x8004, SPECIES_MESPRIT)
-    goto(Common_EventScript_LegendaryFlewAway)
-    end
-}
-
-script defeatedMesprit {
-    setvar(VAR_0x8004, SPECIES_MESPRIT)
-    goto(Common_EventScript_LegendaryFlewAway)
-    end
-}
-
-script caughtMesprit {
-    setflag(FLAG_CAUGHT_MESPRIT)
-    release
-    end
-}

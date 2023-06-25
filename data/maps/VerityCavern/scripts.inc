@@ -328,4 +328,3 @@ defeatedMesprit::
 	setvar VAR_0x8004, SPECIES_MESPRIT
 	goto Common_EventScript_LegendaryFlewAway
 	end
-
