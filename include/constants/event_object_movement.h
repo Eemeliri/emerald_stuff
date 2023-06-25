@@ -253,6 +253,11 @@
 #define MOVEMENT_ACTION_JUMP_VARIABLE_UP                0xA5
 #define MOVEMENT_ACTION_JUMP_VARIABLE_LEFT              0xA6
 #define MOVEMENT_ACTION_JUMP_VARIABLE_RIGHT             0xA7
+// slow running
+#define MOVEMENT_ACTION_RUN_DOWN_SLOW                   0xA8
+#define MOVEMENT_ACTION_RUN_UP_SLOW                     0xA9
+#define MOVEMENT_ACTION_RUN_LEFT_SLOW                   0xAA
+#define MOVEMENT_ACTION_RUN_RIGHT_SLOW                  0xAB
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF
