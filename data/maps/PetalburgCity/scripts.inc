@@ -101,6 +101,12 @@ PetalburgCity_EventScript_WallysMom::
 	msgbox PetalburgCity_Text_WhereIsWally, MSGBOX_NPC
 	end
 
+PetalburgCity_EventScript_DebugTele::
+	warp MAP_FARAWAY_ISLAND_ENTRANCE, 13, 38
+	waitstate
+	release
+	end
+
 PetalburgCity_Movement_WalkToWallyHousePlayer:
 	delay_8
 	walk_down
