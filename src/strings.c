@@ -2116,6 +2116,8 @@ const u8 gText_QuestAnnounce[] = _("The quest '{STR_VAR_1}'\nis now {STR_VAR_2}.
 const u8 gText_QuestComplete[] =_("complete");
 const u8 gText_QuestActive[] =_("active");
 
+const u8 gText_Stats[]               = _("Stats");
+
 //names
 const u8 gText_SideQuestName_1[] = _("The Heroes Quest");
 const u8 gText_SideQuestName_2[] = _("The Legends Quest");
