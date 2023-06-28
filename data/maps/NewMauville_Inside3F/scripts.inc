@@ -56,12 +56,23 @@ EventScript_Zapdos::
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
-	compare VAR_RESULT, B_OUTCOME_WON
-	goto_if_eq EventScript_Zapdos_2
-	compare VAR_RESULT, B_OUTCOME_RAN
-	goto_if_eq EventScript_Zapdos_3
-	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
-	goto_if_eq EventScript_Zapdos_4
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedZapdos
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ranZapdos
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranZapdos
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranZapdos
+	setflag FLAG_CAUGHT_ZAPDOS
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestZapdos
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_2
+	release
+	end
+
+EventScript_StartLegendaryQuestZapdos::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_2
+	release
+	end
+
 EventScript_Zapdos_1:
 	setflag FLAG_CAUGHT_ZAPDOS
 	release

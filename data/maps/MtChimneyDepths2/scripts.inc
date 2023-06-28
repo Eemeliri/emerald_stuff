@@ -56,12 +56,23 @@ EventScript_Moltres::
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
-	compare VAR_RESULT, B_OUTCOME_WON
-	goto_if_eq EventScript_Moltres_2
-	compare VAR_RESULT, B_OUTCOME_RAN
-	goto_if_eq EventScript_Moltres_3
-	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
-	goto_if_eq EventScript_Moltres_4
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, defeatedMoltres
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ranMoltres
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranMoltres
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranMoltres
+	setflag FLAG_CAUGHT_MOLTRES
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestMoltres
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3
+	release
+	end
+
+EventScript_StartLegendaryQuestMoltres::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3
+	release
+	end
+
 EventScript_Moltres_1:
 	setflag FLAG_CAUGHT_MOLTRES
 	release

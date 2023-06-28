@@ -71,6 +71,15 @@ DesertRuins_EventScript_Regirock::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, DesertRuins_EventScript_RanFromRegirock
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, DesertRuins_EventScript_RanFromRegirock
 	setflag FLAG_DEFEATED_REGIROCK
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestRegirock
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_12
+	release
+	end
+
+EventScript_StartLegendaryQuestRegirock::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_12
 	release
 	end
 

@@ -86,8 +86,18 @@ script spawnAzelf {
         goto(ranAzelf)
     }
     setflag(FLAG_CAUGHT_AZELF)
+    returnqueststate(QUEST_2)
+    goto_if_eq(VAR_RESULT, 1, startLegendaryQuestAzelf)
+    subquestmenu(QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3)
     releaseall
     end
+}
+
+script startLegendaryQuestAzelf {
+    startquest(QUEST_2)
+	subquestmenu(QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3)
+	release
+	end
 }
 
 script ranAzelf {

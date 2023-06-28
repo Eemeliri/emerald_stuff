@@ -71,6 +71,15 @@ AncientTomb_EventScript_Registeel::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, AncientTomb_EventScript_RanFromRegisteel
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, AncientTomb_EventScript_RanFromRegisteel
 	setflag FLAG_DEFEATED_REGISTEEL
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestRegisteel
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_14
+	release
+	end
+
+EventScript_StartLegendaryQuestRegisteel::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_14
 	release
 	end
 

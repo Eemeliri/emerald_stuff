@@ -140,6 +140,13 @@ FarawayIsland_Interior_EventScript_Mew::
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, FarawayIsland_Interior_EventScript_PlayerOrMewRan
 	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, FarawayIsland_Interior_EventScript_PlayerOrMewRan
 	setflag FLAG_CAUGHT_MEW
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, FarawayIsland_Interior_EventScript_StartLegendaryQuestMew
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_5
+	release
+	end
+
+FarawayIsland_Interior_EventScript_StartLegendaryQuestMew::
 	startquest QUEST_2
 	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_5
 	release

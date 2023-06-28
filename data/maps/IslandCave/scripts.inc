@@ -105,6 +105,15 @@ IslandCave_EventScript_Regice::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IslandCave_EventScript_RanFromRegice
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IslandCave_EventScript_RanFromRegice
 	setflag FLAG_DEFEATED_REGICE
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestRegice
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_13
+	release
+	end
+
+EventScript_StartLegendaryQuestRegice::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_13
 	release
 	end
 

@@ -59,8 +59,18 @@ script EventScript_Mewtwo {
         goto(ranMewtwo)
     }
     setflag(FLAG_CAUGHT_MEWTWO)
+    returnqueststate(QUEST_2)
+    goto_if_eq(VAR_RESULT, 1, startLegendaryQuestMewtwo)
+    subquestmenu(QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_4)
     release
     end
+}
+
+script startLegendaryQuestMewtwo {
+    startquest(QUEST_2)
+	subquestmenu(QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_4)
+	release
+	end
 }
 
 script GreenMewTransform {

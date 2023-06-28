@@ -314,7 +314,15 @@ mespritScript::
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ranMesprit
 	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, ranMesprit
 	setflag FLAG_CAUGHT_MESPRIT
-	startquest QUEST_1
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, EventScript_StartLegendaryQuestMesprit
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_23
+	release
+	end
+
+EventScript_StartLegendaryQuestMesprit::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_23
 	release
 	end
 

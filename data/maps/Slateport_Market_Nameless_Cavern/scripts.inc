@@ -89,6 +89,9 @@ spawnAzelf::
 	goto_if_eq spawnAzelf_4
 spawnAzelf_1:
 	setflag FLAG_CAUGHT_AZELF
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, startLegendaryQuestAzelf
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3
 	releaseall
 	end
 
@@ -103,6 +106,13 @@ spawnAzelf_3:
 spawnAzelf_4:
 	goto ranAzelf
 	goto spawnAzelf_1
+
+
+startLegendaryQuestAzelf::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_3
+	release
+	end
 
 
 ranAzelf::

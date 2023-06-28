@@ -64,6 +64,9 @@ EventScript_Mewtwo::
 	goto_if_eq EventScript_Mewtwo_4
 EventScript_Mewtwo_1:
 	setflag FLAG_CAUGHT_MEWTWO
+	returnqueststate QUEST_2
+	goto_if_eq VAR_RESULT, 1, startLegendaryQuestMewtwo
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_4
 	release
 	end
 
@@ -78,6 +81,13 @@ EventScript_Mewtwo_3:
 EventScript_Mewtwo_4:
 	goto ranMewtwo
 	goto EventScript_Mewtwo_1
+
+
+startLegendaryQuestMewtwo::
+	startquest QUEST_2
+	subquestmenu QUEST_MENU_COMPLETE_QUEST, QUEST_2, SUB_QUEST_4
+	release
+	end
 
 
 GreenMewTransform::
