@@ -3869,7 +3869,11 @@ static void PrintSkillsPage(void)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
         x = GetStringCenterAlignXOffset(1, gStringVar1, 88) + 58;
-        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, NULL) == 2) {
+            PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PP_UNK_5);
+        } else {
+            PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        }
         StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 8, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     } else {
