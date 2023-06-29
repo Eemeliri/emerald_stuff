@@ -1973,7 +1973,8 @@ static void Task_HandleInput(u8 taskId)
             }
             else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS &&
 			   !sMonSummaryScreen->isBoxMon                         &&
-			   !sMonSummaryScreen->lockMovesFlag)
+			   !sMonSummaryScreen->lockMovesFlag                    &&
+               FlagGet(FLAG_SYS_GAME_CLEAR) > 0)
             {
                 // Start EVs Modifier
                 ModifyMode = !ModifyMode;
@@ -1986,7 +1987,8 @@ static void Task_HandleInput(u8 taskId)
             }
             else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO &&
 				!sMonSummaryScreen->isBoxMon                         &&
-				!sMonSummaryScreen->lockMovesFlag)
+				!sMonSummaryScreen->lockMovesFlag                    &&
+                FlagGet(FLAG_SYS_GAME_CLEAR) > 0)
 			{
 				ModifyMode = !ModifyMode;
 				PrintMemoPage();
@@ -5007,7 +5009,11 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             if (sMonSummaryScreen->currStatIndex == 0)
             {
                 StringCopy(gStringVar1, sText_TitleSkills);
-                StringCopy(gStringVar2, sText_TitlePageIVs);
+                if (FlagGet(FLAG_SYS_GAME_CLEAR) > 0) {
+                    StringCopy(gStringVar2, sText_TitlePageIVs);
+                } else {
+                    StringCopy(gStringVar2, sText_TitlePage);
+                }
             }
             else if (sMonSummaryScreen->currStatIndex == 1)
             {
