@@ -4880,6 +4880,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/FarawayIsland_Cave/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_FLOWER_PARADISE",
+      "name": "FlowerParadise_Layout",
+      "width": 20,
+      "height": 150,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/FlowerParadise/border.bin",
+      "blockdata_filepath": "data/layouts/FlowerParadise/map.bin"
     }
   ]
 }
