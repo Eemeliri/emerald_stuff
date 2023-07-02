@@ -563,7 +563,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBattlePyramid:
 
 BattleFrontier_BattlePyramidLobby_Text_WhichLevelMode:
 	.string "The Pyramid offers two courses,\n"
-	.string "Level 50 and Open Level.\l"
+	.string "Entry Mode and Hard Mode.\l"
 	.string "Which will you enter?$"
 
 BattleFrontier_BattlePyramidLobby_Text_SelectThreeMons:
@@ -585,7 +585,7 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLv50:
 	.string "You seem to not have the three\n"
 	.string "Pokémon qualified for the challenge.\p"
 	.string "The three Pokémon must be different\n"
-	.string "and each no higher than Level 50.\p"
+	.string "and each no higher than Entry Mode.\p"
 	.string "Please also remember to take all\n"
 	.string "items from your Pokémon.\p"
 	.string "Eggs{STR_VAR_1} ineligible.\p"
@@ -898,8 +898,8 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 	.string "The Battle Bag serves as your Bag\n"
 	.string "while in the Pyramid.\p"
 	.string "There are two separate Battle Bags--\n"
-	.string "one each for the Level 50 and\l"
-	.string "Open Level adventures.\p"
+	.string "one each for the Entry Mode and\l"
+	.string "Hard Mode adventures.\p"
 	.string "They each can hold up to 99 pieces\n"
 	.string "of ten kinds of items.\p"
 	.string "The contents of the Battle Bag are\n"

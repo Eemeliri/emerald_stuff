@@ -2031,6 +2031,11 @@
 	.byte 0xea
 	.endm
 
+	@ re-calculates mon party
+    .macro calculatemonstats
+    .byte 0xeb
+    .endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

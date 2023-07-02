@@ -417,7 +417,7 @@ BattleFrontier_BattlePalaceLobby_Text_ReturnWhenFortified:
 
 BattleFrontier_BattlePalaceLobby_Text_WhichChallenge:
 	.string "There are two Battle Halls,\n"
-	.string "Level 50 and Open Level.\l"
+	.string "Entry Mode and Hard Mode.\l"
 	.string "Which is your choice of a challenge?$"
 
 BattleFrontier_BattlePalaceLobby_Text_NotEnoughValidMonsLv50:
@@ -427,7 +427,7 @@ BattleFrontier_BattlePalaceLobby_Text_NotEnoughValidMonsLv50:
 	.string "To enter, you must provide three\n"
 	.string "different kinds of Pokémon.\p"
 	.string "These Pokémon must all be of\n"
-	.string "Level 50 or lower.\p"
+	.string "Entry Mode or lower.\p"
 	.string "They also must not be holding\n"
 	.string "the same kinds of items.\p"
 	.string "Eggs{STR_VAR_1} ineligible.\p"

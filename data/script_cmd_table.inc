@@ -235,6 +235,7 @@ gScriptCmdTable::
     .4byte ScrCmd_returnqueststate          @ 0xe8
 	.4byte ScrCmd_showitemdesc              @ 0xe9
 	.4byte ScrCmd_hideitemdesc              @ 0xea
+	.4byte ScrCmd_calculatemonstats  		@ 0xeb
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

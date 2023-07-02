@@ -2033,7 +2033,7 @@ static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
 {
     u8 i, j;
     u8 friendship;
-    u8 level = TENT_MIN_LEVEL;
+    u8 level = 50;
     u8 fixedIV = 0;
     u32 otID = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
 
@@ -2114,6 +2114,31 @@ static void HandleSpecialTrainerBattleEnd(void)
     case SPECIAL_BATTLE_PALACE:
     case SPECIAL_BATTLE_ARENA:
     case SPECIAL_BATTLE_FACTORY:
+        if (gSaveBlock1Ptr->frontier.battlesCount < 0xFFFFFF)
+        {
+            if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+            {
+                FlagClear(FLAG_LIMIT_TO_50);
+
+                for (i = 0; i < PARTY_SIZE; i++)
+                    CalculateMonStats(&gPlayerParty[i]);
+            }
+            gSaveBlock1Ptr->frontier.battlesCount++;
+            if (gSaveBlock1Ptr->frontier.battlesCount % 20 == 0)
+                UpdateGymLeaderRematch();
+        }
+        else
+        {
+            if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+            {
+                FlagClear(FLAG_LIMIT_TO_50);
+
+                for (i = 0; i < PARTY_SIZE; i++)
+                    CalculateMonStats(&gPlayerParty[i]);
+            }
+            gSaveBlock1Ptr->frontier.battlesCount = 0xFFFFFF;
+        }
+        break;
     case SPECIAL_BATTLE_PIKE_SINGLE:
     case SPECIAL_BATTLE_PIKE_DOUBLE:
     case SPECIAL_BATTLE_PYRAMID:
@@ -2162,8 +2187,15 @@ static void Task_StartBattleAfterTransition(u8 taskId)
 
 void DoSpecialTrainerBattle(void)
 {
-    s32 i;
+    s32 i, j;
 
+    if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+    {
+        FlagSet(FLAG_LIMIT_TO_50);
+
+        for (j = 0; j < PARTY_SIZE; j++)
+            CalculateMonStats(&gPlayerParty[j]);
+    }
     gBattleScripting.specialTrainerBattleType = gSpecialVar_0x8004;
     switch (gSpecialVar_0x8004)
     {
@@ -3568,10 +3600,11 @@ u8 GetFrontierEnemyMonLevel(u8 lvlMode)
         level = FRONTIER_MAX_LEVEL_50;
         break;
     case FRONTIER_LVL_OPEN:
-        level = GetHighestLevelInPlayerParty();
+        level = 50;
+        /*level = GetHighestLevelInPlayerParty();
         if (level < FRONTIER_MIN_LEVEL_OPEN)
             level = FRONTIER_MIN_LEVEL_OPEN;
-        break;
+        break;*/
     }
 
     return level;
@@ -3664,9 +3697,9 @@ static u8 SetTentPtrsGetLevel(void)
         gFacilityTrainerMons = gBattleFrontierMons;
     }
 
-    level = GetHighestLevelInPlayerParty();
-    if (level < TENT_MIN_LEVEL)
-        level = TENT_MIN_LEVEL;
+    level = 50;
+    //if (level < TENT_MIN_LEVEL)
+    //    level = TENT_MIN_LEVEL;
 
     return level;
 }

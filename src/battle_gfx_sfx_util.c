@@ -50,6 +50,11 @@ static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentHealthbox 
     gHealthboxSinglesOpponentGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
 };
 
+static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthboxFrontier =
+{
+    gHealthboxSinglesPlayerGfx_Frontier, 0x1000, TAG_HEALTHBOX_PLAYER1_TILE
+};
+
 static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox[2] =
 {
     {gHealthboxDoublesPlayerGfx, 0x800, TAG_HEALTHBOX_PLAYER1_TILE},
@@ -723,6 +728,8 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
                     LoadCompressedSpriteSheet(&sSpriteSheet_SafariHealthbox);
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthboxFrontier);
                 else
                     LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
             }

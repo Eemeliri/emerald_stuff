@@ -1351,7 +1351,9 @@ static bool8 LoadGraphics(void)
         gMain.state++;
         break;
     case 20:
+        if (!(FlagGet(FLAG_LIMIT_TO_50))) {
         CreateExpBarSprites(TAG_EXP_BAR, TAG_HEALTH_BAR);
+        }
         gMain.state++;
     case 21:
         CreateSetStatusSprite();
@@ -3169,19 +3171,24 @@ static void PrintInfoPage(void)
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 80, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_ExpPoints, 8, 100, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-    ConvertIntToDecimalStringN(gStringVar1, summary->exp, STR_CONV_MODE_RIGHT_ALIGN, 7);
+    if (FlagGet(FLAG_LIMIT_TO_50))
+        ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_RIGHT_ALIGN, 6);
+    else 
+        ConvertIntToDecimalStringN(gStringVar1, summary->exp, STR_CONV_MODE_RIGHT_ALIGN, 7);
     x = GetStringRightAlignXOffset(1, gStringVar1, 42) + 91;
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 100, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_ToNextLevel, 8, 116, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-    if (summary->level < MAX_LEVEL)
+    if (FlagGet(FLAG_LIMIT_TO_50))
+        ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_RIGHT_ALIGN, 6);
+    else if (summary->level < MAX_LEVEL)
         ConvertIntToDecimalStringN(gStringVar1, gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level + 1] - summary->exp, STR_CONV_MODE_RIGHT_ALIGN, 6);
     else
         ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_RIGHT_ALIGN, 6);
     x = GetStringRightAlignXOffset(1, gStringVar1, 42) + 91;
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 116, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 
-    if (summary->level < MAX_LEVEL)
+    if (summary->level < MAX_LEVEL && !FlagGet(FLAG_LIMIT_TO_50))
     {
         u32 expBetweenLevels = gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level + 1] - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
         u32 expSinceLastLevel = summary->exp - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
@@ -4898,7 +4905,6 @@ static void CreateExpBarSprites(u16 tileTag, u16 palTag)
         sExpBar->tileTag = tileTag;
         sExpBar->palTag = palTag;
     }
-
     ConfigureExpBarSprites();
     SetExpBarSprites();
 
