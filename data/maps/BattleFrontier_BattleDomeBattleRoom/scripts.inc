@@ -942,12 +942,12 @@ BattleFrontier_BattleDomeBattleRoom_Text_TrainerIsWinner:
 	.string "Congratulations!$"
 
 BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ:
-	.string "{PLAYER} is the Level 50\n"
+	.string "{PLAYER} is the Entry Mode\n"
 	.string "Battle Tournament Champion!\p"
 	.string "Congratulations!$"
 
 BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp:
-	.string "{PLAYER} is the Open Level\n"
+	.string "{PLAYER} is the Hard Mode\n"
 	.string "Battle Tournament Champion!\p"
 	.string "Congratulations!$"
 
@@ -1153,13 +1153,13 @@ BattleFrontier_BattleDomeBattleRoom_Text_LookForwardToNextEncounter:
 
 @ Unused
 BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ2:
-	.string "{PLAYER} is the Level 50\n"
+	.string "{PLAYER} is the Entry Mode\n"
 	.string "Battle Tournament Champion!\p"
 	.string "Congratulations!$"
 
 @ Unused
 BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp2:
-	.string "{PLAYER} is the Open Level\n"
+	.string "{PLAYER} is the Hard Mode\n"
 	.string "Battle Tournament Champion!\p"
 	.string "Congratulations!$"
 

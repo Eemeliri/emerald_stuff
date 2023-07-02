@@ -336,7 +336,7 @@ LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge:
 
 LavaridgeTown_Gym_1F_Text_ExplainHeatBadgeTakeThis:
 	.string "If you have a Heat Badge, all Pokémon\n"
-	.string "up to Level 50, even those you get in\l"
+	.string "up to Entry Mode, even those you get in\l"
 	.string "trades from other people, will obey\l"
 	.string "you completely.\p"
 	.string "And, it lets Pokémon use the HM move\n"

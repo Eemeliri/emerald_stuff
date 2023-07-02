@@ -396,7 +396,7 @@ BattleFrontier_BattleArenaLobby_Text_OkayToSave:
 
 BattleFrontier_BattleArenaLobby_Text_WhichLevelMode:
 	.string "The Battle Arena offers two levels\n"
-	.string "of challenge, Level 50 and Open Level.\l"
+	.string "of challenge, Entry Mode and Hard Mode.\l"
 	.string "Which is your choice?$"
 
 BattleFrontier_BattleArenaLobby_Text_SelectThreeMons:
@@ -422,7 +422,7 @@ BattleFrontier_BattleArenaLobby_Text_NotEnoughValidMonsLv50:
 	.string "To qualify, you must bring three\n"
 	.string "different kinds of Pokémon.\p"
 	.string "The three different Pokémon\n"
-	.string "must all be Level 50 or lower.\p"
+	.string "must all be Entry Mode or lower.\p"
 	.string "They also must not hold the same\n"
 	.string "kinds of items.\p"
 	.string "eggs{STR_VAR_1} ineligible.\p"

@@ -1130,8 +1130,8 @@ bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate)
 
     if (gSaveBlock1Ptr->frontier.lvlMode != FRONTIER_LVL_50)
     {
-        monLevel = GetHighestLevelInPlayerParty();
-        if (monLevel < FRONTIER_MIN_LEVEL_OPEN)
+        //monLevel = GetHighestLevelInPlayerParty();
+        /*if (monLevel < FRONTIER_MIN_LEVEL_OPEN)
         {
             monLevel = FRONTIER_MIN_LEVEL_OPEN;
         }
@@ -1140,7 +1140,8 @@ bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate)
             monLevel -= wildMons[headerId][pikeMonId].levelDelta;
             if (monLevel < FRONTIER_MIN_LEVEL_OPEN)
                 monLevel = FRONTIER_MIN_LEVEL_OPEN;
-        }
+        }*/
+        monLevel = 50;
     }
     else
     {
@@ -1599,6 +1600,12 @@ static void IsPartyFullHealed(void)
 static void SaveMonHeldItems(void)
 {
     u8 i;
+    s32 j;
+
+    FlagSet(FLAG_LIMIT_TO_50);
+
+    for (j = 0; j < PARTY_SIZE; j++)
+        CalculateMonStats(&gPlayerParty[j]);
 
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
@@ -1611,6 +1618,12 @@ static void SaveMonHeldItems(void)
 static void RestoreMonHeldItems(void)
 {
     u8 i;
+    s32 j;
+
+    FlagClear(FLAG_LIMIT_TO_50);
+
+    for (j = 0; j < PARTY_SIZE; j++)
+        CalculateMonStats(&gPlayerParty[j]);
 
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {

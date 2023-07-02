@@ -428,21 +428,21 @@ BattleFrontier_ReceptionGate_Text_LearnAboutWhat:
 BattleFrontier_ReceptionGate_Text_LevelModeInfo:
 	.string "All the challenges at the Battle\n"
 	.string "Frontier's facilities come in\l"
-	.string "two courses--Level 50 and Open Level.$"
+	.string "two courses--Entry Mode and Hard Mode.$"
 
 BattleFrontier_ReceptionGate_Text_Level50Info:
-	.string "The Level 50 course is open to Pokémon\n"
-	.string "up to and including Level 50.\p"
+	.string "The Entry Mode course is open to Pokémon\n"
+	.string "up to and including Entry Mode.\p"
 	.string "Please keep in mind, however, that\n"
 	.string "no Trainer you face will have any\l"
-	.string "Pokémon below Level 50.\p"
+	.string "Pokémon below Entry Mode.\p"
 	.string "This course is the entry level for\n"
 	.string "battles at the Battle Frontier.\p"
 	.string "To begin, we hope you will challenge\n"
 	.string "this course.$"
 
 BattleFrontier_ReceptionGate_Text_OpenLevelInfo:
-	.string "The Open Level course places no limit\n"
+	.string "The Hard Mode course places no limit\n"
 	.string "on the levels of Pokémon entering\l"
 	.string "challenges.\p"
 	.string "The levels of your opponents will\n"

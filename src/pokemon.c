@@ -4134,6 +4134,25 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     SetMonData(mon, field, &n);                                 \
 }
 
+#define CALC_STAT50(base, iv, ev, statIndex, field)               \
+{                                                               \
+    u8 baseStat = gSpeciesInfo[species].base;                   \
+    s32 n = (((2 * baseStat + iv + ev / 4) * 50) / 100) + 5; \
+    u8 nature = GetNature(mon);                                 \
+    n = ModifyStatByNature(nature, n, statIndex);               \
+    SetMonData(mon, field, &n);                                 \
+}
+
+#define CALC_STAT_EQUALIZED50(base, iv, ev, statIndex, field, option)\
+{                                                               \
+    u16 baseStat[] = {100, 255, 500};                                         \
+    s32 n = (((2 * baseStat[option] + iv + ev / 4) * 50) / 100) + 5; \
+    u8 nature = GetNature(mon);                                 \
+    n = ModifyStatByNature(nature, n, statIndex);               \
+    SetMonData(mon, field, &n);                                 \
+}
+
+
 void CalculateMonStats(struct Pokemon *mon)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
@@ -4154,7 +4173,13 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP;
 
-    SetMonData(mon, MON_DATA_LEVEL, &level);
+    if (FlagGet(FLAG_LIMIT_TO_50) == TRUE) //Try to limit mons to level 50 for frontier) 
+    {
+        level = 50;
+        SetMonData(mon, MON_DATA_LEVEL, &level);
+    } else {
+        SetMonData(mon, MON_DATA_LEVEL, &level);
+    }
 
     if (species == SPECIES_SHEDINJA)
     {
@@ -4172,11 +4197,20 @@ void CalculateMonStats(struct Pokemon *mon)
 
     SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
 
-    CALC_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
-    CALC_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
-    CALC_STAT(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
-    CALC_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
-    CALC_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+    if (FlagGet(FLAG_LIMIT_TO_50) == TRUE) //Try to limit mons to level 50 for frontier)
+    {
+        CALC_STAT50(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
+        CALC_STAT50(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
+        CALC_STAT50(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
+        CALC_STAT50(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
+        CALC_STAT50(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+    } else {
+        CALC_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
+        CALC_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
+        CALC_STAT(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
+        CALC_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
+        CALC_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+    }
 
     if (species == SPECIES_SHEDINJA)
     {
