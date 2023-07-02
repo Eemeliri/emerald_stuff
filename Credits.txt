@@ -4,7 +4,7 @@ BelialClover for EV allocation system
 Paccy - his glimmering emerald was used as a base
 Zeo254 - some tilesets
 Arce_Havrek - Pokedex spreadsheet base
-resetes12 - Options menu code for optional sliding animation
+resetes12 - Battle frontier scaling, options menu code for optional sliding animation
 Phyromatical - distortion world tileset
 SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
