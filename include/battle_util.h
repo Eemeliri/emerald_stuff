@@ -35,11 +35,11 @@
 #define ABILITYEFFECT_FIELD_SPORT                13 // Only used if B_SPORT_TURNS < GEN_6
 #define ABILITYEFFECT_ON_WEATHER                 14
 #define ABILITYEFFECT_ON_TERRAIN                 15
+#define ABILITYEFFECT_SWITCH_IN_TERRAIN          16
+#define ABILITYEFFECT_SWITCH_IN_WEATHER          17
 // Special cases
 #define ABILITYEFFECT_MUD_SPORT                  252 // Only used if B_SPORT_TURNS < GEN_6
 #define ABILITYEFFECT_WATER_SPORT                253 // Only used if B_SPORT_TURNS < GEN_6
-#define ABILITYEFFECT_SWITCH_IN_TERRAIN          254
-#define ABILITYEFFECT_SWITCH_IN_WEATHER          255
 
 // For the first argument of ItemBattleEffects, to deteremine which block of item effects to try
 #define ITEMEFFECT_ON_SWITCH_IN                 0
@@ -185,7 +185,6 @@ struct Pokemon *GetIllusionMonPtr(u32 battlerId);
 void ClearIllusionMon(u32 battlerId);
 bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId);
 u8 GetBattleMoveSplit(u32 moveId);
-bool32 TestMoveFlags(u16 move, u32 flag);
 bool32 CanFling(u8 battlerId);
 bool32 IsTelekinesisBannedSpecies(u16 species);
 bool32 IsHealBlockPreventingMove(u32 battler, u32 move);

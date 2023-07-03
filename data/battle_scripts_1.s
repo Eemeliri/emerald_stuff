@@ -166,11 +166,9 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectPsychUp                 @ EFFECT_PSYCH_UP
 	.4byte BattleScript_EffectMirrorCoat              @ EFFECT_MIRROR_COAT
 	.4byte BattleScript_EffectSkullBash               @ EFFECT_SKULL_BASH
-	.4byte BattleScript_EffectTwister                 @ EFFECT_TWISTER
 	.4byte BattleScript_EffectEarthquake              @ EFFECT_EARTHQUAKE
 	.4byte BattleScript_EffectFutureSight             @ EFFECT_FUTURE_SIGHT
 	.4byte BattleScript_EffectGust                    @ EFFECT_GUST
-	.4byte BattleScript_EffectStomp                   @ EFFECT_FLINCH_MINIMIZE_HIT
 	.4byte BattleScript_EffectSolarBeam               @ EFFECT_SOLAR_BEAM
 	.4byte BattleScript_EffectThunder                 @ EFFECT_THUNDER
 	.4byte BattleScript_EffectTeleport                @ EFFECT_TELEPORT
@@ -540,11 +538,12 @@ BattleScript_EffectTeatime::
 @ at least one battler is affected
 	attackanimation
 	waitanimation
+	setbyte gBattlerTarget, 0
 BattleScript_TeatimeLoop:
-	jumpifteainvulnerable BS_TARGET, BattleScript_Teatimevul
 	jumpifrodaffected BS_TARGET, BattleScript_Teatimerod
 	jumpifabsorbaffected BS_TARGET, BattleScript_Teatimesorb
 	jumpifmotoraffected BS_TARGET, BattleScript_Teatimemotor
+	jumpifteainvulnerable BS_TARGET, BattleScript_Teatimevul @ in semi-invulnerable state OR held item is not a Berry
 	orword gHitMarker, HITMARKER_NO_ANIMATIONS | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	setbyte sBERRY_OVERRIDE, TRUE   @ override the requirements for eating berries
 	consumeberry BS_TARGET, TRUE  @ consume the berry, then restore the item from changedItems
@@ -562,6 +561,12 @@ BattleScript_Teatimevul:
 	goto BattleScript_MoveEnd
 BattleScript_Teatimesorb:
 	call BattleScript_AbilityPopUpTarget
+	tryhealquarterhealth BS_TARGET BattleScript_Teatimesorb_end
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_PKMNREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_Teatimesorb_end:
 	moveendto MOVEEND_NEXT_TARGET
 	jumpifnexttargetvalid BattleScript_TeatimeLoop
 	moveendcase MOVEEND_CLEAR_BITS
@@ -4830,8 +4835,6 @@ BattleScript_PartyHealEnd::
 BattleScript_EffectTripleKick::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
 	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
 	addbyte sTRIPLE_KICK_POWER, 10 @ triple kick gets +10 power
 	goto BattleScript_HitFromAtkString
@@ -5386,12 +5389,6 @@ BattleScript_SkullBashEnd::
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 	goto BattleScript_TwoTurnMovesSecondTurn
-
-BattleScript_EffectTwister:
-BattleScript_FlinchEffect:
-BattleScript_EffectStomp:
-	setmoveeffect MOVE_EFFECT_FLINCH
-	goto BattleScript_EffectHit
 
 BattleScript_EffectBulldoze:
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
@@ -8762,10 +8759,7 @@ BattleScript_IntimidateLoop:
 	jumpiftargetally BattleScript_IntimidateLoopIncrement
 	jumpifabsent BS_TARGET, BattleScript_IntimidateLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IntimidateLoopIncrement
-	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_IntimidatePrevented_Item
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IntimidatePrevented
 .if B_UPDATED_INTIMIDATE >= GEN_8
 	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_IntimidatePrevented
@@ -8847,7 +8841,6 @@ BattleScript_IntimidateContrary_WontIncrease:
 BattleScript_IntimidatePrevented:
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_LONG
-BattleScript_IntimidatePrevented_Item:
 	setbyte gBattleCommunication STAT_ATK
 	stattextbuffer BS_TARGET
 	printstring STRINGID_STATWASNOTLOWERED
@@ -9201,6 +9194,12 @@ BattleScript_AbilityNoStatLoss::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNPREVENTSSTATLOSSWITH
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_ItemNoStatLoss::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_STATWASNOTLOWERED
 	waitmessage B_WAIT_TIME_LONG
 	return
 
@@ -9650,6 +9649,7 @@ BattleScript_IgnoresWhileAsleep::
 BattleScript_IgnoresAndUsesRandomMove::
 	printstring STRINGID_PKMNIGNOREDORDERS
 	waitmessage B_WAIT_TIME_LONG
+	setbyte sMOVE_EFFECT, 0
 	jumptocalledmove FALSE
 
 BattleScript_MoveUsedLoafingAround::

@@ -245,7 +245,7 @@
 #define FLAG_THREE_STRIKES                        (1 << 28) // A move with this flag will strike thrice, and may apply its effect on each hit
 #define FLAG_WIND_MOVE                            (1 << 29)
 #define FLAG_SLICING_MOVE                         (1 << 30)
-#define FLAG_KICKBOXING_BOOST                         (1 << 31) //Kickboxing
+#define FLAG_KICKBOXING_BOOST                     (1 << 31) //Kickboxing
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
@@ -334,11 +334,10 @@
 
 // Most pokemon have 2 frames (a default and an alternate for their animation).
 // There are 4 exceptions:
-// - Castform has 4 frames, 1 for each form
 // - Deoxys has 2 frames, 1 for each form
 // - Spinda has 1 frame, presumably to avoid the work of animating its spots
 // - Unown has 1 frame, presumably to avoid the work of animating all 28 of its forms
-#define MAX_MON_PIC_FRAMES 4
+#define MAX_MON_PIC_FRAMES 2
 
 #define BATTLE_ALIVE_EXCEPT_ACTIVE   0
 #define BATTLE_ALIVE_ATK_SIDE        1

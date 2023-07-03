@@ -585,7 +585,6 @@ struct BattleStruct
     u8 turnSideTracker;
     u8 givenExpMons; // Bits for enemy party's pokemon that gave exp to player's party.
     u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT]; // a 2-D array [target][attacker]
-    u16 castformPalette[NUM_CASTFORM_FORMS][16];
     union {
         struct LinkBattlerHeader linkBattlerHeader;
         u32 battleVideo[2];
@@ -686,6 +685,12 @@ struct BattleStruct
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
 
+#define IS_MOVE_RECOIL(move)(gBattleMoves[move].effect == EFFECT_RECOIL_25          \
+                          || gBattleMoves[move].effect == EFFECT_RECOIL_IF_MISS     \
+                          || gBattleMoves[move].effect == EFFECT_RECOIL_50          \
+                          || gBattleMoves[move].effect == EFFECT_RECOIL_33          \
+                          || gBattleMoves[move].effect == EFFECT_RECOIL_33_STATUS)
+
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
 #define BATTLER_DAMAGED(battlerId) ((gSpecialStatuses[battlerId].physicalDmg != 0 || gSpecialStatuses[battlerId].specialDmg != 0))
@@ -703,7 +708,6 @@ struct BattleStruct
     gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];   \
     gBattleMons[battlerId].type3 = TYPE_MYSTERY;                                            \
 }
-
 
 #define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
@@ -990,7 +994,6 @@ extern struct BattleHealthboxInfo *gBattleControllerOpponentHealthboxData;
 extern struct BattleHealthboxInfo *gBattleControllerOpponentFlankHealthboxData;
 extern u16 gBattleMovePower;
 extern u16 gMoveToLearn;
-extern u8 gBattleMonForms[MAX_BATTLERS_COUNT];
 extern u32 gFieldStatuses;
 extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;
