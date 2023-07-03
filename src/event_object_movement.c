@@ -1920,21 +1920,6 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
         else
             spritePalette = &(shiny ? gFollowMonShinyPaletteTableFemale : gFollowMonPaletteTableFemale)[species];
     }
-    else if(species==SPECIES_CASTFORM){
-        switch(form % NUM_CASTFORM_FORMS){
-            case CASTFORM_FIRE:
-                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_SUNNY];
-                break;
-            case CASTFORM_WATER:
-                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_RAINY];
-                break;
-            case CASTFORM_ICE:
-                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM_SNOWY];
-                break;
-            case CASTFORM_NORMAL:
-                spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[SPECIES_CASTFORM];
-        }
-    }
     else
         spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
 
@@ -2003,23 +1988,6 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent) {
     }
 }
 
-// Like CastformDataTypeChange, but for overworld weather
-static u8 GetOverworldCastformForm(void) {
-    switch (GetCurrentWeather())
-    {
-    case WEATHER_SUNNY_CLOUDS:
-    case WEATHER_DROUGHT:
-        return CASTFORM_FIRE;
-    case WEATHER_RAIN:
-    case WEATHER_RAIN_THUNDERSTORM:
-    case WEATHER_DOWNPOUR:
-        return CASTFORM_WATER;
-    case WEATHER_SNOW:
-        return CASTFORM_ICE;
-    }
-    return CASTFORM_NORMAL;
-}
-
 // Retrieve graphic information about the following pokemon, if any
 static bool8 GetFollowerInfo(u16 *species, u8 *form, u8 *shiny) {
     struct Pokemon *mon = GetFirstLiveMon();
@@ -2043,9 +2011,6 @@ static bool8 GetFollowerInfo(u16 *species, u8 *form, u8 *shiny) {
         case SPECIES_JELLICENT:
         case SPECIES_PYROAR:
             *form = GetMonGender(mon);
-            break;
-        case SPECIES_CASTFORM: // form is based on overworld weather
-            *form = GetOverworldCastformForm();
             break;
         default:
             *form = 0;
@@ -5091,7 +5056,7 @@ static bool8 EndFollowerTransformEffect(struct ObjectEvent *objectEvent, struct 
 
 static bool8 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
     u32 multi;
-    if (objectEvent->extra.mon.species == SPECIES_CASTFORM && objectEvent->extra.mon.form != (multi = GetOverworldCastformForm())) {
+    /* if (objectEvent->extra.mon.species == SPECIES_CASTFORM && objectEvent->extra.mon.form != (multi = GetOverworldCastformForm())) {
         VarSet(VAR_TEMP_A,sprite->data[7]);
         sprite->data[7] = TRANSFORM_TYPE_PERMANENT << 8;
         objectEvent->extra.mon.form = multi;
@@ -5101,7 +5066,7 @@ static bool8 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, st
         sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
         PlaySE(SE_M_MINIMIZE);
         return TRUE;
-    }
+    } */
     return FALSE;
 }
 
