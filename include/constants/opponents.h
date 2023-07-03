@@ -889,8 +889,9 @@
 #define TRAINER_GMARS_1                     884
 #define TRAINER_GREEN_MEWTWO                885
 #define TRAINER_POSTGAME_BLAINE             886
+#define TRAINER_CYNTHIA_E4                  887
 
-#define REGULAR_TRAINER_END                 TRAINER_POSTGAME_BLAINE
+#define REGULAR_TRAINER_END                 TRAINER_CYNTHIA_E4
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -977,8 +978,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      957
-#define MAX_TRAINERS_COUNT                  958
+#define TRAINERS_COUNT                      958
+#define MAX_TRAINERS_COUNT                  959
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 

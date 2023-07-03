@@ -12816,6 +12816,51 @@ static const struct TrainerMonCustomized sParty_PostgameBlaine[] = {
     }
 };
 
+static const struct TrainerMonItemCustomMoves sParty_CynthiaE4[] = {
+    {
+    .iv = 255,
+    .lvl = 69,
+    .species = SPECIES_SPIRITOMB,
+    .heldItem = ITEM_CUSTAP_BERRY,
+    .moves = {MOVE_WILL_O_WISP, MOVE_SUCKER_PUNCH, MOVE_SUBSTITUTE, MOVE_PAIN_SPLIT}
+    },
+    {
+    .iv = 255,
+    .lvl = 69,
+    .species = SPECIES_LUCARIO,
+    .heldItem = ITEM_WEAKNESS_POLICY,
+    .moves = {MOVE_AURA_SPHERE, MOVE_DRAGON_PULSE, MOVE_STONE_EDGE, MOVE_EXTREME_SPEED}
+    },
+    {
+    .iv = 255,
+    .lvl = 70,
+    .species = SPECIES_TOGEKISS,
+    .heldItem = ITEM_KINGS_ROCK,
+    .moves = {MOVE_GRASS_KNOT, MOVE_DAZZLING_GLEAM, MOVE_AIR_SLASH, MOVE_THUNDER_WAVE}
+    },
+    {
+    .iv = 255,
+    .lvl = 70,
+    .species = SPECIES_MILOTIC,
+    .heldItem = ITEM_WIDE_LENS,
+    .moves = {MOVE_HYDRO_PUMP, MOVE_BLIZZARD, MOVE_MIRROR_COAT, MOVE_RECOVER}
+    },
+    {
+    .iv = 255,
+    .lvl = 71,
+    .species = SPECIES_PORYGON_Z,
+    .heldItem = ITEM_EXPERT_BELT,
+    .moves = {MOVE_HYPER_BEAM, MOVE_SHADOW_BALL, MOVE_ICE_BEAM, MOVE_THUNDERBOLT}
+    },
+    {
+    .iv = 255,
+    .lvl = 71,
+    .species = SPECIES_GARCHOMP,
+    .heldItem = ITEM_GARCHOMPITE,
+    .moves = {MOVE_SCALE_SHOT, MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_POISON_JAB}
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

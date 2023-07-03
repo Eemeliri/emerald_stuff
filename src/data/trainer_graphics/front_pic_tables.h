@@ -134,7 +134,6 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_LEADER_MARLON] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_CHAMPION_BLUE] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_CHAMPION_LANCE] = {.size = 8, .y_offset = 1},
-    [TRAINER_PIC_CHAMPION_CYNTHIA] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_CHAMPION_ALDER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_CHAMPION_IRIS] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_GGRUNT_F] = {.size = 8, .y_offset = 1},
@@ -142,6 +141,7 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_G_ADMIN_SATURN] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_G_ADMIN_MARS] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_G_ADMIN_JUPITER] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_CYNTHIA] = {.size = 8, .y_offset = 1},
 };
 
 #define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
@@ -287,7 +287,7 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(LEADER_MARLON, gTrainerFrontPic_Marlon, 0x800),
     TRAINER_SPRITE(CHAMPION_BLUE, gTrainerFrontPic_Blue, 0x800),
     TRAINER_SPRITE(CHAMPION_LANCE, gTrainerFrontPic_Lance, 0x800),
-    TRAINER_SPRITE(CHAMPION_CYNTHIA, gTrainerFrontPic_Cynthia, 0x800),
+    TRAINER_SPRITE(CYNTHIA, gTrainerFrontPic_Cynthia, 0x800),
     TRAINER_SPRITE(CHAMPION_ALDER, gTrainerFrontPic_Alder, 0x800),
     TRAINER_SPRITE(CHAMPION_IRIS, gTrainerFrontPic_Iris, 0x800),
 };
@@ -435,7 +435,7 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(LEADER_MARLON, gTrainerPalette_Marlon),
     TRAINER_PAL(CHAMPION_BLUE, gTrainerPalette_Blue),
     TRAINER_PAL(CHAMPION_LANCE, gTrainerPalette_Lance),
-    TRAINER_PAL(CHAMPION_CYNTHIA, gTrainerPalette_Cynthia),
+    TRAINER_PAL(CYNTHIA, gTrainerPalette_Cynthia),
     TRAINER_PAL(CHAMPION_ALDER, gTrainerPalette_Alder),
     TRAINER_PAL(CHAMPION_IRIS, gTrainerPalette_Iris),
 };

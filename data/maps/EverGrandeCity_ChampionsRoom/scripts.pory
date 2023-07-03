@@ -1,3 +1,4 @@
+raw `
 .set LOCALID_WALLACE, 1
 .set LOCALID_RIVAL, 2
 .set LOCALID_BIRCH, 3
@@ -415,68 +416,57 @@ EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations:
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
 
-Cynthia_Appears::
-	msgbox Cynthia_Appears_Text_0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark
-	playse SE_PIN
-	delay 60
-	fadeoutbgm 1
-	delay 60
-	playse SE_DOOR
-	setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE
-	setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE
-	clearflag FLAG_HIDE_CYNTHIA
-	addobject 4
-	special DrawWholeMapView
-	delay 40
-	playbgm MUS_DP_ENCOUNTER_CHAMPION, FALSE
-	playse SE_EXIT
-	delay 30
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
-	playse SE_PIN
-	waitse
-	applymovement LOCALID_WALLACE, StevenToLeft
-	waitmovement LOCALID_WALLACE
-	delay 10
-	applymovement 4, CynthiaToFront
-	waitmovement 4
-	delay 40
-	msgbox Cynthia_Appears_Text_1
-	return
+`
 
+script Cynthia_Appears {
+    msgbox(format("...Is what I would have said, however someone else came before you and is now the champion of Hoenn."))
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark)
+    playse(SE_PIN)
+    delay(60)
+    fadeoutbgm(1)
+    delay(60)
+    playse(SE_DOOR)
+	setmetatile(6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE)
+	setmetatile(6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE)
+    clearflag(FLAG_HIDE_CYNTHIA)
+    addobject(4)
+	special(DrawWholeMapView)
+    delay(40)
+    playbgm(MUS_DP_ENCOUNTER_CHAMPION, FALSE)
+    playse(SE_EXIT)
+    delay(30)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+    applymovement(LOCALID_WALLACE, StevenToLeft)
+    waitmovement(LOCALID_WALLACE)
+    delay(10)
+    applymovement(4, CynthiaToFront)
+    waitmovement(4)
+    delay(40)
+    msgbox(format("Cynthia: Hello {PLAYER}, It's been some time hasn't it? I heard from Steven how you've grown over your journey, and decided to take the place of the champion temporarily to see how far you've come. I hope this doesn't surprise you too much. Give it your all instead!"))
+    return
+}
 
-StevenToLeft:
-	walk_left
-	face_right
-	step_end
+movement StevenToLeft {
+    walk_left
+    face_right
+    step_end
+}
 
-CynthiaToFront:
-	walk_down
-	walk_down
-	walk_down
-	step_end
+movement CynthiaToFront {
+    walk_down*3
+    step_end
+}
 
-StevenToFront:
-	walk_right
-	face_down
-	step_end
+movement StevenToFront {
+    walk_right
+    face_down
+    step_end
+}
 
-CynthiaToRight:
-	walk_right
-	face_down
-	step_end
-
-Cynthia_Appears_Text_0:
-	.string "...Is what I would have said, however\n"
-	.string "someone else came before you and is\l"
-	.string "now the champion of Hoenn.$"
-
-Cynthia_Appears_Text_1:
-	.string "Cynthia: Hello {PLAYER}, It's been\n"
-	.string "some time hasn't it? I heard from\l"
-	.string "Steven how you've grown over your\l"
-	.string "journey, and decided to take the place\l"
-	.string "of the champion temporarily to see how\l"
-	.string "far you've come. I hope this doesn't\l"
-	.string "surprise you too much. Give it your all\l"
-	.string "instead!$"
+movement CynthiaToRight {
+    walk_right
+    face_down
+    step_end
+}

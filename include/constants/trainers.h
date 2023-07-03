@@ -159,6 +159,7 @@
 #define TRAINER_PIC_G_ADMIN_SATURN        139
 #define TRAINER_PIC_G_ADMIN_MARS          140
 #define TRAINER_PIC_G_ADMIN_JUPITER       141
+#define TRAINER_PIC_CYNTHIA               142
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0

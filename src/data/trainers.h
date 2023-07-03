@@ -10650,6 +10650,18 @@ const struct Trainer gTrainers[] = {
         .party = EVERYTHING_CUSTOMIZED(sParty_PostgameBlaine),
     },
 
+    [TRAINER_CYNTHIA_E4] =
+    {
+        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_CYNTHIA,
+        .trainerName = _("Cynthia"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_PREFER_STRONGEST_MOVE | AI_FLAG_SMART_SWITCHING,
+        .party = ITEM_CUSTOM_MOVES(sParty_CynthiaE4),
+    },
+
     [TRAINER_FRONTIER_BROCK] =
     {
         .partyFlags = 0,
@@ -11355,7 +11367,7 @@ const struct Trainer gTrainers[] = {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_CHAMPION_CYNTHIA,
+        .trainerPic = TRAINER_PIC_CYNTHIA,
         .trainerName = _("Cynthia"),
         .items = {},
         .doubleBattle = FALSE,

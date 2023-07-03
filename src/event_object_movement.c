@@ -515,6 +515,8 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_MEWTWO                  0x1144
 #define OBJ_EVENT_PAL_TAG_DITTO                  0x1145
 #define OBJ_EVENT_PAL_TAG_MEW                    0x1146
+#define OBJ_EVENT_PAL_TAG_SHAYMIN                0x1147
+#define OBJ_EVENT_PAL_TAG_CYNTHIA                0x1148
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
@@ -584,6 +586,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Mewtwo,              OBJ_EVENT_PAL_TAG_MEWTWO},
     {gObjectEventPal_Mew,              OBJ_EVENT_PAL_TAG_MEW},
     {gObjectEventPal_Ditto,              OBJ_EVENT_PAL_TAG_DITTO},
+    {gObjectEventPal_Shaymin,               OBJ_EVENT_PAL_TAG_SHAYMIN},
+    {gObjectEventPal_Cynthia,               OBJ_EVENT_PAL_TAG_CYNTHIA},
     {gObjectEventPal_Articuno,              OBJ_EVENT_PAL_TAG_ARTICUNO},
     {gObjectEventPal_Electrode,              OBJ_EVENT_PAL_TAG_ELECTRODE},
     {gObjectEventPal_Galactic_Grunt_Male,         OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_MALE},
