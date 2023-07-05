@@ -86,7 +86,6 @@ static const u8 sMapName_Sky_Pillar[] = _("Sky Pillar");
 static const u8 sMapName_Secret_Base[] = _("Secret Base");
 static const u8 sMapName_[] = _("");
 static const u8 sMapName_Route_4[] = _("Route 4");
-static const u8 sMapName_Route_10[] = _("Route 10");
 static const u8 sMapName_Route_1[] = _("Route 1");
 static const u8 sMapName_Route_2[] = _("Route 2");
 static const u8 sMapName_Route_3[] = _("Route 3");
@@ -95,6 +94,7 @@ static const u8 sMapName_Route_6[] = _("Route 6");
 static const u8 sMapName_Route_7[] = _("Route 7");
 static const u8 sMapName_Route_8[] = _("Route 8");
 static const u8 sMapName_Route_9[] = _("Route 9");
+static const u8 sMapName_Route_10[] = _("Route 10");
 static const u8 sMapName_Route_11[] = _("Route 11");
 static const u8 sMapName_Route_12[] = _("Route 12");
 static const u8 sMapName_Route_13[] = _("Route 13");
@@ -203,6 +203,7 @@ static const u8 sMapName_Newmoon_Island[] = _("Newmoon Island");
 static const u8 sMapName_Fullmoon_Island[] = _("Fullmoon Island");
 static const u8 sMapName_Stark_Mountain[] = _("Stark Mountain");
 static const u8 sMapName_Unknown_Dungeon[] = _("Unknown Dungeon");
+static const u8 sMapName_Flower_Paradise[] = _("Flower Paradise");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_LITTLEROOT_TOWN] = { 4, 11, 1, 1, sMapName_Littleroot_Town},
@@ -294,7 +295,6 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_SECRET_BASE] = { 0, 0, 1, 1, sMapName_Secret_Base},
     [MAPSEC_DYNAMIC] = { 0, 0, 1, 1, sMapName_},
     [MAPSEC_ROUTE_4_POKECENTER] = { 0, 0, 1, 1, sMapName_Route_4},
-    [MAPSEC_ROUTE_10_POKECENTER] = { 0, 0, 1, 1, sMapName_Route_10},
     [MAPSEC_ROUTE_1] = { 0, 0, 1, 1, sMapName_Route_1},
     [MAPSEC_ROUTE_2] = { 0, 0, 1, 1, sMapName_Route_2},
     [MAPSEC_ROUTE_3] = { 0, 0, 1, 1, sMapName_Route_3},
@@ -442,6 +442,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_FULLMOON_ISLAND] = { 26, 12, 1, 1, sMapName_Fullmoon_Island},
     [MAPSEC_STARK_MOUNTAIN] = { 0, 14, 1, 1, sMapName_Stark_Mountain},
     [MAPSEC_CERULEAN_CAVE] = { 0, 0, 1, 1, sMapName_Unknown_Dungeon},
+    [MAPSEC_FLOWER_PARADISE] = { 27, 6, 1, 1, sMapName_Flower_Paradise},
 };
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

@@ -2281,7 +2281,7 @@ const u8 gText_SubQuestMap29[] = _("Map 29");
 const u8 gText_SubQuestMap30[] = _("Map 30");
 const u8 gText_SubQuestMap31[] = _("Map 31");
 const u8 gText_SubQuestMap32[] = _("Map 32");
-const u8 gText_SubQuestMap33[] = _("Map 33");
+const u8 gText_SubQuestMap33[] = _("Flower Paradise");
 
 
 //subquests
@@ -2373,7 +2373,7 @@ const u8 gText_SubQuest1_Desc29[] = _("Description Sub 29");
 const u8 gText_SubQuest1_Desc30[] = _("Description Sub 30");
 const u8 gText_SubQuest1_Desc31[] = _("Description Sub 31");
 const u8 gText_SubQuest1_Desc32[] = _("Description Sub 32");
-const u8 gText_SubQuest1_Desc33[] = _("Description Sub 33");
+const u8 gText_SubQuest1_Desc33[] = _("Shaymin was relaxing among the\nflowers in Flower Paradise.");
 
 const u8 gText_SubQuest2_Desc1[] = _("Description Sub 1");
 const u8 gText_SubQuest2_Desc2[] = _("Description Sub 2");

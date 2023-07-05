@@ -1,0 +1,103 @@
+raw `EverGrandeCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
+	.byte 0
+
+EverGrandeCity_OnTransition:
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	end
+
+EverGrandeCity_EventScript_VictoryRoadSign::
+	msgbox EverGrandeCity_Text_EnteringVictoryRoad, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_CitySign::
+	msgbox EverGrandeCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_PokemonLeagueSign::
+	msgbox EverGrandeCity_Text_EnteringPokemonLeague, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_SetVisitedEverGrande::
+	setflag FLAG_VISITED_EVER_GRANDE_CITY
+	setvar VAR_TEMP_1, 1
+	end
+
+EverGrandeCity_Text_EnteringVictoryRoad:
+	.string "Entering Victory Road$"
+
+EverGrandeCity_Text_EnteringPokemonLeague:
+	.string "Entering Pokémon League\n"
+	.string "Center Gate$"
+
+EverGrandeCity_Text_CitySign:
+	.string "Ever Grande City\p"
+	.string "“The paradise of flowers, the sea,\n"
+	.string "and Pokémon.”$"
+
+`
+
+script birchPostgameEverGrande {
+    lock
+    faceplayer
+    if (var(VAR_SHAYMIN_QUEST_STATE) == 0) {
+        msgbox(format("Hello {PLAYER}, how are you doing? Me? I'm investigating this stone tablet. I got a message from my colleague Prof. Rowan in Sinnoh region. He mentioned that he found a similar stone tablet over there and wanted me to investigate the similarities."))
+        msgbox(format("Perhaps you could join me? It might prove insightful!"))
+        applymovement(2, birchFaceUpEverGrande)
+        msgbox(format("I've almost finished transcribing the text writen here, it has worn off over the years, but I think I've got the gist of the contents."))
+        msgbox(format("The stone mentions a specific type of flower that resonates with a certain Pokémon."))
+        msgbox(format("I wonder where we could find that specific flower though..."))
+        setvar(VAR_SHAYMIN_QUEST_STATE, 1)
+        release
+        end
+    } elif (var(VAR_SHAYMIN_QUEST_STATE) == 3) {
+        msgbox(format("Come on now, try touching the statue with the Gracidea flower, {PLAYER}!"))
+        release
+        end
+    } elif (var(VAR_SHAYMIN_QUEST_STATE) == 4) {
+        msgbox(format("What did you find on the other side, {PLAYER}?"))
+        waitmessage
+        msgbox(format("You caught a Shaymin? That's amazing! That is an extremely rare Pokémon, that can purify pollution. I can't wait to tell Prof. Rowan about this! You keep up the good work, I'll head back to Littleroot now. Take care!"))
+        setfieldeffectargument(0, 1)
+	    dofieldeffect(FLDEFF_NPCFLY_OUT)
+	    delay(15)
+	    removeobject(2)
+	    waitfieldeffect(FLDEFF_NPCFLY_OUT)
+        setflag(FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH)
+        setvar(VAR_SHAYMIN_QUEST_STATE, 5)
+        release
+        end
+    } 
+    msgbox(format("I wonder where we could find someone specialized in flowers..."))
+    checkitem(ITEM_GRACIDEA)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(format("Not yet? I see. Perhaps we should investigate places specialized in flowers or berries of Hoenn region."))
+        release
+        end
+    }
+    msgbox(format("That flower, it seems to be reacting to the stone tablet somehow! Try bringing it closer to it!"))
+    setvar(VAR_SHAYMIN_QUEST_STATE, 3)
+    release
+    end
+    
+}
+
+movement birchFaceUpEverGrande {
+    walk_in_place_up
+    step_end
+}
+
+script stoneTabletEverGrande {
+    lock
+    if (var(VAR_SHAYMIN_QUEST_STATE) < 3) {
+        msgbox(format("The stone tablet seems to contain ancient text, but it has worn off over the years of being exposed to the elements."))
+        release
+        end
+    }
+    msgbox(format("The stone tablet emites a faint hum in resonance with the Gracidea Flower. Touch the stone?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        warpteleport(MAP_FLOWER_PARADISE, 5, 146)
+    }
+    release
+    end
+}

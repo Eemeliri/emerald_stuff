@@ -134,7 +134,7 @@
 #define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
 #define VAR_ROUTE122_STATE                   0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                   0x4076 // Unused Var
+#define VAR_SHAYMIN_QUEST_STATE              0x4076 
 #define VAR_CRY_SPECIES                      0x4077 // Test, maybe unused
 #define VAR_ROUTE125_STATE                   0x4078 // Unused Var
 #define VAR_ROUTE126_STATE                   0x4079 // Unused Var

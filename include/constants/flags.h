@@ -672,10 +672,10 @@
 #define FLAG_HIDE_GREEN  0x276 
 #define FLAG_HIDE_DITTO  0x277 
 #define FLAG_HIDE_POSTGAME_BLAINE  0x278 
-#define FLAG_UNUSED_0x279  0x279 // Unused Flag
-#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
-#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
-#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
+#define FLAG_CAUGHT_SHAYMIN  0x279
+#define FLAG_DEFEATED_SHAYMIN  0x27A
+#define FLAG_HIDE_SHAYMIN  0x27B // Unused Flag
+#define FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH  0x27C // Hide birch before postgame for shaymin event
 #define FLAG_UNUSED_0x27D  0x27D // Unused Flag
 #define FLAG_UNUSED_0x27E  0x27E // Unused Flag
 #define FLAG_UNUSED_0x27F  0x27F // Unused Flag

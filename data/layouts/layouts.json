@@ -4890,6 +4890,16 @@
       "secondary_tileset": "gTileset_EverGrande",
       "border_filepath": "data/layouts/FlowerParadise/border.bin",
       "blockdata_filepath": "data/layouts/FlowerParadise/map.bin"
+    },
+    {
+      "id": "LAYOUT_BRAWLY_DOJO",
+      "name": "BrawlyDojo_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleArena",
+      "border_filepath": "data/layouts/BrawlyDojo/border.bin",
+      "blockdata_filepath": "data/layouts/BrawlyDojo/map.bin"
     }
   ]
 }

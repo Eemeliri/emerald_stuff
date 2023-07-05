@@ -101,7 +101,7 @@
 #define MAPSEC_FULLMOON_ISLAND              0x61
 #define MAPSEC_STARK_MOUNTAIN               0x62
 #define MAPSEC_CERULEAN_CAVE                0x63
-#define MAPSEC_ROUTE_10_POKECENTER          0x64
+#define MAPSEC_FLOWER_PARADISE              0x64
 #define MAPSEC_ROUTE_1                      0x65
 #define MAPSEC_ROUTE_2                      0x66
 #define MAPSEC_ROUTE_3                      0x67
@@ -246,7 +246,7 @@
 #define METLOC_IN_GAME_TRADE                0xFE
 #define METLOC_FATEFUL_ENCOUNTER            0xFF
 
-#define KANTO_MAPSEC_START  MAPSEC_ROUTE_10_POKECENTER
+#define KANTO_MAPSEC_START  MAPSEC_ROUTE_1
 #define KANTO_MAPSEC_END    MAPSEC_SPECIAL_AREA
 #define KANTO_MAPSEC_COUNT (KANTO_MAPSEC_END - KANTO_MAPSEC_START + 1)
 

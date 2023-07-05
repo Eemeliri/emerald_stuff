@@ -1153,3 +1153,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/FarawayIsland_Cave/scripts.inc"
 
 	.include "data/maps/FlowerParadise/scripts.inc"
+
+	.include "data/maps/BrawlyDojo/scripts.inc"

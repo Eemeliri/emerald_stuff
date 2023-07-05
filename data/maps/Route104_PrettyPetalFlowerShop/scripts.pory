@@ -1,3 +1,5 @@
+raw `
+
 .set LOCALID_OWNER, 1
 
 Route104_PrettyPetalFlowerShop_MapScripts::
@@ -98,43 +100,22 @@ Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry::
 	msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
 	release
 	end
+`
 
-gracideaNPC::
-	lock
-	faceplayer
-	compare VAR_SHAYMIN_QUEST_STATE, 1
-	goto_if_eq gracideaNPC_2
-	msgbox gracideaNPC_Text_3
-	release
-	end
-
-gracideaNPC_2:
-	msgbox gracideaNPC_Text_0
-	msgbox gracideaNPC_Text_1
-	giveitem ITEM_GRACIDEA
-	waitmessage
-	msgbox gracideaNPC_Text_2
-	setvar VAR_SHAYMIN_QUEST_STATE, 2
-	release
-	end
-
-
-gracideaNPC_Text_0:
-	.string "You say you're looking for a special\n"
-	.string "flower mentioned in some ancient\l"
-	.string "tablet?$"
-
-gracideaNPC_Text_1:
-	.string "In my hometown back in Sinnoh, we have\n"
-	.string "these beautiful Gracidea flowers\l"
-	.string "blooming all over the village, perhaps\l"
-	.string "it might match your description?$"
-
-gracideaNPC_Text_2:
-	.string "Don't worry about having to pay back,\n"
-	.string "We have plenty of those back at home!$"
-
-gracideaNPC_Text_3:
-	.string "I came from Sinnoh to study botany\n"
-	.string "here in Hoenn with an international\l"
-	.string "internship program, I'm so happy!$"
+script gracideaNPC {
+    lock
+    faceplayer
+	if (var(VAR_SHAYMIN_QUEST_STATE) == 1) {
+        msgbox(format("You say you're looking for a special flower mentioned in some ancient tablet?"))
+        msgbox(format("In my hometown back in Sinnoh, we have these beautiful Gracidea flowers blooming all over the village, perhaps it might match your description?"))
+        giveitem(ITEM_GRACIDEA)
+        waitmessage
+        msgbox(format("Don't worry about having to pay back, We have plenty of those back at home!"))
+        setvar(VAR_SHAYMIN_QUEST_STATE, 2)
+        release
+        end
+    }
+    msgbox(format("I came from Sinnoh to study botany here in Hoenn with an international internship program, I'm so happy!"))
+    release
+    end
+}
