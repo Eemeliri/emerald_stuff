@@ -42,6 +42,48 @@ u16 RandRange(u16 min, u16 max)
     return (Random() % (max - min)) + min;
 }
 
+#define SHUFFLE_IMPL \
+    u32 tmp; \
+    --n; \
+    while (n > 1) \
+    { \
+        int j = Random() % (n+1); \
+        SWAP(data[n], data[j], tmp); \
+        --n; \
+    }
+
+void Shuffle8(void *data_, size_t n)
+{
+    u8 *data = data_;
+    SHUFFLE_IMPL;
+}
+
+void Shuffle16(void *data_, size_t n)
+{
+    u16 *data = data_;
+    SHUFFLE_IMPL;
+}
+
+void Shuffle32(void *data_, size_t n)
+{
+    u32 *data = data_;
+    SHUFFLE_IMPL;
+}
+
+void ShuffleN(void *data, size_t n, size_t size)
+{
+    void *tmp = alloca(size);
+    --n;
+    while (n > 1)
+    {
+        int j = Random() % (n+1);
+        memcpy(tmp, (u8 *)data + n*size, size); // tmp = data[n];
+        memcpy((u8 *)data + n*size, (u8 *)data + j*size, size); // data[n] = data[j];
+        memcpy((u8 *)data + j*size, tmp, size); // data[j] = tmp;
+        --n;
+    }
+}
+
 __attribute__((weak, alias("RandomUniformDefault")))
 u32 RandomUniform(enum RandomTag tag, u32 lo, u32 hi);
 
