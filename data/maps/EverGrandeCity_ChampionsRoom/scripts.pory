@@ -57,6 +57,7 @@ EverGrandeCity_ChampionsRoom_EventScript_Wallace::
 EverGrandeCity_StevensRoom_EventScript_Cynthia::
     call Cynthia_Appears
 	trainerbattle_no_intro TRAINER_CYNTHIA_E4, EverGrandeCity_ChampionCynthia_Text_Defeat
+	clearflag FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH
 	goto EverGrandeCity_ChampionsRoom_EventScript_Defeated
 	end
 
