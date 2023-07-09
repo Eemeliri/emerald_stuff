@@ -224,6 +224,12 @@ gSpecials::
 	def_special UpdateShoalTideFlag
 	def_special InitBirchState
 	def_special ScriptGetPokedexInfo
+	def_special FossilToSpecies
+	def_special IsItemFossil
+	def_special DoesPlayerHaveFossil
+	def_special Bag_ChoosePokeBall
+	def_special GetStaticEncounterLevel
+	def_special Bag_ChooseItem
 	def_special ShowPokedexRatingMessage
 	def_special DoPCTurnOnEffect
 	def_special DoPCTurnOffEffect

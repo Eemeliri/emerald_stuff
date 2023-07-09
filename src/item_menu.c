@@ -608,6 +608,16 @@ void CB2_ChooseBerry(void)
     GoToBagMenu(ITEMMENULOCATION_BERRY_TREE, BERRIES_POCKET, CB2_ReturnToFieldContinueScript);
 }
 
+void CB2_ChooseItem(void)
+{
+    GoToBagMenu(ITEMMENULOCATION_BERRY_TREE, ITEMS_POCKET, CB2_ReturnToFieldContinueScript);
+}
+
+void CB2_ChoosePokeBall(void)
+{
+    GoToBagMenu(ITEMMENULOCATION_BERRY_TREE, BALLS_POCKET, CB2_ReturnToFieldContinueScript);
+}
+
 // Choosing berry for Berry Blender or Berry Crush
 void ChooseBerryForMachine(void (*exitCallback)(void))
 {

@@ -68,6 +68,7 @@
 #include "constants/metatile_labels.h"
 #include "palette.h"
 #include "battle_util.h"
+#include "item_menu.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -3077,6 +3078,107 @@ void UpdateFrontierGambler(u16 daysSince)
     u16 *var = GetVarPointer(VAR_FRONTIER_GAMBLER_CHALLENGE);
     *var += daysSince;
     *var %= FRONTIER_GAMBLER_CHALLENGE_COUNT;
+}
+
+void FossilToSpecies(void)
+{
+    u16 species = SPECIES_NONE;
+    u16 item = gSpecialVar_0x8008;
+
+    switch (item)
+    {
+        case ITEM_HELIX_FOSSIL:
+            species = SPECIES_OMANYTE;
+            break;
+        case ITEM_DOME_FOSSIL:
+            species = SPECIES_KABUTO;
+            break;
+        case ITEM_OLD_AMBER:
+            species = SPECIES_AERODACTYL;
+            break;
+        case ITEM_ROOT_FOSSIL:
+            species = SPECIES_LILEEP;
+            break;
+        case ITEM_CLAW_FOSSIL:
+            species = SPECIES_ANORITH;
+            break;
+        case ITEM_ARMOR_FOSSIL:
+            species = SPECIES_SHIELDON;
+            break;
+        case ITEM_SKULL_FOSSIL:
+            species = SPECIES_CRANIDOS;
+            break;
+        case ITEM_COVER_FOSSIL:
+            species = SPECIES_TIRTOUGA;
+            break;
+        case ITEM_PLUME_FOSSIL:
+            species = SPECIES_ARCHEN;
+            break;
+        case ITEM_SAIL_FOSSIL:
+            species = SPECIES_AMAURA;
+            break;
+        case ITEM_JAW_FOSSIL:
+            species = SPECIES_TYRUNT;
+            break;
+    }
+
+    if (species != SPECIES_NONE)
+    {
+        gSpecialVar_0x8006 = species;
+    }
+    return;
+}
+
+// Checks if player chose a Fossil using Bag_ChooseItem
+bool8 IsItemFossil (void)
+{
+    u16 item = gSpecialVar_ItemId;
+    if ((item >= ITEM_HELIX_FOSSIL && item <= ITEM_SAIL_FOSSIL))
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+// Checks player's bag for a fossil item. Better than 12 "checkItem" lines in a script!
+bool8 DoesPlayerHaveFossil (void)
+{
+    u16 fossil = ITEM_HELIX_FOSSIL;
+
+    for (fossil = ITEM_HELIX_FOSSIL; fossil < (ITEM_SAIL_FOSSIL + 1); fossil++)
+    {
+        if (CheckBagHasItem(fossil, 1))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+void Bag_ChooseItem(void)
+{
+    SetMainCallback2(CB2_ChooseItem);
+}
+
+void Bag_ChoosePokeBall(void)
+{
+    SetMainCallback2(CB2_ChoosePokeBall);
+}
+
+// Calculates level for gift mons and static encounters that can still evolve.
+// Sets that level to highest level - 3 and stores it in gSpecialVar_0x800A.
+void GetStaticEncounterLevel (void)
+{
+    gSpecialVar_0x800A = GetHighestLevelInPlayerParty();
+
+    if (gSpecialVar_0x800A - 3 < 1)
+    {
+        gSpecialVar_0x800A = 1;
+    }
+    else
+    {
+        gSpecialVar_0x800A -= 3;
+    }
 }
 
 void ShowFrontierGamblerLookingMessage(void)
