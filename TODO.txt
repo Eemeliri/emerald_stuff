@@ -1,5 +1,4 @@
 - Add events and trainers to southern wilds and beach
-- motlres dungeon has no items????
 - Custom follower dialogue to new areas
 - Improve moltres dungeon and event and maybe block it off until 6th gym?
 - stark mountain

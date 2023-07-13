@@ -1289,8 +1289,8 @@
 #define FLAG_NAMELESSDUNGEON_ITEM_MAXREVIVE                         0x4D8 
 #define FLAG_NAMELESSDUNGEON_ITEM_MAXELIXIR                         0x4D9 
 #define FLAG_FARAWAY_ISLAND_SMOOTH_ROCK                             0x4DA 
-#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
-#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
+#define FLAG_MTCHIMNEY_DEPTHS_FLAME_PLATE                           0x4DB
+#define FLAG_MTCHIMNEY_DEPTHS_FLAME_ORB                             0x4DC
 #define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
 #define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
 #define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag

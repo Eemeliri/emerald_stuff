@@ -710,6 +710,14 @@ Route111_DesertPass_EventScript_ItemSteelixite:: @ 82912F0
 	finditem ITEM_STEELIXITE
 	end
 
+MtChimneyDepths_EventScript_ItemFlamePlate::
+	finditem ITEM_FLAME_PLATE
+	end
+
+MtChimneyDepths_EventScript_ItemFlameOrb::
+	finditem ITEM_FLAME_ORB
+	end
+
 Faraway_Island_Cave_EventScript_ItemSmoothRock:: @ 82912F0
 	finditem ITEM_SMOOTH_ROCK
 	end
