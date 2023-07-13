@@ -734,7 +734,8 @@ bool8 MetatileBehavior_HasRipples(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPuddle(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_PUDDLE)
+    if (metatileBehavior == MB_PUDDLE
+     || metatileBehavior == MB_WATERS_EDGE)
         return TRUE;
     else
         return FALSE;

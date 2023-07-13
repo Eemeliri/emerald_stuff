@@ -4900,6 +4900,16 @@
       "secondary_tileset": "gTileset_BattleArena",
       "border_filepath": "data/layouts/BrawlyDojo/border.bin",
       "blockdata_filepath": "data/layouts/BrawlyDojo/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT",
+      "name": "VajraDesert_Layout",
+      "width": 55,
+      "height": 108,
+      "primary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/VajraDesert/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
     }
   ]
 }

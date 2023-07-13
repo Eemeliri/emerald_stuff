@@ -2,6 +2,7 @@ Everyone who worked on the Pret disassembly and RHH expansion
 Skeli, Ghoulslash, HN, Karathan, McBoy, Greenphx, MGriffin, BSBob, Raymie Humbert, missiri and Tustin2121 for Quest Menu
 BelialClover for EV allocation system
 Paccy - his glimmering emerald was used as a base
+KingTapir - Desert Tiles
 Zeo254 - some tilesets
 Arce_Havrek - Pokedex spreadsheet base
 resetes12 - Battle frontier scaling, options menu code for optional sliding animation

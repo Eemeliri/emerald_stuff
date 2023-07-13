@@ -1155,3 +1155,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/FlowerParadise/scripts.inc"
 
 	.include "data/maps/BrawlyDojo/scripts.inc"
+
+	.include "data/maps/VajraDesert/scripts.inc"
