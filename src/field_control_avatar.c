@@ -600,6 +600,36 @@ static bool8 TryStartMiscWalkingScripts(u16 metatileBehavior)
         PlaySecretBaseMusicNoteMatSound(MapGridGetMetatileIdAt(x, y));
         return FALSE;
     }
+    else if (MetatileBehavior_isSandpitNW(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitNW);
+        return TRUE;
+    }
+    else if (MetatileBehavior_isSandpitNE(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitNE);
+        return TRUE;
+    }
+    else if (MetatileBehavior_isSandpitSW(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitSW);
+        return TRUE;
+    }
+    else if (MetatileBehavior_isSandpitSE(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitSE);
+        return TRUE;
+    }
+    else if (MetatileBehavior_isSandpitWest(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitWest);
+        return TRUE;
+    }
+    else if (MetatileBehavior_isSandpitEast(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(SandpitEast);
+        return TRUE;
+    }
     return FALSE;
 }
 

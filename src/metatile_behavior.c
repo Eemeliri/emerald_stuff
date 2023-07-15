@@ -1316,6 +1316,54 @@ bool8 MetatileBehavior_IsBookShelf(u8 metatileBehavior)
         return FALSE;
 }
 
+bool8 MetatileBehavior_isSandpitSW(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_SW)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_isSandpitSE(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_SE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_isSandpitNW(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_NW)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_isSandpitNE(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_NE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_isSandpitEast(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_EAST)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_isSandpitWest(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SANDPIT_WEST)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsPokeCenterBookShelf(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_POKEMON_CENTER_BOOKSHELF)

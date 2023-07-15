@@ -648,5 +648,13 @@ extern const u8 EventScript_LostSignal[];
 extern const u8 EventScript_TooDark[];
 extern const u8 EventScript_MovedTooFast[];
 
+// Sandpits
+extern const u8 SandpitSW[];
+extern const u8 SandpitNW[];
+extern const u8 SandpitSE[];
+extern const u8 SandpitNE[];
+extern const u8 SandpitWest[];
+extern const u8 SandpitEast[];
+
 
 #endif // GUARD_EVENT_SCRIPTS_H

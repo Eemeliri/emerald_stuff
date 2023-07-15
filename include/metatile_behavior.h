@@ -160,5 +160,12 @@ bool8 MetatileBehavior_IsSidewaysStairsRightSideBottom(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsLeftSideBottom(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsRightSideAny(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSidewaysStairsLeftSideAny(u8 metatileBehavior);
+//sandpit in vajra desert
+bool8 MetatileBehavior_isSandpitNW(u8);
+bool8 MetatileBehavior_isSandpitNE(u8);
+bool8 MetatileBehavior_isSandpitSW(u8);
+bool8 MetatileBehavior_isSandpitSE(u8);
+bool8 MetatileBehavior_isSandpitWest(u8);
+bool8 MetatileBehavior_isSandpitEast(u8);
 
 #endif // GUARD_METATILE_BEHAVIOR_H
