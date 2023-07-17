@@ -135,9 +135,16 @@ void RtcGetInfo(struct SiiRtcInfo *rtc)
 void RtcGetInfoFast(struct SiiRtcInfo *rtc)
 {
     if (sErrorStatus & RTC_ERR_FLAG_MASK)
-        *rtc = sRtcDummy;
+        {
+        sRtc = sRtcDummy;
+        }
     else
-        RtcGetRawInfoFast(rtc);
+        {
+        RtcGetStatus(&sRtc);
+        RtcDisableInterrupts();
+        SiiRtcGetTime(&sRtc);
+        RtcRestoreInterrupts();
+    }
 }
 
 void RtcGetTime(struct SiiRtcInfo *rtc)

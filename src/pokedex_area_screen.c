@@ -890,68 +890,6 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             gTasks[taskId].data[1] = 2;
             PlaySE(SE_DEX_PAGE);
         }
-        else if (JOY_NEW(R_BUTTON)){
-            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
-            sPokedexAreaScreen->state++;
-            if(sPokedexAreaScreen->state==TIMES_OF_DAY_COUNT){
-                sPokedexAreaScreen->state=TIME_MORNING;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
-            }
-            else if(sPokedexAreaScreen->state==TIME_NIGHT){
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Night);
-            }
-            else if(sPokedexAreaScreen->state==TIME_EVENING){
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Evening);
-            }
-            else{
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
-            }
-
-            PlaySE(SE_DEX_PAGE);
-            DestroyAreaScreenSprites();
-            ResetDrawAreaGlowState();
-            ClearPokedexArea();
-            while(DrawAreaGlow()==TRUE)
-                DrawAreaGlow();
-            CreateAreaMarkerSprites();
-            LoadAreaUnknownGraphics();
-            CreateAreaUnknownSprites();
-            StartAreaGlow();
-            CopyWindowToVram(windid, COPYWIN_FULL);
-            return;
-        }
-        else if (JOY_NEW(L_BUTTON)){
-            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
-            if(sPokedexAreaScreen->state==TIME_MORNING){
-                sPokedexAreaScreen->state=TIME_NIGHT;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Night);
-            }
-            else if(sPokedexAreaScreen->state==TIME_DAY){
-                sPokedexAreaScreen->state--;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Morning);
-            }
-            else if(sPokedexAreaScreen->state==TIME_EVENING){
-                sPokedexAreaScreen->state--;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
-            }
-            else {
-                sPokedexAreaScreen->state--;
-                AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Evening);
-            }
-
-            PlaySE(SE_DEX_PAGE);
-            DestroyAreaScreenSprites();
-            ResetDrawAreaGlowState();
-            ClearPokedexArea();
-            while(DrawAreaGlow()==TRUE)
-                DrawAreaGlow();
-            CreateAreaMarkerSprites();
-            LoadAreaUnknownGraphics();
-            CreateAreaUnknownSprites();
-            StartAreaGlow();
-            CopyWindowToVram(windid, COPYWIN_FULL);
-            return;
-        }
         else
             return;
         break;
