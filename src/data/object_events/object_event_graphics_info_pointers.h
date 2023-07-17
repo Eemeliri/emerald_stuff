@@ -542,6 +542,11 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_ELECTRODE] =                 &gObjectEventGraphicsInfo_Electrode,
     [OBJ_EVENT_GFX_SHAYMIN] =                   &gObjectEventGraphicsInfo_Shaymin,
     [OBJ_EVENT_GFX_CYNTHIA] =                   &gObjectEventGraphicsInfo_Cynthia,
+    [OBJ_EVENT_GFX_SANDILE] =                   &gObjectEventGraphicsInfo_Sandile,
+    [OBJ_EVENT_GFX_DARMANITAN] =                &gObjectEventGraphicsInfo_Darmanitan,
+    [OBJ_EVENT_GFX_CRUSTLE] =                   &gObjectEventGraphicsInfo_Crustle,
+    [OBJ_EVENT_GFX_MANDIBUZZ] =                 &gObjectEventGraphicsInfo_Mandibuzz,
+    [OBJ_EVENT_GFX_COFAGRIGUS] =                &gObjectEventGraphicsInfo_Cofagrigus,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

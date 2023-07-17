@@ -271,6 +271,11 @@
 #define OBJ_EVENT_GFX_DITTO                      267
 #define OBJ_EVENT_GFX_SHAYMIN                    268
 #define OBJ_EVENT_GFX_CYNTHIA                    269
+#define OBJ_EVENT_GFX_SANDILE                    270
+#define OBJ_EVENT_GFX_DARMANITAN                 271
+#define OBJ_EVENT_GFX_CRUSTLE                    272
+#define OBJ_EVENT_GFX_MANDIBUZZ                  273
+#define OBJ_EVENT_GFX_COFAGRIGUS                 274
 
 
 // NOTE: By default, the max value for NUM_OBJ_EVENT_GFX is 239.
@@ -282,7 +287,7 @@
 // object graphics that can be removed. If more graphics are needed, anything that
 // stores graphics ids will need to be increased in size. See wiki entry below:
 // https://github.com/pret/pokeemerald/wiki/Feature-Branches#overworld-expansion
-#define NUM_OBJ_EVENT_GFX                        270
+#define NUM_OBJ_EVENT_GFX                        275
 
 
 // These are dynamic object gfx ids.
@@ -373,6 +378,11 @@
 #define OBJ_EVENT_PAL_TAG_MEW                    0x1146
 #define OBJ_EVENT_PAL_TAG_SHAYMIN                0x1147
 #define OBJ_EVENT_PAL_TAG_CYNTHIA                0x1148
+#define OBJ_EVENT_PAL_TAG_SANDILE                0x1149
+#define OBJ_EVENT_PAL_TAG_DARMANITAN             0x1150
+#define OBJ_EVENT_PAL_TAG_CRUSTLE                0x1151
+#define OBJ_EVENT_PAL_TAG_MANDIBUZZ              0x1152
+#define OBJ_EVENT_PAL_TAG_COFAGRIGUS             0x1153
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 

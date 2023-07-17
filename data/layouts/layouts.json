@@ -4904,7 +4904,7 @@
     {
       "id": "LAYOUT_VAJRA_DESERT",
       "name": "VajraDesert_Layout",
-      "width": 55,
+      "width": 57,
       "height": 108,
       "primary_tileset": "gTileset_Desert",
       "secondary_tileset": "gTileset_Underwater",
