@@ -841,13 +841,7 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
             ShowBg(2);
             ShowBg(3); // TryShowPokedexAreaMap will have done this already
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
-            windid = AddWindow(&sTimeOfDayWindowTemplate);
-            DrawTextBorderInner(windid, 0x242, 12);
-            FillWindowPixelBuffer(windid, PIXEL_FILL(7));
-            PutWindowTilemap(windid);
-            AddTextPrinterParameterized4(windid, FONT_NORMAL, 3, 0, 0, 0, sFontColor_Black, TEXT_SKIP_DRAW, gText_Day);
-            CopyWindowToVram(windid, COPYWIN_FULL);
-            break;
+        break;
         case 11:
             gTasks[taskId].func = Task_HandlePokedexAreaScreenInput;
             gTasks[taskId].tState = 0;
