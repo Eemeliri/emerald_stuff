@@ -2542,35 +2542,21 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     switch (order)
     {
     case ORDER_NUMERICAL:
-        if (temp_isHoennDex)
+        for (i = 0; i < temp_dexCount; i++)
         {
-            for (i = 0; i < temp_dexCount; i++)
-            {
+            if (temp_isHoennDex) {
                 temp_dexNum = HoennToNationalOrder(i + 1);
-                sPokedexView->pokedexList[i].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[i].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
-                sPokedexView->pokedexList[i].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                if (sPokedexView->pokedexList[i].seen)
-                    sPokedexView->pokemonListCount = i + 1;
-            }
-        }
-        else
-        {
-            s16 r5, r10;
-            for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
-            {
+            } else {
                 temp_dexNum = i + 1;
-                if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
-                    r10 = 1;
-                if (r10)
-                {
-                    sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
-                    sPokedexView->pokedexList[r5].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                    if (sPokedexView->pokedexList[r5].seen)
-                        sPokedexView->pokemonListCount = r5 + 1;
-                    r5++;
-                }
+            }
+            
+
+            if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+            {
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                sPokedexView->pokemonListCount++;
             }
         }
         break;
