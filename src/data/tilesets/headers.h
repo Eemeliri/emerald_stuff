@@ -945,3 +945,14 @@ const struct Tileset gTileset_DesertTown =
     .metatileAttributes = gMetatileAttributes_DesertTown,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_VajraPyramid =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_VajraPyramid,
+    .palettes = gTilesetPalettes_VajraPyramid,
+    .metatiles = gMetatiles_VajraPyramid,
+    .metatileAttributes = gMetatileAttributes_VajraPyramid,
+    .callback = NULL,
+};
