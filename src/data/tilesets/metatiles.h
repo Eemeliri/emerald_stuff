@@ -240,3 +240,6 @@ const u16 gMetatileAttributes_DesertTown[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_VajraPyramid[] = INCBIN_U16("data/tilesets/primary/vajra_pyramid/metatiles.bin");
 const u16 gMetatileAttributes_VajraPyramid[] = INCBIN_U16("data/tilesets/primary/vajra_pyramid/metatile_attributes.bin");
+
+const u16 gMetatiles_Desert_Pyramid[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/metatiles.bin");
+const u16 gMetatileAttributes_Desert_Pyramid[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/metatile_attributes.bin");

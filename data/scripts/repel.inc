@@ -81,7 +81,7 @@ Text_RepelWoreOff:
 	.string "Repel's effect wore off…$"
 
 Text_RepelWoreOff_UseAnother:
-	.string "REPEL's effect wore off…\n"
+	.string "Repel's effect wore off…\n"
 	.string "Use another?$"
 
 Text_LureWoreOff:

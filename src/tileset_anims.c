@@ -49,6 +49,7 @@ static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
 static void QueueAnimTiles_General_Waterfall(u16);
 static void QueueAnimTiles_Desert_Water(u16);
+static void QueueAnimTiles_Desert_Pyramid_Waterfall(u16);
 static void QueueAnimTiles_General_LandWaterEdge(u16);
 static void QueueAnimTiles_Building_TVTurnedOn(u16);
 static void QueueAnimTiles_Rustboro_WindyWater(u16, u8);
@@ -144,11 +145,23 @@ const u16 gTilesetAnims_General_Waterfall_Frame1[] = INCBIN_U16("data/tilesets/p
 const u16 gTilesetAnims_General_Waterfall_Frame2[] = INCBIN_U16("data/tilesets/primary/general/anim/waterfall/2.4bpp");
 const u16 gTilesetAnims_General_Waterfall_Frame3[] = INCBIN_U16("data/tilesets/primary/general/anim/waterfall/3.4bpp");
 
+const u16 gTilesetAnims_Desert_Pyramid_Waterfall_Frame0[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/anim/waterfall/0.4bpp");
+const u16 gTilesetAnims_Desert_Pyramid_Waterfall_Frame1[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/anim/waterfall/1.4bpp");
+const u16 gTilesetAnims_Desert_Pyramid_Waterfall_Frame2[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/anim/waterfall/2.4bpp");
+const u16 gTilesetAnims_Desert_Pyramid_Waterfall_Frame3[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/anim/waterfall/3.4bpp");
+
 const u16 *const gTilesetAnims_General_Waterfall[] = {
     gTilesetAnims_General_Waterfall_Frame0,
     gTilesetAnims_General_Waterfall_Frame1,
     gTilesetAnims_General_Waterfall_Frame2,
     gTilesetAnims_General_Waterfall_Frame3
+};
+
+const u16 *const gTilesetAnims_Desert_Pyramid_Waterfall[] = {
+    gTilesetAnims_Desert_Pyramid_Waterfall_Frame0,
+    gTilesetAnims_Desert_Pyramid_Waterfall_Frame1,
+    gTilesetAnims_Desert_Pyramid_Waterfall_Frame2,
+    gTilesetAnims_Desert_Pyramid_Waterfall_Frame3
 };
 
 const u16 gTilesetAnims_General_LandWaterEdge_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/land_water_edge/0.4bpp");
@@ -670,6 +683,12 @@ static void TilesetAnim_Desert(u16 timer)
         QueueAnimTiles_Desert_Water(timer / 64);
 }
 
+static void TilesetAnim_Desert_Pyramid(u16 timer)
+{
+    if (timer % 8 == 0)
+        QueueAnimTiles_Desert_Pyramid_Waterfall(timer / 16);
+}
+
 static void TilesetAnim_Building(u16 timer)
 {
     if (timer % 8 == 0)
@@ -707,11 +726,24 @@ static void QueueAnimTiles_Desert_Water(u16 timer)
  
 }
 
+static void QueueAnimTiles_Desert_Pyramid_Waterfall(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_Desert_Pyramid_Waterfall);
+    AppendTilesetAnimToBuffer(gTilesetAnims_Desert_Pyramid_Waterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(768)), 6 * TILE_SIZE_4BPP);
+}
+
 void InitTilesetAnim_Petalburg(void)
 {
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
     sSecondaryTilesetAnimCallback = NULL;
+}
+
+void InitTilesetAnim_Desert_Pyramid(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_Desert_Pyramid;
 }
 
 void InitTilesetAnim_Rustboro(void)

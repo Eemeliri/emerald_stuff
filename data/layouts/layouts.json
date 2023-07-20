@@ -4907,7 +4907,7 @@
       "width": 57,
       "height": 108,
       "primary_tileset": "gTileset_Desert",
-      "secondary_tileset": "gTileset_Underwater",
+      "secondary_tileset": "gTileset_Desert_Pyramid",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
     }
