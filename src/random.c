@@ -1,5 +1,8 @@
 #include "global.h"
 #include "random.h"
+#if MODERN
+#include <alloca.h>
+#endif
 
 EWRAM_DATA static u8 sUnknown = 0;
 EWRAM_DATA static u32 sRandCount = 0;
@@ -47,7 +50,7 @@ u16 RandRange(u16 min, u16 max)
     --n; \
     while (n > 1) \
     { \
-        int j = Random() % (n+1); \
+        int j = (Random() * (n+1)) >> 16; \
         SWAP(data[n], data[j], tmp); \
         --n; \
     }
@@ -76,7 +79,7 @@ void ShuffleN(void *data, size_t n, size_t size)
     --n;
     while (n > 1)
     {
-        int j = Random() % (n+1);
+        int j = (Random() * (n+1)) >> 16;
         memcpy(tmp, (u8 *)data + n*size, size); // tmp = data[n];
         memcpy((u8 *)data + n*size, (u8 *)data + j*size, size); // data[n] = data[j];
         memcpy((u8 *)data + j*size, tmp, size); // data[j] = tmp;

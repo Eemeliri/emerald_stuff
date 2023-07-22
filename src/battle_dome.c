@@ -4662,13 +4662,13 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     {
         textPrinter.currentY = sSpeciesNameTextYCoords[i];
         if (trainerId == TRAINER_PLAYER)
-            textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
+            textPrinter.currentChar = GetSpeciesName(DOME_MONS[trainerTourneyId][i]);
         else if (trainerId == TRAINER_FRONTIER_BRAIN)
-            textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
+            textPrinter.currentChar = GetSpeciesName(DOME_MONS[trainerTourneyId][i]);
         else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
             textPrinter.currentChar = gSpeciesNames[0];//gSpeciesNames[0];
         else
-            textPrinter.currentChar = gSpeciesNames[gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species];
+            textPrinter.currentChar = GetSpeciesName(gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species);
 
         textPrinter.windowId = WIN_TRAINER_MON1_NAME + i + windowId;
         if (i == 1)
@@ -5508,7 +5508,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
                 u32 personality = 0;
                 u32 targetSpecies = 0;
                 u32 targetAbility = 0;
-                u32 typeMultiplier = 0;
+                uq4_12_t typeMultiplier = 0;
                 do
                 {
                     personality = Random32();

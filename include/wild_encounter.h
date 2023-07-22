@@ -73,5 +73,6 @@ u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonIndex_WaterRock(void);
 u8 ChooseHiddenMonIndex(void);
 bool32 MapHasNoEncounterData(void);
+bool8 StandardWildEncounter_Debug(void);
 
 #endif // GUARD_WILD_ENCOUNTER_H

@@ -1384,7 +1384,8 @@ static void Cmd_attackcanceler(void)
         PressurePPLose(gBattlerAttacker, gBattlerTarget, MOVE_MAGIC_COAT);
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-        gBattleStruct->atkCancellerTracker = CANCELLER_POWDER_MOVE; // Edge case for bouncing a powder move against a grass type pokemon.
+        // Edge case for bouncing a powder move against a grass type pokemon.
+        SetAtkCancellerForCalledMove();
         if (BlocksPrankster(gCurrentMove, gBattlerTarget, gBattlerAttacker, TRUE))
         {
             // Opponent used a prankster'd magic coat -> reflected status move should fail against a dark-type attacker
@@ -1404,7 +1405,8 @@ static void Cmd_attackcanceler(void)
     {
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-        gBattleStruct->atkCancellerTracker = CANCELLER_POWDER_MOVE; // Edge case for bouncing a powder move against a grass type pokemon.
+        // Edge case for bouncing a powder move against a grass type pokemon.
+        SetAtkCancellerForCalledMove();
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
         gBattlerAbility = gBattlerTarget;
@@ -6152,6 +6154,7 @@ static void Cmd_moveend(void)
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
             gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleStruct->hitSwitchTargetFailed = FALSE;
+            gBattleStruct->isAtkCancelerForCalledMove = FALSE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -6849,7 +6852,8 @@ static void SetDmgHazardsBattlescript(u8 battlerId, u8 multistringId)
 
 bool32 DoSwitchInAbilitiesItems(u32 battlerId)
 {
-    return (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0)
+    return (TryPrimalReversion(battlerId)
+             || AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0)
              || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battlerId, 0, 0, 0))
              || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battlerId, 0, 0, 0))
              || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battlerId, FALSE)
@@ -10493,7 +10497,7 @@ static void Cmd_various(void)
         {
             gBattleStruct->battleBondTransformed[GET_BATTLER_SIDE2(gBattlerAttacker)] |= gBitTable[gBattlerPartyIndexes[gBattlerAttacker]];
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].species);
-            gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerAttacker]] = gBattleMons[gBattlerAttacker].species;
+            gBattleStruct->changedSpecies[GET_BATTLER_SIDE2(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = gBattleMons[gBattlerAttacker].species;
             gBattleMons[gBattlerAttacker].species = SPECIES_GRENINJA_ASH;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BattleBondActivatesOnMoveEndAttacker;
@@ -11236,12 +11240,20 @@ static void Cmd_tryhealhalfhealth(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static void SetMoveForMirrorMove(u32 move)
+{
+    gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
+    gCurrentMove = move;
+    SetAtkCancellerForCalledMove();
+    gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
+    gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+}
+
 static void Cmd_trymirrormove(void)
 {
     CMD_ARGS();
 
-    s32 validMovesCount;
-    s32 i;
+    s32 i, validMovesCount;
     u16 move;
     u16 validMoves[MAX_BATTLERS_COUNT] = {0};
 
@@ -11250,7 +11262,6 @@ static void Cmd_trymirrormove(void)
         if (i != gBattlerAttacker)
         {
             move = gBattleStruct->lastTakenMoveFrom[gBattlerAttacker][i];
-
             if (move != MOVE_NONE && move != MOVE_UNAVAILABLE)
             {
                 validMoves[validMovesCount] = move;
@@ -11260,21 +11271,13 @@ static void Cmd_trymirrormove(void)
     }
 
     move = gBattleStruct->lastTakenMove[gBattlerAttacker];
-
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE)
     {
-        gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
-        gCurrentMove = move;
-        gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
-        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        SetMoveForMirrorMove(move);
     }
     else if (validMovesCount != 0)
     {
-        gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
-        i = Random() % validMovesCount;
-        gCurrentMove = validMoves[i];
-        gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
-        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        SetMoveForMirrorMove(validMoves[Random() % validMovesCount]);
     }
     else // no valid moves found
     {
@@ -12839,6 +12842,7 @@ static void Cmd_metronome(void)
         if (!gBattleMoves[gCurrentMove].metronomeBanned)
         {
             gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
+            SetAtkCancellerForCalledMove();
             gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
             gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
             return;
@@ -16105,8 +16109,7 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 {
     if (move != MOVE_NONE && move != MOVE_STRUGGLE
         && gBattleMoves[move].split != SPLIT_STATUS
-        && !gBattleMoves[move].twoStrikes
-        && !gBattleMoves[move].threeStrikes)
+        && !gBattleMoves[move].strikeCount > 2)
     {
         u32 i;
         for (i = 0; i < ARRAY_COUNT(sParentalBondBannedEffects); i++)
