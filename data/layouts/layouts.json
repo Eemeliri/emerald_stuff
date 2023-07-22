@@ -4910,6 +4910,26 @@
       "secondary_tileset": "gTileset_Desert_Pyramid",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT_TUNNELS",
+      "name": "VajraDesertTunnels_Layout",
+      "width": 57,
+      "height": 108,
+      "primary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_DesertCaves",
+      "border_filepath": "data/layouts/VajraDesertTunnels/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesertTunnels/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID",
+      "name": "VajraPyramid_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_Desert_Pyramid",
+      "border_filepath": "data/layouts/VajraPyramid/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramid/map.bin"
     }
   ]
 }

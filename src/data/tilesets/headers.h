@@ -836,28 +836,6 @@ const struct Tileset gTileset_UnionRoom =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_FRLG =
-{
-    .isCompressed = TRUE,
-    .isSecondary = FALSE,
-    .tiles = gTilesetTiles_FRLG,
-    .palettes = gTilesetPalettes_FRLG,
-    .metatiles = gMetatiles_FRLG,
-    .metatileAttributes = gMetatileAttributes_FRLG,
-    .callback = NULL,
-};
-
-const struct Tileset gTileset_FRLG_Secondary =
-{
-    .isCompressed = TRUE,
-    .isSecondary = TRUE,
-    .tiles = gTilesetTiles_FRLG_Secondary,
-    .palettes = gTilesetPalettes_FRLG_Secondary,
-    .metatiles = gMetatiles_FRLG_Secondary,
-    .metatileAttributes = gMetatileAttributes_FRLG_Secondary,
-    .callback = NULL,
-};
-
 const struct Tileset gTileset_Snow =
 {
     .isCompressed = TRUE,
@@ -877,17 +855,6 @@ const struct Tileset gTileset_General_snow =
     .palettes = gTilesetPalettes_General_snow,
     .metatiles = gMetatiles_General_snow,
     .metatileAttributes = gMetatileAttributes_General_snow,
-    .callback = NULL,
-};
-
-const struct Tileset gTileset_general_firered =
-{
-    .isCompressed = TRUE,
-    .isSecondary = FALSE,
-    .tiles = gTilesetTiles_general_firered,
-    .palettes = gTilesetPalettes_general_firered,
-    .metatiles = gMetatiles_general_firered,
-    .metatileAttributes = gMetatileAttributes_general_firered,
     .callback = NULL,
 };
 
@@ -966,4 +933,15 @@ const struct Tileset gTileset_Desert_Pyramid =
     .metatiles = gMetatiles_Desert_Pyramid,
     .metatileAttributes = gMetatileAttributes_Desert_Pyramid,
     .callback = InitTilesetAnim_Desert_Pyramid,
+};
+
+const struct Tileset gTileset_DesertCaves =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DesertCaves,
+    .palettes = gTilesetPalettes_DesertCaves,
+    .metatiles = gMetatiles_DesertCaves,
+    .metatileAttributes = gMetatileAttributes_DesertCaves,
+    .callback = NULL,
 };

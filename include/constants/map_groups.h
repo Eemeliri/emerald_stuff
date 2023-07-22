@@ -70,6 +70,7 @@
 #define MAP_SOUTHERN_BEACH           (61 | (0 << 8))
 #define MAP_DEWFORD_TRAINING_GROUNDS (62 | (0 << 8))
 #define MAP_VAJRA_DESERT             (63 | (0 << 8))
+#define MAP_VAJRA_PYRAMID            (64 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
@@ -430,6 +431,7 @@
 #define MAP_NAMELESS_DUNGEON_B2F                     (121 | (24 << 8))
 #define MAP_SOUTHERN_TOMB1                           (122 | (24 << 8))
 #define MAP_FLOWER_PARADISE                          (123 | (24 << 8))
+#define MAP_VAJRA_DESERT_TUNNELS                     (124 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))

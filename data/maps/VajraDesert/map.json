@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SandileDesert",
       "flag": "0"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SandileDesert",
       "flag": "0"
     },
     {
@@ -81,15 +81,15 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SANDILE",
-      "x": 24,
-      "y": 60,
+      "x": 26,
+      "y": 62,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 2,
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SandileDesert",
       "flag": "0"
     },
     {
@@ -102,7 +102,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "CrustleDesert",
       "flag": "0"
     },
     {
@@ -128,7 +128,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SandileDesert",
       "flag": "0"
     },
     {
@@ -167,7 +167,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "CrustleDesert",
       "flag": "0"
     },
     {
@@ -197,8 +197,8 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-      "x": 21,
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "x": 22,
       "y": 32,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -206,20 +206,20 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "PicnickerNearTunnelExit",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-      "x": 45,
-      "y": 47,
+      "x": 41,
+      "y": 51,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SailorNearDesertTown",
       "flag": "0"
     },
     {
@@ -232,7 +232,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "RuinManiacNearPyramidStairs",
       "flag": "0"
     },
     {
@@ -258,7 +258,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "HikerAtVajraDesertEntrance",
       "flag": "0"
     }
   ],
@@ -295,28 +295,28 @@
       "x": 25,
       "y": 31,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT",
+      "dest_map": "MAP_VAJRA_DESERT_TUNNELS",
       "dest_warp_id": "0"
     },
     {
       "x": 24,
       "y": 31,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT",
+      "dest_map": "MAP_VAJRA_DESERT_TUNNELS",
       "dest_warp_id": "0"
     },
     {
       "x": 26,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT",
+      "dest_map": "MAP_VAJRA_PYRAMID",
       "dest_warp_id": "0"
     },
     {
       "x": 27,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT",
+      "dest_map": "MAP_VAJRA_PYRAMID",
       "dest_warp_id": "0"
     }
   ],

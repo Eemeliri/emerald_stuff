@@ -208,20 +208,11 @@ const u16 gMetatileAttributes_MysteryEventsHouse[] = INCBIN_U16("data/tilesets/s
 const u16 gMetatiles_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatiles.bin");
 const u16 gMetatileAttributes_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatile_attributes.bin");
 
-const u16 gMetatiles_FRLG[] = INCBIN_U16("data/tilesets/primary/frlg/metatiles.bin");
-const u16 gMetatileAttributes_FRLG[] = INCBIN_U16("data/tilesets/primary/frlg/metatile_attributes.bin");
-
-const u16 gMetatiles_FRLG_Secondary[] = INCBIN_U16("data/tilesets/secondary/frlg_secondary/metatiles.bin");
-const u16 gMetatileAttributes_FRLG_Secondary[] = INCBIN_U16("data/tilesets/secondary/frlg_secondary/metatile_attributes.bin");
-
 const u16 gMetatiles_Snow[] = INCBIN_U16("data/tilesets/secondary/snow/metatiles.bin");
 const u16 gMetatileAttributes_Snow[] = INCBIN_U16("data/tilesets/secondary/snow/metatile_attributes.bin");
 
 const u16 gMetatiles_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatiles.bin");
 const u16 gMetatileAttributes_General_snow[] = INCBIN_U16("data/tilesets/primary/general_snow/metatile_attributes.bin");
-
-const u16 gMetatiles_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatiles.bin");
-const u16 gMetatileAttributes_general_firered[] = INCBIN_U16("data/tilesets/primary/general_firered/metatile_attributes.bin");
 
 const u16 gMetatiles_SourthernWilds[] = INCBIN_U16("data/tilesets/secondary/sourthern_wilds/metatiles.bin");
 const u16 gMetatileAttributes_SourthernWilds[] = INCBIN_U16("data/tilesets/secondary/sourthern_wilds/metatile_attributes.bin");
@@ -243,3 +234,6 @@ const u16 gMetatileAttributes_VajraPyramid[] = INCBIN_U16("data/tilesets/primary
 
 const u16 gMetatiles_Desert_Pyramid[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/metatiles.bin");
 const u16 gMetatileAttributes_Desert_Pyramid[] = INCBIN_U16("data/tilesets/secondary/desert_pyramid/metatile_attributes.bin");
+
+const u16 gMetatiles_DesertCaves[] = INCBIN_U16("data/tilesets/secondary/desert_caves/metatiles.bin");
+const u16 gMetatileAttributes_DesertCaves[] = INCBIN_U16("data/tilesets/secondary/desert_caves/metatile_attributes.bin");

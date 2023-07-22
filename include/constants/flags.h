@@ -676,7 +676,7 @@
 #define FLAG_DEFEATED_SHAYMIN  0x27A
 #define FLAG_HIDE_SHAYMIN  0x27B // Unused Flag
 #define FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH  0x27C // Hide birch before postgame for shaymin event
-#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
+#define FLAG_RECEIVED_FRESH_WATER  0x27D
 #define FLAG_UNUSED_0x27E  0x27E // Unused Flag
 #define FLAG_UNUSED_0x27F  0x27F // Unused Flag
 #define FLAG_UNUSED_0x280  0x280 // Unused Flag
@@ -1291,8 +1291,8 @@
 #define FLAG_FARAWAY_ISLAND_SMOOTH_ROCK                             0x4DA 
 #define FLAG_MTCHIMNEY_DEPTHS_FLAME_PLATE                           0x4DB
 #define FLAG_MTCHIMNEY_DEPTHS_FLAME_ORB                             0x4DC
-#define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
-#define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
+#define FLAG_VAJRADESERT_TUNNELS_EARTH_PLATE                        0x4DD 
+#define FLAG_VAJRADESERT_TUNNELS_GROUND_GEM                         0x4DE
 #define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
 #define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag

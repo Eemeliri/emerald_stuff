@@ -9,7 +9,7 @@ SandpitSW::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 
@@ -25,7 +25,7 @@ SandpitSE::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 
@@ -41,7 +41,7 @@ SandpitNE::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 
@@ -57,7 +57,7 @@ SandpitNW::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 
@@ -73,7 +73,7 @@ SandpitWest::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 
@@ -89,7 +89,7 @@ SandpitEast::
 	waitmovement 0
 	playse SE_FALL
 	delay 60
-	warphole MAP_ROUTE111_DESERT_PASS
+	warphole MAP_VAJRA_DESERT_TUNNELS
 	waitstate
 	end
 

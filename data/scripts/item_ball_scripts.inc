@@ -714,6 +714,10 @@ MtChimneyDepths_EventScript_ItemFlamePlate::
 	finditem ITEM_FLAME_PLATE
 	end
 
+VajraDesertTunnels_EventScript_ItemEarthPlate::
+	finditem ITEM_EARTH_PLATE
+	end
+
 MtChimneyDepths_EventScript_ItemFlameOrb::
 	finditem ITEM_FLAME_ORB
 	end

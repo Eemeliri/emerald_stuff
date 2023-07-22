@@ -1,2 +1,81 @@
 mapscripts VajraDesert_MapScripts {}
 
+script RuinManiacNearPyramidStairs {
+    lock
+    applymovement(17, ruinManiacExcitedJump)
+    waitmovement(17)
+    msgbox(format("Finally I found a route past those quicksand pits, now all riches of The pyramid await!"))
+    waitmessage
+    release
+    end
+}
+
+movement ruinManiacExcitedJump {
+    jump_in_place_up
+    delay_16
+    jump_in_place_up
+    delay_16
+    step_end
+}
+
+script PicnickerNearTunnelExit {
+    lock
+    faceplayer
+    msgbox(format("You should stay clear of those quicksand pits, they will suck you in and drop you to caves below."))
+    waitmessage
+    release
+    end
+}
+
+script SailorNearDesertTown {
+    lock
+    faceplayer
+    msgbox(format("Ahead lies the Vajra Town, you should stop by to rest after your trip through the desert!"))
+    waitmessage
+    release
+    end
+}
+
+script HikerAtVajraDesertEntrance {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_FRESH_WATER)) {
+        msgbox(format("If you are looking for a place to rest, you should head east to Vajra Village to find a Pokémon Center."))
+    } else {
+        msgbox(format("Made it past the tunnels eh? Have this to refresh your weary mind!"))
+        giveitem(ITEM_FRESH_WATER)
+        setflag(FLAG_RECEIVED_FRESH_WATER)
+    }
+    waitmessage
+    release
+    end
+}
+
+script PsychicTrainerVajraDesert {
+    
+}
+
+script BattleGirlSouthVajraDesert {
+
+}
+
+
+script SandileDesert {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SANDILE, CRY_MODE_NORMAL)
+    msgbox("Sandii?")
+    waitmoncry
+    release
+    end
+}
+
+script CrustleDesert {
+    lock
+    faceplayer
+    playmoncry(SPECIES_CRUSTLE, CRY_MODE_NORMAL)
+    msgbox("Crustlee?")
+    waitmoncry
+    release
+    end
+}

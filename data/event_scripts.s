@@ -1158,3 +1158,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/BrawlyDojo/scripts.inc"
 
 	.include "data/maps/VajraDesert/scripts.inc"
+
+	.include "data/maps/VajraDesertTunnels/scripts.inc"
+
+	.include "data/maps/VajraPyramid/scripts.inc"

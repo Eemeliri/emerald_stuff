@@ -1,0 +1,9 @@
+mapscripts VajraPyramid_MapScripts {}
+
+script pyramidRuinManiac {
+    lock
+    faceplayer
+    msgbox(format("Are you heading inside? You should take care, there are traps laid down for intruders, and lower levels are filled with water. Always remember to bring an escape rope!"))
+    release
+    end
+}

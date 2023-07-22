@@ -99,7 +99,8 @@
     "SouthernWilds",
     "SouthernBeach",
     "Dewford_TrainingGrounds",
-    "VajraDesert"
+    "VajraDesert",
+    "VajraPyramid"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -459,7 +460,8 @@
     "NamelessDungeon2F",
     "NamelessDungeonB2F",
     "SouthernTomb1",
-    "FlowerParadise"
+    "FlowerParadise",
+    "VajraDesertTunnels"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

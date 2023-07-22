@@ -1,0 +1,9 @@
+mapscripts VajraDesertTunnels_MapScripts {}
+
+script DesertTunnelsHiker {
+    lock
+    faceplayer
+    msgbox(format("I stepped on a quicksand pit by accident and fell down here, did you end up making the same mistake?"))
+    release
+    end
+}

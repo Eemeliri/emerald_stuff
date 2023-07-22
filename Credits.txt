@@ -6,6 +6,7 @@ Paccy - his glimmering emerald was used as a base
 KingTapir - Desert Tiles
 Zeo254 - some tilesets
 Kyldove - ORAS style trainer frontsprites
+Flurmimon - Tiles for various tilesets
 Arce_Havrek - Pokedex spreadsheet base
 resetes12 - Battle frontier scaling, options menu code for optional sliding animation
 Phyromatical - distortion world tileset
