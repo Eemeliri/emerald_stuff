@@ -894,7 +894,7 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
         else
         {
             gPaletteOverrides[2] = tileset->paletteOverrides;
-            LoadCompressedPalette((u32 *)tileset->palettes, destOffset, size);
+            LoadCompressedPaletteDayNight((u32 *)tileset->palettes, destOffset, size);
             ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
     }

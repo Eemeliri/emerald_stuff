@@ -1293,7 +1293,7 @@
 #define FLAG_MTCHIMNEY_DEPTHS_FLAME_ORB                             0x4DC
 #define FLAG_VAJRADESERT_TUNNELS_EARTH_PLATE                        0x4DD 
 #define FLAG_VAJRADESERT_TUNNELS_GROUND_GEM                         0x4DE
-#define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
+#define FLAG_HIDE_VAJRAPYRAMID_F1_BRANDON                           0x4DF
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
 #define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag

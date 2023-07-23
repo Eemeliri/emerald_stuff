@@ -1162,3 +1162,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/VajraDesertTunnels/scripts.inc"
 
 	.include "data/maps/VajraPyramid/scripts.inc"
+
+	.include "data/maps/VajraPyramidF1/scripts.inc"

@@ -162,7 +162,7 @@
 #define MB_UNUSED_9E 0x9E
 #define MB_UNUSED_9F 0x9F
 #define MB_BERRY_TREE_SOIL 0xA0
-#define MB_UNUSED_A1 0xA1
+#define MB_VAJRA_DESERT_SAND 0xA1
 #define MB_UNUSED_A2 0xA2
 #define MB_UNUSED_A3 0xA3
 #define MB_UNUSED_A4 0xA4

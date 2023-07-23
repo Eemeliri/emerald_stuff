@@ -1,0 +1,30 @@
+mapscripts VajraPyramidF1_MapScripts {}
+
+script BrandonVajraPyramid1F {
+    lock
+    faceplayer
+    if (flag(FLAG_SYS_PYRAMID_SILVER)) {
+        msgbox(format("Oh, hello {PLAYER}, are you perhaps interested in archaeology too, or hungry for a battle after our last clash?"))
+        msgbox(format("Or... Perhaps the secrets of this pyramid caught your interest?"))
+    } else {
+        msgbox(format("Another one eh? Hello trainer. Are you here to seek the secrets and riches of the pyramid?"))
+        msgbox(format("My name is Brandon, some folks refer to me as the Pyramid King."))
+    }
+    msgbox(format("I was tasked to investigate the lower levels of this pyramid for the Battle Frontier commitee, they are interested in spicing up the Battle Pyramid with new gimmicks."))
+    msgbox(format("I care little for the paperwork and documentation side of the job. I'm in this for the thrill of exploration, I'm sure you feel the same."))
+    msgbox(format("This place seems to attract all sorts of thrillseekers, but many have been repelled by the traps laid throughout the pyramid."))
+    msgbox(format("Say why don't we team up for this one? Let's see what we can find and later share our findings. I will circle around the pyramid and look for hidden entrances, while you take the ladder down here and see what you can find."))
+    waitmessage
+    startquest(QUEST_8)
+    waitmessage
+    msgbox(format("Good luck in your search!"))
+    waitmessage
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_EXIT)
+    setflag(FLAG_HIDE_VAJRAPYRAMID_F1_BRANDON)
+    removeobject(1)
+    waitse
+    fadescreen(FADE_FROM_BLACK)
+    release
+    end
+}

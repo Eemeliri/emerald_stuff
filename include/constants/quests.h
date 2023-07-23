@@ -22,7 +22,7 @@
 #define QUEST_5          4
 #define QUEST_6          5
 #define QUEST_7          6
-#define QUEST_8          7
+#define QUEST_8          7 // Vajra Pyramid investigation Quest
 #define QUEST_9          8
 #define QUEST_10         9
 #define QUEST_11        10

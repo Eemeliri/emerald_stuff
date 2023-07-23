@@ -45,9 +45,26 @@ script HikerAtVajraDesertEntrance {
         msgbox(format("Made it past the tunnels eh? Have this to refresh your weary mind!"))
         giveitem(ITEM_FRESH_WATER)
         setflag(FLAG_RECEIVED_FRESH_WATER)
+        msgbox(format("If you are looking for a place to rest, you should head east to Vajra Village to find a Pokémon Center."))
     }
     waitmessage
     release
+    end
+}
+
+script VajraDesertTownSign {
+    msgbox(format("Vajra Village, the blooming oasis of the desert."), MSGBOX_SIGN)
+    end
+}
+
+script VajraDesertTunnelSign {
+    msgbox(format("{LEFT_ARROW} Desert Pass
+                   \n{RIGHT_ARROW} Vajra Village"), MSGBOX_SIGN)
+    end
+}
+
+script VajraDesertPyramidSign {
+    msgbox(format("{UP_ARROW} Vajra Pyramid"), MSGBOX_SIGN)
     end
 }
 

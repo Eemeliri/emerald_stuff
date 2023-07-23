@@ -284,10 +284,5 @@ void LoadPalette_HandleDayNight(const void *src, u16 offset, u16 size, bool32 is
     {
         CpuCopy16(src, &gPlttBufferUnfaded[offset], size);
         CpuCopy16(src, &gPlttBufferFaded[offset], size);
-}
-}
-
-void DoLoadSpritePaletteDayNight(const u16 *src, u16 paletteOffset)
-{
-    LoadPaletteDayNight(src, paletteOffset + 0x100, 32);
+    }
 }

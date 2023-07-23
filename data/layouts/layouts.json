@@ -4617,7 +4617,7 @@
       "width": 45,
       "height": 45,
       "primary_tileset": "gTileset_VajraPyramid",
-      "secondary_tileset": "gTileset_DesertTown",
+      "secondary_tileset": "gTileset_BattlePyramid",
       "border_filepath": "data/layouts/OneIslandFRLG/border.bin",
       "blockdata_filepath": "data/layouts/OneIslandFRLG/map.bin"
     },
@@ -4930,6 +4930,16 @@
       "secondary_tileset": "gTileset_Desert_Pyramid",
       "border_filepath": "data/layouts/VajraPyramid/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramid/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_F1",
+      "name": "VajraPyramidF1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_VajraPyramid",
+      "secondary_tileset": "gTileset_BattlePyramid",
+      "border_filepath": "data/layouts/VajraPyramidF1/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidF1/map.bin"
     }
   ]
 }

@@ -44,6 +44,7 @@ HikerAtVajraDesertEntrance::
 	msgbox HikerAtVajraDesertEntrance_Text_1
 	giveitem ITEM_FRESH_WATER
 	setflag FLAG_RECEIVED_FRESH_WATER
+	msgbox HikerAtVajraDesertEntrance_Text_0
 HikerAtVajraDesertEntrance_1:
 	waitmessage
 	release
@@ -52,6 +53,21 @@ HikerAtVajraDesertEntrance_1:
 HikerAtVajraDesertEntrance_2:
 	msgbox HikerAtVajraDesertEntrance_Text_0
 	goto HikerAtVajraDesertEntrance_1
+
+
+VajraDesertTownSign::
+	msgbox VajraDesertTownSign_Text_0, MSGBOX_SIGN
+	end
+
+
+VajraDesertTunnelSign::
+	msgbox VajraDesertTunnelSign_Text_0, MSGBOX_SIGN
+	end
+
+
+VajraDesertPyramidSign::
+	msgbox VajraDesertPyramidSign_Text_0, MSGBOX_SIGN
+	end
 
 
 PsychicTrainerVajraDesert::
@@ -105,6 +121,17 @@ HikerAtVajraDesertEntrance_Text_0:
 HikerAtVajraDesertEntrance_Text_1:
 	.string "Made it past the tunnels eh? Have this\n"
 	.string "to refresh your weary mind!$"
+
+VajraDesertTownSign_Text_0:
+	.string "Vajra Village, the blooming oasis of the\n"
+	.string "desert.$"
+
+VajraDesertTunnelSign_Text_0:
+	.string "{LEFT_ARROW} Desert Pass\n"
+	.string "{RIGHT_ARROW} Vajra Village$"
+
+VajraDesertPyramidSign_Text_0:
+	.string "{UP_ARROW} Vajra Pyramid$"
 
 SandileDesert_Text_0:
 	.string "Sandii?$"

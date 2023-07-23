@@ -7,3 +7,8 @@ script pyramidRuinManiac {
     release
     end
 }
+
+script vajrapyramidsign {
+    msgbox(format("Vajra Pyramid, crown jewel of the desert and resting place of the royal ancestors."), MSGBOX_SIGN)
+    end
+}

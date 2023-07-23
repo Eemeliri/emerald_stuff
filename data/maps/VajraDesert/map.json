@@ -278,14 +278,14 @@
       "dest_warp_id": "17"
     },
     {
-      "x": 16,
+      "x": 19,
       "y": 87,
       "elevation": 0,
       "dest_map": "MAP_VAJRA_DESERT",
       "dest_warp_id": "0"
     },
     {
-      "x": 15,
+      "x": 18,
       "y": 87,
       "elevation": 0,
       "dest_map": "MAP_VAJRA_DESERT",
@@ -330,7 +330,7 @@
       "y": 45,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "VajraDesertTunnelSign"
     },
     {
       "type": "sign",
@@ -338,7 +338,15 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "VajraDesertPyramidSign"
+    },
+    {
+      "type": "sign",
+      "x": 46,
+      "y": 50,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VajraDesertTownSign"
     }
   ]
 }
