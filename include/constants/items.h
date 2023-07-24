@@ -1055,11 +1055,11 @@
 #define ITEM_ALCREMAX 827
 #define ITEM_COPPERMAX 828
 #define ITEM_DURAMAX 829
-#define ITEM_RAPID_SCROLL 832
-#define ITEM_ONE_STRIKE_SCROLL 833
+#define ITEM_RAPID_SCROLL 830
+#define ITEM_ONE_STRIKE_SCROLL 831
 
 
-#define ITEMS_COUNT 834
+#define ITEMS_COUNT 832
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

@@ -4012,3 +4012,165 @@ static const u8 sBerserkGene[] = _(
     "Sharply boosts\n"
     "Attack, but causes\n"
     "lasting confusion.");
+
+static const u8 sVenusaurimaxDesc[] = _(
+    "This stone enables\n"
+    "Venusaur to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCharizardimaxDesc[] = _(
+    "This stone enables\n"
+    "Charizard to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sBlastoisimaxDesc[] = _(
+    "This stone enables\n"
+    "Blastoise to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sGengarimaxDesc[] = _(
+    "This stone enables\n"
+    "Gengar to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sButtermaxDesc[] = _(
+    "This stone enables\n"
+    "Butterfree to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sPikachumaxDesc[] = _(
+    "This stone enables\n"
+    "Pikachu to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sMachapmaxDesc[] = _(
+    "This stone enables\n"
+    "Machamp to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sKinglemaxDesc[] = _(
+    "This stone enables\n"
+    "Kingler to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sLapramaxDesc[] = _(
+    "This stone enables\n"
+    "Lapras to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sEeveemaxDesc[] = _(
+    "This stone enables\n"
+    "Eevee to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sSnorlaxmaxDesc[] = _(
+    "This stone enables\n"
+    "Snorlax to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sGarbomaxDesc[] = _(
+    "This stone enables\n"
+    "Garbodor to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sMelmemaxDesc[] = _(
+    "This stone enables\n"
+    "Melmetal to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sRillamaxDesc[] = _(
+    "This stone enables\n"
+    "Rillaboom to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCindermaxDesc[] = _(
+    "This stone enables\n"
+    "Cinderace to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sIntelmaxDesc[] = _(
+    "This stone enables\n"
+    "Inteleon to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCorvimaxDesc[] = _(
+    "This stone enables\n"
+    "Corviknight to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sOrbeetmaxDesc[] = _(
+    "This stone enables\n"
+    "Orbeetle to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sDreadmaxDesc[] = _(
+    "This stone enables\n"
+    "Drednaw to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCoalosmaxDesc[] = _(
+    "This stone enables\n"
+    "Coalossal to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sFlapmaxDesc[] = _(
+    "This stone enables\n"
+    "Flapple to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sApplemaxDesc[] = _(
+    "This stone enables\n"
+    "Appletun to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sSandamaxDesc[] = _(
+    "This stone enables\n"
+    "Sandaconda to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sToximaxDesc[] = _(
+    "This stone enables\n"
+    "Toxtricity to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCentimaxDesc[] = _(
+    "This stone enables\n"
+    "Centiskorch to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sHattemaxDesc[] = _(
+    "This stone enables\n"
+    "Hatterene to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sGrimmaxDesc[] = _(
+    "This stone enables\n"
+    "Grimmsnarl to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sAlcremaxDesc[] = _(
+    "This stone enables\n"
+    "Alcremie to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCoppermaxDesc[] = _(
+    "This stone enables\n"
+    "Copperajah to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sDuramaxDesc[] = _(
+    "This stone enables\n"
+    "Duraludon to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sRapidScrollDesc[] = _(
+    "This scroll enables\n"
+    "Rapid Strike Style\n"
+    "Urshifu to Gigantamax\n"
+    "in battle.");
+
+static const u8 sOneStrikeDesc[] = _(
+    "This scroll enables\n"
+    "Single Strike Style\n"
+    "Urshifu to Gigantamax\n"
+    "in battle.");
