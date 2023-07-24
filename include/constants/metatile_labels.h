@@ -71,8 +71,9 @@
 #define METATILE_BattlePike_Curtain_Stage3_Tile6  0x2BC
 
 // gTileset_BattlePyramid
-#define METATILE_BattlePyramid_Exit   0x28E
-#define METATILE_BattlePyramid_Floor  0x28D
+#define METATILE_BattlePyramid_Exit          0x28E
+#define METATILE_BattlePyramid_Floor         0x28D
+#define METATILE_BattlePyramid_TriangleDown  0x215
 
 // gTileset_BattleTent
 #define METATILE_BattleTent_Door  0x26B
@@ -801,5 +802,11 @@
 #define METATILE_Unused1_CaveEntrance_Bottom  0x25C
 #define METATILE_Unused1_Door                 0x289
 #define METATILE_Unused1_Door_PokeCenter      0x2A9
+
+// gTileset_VajraPyramid
+#define METATILE_VajraPyramid_LowerPyramidWall     0x031
+#define METATILE_VajraPyramid_PyramidGround        0x001
+#define METATILE_VajraPyramid_PyramidLadderBottom  0x088
+#define METATILE_VajraPyramid_PyramidLadderTop     0x082
 
 #endif // GUARD_METATILE_LABELS_H

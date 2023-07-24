@@ -167,5 +167,7 @@ bool8 MetatileBehavior_isSandpitSW(u8);
 bool8 MetatileBehavior_isSandpitSE(u8);
 bool8 MetatileBehavior_isSandpitWest(u8);
 bool8 MetatileBehavior_isSandpitEast(u8);
+//Vajra Pyramid Traps
+bool8 MetatileBehavior_isCofagrigusSightTile(u8);
 
 #endif // GUARD_METATILE_BEHAVIOR_H

@@ -630,6 +630,11 @@ static bool8 TryStartMiscWalkingScripts(u16 metatileBehavior)
         ScriptContext_SetupScript(SandpitEast);
         return TRUE;
     }
+    else if (MetatileBehavior_isCofagrigusSightTile(metatileBehavior) == TRUE)
+    {
+        ScriptContext_SetupScript(CofagrigusSightTile);
+        return TRUE;
+    }
     return FALSE;
 }
 

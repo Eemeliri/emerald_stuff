@@ -4940,6 +4940,16 @@
       "secondary_tileset": "gTileset_BattlePyramid",
       "border_filepath": "data/layouts/VajraPyramidF1/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramidF1/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_BF1",
+      "name": "VajraPyramidBF1_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_VajraPyramid",
+      "secondary_tileset": "gTileset_BattlePyramid",
+      "border_filepath": "data/layouts/VajraPyramidBF1/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidBF1/map.bin"
     }
   ]
 }

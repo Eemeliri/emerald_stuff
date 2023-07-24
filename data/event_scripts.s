@@ -1093,6 +1093,7 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/text/birch_speech.inc"
     .include "data/scripts/dexnav.inc"
 	.include "data/scripts/sandpit.inc"
+	.include "data/scripts/vajrapyramid.inc"
     
 
 	.include "data/maps/OneIsland/scripts.inc"
@@ -1164,3 +1165,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/VajraPyramid/scripts.inc"
 
 	.include "data/maps/VajraPyramidF1/scripts.inc"
+
+	.include "data/maps/VajraPyramidBF1/scripts.inc"

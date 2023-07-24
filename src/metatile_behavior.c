@@ -1365,6 +1365,14 @@ bool8 MetatileBehavior_isSandpitWest(u8 metatileBehavior)
         return FALSE;
 }
 
+bool8 MetatileBehavior_isCofagrigusSightTile(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_COFAGRIGUS_SIGHT_TILE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsPokeCenterBookShelf(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_POKEMON_CENTER_BOOKSHELF)

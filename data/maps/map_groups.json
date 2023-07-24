@@ -462,7 +462,8 @@
     "SouthernTomb1",
     "FlowerParadise",
     "VajraDesertTunnels",
-    "VajraPyramidF1"
+    "VajraPyramidF1",
+    "VajraPyramidBF1"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

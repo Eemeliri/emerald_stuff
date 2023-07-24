@@ -656,5 +656,8 @@ extern const u8 SandpitNE[];
 extern const u8 SandpitWest[];
 extern const u8 SandpitEast[];
 
+//Vajra Pyramid traps
+extern const u8 CofagrigusSightTile[];
+
 
 #endif // GUARD_EVENT_SCRIPTS_H
