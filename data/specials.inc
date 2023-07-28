@@ -470,6 +470,9 @@ gSpecials::
 	def_special SetBattleTowerLinkPlayerGfx
 	def_special ShowNatureGirlMessage
 	def_special recalculateStats
+	def_special getPartyLeadMonWeight
+	def_special getPartyLeadMonHeight
+	def_special pyramidPoisonTrap
 	def_special trymaxHpIV
 	def_special trymaxAttackIV
 	def_special trymaxDefenseIV

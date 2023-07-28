@@ -89,6 +89,14 @@
       "elevation": 0,
       "item": "ITEM_RELIC_VASE",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 36,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
     }
   ]
 }

@@ -14,9 +14,21 @@
 - cynthia uses steven's battle mugshot
 
 
+Ideas for events:
+- Poison swamp with perma poison (no overworld damage, a gauntlet style)
+- Dialga with level/form reversion 
+- Arceus PLA style underlevelled and omnibosted fight 
+- Alola trials against unfairly fast mons or status spam 
+- but going back, what I'd suggest is having like 3 "checkpoints" in progression:
+First one is dogs, birds, regis, celebi and culminating with Shaymin, fights here don't have to be anything special other than a few tweaks
+Second one is fairies, latios&latias, dream duo, heatran, manaphy, ho-oh and culminating with mew, these can be more well thought out fights or even not have fights but just puzzles with more complexity
+And final tier is the dpp squad, rse squad, lugia, mewtwo and literally god, fights here should literally make the player pull their hair and should be something completely out of wack
+This would let you add the tiers slowly over releases
+Since you'd technically have some legendaries in there, and you could make some mysteries ingame around the unreleased ones
+
 MVP for V1.0:
-- Distribute mons up to gen 4 in wild and trainers/gyms 
-- Vajra Desert and Route 135
-- Legendaries up to Arceus 
+- Distribute mons up to gen 4/5 in wild and trainers/gyms (6-8 for postgame smaller region) 
+- Desert and Snow Route 135
+- Legendaries up to Gen 4 
 - Megastones via quests 
 - Small shamouti isle part if there is will and time?

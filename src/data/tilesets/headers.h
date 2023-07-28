@@ -945,3 +945,14 @@ const struct Tileset gTileset_DesertCaves =
     .metatileAttributes = gMetatileAttributes_DesertCaves,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_pyramidpuzzles =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_pyramidpuzzles,
+    .palettes = gTilesetPalettes_pyramidpuzzles,
+    .metatiles = gMetatiles_pyramidpuzzles,
+    .metatileAttributes = gMetatileAttributes_pyramidpuzzles,
+    .callback = NULL,
+};

@@ -434,6 +434,7 @@
 #define MAP_VAJRA_DESERT_TUNNELS                     (124 | (24 << 8))
 #define MAP_VAJRA_PYRAMID_F1                         (125 | (24 << 8))
 #define MAP_VAJRA_PYRAMID_BF1                        (126 | (24 << 8))
+#define MAP_VAJRA_PYRAMID_BF2                        (127 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))

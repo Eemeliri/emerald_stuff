@@ -5,6 +5,7 @@
 #include "cable_club.h"
 #include "data.h"
 #include "decoration.h"
+#include "pokemon.h"
 #include "diploma.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -42,6 +43,7 @@
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
+#include "pokedex.h"
 #include "text.h"
 #include "tv.h"
 #include "wallclock.h"
@@ -1241,6 +1243,53 @@ bool8 CheckLeadMonTough(void)
         return FALSE;
 
     return TRUE;
+}
+
+void getPartyLeadMonWeight(void) {
+    struct Pokemon *leadMon;
+    u16 weight;
+    u16 species;
+
+    leadMon = &gPlayerParty[0];
+    if (GetMonData(leadMon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(leadMon, MON_DATA_IS_EGG))
+    {
+        species = GetMonData(leadMon, MON_DATA_SPECIES);
+        weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(species), 1);
+        gSpecialVar_Result = weight / 10;
+    } else {
+        gSpecialVar_Result = 0;
+    }
+}
+
+void getPartyLeadMonHeight(void) {
+    struct Pokemon *leadMon;
+    u16 height;
+    u16 species;
+
+    leadMon = &gPlayerParty[0];
+    if (GetMonData(leadMon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(leadMon, MON_DATA_IS_EGG))
+    {
+        species = GetMonData(leadMon, MON_DATA_SPECIES);
+        height = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(species), 0);
+        gSpecialVar_Result = height;
+    } else {
+    gSpecialVar_Result = 0;
+    }
+}
+
+void pyramidPoisonTrap(void) {
+    int i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0)
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+        {
+            u32 curStatus = STATUS1_POISON;
+            SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
+        }
+    }
+    PlaySE(SE_FIELD_POISON);
 }
 
 void IsGrassTypeInParty(void)

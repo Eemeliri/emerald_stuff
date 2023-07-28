@@ -237,3 +237,6 @@ const u16 gMetatileAttributes_Desert_Pyramid[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_DesertCaves[] = INCBIN_U16("data/tilesets/secondary/desert_caves/metatiles.bin");
 const u16 gMetatileAttributes_DesertCaves[] = INCBIN_U16("data/tilesets/secondary/desert_caves/metatile_attributes.bin");
+
+const u16 gMetatiles_pyramidpuzzles[] = INCBIN_U16("data/tilesets/secondary/pyramidpuzzles/metatiles.bin");
+const u16 gMetatileAttributes_pyramidpuzzles[] = INCBIN_U16("data/tilesets/secondary/pyramidpuzzles/metatile_attributes.bin");

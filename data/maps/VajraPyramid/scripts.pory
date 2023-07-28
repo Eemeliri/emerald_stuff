@@ -9,6 +9,14 @@ script pyramidRuinManiac {
 }
 
 script vajrapyramidsign {
+    special(getPartyLeadMonWeight)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(format("Lead mon weight is invalid"))
+    } elif (var(VAR_RESULT) <= 100) {
+        msgbox(format("Lead mon weight is less than 101"))
+    } else {
+        msgbox(format("lead mon weight is over 100"))
+    }
     msgbox(format("Vajra Pyramid, crown jewel of the desert and resting place of the royal ancestors."), MSGBOX_SIGN)
     end
 }

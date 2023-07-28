@@ -5,12 +5,17 @@ script hideBF1StairsPyramid {
 
 }
 
+script PyramidBF1Sign {
+    msgbox(format("When the young ruler was still but a boy, he would sneak into town during busy nights. However even the busy markets were filled with people who would seek to harm him if he were noticed."), MSGBOX_SIGN)
+    end
+}
+
 script stepOnBF1Switch {
     lock
-    playse(SE_PIN)
+    playse(SE_CLICK)
     setmetatile(38, 3, METATILE_VajraPyramid_PyramidLadderBottom, FALSE)
     setmetatile(38, 2, METATILE_VajraPyramid_PyramidLadderTop, TRUE)
-    setmetatile(38, 15, METATILE_BattlePyramid_TriangleDown, FALSE)
+    setmetatile(38, 15, METATILE_pyramidpuzzles_pyramidButtonPressed, FALSE)
     special(DrawWholeMapView)
     setvar(VAR_TEMP_0, 1)
     waitse
