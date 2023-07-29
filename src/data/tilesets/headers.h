@@ -956,3 +956,14 @@ const struct Tileset gTileset_pyramidpuzzles =
     .metatileAttributes = gMetatileAttributes_pyramidpuzzles,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_PetalburgWoods =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PetalburgWoods,
+    .palettes = gTilesetPalettes_PetalburgWoods,
+    .metatiles = gMetatiles_PetalburgWoods,
+    .metatileAttributes = gMetatileAttributes_PetalburgWoods,
+    .callback = NULL,
+};
