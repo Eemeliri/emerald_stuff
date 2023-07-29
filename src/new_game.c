@@ -100,7 +100,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->regionMapZoom = FALSE;
     gSaveBlock2Ptr->optionsHpBarSpeed = 0;  //tx_optionsPlus
     gSaveBlock2Ptr->optionsExpBarSpeed = 0; //tx_optionsPlus
-    gSaveBlock2Ptr->optionsFastIntro = 1;
+    gSaveBlock2Ptr->optionsFastIntro = 0;
     gSaveBlock2Ptr->optionsDisableMatchCall = 0;    //tx_optionsPlus
     gSaveBlock2Ptr->optionsCurrentFont = 0;         //tx_optionsPlus
 }

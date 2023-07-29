@@ -3,8 +3,8 @@
 
 #define HOUR_MORNING 5
 #define HOUR_DAY 9
-#define HOUR_EVENING 18
-#define HOUR_NIGHT 20
+#define HOUR_EVENING 17
+#define HOUR_NIGHT 21
 
 // not real times of day but useful for specifying override times
 #define HOUR_AFTERNOON 18

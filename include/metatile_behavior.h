@@ -18,6 +18,8 @@ bool8 MetatileBehavior_IsJumpSouth(u8);
 bool8 MetatileBehavior_IsPokeGrass(u8);
 bool8 MetatileBehavior_IsSandOrDeepSand(u8);
 bool8 MetatileBehavior_IsDeepSand(u8);
+bool8 MetatileBehavior_IsBeach(u8);
+bool8 MetatileBehavior_IsPondEdge(u8);
 bool8 MetatileBehavior_IsReflective(u8);
 bool8 MetatileBehavior_IsIce(u8);
 bool8 MetatileBehavior_IsWarpDoor(u8);

@@ -63,8 +63,10 @@ u8 GetCurrentTimeOfDay(void)
         return TIME_NIGHT;
     else if (gLocalTime.hours < HOUR_DAY)
         return TIME_MORNING;
-    else if (gLocalTime.hours < HOUR_NIGHT)
+    else if (gLocalTime.hours < HOUR_EVENING)
         return TIME_DAY;
+    else if (gLocalTime.hours < HOUR_NIGHT)
+        return TIME_EVENING;
 
     return TIME_NIGHT;
 }

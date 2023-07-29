@@ -41,7 +41,7 @@ enum
 {
     MENUITEM_CUSTOM_HP_BAR,
     MENUITEM_CUSTOM_EXP_BAR,
-    MENUITEM_CUSTOM_FAST_INTRO,
+    //MENUITEM_CUSTOM_FAST_INTRO,
     MENUITEM_CUSTOM_FONT,
     MENUITEM_CUSTOM_MATCHCALL,
     MENUITEM_CUSTOM_CANCEL,
@@ -214,7 +214,7 @@ struct // MENU_CUSTOM
 {
     [MENUITEM_CUSTOM_HP_BAR]       = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
     [MENUITEM_CUSTOM_EXP_BAR]      = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
-    [MENUITEM_CUSTOM_FAST_INTRO]   = {DrawChoices_FastIntro,   ProcessInput_Options_Two},
+    //[MENUITEM_CUSTOM_FAST_INTRO]   = {DrawChoices_FastIntro,   ProcessInput_Options_Two},
     [MENUITEM_CUSTOM_FONT]         = {DrawChoices_Font,        ProcessInput_Options_Two}, 
     [MENUITEM_CUSTOM_MATCHCALL]    = {DrawChoices_MatchCall,   ProcessInput_Options_Two},
     [MENUITEM_CUSTOM_CANCEL]       = {NULL, NULL},
@@ -239,7 +239,7 @@ static const u8 *const sOptionMenuItemsNamesCustom[MENUITEM_CUSTOM_COUNT] =
 {
     [MENUITEM_CUSTOM_HP_BAR]      = sText_HpBar,
     [MENUITEM_CUSTOM_EXP_BAR]     = sText_ExpBar,
-    [MENUITEM_CUSTOM_FAST_INTRO]  = sText_FastIntro,
+    //[MENUITEM_CUSTOM_FAST_INTRO]  = sText_FastIntro,
     [MENUITEM_CUSTOM_FONT]        = gText_Font,
     [MENUITEM_CUSTOM_MATCHCALL]   = gText_OptionMatchCalls,
     [MENUITEM_CUSTOM_CANCEL]      = gText_OptionMenuSave,
@@ -276,7 +276,7 @@ static bool8 CheckConditions(int selection)
         {
         case MENUITEM_CUSTOM_HP_BAR:          return TRUE;
         case MENUITEM_CUSTOM_EXP_BAR:         return TRUE;
-        case MENUITEM_CUSTOM_FAST_INTRO:      return TRUE;
+        //case MENUITEM_CUSTOM_FAST_INTRO:      return TRUE;
         case MENUITEM_CUSTOM_FONT:            return TRUE;
         case MENUITEM_CUSTOM_MATCHCALL:       return TRUE;
         case MENUITEM_CUSTOM_CANCEL:          return TRUE;
@@ -326,7 +326,7 @@ static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][
 {
     [MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty},
     [MENUITEM_CUSTOM_EXP_BAR]     = {sText_Desc_BattleExpBar,       sText_Empty},
-    [MENUITEM_CUSTOM_FAST_INTRO]  = {sText_Desc_FastIntroOn,        sText_Desc_FastIntroOff},
+    //[MENUITEM_CUSTOM_FAST_INTRO]  = {sText_Desc_FastIntroOn,        sText_Desc_FastIntroOff},
     [MENUITEM_CUSTOM_FONT]        = {sText_Desc_FontType,           sText_Desc_FontType},
     [MENUITEM_CUSTOM_MATCHCALL]   = {sText_Desc_OverworldCallsOn,   sText_Desc_OverworldCallsOff},
     [MENUITEM_CUSTOM_CANCEL]      = {sText_Desc_Save,               sText_Empty},
@@ -351,7 +351,7 @@ static const u8 *const sOptionMenuItemDescriptionsDisabledCustom[MENUITEM_CUSTOM
 {
     [MENUITEM_CUSTOM_HP_BAR]      = sText_Desc_Disabled_BattleHPBar,
     [MENUITEM_CUSTOM_EXP_BAR]     = sText_Empty,
-    [MENUITEM_CUSTOM_FAST_INTRO]  = sText_Empty,
+    //[MENUITEM_CUSTOM_FAST_INTRO]  = sText_Empty,
     [MENUITEM_CUSTOM_FONT]        = sText_Empty,
     [MENUITEM_CUSTOM_MATCHCALL]   = sText_Empty,
     [MENUITEM_CUSTOM_CANCEL]      = sText_Empty,
@@ -596,7 +596,7 @@ void CB2_InitOptionPlusMenu(void)
 
         sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR]      = gSaveBlock2Ptr->optionsHpBarSpeed;
         sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR]     = gSaveBlock2Ptr->optionsExpBarSpeed;
-        sOptions->sel_custom[MENUITEM_CUSTOM_FAST_INTRO]  = gSaveBlock2Ptr->optionsFastIntro;
+        //sOptions->sel_custom[MENUITEM_CUSTOM_FAST_INTRO]  = gSaveBlock2Ptr->optionsFastIntro;
         sOptions->sel_custom[MENUITEM_CUSTOM_FONT]        = gSaveBlock2Ptr->optionsCurrentFont;
         sOptions->sel_custom[MENUITEM_CUSTOM_MATCHCALL]   = gSaveBlock2Ptr->optionsDisableMatchCall;
 
@@ -785,7 +785,7 @@ static void Task_OptionMenuSave(u8 taskId)
 
     gSaveBlock2Ptr->optionsHpBarSpeed       = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];
     gSaveBlock2Ptr->optionsExpBarSpeed      = sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR];
-    gSaveBlock2Ptr->optionsFastIntro        = sOptions->sel_custom[MENUITEM_CUSTOM_FAST_INTRO];
+    //gSaveBlock2Ptr->optionsFastIntro        = sOptions->sel_custom[MENUITEM_CUSTOM_FAST_INTRO];
     gSaveBlock2Ptr->optionsCurrentFont      = sOptions->sel_custom[MENUITEM_CUSTOM_FONT];
     gSaveBlock2Ptr->optionsDisableMatchCall = sOptions->sel_custom[MENUITEM_CUSTOM_MATCHCALL];
 
@@ -1079,8 +1079,10 @@ static void DrawChoices_BarSpeed(int selection, int y) //HP and EXP
         DrawOptionMenuChoice(sText_Instant, 104, y, 1, active);
 }
 
+
 static void DrawChoices_FastIntro(int selection, int y)
 {
+    /*
     bool8 active = CheckConditions(MENUITEM_CUSTOM_FAST_INTRO);
     u8 styles[2] = {0};
     styles[selection] = 1;
@@ -1096,6 +1098,7 @@ static void DrawChoices_FastIntro(int selection, int y)
 
     DrawOptionMenuChoice(gText_BattleSceneOn, 104, y, styles[0], active);
     DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(1, gText_BattleSceneOff, 198), y, styles[1], active);
+    */
 }
 
 static void DrawChoices_FrameType(int selection, int y)

@@ -25,15 +25,40 @@ static void BattleIntroNoSlide(u8);
 
 static const TaskFunc sBattleIntroSlideFuncs[] =
 {
-    [BATTLE_TERRAIN_GRASS]      = BattleIntroSlide1,
-    [BATTLE_TERRAIN_LONG_GRASS] = BattleIntroSlide1,
-    [BATTLE_TERRAIN_SAND]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_GRASS_DAY]      = BattleIntroSlide1,
+    [BATTLE_TERRAIN_GRASS_TWILIGHT]      = BattleIntroSlide1,
+    [BATTLE_TERRAIN_GRASS_NIGHT]      = BattleIntroSlide1,
+    [BATTLE_TERRAIN_LONG_GRASS_DAY] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_LONG_GRASS_TWILIGHT] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_LONG_GRASS_NIGHT] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_AUTUMN_DAY] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_AUTUMN_TWILIGHT] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_AUTUMN_NIGHT] = BattleIntroSlide1,
+    [BATTLE_TERRAIN_SAND_DAY]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_SAND_TWILIGHT]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_SAND_NIGHT]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_BEACH_DAY]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_BEACH_TWILIGHT]       = BattleIntroSlide2,
+    [BATTLE_TERRAIN_BEACH_NIGHT]       = BattleIntroSlide2,
     [BATTLE_TERRAIN_UNDERWATER] = BattleIntroSlide2,
-    [BATTLE_TERRAIN_WATER]      = BattleIntroSlide2,
-    [BATTLE_TERRAIN_POND]       = BattleIntroSlide1,
-    [BATTLE_TERRAIN_MOUNTAIN]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_WATER_DAY]      = BattleIntroSlide2,
+    [BATTLE_TERRAIN_WATER_TWILIGHT]      = BattleIntroSlide2,
+    [BATTLE_TERRAIN_WATER_NIGHT]      = BattleIntroSlide2,
+    [BATTLE_TERRAIN_POND_DAY]       = BattleIntroSlide1,
+    [BATTLE_TERRAIN_POND_TWILIGHT]       = BattleIntroSlide1,
+    [BATTLE_TERRAIN_POND_NIGHT]       = BattleIntroSlide1,
+    [BATTLE_TERRAIN_MOUNTAIN_DAY]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_MOUNTAIN_TWILIGHT]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_MOUNTAIN_NIGHT]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_CHIMNEY_DAY]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_CHIMNEY_TWILIGHT]   = BattleIntroSlide1,
+    [BATTLE_TERRAIN_CHIMNEY_NIGHT]   = BattleIntroSlide1,
     [BATTLE_TERRAIN_CAVE]       = BattleIntroSlide1,
-    [BATTLE_TERRAIN_BUILDING]   = BattleIntroSlide3,
+    [BATTLE_TERRAIN_CAVE_WATER]       = BattleIntroSlide1,
+    [BATTLE_TERRAIN_ICE_CAVE]       = BattleIntroSlide1,
+    [BATTLE_TERRAIN_BUILDING_DAY]   = BattleIntroSlide3,
+    [BATTLE_TERRAIN_BUILDING_TWILIGHT]   = BattleIntroSlide3,
+    [BATTLE_TERRAIN_BUILDING_NIGHT]   = BattleIntroSlide3,
     [BATTLE_TERRAIN_PLAIN]      = BattleIntroSlide3,
 };
 
@@ -257,7 +282,7 @@ static void BattleIntroSlide1(u8 taskId)
         }
         else
         {
-            if (gTasks[taskId].tTerrain == BATTLE_TERRAIN_LONG_GRASS)
+            if (gTasks[taskId].tTerrain == BATTLE_TERRAIN_LONG_GRASS_DAY)
             {
                 if (gBattle_BG1_Y != 0xFFB0)
                     gBattle_BG1_Y -= 2;
@@ -305,8 +330,12 @@ static void BattleIntroSlide2(u8 taskId)
 
     switch (gTasks[taskId].tTerrain)
     {
-    case BATTLE_TERRAIN_SAND:
-    case BATTLE_TERRAIN_WATER:
+    case BATTLE_TERRAIN_SAND_DAY:
+    case BATTLE_TERRAIN_SAND_TWILIGHT:
+    case BATTLE_TERRAIN_SAND_NIGHT:
+    case BATTLE_TERRAIN_WATER_DAY:
+    case BATTLE_TERRAIN_WATER_TWILIGHT:
+    case BATTLE_TERRAIN_WATER_NIGHT:
         gBattle_BG1_X += 8;
         break;
     case BATTLE_TERRAIN_UNDERWATER:
@@ -314,7 +343,7 @@ static void BattleIntroSlide2(u8 taskId)
         break;
     }
 
-    if (gTasks[taskId].tTerrain == BATTLE_TERRAIN_WATER)
+    if (gTasks[taskId].tTerrain == BATTLE_TERRAIN_WATER_DAY)
     {
         gBattle_BG1_Y = Cos2(gTasks[taskId].data[6]) / 512 - 8;
         if (gTasks[taskId].data[6] < 180)

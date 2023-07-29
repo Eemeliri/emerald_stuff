@@ -6,6 +6,8 @@
 #include "task.h"
 #include "safari_zone.h"
 #include "script.h"
+#include "rtc.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "metatile_behavior.h"
 #include "field_player_avatar.h"
@@ -728,12 +730,82 @@ u8 BattleSetup_GetTerrainId(void)
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (MetatileBehavior_IsTallGrass(tileBehavior))
-        return BATTLE_TERRAIN_GRASS;
+    {
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_EXTERIOR) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_EXTERIOR))
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_MOUNTAIN_DAY;
+                else
+                    return BATTLE_TERRAIN_MOUNTAIN_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_MOUNTAIN_NIGHT;
+        }
+        else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE113) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113))
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_AUTUMN_DAY;
+                else
+                    return BATTLE_TERRAIN_AUTUMN_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_AUTUMN_NIGHT;
+        }
+        else
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_GRASS_DAY;
+                else
+                    return BATTLE_TERRAIN_GRASS_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_GRASS_NIGHT;
+        }
+    }
+    
     if (MetatileBehavior_IsLongGrass(tileBehavior))
-        return BATTLE_TERRAIN_LONG_GRASS;
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_LONG_GRASS_DAY;
+            else
+                return BATTLE_TERRAIN_LONG_GRASS_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_LONG_GRASS_NIGHT;
+    }
+    
     if (MetatileBehavior_IsSandOrDeepSand(tileBehavior))
-        return BATTLE_TERRAIN_SAND;
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_SAND_DAY;
+            else
+                return BATTLE_TERRAIN_SAND_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_SAND_NIGHT;
+    }
+    
+    if (MetatileBehavior_IsPondEdge(tileBehavior))
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_POND_DAY;
+            else
+                return BATTLE_TERRAIN_POND_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_POND_NIGHT;
+    }
 
+    if ((MetatileBehavior_IsShallowFlowingWater(tileBehavior)) | (MetatileBehavior_IsBeach(tileBehavior)))
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_BEACH_DAY;
+            else
+                return BATTLE_TERRAIN_BEACH_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_BEACH_NIGHT;
+    }
     switch (gMapHeader.mapType)
     {
     case MAP_TYPE_TOWN:
@@ -742,41 +814,182 @@ u8 BattleSetup_GetTerrainId(void)
         break;
     case MAP_TYPE_UNDERGROUND:
         if (MetatileBehavior_IsIndoorEncounter(tileBehavior))
-            return BATTLE_TERRAIN_BUILDING;
+           {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_BUILDING_DAY;
+                else
+                    return BATTLE_TERRAIN_BUILDING_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_BUILDING_NIGHT;
+            }
         if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
-            return BATTLE_TERRAIN_POND;
+            return BATTLE_TERRAIN_CAVE_WATER;
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SHOAL_CAVE_LOW_TIDE_ICE_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(SHOAL_CAVE_LOW_TIDE_ICE_ROOM))
+            return BATTLE_TERRAIN_ICE_CAVE;
         return BATTLE_TERRAIN_CAVE;
     case MAP_TYPE_INDOOR:
     case MAP_TYPE_SECRET_BASE:
-        return BATTLE_TERRAIN_BUILDING;
+        //MEW
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(FARAWAY_ISLAND_INTERIOR) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(FARAWAY_ISLAND_INTERIOR))
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_LONG_GRASS_DAY;
+                else
+                    return BATTLE_TERRAIN_LONG_GRASS_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_LONG_GRASS_NIGHT;
+        }
+        //DEOXYS
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BIRTH_ISLAND_EXTERIOR) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BIRTH_ISLAND_EXTERIOR))
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_LONG_GRASS_DAY;
+                else
+                    return BATTLE_TERRAIN_LONG_GRASS_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_LONG_GRASS_NIGHT;
+        }
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_BUILDING_DAY;
+                else
+                    return BATTLE_TERRAIN_BUILDING_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_BUILDING_NIGHT;
+        }
     case MAP_TYPE_UNDERWATER:
         return BATTLE_TERRAIN_UNDERWATER;
     case MAP_TYPE_OCEAN_ROUTE:
         if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
-            return BATTLE_TERRAIN_WATER;
-        return BATTLE_TERRAIN_PLAIN;
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_WATER_DAY;
+                else
+                    return BATTLE_TERRAIN_WATER_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_WATER_NIGHT;
+        }
+        else
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_BEACH_DAY;
+                else
+                    return BATTLE_TERRAIN_BEACH_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_BEACH_NIGHT;
+        }
     }
     if (MetatileBehavior_IsDeepOrOceanWater(tileBehavior))
-        return BATTLE_TERRAIN_WATER;
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_WATER_DAY;
+            else
+                return BATTLE_TERRAIN_WATER_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_WATER_NIGHT;
+    }
     if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehavior))
-        return BATTLE_TERRAIN_POND;
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_POND_DAY;
+            else
+                return BATTLE_TERRAIN_POND_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_POND_NIGHT;
+    }
     if (MetatileBehavior_IsMountain(tileBehavior))
-        return BATTLE_TERRAIN_MOUNTAIN;
+    {    
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_CHIMNEY) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_CHIMNEY))
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_CHIMNEY_DAY;
+                else
+                    return BATTLE_TERRAIN_CHIMNEY_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_CHIMNEY_NIGHT;
+        }
+        else
+            {
+                if (GetCurrentTimeOfDay() != 3)
+                    if (GetCurrentTimeOfDay() != 2)
+                        return BATTLE_TERRAIN_MOUNTAIN_DAY;
+                    else
+                        return BATTLE_TERRAIN_MOUNTAIN_TWILIGHT;
+                else
+                    return BATTLE_TERRAIN_MOUNTAIN_NIGHT;
+            }
+    }
     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
     {
         // Is BRIDGE_TYPE_POND_*?
         if (MetatileBehavior_GetBridgeType(tileBehavior) != BRIDGE_TYPE_OCEAN)
-            return BATTLE_TERRAIN_POND;
-
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_POND_DAY;
+                else
+                    return BATTLE_TERRAIN_POND_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_POND_NIGHT;
+        }
         if (MetatileBehavior_IsBridgeOverWater(tileBehavior) == TRUE)
-            return BATTLE_TERRAIN_WATER;
+        {
+            if (GetCurrentTimeOfDay() != 3)
+                if (GetCurrentTimeOfDay() != 2)
+                    return BATTLE_TERRAIN_WATER_DAY;
+                else
+                    return BATTLE_TERRAIN_WATER_TWILIGHT;
+            else
+                return BATTLE_TERRAIN_WATER_NIGHT;
+        }
+    }
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PACIFIDLOG_TOWN) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PACIFIDLOG_TOWN))
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_WATER_DAY;
+            else
+                return BATTLE_TERRAIN_WATER_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_WATER_NIGHT;
+    }
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_SUMMIT) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_SUMMIT))
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_MOUNTAIN_DAY;
+            else
+                return BATTLE_TERRAIN_MOUNTAIN_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_MOUNTAIN_NIGHT;
     }
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE113) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113))
-        return BATTLE_TERRAIN_SAND;
-    if (GetSavedWeather() == WEATHER_SANDSTORM)
-        return BATTLE_TERRAIN_SAND;
-
-    return BATTLE_TERRAIN_PLAIN;
+    {
+        if (GetCurrentTimeOfDay() != 3)
+            if (GetCurrentTimeOfDay() != 2)
+                return BATTLE_TERRAIN_AUTUMN_DAY;
+            else
+                return BATTLE_TERRAIN_AUTUMN_TWILIGHT;
+        else
+            return BATTLE_TERRAIN_AUTUMN_NIGHT;
+    }
+    //Plain
+    if (GetCurrentTimeOfDay() != 3)
+        if (GetCurrentTimeOfDay() != 2)
+            return BATTLE_TERRAIN_GRASS_DAY;
+        else
+            return BATTLE_TERRAIN_GRASS_TWILIGHT;
+    else
+        return BATTLE_TERRAIN_GRASS_NIGHT;
 }
 
 static u8 GetBattleTransitionTypeByMap(void)
