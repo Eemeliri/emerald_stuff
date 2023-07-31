@@ -25,6 +25,7 @@
     "gMapGroup_IndoorRoute117",
     "gMapGroup_IndoorRoute121",
     "gMapGroup_Dungeons",
+    "gMapGroup_Dungeons2",
     "gMapGroup_IndoorDynamic",
     "gMapGroup_SpecialArea",
     "gMapGroup_IndoorRoute104Prototype",
@@ -463,7 +464,9 @@
     "FlowerParadise",
     "VajraDesertTunnels",
     "VajraPyramidF1",
-    "VajraPyramidBF1",
+    "VajraPyramidBF1"
+  ],
+  "gMapGroup_Dungeons2": [
     "VajraPyramidBF2"
   ],
   "gMapGroup_IndoorDynamic": [
