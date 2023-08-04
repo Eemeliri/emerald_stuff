@@ -1169,3 +1169,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/VajraPyramidBF1/scripts.inc"
 
 	.include "data/maps/VajraPyramidBF2/scripts.inc"
+
+	.include "data/maps/PetalburgWoodsDepths/scripts.inc"

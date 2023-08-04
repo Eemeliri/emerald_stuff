@@ -1,1 +1,255 @@
-mapscripts VajraPyramidBF2_MapScripts {}
+mapscripts VajraPyramidBF2_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        call(VajraPyramidBF1_Onload)
+    }
+}
+
+script VajraPyramidBF1_Onload {
+    call_if_eq(VAR_VAJRA_PYRAMID_BF2_STATE, 1, removeFirstBarrier)
+    call_if_eq(VAR_VAJRA_PYRAMID_BF2_STATE, 2, removeBothBarriers)
+}
+
+script removeFirstBarrier {
+    setmetatile(20, 25, METATILE_VajraPyramid_PyramidDoorBotLeft, TRUE)
+    setmetatile(21, 25, METATILE_VajraPyramid_PyramidDoorBot, FALSE)
+    setmetatile(22, 25, METATILE_VajraPyramid_PyramidDoorBotRight, TRUE)
+    setmetatile(20, 24, METATILE_VajraPyramid_PyramidDoorMidLeft, TRUE)
+    setmetatile(21, 24, METATILE_VajraPyramid_PyramidDoorMid, FALSE)
+    setmetatile(22, 24, METATILE_VajraPyramid_PyramidDoorMidRight, TRUE)
+    setmetatile(20, 23, METATILE_VajraPyramid_PyramidDoorTopLeft, TRUE)
+    setmetatile(21, 23, METATILE_VajraPyramid_PyramidDoorTop, FALSE)
+    setmetatile(22, 23, METATILE_VajraPyramid_PyramidDoorTopRight, TRUE)
+    return
+}
+
+script removeBothBarriers {
+    setmetatile(20, 25, METATILE_VajraPyramid_PyramidDoorBotLeft, TRUE)
+    setmetatile(21, 25, METATILE_VajraPyramid_PyramidDoorBot, FALSE)
+    setmetatile(22, 25, METATILE_VajraPyramid_PyramidDoorBotRight, TRUE)
+    setmetatile(20, 24, METATILE_VajraPyramid_PyramidDoorMidLeft, TRUE)
+    setmetatile(21, 24, METATILE_VajraPyramid_PyramidDoorMid, FALSE)
+    setmetatile(22, 24, METATILE_VajraPyramid_PyramidDoorMidRight, TRUE)
+    setmetatile(20, 23, METATILE_VajraPyramid_PyramidDoorTopLeft, TRUE)
+    setmetatile(21, 23, METATILE_VajraPyramid_PyramidDoorTop, FALSE)
+    setmetatile(22, 23, METATILE_VajraPyramid_PyramidDoorTopRight, TRUE)
+    setmetatile(20, 16, METATILE_VajraPyramid_PyramidDoorBotLeft, TRUE)
+    setmetatile(21, 16, METATILE_VajraPyramid_PyramidDoorBot, FALSE)
+    setmetatile(22, 16, METATILE_VajraPyramid_PyramidDoorBotRight, TRUE)
+    setmetatile(20, 15, METATILE_VajraPyramid_PyramidDoorMidLeft, TRUE)
+    setmetatile(21, 15, METATILE_VajraPyramid_PyramidDoorMid, FALSE)
+    setmetatile(22, 15, METATILE_VajraPyramid_PyramidDoorMidRight, TRUE)
+    setmetatile(20, 14, METATILE_VajraPyramid_PyramidDoorTopLeft, TRUE)
+    setmetatile(21, 14, METATILE_VajraPyramid_PyramidDoorTop, FALSE)
+    setmetatile(22, 14, METATILE_VajraPyramid_PyramidDoorTopRight, TRUE)
+    return
+}
+
+
+script weightSign {
+    lock
+    msgbox(format("Within this chamber, balance reigns supreme,
+                   Three guardians stand, each a weighty theme.
+                   From light as a feather to heavy as stone,
+                   Make it four guardians with one your own."))
+    waitmessage
+    release
+    end
+}
+
+script weightStatue1 {
+    lock
+    msgbox(format("Yamask: A gentle breeze could lift me off the ground. Among us four, I am the featherweight champion."))
+    release
+    end
+}
+
+script weightStatue2 {
+    lock
+    msgbox(format("Venusaur: Not quite a stone but not a feather either. I stand between the lightest and the heavy."))
+    release
+    end
+}
+
+script weightStatue3 {
+    lock
+    msgbox(format("Tyranitar: A mountain's strength, a boulder's might. Among us, I weigh the most and not even the mightiest could take me to skies."))
+    release
+    end
+}
+
+script weightStatuePlayer {
+    if (flag(FLAG_WEIGHT_PUZZLE_SOLVED)) {
+        msgbox(format("This puzzle has already been solved."), MSGBOX_AUTOCLOSE)
+        end
+    }
+    lock
+    bufferleadmonspeciesname(STR_VAR_1)
+    msgbox(format("It seems to be an empty weight that awaits something, place {STR_VAR_1} to it?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        special(getPartyLeadMonWeight)
+        if (var(VAR_RESULT) > 100 && var(VAR_RESULT) <= 202) {
+            playse(SE_PIN)
+            waitse
+            delay(30)
+            setflag(FLAG_WEIGHT_PUZZLE_SOLVED)
+            msgbox(format("It seems {STR_VAR_1} weighted the correct amount!"))
+            if (flag(FLAG_WEIGHT_PUZZLE_SOLVED) && flag(FLAG_HEIGHT_PUZZLE_SOLVED)) {
+                goto(firstTwoPuzzlesCleared)
+            }
+        } else {
+            delay(60)
+            msgbox(format("...Nothing seems to have happened. Perhaps the weight was incorrect?"))
+        }
+    }
+    release
+    end
+}
+
+script firstTwoPuzzlesCleared {
+    setvar( VAR_0x8004, 1 )
+	setvar(VAR_0x8005, 1)  
+	setvar(VAR_0x8006, 32) 
+	setvar(VAR_0x8007, 2)  
+	special(ShakeCamera)
+	waitstate
+    setmetatile(20, 25, METATILE_VajraPyramid_PyramidDoorBotLeft, TRUE)
+    setmetatile(21, 25, METATILE_VajraPyramid_PyramidDoorBot, FALSE)
+    setmetatile(22, 25, METATILE_VajraPyramid_PyramidDoorBotRight, TRUE)
+    setmetatile(20, 24, METATILE_VajraPyramid_PyramidDoorMidLeft, TRUE)
+    setmetatile(21, 24, METATILE_VajraPyramid_PyramidDoorMid, FALSE)
+    setmetatile(22, 24, METATILE_VajraPyramid_PyramidDoorMidRight, TRUE)
+    setmetatile(20, 23, METATILE_VajraPyramid_PyramidDoorTopLeft, TRUE)
+    setmetatile(21, 23, METATILE_VajraPyramid_PyramidDoorTop, FALSE)
+    setmetatile(22, 23, METATILE_VajraPyramid_PyramidDoorTopRight, TRUE)
+    setvar(VAR_VAJRA_PYRAMID_BF2_STATE, 1)
+    playse(SE_EXIT)
+    special(DrawWholeMapView)
+    waitse
+    msgbox(format("The first gate seems to have opened..!"))
+    release
+    end
+}
+
+script heightSign {
+    lock
+    msgbox(format("In this hall of towering grace,
+                   Four sentinels stand, each a different face.
+                   From the shortest that crouches to the tallest that soars,
+                   Match your Partner's height to each of our own."))
+    waitmessage
+    release
+    end
+}
+
+script heightStatue1 {
+    lock
+    msgbox(format("Primeape: Not the tallest, nor the smallest, I'm in between. A modest height is where I'm seen."))
+    release
+    end
+}
+
+script heightStatue2 {
+    lock
+    msgbox(format("Ursaring: Taller than some but not the tallest of all. I look down but still have one above all."))
+    release
+    end
+}
+
+script heightStatue3 {
+    lock
+    msgbox(format("Drampa: A towering presence, I stand above the rest. Among us, I reach the sky, the tallest and the best."))
+    release
+    end
+}
+
+script heightStatuePlayer {
+    if (flag(FLAG_HEIGHT_PUZZLE_SOLVED)) {
+        msgbox(format("This puzzle has already been solved."), MSGBOX_AUTOCLOSE)
+        end
+    }
+    lock
+    bufferleadmonspeciesname(STR_VAR_1)
+    msgbox(format("It seems to be an empty pedastal that awaits something, place {STR_VAR_1} to it?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        special(getPartyLeadMonHeight)
+        if (var(VAR_RESULT) >= 0 && var(VAR_RESULT) < 10) {
+            playse(SE_PIN)
+            waitse
+            delay(30)
+            setflag(FLAG_HEIGHT_PUZZLE_SOLVED)
+            msgbox(format("It seems {STR_VAR_1} was of correct height!"))
+            if (flag(FLAG_WEIGHT_PUZZLE_SOLVED) && flag(FLAG_HEIGHT_PUZZLE_SOLVED)) {
+                goto(firstTwoPuzzlesCleared)
+            }
+        } else {
+            delay(60)
+            msgbox(format("...Nothing seems to have happened. Perhaps the height was incorrect?"))
+        }
+    }
+    release
+    end
+}
+
+script vaseRoomSign {
+    lock
+    msgbox(format("In this chamber of secrets, where vessels reside,
+                   One holds the key, while others just hide.
+                   A symbol of wisdom, a mark of the wise,
+                   Find the vase that holds no disguise."))
+    release
+    end
+}
+
+script correctVase {
+    lock
+    msgbox(format("Inside the vase is..."))
+    msgbox(format("A tooth of Krokorok, touch it?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        playse(SE_PIN)
+        waitse
+        delay(30)
+        goto(secondPuzzleClearedBf2)
+    }
+    release
+    end
+}
+
+script secondPuzzleClearedBf2 {
+    setvar(VAR_0x8004, 1 )
+	setvar(VAR_0x8005, 1)  
+	setvar(VAR_0x8006, 32) 
+	setvar(VAR_0x8007, 2)  
+	special(ShakeCamera)
+	waitstate
+    setmetatile(20, 16, METATILE_VajraPyramid_PyramidDoorBotLeft, TRUE)
+    setmetatile(21, 16, METATILE_VajraPyramid_PyramidDoorBot, FALSE)
+    setmetatile(22, 16, METATILE_VajraPyramid_PyramidDoorBotRight, TRUE)
+    setmetatile(20, 15, METATILE_VajraPyramid_PyramidDoorMidLeft, TRUE)
+    setmetatile(21, 15, METATILE_VajraPyramid_PyramidDoorMid, FALSE)
+    setmetatile(22, 15, METATILE_VajraPyramid_PyramidDoorMidRight, TRUE)
+    setmetatile(20, 14, METATILE_VajraPyramid_PyramidDoorTopLeft, TRUE)
+    setmetatile(21, 14, METATILE_VajraPyramid_PyramidDoorTop, FALSE)
+    setmetatile(22, 14, METATILE_VajraPyramid_PyramidDoorTopRight, TRUE)
+    setvar(VAR_VAJRA_PYRAMID_BF2_STATE, 2)
+    playse(SE_EXIT)
+    special(DrawWholeMapView)
+    waitse
+    msgbox(format("The second gate seems to have opened..!"))
+    release
+    end
+}
+
+script BrandonF2 {
+    lock
+    faceplayer
+    msgbox(format("Brandon: Hey {PLAYER}, found your way here already? I found a side entrance, but it seems that the way forward is blocked by those red gates."))
+    msgbox(format("I take it you solved the previous room? Would you mind handling the room on the other side while I solve this one?"))
+    release
+    end
+}
+
+script BrandonSign {
+    msgbox(format("It seems to be filled with letters from language you don't understand, better leave it to Brandon."), MSGBOX_SIGN)
+    end
+}
+

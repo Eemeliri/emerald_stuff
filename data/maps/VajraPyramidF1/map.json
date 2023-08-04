@@ -2,7 +2,7 @@
   "id": "MAP_VAJRA_PYRAMID_F1",
   "name": "VajraPyramidF1",
   "layout": "LAYOUT_VAJRA_PYRAMID_F1",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_HG_SINJOU_RUINS",
   "region_map_section": "MAPSEC_VAJRA_PYRAMID",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

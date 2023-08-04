@@ -4960,6 +4960,16 @@
       "secondary_tileset": "gTileset_pyramidpuzzles",
       "border_filepath": "data/layouts/VajraPyramidBF2/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramidBF2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_DEPTHS",
+      "name": "PetalburgWoodsDepths_Layout",
+      "width": 40,
+      "height": 60,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PetalburgWoods",
+      "border_filepath": "data/layouts/PetalburgWoodsDepths/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoodsDepths/map.bin"
     }
   ]
 }

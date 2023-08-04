@@ -804,11 +804,29 @@
 #define METATILE_Unused1_Door_PokeCenter      0x2A9
 
 // gTileset_VajraPyramid
-#define METATILE_VajraPyramid_LowerPyramidWall     0x031
-#define METATILE_VajraPyramid_PyramidGround        0x001
-#define METATILE_VajraPyramid_PyramidLadderBottom  0x088
-#define METATILE_VajraPyramid_PyramidLadderTop     0x082
-#define METATILE_VajraPyramid_PyramidShadow        0x005
+#define METATILE_VajraPyramid_LowerPyramidWall           0x031
+#define METATILE_VajraPyramid_PyramidDoorBot             0x056
+#define METATILE_VajraPyramid_PyramidDoorBotLeft         0x055
+#define METATILE_VajraPyramid_PyramidDoorBotRight        0x057
+#define METATILE_VajraPyramid_PyramidDoorClosedBot       0x069
+#define METATILE_VajraPyramid_PyramidDoorClosedBotLeft   0x068
+#define METATILE_VajraPyramid_PyramidDoorClosedBotRight  0x06A
+#define METATILE_VajraPyramid_PyramidDoorClosedMid       0x061
+#define METATILE_VajraPyramid_PyramidDoorClosedMidLeft   0x060
+#define METATILE_VajraPyramid_PyramidDoorClosedMidRight  0x062
+#define METATILE_VajraPyramid_PyramidDoorClosedTop       0x059
+#define METATILE_VajraPyramid_PyramidDoorClosedTopLeft   0x058
+#define METATILE_VajraPyramid_PyramidDoorClosedTopRight  0x05A
+#define METATILE_VajraPyramid_PyramidDoorMid             0x04E
+#define METATILE_VajraPyramid_PyramidDoorMidLeft         0x04D
+#define METATILE_VajraPyramid_PyramidDoorMidRight        0x04F
+#define METATILE_VajraPyramid_PyramidDoorTop             0x046
+#define METATILE_VajraPyramid_PyramidDoorTopLeft         0x045
+#define METATILE_VajraPyramid_PyramidDoorTopRight        0x047
+#define METATILE_VajraPyramid_PyramidGround              0x001
+#define METATILE_VajraPyramid_PyramidLadderBottom        0x088
+#define METATILE_VajraPyramid_PyramidLadderTop           0x082
+#define METATILE_VajraPyramid_PyramidShadow              0x005
 
 // gTileset_pyramidpuzzles
 #define METATILE_pyramidpuzzles_pyramidButtonPressed  0x298

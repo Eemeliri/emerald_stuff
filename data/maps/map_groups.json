@@ -467,7 +467,8 @@
     "VajraPyramidBF1"
   ],
   "gMapGroup_Dungeons2": [
-    "VajraPyramidBF2"
+    "VajraPyramidBF2",
+    "PetalburgWoodsDepths"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
