@@ -12,7 +12,7 @@
 #include "constants/battle.h"
 
 
-static const struct TrainerMonCustomized sTestParty1[] =
+static const struct TrainerMon sTestParty1[] =
 {
     {
         .species = SPECIES_WOBBUFFET,
@@ -39,7 +39,7 @@ static const struct TrainerMonCustomized sTestParty1[] =
 static const struct Trainer sTestTrainer1 =
 {
     .trainerName = _("Test1"),
-    .party = EVERYTHING_CUSTOMIZED(sTestParty1),
+    .party = TRAINER_PARTY(sTestParty1),
 };
 
 TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
