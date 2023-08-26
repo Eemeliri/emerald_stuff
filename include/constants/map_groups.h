@@ -438,6 +438,7 @@
 // gMapGroup_Dungeons2
 #define MAP_VAJRA_PYRAMID_BF2      (0 | (25 << 8))
 #define MAP_PETALBURG_WOODS_DEPTHS (1 | (25 << 8))
+#define MAP_VAJRA_PYRAMID_BF3      (2 | (25 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (26 << 8))
