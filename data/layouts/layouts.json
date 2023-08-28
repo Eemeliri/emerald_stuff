@@ -4980,6 +4980,16 @@
       "secondary_tileset": "gTileset_pyramidpuzzles",
       "border_filepath": "data/layouts/VajraPyramidBF3/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramidBF3/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_BF4",
+      "name": "VajraPyramidBF4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_VajraPyramid",
+      "secondary_tileset": "gTileset_pyramidpuzzles",
+      "border_filepath": "data/layouts/VajraPyramidBF4/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidBF4/map.bin"
     }
   ]
 }

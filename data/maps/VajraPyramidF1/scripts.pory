@@ -1,4 +1,17 @@
-mapscripts VajraPyramidF1_MapScripts {}
+mapscripts VajraPyramidF1_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        call(VajraPyramidF1_Onload)
+    }
+}
+
+script VajraPyramidF1_Onload {
+    call_if_eq(VAR_VAJRA_PYRAMID_BF2_STATE, 2, enableWarpTileF1)
+}
+
+script enableWarpTileF1 {
+    setmetatile(11, 12, METATILE_BattlePyramid_VajraPyramidTeleporter, FALSE)
+    return
+}
 
 script BrandonVajraPyramid1F {
     lock
