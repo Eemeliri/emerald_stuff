@@ -352,7 +352,9 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
     chosenMoveId = gBattleStruct->aiMoveOrAction[battler];
     gBattlerTarget = gBattleStruct->aiChosenTarget[battler];
 
-    if (chosenMoveId == AI_CHOICE_SWITCH)
+    if (gBattleMoves[moveInfo->moves[chosenMoveId]].target & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
+        gBattlerTarget = battler;
+    if (gBattleMoves[moveInfo->moves[chosenMoveId]].target & MOVE_TARGET_BOTH)
     {
         BtlController_EmitTwoReturnValues(BUFFER_B, 10, 0xFFFF);
     }
@@ -376,6 +378,15 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
         else
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
     }
+
+    if (ShouldUseZMove(battler, gBattlerTarget, moveInfo->moves[chosenMoveId]))
+        QueueZMove(battler, moveInfo->moves[chosenMoveId]);
+
+    // If partner can mega evolve, do it.
+    if (CanMegaEvolve(battler))
+        BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (RET_MEGA_EVOLUTION) | (gBattlerTarget << 8));
+    else
+        BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
 
     PlayerPartnerBufferExecCompleted(battler);
 }
@@ -408,12 +419,6 @@ static void PlayerPartnerHandleChoosePokemon(u32 battler)
             }
         }
         *(gBattleStruct->monToSwitchIntoId + battler) = chosenMonId;
-    }
-    else // Mon to switch out has been already chosen.
-    {
-        chosenMonId = gBattleStruct->monToSwitchIntoId[gActiveBattler];
-        *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
-        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     }
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     PlayerPartnerBufferExecCompleted(battler);
