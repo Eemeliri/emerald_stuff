@@ -278,8 +278,12 @@ u32 FldEff_Shadow(void)
         gSprites[spriteId].data[0] = gFieldEffectArguments[0];
         gSprites[spriteId].data[1] = gFieldEffectArguments[1];
         gSprites[spriteId].data[2] = gFieldEffectArguments[2];
+        #if LARGE_OW_SUPPORT
+        gSprites[spriteId].data[3] = gShadowVerticalOffsets[graphicsInfo->shadowSize];
+        #else
         gSprites[spriteId].data[3] = (graphicsInfo->height >> 1) - gShadowVerticalOffsets[graphicsInfo->shadowSize];
         gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        #endif
     }
     SetGpuReg(REG_OFFSET_DISPCNT, 0x1F40);
     SetGpuReg(REG_OFFSET_BLDALPHA, 0x0A10);
@@ -300,7 +304,12 @@ void UpdateShadowFieldEffect(struct Sprite *sprite)
         struct Sprite *linkedSprite = &gSprites[objectEvent->spriteId];
         sprite->oam.priority = linkedSprite->oam.priority;
         sprite->x = linkedSprite->x;
+        #if LARGE_OW_SUPPORT
+        // Read 'live' size from linked sprite
+        sprite->y = linkedSprite->y - linkedSprite->centerToCornerVecY - sprite->data[3];
+        #else
         sprite->y = linkedSprite->y + sprite->data[3];
+        #endif
         sprite->invisible = linkedSprite->invisible;
         if (!objectEvent->active || !objectEvent->hasShadow
          || MetatileBehavior_IsPokeGrass(objectEvent->currentMetatileBehavior)

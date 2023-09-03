@@ -681,7 +681,7 @@
 #define FLAG_HIDE_FARFETCHD_MAN  0x27E // petalburg woods quest
 #define FLAG_HIDDEN_ITEM_RUGGED_ROAD_1  0x27F // Rock
 #define FLAG_HIDDEN_ITEM_RUGGED_ROAD_2  0x280 // flower patch
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
+#define FLAG_TEMP_HIDE_FOLLOWER  0x281
 #define FLAG_UNUSED_0x282  0x282 // Unused Flag
 #define FLAG_UNUSED_0x283  0x283 // Unused Flag
 #define FLAG_UNUSED_0x284  0x284 // Unused Flag
