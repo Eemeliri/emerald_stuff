@@ -10662,6 +10662,18 @@ const struct Trainer gTrainers[] = {
         .party = ITEM_CUSTOM_MOVES(sParty_CynthiaE4),
     },
 
+    [TRAINER_VAJRA_CHALLENGE_1] =
+    {
+        .trainerClass = TRAINER_CLASS_SPIRIT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_GHOST,
+        .trainerName = _("Taylor"),
+        .items = {ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_PREFER_STRONGEST_MOVE | AI_FLAG_SMART_SWITCHING,
+        .party = EVERYTHING_CUSTOMIZED(sParty_Vajra_Challenger1),
+    },
+
     [TRAINER_FRONTIER_BROCK] =
     {
         .partyFlags = 0,

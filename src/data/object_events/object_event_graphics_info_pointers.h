@@ -547,6 +547,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_CRUSTLE] =                   &gObjectEventGraphicsInfo_Crustle,
     [OBJ_EVENT_GFX_MANDIBUZZ] =                 &gObjectEventGraphicsInfo_Mandibuzz,
     [OBJ_EVENT_GFX_COFAGRIGUS] =                &gObjectEventGraphicsInfo_Cofagrigus,
+    [OBJ_EVENT_GFX_GENGAR] =                    &gObjectEventGraphicsInfo_Gengar,
     [OBJ_EVENT_GFX_RUIN_MANIAC] =                &gObjectEventGraphicsInfo_Ruin_Maniac,
 };
 

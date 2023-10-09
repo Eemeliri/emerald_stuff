@@ -4975,7 +4975,7 @@
       "id": "LAYOUT_VAJRA_PYRAMID_BF3",
       "name": "VajraPyramidBF3_Layout",
       "width": 46,
-      "height": 56,
+      "height": 85,
       "primary_tileset": "gTileset_VajraPyramid",
       "secondary_tileset": "gTileset_pyramidpuzzles",
       "border_filepath": "data/layouts/VajraPyramidBF3/border.bin",
