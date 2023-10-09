@@ -890,8 +890,17 @@
 #define TRAINER_GREEN_MEWTWO                885
 #define TRAINER_POSTGAME_BLAINE             886
 #define TRAINER_CYNTHIA_E4                  887
+#define TRAINER_VAJRA_CHALLENGE_1           888
+#define TRAINER_VAJRA_CHALLENGE_2           889
+#define TRAINER_VAJRA_CHALLENGE_3           890
+#define TRAINER_VAJRA_CHALLENGE_4           891
+#define TRAINER_VAJRA_CHALLENGE_5           892
+#define TRAINER_VAJRA_CHALLENGE_6           893
+#define TRAINER_VAJRA_CHALLENGE_7           894
+#define TRAINER_VAJRA_CHALLENGE_8           895
+#define TRAINER_VAJRA_CHALLENGE_9           896
 
-#define REGULAR_TRAINER_END                 TRAINER_CYNTHIA_E4
+#define REGULAR_TRAINER_END                 TRAINER_VAJRA_CHALLENGE_9
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -978,8 +987,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      958
-#define MAX_TRAINERS_COUNT                  959
+#define TRAINERS_COUNT                      967
+#define MAX_TRAINERS_COUNT                  968
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 

@@ -68,4 +68,5 @@ const u8 gTrainerClassNames[][17] = {
     [TRAINER_CLASS_G_ADMIN] = _("Commander"),
     [TRAINER_CLASS_PKMN_TRAINER] = _("{PKMN} Trainer"),
     [TRAINER_CLASS_K_LEADER] = _("Leader"),
+    [TRAINER_CLASS_SPIRIT] = _("Spirit"),
 };

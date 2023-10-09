@@ -12861,6 +12861,21 @@ static const struct TrainerMonItemCustomMoves sParty_CynthiaE4[] = {
     }
 };
 
+static const struct TrainerMonCustomized sParty_Vajra_Challenger1[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(31, 0, 0, 0, 25, 0),
+    .lvl = 0,
+    .species = SPECIES_SPIRITOMB,
+    .ev = TRAINER_PARTY_EVS(0, 0, 0, 0, 0, 0),
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = {MOVE_SHADOW_BALL, MOVE_SUCKER_PUNCH, MOVE_CURSE, MOVE_PAIN_SPLIT},
+    .ability = ABILITY_PRESSURE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
+    .isShiny = FALSE,
+    .ball = ITEM_DUSK_BALL,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

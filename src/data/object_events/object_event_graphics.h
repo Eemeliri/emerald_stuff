@@ -64,6 +64,7 @@ const u16 gObjectEventPal_Darmanitan[] = INCBIN_U16("graphics/object_events/pale
 const u16 gObjectEventPal_Crustle[] = INCBIN_U16("graphics/object_events/palettes/crustle.gbapal");
 const u16 gObjectEventPal_Mandibuzz[] = INCBIN_U16("graphics/object_events/palettes/mandibuzz.gbapal");
 const u16 gObjectEventPal_Cofagrigus[] = INCBIN_U16("graphics/object_events/palettes/cofagrigus.gbapal");
+const u16 gObjectEventPal_Gengar[] = INCBIN_U16("graphics/object_events/palettes/gengar.gbapal");
 const u16 gObjectEventPal_Mewtwo[] = INCBIN_U16("graphics/object_events/palettes/mewtwo.gbapal");
 const u16 gObjectEventPal_Mew[] = INCBIN_U16("graphics/object_events/palettes/mew.gbapal");
 const u16 gObjectEventPal_Ditto[] = INCBIN_U16("graphics/object_events/palettes/ditto.gbapal");

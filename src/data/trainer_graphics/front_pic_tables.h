@@ -142,6 +142,7 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_G_ADMIN_MARS] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_G_ADMIN_JUPITER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_CYNTHIA] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_GHOST] = {.size = 8, .y_offset = 1},
 };
 
 #define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
@@ -230,6 +231,7 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(G_ADMIN_SATURN, gTrainerFrontPic_GalacticAdminSaturn, 0x800),
     TRAINER_SPRITE(G_ADMIN_MARS, gTrainerFrontPic_GalacticAdminMars, 0x800),
     TRAINER_SPRITE(G_ADMIN_JUPITER, gTrainerFrontPic_GalacticAdminJupiter, 0x800),
+    TRAINER_SPRITE(GHOST, gTrainerFrontPic_Ghost, 0x800),
     TRAINER_SPRITE(LASS, gTrainerFrontPic_Lass, 0x800),
     TRAINER_SPRITE(YOUNG_COUPLE, gTrainerFrontPic_YoungCouple, 0x800),
     TRAINER_SPRITE(OLD_COUPLE, gTrainerFrontPic_OldCouple, 0x800),
@@ -438,4 +440,5 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(CYNTHIA, gTrainerPalette_Cynthia),
     TRAINER_PAL(CHAMPION_ALDER, gTrainerPalette_Alder),
     TRAINER_PAL(CHAMPION_IRIS, gTrainerPalette_Iris),
+    TRAINER_PAL(GHOST, gTrainerPalette_Ghost),
 };
