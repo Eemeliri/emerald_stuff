@@ -474,6 +474,7 @@ extern const u8 BattleScript_TargetFormChangeWithStringNoPopup[];
 extern const u8 BattleScript_RockyEndActivates[];
 extern const u8 BattleScript_PetrifyActivates[];
 extern const u8 BattleScript_DefDown[];
+extern const u8 BattleScript_UltraBurst[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];

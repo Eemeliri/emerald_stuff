@@ -1635,6 +1635,11 @@
 	.byte \case
 	.endm
 
+	.macro handleultraburst battler:req, case:req
+	various \battler, VARIOUS_HANDLE_ULTRA_BURST
+	.byte \case
+	.endm
+
 	.macro handleformchange battler:req, case:req
 	various \battler, VARIOUS_HANDLE_FORM_CHANGE
 	.byte \case
