@@ -9,6 +9,7 @@
 #include "bike.h"
 #include "coins.h"
 #include "data.h"
+#include "region_map.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
@@ -1339,6 +1340,25 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
     gBagMenu->newScreenCallback = CB2_ReturnToField;
     Task_FadeAndCloseBagMenu(taskId);
 }
+
+void ItemUseOutOfBattle_TownMap(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    } 
+    else if (!gTasks[taskId].tUsingRegisteredKeyItem) 
+    {
+        gBagMenu->newScreenCallback = CB2_OpenTownMap;
+        Task_FadeAndCloseBagMenu(taskId);
+    } 
+    else if (gTasks[taskId].tUsingRegisteredKeyItem) 
+    {
+        gBagMenu->newScreenCallback = CB2_OpenTownMap;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+}
+
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
