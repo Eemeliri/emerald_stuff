@@ -3699,8 +3699,15 @@ static void Task_OnBPressed(u8 taskId)
             PrintMessage(MSG_HOLDING_POKE);
             sStorage->state = 1;
         #else
-            PlaySE(SE_SELECT);
-            SetPokeStorageTask(Task_PlaceMon);
+            if (CanPlaceMon())
+            {
+                PlaySE(SE_SELECT);
+                SetPokeStorageTask(Task_PlaceMon);
+            }
+            else
+            {
+                SetPokeStorageTask(Task_PokeStorageMain);
+            }
         #endif
         }
         else if (IsMovingItem())
