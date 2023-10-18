@@ -58,8 +58,7 @@ script VajraDesertTownSign {
 }
 
 script VajraDesertTunnelSign {
-    msgbox(format("{LEFT_ARROW} Desert Pass\n
-                   {RIGHT_ARROW} Vajra Village"), MSGBOX_SIGN)
+    msgbox(format("{RIGHT_ARROW} Vajra Village"), MSGBOX_SIGN)
     end
 }
 
