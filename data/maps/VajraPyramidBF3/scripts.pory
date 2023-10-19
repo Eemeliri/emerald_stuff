@@ -1,1 +1,71 @@
 mapscripts VajraPyramidBF3_MapScripts {}
+
+script gengar {
+    lock
+    faceplayer
+    msgbox("Start the gauntlet?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        applymovement(2, gengarmoveaside)
+        waitmovement(2)
+        delay(60)
+        applymovement(OBJ_EVENT_ID_PLAYER, playermovetrialup)
+        waitmovement(OBJ_EVENT_ID_PLAYER)
+        delay(60)
+        applymovement(2, gengarmoveback)
+        waitmovement(2)
+    }
+    release
+    end
+}
+
+movement gengarmoveaside {
+    walk_up*2
+    walk_left
+    face_right
+    step_end
+}
+
+movement gengarmoveback {
+    walk_right
+    walk_down*2
+    face_up
+    step_end
+}
+
+movement playermovetrialup {
+    walk_up*4
+    step_end
+}
+
+script brandonpyramid3f {
+
+}
+
+script ghosttrainer1 {
+    lock
+    faceplayer
+    msgbox("woo")
+    trainerbattle_no_intro(TRAINER_VAJRA_CHALLENGE_1, "Woop")
+    release
+    end
+}
+
+script ghosttrainer2 {
+
+}
+
+script ghosttrainer3 {
+
+}
+
+script removeWall1 {
+
+}
+
+script removeWall2 {
+    
+}
+
+script removeWall3 {
+    
+}
