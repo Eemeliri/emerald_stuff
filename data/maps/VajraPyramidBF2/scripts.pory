@@ -47,10 +47,7 @@ script removeBothBarriers {
 
 script weightSign {
     lock
-    msgbox(format("Within this chamber, balance reigns supreme,
-                   Three guardians stand, each a weighty theme.
-                   From light as a feather to heavy as stone,
-                   Make it four guardians with one your own."))
+    msgbox(format("Within this chamber, balance reigns supreme, Three guardians stand, each a weighty theme. From light as a feather to heavy as stone,  Make it four guardians with one your own."))
     waitmessage
     release
     end

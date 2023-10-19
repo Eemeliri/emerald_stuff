@@ -152,7 +152,6 @@ firstTwoPuzzlesCleared::
 heightSign::
 	lock
 	msgbox heightSign_Text_0
-	waitmessage
 	release
 	end
 
@@ -368,7 +367,7 @@ heightStatuePlayer_Text_2:
 
 vaseRoomSign_Text_0:
 	.string "In this chamber of secrets, where\n"
-	.string "vessels reside,  One holds the key, while\l"
+	.string "vessels reside, One holds the key, while\l"
 	.string "others just hide. A symbol of wisdom, a\l"
 	.string "mark of the wise, Find the vase that\l"
 	.string "holds no disguise.$"
