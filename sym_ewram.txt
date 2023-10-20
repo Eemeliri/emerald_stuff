@@ -157,3 +157,4 @@
 	.include "src/sliding_puzzle.o"
 	.include "src/pokedex_plus_hgss.o"
 	.include "src/quests.o"
+	.include "src/battle_controller_player.o"

@@ -152,7 +152,6 @@ firstTwoPuzzlesCleared::
 heightSign::
 	lock
 	msgbox heightSign_Text_0
-	waitmessage
 	release
 	end
 

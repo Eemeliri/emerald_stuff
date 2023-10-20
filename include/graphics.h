@@ -10239,9 +10239,9 @@ extern const u16 gWallClockFemale_Pal[];
 extern const u32 gWallClockStart_Tilemap[];
 extern const u32 gWallClockView_Tilemap[];
 
-extern const u32 gBerryFixGameboy_Gfx[];
-extern const u32 gBerryFixGameboy_Tilemap[];
-extern const u16 gBerryFixGameboy_Pal[];
+extern const u32 gBerryFixGbaConnect_Gfx[];
+extern const u32 gBerryFixGbaConnect_Tilemap[];
+extern const u16 gBerryFixGbaConnect_Pal[];
 extern const u32 gBerryFixGameboyLogo_Gfx[];
 extern const u32 gBerryFixGameboyLogo_Tilemap[];
 extern const u16 gBerryFixGameboyLogo_Pal[];
@@ -11765,6 +11765,27 @@ extern const u32 gItemIconPalette_TeraOrb[];
 extern const u32 gItemIcon_TinyBambooShoot[];
 extern const u32 gItemIconPalette_TinyBambooShoot[];
 
+// Tera Shards
+extern const u32 gItemIcon_TeraShard[];
+extern const u32 gItemIconPalette_NormalTeraShard[];
+extern const u32 gItemIconPalette_FireTeraShard[];
+extern const u32 gItemIconPalette_WaterTeraShard[];
+extern const u32 gItemIconPalette_GrassTeraShard[];
+extern const u32 gItemIconPalette_ElectricTeraShard[];
+extern const u32 gItemIconPalette_IceTeraShard[];
+extern const u32 gItemIconPalette_FightingTeraShard[];
+extern const u32 gItemIconPalette_PoisonTeraShard[];
+extern const u32 gItemIconPalette_GroundTeraShard[];
+extern const u32 gItemIconPalette_FlyingTeraShard[];
+extern const u32 gItemIconPalette_PsychicTeraShard[];
+extern const u32 gItemIconPalette_BugTeraShard[];
+extern const u32 gItemIconPalette_RockTeraShard[];
+extern const u32 gItemIconPalette_GhostTeraShard[];
+extern const u32 gItemIconPalette_DarkTeraShard[];
+extern const u32 gItemIconPalette_DragonTeraShard[];
+extern const u32 gItemIconPalette_SteelTeraShard[];
+extern const u32 gItemIconPalette_FairyTeraShard[];
+
 extern const u32 gItemIcon_AdamantCrystal[];
 extern const u32 gItemIconPalette_AdamantCrystal[];
 extern const u32 gItemIcon_GriseousCore[];
@@ -12059,9 +12080,9 @@ extern const u32 gConfetti_Gfx[];
 extern const u32 gConfetti_Pal[];
 
 extern const u32 gBattleInterfaceGfx_BattleBar[];
-extern const u32 gSubstituteDollBackGfx[];
-extern const u32 gSubstituteDollFrontGfx[];
-extern const u32 gSubstituteDollPal[];
+extern const u32 gBattleAnimSpriteGfx_Substitute[];
+extern const u32 gBattleAnimSpriteGfx_SubstituteBack[];
+extern const u32 gBattleAnimSpritePal_Substitute[];
 extern const u32 gHealthboxSinglesPlayerGfx[];
 extern const u32 gHealthboxSinglesPlayerGfx_Frontier[];
 extern const u32 gHealthboxSinglesOpponentGfx[];
@@ -12883,9 +12904,6 @@ extern const u32 gBattleAnimSpritePal_StonePillar[];
 extern const u32 gBattleAnimSpriteGfx_StraightBeam[];
 extern const u32 gBattleAnimSpritePal_StraightBeam[];
 extern const u32 gBattleAnimSpritePal_Poltergeist[];
-extern const u32 gBattleAnimSpriteGfx_SubstituteBack[];
-extern const u32 gBattleAnimSpriteGfx_SubstituteFront[];
-extern const u32 gBattleAnimSpritePal_SubstituteFront[];
 extern const u32 gBattleAnimSpritePal_NewSurf[];
 extern const u32 gBattleAnimSpriteGfx_NewSword[];
 extern const u32 gBattleAnimSpritePal_NewSword[];
@@ -12899,6 +12917,8 @@ extern const u32 gBattleAnimSpriteGfx_ZMoveSymbol[];
 extern const u32 gBattleAnimSpritePal_ZMoveSymbol[];
 extern const u32 gBattleAnimSpriteGfx_Teapot[];
 extern const u32 gBattleAnimSpritePal_Teapot[];
+extern const u32 gBattleAnimSpriteGfx_WoodHammerHammer[];
+extern const u32 gBattleAnimSpritePal_WoodHammerHammer[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
@@ -13078,17 +13098,18 @@ extern const u32 gMetalShineTilemap[];
 
 extern const u32 gBattleAnimMaskImage_Curse[];
 extern const u32 gBattleAnimMaskTilemap_Curse[];
-extern const u32 gBattleStatMask_Gfx[];
-extern const u32 gBattleStatMask1_Tilemap[];
-extern const u32 gBattleStatMask2_Tilemap[];
-extern const u32 gBattleStatMask1_Pal[];
-extern const u32 gBattleStatMask2_Pal[];
-extern const u32 gBattleStatMask3_Pal[];
-extern const u32 gBattleStatMask4_Pal[];
-extern const u32 gBattleStatMask5_Pal[];
-extern const u32 gBattleStatMask6_Pal[];
-extern const u32 gBattleStatMask7_Pal[];
-extern const u32 gBattleStatMask8_Pal[];
+
+extern const u32 gStatAnim_Gfx[];
+extern const u32 gStatAnim_Increase_Tilemap[];
+extern const u32 gStatAnim_Decrease_Tilemap[];
+extern const u32 gStatAnim_Defense_Pal[];
+extern const u32 gStatAnim_Attack_Pal[];
+extern const u32 gStatAnim_Accuracy_Pal[];
+extern const u32 gStatAnim_Speed_Pal[];
+extern const u32 gStatAnim_Multiple_Pal[];
+extern const u32 gStatAnim_Evasion_Pal[];
+extern const u32 gStatAnim_SpAttack_Pal[];
+extern const u32 gStatAnim_SpDefense_Pal[];
 
 extern const u32 gContestInterfaceGfx[];
 extern const u32 gContestAudienceGfx[];
@@ -13537,9 +13558,9 @@ extern const u32 gDexNav_AlteringCave_Gfx[];
 extern const u32 gDexNav_AlteringCave_Tilemap[];
 
 // Battle Factory Screen
-extern const u16 gFrontierFactorySelectMenu_Gfx[];
-extern const u16 gFrontierFactorySelectMenu_Tilemap[];
-extern const u16 gFrontierFactorySelectMenu_Pal[];
+extern const u16 gFrontierFactoryMenu_Gfx[34 * TILE_SIZE_4BPP / 2];
+extern const u16 gFrontierFactoryMenu_Tilemap[];
+extern const u16 gFrontierFactoryMenu_Pal[];
 
 // Object event pals
 extern const u16 gObjectEventPal_Brendan[];

@@ -47,10 +47,7 @@ script removeBothBarriers {
 
 script weightSign {
     lock
-    msgbox(format("Within this chamber, balance reigns supreme,
-                   Three guardians stand, each a weighty theme.
-                   From light as a feather to heavy as stone,
-                   Make it four guardians with one your own."))
+    msgbox(format("Within this chamber, balance reigns supreme, Three guardians stand, each a weighty theme. From light as a feather to heavy as stone,  Make it four guardians with one your own."))
     waitmessage
     release
     end
@@ -132,11 +129,7 @@ script firstTwoPuzzlesCleared {
 
 script heightSign {
     lock
-    msgbox(format("In this hall of towering grace,
-                   Four sentinels stand, each a different face.
-                   From the shortest that crouches to the tallest that soars,
-                   Match your Partner's height to each of our own."))
-    waitmessage
+    msgbox(format("In this hall of towering grace, Four sentinels stand, each a different face. From the shortest that crouches to the tallest that soars, Match your Partner's height to each of our own."))
     release
     end
 }
@@ -192,10 +185,7 @@ script heightStatuePlayer {
 
 script vaseRoomSign {
     lock
-    msgbox(format("In this chamber of secrets, where vessels reside,
-                   One holds the key, while others just hide.
-                   A symbol of wisdom, a mark of the wise,
-                   Find the vase that holds no disguise."))
+    msgbox(format("In this chamber of secrets, where vessels reside, One holds the key, while others just hide. A symbol of wisdom, a mark of the wise, Find the vase that holds no disguise."))
     release
     end
 }

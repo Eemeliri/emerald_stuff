@@ -5910,8 +5910,8 @@ static const u8 *const sRecordsWindowChallengeTexts[][2] =
 
 static const u8 *const sLevelModeText[] =
 {
-    gText_RecordsLv50,
-    gText_RecordsOpenLevel,
+    [FRONTIER_LVL_50]   = gText_RecordsLv50,
+    [FRONTIER_LVL_OPEN] = gText_RecordsOpenLevel,
 };
 
 static const u8 *const sHallFacilityToRecordsText[] =
@@ -6125,7 +6125,7 @@ void CallFrontierUtilFunc(void)
     sFrontierUtilFuncs[gSpecialVar_0x8004]();
 }
 
-// Buffers into VAR_TEMP_0 specifically because this is used to react to the status in OnFrame map scripts
+// VAR_TEMP_CHALLENGE_STATUS is used to react to the status in OnFrame map scripts
 static void GetChallengeStatus(void)
 {
     VarSet(VAR_TEMP_0, 0xFF);

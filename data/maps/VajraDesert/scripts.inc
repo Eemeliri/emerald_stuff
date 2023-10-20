@@ -127,7 +127,6 @@ VajraDesertTownSign_Text_0:
 	.string "desert.$"
 
 VajraDesertTunnelSign_Text_0:
-	.string "{LEFT_ARROW} Desert Pass\n"
 	.string "{RIGHT_ARROW} Vajra Village$"
 
 VajraDesertPyramidSign_Text_0:

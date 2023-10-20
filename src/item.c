@@ -122,21 +122,16 @@ void CopyItemName(u16 itemId, u8 *dst)
     StringCopy(dst, ItemId_GetName(itemId));
 }
 
+static const u8 sText_s[] = _("s");
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (itemId == ITEM_POKE_BALL)
+    StringCopy(dst, ItemId_GetName(itemId));
+    if (quantity > 1)
     {
-        if (quantity < 2)
-            StringCopy(dst, ItemId_GetName(ITEM_POKE_BALL));
+        if (ItemId_GetPocket(itemId) == POCKET_BERRIES)
+            GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
         else
-            StringCopy(dst, gText_PokeBalls);
-    }
-    else
-    {
-        if (itemId >= FIRST_BERRY_INDEX && itemId <= LAST_BERRY_INDEX)
-            GetBerryCountString(dst, gBerries[itemId - FIRST_BERRY_INDEX].name, quantity);
-        else
-            StringCopy(dst, ItemId_GetName(itemId));
+            StringAppend(dst, sText_s);
     }
 }
 
@@ -943,12 +938,12 @@ u16 ItemId_GetPrice(u16 itemId)
     return gItems[SanitizeItemId(itemId)].price;
 }
 
-u8 ItemId_GetHoldEffect(u16 itemId)
+u32 ItemId_GetHoldEffect(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].holdEffect;
 }
 
-u8 ItemId_GetHoldEffectParam(u16 itemId)
+u32 ItemId_GetHoldEffectParam(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].holdEffectParam;
 }
@@ -1021,7 +1016,7 @@ u8 ItemId_GetSecondaryId(u16 itemId)
     return gItems[SanitizeItemId(itemId)].secondaryId;
 }
 
-u8 ItemId_GetFlingPower(u16 itemId)
+u32 ItemId_GetFlingPower(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].flingPower;
 }

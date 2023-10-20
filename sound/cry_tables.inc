@@ -2080,6 +2080,8 @@ gCryTable::
 	@ Calyrex
 	cry Cry_CalyrexIceRider
 	cry Cry_CalyrexShadowRider
+	@ Basculegion
+	cry Cry_Basculegion
 .else
 	@ Cramorant
 	cry Cry_Unown
@@ -2117,6 +2119,8 @@ gCryTable::
 	cry Cry_Unown
 	@ Calyrex
 	cry Cry_Unown
+	cry Cry_Unown
+	@ Basculegion
 	cry Cry_Unown
 .endif
 	cry Cry_Basculegion
@@ -4199,7 +4203,10 @@ gCryTable_Reverse::
 	@ Calyrex
 	cry_reverse Cry_CalyrexIceRider
 	cry_reverse Cry_CalyrexShadowRider
+	@ Basculegion
+	cry_reverse Cry_Basculegion
 .else
+	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
