@@ -13,7 +13,7 @@ VajraPyramidF1_Onload::
 
 
 enableWarpTileF1::
-	setmetatile 11, 12, METATILE_BattlePyramid_VajraPyramidTeleporter, FALSE
+	setmetatile 11, 10, METATILE_BattlePyramid_VajraPyramidTeleporter, FALSE
 	return
 
 

@@ -480,6 +480,7 @@ gSpecials::
 	def_special trymaxSpDefIV
 	def_special trymaxSpeedIV
 	def_special trymaxAllIVs
+	def_special pyramidGauntletRewards
 	def_special transformGreensDitto
 	def_special ShowBattlePointsWindow
 	def_special UpdateBattlePointsWindow

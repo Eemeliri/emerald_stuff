@@ -24,7 +24,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "ghosttrainer2",
       "flag": "0"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "ghosttrainer3",
       "flag": "0"
     }
   ],
@@ -89,8 +89,8 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 22,
-      "y": 21,
+      "x": 15,
+      "y": 83,
       "elevation": 0,
       "dest_map": "MAP_VAJRA_PYRAMID_BF3",
       "dest_warp_id": "0"
@@ -107,6 +107,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "gauntletRewardChest"
+    }
   ]
 }

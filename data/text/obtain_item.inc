@@ -8,6 +8,12 @@ gText_PutItemInPocket::
 	.string "{PLAYER} put away the {STR_VAR_2}\n"
 	.string "in the {STR_VAR_3} Pocket.$"
 
+gText_ObtainedTheItems::
+    .string "Obtained {STR_VAR_1} {STR_VAR_2}!$"
+
+gText_PlayerFoundItems::
+    .string "{PLAYER} found {STR_VAR_1} {STR_VAR_2}!$"
+
 gText_PlayerFoundOneItem::
 	.string "{PLAYER} found one {STR_VAR_2}!$"
 

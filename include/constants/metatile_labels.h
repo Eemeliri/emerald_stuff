@@ -833,6 +833,7 @@
 #define METATILE_VajraPyramid_PyramidShadow              0x005
 
 // gTileset_pyramidpuzzles
+#define METATILE_pyramidpuzzles_GauntletChestOpened   0x2B1
 #define METATILE_pyramidpuzzles_pyramidButtonPressed  0x298
 
 #endif // GUARD_METATILE_LABELS_H

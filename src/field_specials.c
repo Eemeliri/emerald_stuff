@@ -1519,6 +1519,27 @@ u8 trymaxAllIVs(void) {
     return TRUE;
 }
 
+void pyramidGauntletRewards(void) {
+
+    static const u8 possibleRewards[10] = {
+        ITEM_BOTTLE_CAP,
+        ITEM_GOLD_BOTTLE_CAP,
+        ITEM_RED_SHARD,
+        ITEM_BLUE_SHARD,
+        ITEM_GREEN_SHARD,
+        ITEM_YELLOW_SHARD,
+        ITEM_NUGGET,
+        ITEM_BIG_NUGGET,
+        ITEM_EXP_CANDY_XL,
+        ITEM_ABILITY_CAPSULE
+    };
+    
+    u8 randomIndex = Random() % 10;
+    VarSet(VAR_0x8000, possibleRewards[randomIndex]); // Item
+    VarSet(VAR_0x8001, Random() % 4 + 1); // Amount
+    
+}
+
 void transformGreensDitto(void) {
     u8 objId = 3;
     ObjectEventSetGraphicsId(&gObjectEvents[6], OBJ_EVENT_GFX_DITTO);
