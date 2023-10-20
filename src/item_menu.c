@@ -751,7 +751,7 @@ static EWRAM_DATA struct TempWallyBag *sTempWallyBag = 0;
 // so it can be scanline-copied into place
 // This could be 12 bytes smaller if we used AllocZeroed,
 // but that isn't really a lot of space
-static EWRAM_DATA u16 sKeyItemWheelExtraPalette[16] = {0};
+static EWRAM_DATA u16 ALIGNED(4) sKeyItemWheelExtraPalette[16] = {0};
 
 void ResetBagScrollPositions(void)
 {

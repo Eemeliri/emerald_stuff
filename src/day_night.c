@@ -18,7 +18,7 @@
 #define TINT_NIGHT Q_8_8(0.4), Q_8_8(0.4), Q_8_8(0.92)
 #define TINT_LATE_NIGHT Q_8_8(0.3), Q_8_8(0.3), Q_8_8(0.8)
 
-EWRAM_DATA static u16 sPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
+EWRAM_DATA  u16 sPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA const struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 static EWRAM_DATA struct {
