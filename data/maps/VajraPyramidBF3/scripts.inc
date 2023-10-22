@@ -58,6 +58,7 @@ brandonpyramid3f::
 
 
 ghosttrainer1::
+	bufferspeciesname 0, SPECIES_GASTLY
 	lock
 	faceplayer
 	goto_if_set FLAG_TEMP_10, ghosttrainer1_2
@@ -75,6 +76,7 @@ ghosttrainer1_2:
 
 
 ghosttrainer2::
+	bufferspeciesname 0, SPECIES_HAUNTER
 	lock
 	faceplayer
 	goto_if_set FLAG_TEMP_11, ghosttrainer2_2
@@ -92,6 +94,7 @@ ghosttrainer2_2:
 
 
 ghosttrainer3::
+	bufferspeciesname 0, SPECIES_GENGAR
 	lock
 	faceplayer
 	goto_if_set FLAG_TEMP_12, ghosttrainer3_2

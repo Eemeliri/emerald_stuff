@@ -527,6 +527,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Mandibuzz,              OBJ_EVENT_PAL_TAG_MANDIBUZZ},
     {gObjectEventPal_Cofagrigus,              OBJ_EVENT_PAL_TAG_COFAGRIGUS},
     {gObjectEventPal_Gengar,              OBJ_EVENT_PAL_TAG_GENGAR},
+    {gObjectEventPal_MagmaGruntF,              OBJ_EVENT_PAL_TAG_MAGMA_GRUNT_F},
     {gObjectEventPal_Galactic_Grunt_Male,         OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_MALE},
     {gObjectEventPal_Galactic_Grunt_Female,       OBJ_EVENT_PAL_TAG_GALACTIC_GRUNT_FEMALE},
     {gObjectEventPal_Galactic_Commander_Saturn,   OBJ_EVENT_PAL_TAG_GALACTIC_COMMANDER_SATURN},

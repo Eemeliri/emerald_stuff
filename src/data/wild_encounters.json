@@ -15603,6 +15603,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_PETALBURG_WOODS_DEPTHS",
+          "base_label": "gPetalburgWoodsDepths0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_WEEDLE"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_KAKUNA"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_METAPOD"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_VENIPEDE"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_PHANTUMP"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_WHIRLIPEDE"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_PHANTUMP"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_WYNAUT"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 16,
+                "max_level": 22,
+                "species": "SPECIES_WYNAUT"
+              }
+            ]
+          }
         }
       ]
     },

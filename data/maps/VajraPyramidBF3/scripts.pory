@@ -49,6 +49,7 @@ script brandonpyramid3f {
 }
 
 script ghosttrainer1 {
+  bufferspeciesname(0, SPECIES_GASTLY)
     lock
     faceplayer
     if (flag(FLAG_TEMP_10)) {
@@ -65,6 +66,7 @@ script ghosttrainer1 {
 }
 
 script ghosttrainer2 {
+  bufferspeciesname(0, SPECIES_HAUNTER)
     lock
     faceplayer
     if (flag(FLAG_TEMP_11)) {
@@ -81,6 +83,7 @@ script ghosttrainer2 {
 }
 
 script ghosttrainer3 {
+  bufferspeciesname(0, SPECIES_GENGAR)
     lock
     faceplayer
     if (flag(FLAG_TEMP_12)) {

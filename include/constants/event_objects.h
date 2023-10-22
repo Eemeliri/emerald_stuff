@@ -387,6 +387,7 @@
 #define OBJ_EVENT_PAL_TAG_COFAGRIGUS             0x1153
 #define OBJ_EVENT_PAL_TAG_RUIN_MANIAC            0x1154
 #define OBJ_EVENT_PAL_TAG_GENGAR                 0x1155
+#define OBJ_EVENT_PAL_TAG_MAGMA_GRUNT_F          0x1156
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 

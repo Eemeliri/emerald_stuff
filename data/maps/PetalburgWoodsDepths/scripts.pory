@@ -1,1 +1,79 @@
 mapscripts PetalburgWoodsDepths_MapScripts {}
+
+
+
+script phantumpvillager {
+  bufferspeciesname(0, SPECIES_PHANTUMP)
+    lock
+    playmoncry(SPECIES_PHANTUMP, CRY_MODE_NORMAL)
+    msgbox("Phantoo!")
+    waitmoncry
+    release
+    end
+}
+
+script villagegirlwithphantump {
+    lock
+    msgbox(format("Come on phantump, sit!"))
+    waitmessage
+    playmoncry(SPECIES_PHANTUMP, CRY_MODE_WEAK)
+    msgbox("Phantoo...")
+    waitmoncry
+    release
+    end
+}
+
+script villageMan {
+    lock
+    faceplayer
+    msgbox(format("Our village doesn't offer much, in fact we don't even have a name for it. Feel free to take a look around nonetheless."))
+    release
+    end
+}
+
+script villageLady {
+    lock
+    faceplayer
+    msgbox(format("Oh a visitor? We don't see many travellers around this part of the woods, many just pass through the Petalburg Woods without stopping by."))
+    release
+    end
+}
+
+script oldShrine {
+    lock
+    msgbox(format("It seems to be an old shrine, however it hasn't been maintained in a while..."))
+    release
+    end
+}
+
+script shrineSign {
+    msgbox(format("{UP_ARROW} Timekeeper's shrine"), MSGBOX_SIGN)
+    end
+}
+
+script worriedOldManFarfetchd {
+    lock
+    faceplayer
+    msgbox(format("Oh what am I to do... Oh, excuse me! Have you seen my dear Farfetch'd? We we're just on the way back to the village, but she disappeared along the way."))
+    msgbox(format("Could I ask you to look for her?"))
+    release
+    end
+}
+
+script petalburgFarfetchd {
+  bufferspeciesname(0, SPECIES_FARFETCHD)
+    lock
+    faceplayer
+    msgbox(format("Farfetchd...."))
+    setflag(FLAG_HIDE_FARFETCHD_MAN)
+    release
+    end
+}
+
+script gruntwoods {
+    lock
+    faceplayer
+    msgbox(format("What do you want?"))
+    release
+    end
+}

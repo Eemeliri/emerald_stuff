@@ -46,8 +46,8 @@
       "x": 9,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_PYRAMID_BF4",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_VAJRA_PYRAMID_BF3",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

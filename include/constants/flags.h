@@ -678,7 +678,7 @@
 #define FLAG_HIDE_SHAYMIN  0x27B // Unused Flag
 #define FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH  0x27C // Hide birch before postgame for shaymin event
 #define FLAG_RECEIVED_FRESH_WATER  0x27D
-#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
+#define FLAG_HIDE_FARFETCHD_MAN  0x27E // petalburg woods quest
 #define FLAG_UNUSED_0x27F  0x27F // Unused Flag
 #define FLAG_UNUSED_0x280  0x280 // Unused Flag
 #define FLAG_UNUSED_0x281  0x281 // Unused Flag
