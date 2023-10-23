@@ -243,3 +243,6 @@ const u16 gMetatileAttributes_pyramidpuzzles[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_PetalburgWoods[] = INCBIN_U16("data/tilesets/secondary/petalburg_woods/metatiles.bin");
 const u16 gMetatileAttributes_PetalburgWoods[] = INCBIN_U16("data/tilesets/secondary/petalburg_woods/metatile_attributes.bin");
+
+const u16 gMetatiles_Building_Woods[] = INCBIN_U16("data/tilesets/secondary/building_woods/metatiles.bin");
+const u16 gMetatileAttributes_Building_Woods[] = INCBIN_U16("data/tilesets/secondary/building_woods/metatile_attributes.bin");

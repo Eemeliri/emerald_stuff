@@ -11,6 +11,13 @@
 #define DOOR_SOUND_NORMAL  0
 #define DOOR_SOUND_SLIDING 1
 #define DOOR_SOUND_ARENA   2
+#define DOOR_SOUND_FRLG    3
+
+enum {
+    DOOR_SIZE_1x1,
+    DOOR_SIZE_1x2,
+    DOOR_SIZE_2x2,
+};
 
 struct DoorGraphics
 {

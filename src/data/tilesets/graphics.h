@@ -1901,3 +1901,22 @@ const u16 gTilesetPalettes_PetalburgWoods[][16] =
 };
 
 const u32 gTilesetTiles_PetalburgWoods[] = INCBIN_U32("data/tilesets/secondary/petalburg_woods/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Building_Woods[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/building_woods/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Building_Woods[] = INCBIN_U32("data/tilesets/secondary/building_woods/tiles.4bpp.lz");

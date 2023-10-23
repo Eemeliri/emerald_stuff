@@ -1,0 +1,13 @@
+mapscripts PetalburgWoods_House2_MapScripts {}
+
+
+script farfetchinhouse {
+    bufferspeciesname(0, SPECIES_FARFETCHD)
+    lock
+    faceplayer
+    playmoncry(SPECIES_FARFETCHD, CRY_MODE_NORMAL)
+    msgbox("Farfetch'd!")
+    waitmoncry
+    release
+    end
+}
