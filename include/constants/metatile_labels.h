@@ -410,7 +410,8 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
 
 // gTileset_PetalburgWoods
-#define METATILE_PetalburgWoods_TallGrass  0x233
+#define METATILE_PetalburgWoods_Door_PetalburgWoods  0x267
+#define METATILE_PetalburgWoods_TallGrass            0x233
 
 // gTileset_Petalburg
 #define METATILE_Petalburg_Door_BirchsLab   0x249

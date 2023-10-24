@@ -4904,7 +4904,7 @@
     {
       "id": "LAYOUT_VAJRA_DESERT",
       "name": "VajraDesert_Layout",
-      "width": 57,
+      "width": 68,
       "height": 108,
       "primary_tileset": "gTileset_Desert",
       "secondary_tileset": "gTileset_Desert_Pyramid",
@@ -5010,6 +5010,16 @@
       "secondary_tileset": "gTileset_Building_Woods",
       "border_filepath": "data/layouts/PetalburgWoods_House2/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgWoods_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_VILLAGE",
+      "name": "VajraVillage_Layout",
+      "width": 60,
+      "height": 55,
+      "primary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_DesertTown",
+      "border_filepath": "data/layouts/VajraVillage/border.bin",
+      "blockdata_filepath": "data/layouts/VajraVillage/map.bin"
     }
   ]
 }

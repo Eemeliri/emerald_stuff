@@ -174,7 +174,6 @@ static const struct DoorAnimFrame sSmallDoorCloseAnimFrames[] =
     {4, -1},
     {0, 0},
 };
-
 static const struct DoorAnimFrame sBigDoorOpenAnimFrames[] =
 {
     {4, -1},
@@ -302,6 +301,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_BattleTent_Door,                              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTentInterior, sDoorAnimPalettes_BattleTentInterior},
     {METATILE_TrainerHill_Door_Elevator_Lobby,              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerHillLobbyElevator, sDoorAnimPalettes_TrainerHillLobbyElevator},
     {METATILE_TrainerHill_Door_Elevator_Roof,               DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerHillRoofElevator, sDoorAnimPalettes_TrainerHillRoofElevator},
+    {METATILE_PetalburgWoods_Door_PetalburgWoods,           DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_General, sDoorAnimPalettes_General},
     {},
 };
 

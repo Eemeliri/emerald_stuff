@@ -71,6 +71,7 @@
 #define MAP_DEWFORD_TRAINING_GROUNDS (62 | (0 << 8))
 #define MAP_VAJRA_DESERT             (63 | (0 << 8))
 #define MAP_VAJRA_PYRAMID            (64 | (0 << 8))
+#define MAP_VAJRA_VILLAGE            (65 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

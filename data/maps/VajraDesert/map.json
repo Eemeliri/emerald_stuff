@@ -12,7 +12,13 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_VAJRA_VILLAGE",
+      "offset": 9,
+      "direction": "right"
+    }
+  ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_MANDIBUZZ",
@@ -69,7 +75,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SANDILE",
       "x": 12,
-      "y": 24,
+      "y": 27,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -95,7 +101,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_CRUSTLE",
       "x": 16,
-      "y": 4,
+      "y": 5,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_DOWN",
       "movement_range_x": 0,
@@ -107,8 +113,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_DARMANITAN",
-      "x": 36,
-      "y": 73,
+      "x": 47,
+      "y": 69,
       "elevation": 1,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -133,8 +139,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_DARMANITAN",
-      "x": 12,
-      "y": 67,
+      "x": 11,
+      "y": 70,
       "elevation": 2,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 1,
@@ -146,7 +152,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MANDIBUZZ",
-      "x": 35,
+      "x": 37,
       "y": 28,
       "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
@@ -211,8 +217,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-      "x": 41,
-      "y": 51,
+      "x": 54,
+      "y": 38,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -342,8 +348,8 @@
     },
     {
       "type": "sign",
-      "x": 46,
-      "y": 50,
+      "x": 56,
+      "y": 36,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "VajraDesertTownSign"
