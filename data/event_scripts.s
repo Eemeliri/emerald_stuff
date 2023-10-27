@@ -1181,3 +1181,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/PetalburgWoods_House2/scripts.inc"
 
 	.include "data/maps/VajraVillage/scripts.inc"
+
+	.include "data/maps/ShamoutiIsland/scripts.inc"

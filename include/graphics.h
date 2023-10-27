@@ -9963,6 +9963,7 @@ extern const u32 gTrainerFrontPic_GalacticAdminSaturn[];
 extern const u32 gTrainerFrontPic_GalacticAdminMars[];
 extern const u32 gTrainerFrontPic_GalacticAdminJupiter[];
 extern const u32 gTrainerFrontPic_Ghost[];
+extern const u32 gTrainerFrontPic_Lawrence[];
 
 extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -10107,6 +10108,7 @@ extern const u32 gTrainerPalette_G_Admin_Saturn[];
 extern const u32 gTrainerPalette_G_Admin_Mars[];
 extern const u32 gTrainerPalette_G_Admin_Jupiter[];
 extern const u32 gTrainerPalette_Ghost[];
+extern const u32 gTrainerPalette_Lawrence[];
 
 extern const u8 gTrainerBackPic_Brendan[];
 extern const u8 gTrainerBackPic_May[];

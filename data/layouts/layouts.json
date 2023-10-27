@@ -5020,6 +5020,16 @@
       "secondary_tileset": "gTileset_DesertTown",
       "border_filepath": "data/layouts/VajraVillage/border.bin",
       "blockdata_filepath": "data/layouts/VajraVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_SHAMOUTI_ISLAND",
+      "name": "ShamoutiIsland_Layout",
+      "width": 56,
+      "height": 56,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ShamoutiShrine",
+      "border_filepath": "data/layouts/ShamoutiIsland/border.bin",
+      "blockdata_filepath": "data/layouts/ShamoutiIsland/map.bin"
     }
   ]
 }

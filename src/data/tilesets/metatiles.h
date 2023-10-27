@@ -246,3 +246,6 @@ const u16 gMetatileAttributes_PetalburgWoods[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_Building_Woods[] = INCBIN_U16("data/tilesets/secondary/building_woods/metatiles.bin");
 const u16 gMetatileAttributes_Building_Woods[] = INCBIN_U16("data/tilesets/secondary/building_woods/metatile_attributes.bin");
+
+const u16 gMetatiles_ShamoutiShrine[] = INCBIN_U16("data/tilesets/secondary/shamouti_shrine/metatiles.bin");
+const u16 gMetatileAttributes_ShamoutiShrine[] = INCBIN_U16("data/tilesets/secondary/shamouti_shrine/metatile_attributes.bin");

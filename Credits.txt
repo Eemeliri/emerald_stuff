@@ -15,6 +15,7 @@ SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
 Spherical Ice - Sliding puzzles
 Merrp - Following Pokemon
+Fo0xerz - Lawrence III sprite
 ghoulslash - DexNav, Auto-run, Mart Items by Badge Count, Bag Sorting, Repeated Field Medicine Use, Pokecenters don't count eggs, Overworld Expansion, givecustommon 
 ipatix - High Quality Audio Mixer
 Wyserth - Decapitalisation

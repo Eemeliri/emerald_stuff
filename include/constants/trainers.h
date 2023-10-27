@@ -161,6 +161,7 @@
 #define TRAINER_PIC_G_ADMIN_JUPITER       141
 #define TRAINER_PIC_CYNTHIA               142
 #define TRAINER_PIC_GHOST                 143
+#define TRAINER_PIC_LAWRENCE              144
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -408,6 +409,7 @@
 #define TRAINER_CLASS_PKMN_TRAINER   0x44
 #define TRAINER_CLASS_K_LEADER       0x45
 #define TRAINER_CLASS_SPIRIT         0x46
+#define TRAINER_CLASS_LAWRENCE      0x47
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music

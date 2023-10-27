@@ -406,6 +406,9 @@ const u32 gTrainerPalette_Cynthia[] = INCBIN_U32("graphics/trainers/palettes/cyn
 const u32 gTrainerFrontPic_Ghost[] = INCBIN_U32("graphics/trainers/front_pics/ghost.4bpp.lz");
 const u32 gTrainerPalette_Ghost[] = INCBIN_U32("graphics/trainers/palettes/ghost.gbapal.lz");
 
+const u32 gTrainerFrontPic_Lawrence[] = INCBIN_U32("graphics/trainers/front_pics/lawrence.4bpp.lz");
+const u32 gTrainerPalette_Lawrence[] = INCBIN_U32("graphics/trainers/palettes/lawrence.gbapal.lz");
+
 const u32 gTrainerFrontPic_Alder[] = INCBIN_U32("graphics/trainers/front_pics/alder_front_pic.4bpp.lz");
 const u32 gTrainerPalette_Alder[] = INCBIN_U32("graphics/trainers/palettes/alder.gbapal.lz");
 

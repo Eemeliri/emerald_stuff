@@ -38,7 +38,7 @@ static const struct TrainerMonCustomized sTestParty1[] =
 static const struct Trainer sTestTrainer1 =
 {
     .trainerName = _("Test1"),
-    .party = TRAINER_PARTY(sTestParty1),
+    .party = EVERYTHING_CUSTOMIZED(sTestParty1),
 };
 
 TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
