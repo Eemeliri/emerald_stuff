@@ -2080,3 +2080,5 @@ const u32 gBallIcon_Dream[] = INCBIN_U32("graphics/summary_screen/ball_icons/dre
 const u32 gBallIconPalette_Dream[] = INCBIN_U32("graphics/summary_screen/ball_icons/dream.gbapal.lz");
 const u32 gBallIcon_Beast[] = INCBIN_U32("graphics/summary_screen/ball_icons/beast.4bpp.lz");
 const u32 gBallIconPalette_Beast[] = INCBIN_U32("graphics/summary_screen/ball_icons/beast.gbapal.lz");
+const u32 gItemIcon_FairyFeather[] = INCBIN_U32("graphics/items/icons/fairy_feather.4bpp.lz");
+const u32 gItemIconPalette_FairyFeather[] = INCBIN_U32("graphics/items/icon_palettes/fairy_feather.gbapal.lz");
