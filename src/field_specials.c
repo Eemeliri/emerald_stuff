@@ -1540,8 +1540,8 @@ void pyramidGauntletRewards(void) {
     
 }
 
-void transformGreensDitto(void) {
-    u8 objId = 3;
+void UNUSED transformGreensDitto(void) {
+    //u8 objId = 3;
     ObjectEventSetGraphicsId(&gObjectEvents[6], OBJ_EVENT_GFX_DITTO);
     ObjectEventTurn(&gObjectEvents[6], DIR_WEST);
 }

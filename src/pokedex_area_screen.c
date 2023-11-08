@@ -747,7 +747,7 @@ static void DoAreaGlow(void)
     }
 }
 
-static void ClearPokedexArea(void)
+static void UNUSED ClearPokedexArea(void)
 {
     int i;
 

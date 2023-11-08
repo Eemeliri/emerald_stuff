@@ -635,22 +635,6 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_BLUE_ORB)
                 return SPECIES_KYOGRE_PRIMAL;
         break;
-        case SPECIES_BUTTERFREE:
-            if(item == ITEM_BUTTERMAX)
-                return SPECIES_BUTTERFREE_MEGA_GMAX;
-        break;
-        case SPECIES_LAPRAS:
-            if(item == ITEM_LAPRAMAX)
-                return SPECIES_LAPRAS_MEGA_GMAX;
-        break;
-        case SPECIES_MACHAMP:
-            if(item == ITEM_MACHAPMAX)
-                return SPECIES_MACHAMP_MEGA_GMAX;
-        break;
-        case SPECIES_KINGLER:
-            if(item == ITEM_KINGLEMAX)
-                return SPECIES_KINGLER_MEGA_GMAX;
-        break;
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){
                 if(GetMonData(&gPlayerParty[num], MON_DATA_MOVE1 + i) == MOVE_DRAGON_ASCENT)

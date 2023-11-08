@@ -3175,7 +3175,8 @@ void TryHideBattleTowerReporter(void)
 
 static void FillPartnerParty(u16 trainerId)
 {
-    s32 i, j;
+    s32 i; 
+    u32 j;
     u32 ivs, level, personality;
     u32 friendship;
     u16 monId;

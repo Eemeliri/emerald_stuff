@@ -1036,40 +1036,6 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SPRITE(DIANCIE_MEGA, gMonFrontPic_DiancieMega),
 #endif
-#if P_GEN_8_POKEMON == TRUE
-    SPECIES_SPRITE(VENUSAUR_MEGA_GMAX, gMonFrontPic_VenusaurMegaGmax),
-    SPECIES_SPRITE(CHARIZARD_MEGA_GMAX, gMonFrontPic_CharizardMegaGmax),
-    SPECIES_SPRITE(BLASTOISE_MEGA_GMAX, gMonFrontPic_BlastoiseMegaGmax),
-    SPECIES_SPRITE(BUTTERFREE_MEGA_GMAX, gMonFrontPic_ButterfreeMegaGmax),
-    SPECIES_SPRITE(PIKACHU_MEGA_GMAX, gMonFrontPic_PikachuMegaGmax),
-    SPECIES_SPRITE(MACHAMP_MEGA_GMAX, gMonFrontPic_MachampMegaGmax),
-    SPECIES_SPRITE(GENGAR_MEGA_GMAX, gMonFrontPic_GengarMegaGmax),
-    SPECIES_SPRITE(KINGLER_MEGA_GMAX, gMonFrontPic_KinglerMegaGmax),
-    SPECIES_SPRITE(LAPRAS_MEGA_GMAX, gMonFrontPic_LaprasMegaGmax),
-    SPECIES_SPRITE(EEVEE_MEGA_GMAX, gMonFrontPic_EeveeMegaGmax),
-    SPECIES_SPRITE(SNORLAX_MEGA_GMAX, gMonFrontPic_SnorlaxMegaGmax),
-    SPECIES_SPRITE(GARBODOR_MEGA_GMAX, gMonFrontPic_GarbodorMegaGmax),
-    SPECIES_SPRITE(MELMETAL_MEGA_GMAX, gMonFrontPic_MelmetalMegaGmax),
-    SPECIES_SPRITE(RILLABOOM_MEGA_GMAX, gMonFrontPic_RillaboomMegaGmax),
-    SPECIES_SPRITE(CINDERACE_MEGA_GMAX, gMonFrontPic_CinderaceMegaGmax),
-    SPECIES_SPRITE(INTELEON_MEGA_GMAX, gMonFrontPic_InteleonMegaGmax),
-    SPECIES_SPRITE(CORVIKNIGHT_MEGA_GMAX, gMonFrontPic_CorviknightMegaGmax),
-    SPECIES_SPRITE(ORBEETLE_MEGA_GMAX, gMonFrontPic_OrbeetleMegaGmax),
-    SPECIES_SPRITE(DREDNAW_MEGA_GMAX, gMonFrontPic_DrednawMegaGmax),
-    SPECIES_SPRITE(COALOSSAL_MEGA_GMAX, gMonFrontPic_CoalossalMegaGmax),
-    SPECIES_SPRITE(FLAPPLE_MEGA_GMAX, gMonFrontPic_FlappleMegaGmax),
-    SPECIES_SPRITE(APPLETUN_MEGA_GMAX, gMonFrontPic_AppletunMegaGmax),
-    SPECIES_SPRITE(SANDACONDA_MEGA_GMAX, gMonFrontPic_SandacondaMegaGmax),
-    SPECIES_SPRITE(TOXTRICITY_MEGA_GMAX, gMonFrontPic_ToxtricityMegaGmax),
-    SPECIES_SPRITE(CENTISKORCH_MEGA_GMAX, gMonFrontPic_CentiskorchMegaGmax),
-    SPECIES_SPRITE(HATTERENE_MEGA_GMAX, gMonFrontPic_HattereneMegaGmax),
-    SPECIES_SPRITE(GRIMMSNARL_MEGA_GMAX, gMonFrontPic_GrimmsnarlMegaGmax),
-    SPECIES_SPRITE(ALCREMIE_MEGA_GMAX, gMonFrontPic_AlcremieMegaGmax),
-    SPECIES_SPRITE(COPPERAJAH_MEGA_GMAX, gMonFrontPic_CopperajahMegaGmax),
-    SPECIES_SPRITE(DURALUDON_MEGA_GMAX, gMonFrontPic_DuraludonMegaGmax),
-    SPECIES_SPRITE(URSHIFU_RAPID_MEGA_GMAX, gMonFrontPic_UrshifuRapidMegaGmax),
-    SPECIES_SPRITE(URSHIFU_ONE_MEGA_GMAX, gMonFrontPic_UrshifuOneMegaGmax),
-#endif
 
     SPECIES_SPRITE(RAYQUAZA_MEGA, gMonFrontPic_RayquazaMega),
     SPECIES_SPRITE(KYOGRE_PRIMAL, gMonFrontPic_KyogrePrimal),
@@ -1421,10 +1387,6 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
 
     SPECIES_SPRITE(CALYREX_ICE_RIDER, gMonFrontPic_CalyrexIceRider),
     SPECIES_SPRITE(CALYREX_SHADOW_RIDER, gMonFrontPic_CalyrexShadowRider),
-    SPECIES_SPRITE(ARBOK_KANTO, gMonFrontPic_ArbokKanto),
-    SPECIES_SPRITE(ARBOK_JOHTO, gMonFrontPic_ArbokJohto),
-    SPECIES_SPRITE(ARBOK_SINNOH, gMonFrontPic_ArbokSinnoh),
-
 
     SPECIES_SPRITE(ENAMORUS_THERIAN, gMonFrontPic_EnamorusTherian),
 

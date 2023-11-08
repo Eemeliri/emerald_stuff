@@ -196,7 +196,6 @@ extern const struct SpritePalette gSpritePalette_ArrowEmotionsFieldEffect;
 u8 CreateWarpArrowSprite(void)
 {
     u8 spriteId;
-    struct Sprite *sprite;
 
     LoadFieldEffectPalette_(FLDEFFOBJ_ARROW, FALSE);
     spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_ARROW], 0, 0, 0x52);
@@ -930,6 +929,12 @@ void UpdateHotSpringsWaterFieldEffect(struct Sprite *sprite)
     }
 }
 
+#undef sLocalId
+#undef sMapNum
+#undef sMapGroup
+#undef sPrevX
+#undef sPrevY
+
 u32 FldEff_ShakingGrass(void)
 {
     u8 spriteId;
@@ -1098,7 +1103,7 @@ u32 FldEff_SurfBlob(void)
     {
         struct Sprite *sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
-        sprite->tPlayerObjId = gFieldEffectArguments[2];
+        sprite->sPlayerObjId = gFieldEffectArguments[2];
         sprite->data[3] = -1;
         sprite->data[6] = -1;
         sprite->data[7] = -1;
@@ -1303,6 +1308,13 @@ u32 FldEff_RockClimbDust(void)
     return 0;
 }
 
+// Sprite data for FLDEFF_SAND_PILE
+#define sLocalId  data[0]
+#define sMapNum   data[1]
+#define sMapGroup data[2]
+#define sPrevX    data[3]
+#define sPrevY    data[4]
+
 u32 FldEff_SandPile(void)
 {
     u8 objectEventId = GetObjectEventIdByLocalIdAndMap(gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
@@ -1441,7 +1453,7 @@ static u32 ShowDisguiseFieldEffect(u8 fldEff, u8 templateIdx)
     spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[templateIdx], 0, 0, 0);
     if (spriteId != MAX_SPRITES)
     {
-        sprite = &gSprites[spriteId];
+        struct Sprite *sprite = &gSprites[spriteId];
         //UpdateSpritePaletteByTemplate(gFieldEffectObjectTemplatePointers[fldEffObj], sprite);
         sprite->coordOffsetEnabled ++;
         sprite->sFldEff = fldEff;

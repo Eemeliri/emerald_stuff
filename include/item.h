@@ -15,7 +15,6 @@ struct Item
     const u8 *description;
     u8 name[ITEM_NAME_LENGTH];
     u16 itemId;
-    u16 price;
     u8 holdEffect;
     u8 holdEffectParam;
     u8 importance;
@@ -23,7 +22,6 @@ struct Item
     u8 pocket;
     u8 type;
     u8 battleUsage;
-    u8 secondaryId;
     u8 flingPower;
 };
 

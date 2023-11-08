@@ -793,7 +793,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BRUXISH] = sBruxishTeachableLearnset,
     [SPECIES_DRAMPA] = sDrampaTeachableLearnset,
     [SPECIES_DHELMISE] = sDhelmiseTeachableLearnset,
-    [SPECIES_JANGMO_O] = sJangmooTeachableLearnset,
+    [SPECIES_JANGMO_O] = sJangmoOTeachableLearnset,
     [SPECIES_HAKAMO_O] = sHakamoOTeachableLearnset,
     [SPECIES_KOMMO_O] = sKommoOTeachableLearnset,
     [SPECIES_TAPU_KOKO] = sTapuKokoTeachableLearnset,
@@ -1339,8 +1339,8 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
 #endif
 #if P_GEN_5_POKEMON == TRUE
     // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinBlueStripedTeachableLearnset,
-    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinWhiteStripedTeachableLearnset,
+    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinTeachableLearnset,
+    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinTeachableLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanTeachableLearnset,
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianTeachableLearnset,

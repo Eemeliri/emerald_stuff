@@ -7910,7 +7910,6 @@ void CreateFrontierBrainPokemon(void)
 void CreateFrontierGymLeaderPokemon(u16 trainerId)
 {
     s32 i, j, k = 0;
-    s32 selectedMonBits;
     s32 monPartyId;
     s32 monLevel = 0;
     u8 friendship;
@@ -7978,7 +7977,6 @@ void CreateFrontierGymLeaderPokemon(u16 trainerId)
 void CreateFrontierChampionPokemon(u16 trainerId)
 {
     s32 i, j;
-    s32 selectedMonBits;
     s32 monPartyId;
     s32 monLevel = 0;
     u8 friendship;

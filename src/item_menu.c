@@ -2460,7 +2460,7 @@ static void FreeKeyItemWheelGfx(s16 *data) {
 static void Task_KeyItemWheel(u8 taskId) {
     u32 i, j;
     s16 *data = gTasks[taskId].data;
-    struct Sprite *sprite;
+    //struct Sprite *sprite;
     switch (tState)
     {
     case 0:
@@ -3488,38 +3488,6 @@ static const u16 sItemsByType[ITEMS_COUNT] =
         [ITEM_AUDINITE] = ITEM_TYPE_MEGA_STONE,
         [ITEM_DIANCITE] = ITEM_TYPE_MEGA_STONE,
         [ITEM_ULTRANECROZIUM_Z] =  ITEM_TYPE_MEGA_STONE,
-        [ITEM_VENUSAURIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CHARIZARDIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_BLASTOISIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GENGARIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_BUTTERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_PIKACHUMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_MACHAPMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_KINGLEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_LAPRAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_EEVEEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_SNORLAXMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GARBOMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_MELMEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_RILLAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CINDERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_INTELMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CORVIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ORBEETMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_DREDMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_COALOSMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_FLAPMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_APPLEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_SANDAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_TOXIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CENTIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_HATTEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GRIMMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ALCREMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_COPPERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_DURAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_RAPID_SCROLL] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ONE_STRIKE_SCROLL] = ITEM_TYPE_MEGA_STONE,
         
         [ITEM_NORMALIUM_Z] = ITEM_TYPE_Z_CRYSTAL,
         [ITEM_FIGHTINIUM_Z] = ITEM_TYPE_Z_CRYSTAL,
@@ -3667,19 +3635,19 @@ static void Task_LoadBagSortOptions(u8 taskId)
 }
 
 #define tSortType data[2]
-static void ItemMenu_SortByName(u8 taskId)
+static void UNUSED ItemMenu_SortByName(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_ALPHABETICALLY;
     StringCopy(gStringVar1, sSortTypeStrings[SORT_ALPHABETICALLY]);
     gTasks[taskId].func = SortBagItems;
 }
-static void ItemMenu_SortByType(u8 taskId)
+static void UNUSED ItemMenu_SortByType(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_BY_TYPE;
     StringCopy(gStringVar1, sSortTypeStrings[SORT_BY_TYPE]);
     gTasks[taskId].func = SortBagItems;
 }
-static void ItemMenu_SortByAmount(u8 taskId)
+static void UNUSED ItemMenu_SortByAmount(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_BY_AMOUNT; //greatest->least
     StringCopy(gStringVar1, sSortTypeStrings[SORT_BY_AMOUNT]);
@@ -3708,7 +3676,7 @@ static void SortBagItems(u8 taskId)
 
 static void Task_SortFinish(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
+    //s16* data = gTasks[taskId].data;
 
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
@@ -3721,7 +3689,7 @@ static void SortItemsInBag(u8 pocket, u8 type)
 {
     struct ItemSlot* itemMem;
     u16 itemAmount;
-    s8 (*func)(struct ItemSlot*, struct ItemSlot*);
+    //s8 (*func)(struct ItemSlot*, struct ItemSlot*);
 
     switch (pocket)
     {

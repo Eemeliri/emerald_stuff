@@ -2576,42 +2576,6 @@ gCryTable::
 	cry Cry_Unown
 	cry Cry_Unown
 .endif
-	cry Cry_Basculegion
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Basculegion
-	cry Cry_VenusaurMegaGmax
-	cry Cry_CharizardMegaGmax
-	cry Cry_BlastoiseMegaGmax
-	cry Cry_ButterfreeMegaGmax
-	cry Cry_PikachuMegaGmax
-	cry Cry_MachampMegaGmax
-	cry Cry_GengarMegaGmax
-	cry Cry_KinglerMegaGmax
-	cry Cry_LaprasMegaGmax
-	cry Cry_EeveeMegaGmax
-	cry Cry_SnorlaxMegaGmax
-	cry Cry_GarbodorMegaGmax
-	cry Cry_MelmetalMegaGmax
-	cry Cry_RillaboomMegaGmax
-	cry Cry_CinderaceMegaGmax
-	cry Cry_InteleonMegaGmax
-	cry Cry_CorviknightMegaGmax
-	cry Cry_OrbeetleMegaGmax
-	cry Cry_DrednawMegaGmax
-	cry Cry_CoalossalMegaGmax
-	cry Cry_FlappleMegaGmax
-	cry Cry_AppletunMegaGmax
-	cry Cry_SandacondaMegaGmax
-	cry Cry_ToxtricityMegaGmax
-	cry Cry_CentiskorchMegaGmax
-	cry Cry_HattereneMegaGmax
-	cry Cry_GrimmsnarlMegaGmax
-	cry Cry_AlcremieMegaGmax
-	cry Cry_CopperajahMegaGmax
-	cry Cry_DuraludonMegaGmax
-	cry Cry_UrshifuOneMegaGmax
-	cry Cry_UrshifuRapidMegaGmax
 
 	.align 2
 gCryTable_Reverse::
@@ -5135,39 +5099,3 @@ gCryTable_Reverse::
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 .endif
-	cry_reverse Cry_Basculegion
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Basculegion
-	cry_reverse Cry_Basculegion
-	cry_reverse Cry_VenusaurMegaGmax
-	cry_reverse Cry_CharizardMegaGmax
-	cry_reverse Cry_BlastoiseMegaGmax
-	cry_reverse Cry_ButterfreeMegaGmax
-	cry_reverse Cry_PikachuMegaGmax
-	cry_reverse Cry_MachampMegaGmax
-	cry_reverse Cry_GengarMegaGmax
-	cry_reverse Cry_KinglerMegaGmax
-	cry_reverse Cry_LaprasMegaGmax
-	cry_reverse Cry_EeveeMegaGmax
-	cry_reverse Cry_SnorlaxMegaGmax
-	cry_reverse Cry_GarbodorMegaGmax
-	cry_reverse Cry_MelmetalMegaGmax
-	cry_reverse Cry_RillaboomMegaGmax
-	cry_reverse Cry_CinderaceMegaGmax
-	cry_reverse Cry_InteleonMegaGmax
-	cry_reverse Cry_CorviknightMegaGmax
-	cry_reverse Cry_OrbeetleMegaGmax
-	cry_reverse Cry_DrednawMegaGmax
-	cry_reverse Cry_CoalossalMegaGmax
-	cry_reverse Cry_FlappleMegaGmax
-	cry_reverse Cry_AppletunMegaGmax
-	cry_reverse Cry_SandacondaMegaGmax
-	cry_reverse Cry_ToxtricityMegaGmax
-	cry_reverse Cry_CentiskorchMegaGmax
-	cry_reverse Cry_HattereneMegaGmax
-	cry_reverse Cry_GrimmsnarlMegaGmax
-	cry_reverse Cry_AlcremieMegaGmax
-	cry_reverse Cry_CopperajahMegaGmax
-	cry_reverse Cry_DuraludonMegaGmax
-	cry_reverse Cry_UrshifuOneMegaGmax
-	cry_reverse Cry_UrshifuRapidMegaGmax

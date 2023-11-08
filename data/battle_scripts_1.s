@@ -8600,19 +8600,10 @@ BattleScript_PetrifyLoop:
 	jumpiftargetally BattleScript_PetrifyLoopIncrement
 	jumpifabsent BS_TARGET, BattleScript_PetrifyLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_PetrifyLoopIncrement
-	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_PetrifyPrevented_Item
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_PetrifyPrevented
-	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_PetrifyPrevented
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_PetrifyPrevented
-.if B_UPDATED_INTIMIDATE >= GEN_8
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_PetrifyPrevented
-	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_PetrifyPrevented
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_PetrifyPrevented
-	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_PetrifyPrevented
-.endif
 	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_PetrifyInReverse
 BattleScript_PetrifyEffect:
 	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPATK, 1, TRUE
 	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_PetrifyLoopIncrement
 	setgraphicalstatchangevalues
 	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_PetrifyContrary
@@ -8658,17 +8649,6 @@ BattleScript_PetrifyContrary:
 BattleScript_PetrifyContrary_WontIncrease:
 	printstring STRINGID_TARGETSTATWONTGOHIGHER
 	goto BattleScript_PetrifyEffect_WaitString
-
-BattleScript_PetrifyPrevented:
-	call BattleScript_AbilityPopUp
-	pause B_WAIT_TIME_LONG
-BattleScript_PetrifyPrevented_Item:
-	setbyte gBattleCommunication STAT_ATK
-	stattextbuffer BS_TARGET
-	printstring STRINGID_STATWASNOTLOWERED
-	waitmessage B_WAIT_TIME_LONG
-	call BattleScript_TryAdrenalineOrb
-	goto BattleScript_PetrifyLoopIncrement
 
 BattleScript_PetrifyInReverse:
 	copybyte sBATTLER, gBattlerTarget

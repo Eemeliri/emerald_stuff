@@ -4307,7 +4307,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
      u8 buffer[16];
-    u32 inches, feet;
+    //u32 inches, feet;
     u8 i = 0;
     int offset;
     u8 result;

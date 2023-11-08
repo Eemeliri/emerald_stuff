@@ -156,8 +156,8 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
 
-static EWRAM_DATA bool8 sAckBallUseBtn = FALSE;
-static EWRAM_DATA bool8 sBallSwapped = FALSE;
+//static EWRAM_DATA bool8 sAckBallUseBtn = FALSE;
+//static EWRAM_DATA bool8 sBallSwapped = FALSE;
 
 void SetControllerToPlayer(u32 battler)
 {
@@ -200,7 +200,7 @@ static void CompleteOnBattlerSpritePosX_0(u32 battler)
         PlayerBufferExecCompleted(battler);
 }
 
-static u16 GetPrevBall(u16 ballId)
+static u16 UNUSED GetPrevBall(u16 ballId)
 {
     u16 ballPrev;
     s32 i, j;
@@ -225,7 +225,7 @@ static u16 GetPrevBall(u16 ballId)
     return gBagPockets[BALLS_POCKET].itemSlots[i].itemId;
 }
 
-static u16 GetNextBall(u16 ballId)
+static u16 UNUSED GetNextBall(u16 ballId)
 {
     u16 ballNext = 0;
     s32 i;
@@ -1433,7 +1433,7 @@ static s32 GetTaskExpValue(u8 taskId)
 
 static void Task_GiveExpToMon(u8 taskId)
 {
-    u32 savedActiveBattler;
+    //u32 savedActiveBattler;
     u32 monId = (u8)(gTasks[taskId].tExpTask_monId);
     u8 battler = gTasks[taskId].tExpTask_battler;
     s32 gainedExp = GetTaskExpValue(taskId);

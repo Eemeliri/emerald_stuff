@@ -1192,40 +1192,6 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA]                 = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  5 },
 #endif
-#if P_GEN_8_POKEMON == TRUE
-    [SPECIES_VENUSAUR_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 11 },
-    [SPECIES_CHARIZARD_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1 },
-    [SPECIES_BLASTOISE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5 },
-    [SPECIES_BUTTERFREE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3 },
-    [SPECIES_PIKACHU_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
-    [SPECIES_MACHAMP_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3 },
-    [SPECIES_GENGAR_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 6 },
-    [SPECIES_KINGLER_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5 },
-    [SPECIES_LAPRAS_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1 },
-    [SPECIES_EEVEE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 7 },
-    [SPECIES_SNORLAX_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5 },
-    [SPECIES_GARBODOR_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2 },
-    [SPECIES_MELMETAL_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 14 },
-    [SPECIES_RILLABOOM_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4 },
-    [SPECIES_CINDERACE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4 },
-    [SPECIES_INTELEON_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4 },
-    [SPECIES_CORVIKNIGHT_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3 },
-    [SPECIES_ORBEETLE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 6 },
-    [SPECIES_DREDNAW_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 12 },
-    [SPECIES_COALOSSAL_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 8 },
-    [SPECIES_FLAPPLE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2 },
-    [SPECIES_APPLETUN_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2 },
-    [SPECIES_SANDACONDA_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5 },
-    [SPECIES_TOXTRICITY_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
-    [SPECIES_CENTISKORCH_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1 },
-    [SPECIES_HATTERENE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3 },
-    [SPECIES_GRIMMSNARL_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 10 },
-    [SPECIES_ALCREMIE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 8 },
-    [SPECIES_COPPERAJAH_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 7 },
-    [SPECIES_DURALUDON_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
-    [SPECIES_URSHIFU_ONE_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4 },
-    [SPECIES_URSHIFU_RAPID_MEGA_GMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4 },
-#endif
 
 
     // Special Mega + Primals

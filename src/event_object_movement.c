@@ -1682,7 +1682,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
     u16 species;
     u8 form;
     bool8 shiny;
-    u8 paletteNum;
+    //u8 paletteNum;
 
     spriteTemplate = malloc(sizeof(struct SpriteTemplate));
     if (graphicsId == OBJ_EVENT_GFX_OW_MON && GetFollowerInfo(&species, &form, &shiny)) {
@@ -1700,7 +1700,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
 
     if (spriteTemplate->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC) {
         const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyPaletteTable : gMonPaletteTable)[species];
-        paletteNum = LoadDynamicFollowerPalette(species, form, shiny);
+        LoadDynamicFollowerPalette(species, form, shiny);
         spriteTemplate->paletteTag = spritePalette->tag;
     } else if (spriteTemplate->paletteTag != TAG_NONE)
         LoadObjectEventPalette(spriteTemplate->paletteTag, FALSE);
@@ -2036,6 +2036,7 @@ static u8 RandomWeightedIndex(u8 *weights, u8 length) {
     if (random_value <= cum_weight)
       return i;
   }
+  return length-1;
 }
 
 // Pool of "unconditional" follower messages TODO: Should this be elsewhere ?
@@ -2679,14 +2680,6 @@ void LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
         LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
 }
 
-static void UNUSED LoadObjectEventPaletteSet(u16 *paletteTags)
-{
-    u8 i;
-
-    for (i = 0; paletteTags[i] != OBJ_EVENT_PAL_TAG_NONE; i++)
-        LoadObjectEventPalette(paletteTags[i]);
-}*/
-
 static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *spritePalette, bool8 shouldTint)
 {
     //u8 paletteNum;
@@ -2731,7 +2724,7 @@ static u8 FindObjectEventPaletteIndexByTag(u16 tag)
     return 0xFF;
 }
 
-static void _PatchObjectPalette(u16 tag, u8 slot)
+static void UNUSED _PatchObjectPalette(u16 tag, u8 slot)
 {
     PatchObjectPalette(tag, slot);
 }
@@ -4992,7 +4985,7 @@ static bool8 EndFollowerTransformEffect(struct ObjectEvent *objectEvent, struct 
 }
 
 static bool8 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
-    u32 multi;
+    //u32 multi;
     /* if (objectEvent->extra.mon.species == SPECIES_CASTFORM && objectEvent->extra.mon.form != (multi = GetOverworldCastformForm())) {
         VarSet(VAR_TEMP_A,sprite->data[7]);
         sprite->data[7] = TRANSFORM_TYPE_PERMANENT << 8;
@@ -5113,7 +5106,7 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
 
 bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
 {
-    u8 direction;
+    //u8 direction;
     if (!objectEvent->singleMovementActive) { // walk in place
 
       if(sprite->oam.mosaic == FALSE){
@@ -5661,6 +5654,7 @@ bool8 ScrFunc_IsFollowerFieldMoveUser(struct ScriptContext *ctx) {
         *var = userIndex == followIndex;
     } else
     return FALSE;
+ return FALSE;
 }
 
 void SetTrainerMovementType(struct ObjectEvent *objectEvent, u8 movementType)
@@ -5780,7 +5774,7 @@ static bool8 ObjectEventOnRightSideStair(struct ObjectEvent *objectEvent, s16 x,
 
 u8 GetCollisionAtCoords(struct ObjectEvent *objectEvent, s16 x, s16 y, u32 dir)
 {
-    u8 direction = dir;
+    //u8 direction = dir;
     u8 currentBehavior = MapGridGetMetatileBehaviorAt(objectEvent->currentCoords.x, objectEvent->currentCoords.y);
     u8 nextBehavior = MapGridGetMetatileBehaviorAt(x, y);
     u8 collision;
@@ -9485,10 +9479,10 @@ static void DoTracksGroundEffect_SlitherTracks(struct ObjectEvent *objEvent, str
 	//  each byte in that row is for the next direction of the bike in the order
 	//  of down, up, left, right.
 	static const u8 slitherTracks_Transitions[4][4] = {
-		1, 2, 7, 8,
-		1, 2, 6, 5,
-		5, 8, 3, 4,
-		6, 7, 3, 4,
+		{1, 2, 7, 8},
+		{1, 2, 6, 5},
+		{5, 8, 3, 4},
+		{6, 7, 3, 4},
 	};
 
 	if (objEvent->currentCoords.x != objEvent->previousCoords.x || objEvent->currentCoords.y != objEvent->previousCoords.y)
