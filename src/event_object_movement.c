@@ -1770,7 +1770,7 @@ struct Pokemon * GetFirstLiveMon(void) { // Return address of first conscious pa
   u8 i;
   for (i=0; i<PARTY_SIZE;i++) {
     if (gPlayerParty[i].hp > 0 
-        && (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) < SPECIES_ROWLET) 
+        //&& (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) < SPECIES_ROWLET) 
         && (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) >= SPECIES_BULBASAUR) 
         && !(gPlayerParty[i].box.isEgg || gPlayerParty[i].box.isBadEgg))
       return &gPlayerParty[i];
@@ -1795,12 +1795,12 @@ static const struct ObjectEventGraphicsInfo * SpeciesToGraphicsInfo(u16 species,
       form %= NUM_UNOWN_FORMS;
       graphicsInfo = &gPokemonObjectGraphics[form ? SPECIES_UNOWN_B + form - 1 : species];
       break;
-    case SPECIES_COMBEE: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
+    /* case SPECIES_COMBEE: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
       if(form==0)
         graphicsInfo = &gPokemonObjectGraphics[SPECIES_COMBEE];
       else
         graphicsInfo = &gPokemonObjectGraphics[722];
-      break;
+      break; */
     case SPECIES_HIPPOPOTAS: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
       if(form==0)
         graphicsInfo = &gPokemonObjectGraphics[SPECIES_HIPPOPOTAS];
