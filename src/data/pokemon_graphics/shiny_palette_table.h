@@ -2883,8 +2883,8 @@ const struct CompressedSpritePalette gFollowMonShinyPaletteTable[] =
 
     SPECIES_SHINY_PAL(ZARUDE_DADA, gMonShinyPalette_ZarudeDada),
 
-    SPECIES_SHINY_PAL(CALYREX_ICE_RIDER, gMonShinyPalette_CalyrexIceRider),
-    SPECIES_SHINY_PAL(CALYREX_SHADOW_RIDER, gMonShinyPalette_CalyrexShadowRider),
+    SPECIES_SHINY_PAL(CALYREX_ICE_RIDER, gFollowMonPalette_CalyrexIceRider),
+    SPECIES_SHINY_PAL(CALYREX_SHADOW_RIDER, gFollowMonPalette_CalyrexShadowRider),
 
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),
 };
