@@ -975,8 +975,8 @@ void FieldShowRegionMap(void)
 
 static bool8 IsPlayerInFrontOfPC(void)
 {
-    u16 x, y;
-    u16 tileInFront;
+    s16 x, y;
+    u32 tileInFront;
 
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     tileInFront = MapGridGetMetatileIdAt(x, y);
@@ -1540,8 +1540,8 @@ void pyramidGauntletRewards(void) {
     
 }
 
-void transformGreensDitto(void) {
-    u8 objId = 3;
+void UNUSED transformGreensDitto(void) {
+    //u8 objId = 3;
     ObjectEventSetGraphicsId(&gObjectEvents[6], OBJ_EVENT_GFX_DITTO);
     ObjectEventTurn(&gObjectEvents[6], DIR_WEST);
 }
@@ -2378,6 +2378,8 @@ void ShowFrontierManiacMessage(void)
         else
             winStreak = gSaveBlock1Ptr->frontier.pyramidWinStreaks[FRONTIER_LVL_OPEN];
         break;
+    default:
+        return;
     }
 
     for (i = 0; i < FRONTIER_MANIAC_MESSAGE_COUNT - 1 && sFrontierManiacStreakThresholds[facility][i] < winStreak; i++);

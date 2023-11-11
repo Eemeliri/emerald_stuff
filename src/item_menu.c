@@ -119,7 +119,7 @@ struct ListBuffer1 {
 };
 
 struct ListBuffer2 {
-    s8 name[MAX_POCKET_ITEMS][ITEM_NAME_LENGTH + 10];
+    u8 name[MAX_POCKET_ITEMS][ITEM_NAME_LENGTH + 10];
 };
 
 struct TempWallyBag {
@@ -148,7 +148,7 @@ static void PrepareTMHMMoveWindow(void);
 static bool8 IsWallysBag(void);
 static void Task_WallyTutorialBagMenu(u8);
 static void Task_BagMenu_HandleInput(u8);
-static void GetItemName(s8 *, u16);
+static void GetItemName(u8 *, u16);
 static void PrintItemDescription(int);
 static void BagMenu_PrintCursorAtPos(u8, u8);
 static void BagMenu_Print(u8, u8, const u8 *, u8, u8, u8, u8, u8, u8);
@@ -299,24 +299,21 @@ static const u8 sMenuText_ByAmount[] = _("Amount");
 static const u8 sMenuText_ByNumber[] = _("Number");
 static const u8 sText_NothingToSort[] = _("There's nothing to sort!");
 static const struct MenuAction sItemMenuActions[] = {
-    [ACTION_USE]               = {gMenuText_Use,      ItemMenu_UseOutOfBattle},
-    [ACTION_TOSS]              = {gMenuText_Toss,     ItemMenu_Toss},
-    [ACTION_REGISTER]          = {gMenuText_Register, ItemMenu_Register},
-    [ACTION_GIVE]              = {gMenuText_Give,     ItemMenu_Give},
-    [ACTION_CANCEL]            = {gText_Cancel2,      ItemMenu_Cancel},
-    [ACTION_BATTLE_USE]        = {gMenuText_Use,      ItemMenu_UseInBattle},
-    [ACTION_CHECK]             = {gMenuText_Check,    ItemMenu_UseOutOfBattle},
-    [ACTION_WALK]              = {gMenuText_Walk,     ItemMenu_UseOutOfBattle},
-    [ACTION_DESELECT]          = {gMenuText_Deselect, ItemMenu_Register},
-    [ACTION_CHECK_TAG]         = {gMenuText_CheckTag, ItemMenu_CheckTag},
-    [ACTION_CONFIRM]           = {gMenuText_Confirm,  Task_FadeAndCloseBagMenu},
-    [ACTION_SHOW]              = {gMenuText_Show,     ItemMenu_Show},
-    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,    ItemMenu_GiveFavorLady},
-    [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,  ItemMenu_ConfirmQuizLady},
-    [ACTION_BY_NAME]           = {sMenuText_ByName,   ItemMenu_SortByName},
-    [ACTION_BY_TYPE]           = {sMenuText_ByType,   ItemMenu_SortByType},
-    [ACTION_BY_AMOUNT]         = {sMenuText_ByAmount, ItemMenu_SortByAmount},
-    [ACTION_DUMMY]             = {gText_EmptyString2, NULL}
+    [ACTION_USE]               = {gMenuText_Use,      {ItemMenu_UseOutOfBattle}},
+    [ACTION_TOSS]              = {gMenuText_Toss,     {ItemMenu_Toss}},
+    [ACTION_REGISTER]          = {gMenuText_Register, {ItemMenu_Register}},
+    [ACTION_GIVE]              = {gMenuText_Give,     {ItemMenu_Give}},
+    [ACTION_CANCEL]            = {gText_Cancel2,      {ItemMenu_Cancel}},
+    [ACTION_BATTLE_USE]        = {gMenuText_Use,      {ItemMenu_UseInBattle}},
+    [ACTION_CHECK]             = {gMenuText_Check,    {ItemMenu_UseOutOfBattle}},
+    [ACTION_WALK]              = {gMenuText_Walk,     {ItemMenu_UseOutOfBattle}},
+    [ACTION_DESELECT]          = {gMenuText_Deselect, {ItemMenu_Register}},
+    [ACTION_CHECK_TAG]         = {gMenuText_CheckTag, {ItemMenu_CheckTag}},
+    [ACTION_CONFIRM]           = {gMenuText_Confirm,  {Task_FadeAndCloseBagMenu}},
+    [ACTION_SHOW]              = {gMenuText_Show,     {ItemMenu_Show}},
+    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,    {ItemMenu_GiveFavorLady}},
+    [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,  {ItemMenu_ConfirmQuizLady}},
+    [ACTION_DUMMY]             = {gText_EmptyString2, {NULL}}
 };
 
 // these are all 2D arrays with a width of 2 but are represented as 1D arrays
@@ -1110,7 +1107,7 @@ static void LoadBagItemListBuffers(u8 pocketId)
     gMultiuseListMenuTemplate.maxShowed = gBagMenu->numShownItems[pocketId];
 }
 
-static void GetItemName(s8 *dest, u16 itemId)
+static void GetItemName(u8 *dest, u16 itemId)
 {
     switch (gBagPosition.pocket)
     {
@@ -2463,7 +2460,7 @@ static void FreeKeyItemWheelGfx(s16 *data) {
 static void Task_KeyItemWheel(u8 taskId) {
     u32 i, j;
     s16 *data = gTasks[taskId].data;
-    struct Sprite *sprite;
+    //struct Sprite *sprite;
     switch (tState)
     {
     case 0:
@@ -2571,11 +2568,17 @@ static void Task_ItemContext_Sell(u8 taskId)
     }
 }
 
+#if I_SELL_VALUE_FRACTION >= GEN_9
+#define ITEM_SELL_FACTOR 4
+#else
+#define ITEM_SELL_FACTOR 2
+#endif
+
 static void DisplaySellItemPriceAndConfirm(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    ConvertIntToDecimalStringN(gStringVar1, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar1, (ItemId_GetPrice(gSpecialVar_ItemId) / ITEM_SELL_FACTOR) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_ICanPayVar1);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, AskSellItems);
 }
@@ -2600,7 +2603,7 @@ static void InitSellHowManyInput(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u8 windowId = BagMenu_AddWindow(ITEMWIN_QUANTITY_WIDE);
 
-    PrintItemSoldAmount(windowId, 1, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount);
+    PrintItemSoldAmount(windowId, 1, (ItemId_GetPrice(gSpecialVar_ItemId) / ITEM_SELL_FACTOR) * tItemCount);
     DisplayCurrentMoneyWindow();
     gTasks[taskId].func = Task_ChooseHowManyToSell;
 }
@@ -2611,7 +2614,7 @@ static void Task_ChooseHowManyToSell(u8 taskId)
 
     if (AdjustQuantityAccordingToDPadInput(&tItemCount, tQuantity) == TRUE)
     {
-        PrintItemSoldAmount(gBagMenu->windowIds[ITEMWIN_QUANTITY_WIDE], tItemCount, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount);
+        PrintItemSoldAmount(gBagMenu->windowIds[ITEMWIN_QUANTITY_WIDE], tItemCount, (ItemId_GetPrice(gSpecialVar_ItemId) / ITEM_SELL_FACTOR) * tItemCount);
     }
     else if (JOY_NEW(A_BUTTON))
     {
@@ -2635,7 +2638,7 @@ static void ConfirmSell(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
-    ConvertIntToDecimalStringN(gStringVar1, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar1, (ItemId_GetPrice(gSpecialVar_ItemId) / ITEM_SELL_FACTOR) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_TurnedOverVar1ForVar2);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, SellItem);
 }
@@ -2648,7 +2651,7 @@ static void SellItem(u8 taskId)
 
     PlaySE(SE_SHOP);
     RemoveBagItem(gSpecialVar_ItemId, tItemCount);
-    AddMoney(&gSaveBlock1Ptr->money, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount);
+    AddMoney(&gSaveBlock1Ptr->money, (ItemId_GetPrice(gSpecialVar_ItemId) / ITEM_SELL_FACTOR) * tItemCount);
     DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
     UpdatePocketItemList(gBagPosition.pocket);
     UpdatePocketListPosition(gBagPosition.pocket);
@@ -2946,8 +2949,7 @@ static void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top
     AddTextPrinterParameterized4(windowId, fontId, left, top, letterSpacing, lineSpacing, sFontColorTable[colorIndex], speed, str);
 }
 
-// Unused
-static u8 BagMenu_GetWindowId(u8 windowType)
+static u8 UNUSED BagMenu_GetWindowId(u8 windowType)
 {
     return gBagMenu->windowIds[windowType];
 }
@@ -3486,38 +3488,6 @@ static const u16 sItemsByType[ITEMS_COUNT] =
         [ITEM_AUDINITE] = ITEM_TYPE_MEGA_STONE,
         [ITEM_DIANCITE] = ITEM_TYPE_MEGA_STONE,
         [ITEM_ULTRANECROZIUM_Z] =  ITEM_TYPE_MEGA_STONE,
-        [ITEM_VENUSAURIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CHARIZARDIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_BLASTOISIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GENGARIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_BUTTERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_PIKACHUMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_MACHAPMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_KINGLEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_LAPRAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_EEVEEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_SNORLAXMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GARBOMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_MELMEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_RILLAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CINDERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_INTELMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CORVIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ORBEETMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_DREDMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_COALOSMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_FLAPMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_APPLEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_SANDAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_TOXIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_CENTIMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_HATTEMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_GRIMMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ALCREMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_COPPERMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_DURAMAX] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_RAPID_SCROLL] = ITEM_TYPE_MEGA_STONE,
-        [ITEM_ONE_STRIKE_SCROLL] = ITEM_TYPE_MEGA_STONE,
         
         [ITEM_NORMALIUM_Z] = ITEM_TYPE_Z_CRYSTAL,
         [ITEM_FIGHTINIUM_Z] = ITEM_TYPE_Z_CRYSTAL,
@@ -3665,19 +3635,19 @@ static void Task_LoadBagSortOptions(u8 taskId)
 }
 
 #define tSortType data[2]
-static void ItemMenu_SortByName(u8 taskId)
+static void UNUSED ItemMenu_SortByName(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_ALPHABETICALLY;
     StringCopy(gStringVar1, sSortTypeStrings[SORT_ALPHABETICALLY]);
     gTasks[taskId].func = SortBagItems;
 }
-static void ItemMenu_SortByType(u8 taskId)
+static void UNUSED ItemMenu_SortByType(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_BY_TYPE;
     StringCopy(gStringVar1, sSortTypeStrings[SORT_BY_TYPE]);
     gTasks[taskId].func = SortBagItems;
 }
-static void ItemMenu_SortByAmount(u8 taskId)
+static void UNUSED ItemMenu_SortByAmount(u8 taskId)
 {
     gTasks[taskId].tSortType = SORT_BY_AMOUNT; //greatest->least
     StringCopy(gStringVar1, sSortTypeStrings[SORT_BY_AMOUNT]);
@@ -3706,7 +3676,7 @@ static void SortBagItems(u8 taskId)
 
 static void Task_SortFinish(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
+    //s16* data = gTasks[taskId].data;
 
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
@@ -3719,7 +3689,7 @@ static void SortItemsInBag(u8 pocket, u8 type)
 {
     struct ItemSlot* itemMem;
     u16 itemAmount;
-    s8 (*func)(struct ItemSlot*, struct ItemSlot*);
+    //s8 (*func)(struct ItemSlot*, struct ItemSlot*);
 
     switch (pocket)
     {

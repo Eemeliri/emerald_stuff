@@ -74,6 +74,7 @@
 #define GEN_LATEST GEN_9
 
 // General settings
-#define EXPANSION_INTRO   FALSE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define EXPANSION_INTRO   TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define POKEDEX_PLUS_HGSS TRUE   // If TRUE, enables the custom HGSS style Pokedex.
 
 #endif // GUARD_CONFIG_H

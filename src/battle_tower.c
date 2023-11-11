@@ -1207,8 +1207,7 @@ u16 GetRandomScaledFrontierTrainerId(u8 challengeNum, u8 battleNum)
     return trainerId;
 }
 
-// Unused
-static void GetRandomScaledFrontierTrainerIdRange(u8 challengeNum, u8 battleNum, u16 *trainerIdPtr, u8 *rangePtr)
+static void UNUSED GetRandomScaledFrontierTrainerIdRange(u8 challengeNum, u8 battleNum, u16 *trainerIdPtr, u8 *rangePtr)
 {
     u16 trainerId, range;
 
@@ -1902,7 +1901,7 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
 }
 
 // Probably an early draft before the 'CreateApprenticeMon' was written.
-static void Unused_CreateApprenticeMons(u16 trainerId, u8 firstMonId)
+static void UNUSED Unused_CreateApprenticeMons(u16 trainerId, u8 firstMonId)
 {
     s32 i, j;
     u8 friendship = MAX_FRIENDSHIP;
@@ -2497,7 +2496,7 @@ static void LoadMultiPartnerCandidatesData(void)
     u32 lvlMode, battleMode;
     s32 challengeNum;
     u32 species1, species2;
-    u32 level;
+    u32 UNUSED level;
     struct ObjectEventTemplate *objEventTemplates;
 
     objEventTemplates = gSaveBlock1Ptr->objectEventTemplates;
@@ -2680,7 +2679,7 @@ static void ShowPartnerCandidateMessage(void)
 {
     s32 i, j, partnerId;
     s32 monId;
-    s32 level = SetFacilityPtrsGetLevel();
+    s32 UNUSED level = SetFacilityPtrsGetLevel();
     u16 winStreak = GetCurrentFacilityWinStreak();
     s32 challengeNum = winStreak / FRONTIER_STAGES_PER_CHALLENGE;
     s32 k = gSpecialVar_LastTalked - 2;
@@ -3042,7 +3041,7 @@ static void AwardBattleTowerRibbons(void)
 
 // This is a leftover debugging function that is used to populate the E-Reader
 // trainer with the player's current data.
-static void FillEReaderTrainerWithPlayerData(void)
+static void UNUSED FillEReaderTrainerWithPlayerData(void)
 {
     struct BattleTowerEReaderTrainer *ereaderTrainer = &gSaveBlock1Ptr->frontier.ereaderTrainer[0];
     s32 i, j;
@@ -3176,8 +3175,9 @@ void TryHideBattleTowerReporter(void)
 
 static void FillPartnerParty(u16 trainerId)
 {
-    s32 i, j;
-    u32 ivs, level;
+    s32 i; 
+    u32 j;
+    u32 ivs, level, personality;
     u32 friendship;
     u16 monId;
     u32 otID;
@@ -3225,8 +3225,8 @@ static void FillPartnerParty(u16 trainerId)
         {
             do
             {
-                j = Random32();
-            } while (IsShinyOtIdPersonality(otID, j));
+                personality = Random32();
+            } while (IsShinyOtIdPersonality(otID, personality));
 
             switch (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].partyFlags)
             {

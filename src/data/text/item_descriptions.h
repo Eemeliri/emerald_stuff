@@ -2406,9 +2406,15 @@ static const u8 sWhiteHerbDesc[] = _(
     "lowered stat.");
 
 static const u8 sExpShareDesc[] = _(
-    "Turning this on\n"
-    "gives all in party\n"
-    "Exp. points.");
+#if I_EXP_SHARE_ITEM >= GEN_6
+    "This device gives\n"
+    "exp. to other\n"
+    "party members.");
+#else
+    "A hold item that\n"
+    "gets Exp. points\n"
+    "from battles.");
+#endif
 
 static const u8 sQuickClawDesc[] = _(
     "A hold item that\n"
@@ -4013,164 +4019,77 @@ static const u8 sBerserkGene[] = _(
     "Attack, but causes\n"
     "lasting confusion.");
 
-static const u8 sVenusaurimaxDesc[] = _(
-    "This stone enables\n"
-    "Venusaur to Mega\n"
-    "Evolve in battle.");
+static const u8 sFairyFeatherDesc[] = _(
+    "A hold item that\n"
+    "raises the power of\n"
+    "Fairy-type moves.");
 
-static const u8 sCharizardimaxDesc[] = _(
-    "This stone enables\n"
-    "Charizard to Mega\n"
-    "Evolve in battle.");
+static const u8 sSyrupyAppleDesc[] = _(
+    "A very syrupy apple\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
 
-static const u8 sBlastoisimaxDesc[] = _(
-    "This stone enables\n"
-    "Blastoise to Mega\n"
-    "Evolve in battle.");
+static const u8 sUnremarkableTeacupDesc[] = _(
+    "A cracked teacup\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
 
-static const u8 sGengarimaxDesc[] = _(
-    "This stone enables\n"
-    "Gengar to Mega\n"
-    "Evolve in battle.");
+static const u8 sMasterpieceTeacupDesc[] = _(
+    "A chipped teacup\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
 
-static const u8 sButtermaxDesc[] = _(
-    "This stone enables\n"
-    "Butterfree to Mega\n"
-    "Evolve in battle.");
+static const u8 sCornerstoneMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Rock-\n"
+    "type in battle.");
 
-static const u8 sPikachumaxDesc[] = _(
-    "This stone enables\n"
-    "Pikachu to Mega\n"
-    "Evolve in battle.");
+static const u8 sWellspringMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Water-\n"
+    "type in battle.");
 
-static const u8 sMachapmaxDesc[] = _(
-    "This stone enables\n"
-    "Machamp to Mega\n"
-    "Evolve in battle.");
+static const u8 sHearthflameMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Fire-\n"
+    "type in battle.");
 
-static const u8 sKinglemaxDesc[] = _(
-    "This stone enables\n"
-    "Kingler to Mega\n"
-    "Evolve in battle.");
+static const u8 sHealthMochiDesc[] = _(
+    "An item that raises\n"
+    "the base HP of\n"
+    "a Pokémon.");
 
-static const u8 sLapramaxDesc[] = _(
-    "This stone enables\n"
-    "Lapras to Mega\n"
-    "Evolve in battle.");
+static const u8 sMuscleMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Attack of\n"
+    "a Pokémon.");
 
-static const u8 sEeveemaxDesc[] = _(
-    "This stone enables\n"
-    "Eevee to Mega\n"
-    "Evolve in battle.");
+static const u8 sResistMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Defense\n"
+    "of a Pokémon.");
 
-static const u8 sSnorlaxmaxDesc[] = _(
-    "This stone enables\n"
-    "Snorlax to Mega\n"
-    "Evolve in battle.");
+static const u8 sGeniusMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Sp. Atk.\n"
+    "of a Pokémon.");
 
-static const u8 sGarbomaxDesc[] = _(
-    "This stone enables\n"
-    "Garbodor to Mega\n"
-    "Evolve in battle.");
+static const u8 sCleverMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Sp. Def.\n"
+    "of a Pokémon.");
 
-static const u8 sMelmemaxDesc[] = _(
-    "This stone enables\n"
-    "Melmetal to Mega\n"
-    "Evolve in battle.");
+static const u8 sSwiftMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Speed of\n"
+    "a Pokémon.");
 
-static const u8 sRillamaxDesc[] = _(
-    "This stone enables\n"
-    "Rillaboom to Mega\n"
-    "Evolve in battle.");
+static const u8 sFreshStartMochiDesc[] = _(
+    "An item that resets\n"
+    "all base points of\n"
+    "a Pokémon.");
 
-static const u8 sCindermaxDesc[] = _(
-    "This stone enables\n"
-    "Cinderace to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sIntelmaxDesc[] = _(
-    "This stone enables\n"
-    "Inteleon to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sCorvimaxDesc[] = _(
-    "This stone enables\n"
-    "Corviknight to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sOrbeetmaxDesc[] = _(
-    "This stone enables\n"
-    "Orbeetle to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sDreadmaxDesc[] = _(
-    "This stone enables\n"
-    "Drednaw to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sCoalosmaxDesc[] = _(
-    "This stone enables\n"
-    "Coalossal to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sFlapmaxDesc[] = _(
-    "This stone enables\n"
-    "Flapple to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sApplemaxDesc[] = _(
-    "This stone enables\n"
-    "Appletun to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sSandamaxDesc[] = _(
-    "This stone enables\n"
-    "Sandaconda to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sToximaxDesc[] = _(
-    "This stone enables\n"
-    "Toxtricity to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sCentimaxDesc[] = _(
-    "This stone enables\n"
-    "Centiskorch to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sHattemaxDesc[] = _(
-    "This stone enables\n"
-    "Hatterene to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sGrimmaxDesc[] = _(
-    "This stone enables\n"
-    "Grimmsnarl to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sAlcremaxDesc[] = _(
-    "This stone enables\n"
-    "Alcremie to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sCoppermaxDesc[] = _(
-    "This stone enables\n"
-    "Copperajah to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sDuramaxDesc[] = _(
-    "This stone enables\n"
-    "Duraludon to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sRapidScrollDesc[] = _(
-    "This scroll enables\n"
-    "Rapid Strike Style\n"
-    "Urshifu to Gigantamax\n"
-    "in battle.");
-
-static const u8 sOneStrikeDesc[] = _(
-    "This scroll enables\n"
-    "Single Strike Style\n"
-    "Urshifu to Gigantamax\n"
-    "in battle.");
+static const u8 sGlimmeringCharmDesc[] = _(
+    "A charm that will\n"
+    "raise the shards\n"
+    "from Tera Raids.");
