@@ -40,6 +40,7 @@ Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
 Dreadwing93 - Arbok variant sprites
 Hbdfreitas - BW style hp bars
+PokemonCrazy - Move effectiveness
 
 Ekat's tileset credits:	
 Ekat
