@@ -5399,7 +5399,6 @@ const struct Item gItems[] =
         .itemId = ITEM_LUCK_INCENSE,
         .price = 11000,
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
-        .holdEffectParam = 10,
         .description = sLuckIncenseDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -6169,7 +6168,6 @@ const struct Item gItems[] =
         .itemId = ITEM_AMULET_COIN,
         .price = 10000,
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
-        .holdEffectParam = 10,
         .description = sAmuletCoinDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -9075,8 +9073,8 @@ const struct Item gItems[] =
         .importance = 1,
         .description = sRotomCatalogDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RotomCatalog,
     },
 
     [ITEM_GRACIDEA] =
@@ -9120,8 +9118,8 @@ const struct Item gItems[] =
         .importance = 1,
         .description = sZygardeCubeDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ZygardeCube,
     },
 
     [ITEM_PRISON_BOTTLE] =
