@@ -1,1 +1,11 @@
 mapscripts ShamoutiIsland_MapScripts {}
+
+
+script ShamotiSlowbro {
+    bufferspeciesname(0, SPECIES_SLOWKING)
+    lock
+    faceplayer
+    msgbox(format("It's quite chilly here isn't it? I could use a pair of pants..."))
+    release
+    end
+}
