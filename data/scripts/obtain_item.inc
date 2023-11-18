@@ -5,6 +5,8 @@ Std_ObtainItem::
 	copyvar VAR_0x8006, ITEMID
 	additem ITEMID, AMOUNT
 	copyvar VAR_0x8007, VAR_RESULT
+	delay 10
+	showitemdesc
 	call EventScript_ObtainItemMessage
 	return
 
@@ -69,12 +71,10 @@ EventScript_BufferMegaStonesPocket::
 	return
 
 EventScript_ObtainedItem:: @ 8271B95
-	compare VAR_0x8001, TRUE
+	compare VAR_0x8001, 1
 	goto_if_eq EventScript_ObtainedItemMessage
 	buffernumberstring 0, VAR_0x8001
 	message gText_ObtainedTheItems
-	delay 10
-	showitemdesc
 	goto EventScript_ContinueObtainedItem
 EventScript_ObtainedItemMessage:
 	message gText_ObtainedTheItem
@@ -82,7 +82,7 @@ EventScript_ContinueObtainedItem:
 	waitfanfare
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	hideitemdesc
-	setvar VAR_RESULT, TRUE
+	setvar VAR_RESULT, 1
 	return
 
 EventScript_NoRoomForItem::
