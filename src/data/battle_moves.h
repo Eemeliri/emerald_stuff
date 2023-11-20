@@ -9565,7 +9565,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .argument = STATUS1_SLEEP,
         .sheerForceBoost = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
@@ -13694,7 +13693,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GLAIVE_RUSH] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_GLAIVE_RUSH
+        .effect = EFFECT_GLAIVE_RUSH,
         .power = 120,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -13874,7 +13873,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGING_BULL] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_RAGING_BULL
+        .effect = EFFECT_RAGING_BULL,
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,
