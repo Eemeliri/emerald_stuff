@@ -3395,14 +3395,14 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
 
 static const struct TrainerMonCustomized sParty_Roxanne1[] = {
     {
-    .iv = TRAINER_PARTY_IVS(20, 15, 15, 15, 15, 15),
+    .iv = TRAINER_PARTY_IVS(10, 15, 0, 15, 0, 0),
     .lvl = 14,
     .species = SPECIES_RHYHORN,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_HORN_ATTACK, MOVE_SCARY_FACE, MOVE_ICE_FANG, MOVE_ROCK_TOMB}
     },
     {
-    .iv = TRAINER_PARTY_IVS(20, 0, 15, 15, 15, 15),
+    .iv = TRAINER_PARTY_IVS(10, 0, 15, 15, 15, 0),
     .lvl = 14,
     .species = SPECIES_LILEEP,
     .heldItem = ITEM_NONE,
@@ -3410,7 +3410,7 @@ static const struct TrainerMonCustomized sParty_Roxanne1[] = {
     .moves = {MOVE_SANDSTORM, MOVE_ABSORB, MOVE_CONSTRICT, MOVE_ROCK_TOMB}
     },
     {
-    .iv = TRAINER_PARTY_IVS(20, 0, 15, 15, 15, 15),
+    .iv = TRAINER_PARTY_IVS(15, 0, 15, 15, 15, 0),
     .lvl = 15,
     .species = SPECIES_NOSEPASS,
     .ball = ITEM_FRIEND_BALL,
