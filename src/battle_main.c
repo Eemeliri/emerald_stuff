@@ -2011,22 +2011,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 const struct TrainerMonNoItemDefaultMoves *partyData = trainer->party.NoItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
 
-                int rand_diff = Random() % 5;
+                int rand_diff = Random() % 4;
                 switch(rand_diff)
                 {
                     case 0:
                         rand_diff = 0;
                         break;
                     case 1:
-                        rand_diff = 0;
-                        break;
-                    case 2:
                         rand_diff = -1;
                         break;
-                    case 3:
+                    case 2:
                         rand_diff = -2;
                         break;
-                    case 4:
+                    case 3:
                         rand_diff = -3;
                 }
 
@@ -2052,7 +2049,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 } else {
                     scaledLevel = partyData[i].lvl;
                 } */
-                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                if(HasLevelEvolution(partyData[i].species, biasedLevel))
                     CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 else
                     CreateMon(&party[i], partyData[i].species, biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
@@ -2063,22 +2060,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 const struct TrainerMonNoItemCustomMoves *partyData = trainer->party.NoItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
 
-                int rand_diff = Random() % 5;
+                int rand_diff = Random() % 4;
                 switch(rand_diff)
                 {
                     case 0:
-                        rand_diff = 1;
-                        break;
-                    case 1:
                         rand_diff = 0;
                         break;
-                    case 2:
+                    case 1:
                         rand_diff = -1;
                         break;
-                    case 3:
+                    case 2:
                         rand_diff = -2;
                         break;
-                    case 4:
+                    case 3:
                         rand_diff = -3;
                 }
 
@@ -2111,22 +2105,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemDefaultMoves *partyData = trainer->party.ItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                int rand_diff = Random() % 5;
+                int rand_diff = Random() % 4;
                 switch(rand_diff)
                 {
                     case 0:
-                        rand_diff = 1;
-                        break;
-                    case 1:
                         rand_diff = 0;
                         break;
-                    case 2:
+                    case 1:
                         rand_diff = -1;
                         break;
-                    case 3:
+                    case 2:
                         rand_diff = -2;
                         break;
-                    case 4:
+                    case 3:
                         rand_diff = -3;
                 }
 
@@ -2155,22 +2146,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemCustomMoves *partyData = trainer->party.ItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                int rand_diff = Random() % 5;
+                int rand_diff = Random() % 4;
                 switch(rand_diff)
                 {
                     case 0:
-                        rand_diff = 1;
-                        break;
-                    case 1:
                         rand_diff = 0;
                         break;
-                    case 2:
+                    case 1:
                         rand_diff = -1;
                         break;
-                    case 3:
+                    case 2:
                         rand_diff = -2;
                         break;
-                    case 4:
+                    case 3:
                         rand_diff = -3;
                 }
 
@@ -2217,22 +2205,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     otIdType = OT_ID_PRESET;
                     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
                 }
-                int rand_diff = Random() % 5;
+                int rand_diff = Random() % 4;
                 switch(rand_diff)
                 {
                     case 0:
-                        rand_diff = 1;
-                        break;
-                    case 1:
                         rand_diff = 0;
                         break;
-                    case 2:
+                    case 1:
                         rand_diff = -1;
                         break;
-                    case 3:
+                    case 2:
                         rand_diff = -2;
                         break;
-                    case 4:
+                    case 3:
                         rand_diff = -3;
                 }
 
