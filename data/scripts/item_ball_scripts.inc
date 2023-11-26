@@ -146,6 +146,10 @@ Route116_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
 
+RuggedRoad_EventScript_ItemAirBalloon::
+	finditem ITEM_AIR_BALLOON
+	end
+
 Route117_EventScript_ItemGreatBall::
 	finditem ITEM_GREAT_BALL
 	end
@@ -682,7 +686,7 @@ ShoalCave_EventScript_ItemGlalitite:: @ 82912F0
 	finditem ITEM_GLALITITE
 	end
 
-Route127_EventScript_ItemHeracronite:: @ 82912F0
+RuggedRoad_EventScript_ItemHeracronite:: @ 82912F0
 	finditem ITEM_HERACRONITE
 	end
 

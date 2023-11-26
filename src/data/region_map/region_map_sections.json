@@ -721,12 +721,12 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_2",
-      "name": "Route 2",
-      "x": 0,
-      "y": 0,
+      "map_section": "MAPSEC_RUGGED_ROAD",
+      "name": "Rugged Road",
+      "x": 2,
+      "y": 6,
       "width": 1,
-      "height": 1
+      "height": 3
     },
     {
       "map_section": "MAPSEC_ROUTE_3",

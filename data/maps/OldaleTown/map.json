@@ -25,7 +25,7 @@
     },
     {
       "map": "MAP_ROUTE102",
-      "offset": 0,
+      "offset": -4,
       "direction": "left"
     }
   ],

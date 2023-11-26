@@ -679,8 +679,8 @@
 #define FLAG_HIDE_POSTGAME_EVERGRANDE_BIRCH  0x27C // Hide birch before postgame for shaymin event
 #define FLAG_RECEIVED_FRESH_WATER  0x27D
 #define FLAG_HIDE_FARFETCHD_MAN  0x27E // petalburg woods quest
-#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
+#define FLAG_HIDDEN_ITEM_RUGGED_ROAD_1  0x27F // Rock
+#define FLAG_HIDDEN_ITEM_RUGGED_ROAD_2  0x280 // flower patch
 #define FLAG_UNUSED_0x281  0x281 // Unused Flag
 #define FLAG_UNUSED_0x282  0x282 // Unused Flag
 #define FLAG_UNUSED_0x283  0x283 // Unused Flag
@@ -1260,7 +1260,7 @@
 #define FLAG_ITEM_GARCHOMPITE                                       0x4BA // Unused Flag
 #define FLAG_ITEM_AUDINITE                                          0x4BB // Unused Flag
 #define FLAG_ITEM_SLATEPORT_WATER_BALL                              0x4BC // Waterium Z
-#define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
+#define FLAG_ITEM_RUGGED_ROAD_AIR_BALLOON                           0x4BD 
 #define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag
 #define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
 #define FLAG_ITEM_SKYPILLAR_4F_TM_64                                0x4C0 // Unused Flag

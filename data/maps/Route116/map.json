@@ -22,6 +22,11 @@
       "map": "MAP_RUSTBORO_CITY",
       "offset": 0,
       "direction": "left"
+    },
+    {
+      "map": "MAP_RUGGED_ROAD",
+      "offset": 38,
+      "direction": "down"
     }
   ],
   "object_events": [

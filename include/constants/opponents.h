@@ -899,8 +899,12 @@
 #define TRAINER_VAJRA_CHALLENGE_7           894
 #define TRAINER_VAJRA_CHALLENGE_8           895
 #define TRAINER_VAJRA_CHALLENGE_9           896
+#define TRAINER_RUGGED_ROAD_SCHOOLKID       897
+#define TRAINER_RUGGED_ROAD_HIKER           898
+#define TRAINER_RUGGED_ROAD_PICNICKER       899
+#define TRAINER_RUGGED_ROAD_CAMPER          900
 
-#define REGULAR_TRAINER_END                 TRAINER_VAJRA_CHALLENGE_9
+#define REGULAR_TRAINER_END                 TRAINER_RUGGED_ROAD_CAMPER
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -987,8 +991,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      967
-#define MAX_TRAINERS_COUNT                  968
+#define TRAINERS_COUNT                      971
+#define MAX_TRAINERS_COUNT                  972
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 

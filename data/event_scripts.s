@@ -1184,3 +1184,5 @@ EventScript_Text_CheckSavefileSize:
 	.include "data/maps/VajraVillage/scripts.inc"
 
 	.include "data/maps/ShamoutiIsland/scripts.inc"
+
+	.include "data/maps/RuggedRoad/scripts.inc"

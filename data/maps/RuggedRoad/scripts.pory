@@ -1,0 +1,56 @@
+mapscripts RuggedRoad_MapScripts {}
+
+script RuggedRoad_Lady {
+    lock
+    faceplayer
+    msgbox(format("This is a shortcut to Route 102, but there's no going back once you start hopping down the ledges!"))
+    release
+    end
+}
+
+script RuggedRoad_BoyRoute102 {
+    lock
+    faceplayer
+    msgbox(format("I wanted to go meet my friend in the Rustboro City, but I guess the only way is through the Petalburg Woods."))
+    release
+    end
+}
+
+script RuggedRoadNorthSign {
+    msgbox(format("{DOWN_ARROW} Route 102\nWarning! One way cliffs!"), MSGBOX_SIGN)
+    end
+}
+
+script RuggedRoadSouthSign {
+    msgbox(format("{UP_ARROW} Rugged Road"), MSGBOX_SIGN)
+    end
+}
+
+script RuggedRoadCaveSign {
+    msgbox(format("Rugged Cave, beware of sudden temperature changes!"), MSGBOX_SIGN)
+    end
+}
+
+script trainerSchooldKidRuggedRoad {
+    trainerbattle_single(TRAINER_RUGGED_ROAD_SCHOOLKID, format("I'm on my way back to Petalburg, but first let me test something I learned in school!"), format("I need to study harder..."))
+    msgbox(format("Have you already challenged Roxanne? She sometimes visits the trainer school to teach us!"), MSGBOX_AUTOCLOSE)
+    end
+}
+
+script trainerHikerRuggedRoad {
+    trainerbattle_single(TRAINER_RUGGED_ROAD_HIKER, format("I hear there is a cave around here, did you see it?"), format("I might've missed it..."))
+    msgbox(format("I wanted to see if there were any rare ice Pokémon inside the Rugged Cave."), MSGBOX_AUTOCLOSE)
+    end
+}
+
+script trainerPicnickerRuggedRoad {
+    trainerbattle_single(TRAINER_RUGGED_ROAD_PICNICKER, format("Are you perhaps lost?"), format("Right on the track!"))
+    msgbox(format("I hear people sometimes drop items when admiring the flowers here."), MSGBOX_AUTOCLOSE)
+    end
+}
+
+script trainerCamperRuggedRoad {
+    trainerbattle_single(TRAINER_RUGGED_ROAD_CAMPER, format("Hey there! Let's have a fun battle to break up this trip"), format("Nothing like a good battle!"))
+    msgbox(format("Short camping trips can be very refreshing for body and mind!"), MSGBOX_AUTOCLOSE)
+    end
+}

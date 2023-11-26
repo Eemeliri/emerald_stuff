@@ -12905,6 +12905,53 @@ static const struct TrainerMonCustomized sParty_Vajra_Challenger1[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_Joni[] = {
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_MUNCHLAX,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Matti[] = {
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_GEODUDE_ALOLAN,
+    },
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_ONIX,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Liisa[] = {
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_EXEGGCUTE,
+    },
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_TANGELA,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Jukka[] = {
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_GIRAFARIG,
+    },
+    {
+    .iv = 0,
+    .lvl = 0,
+    .species = SPECIES_WOOPER_PALDEAN,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Everett[] = {
     {
     .iv = 0,

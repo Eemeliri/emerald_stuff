@@ -175,7 +175,7 @@
       "id": "LAYOUT_ROUTE102",
       "name": "Route102_Layout",
       "width": 50,
-      "height": 20,
+      "height": 24,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route102/border.bin",
@@ -5030,6 +5030,16 @@
       "secondary_tileset": "gTileset_ShamoutiShrine",
       "border_filepath": "data/layouts/ShamoutiIsland/border.bin",
       "blockdata_filepath": "data/layouts/ShamoutiIsland/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_ROAD",
+      "name": "RuggedRoad_Layout",
+      "width": 34,
+      "height": 60,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/RuggedRoad/border.bin",
+      "blockdata_filepath": "data/layouts/RuggedRoad/map.bin"
     }
   ]
 }
