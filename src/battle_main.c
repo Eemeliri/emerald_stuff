@@ -2010,19 +2010,95 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonNoItemDefaultMoves *partyData = trainer->party.NoItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (partyData[i].lvl == 0) {
+
+                int rand_diff = Random() % 5;
+                switch(rand_diff)
+                {
+                    case 0:
+                        rand_diff = 0;
+                        break;
+                    case 1:
+                        rand_diff = 0;
+                        break;
+                    case 2:
+                        rand_diff = -1;
+                        break;
+                    case 3:
+                        rand_diff = -2;
+                        break;
+                    case 4:
+                        rand_diff = -3;
+                }
+
+                scaledLevel = GetHighestLevelInPlayerParty();
+                u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
+                if (biasedLevel + partyData[i].lvl > 100)
+                {
+                    biasedLevel = 100;
+                }
+                    else if (biasedLevel + partyData[i].lvl < 1)
+                {
+                    biasedLevel = 1;
+                }
+                    else
+                {
+                    biasedLevel = biasedLevel + rand_diff;
+                }
+                
+                /* if (partyData[i].lvl == 0) {
                     scaledLevel = GetCurrentLevelCap();
+                } else if (partyData[i].lvl == -1) {
+                    scaledLevel = GetCurrentLevelCap()-1;
                 } else {
                     scaledLevel = partyData[i].lvl;
-                }
-                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                } */
+                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                    CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                else
+                    CreateMon(&party[i], partyData[i].species, biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
             {
                 const struct TrainerMonNoItemCustomMoves *partyData = trainer->party.NoItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+
+                int rand_diff = Random() % 5;
+                switch(rand_diff)
+                {
+                    case 0:
+                        rand_diff = 1;
+                        break;
+                    case 1:
+                        rand_diff = 0;
+                        break;
+                    case 2:
+                        rand_diff = -1;
+                        break;
+                    case 3:
+                        rand_diff = -2;
+                        break;
+                    case 4:
+                        rand_diff = -3;
+                }
+
+                scaledLevel = GetHighestLevelInPlayerParty();
+                if (scaledLevel + partyData[i].lvl > 100)
+                {
+                    scaledLevel = 100;
+                }
+                    else if (scaledLevel + partyData[i].lvl < 1)
+                {
+                    scaledLevel = 1;
+                }
+                    else
+                {
+                    scaledLevel = scaledLevel + rand_diff;
+                }
+                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                else
+                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
@@ -2035,7 +2111,42 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemDefaultMoves *partyData = trainer->party.ItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                int rand_diff = Random() % 5;
+                switch(rand_diff)
+                {
+                    case 0:
+                        rand_diff = 1;
+                        break;
+                    case 1:
+                        rand_diff = 0;
+                        break;
+                    case 2:
+                        rand_diff = -1;
+                        break;
+                    case 3:
+                        rand_diff = -2;
+                        break;
+                    case 4:
+                        rand_diff = -3;
+                }
+
+                scaledLevel = GetHighestLevelInPlayerParty();
+                if (scaledLevel + partyData[i].lvl > 100)
+                {
+                    scaledLevel = 100;
+                }
+                    else if (scaledLevel + partyData[i].lvl < 1)
+                {
+                    scaledLevel = 1;
+                }
+                    else
+                {
+                    scaledLevel = scaledLevel + rand_diff;
+                }
+                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                else
+                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -2044,11 +2155,41 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemCustomMoves *partyData = trainer->party.ItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (partyData[i].lvl == 0) {
-                    scaledLevel = GetCurrentLevelCap();
-                } else {
-                    scaledLevel = partyData[i].lvl;
+                int rand_diff = Random() % 5;
+                switch(rand_diff)
+                {
+                    case 0:
+                        rand_diff = 1;
+                        break;
+                    case 1:
+                        rand_diff = 0;
+                        break;
+                    case 2:
+                        rand_diff = -1;
+                        break;
+                    case 3:
+                        rand_diff = -2;
+                        break;
+                    case 4:
+                        rand_diff = -3;
                 }
+
+                scaledLevel = GetHighestLevelInPlayerParty();
+                if (scaledLevel + partyData[i].lvl > 100)
+                {
+                    scaledLevel = 100;
+                }
+                    else if (scaledLevel + partyData[i].lvl < 1)
+                {
+                    scaledLevel = 1;
+                }
+                    else
+                {
+                    scaledLevel = scaledLevel + rand_diff;
+                }
+                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                else
                 CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
@@ -2076,11 +2217,41 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     otIdType = OT_ID_PRESET;
                     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
                 }
-                if (partyData[i].lvl == 0) {
-                    scaledLevel = GetCurrentLevelCap();
-                } else {
-                    scaledLevel = partyData[i].lvl;
+                int rand_diff = Random() % 5;
+                switch(rand_diff)
+                {
+                    case 0:
+                        rand_diff = 1;
+                        break;
+                    case 1:
+                        rand_diff = 0;
+                        break;
+                    case 2:
+                        rand_diff = -1;
+                        break;
+                    case 3:
+                        rand_diff = -2;
+                        break;
+                    case 4:
+                        rand_diff = -3;
                 }
+
+                scaledLevel = GetHighestLevelInPlayerParty();
+                if (scaledLevel + partyData[i].lvl > 100)
+                {
+                    scaledLevel = 100;
+                }
+                    else if (scaledLevel + partyData[i].lvl < 1)
+                {
+                    scaledLevel = 1;
+                }
+                    else
+                {
+                    scaledLevel = scaledLevel + rand_diff;
+                }
+                if(HasLevelEvolution(partyData[i].species, scaledLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
+                else
                 CreateMon(&party[i], partyData[i].species, scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
@@ -5932,4 +6103,16 @@ bool32 IsWildMonSmart(void)
 #else
     return FALSE;
 #endif
+}
+
+u16 HasLevelEvolution(u16 species, u8 level)
+{
+	if(gEvolutionTable[species][0].param && gEvolutionTable[species][0].param <= level)
+	{
+		if(HasLevelEvolution(gEvolutionTable[species][0].targetSpecies, level))
+			return HasLevelEvolution(gEvolutionTable[species][0].targetSpecies, level);
+		else
+			return gEvolutionTable[species][0].targetSpecies;
+	}
+	return 0;
 }

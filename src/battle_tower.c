@@ -3626,6 +3626,29 @@ s32 GetHighestLevelInPlayerParty(void)
     return highestLevel;
 }
 
+u8 getPlayerBiasedAverageLevel(u8 maxLevel)
+{
+	u32 i, sum, count;
+	
+	for (i = 0, sum = 0, count = 0; i < PARTY_SIZE; ++i)
+	{
+		u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+	
+		if (species != SPECIES_NONE && species != SPECIES_EGG) //Viable mon
+		{
+			u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+			
+			if (maxLevel - level < 5) //This level is within 5 levels of the max
+			{
+				sum += level;
+				++count;
+			}
+		}
+	}
+
+	return sum / count;
+}
+
 // Frontier Trainer parties are roughly scaled in difficulty with higher trainer IDs, so scale IVs as well
 // Duplicated in Battle Dome as GetDomeTrainerMonIvs
 static u8 GetFrontierTrainerFixedIvs(u16 trainerId)
