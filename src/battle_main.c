@@ -4955,6 +4955,9 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     if (gBattleMons[battler].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
         speed /= B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4;
 
+    if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SWAMP)
+        speed /= 4;
+
     return speed;
 }
 
@@ -5008,27 +5011,8 @@ s8 GetMovePriority(u32 battler, u16 move)
     {
         priority++;
     }
-    else if (ability == ABILITY_TRIAGE)
-    {
-        switch (gBattleMoves[move].effect)
-        {
-        case EFFECT_RESTORE_HP:
-        case EFFECT_REST:
-        case EFFECT_MORNING_SUN:
-        case EFFECT_MOONLIGHT:
-        case EFFECT_SYNTHESIS:
-        case EFFECT_HEAL_PULSE:
-        case EFFECT_HEALING_WISH:
-        case EFFECT_SWALLOW:
-        case EFFECT_WISH:
-        case EFFECT_SOFTBOILED:
-        case EFFECT_ABSORB:
-        case EFFECT_ROOST:
-        case EFFECT_JUNGLE_HEALING:
-            priority += 3;
-            break;
-        }
-    }
+    else if (ability == ABILITY_TRIAGE && IsHealingMoveEffect(gBattleMoves[move].effect))
+        priority += 3;
 
     if (gProtectStructs[battler].quash)
         priority = -8;

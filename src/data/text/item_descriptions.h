@@ -3849,7 +3849,7 @@ static const u8 sContestPassDesc[] = _(
     "for entering\n"
     "Pokémon Contests.");
 
-static const u8 sOaksParcelDesc[] = _(
+static const u8 sParcelDesc[] = _(
     "A parcel for Prof.\n"
     "Oak from a Pokémon\n"
     "Mart's clerk.");

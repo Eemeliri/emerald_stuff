@@ -34,6 +34,7 @@
 #include "window.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
+#include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -1841,6 +1842,9 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId, u32 battler)
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
     u8 *txtPtr;
+    u8 type;
+    u32 itemId;
+    struct Pokemon *mon;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
@@ -1848,7 +1852,20 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-    StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
+    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
+    {
+        mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+        itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
+
+        if (ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_MASK)
+            type = ItemId_GetSecondaryId(itemId);
+        else
+            type = gBattleMoves[MOVE_IVY_CUDGEL].type;
+    }
+    else
+        type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+
+    StringCopy(txtPtr, gTypeNames[type]);
     BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, 1, battler));
 }
 

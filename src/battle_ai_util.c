@@ -1477,30 +1477,6 @@ bool32 IsConfusionMoveEffect(u32 moveEffect)
     }
 }
 
-bool32 IsStatLoweringMoveEffect(u32 moveEffect)
-{
-    switch (moveEffect)
-    {
-    case EFFECT_ATTACK_DOWN:
-    case EFFECT_DEFENSE_DOWN:
-    case EFFECT_SPEED_DOWN:
-    case EFFECT_SPECIAL_ATTACK_DOWN:
-    case EFFECT_SPECIAL_DEFENSE_DOWN:
-    case EFFECT_ACCURACY_DOWN:
-    case EFFECT_EVASION_DOWN:
-    case EFFECT_ATTACK_DOWN_2:
-    case EFFECT_DEFENSE_DOWN_2:
-    case EFFECT_SPEED_DOWN_2:
-    case EFFECT_SPECIAL_ATTACK_DOWN_2:
-    case EFFECT_SPECIAL_DEFENSE_DOWN_2:
-    case EFFECT_ACCURACY_DOWN_2:
-    case EFFECT_EVASION_DOWN_2:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
 bool32 IsHazardMoveEffect(u32 moveEffect)
 {
     switch (moveEffect)
@@ -2110,6 +2086,8 @@ bool32 IsHealingMoveEffect(u32 effect)
     case EFFECT_HEAL_PULSE:
     case EFFECT_REST:
     case EFFECT_JUNGLE_HEALING:
+    case EFFECT_ABSORB:
+    case EFFECT_DREAM_EATER:
         return TRUE;
     default:
         return FALSE;
@@ -3860,4 +3838,12 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
 bool32 AI_IsBattlerAsleepOrComatose(u32 battlerId)
 {
     return (gBattleMons[battlerId].status1 & STATUS1_SLEEP) || AI_DATA->abilities[battlerId] == ABILITY_COMATOSE;
+}
+
+u32 AI_CalcSecondaryEffectChance(u32 battler, u32 secondaryEffectChance)
+{
+    if (AI_DATA->abilities[battler] == ABILITY_SERENE_GRACE)
+        secondaryEffectChance *= 2;
+
+    return secondaryEffectChance;
 }

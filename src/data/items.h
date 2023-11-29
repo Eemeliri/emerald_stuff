@@ -9082,6 +9082,7 @@ const struct Item gItems[] =
         .name = _("Gracidea"),
         .itemId = ITEM_GRACIDEA,
         .price = 0,
+        .importance = 1,
         .description = sGracideaDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -9093,6 +9094,7 @@ const struct Item gItems[] =
         .name = _("Reveal Glass"),
         .itemId = ITEM_REVEAL_GLASS,
         .price = 0,
+        .importance = 1,
         .description = sRevealGlassDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -9104,10 +9106,11 @@ const struct Item gItems[] =
         .name = _("DNA Splicers"),
         .itemId = ITEM_DNA_SPLICERS,
         .price = 0,
+        .importance = 1,
         .description = sDNASplicersDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_ZYGARDE_CUBE] =
@@ -9127,6 +9130,7 @@ const struct Item gItems[] =
         .name = _("Prison Bottle"),
         .itemId = ITEM_PRISON_BOTTLE,
         .price = 0,
+        .importance = 1,
         .description = sPrisonBottleDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -9138,10 +9142,11 @@ const struct Item gItems[] =
         .name = _("N-Solarizer"),
         .itemId = ITEM_N_SOLARIZER,
         .price = 0,
+        .importance = 1,
         .description = sNSolarizerDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_N_LUNARIZER] =
@@ -9149,10 +9154,11 @@ const struct Item gItems[] =
         .name = _("N-Lunarizer"),
         .itemId = ITEM_N_LUNARIZER,
         .price = 0,
+        .importance = 1,
         .description = sNLunarizerDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_REINS_OF_UNITY] =
@@ -9160,10 +9166,11 @@ const struct Item gItems[] =
         .name = _("ReinsOfUnity"),
         .itemId = ITEM_REINS_OF_UNITY,
         .price = 0,
+        .importance = 1,
         .description = sReinsOfUnityDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
 // Battle Mechanic Key Items
@@ -9324,7 +9331,11 @@ const struct Item gItems[] =
         .registrability = TRUE,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
+#if I_VS_SEEKER_CHARGING != 0
+        .fieldUseFunc = FieldUseFunc_VsSeeker,
+#else
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+#endif
     },
 
     [ITEM_TM_CASE] =
@@ -9712,12 +9723,11 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_OAKS_PARCEL] =
+    [ITEM_PARCEL] =
     {
-        .name = _("Oak's Parcel"),
-        .itemId = ITEM_OAKS_PARCEL,
+        .name = _("Parcel"),
         .price = 0,
-        .description = sOaksParcelDesc,
+        .description = sParcelDesc,
         .importance = 2,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
