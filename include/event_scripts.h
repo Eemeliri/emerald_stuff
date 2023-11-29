@@ -659,5 +659,9 @@ extern const u8 SandpitEast[];
 //Vajra Pyramid traps
 extern const u8 CofagrigusSightTile[];
 
+extern const u8 VSSeeker_Text_BatteryNotChargedNeedXSteps[];
+extern const u8 VSSeeker_Text_NoTrainersWithinRange[];
+extern const u8 VSSeeker_Text_TrainersNotReady[];
+extern const u8 EventScript_VsSeekerChargingDone[];
 
 #endif // GUARD_EVENT_SCRIPTS_H

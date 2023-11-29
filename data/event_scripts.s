@@ -1036,6 +1036,13 @@ EventScript_CheckSavefileSize::
 EventScript_Text_CheckSavefileSize:
 	.string "SaveBlock1 size: {STR_VAR_1}/16336 bytes.\nSaveBlock2 size: {STR_VAR_2}/4084 bytes.\p{PKMN}Storage size: {STR_VAR_3}/36756 bytes.$"
 
+EventScript_VsSeekerChargingDone::
+	special VsSeekerFreezeObjectsAfterChargeComplete
+	waitstate
+	special VsSeekerResetObjectMovementAfterChargeComplete
+	releaseall
+	end
+
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"
 	.include "data/scripts/abnormal_weather.inc"
