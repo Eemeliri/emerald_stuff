@@ -475,7 +475,10 @@
     "VajraPyramidBF2",
     "PetalburgWoodsDepths",
     "VajraPyramidBF3",
-    "VajraPyramidBF4"
+    "VajraPyramidBF4",
+    "RuggedCave",
+    "RuggedCave2",
+    "RuggedCave3"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

@@ -1,0 +1,26 @@
+mapscripts RuggedCave_MapScripts {}
+
+script phanpyRuggedCave {
+    bufferspeciesname(0, SPECIES_PHANPY)
+}
+
+script zubatRuggedCave {
+    bufferspeciesname(0, SPECIES_ZUBAT)
+}
+
+script RuggedCaveHiker {
+    lock
+    faceplayer
+    msgbox(format("I heard there was a colder area with rare Pokémon further into this cave, but I don't have Rock Smash to continue..."))
+    release
+    end
+}
+
+script nemZubat {
+    lock
+    setwildbattle(SPECIES_ZUBAT, 15)
+    dowildbattle
+    setvar(VAR_TEMP_2, 1)
+    release
+    end
+}

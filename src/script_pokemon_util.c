@@ -166,6 +166,50 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
 }
+
+void CreateScriptedWildMon2(u16 species, u8 level, u16 item, u8 abilityNum, u16 move1, u16 move2, u16 move3, u16 move4, bool8 isShiny)
+{
+    u8 heldItem[2];
+
+    ZeroEnemyPartyMons();
+    if (isShiny)
+    {
+        CreateShinyMonWithNature(&gEnemyParty[0], species, level, PickWildMonNature());    
+    } else {
+        CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, PickWildMonNature());
+    }
+    if (item)
+    {
+        heldItem[0] = item;
+        heldItem[1] = item >> 8;
+        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+    }
+
+    if (abilityNum == 0xFF || GetAbilityBySpecies(species, abilityNum) == 0)
+    {
+        do {
+            abilityNum = Random() % 3;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+    }
+    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+    if (move1)
+    {
+        SetMonMoveSlot(&gEnemyParty[0], move1, 0);
+    }
+    if (move2)
+    {
+        SetMonMoveSlot(&gEnemyParty[0], move2, 1);
+    }
+    if (move3)
+    {
+        SetMonMoveSlot(&gEnemyParty[0], move3, 2);
+    }
+    if (move4)
+    {
+        SetMonMoveSlot(&gEnemyParty[0], move4, 3);
+    }
+}
+
 void CreateScriptedDoubleWildMon(u16 species1, u8 level1, u16 item1, u16 species2, u8 level2, u16 item2)
 {
     u8 heldItem1[2];

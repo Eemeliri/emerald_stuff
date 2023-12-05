@@ -566,6 +566,10 @@ ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce::
 	finditem ITEM_NEVER_MELT_ICE
 	end
 
+RuggedCave3_EventScript_ItemIcyRock::
+	finditem ITEM_ICY_ROCK
+	end
+
 SeafloorCavern_Room9_EventScript_ItemTM26::
 	finditem ITEM_TM26
 	end
@@ -682,7 +686,7 @@ AbandonedShip_EventScript_ItemBeedrillite:: @ 82912F0
 	finditem ITEM_BEEDRILLITE
 	end
 
-ShoalCave_EventScript_ItemGlalitite:: @ 82912F0
+RuggedCave3_EventScript_ItemGlalitite:: @ 82912F0
 	finditem ITEM_GLALITITE
 	end
 
@@ -868,7 +872,7 @@ AquaHideout_B2F_EventScript_ItemTM97:: @ 829138C
 	finditem ITEM_TM97
 	end
 
-ShoalCave_LowTideInnerRoom_EventScript_ItemTM79:: @ 82913CD
+RuggedCave3_EventScript_ItemTM79:: @ 82913CD
 	finditem ITEM_TM79
 	end
 

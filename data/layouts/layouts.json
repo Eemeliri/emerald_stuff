@@ -5040,6 +5040,36 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/RuggedRoad/border.bin",
       "blockdata_filepath": "data/layouts/RuggedRoad/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_CAVE",
+      "name": "RuggedCave_Layout",
+      "width": 36,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RuggedCave/border.bin",
+      "blockdata_filepath": "data/layouts/RuggedCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_CAVE2",
+      "name": "RuggedCave2_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RuggedCave2/border.bin",
+      "blockdata_filepath": "data/layouts/RuggedCave2/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_CAVE3",
+      "name": "RuggedCave3_Layout",
+      "width": 20,
+      "height": 21,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RuggedCave3/border.bin",
+      "blockdata_filepath": "data/layouts/RuggedCave3/map.bin"
     }
   ]
 }
