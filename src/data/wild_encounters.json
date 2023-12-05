@@ -16255,17 +16255,17 @@
               {
                 "min_level": 9,
                 "max_level": 12,
-                "species": "SPECIES_CUBONE"
+                "species": "SPECIES_RHYHORN"
               },
               {
                 "min_level": 9,
                 "max_level": 12,
-                "species": "SPECIES_KANGASKHAN"
+                "species": "SPECIES_RHYHORN"
               },
               {
                 "min_level": 9,
                 "max_level": 12,
-                "species": "SPECIES_KANGASKHAN"
+                "species": "SPECIES_RHYHORN"
               }
             ]
           },

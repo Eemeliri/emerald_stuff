@@ -1299,7 +1299,7 @@
 #define FLAG_HEIGHT_PUZZLE_SOLVED                                   0x4E1 
 #define FLAG_RUGGED_CAVE3_ICYROCK                                   0x4E2 
 #define FLAG_RUGGED_CAVE3_ICYBREATH                                 0x4E3
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
+#define FLAG_RUGGED_CAVE3_SNEASEL                                   0x4E4
 #define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
 #define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
 #define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
