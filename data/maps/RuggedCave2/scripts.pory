@@ -1,0 +1,13 @@
+mapscripts RuggedCave2_MapScripts {}
+
+script snoruntRuggedCave2 {
+    bufferspeciesname(0, SPECIES_SNORUNT)
+}
+
+script sandshrewRuggedCave2 {
+    bufferspeciesname(0, SPECIES_SANDSHREW_ALOLAN)
+}
+
+script swinubRuggedCave2 {
+    bufferspeciesname(0, SPECIES_SWINUB)
+}

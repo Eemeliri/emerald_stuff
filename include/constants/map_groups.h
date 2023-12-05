@@ -445,6 +445,9 @@
 #define MAP_PETALBURG_WOODS_DEPTHS (1 | (25 << 8))
 #define MAP_VAJRA_PYRAMID_BF3      (2 | (25 << 8))
 #define MAP_VAJRA_PYRAMID_BF4      (3 | (25 << 8))
+#define MAP_RUGGED_CAVE            (4 | (25 << 8))
+#define MAP_RUGGED_CAVE2           (5 | (25 << 8))
+#define MAP_RUGGED_CAVE3           (6 | (25 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (26 << 8))
