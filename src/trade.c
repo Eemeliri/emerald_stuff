@@ -3343,8 +3343,7 @@ static bool8 DoTradeAnim(void)
     if (sTradeAnim->isCableTrade)
         return DoTradeAnim_Cable();
     else
-        return AnimateDepositSequenceWireless();
-        //return AnimateTradeSequenceWireless();
+        return DoTradeAnim_Wireless();
 }
 
 // Below are the states for the main switch in DoTradeAnim_Cable and DoTradeAnim_Wireless
@@ -4389,7 +4388,7 @@ static bool8 UNUSED DoTradeAnim_Wireless(void)
 }
 
 
-static bool8 AnimateDepositSequenceWireless(void)
+static UNUSED bool8 AnimateDepositSequenceWireless(void)
 {
     
 
