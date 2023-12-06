@@ -6833,7 +6833,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Mudkip[] 
     {
     .iv = 0,
     .lvl = 5,
-    .species = SPECIES_TREECKO,
+    .species = SPECIES_CHIKORITA,
     }
 };
 
@@ -6841,7 +6841,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Mudkip[] 
     {
     .iv = 50,
     .lvl = 18,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 50,
@@ -6851,7 +6851,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Mudkip[] 
     {
     .iv = 100,
     .lvl = 20,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     }
 };
 
@@ -6859,7 +6859,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute119Mudkip[] 
     {
     .iv = 100,
     .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 100,
@@ -6869,7 +6869,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute119Mudkip[] 
     {
     .iv = 150,
     .lvl = 31,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     }
 };
 
@@ -6921,7 +6921,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Torchic[]
     {
     .iv = 0,
     .lvl = 5,
-    .species = SPECIES_MUDKIP,
+    .species = SPECIES_PIPLUP,
     }
 };
 
@@ -6934,12 +6934,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Torchic[]
     {
     .iv = 50,
     .lvl = 18,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 100,
     .lvl = 20,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_PRINPLUP,
     }
 };
 
@@ -6952,12 +6952,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute119Torchic[]
     {
     .iv = 100,
     .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 150,
     .lvl = 31,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_PRINPLUP,
     }
 };
 
@@ -6965,7 +6965,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute103Mudkip[] = {
     {
     .iv = 0,
     .lvl = 5,
-    .species = SPECIES_TREECKO,
+    .species = SPECIES_CHIKORITA,
     }
 };
 
@@ -6978,12 +6978,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute110Mudkip[] = {
     {
     .iv = 50,
     .lvl = 18,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 100,
     .lvl = 20,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     }
 };
 
@@ -6991,7 +6991,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute119Mudkip[] = {
     {
     .iv = 100,
     .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 100,
@@ -7001,7 +7001,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute119Mudkip[] = {
     {
     .iv = 150,
     .lvl = 31,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     }
 };
 
@@ -7053,7 +7053,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute103Torchic[] = {
     {
     .iv = 0,
     .lvl = 5,
-    .species = SPECIES_MUDKIP,
+    .species = SPECIES_PIPLUP,
     }
 };
 
@@ -7066,12 +7066,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute110Torchic[] = {
     {
     .iv = 50,
     .lvl = 18,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 100,
     .lvl = 20,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_PRINPLUP,
     }
 };
 
@@ -7084,12 +7084,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute119Torchic[] = {
     {
     .iv = 100,
     .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = 150,
     .lvl = 31,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_PRINPLUP,
     }
 };
 
@@ -7898,7 +7898,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroMudkip[] 
     {
     .iv = 50,
     .lvl = 15,
-    .species = SPECIES_TREECKO,
+    .species = SPECIES_CHIKORITA,
     }
 };
 
@@ -7994,7 +7994,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRustboroMudkip[] = {
     {
     .iv = 50,
     .lvl = 15,
-    .species = SPECIES_TREECKO,
+    .species = SPECIES_CHIKORITA,
     }
 };
 
