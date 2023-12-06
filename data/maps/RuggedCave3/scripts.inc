@@ -15,11 +15,11 @@ SneaselRuggedCave3::
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_eq SneaselRuggedCave3_2
 SneaselRuggedCave3_1:
-	removeobject 1
 	release
 	end
 
 SneaselRuggedCave3_2:
 	setflag FLAG_RUGGED_CAVE3_SNEASEL
+	removeobject 1
 	goto SneaselRuggedCave3_1
 

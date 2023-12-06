@@ -1265,7 +1265,7 @@
 #define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
 #define FLAG_ITEM_SKYPILLAR_4F_TM_64                                0x4C0 // Unused Flag
 #define FLAG_ITEM_JAGGEDPASS_TM_69                                  0x4C1 // Unused Flag
-#define FLAG_ITEM_SHOALCAVE_INNERROOM_TM79                          0x4C2 // Unused Flag
+#define FLAG_ITEM_RUGGEDROAD_TM_83                                  0x4C2
 #define FLAG_ITEM_ROUTE134_TM80                                     0x4C3 // Unused Flag
 #define FLAG_ITEM_VICTORYROAD_BF2_TM81                              0x4C4 // Unused Flag
 #define FLAG_ITEM_FORTREECITY_TM86                                  0x4C5 // Unused Flag

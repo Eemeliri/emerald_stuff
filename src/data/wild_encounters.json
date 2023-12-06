@@ -15943,7 +15943,7 @@
               {
                 "min_level": 16,
                 "max_level": 22,
-                "species": "SPECIES_CATERPIE"
+                "species": "SPECIES_GASTLY"
               },
               {
                 "min_level": 16,
@@ -15953,11 +15953,11 @@
               {
                 "min_level": 16,
                 "max_level": 22,
-                "species": "SPECIES_METAPOD"
+                "species": "SPECIES_GASTLY"
               },
               {
                 "min_level": 16,
-                "max_level": 22,
+                "max_level": 19,
                 "species": "SPECIES_VENIPEDE"
               },
               {
@@ -15983,7 +15983,7 @@
               {
                 "min_level": 16,
                 "max_level": 22,
-                "species": "SPECIES_WYNAUT"
+                "species": "SPECIES_WHIRLIPEDE"
               },
               {
                 "min_level": 16,
@@ -15993,7 +15993,7 @@
               {
                 "min_level": 16,
                 "max_level": 22,
-                "species": "SPECIES_WYNAUT"
+                "species": "SPECIES_MISDREAVUS"
               }
             ]
           }

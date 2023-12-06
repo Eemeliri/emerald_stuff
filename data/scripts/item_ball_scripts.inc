@@ -876,6 +876,10 @@ RuggedCave3_EventScript_ItemTM79:: @ 82913CD
 	finditem ITEM_TM79
 	end
 
+RuggedRoad_EventScript_ItemTM83:: @ 82913CD
+	finditem ITEM_TM83
+	end
+
 SeafloorCavern_Room7_EventScript_ItemTM55:: @ 8291401
 	finditem ITEM_TM55
 	end

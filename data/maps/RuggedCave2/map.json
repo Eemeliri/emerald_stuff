@@ -2,7 +2,7 @@
   "id": "MAP_RUGGED_CAVE2",
   "name": "RuggedCave2",
   "layout": "LAYOUT_RUGGED_CAVE2",
-  "music": "MUS_HG_UNION_CAVE",
+  "music": "MUS_HG_ICE_PATH",
   "region_map_section": "MAPSEC_RUGGED_ROAD",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
