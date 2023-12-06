@@ -517,7 +517,7 @@
 #define FLAG_BOTHBIKES                       0x1E0
 #define FLAG_RECEIVED_BOTHBIKES              0x1E1
 #define FLAG_MOVE_RELEARNER                  0x1E2
-#define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
+#define FLAG_ALLOW_RELEARNING_ANYWHERE       0x1E3
 
 // Mystery Gift Flags (Unknown)
 #define FLAG_MYSTERY_GIFT_DONE               0x1E4
