@@ -989,3 +989,14 @@ const struct Tileset gTileset_ShamoutiShrine =
     .metatileAttributes = gMetatileAttributes_ShamoutiShrine,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_DewfordDojo =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DewfordDojo,
+    .palettes = gTilesetPalettes_DewfordDojo,
+    .metatiles = gMetatiles_DewfordDojo,
+    .metatileAttributes = gMetatileAttributes_DewfordDojo,
+    .callback = NULL,
+};

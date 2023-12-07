@@ -4857,7 +4857,7 @@
       "width": 45,
       "height": 45,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_DewfordDojo",
       "border_filepath": "data/layouts/Dewford_TrainingGrounds/border.bin",
       "blockdata_filepath": "data/layouts/Dewford_TrainingGrounds/map.bin"
     },

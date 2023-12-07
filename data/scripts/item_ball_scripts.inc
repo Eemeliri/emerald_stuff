@@ -19,7 +19,7 @@ Route104_EventScript_ItemPokeBall::
 	end
 
 Route104_EventScript_ItemXAccuracy::
-	finditem ITEM_X_ACCURACY
+	finditem ITEM_GRIP_CLAW
 	end
 
 Route104_EventScript_ItemPotion::
@@ -131,7 +131,7 @@ Route116_EventScript_ItemXSpecial::
 	end
 
 Route116_EventScript_ItemEther::
-	finditem ITEM_ETHER
+	finditem ITEM_PROTEIN
 	end
 
 Route116_EventScript_ItemRepel::
@@ -143,7 +143,7 @@ Route116_EventScript_ItemHPUp::
 	end
 
 Route116_EventScript_ItemPotion::
-	finditem ITEM_POTION
+	finditem ITEM_LAX_MINT
 	end
 
 RuggedRoad_EventScript_ItemAirBalloon::

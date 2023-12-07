@@ -13,8 +13,8 @@ script SneaselRuggedCave3 {
     specialvar(VAR_RESULT, GetBattleOutcome)
     if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
         setflag(FLAG_RUGGED_CAVE3_SNEASEL)
-        removeobject(1)
     }
+    removeobject(1)
     release
     end
 }
