@@ -330,7 +330,7 @@ void RtcCalcLocalTimeFast(void)
 bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 {
     if (end < begin)
-        return hours > begin || hours < end;
+        return hours >= begin || hours < end;
     else
         return hours >= begin && hours < end;
 }
