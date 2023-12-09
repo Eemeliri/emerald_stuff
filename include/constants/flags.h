@@ -682,8 +682,8 @@
 #define FLAG_HIDDEN_ITEM_RUGGED_ROAD_1  0x27F // Rock
 #define FLAG_HIDDEN_ITEM_RUGGED_ROAD_2  0x280 // flower patch
 #define FLAG_TEMP_HIDE_FOLLOWER  0x281
-#define FLAG_UNUSED_0x282  0x282 // Unused Flag
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
+#define FLAG_DEWFORD_GYM_GUARD  0x282
+#define FLAG_DEWFORD_GYM_TM66  0x283
 #define FLAG_UNUSED_0x284  0x284 // Unused Flag
 #define FLAG_UNUSED_0x285  0x285 // Unused Flag
 #define FLAG_UNUSED_0x286  0x286 // Unused Flag

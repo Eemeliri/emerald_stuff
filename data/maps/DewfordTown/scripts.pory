@@ -1,3 +1,4 @@
+raw `
 @ Sailing to and from Dewford uses local IDs from different maps
 @ e.g. Route 104's sail to Dewford script references local IDs from Dewford's map
 @ All of these local IDs are labeled here
@@ -802,18 +803,12 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
+`
 
-dewfordGymGuard::
-	lock
-	faceplayer
-	msgbox dewfordGymGuard_Text_0
-	release
-	end
-
-
-dewfordGymGuard_Text_0:
-	.string "Hello, are you a gym challenger?\n"
-	.string "Unfortunately Brawly is currently\l"
-	.string "running some errands. If you are in a\l"
-	.string "hurry to find him, you should check the\l"
-	.string "Dojo south of here.$"
+script dewfordGymGuard {
+    lock
+    faceplayer
+    msgbox(format("Hello, are you a gym challenger? Unfortunately Brawly is currently running some errands. If you are in a hurry to find him, you should check the Dojo south of here."))
+    release
+    end
+}

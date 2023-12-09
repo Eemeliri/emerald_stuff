@@ -394,6 +394,10 @@ MeteorFalls_1F_1R_EventScript_ItemMoonStone::
 	finditem ITEM_MOON_STONE
 	end
 
+DewfordDojo_EventScript_ItemTM66::
+	finditem ITEM_TM66
+	end
+
 MeteorFalls_1F_1R_EventScript_ItemPPUP::
 	finditem ITEM_PP_UP
 	end

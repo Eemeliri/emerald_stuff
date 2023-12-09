@@ -1,3 +1,80 @@
 mapscripts Dewford_TrainingGrounds_MapScripts {}
 
 
+script dewfordDojoMakuhita {
+    bufferspeciesname(0, SPECIES_MAKUHITA)
+
+    lock
+    faceplayer
+    playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
+    delay(40)
+    waitmoncry
+    release
+    end
+}
+
+script dewfordDojoMeditite {
+    bufferspeciesname(0, SPECIES_MEDITITE)
+
+    lock
+    faceplayer
+    playmoncry(SPECIES_MEDITITE, CRY_MODE_NORMAL)
+    delay(40)
+    waitmoncry
+    release
+    end
+}
+
+script dewfordDojoBattleItemSeller {
+    lock
+    faceplayer
+    msgbox(format("Not feeling the progress? I have something that might help you if you can help me fund my training fees..."))
+    pokemart(powerItemsDewford)
+    msgbox(format("Come again!"))
+    release
+    end
+}
+
+mart powerItemsDewford {
+    ITEM_POWER_ANKLET
+    ITEM_POWER_BAND
+    ITEM_POWER_BELT
+    ITEM_POWER_BRACER
+    ITEM_POWER_LENS
+    ITEM_POWER_WEIGHT
+}
+
+script blackbeltDewfordDojo {
+    lock
+    faceplayer
+    msgbox(format("Makuhita and I are training in hopes of passing the gym test. Those who pass are allowed to work in Brawly's gym!"))
+    release
+    end
+}
+
+script battlegirlDewfordDojo {
+    lock
+    faceplayer
+    msgbox(format("The training never stops! Brawly says endurance is as important as strength, so I'm gonna run until I faint!"))
+    release
+    end
+}
+
+script oceanmanDewfordDojo {
+    lock
+    msgbox(format("I wonder how long we would need to swim in order to reach another region..."))
+    playmoncry(SPECIES_MEDITITE, CRY_MODE_NORMAL)
+    
+    msgbox(format("Medii..."))
+    waitmoncry
+    release
+    end
+}
+
+script veteranDewfordDojo {
+    lock
+    faceplayer
+    msgbox(format("Our dojo is renowned for its training methods. If you are interested in strengthening yourself or your Pokémon, you have come to the right place."))
+    release
+    end
+}

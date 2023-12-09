@@ -22,11 +22,6 @@
       "map": "MAP_ROUTE107",
       "offset": 0,
       "direction": "right"
-    },
-    {
-      "map": "MAP_DEWFORD_TRAINING_GROUNDS",
-      "offset": -9,
-      "direction": "down"
     }
   ],
   "object_events": [
@@ -94,6 +89,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DewfordTown_EventScript_TrendyPhraseBoy",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "x": 8,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "dewfordGymGuard",
+      "flag": "FLAG_DEWFORD_GYM_GUARD"
     }
   ],
   "warp_events": [
@@ -130,6 +138,20 @@
       "y": 8,
       "elevation": 0,
       "dest_map": "MAP_DEWFORD_TOWN_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_DEWFORD_TRAINING_GROUNDS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 8,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_DEWFORD_TRAINING_GROUNDS",
       "dest_warp_id": "0"
     }
   ],
