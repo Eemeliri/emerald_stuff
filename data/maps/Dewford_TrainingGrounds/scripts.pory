@@ -55,7 +55,7 @@ script blackbeltDewfordDojo {
 script battlegirlDewfordDojo {
     lock
     faceplayer
-    msgbox(format("The training never stops! Brawly says endurance is as important as strength, so I'm gonna run until I faint!"))
+    msgbox(format("The training never stops! Brawly says endurance is as important as strength, so I'm going to run until I faint!"))
     release
     end
 }

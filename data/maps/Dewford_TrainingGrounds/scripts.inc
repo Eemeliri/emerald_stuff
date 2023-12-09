@@ -94,7 +94,7 @@ blackbeltDewfordDojo_Text_0:
 battlegirlDewfordDojo_Text_0:
 	.string "The training never stops! Brawly says\n"
 	.string "endurance is as important as strength,\l"
-	.string "so I'm gonna run until I faint!$"
+	.string "so I'm going to run until I faint!$"
 
 oceanmanDewfordDojo_Text_0:
 	.string "I wonder how long we would need to swim\n"
