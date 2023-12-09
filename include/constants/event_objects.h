@@ -393,10 +393,6 @@
 #define OBJ_EVENT_PAL_TAG_WHITE                   (OBJ_EVENT_PAL_TAG_NONE - 1)
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
-// If true, follower pokemon will bob up and down
-// during their idle & walking animations
-#define OW_MON_BOBBING  TRUE
-
 // If true, adds a small amount of overhead
 // to OW code so that large (48x48, 64x64) OWs
 // will display correctly under bridges, etc.
