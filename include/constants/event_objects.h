@@ -389,6 +389,8 @@
 #define OBJ_EVENT_PAL_TAG_GENGAR                 0x1155
 #define OBJ_EVENT_PAL_TAG_MAGMA_GRUNT_F          0x1156
 #define OBJ_EVENT_PAL_TAG_EMOTES                  0x8002
+// Not a real OW palette tag; used for the white flash applied to followers
+#define OBJ_EVENT_PAL_TAG_WHITE                   (OBJ_EVENT_PAL_TAG_NONE - 1)
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #define SHADOW_SIZE_S   0

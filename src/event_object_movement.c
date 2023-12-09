@@ -2676,7 +2676,12 @@ void LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
 {
     u16 i = FindObjectEventPaletteIndexByTag(paletteTag);
 
-    if (i != OBJ_EVENT_PAL_TAG_NONE) // always true
+    // FindObjectEventPaletteIndexByTag returns 0xFF on failure, not OBJ_EVENT_PAL_TAG_NONE.
+#ifdef BUGFIX
+    if (i != 0xFF)
+#else
+    if (i != OBJ_EVENT_PAL_TAG_NONE)
+#endif
         LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
 }
 
@@ -6961,11 +6966,11 @@ bool8 MovementAction_WalkInPlaceSlowDown_Step0(struct ObjectEvent *objectEvent, 
     return MovementAction_WalkInPlaceSlow_Step1(objectEvent, sprite);
 }
 
-// Copy and load objectEvent's palette, but set all opaque colors to white
-static u8 LoadWhiteFlashPalette(struct ObjectEvent *objectEvent, struct Sprite *sprite) {
+// Update sprite with a palette filled with a solid color
+static u8 LoadFillColorPalette(u16 color, u16 paletteTag, struct Sprite *sprite) {
   u16 paletteData[16];
-  struct SpritePalette dynamicPalette = {.tag = OBJ_EVENT_PAL_TAG_NONE-1, .data = paletteData};  // TODO: Use a proper palette tag here
-  CpuFill16(RGB_WHITE, paletteData, 32);
+  struct SpritePalette dynamicPalette = {.tag = paletteTag, .data = paletteData};
+  CpuFill16(color, paletteData, PLTT_SIZE_4BPP);
   return UpdateSpritePalette(&dynamicPalette, sprite);
 }
 
@@ -7043,7 +7048,7 @@ bool8 MovementAction_ExitPokeball_Step1(struct ObjectEvent *objectEvent, struct 
     // Set graphics, palette, and affine animation
     } else if ((duration == 0 && sprite->data[3] == 3) || (duration == 1 && sprite->data[3] == 7)) {
       FollowerSetGraphics(objectEvent, objectEvent->extra.mon.species, objectEvent->extra.mon.form, objectEvent->extra.mon.shiny);
-      LoadWhiteFlashPalette(objectEvent, sprite);
+      LoadFillColorPalette(RGB_WHITE, OBJ_EVENT_PAL_TAG_WHITE, sprite);
       // Initialize affine animation
       sprite->affineAnims = sAffineAnims_PokeballFollower;
       sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
@@ -7075,7 +7080,7 @@ bool8 MovementAction_EnterPokeball_Step1(struct ObjectEvent *objectEvent, struct
         sprite->data[2] = 2;
         return FALSE;
     } else if (sprite->data[3] == 11) { // Set palette to white & start affine
-      LoadWhiteFlashPalette(objectEvent, sprite);
+      LoadFillColorPalette(RGB_WHITE, OBJ_EVENT_PAL_TAG_WHITE, sprite);
       sprite->affineAnims = sAffineAnims_PokeballFollower;
       sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
       InitSpriteAffineAnim(sprite);
