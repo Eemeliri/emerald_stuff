@@ -252,3 +252,6 @@ const u16 gMetatileAttributes_ShamoutiShrine[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_DewfordDojo[] = INCBIN_U16("data/tilesets/secondary/dewford_dojo/metatiles.bin");
 const u16 gMetatileAttributes_DewfordDojo[] = INCBIN_U16("data/tilesets/secondary/dewford_dojo/metatile_attributes.bin");
+
+const u16 gMetatiles_DewfordDojoBuilding[] = INCBIN_U16("data/tilesets/secondary/dewford_dojo_building/metatiles.bin");
+const u16 gMetatileAttributes_DewfordDojoBuilding[] = INCBIN_U16("data/tilesets/secondary/dewford_dojo_building/metatile_attributes.bin");

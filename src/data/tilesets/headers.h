@@ -1000,3 +1000,14 @@ const struct Tileset gTileset_DewfordDojo =
     .metatileAttributes = gMetatileAttributes_DewfordDojo,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_DewfordDojoBuilding =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DewfordDojoBuilding,
+    .palettes = gTilesetPalettes_DewfordDojoBuilding,
+    .metatiles = gMetatiles_DewfordDojoBuilding,
+    .metatileAttributes = gMetatileAttributes_DewfordDojoBuilding,
+    .callback = NULL,
+};
