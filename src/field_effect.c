@@ -261,7 +261,6 @@ static void UseVsSeeker_CleanUpFieldEffect(struct Task *task);
 static u8 sActiveList[32];
 
 // External declarations
-extern const struct CompressedSpritePalette gMonPaletteTable[];
 extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern u8 *gFieldEffectScriptPointers[];
@@ -987,8 +986,8 @@ u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 {
-    s32 spriteId = CreateMonPicSprite(species, 0, 0x8000, TRUE, x, y, 0, gMonPaletteTable[species].tag);
-    PreservePaletteInWeather(IndexOfSpritePaletteTag(gMonPaletteTable[species].tag) + 0x10);
+    s32 spriteId = CreateMonPicSprite(species, 0, 0x8000, TRUE, x, y, 0, species);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
     else
@@ -997,10 +996,12 @@ u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 
 u8 CreateMonSprite_FieldMove(u16 species, u32 otId, u32 personality, s16 x, s16 y, u8 subpriority)
 {
-    const struct CompressedSpritePalette *spritePalette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
+    /* const struct CompressedSpritePalette *spritePalette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
     int i = IndexOfSpritePaletteTag(TAG_NONE);
     u16 spriteId = CreateMonPicSprite(species, otId, personality, 1, x, y, i, TAG_NONE);
-    PreservePaletteInWeather(IndexOfSpritePaletteTag(spritePalette->tag) + 0x10);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(spritePalette->tag) + 0x10); */
+    u16 spriteId = CreateMonPicSprite(species, otId, personality, TRUE, x, y, 0, species); // u16 spriteId = CreateMonPicSprite(species, otId, personality, 1, x, y, i, TAG_NONE);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
     else

@@ -4325,9 +4325,10 @@ static bool32 IsDomeRareMove(u32 move)
     u16 species = 0;
     for(i = 0; i < NUM_SPECIES; i++)
     {
-        for(j = 0; gLevelUpLearnsets[i][j].move != LEVEL_UP_MOVE_END; j++)
+        const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(i);
+        for(j = 0; learnset[j].move != LEVEL_UP_MOVE_END; j++)
         {
-            if (gLevelUpLearnsets[i][j].move == move)
+            if (learnset[j].move == move)
             {
                 species++;
                 break;
@@ -4569,7 +4570,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         else if (trainerId == TRAINER_FRONTIER_BRAIN)
             textPrinter.currentChar = GetSpeciesName(DOME_MONS[trainerTourneyId][i]);
         else if (trainerId >= FIRST_PWT_TRAINER && trainerId <= LAST_PWT_TRAINER)
-            textPrinter.currentChar = gSpeciesNames[0];//gSpeciesNames[0];
+            textPrinter.currentChar = GetSpeciesName(0);//gSpeciesNames[0];
         else
             textPrinter.currentChar = GetSpeciesName(gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species);
 

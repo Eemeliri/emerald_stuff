@@ -26,8 +26,6 @@
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
 
-extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 #define IS_DITTO(species) (gSpeciesInfo[species].eggGroups[0] == EGG_GROUP_DITTO || gSpeciesInfo[species].eggGroups[1] == EGG_GROUP_DITTO)
 
 static void ClearDaycareMonMail(struct DaycareMail *mail);
@@ -455,14 +453,17 @@ static u16 GetEggSpecies(u16 species)
 
     // Working backwards up to 5 times seems arbitrary, since the maximum number
     // of times would only be 3 for 3-stage evolutions.
-    for (i = 0; i < EVOS_PER_MON; i++)
+    for (i = 0; i < 5; i++)
     {
         found = FALSE;
         for (j = 1; j < NUM_SPECIES; j++)
         {
-            for (k = 0; k < EVOS_PER_MON; k++)
+            const struct Evolution *evolutions = GetSpeciesEvolutions(j);
+            if (evolutions == NULL)
+                continue;
+            for (k = 0; evolutions[k].method != EVOLUTIONS_END; k++)
             {
-                if (gEvolutionTable[j][k].targetSpecies == species)
+                if (SanitizeSpeciesId(evolutions[k].targetSpecies) == species)
                 {
                     species = j;
                     found = TRUE;
@@ -1341,7 +1342,7 @@ u8 GetDaycareCompatibilityScore(struct DayCare *daycare)
     }
 
     // check unbreedable egg group
-    if (eggGroups[0][0] == EGG_GROUP_UNDISCOVERED || eggGroups[1][0] == EGG_GROUP_UNDISCOVERED)
+    if (eggGroups[0][0] == EGG_GROUP_NO_EGGS_DISCOVERED || eggGroups[1][0] == EGG_GROUP_NO_EGGS_DISCOVERED)
         return PARENTS_INCOMPATIBLE;
     // two Ditto can't breed
     if (eggGroups[0][0] == EGG_GROUP_DITTO && eggGroups[1][0] == EGG_GROUP_DITTO)

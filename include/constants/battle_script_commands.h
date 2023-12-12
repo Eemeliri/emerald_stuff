@@ -306,27 +306,28 @@
 #define MOVEEND_MOVE_EFFECTS2                     13
 #define MOVEEND_ITEM_EFFECTS_ALL                  14
 #define MOVEEND_KINGSROCK                         15    // These item effects will occur each strike of a multi-hit move
-#define MOVEEND_SUBSTITUTE                        16
-#define MOVEEND_SKY_DROP_CONFUSE                  17
-#define MOVEEND_UPDATE_LAST_MOVES                 18
-#define MOVEEND_MIRROR_MOVE                       19
-#define MOVEEND_NEXT_TARGET                       20   // Everything up until here is handled for each strike of a multi-hit move
-#define MOVEEND_MULTIHIT_MOVE                     21
-#define MOVEEND_DEFROST                           22
-#define MOVEEND_RECOIL                            23
-#define MOVEEND_MAGICIAN                          24    // Occurs after final multi-hit strike, and after other items/abilities would activate
-#define MOVEEND_EJECT_BUTTON                      25
-#define MOVEEND_RED_CARD                          26
-#define MOVEEND_EJECT_PACK                        27
-#define MOVEEND_LIFEORB_SHELLBELL                 28    // Includes shell bell, throat spray, etc
-#define MOVEEND_CHANGED_ITEMS                     29
-#define MOVEEND_PICKPOCKET                        30
-#define MOVEEND_DANCER                            31
-#define MOVEEND_EMERGENCY_EXIT                    32
-#define MOVEEND_SYMBIOSIS                         33
-#define MOVEEND_OPPORTUNIST                       34    // Occurs after other stat change items/abilities to try and copy the boosts
-#define MOVEEND_CLEAR_BITS                        35
-#define MOVEEND_COUNT                             36
+#define MOVEEND_NUM_HITS                          16
+#define MOVEEND_SUBSTITUTE                        17
+#define MOVEEND_SKY_DROP_CONFUSE                  18
+#define MOVEEND_UPDATE_LAST_MOVES                 19
+#define MOVEEND_MIRROR_MOVE                       20
+#define MOVEEND_NEXT_TARGET                       21   // Everything up until here is handled for each strike of a multi-hit move
+#define MOVEEND_MULTIHIT_MOVE                     22
+#define MOVEEND_DEFROST                           23
+#define MOVEEND_RECOIL                            24
+#define MOVEEND_MAGICIAN                          25    // Occurs after final multi-hit strike, and after other items/abilities would activate
+#define MOVEEND_EJECT_BUTTON                      26
+#define MOVEEND_RED_CARD                          27
+#define MOVEEND_EJECT_PACK                        28
+#define MOVEEND_LIFEORB_SHELLBELL                 29    // Includes shell bell, throat spray, etc
+#define MOVEEND_CHANGED_ITEMS                     30
+#define MOVEEND_PICKPOCKET                        31
+#define MOVEEND_DANCER                            32
+#define MOVEEND_EMERGENCY_EXIT                    33
+#define MOVEEND_SYMBIOSIS                         34
+#define MOVEEND_OPPORTUNIST                       35    // Occurs after other stat change items/abilities to try and copy the boosts
+#define MOVEEND_CLEAR_BITS                        36
+#define MOVEEND_COUNT                             37
 
 // switch cases
 #define B_SWITCH_NORMAL     0

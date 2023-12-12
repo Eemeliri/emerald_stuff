@@ -1699,7 +1699,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
         CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, callback, spriteTemplate, &subspriteTables);
 
     if (spriteTemplate->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC) {
-        const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyPaletteTable : gMonPaletteTable)[species];
+        const struct CompressedSpritePalette *spritePalette = &(shiny ? gSpeciesInfo[species].shinyPalette : gSpeciesInfo[species].palette)[species];
         LoadDynamicFollowerPalette(species, form, shiny);
         spriteTemplate->paletteTag = spritePalette->tag;
     } else if (spriteTemplate->paletteTag != TAG_NONE)
