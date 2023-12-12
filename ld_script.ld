@@ -4,16 +4,18 @@ gNumMusicPlayers = 4;
 gMaxLines = 0;
 gInitialMainCB2 = CB2_InitCopyrightScreenAfterBootup;
 
-SECTIONS {
-    . = 0x2000000;
+MEMORY
+{
+    EWRAM (rwx) : ORIGIN = 0x2000000, LENGTH = 256K
+    IWRAM (rwx) : ORIGIN = 0x3000000, LENGTH = 32K
+    ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 32M
+}
 
-    ewram (NOLOAD) :
+SECTIONS {
+
+    ewram 0x2000000 (NOLOAD) :
     ALIGN(4)
     {
-        gHeap = .;
-
-        . = 0x1C000;
-
         INCLUDE "sym_ewram.ld"
         src/*.o(ewram_data);
         gflib/*.o(ewram_data);
@@ -21,12 +23,9 @@ SECTIONS {
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
         *libc.a:mallocr.o(.data);
-        . = 0x40000;
-    }
+    } > EWRAM
 
-    . = 0x3000000;
-
-    iwram (NOLOAD) :
+    iwram 0x3000000 (NOLOAD) :
     ALIGN(4)
     {
         /* .bss starts at 0x3000000 */
@@ -43,8 +42,9 @@ SECTIONS {
         *libc.a:sbrkr.o(COMMON);
         end = .;
         . = 0x8000;
-    }
+    } > IWRAM
 
+    /* BEGIN ROM DATA */
     . = 0x8000000;
 
     .text :
@@ -354,7 +354,7 @@ SECTIONS {
         src/quests.o(.text);
         src/day_night.o(.text);
 
-    } =0
+    } > ROM =0
 
     script_data :
     ALIGN(4)
@@ -366,7 +366,7 @@ SECTIONS {
         data/battle_scripts_2.o(script_data);
         data/contest_ai_scripts.o(script_data);
         data/mystery_event_script_cmd_table.o(script_data);
-    } =0
+    } > ROM =0
 
     lib_text :
     ALIGN(4)
@@ -450,7 +450,7 @@ SECTIONS {
         *libc.a:libcfunc.o(.text);
         *libc.a:lseekr.o(.text);
         *libc.a:readr.o(.text);
-    } =0
+    } > ROM =0
 
     .rodata :
     ALIGN(4)
@@ -729,7 +729,7 @@ SECTIONS {
         src/sliding_puzzle.o(.rodata);
         src/quests.o(.rodata);
         src/day_night.o(.rodata);
-    } =0
+    } > ROM =0
 
     song_data :
     ALIGN(4)
@@ -1624,7 +1624,7 @@ SECTIONS {
         sound/songs/midi/mus_hg_obtain_castle_points.o(.rodata);
         sound/songs/midi/mus_hg_obtain_b_points.o(.rodata);
         sound/songs/midi/mus_hg_win_minigame.o(.rodata);
-    } =0
+    } > ROM =0
 
     lib_rodata :
     SUBALIGN(4)
@@ -1677,7 +1677,7 @@ SECTIONS {
         *libc.a:lseekr.o(.rodata);
         *libc.a:readr.o(.rodata);
         src/libisagbprn.o(.rodata);
-    } =0
+    } > ROM =0
 
     multiboot_data :
     ALIGN(4)
@@ -1685,13 +1685,13 @@ SECTIONS {
         data/multiboot_ereader.o(.rodata);
         data/multiboot_berry_glitch_fix.o(.rodata);
         data/multiboot_pokemon_colosseum.o(.rodata);
-    } =0
+    } > ROM =0
 
     gfx_data :
     ALIGN(4)
     {
         src/graphics.o(.rodata);
-    } =0
+    } > ROM =0
 
     extra :
     ALIGN(4)
@@ -1701,7 +1701,7 @@ SECTIONS {
         src/*.o(.rodata);
         gflib/*.o(.rodata);
         data/*.o(.rodata);
-    } = 0
+    } > ROM = 0
 
     __rom_end = .;
 

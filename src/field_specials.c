@@ -1255,7 +1255,7 @@ void getPartyLeadMonWeight(void) {
     if (GetMonData(leadMon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(leadMon, MON_DATA_IS_EGG))
     {
         species = GetMonData(leadMon, MON_DATA_SPECIES);
-        weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(species), 1);
+        weight = GetSpeciesWeight(species);
         gSpecialVar_Result = weight / 10;
     } else {
         gSpecialVar_Result = 0;
@@ -1271,7 +1271,7 @@ void getPartyLeadMonHeight(void) {
     if (GetMonData(leadMon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(leadMon, MON_DATA_IS_EGG))
     {
         species = GetMonData(leadMon, MON_DATA_SPECIES);
-        height = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(species), 0);
+        height = GetSpeciesHeight(species);
         gSpecialVar_Result = height;
     } else {
     gSpecialVar_Result = 0;
