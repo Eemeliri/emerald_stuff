@@ -14211,6 +14211,11 @@ static void Cmd_tryimprison(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+    else if (B_IMPRISON >= GEN_5)
+    {
+        gStatuses3[gBattlerAttacker] |= STATUS3_IMPRISONED_OTHERS;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
     else
     {
         u8 battler, sideAttacker;
@@ -15056,7 +15061,7 @@ static void Cmd_handleballthrow(void)
         if (gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL] < 255)
             gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL]++;
 
-        if (odds > 254) // mon caught
+        if (odds >= 255) // mon caught
         {
             BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gBattlerAttacker);
@@ -15101,8 +15106,16 @@ static void Cmd_handleballthrow(void)
             }
             else
             {
-                odds = Sqrt(Sqrt(16711680 / odds));
-                odds = 1048560 / odds;
+                if (P_CATCH_CURVE >= GEN_6)
+                {
+                    odds = (255 * 255 * 255) / (odds * odds * odds);
+                    odds = 65536 / Sqrt(Sqrt(Sqrt(Sqrt(odds))));
+                }
+                else
+                {
+                    odds = Sqrt(Sqrt(16711680 / odds));
+                    odds = 1048560 / odds;
+                }
                 for (shakes = 0; shakes < maxShakes && Random() < odds; shakes++);
             }
 
