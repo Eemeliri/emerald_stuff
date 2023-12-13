@@ -4897,7 +4897,7 @@
       "width": 35,
       "height": 35,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BattleArena",
+      "secondary_tileset": "gTileset_DewfordDojoBuilding",
       "border_filepath": "data/layouts/BrawlyDojo/border.bin",
       "blockdata_filepath": "data/layouts/BrawlyDojo/map.bin"
     },
