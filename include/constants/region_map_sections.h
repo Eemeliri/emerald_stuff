@@ -104,7 +104,7 @@
 #define MAPSEC_FLOWER_PARADISE              0x64
 #define MAPSEC_SHAMOUTI_ISLAND              0x65
 #define MAPSEC_RUGGED_ROAD                  0x66
-#define MAPSEC_ROUTE_3                      0x67
+#define MAPSEC_DEWFORD_DOJO                 0x67
 #define MAPSEC_ROUTE_4                      0x68
 #define MAPSEC_ROUTE_5                      0x69
 #define MAPSEC_ROUTE_6                      0x6A

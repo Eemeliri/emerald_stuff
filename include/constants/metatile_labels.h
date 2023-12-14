@@ -145,6 +145,13 @@
 #define METATILE_Contest_FloorShadow         0x261
 #define METATILE_Contest_WallShadow          0x221
 
+// gTileset_DewfordDojoBuilding
+#define METATILE_DewfordDojoBuilding_DoorLeft   0x245
+#define METATILE_DewfordDojoBuilding_DoorRight  0x246
+
+// gTileset_DewfordDojo
+#define METATILE_DewfordDojo_Door  0x247
+
 // gTileset_Dewford
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D

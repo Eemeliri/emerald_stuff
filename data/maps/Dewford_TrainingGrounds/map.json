@@ -3,7 +3,7 @@
   "name": "Dewford_TrainingGrounds",
   "layout": "LAYOUT_DEWFORD_TRAINING_GROUNDS",
   "music": "MUS_HG_POKEATHLON_LOBBY",
-  "region_map_section": "MAPSEC_DEWFORD_TOWN",
+  "region_map_section": "MAPSEC_DEWFORD_DOJO",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_TOWN",
@@ -138,7 +138,7 @@
       "x": 27,
       "y": 21,
       "elevation": 0,
-      "dest_map": "MAP_DEWFORD_TRAINING_GROUNDS",
+      "dest_map": "MAP_BRAWLY_DOJO",
       "dest_warp_id": "0"
     }
   ],

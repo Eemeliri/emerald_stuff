@@ -88,7 +88,6 @@ static const u8 sMapName_[] = _("");
 static const u8 sMapName_Route_4[] = _("Route 4");
 static const u8 sMapName_Shamouti_Island[] = _("Shamouti Island");
 static const u8 sMapName_Rugged_Road[] = _("Rugged Road");
-static const u8 sMapName_Route_3[] = _("Route 3");
 static const u8 sMapName_Route_5[] = _("Route 5");
 static const u8 sMapName_Route_6[] = _("Route 6");
 static const u8 sMapName_Route_7[] = _("Route 7");
@@ -204,6 +203,7 @@ static const u8 sMapName_Fullmoon_Island[] = _("Fullmoon Island");
 static const u8 sMapName_Stark_Mountain[] = _("Stark Mountain");
 static const u8 sMapName_Unknown_Dungeon[] = _("Unknown Dungeon");
 static const u8 sMapName_Flower_Paradise[] = _("Flower Paradise");
+static const u8 sMapName_Dewford_Dojo[] = _("Dewford Dojo");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_LITTLEROOT_TOWN] = { 4, 11, 1, 1, sMapName_Littleroot_Town},
@@ -297,7 +297,6 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_ROUTE_4_POKECENTER] = { 0, 0, 1, 1, sMapName_Route_4},
     [MAPSEC_SHAMOUTI_ISLAND] = { 0, 0, 1, 1, sMapName_Shamouti_Island},
     [MAPSEC_RUGGED_ROAD] = { 2, 6, 1, 3, sMapName_Rugged_Road},
-    [MAPSEC_ROUTE_3] = { 0, 0, 1, 1, sMapName_Route_3},
     [MAPSEC_ROUTE_4] = { 0, 0, 1, 1, sMapName_Route_4},
     [MAPSEC_ROUTE_5] = { 0, 0, 1, 1, sMapName_Route_5},
     [MAPSEC_ROUTE_6] = { 0, 0, 1, 1, sMapName_Route_6},
@@ -443,6 +442,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_STARK_MOUNTAIN] = { 0, 14, 1, 1, sMapName_Stark_Mountain},
     [MAPSEC_CERULEAN_CAVE] = { 0, 0, 1, 1, sMapName_Unknown_Dungeon},
     [MAPSEC_FLOWER_PARADISE] = { 27, 6, 1, 1, sMapName_Flower_Paradise},
+    [MAPSEC_DEWFORD_DOJO] = { 1, 14, 1, 1, sMapName_Dewford_Dojo},
 };
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
