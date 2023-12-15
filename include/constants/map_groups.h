@@ -97,6 +97,10 @@
 #define MAP_DEWFORD_TOWN_HALL              (4 | (3 << 8))
 #define MAP_DEWFORD_TOWN_HOUSE2            (5 | (3 << 8))
 #define MAP_BRAWLY_DOJO                    (6 | (3 << 8))
+#define MAP_BRAWLY_DOJO_EVROOM             (7 | (3 << 8))
+#define MAP_BRAWLY_DOJO_EVROOM2            (8 | (3 << 8))
+#define MAP_BRAWLY_DOJO_REMATCH_ROOM       (9 | (3 << 8))
+#define MAP_BRAWLY_DOJO_TRAINING_ROOM      (10 | (3 << 8))
 
 // gMapGroup_IndoorLavaridge
 #define MAP_LAVARIDGE_TOWN_HERB_SHOP         (0 | (4 << 8))

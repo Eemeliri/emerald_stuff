@@ -698,6 +698,10 @@ RuggedRoad_EventScript_ItemHeracronite:: @ 82912F0
 	finditem ITEM_HERACRONITE
 	end
 
+DewfordDojo_Indoors_EventScript_ItemSleepTalk::
+	finditem ITEM_TM88
+	end
+
 NewMauville_Inside3F_ItemManectite:: @ 82912F0
 	finditem ITEM_MANECTITE
 	end

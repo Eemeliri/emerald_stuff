@@ -5070,6 +5070,46 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/RuggedCave3/border.bin",
       "blockdata_filepath": "data/layouts/RuggedCave3/map.bin"
+    },
+    {
+      "id": "LAYOUT_BRAWLY_DOJO_EVROOM",
+      "name": "BrawlyDojoEVRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DewfordDojoBuilding",
+      "border_filepath": "data/layouts/BrawlyDojoEVRoom/border.bin",
+      "blockdata_filepath": "data/layouts/BrawlyDojoEVRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_BRAWLY_DOJO_EVROOM2",
+      "name": "BrawlyDojoEVRoom2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DewfordDojoBuilding",
+      "border_filepath": "data/layouts/BrawlyDojoEVRoom2/border.bin",
+      "blockdata_filepath": "data/layouts/BrawlyDojoEVRoom2/map.bin"
+    },
+    {
+      "id": "LAYOUT_BRAWLY_DOJO_REMATCH_ROOM",
+      "name": "BrawlyDojoRematchRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DewfordDojoBuilding",
+      "border_filepath": "data/layouts/BrawlyDojoRematchRoom/border.bin",
+      "blockdata_filepath": "data/layouts/BrawlyDojoRematchRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_BRAWLY_DOJO_TRAINING_ROOM",
+      "name": "BrawlyDojoTrainingRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DewfordDojoBuilding",
+      "border_filepath": "data/layouts/BrawlyDojoTrainingRoom/border.bin",
+      "blockdata_filepath": "data/layouts/BrawlyDojoTrainingRoom/map.bin"
     }
   ]
 }

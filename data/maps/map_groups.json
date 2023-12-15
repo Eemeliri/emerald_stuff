@@ -127,7 +127,11 @@
     "DewfordTown_Gym",
     "DewfordTown_Hall",
     "DewfordTown_House2",
-    "BrawlyDojo"
+    "BrawlyDojo",
+    "BrawlyDojoEVRoom",
+    "BrawlyDojoEVRoom2",
+    "BrawlyDojoRematchRoom",
+    "BrawlyDojoTrainingRoom"
   ],
   "gMapGroup_IndoorLavaridge": [
     "LavaridgeTown_HerbShop",

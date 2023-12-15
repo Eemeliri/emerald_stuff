@@ -1,0 +1,62 @@
+mapscripts BrawlyDojoEVRoom_MapScripts {}
+
+script tiredGirlDojo {
+    lock
+    faceplayer
+    returnqueststate(QUEST_10)
+    switch(var(VAR_RESULT)) {
+        case 1:
+            msgbox(format("AAAAAAAAAAAAAAAAAAAAAAAAAH!!!!"))
+            msgbox(format("I can't take it anymore, I haven't been able to sleep even a wink for days because the person next to me constantly talks in his sleep! I want to quit!"))
+            msgbox(format("...This person could benefit from a Pokémon that could help her sleep, perhaps showing her one would help?"))
+            startquest(QUEST_10)
+        case 2:
+            msgbox(format("So sleepy... I want to cry..."))
+            checkpartymove(MOVE_SING)
+            if (var(VAR_RESULT) == PARTY_SIZE) {
+                release
+                end
+            } 
+            msgbox(format("Huh? Do you have something to show me?"))
+            bufferspeciesname(STR_VAR_1, VAR_0x8004)
+            msgbox(format("Your {STR_VAR_1}, it could help me fall asleep? That's amazing! I don't have to quit! I'm going to catch one right now, thank you!"))
+            msgbox(Format("Here, take this for helping me."))
+            giveitem(ITEM_PUNCHING_GLOVE)
+            completequest(QUEST_10)
+            release
+            end
+        case 4:
+            msgbox(format("Thank you again! I will sleep much more easily now!"))
+        
+    }
+    release
+    end
+    
+
+}
+
+script oldLadyDojoBedroom {
+    lock
+    faceplayer
+    msgbox(format("In this dojo, we all sleep in shared spaces. It's good for the spirit of unity."))
+    release
+    end
+}
+
+script friendlyBlackBeltDojoBedroom {
+    lock
+    faceplayer
+    msgbox(format("Hey, need some refreshments?"))
+    pokemart(friendlyBlackBeltDojoBedroomShop)
+    msgbox("Stop by if you need more!")
+    release
+    end
+}
+
+mart friendlyBlackBeltDojoBedroomShop {
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_SODA_POP
+    ITEM_LEMONADE
+    ITEM_ENERGY_POWDER
+}

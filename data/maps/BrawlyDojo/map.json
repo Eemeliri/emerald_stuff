@@ -96,7 +96,7 @@
       "dest_warp_id": "2"
     },
     {
-      "x": 20,
+      "x": 14,
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_BRAWLY_DOJO",
@@ -107,6 +107,20 @@
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_BRAWLY_DOJO",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_BRAWLY_DOJO_EVROOM",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_BRAWLY_DOJO_EVROOM",
       "dest_warp_id": "0"
     }
   ],

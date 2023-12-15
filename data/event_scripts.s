@@ -1199,3 +1199,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/RuggedCave2/scripts.inc"
 
 	.include "data/maps/RuggedCave3/scripts.inc"
+
+	.include "data/maps/BrawlyDojoEVRoom/scripts.inc"
+
+	.include "data/maps/BrawlyDojoEVRoom2/scripts.inc"
+
+	.include "data/maps/BrawlyDojoRematchRoom/scripts.inc"
+
+	.include "data/maps/BrawlyDojoTrainingRoom/scripts.inc"
