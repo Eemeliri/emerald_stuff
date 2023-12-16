@@ -531,9 +531,7 @@ static void CB2_InitBattleInternal(void)
     else
     {
         gBattle_WIN0V = WIN_RANGE(DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 2 + 1);
-        if (gSaveBlock2Ptr->optionsFastIntro == 1)
-        {
-            ScanlineEffect_Clear();
+        ScanlineEffect_Clear();
 
         for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
         {
@@ -547,8 +545,7 @@ static void CB2_InitBattleInternal(void)
             gScanlineEffectRegBuffers[1][i] = 0xFF10;
         }
 
-            ScanlineEffect_SetParams(sIntroScanlineParams16Bit);
-        }
+        ScanlineEffect_SetParams(sIntroScanlineParams16Bit);
     }
 
     ResetPaletteFade();
@@ -574,10 +571,7 @@ static void CB2_InitBattleInternal(void)
     LoadBattleTextboxAndBackground();
     ResetSpriteData();
     ResetTasks();
-    if (gSaveBlock2Ptr->optionsFastIntro == 1)
-    {
-        DrawBattleEntryBackground();
-    }
+    DrawBattleEntryBackground();
     FreeAllSpritePalettes();
     gReservedSpritePaletteCount = MAX_BATTLERS_COUNT;
     SetVBlankCallback(VBlankCB_Battle);
@@ -610,11 +604,14 @@ static void CB2_InitBattleInternal(void)
     gSaveBlock1Ptr->frontier.disableRecordBattle = FALSE;
 
     for (i = 0; i < PARTY_SIZE; i++)
-    {
         AdjustFriendship(&gPlayerParty[i], FRIENDSHIP_EVENT_LEAGUE_BATTLE);
 
-        // Apply party-wide start-of-battle form changes for both sides.
+    // Apply party-wide start-of-battle form changes
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        // Player's side
         TryFormChange(i, B_SIDE_PLAYER, FORM_CHANGE_BEGIN_BATTLE);
+        // Opponent's side
         TryFormChange(i, B_SIDE_OPPONENT, FORM_CHANGE_BEGIN_BATTLE);
     }
 
@@ -1964,6 +1961,37 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMonC
     }
 }
 
+u8 scaleBiasedLevel(u8 scaledLevel, u8 lvl) {
+    int rand_diff = Random() % 4;
+    switch(rand_diff)
+    {
+        case 0:
+            rand_diff = 0;
+            break;
+        case 1:
+            rand_diff = -1;
+            break;
+        case 2:
+            rand_diff = -2;
+            break;
+        case 3:
+            rand_diff = -3;
+    }
+    if (scaledLevel + lvl > 100)
+    {
+        scaledLevel = 100;
+    }
+    else if (scaledLevel + lvl < 1)
+    {
+        scaledLevel = 1;
+    }
+        else
+    {
+        scaledLevel = scaledLevel + rand_diff;
+    }
+    return scaledLevel;
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -2009,44 +2037,13 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 const struct TrainerMonNoItemDefaultMoves *partyData = trainer->party.NoItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
 
-                int rand_diff = Random() % 4;
-                switch(rand_diff)
-                {
-                    case 0:
-                        rand_diff = 0;
-                        break;
-                    case 1:
-                        rand_diff = -1;
-                        break;
-                    case 2:
-                        rand_diff = -2;
-                        break;
-                    case 3:
-                        rand_diff = -3;
-                }
-
                 scaledLevel = GetHighestLevelInPlayerParty();
                 u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
-                if (biasedLevel + partyData[i].lvl > 100)
-                {
-                    biasedLevel = 100;
-                }
-                    else if (biasedLevel + partyData[i].lvl < 1)
-                {
-                    biasedLevel = 1;
-                }
-                    else
-                {
-                    biasedLevel = biasedLevel + rand_diff;
+                biasedLevel = scaleBiasedLevel(biasedLevel, partyData[i].lvl);
+                if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
+                    biasedLevel = partyData[i].lvl;
                 }
                 
-                /* if (partyData[i].lvl == 0) {
-                    scaledLevel = GetCurrentLevelCap();
-                } else if (partyData[i].lvl == -1) {
-                    scaledLevel = GetCurrentLevelCap()-1;
-                } else {
-                    scaledLevel = partyData[i].lvl;
-                } */
                 if(HasLevelEvolution(partyData[i].species, biasedLevel))
                     CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 else
@@ -2058,39 +2055,18 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 const struct TrainerMonNoItemCustomMoves *partyData = trainer->party.NoItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
 
-                int rand_diff = Random() % 4;
-                switch(rand_diff)
-                {
-                    case 0:
-                        rand_diff = 0;
-                        break;
-                    case 1:
-                        rand_diff = -1;
-                        break;
-                    case 2:
-                        rand_diff = -2;
-                        break;
-                    case 3:
-                        rand_diff = -3;
-                }
-
                 scaledLevel = GetHighestLevelInPlayerParty();
-                if (scaledLevel + partyData[i].lvl > 100)
-                {
-                    scaledLevel = 100;
+                u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
+                biasedLevel = scaleBiasedLevel(biasedLevel, partyData[i].lvl);
+
+                if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
+                    biasedLevel = partyData[i].lvl;
                 }
-                    else if (scaledLevel + partyData[i].lvl < 1)
-                {
-                    scaledLevel = 1;
-                }
-                    else
-                {
-                    scaledLevel = scaledLevel + rand_diff;
-                }
-                if(HasLevelEvolution(partyData[i].species, scaledLevel))
-                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                
+                if(HasLevelEvolution(partyData[i].species, biasedLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 else
-                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
@@ -2103,39 +2079,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemDefaultMoves *partyData = trainer->party.ItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                int rand_diff = Random() % 4;
-                switch(rand_diff)
-                {
-                    case 0:
-                        rand_diff = 0;
-                        break;
-                    case 1:
-                        rand_diff = -1;
-                        break;
-                    case 2:
-                        rand_diff = -2;
-                        break;
-                    case 3:
-                        rand_diff = -3;
-                }
 
                 scaledLevel = GetHighestLevelInPlayerParty();
-                if (scaledLevel + partyData[i].lvl > 100)
-                {
-                    scaledLevel = 100;
+                u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
+                biasedLevel = scaleBiasedLevel(biasedLevel, partyData[i].lvl);
+
+                if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
+                    biasedLevel = partyData[i].lvl;
                 }
-                    else if (scaledLevel + partyData[i].lvl < 1)
-                {
-                    scaledLevel = 1;
-                }
-                    else
-                {
-                    scaledLevel = scaledLevel + rand_diff;
-                }
-                if(HasLevelEvolution(partyData[i].species, scaledLevel))
-                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+
+                if(HasLevelEvolution(partyData[i].species, biasedLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 else
-                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -2144,39 +2100,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct TrainerMonItemCustomMoves *partyData = trainer->party.ItemCustomMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                int rand_diff = Random() % 4;
-                switch(rand_diff)
-                {
-                    case 0:
-                        rand_diff = 0;
-                        break;
-                    case 1:
-                        rand_diff = -1;
-                        break;
-                    case 2:
-                        rand_diff = -2;
-                        break;
-                    case 3:
-                        rand_diff = -3;
-                }
 
                 scaledLevel = GetHighestLevelInPlayerParty();
-                if (scaledLevel + partyData[i].lvl > 100)
-                {
-                    scaledLevel = 100;
+                u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
+                biasedLevel = scaleBiasedLevel(biasedLevel, partyData[i].lvl);
+
+                if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
+                    biasedLevel = partyData[i].lvl;
                 }
-                    else if (scaledLevel + partyData[i].lvl < 1)
-                {
-                    scaledLevel = 1;
-                }
-                    else
-                {
-                    scaledLevel = scaledLevel + rand_diff;
-                }
-                if(HasLevelEvolution(partyData[i].species, scaledLevel))
-                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                
+                if(HasLevelEvolution(partyData[i].species, biasedLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 else
-                CreateMon(&party[i], partyData[i].species, scaledLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, biasedLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
@@ -2203,39 +2139,20 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     otIdType = OT_ID_PRESET;
                     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
                 }
-                int rand_diff = Random() % 4;
-                switch(rand_diff)
-                {
-                    case 0:
-                        rand_diff = 0;
-                        break;
-                    case 1:
-                        rand_diff = -1;
-                        break;
-                    case 2:
-                        rand_diff = -2;
-                        break;
-                    case 3:
-                        rand_diff = -3;
-                }
+                
 
                 scaledLevel = GetHighestLevelInPlayerParty();
-                if (scaledLevel + partyData[i].lvl > 100)
-                {
-                    scaledLevel = 100;
+                u8 biasedLevel = getPlayerBiasedAverageLevel(scaledLevel);
+                biasedLevel = scaleBiasedLevel(biasedLevel, partyData[i].lvl);
+
+                if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
+                    biasedLevel = partyData[i].lvl;
                 }
-                    else if (scaledLevel + partyData[i].lvl < 1)
-                {
-                    scaledLevel = 1;
-                }
-                    else
-                {
-                    scaledLevel = scaledLevel + rand_diff;
-                }
-                if(HasLevelEvolution(partyData[i].species, scaledLevel))
-                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, scaledLevel), scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
+
+                if(HasLevelEvolution(partyData[i].species, biasedLevel))
+                CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 else
-                CreateMon(&party[i], partyData[i].species, scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
+                CreateMon(&party[i], partyData[i].species, biasedLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);
@@ -2896,38 +2813,21 @@ u32 GetBattleWindowTemplatePixelWidth(u32 windowsType, u32 tableId)
 
 void SpriteCB_WildMon(struct Sprite *sprite)
 {
-    if (gSaveBlock2Ptr->optionsFastIntro == 1)
-    {
-        sprite->callback = SpriteCB_MoveWildMonToRight;
-        StartSpriteAnimIfDifferent(sprite, 0);
-        if (WILD_DOUBLE_BATTLE)
-            BeginNormalPaletteFade((0x10000 << sprite->sBattler) | (0x10000 << BATTLE_PARTNER(sprite->sBattler)), 0, 10, 10, RGB(8, 8, 8));
-        else
-            BeginNormalPaletteFade((0x10000 << sprite->sBattler), 0, 10, 10, RGB(8, 8, 8));
-    } else {
-        sprite->callback = SpriteCB_MoveWildMonToRight;
-        StartSpriteAnimIfDifferent(sprite, 0);
-    }
+    sprite->callback = SpriteCB_MoveWildMonToRight;
+    StartSpriteAnimIfDifferent(sprite, 0);
+    if (WILD_DOUBLE_BATTLE)
+        BeginNormalPaletteFade((0x10000 << sprite->sBattler) | (0x10000 << BATTLE_PARTNER(sprite->sBattler)), 0, 10, 10, RGB(8, 8, 8));
+    else
+        BeginNormalPaletteFade((0x10000 << sprite->sBattler), 0, 10, 10, RGB(8, 8, 8));
 }
 
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 {
-    if (gSaveBlock2Ptr->optionsFastIntro == 1)
+    if ((gIntroSlideFlags & 1) == 0)
     {
-        if ((gIntroSlideFlags & 1) == 0)
+        sprite->x2 += 2;
+        if (sprite->x2 == 0)
         {
-            sprite->x2 += 2;
-            if (sprite->x2 == 0)
-            {
-                sprite->callback = SpriteCB_WildMonShowHealthbox;
-            }
-        }
-    }
-    else
-    {
-        if ((gIntroSlideFlags & 1) == 0)
-        {
-            sprite->x2 = 0;
             sprite->callback = SpriteCB_WildMonShowHealthbox;
         }
     }
@@ -2936,9 +2836,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite)
 {
     if (sprite->animEnded)
-    {   
-        if (gSaveBlock2Ptr->optionsFastIntro == 1)
-        {
+    {
         StartHealthboxSlideIn(sprite->sBattler);
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[sprite->sBattler]);
         sprite->callback = SpriteCB_WildMonAnimate;
@@ -2947,13 +2845,6 @@ static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite)
             BeginNormalPaletteFade((0x10000 << sprite->sBattler) | (0x10000 << BATTLE_PARTNER(sprite->sBattler)), 0, 10, 0, RGB(8, 8, 8));
         else
             BeginNormalPaletteFade((0x10000 << sprite->sBattler), 0, 10, 0, RGB(8, 8, 8));
-        } else
-        {
-            StartHealthboxSlideIn(sprite->sBattler);
-            SetHealthboxSpriteVisible(gHealthboxSpriteIds[sprite->sBattler]);
-            sprite->callback = SpriteCB_WildMonAnimate;
-            StartSpriteAnimIfDifferent(sprite, 0);
-        }
     }
 }
 
