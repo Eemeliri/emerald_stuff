@@ -903,8 +903,15 @@
 #define TRAINER_RUGGED_ROAD_HIKER           898
 #define TRAINER_RUGGED_ROAD_PICNICKER       899
 #define TRAINER_RUGGED_ROAD_CAMPER          900
+#define TRAINER_BRAWLYDOJO_HP               901
+#define TRAINER_BRAWLYDOJO_ATTACK           902
+#define TRAINER_BRAWLYDOJO_DEFENSE          903
+#define TRAINER_BRAWLYDOJO_SPATK            904
+#define TRAINER_BRAWLYDOJO_SPDEF            905
+#define TRAINER_BRAWLYDOJO_SPEED            906
+#define TRAINER_BRAWLYDOJO_EXP              907
 
-#define REGULAR_TRAINER_END                 TRAINER_RUGGED_ROAD_CAMPER
+#define REGULAR_TRAINER_END                 TRAINER_BRAWLYDOJO_EXP
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -991,8 +998,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      971
-#define MAX_TRAINERS_COUNT                  972
+#define TRAINERS_COUNT                      978
+#define MAX_TRAINERS_COUNT                  979
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 

@@ -1,1 +1,119 @@
 mapscripts BrawlyDojoEVRoom2_MapScripts {}
+
+script hpEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my healthy team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_HP, "Good job.")
+    }
+    release
+    end
+}
+
+script attackEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my offensive team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_ATTACK, "Good job.")
+    }
+    release
+    end
+}
+
+script defenseEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my bulky team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_DEFENSE, "Good job.")
+    }
+    release
+    end
+}
+
+script spatkEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my magical team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_SPATK, "Good job.")
+    }
+    release
+    end
+}
+
+script spdefEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my resistant team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_SPDEF, "Good job.")
+    }
+    release
+    end
+}
+
+script speedEvTrainer {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to train against my fast team?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_SPEED, "Good job.")
+    }
+    release
+    end
+}
+
+script expTrainerDojo {
+    lock
+    faceplayer
+    msgbox(format("Do you wish to grow your Pokémon through battles?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES){
+        trainerbattle_no_intro(TRAINER_BRAWLYDOJO_EXP, "Well done.")
+        msgbox(format("Have some candy too."))
+        if (flag(FLAG_IS_CHAMPION)) {
+            giveitem(ITEM_EXP_CANDY_XL, 5)
+        } elif (flag(FLAG_BADGE08_GET)) {
+            giveitem(ITEM_EXP_CANDY_L, 5)
+        } elif (flag(FLAG_BADGE07_GET)) {
+            giveitem(ITEM_EXP_CANDY_L, 2)
+        } elif (flag(FLAG_BADGE06_GET)) {
+            giveitem(ITEM_EXP_CANDY_M, 5)
+        } elif (flag(FLAG_BADGE05_GET)) {
+            giveitem(ITEM_EXP_CANDY_M, 2)
+        } elif (flag(FLAG_BADGE04_GET)) {
+            giveitem(ITEM_EXP_CANDY_S, 5)
+        } elif (flag(FLAG_BADGE03_GET)) {
+            giveitem(ITEM_EXP_CANDY_S, 2)
+        } elif (flag(FLAG_BADGE02_GET)) {
+            giveitem(ITEM_EXP_CANDY_XS, 5)
+        } elif (flag(FLAG_BADGE01_GET)) {
+            giveitem(ITEM_EXP_CANDY_XS, 2)
+        }
+    }
+    release
+    end
+}
+
+script nurseJoyEvTraining {
+    lock
+    faceplayer
+    msgbox(format("Welcome to the training room, would you like me to heal your Pokémon?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        playse(MUS_HEAL)
+        special(HealPlayerParty)
+        waitse
+    }
+    release
+    end
+}
+
+script PcAccessEvTraining {
+    bufferspeciesname(0, SPECIES_PORYGON)
+    lock
+    goto(EventScript_PC)
+    release
+    end
+}
