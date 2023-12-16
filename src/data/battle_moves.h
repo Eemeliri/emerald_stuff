@@ -14458,7 +14458,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IVY_CUDGEL] =
     {
-        .effect = EFFECT_IVY_CUDGEL,
+        .effect = EFFECT_CHANGE_TYPE_ON_ITEM,
         .power = 100,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -14467,6 +14467,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
+        .argument = HOLD_EFFECT_MASK,
         .zMoveEffect = Z_EFFECT_NONE,
         .highCritRatio = TRUE,
         .metronomeBanned = TRUE,
