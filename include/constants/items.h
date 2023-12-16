@@ -1096,8 +1096,10 @@
 #define ITEM_FRESH_START_MOCHI 812
 #define ITEM_GLIMMERING_CHARM 813
 #define ITEM_EON_FLUTE 814
+#define ITEM_814 815 // TWV0YWwgQWxsb3k=
+#define ITEM_815 816 // U3RlbGxhciBUZXJhIFNoYXJk
 
-#define ITEMS_COUNT 815
+#define ITEMS_COUNT 817
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
