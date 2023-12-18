@@ -5094,8 +5094,8 @@
     {
       "id": "LAYOUT_BRAWLY_DOJO_REMATCH_ROOM",
       "name": "BrawlyDojoRematchRoom_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 24,
+      "height": 24,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_DewfordDojoBuilding",
       "border_filepath": "data/layouts/BrawlyDojoRematchRoom/border.bin",
