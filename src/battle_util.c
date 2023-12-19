@@ -7871,6 +7871,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
             if (IsBattlerAlive(gBattlerAttacker)
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                && !gSpecialStatuses[gBattlerAttacker].magicianStolen
                 && gSpecialStatuses[gBattlerAttacker].damagedMons)
             {
                 gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 10;
@@ -9550,7 +9551,6 @@ static bool32 CanEvolve(u32 species)
              && SanitizeSpeciesId(evolutions[i].targetSpecies) != SPECIES_NONE)
                 return TRUE;
         }
-        
     }
     return FALSE;
 }
