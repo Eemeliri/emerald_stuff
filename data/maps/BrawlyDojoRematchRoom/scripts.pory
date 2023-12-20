@@ -1,1 +1,112 @@
 mapscripts BrawlyDojoRematchRoom_MapScripts {}
+
+script BrawlyDojoBrawlyNPC {
+    lock
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if (var(VAR_TEMP_0) == 12) {
+        applymovement(OBJ_EVENT_ID_PLAYER, playerwalkstoBrawlyfromRight)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, playerwalkstoBrawlyfromLeft)
+    }
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    msgbox(format("Brawly: I did not expect you to come here all the way from Johto, Chuck."))
+    msgbox(format("Chuck: When I heard what you folks have been setting up, I couldn't just sit still, you know I'm always raring for a good match!"))
+    playse(SE_PIN)
+    applymovement(4, chuckSurprised)
+    applymovement(1, brawlySurprised)
+    waitmovement(1)
+    waitse
+    msgbox(format("Brawly: Hmm? Are you a trainer? Sorry but the arena is not open yet."))
+    msgbox(format("A gym challenge? I'm sorry I did not realize I had been here for so long."))
+    applymovement(1, brawlyFarewellsChuck)
+    waitmovement(1)
+    msgbox(format("We'll continue this later old friend."))
+    applymovement(1, brawlyFarewellsChuck2)
+    msgbox(format("I'll return to the gym now. Feel free to use the dojo's training facility in the nearby room if you feel unprepared."))
+    applymovement(OBJ_EVENT_ID_PLAYER, playerDodgesBrawly)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    applymovement(1, brawlyLeaves)
+    waitmovement(1)
+    playse(SE_EXIT)
+    removeobject(1)
+    applymovement(4, chucktakesOneStepDown)
+    waitmovement(4)
+    msgbox(format("Chuck: ..."))
+    msgbox(format("I sense some potential in you kid, make sure to give Brawly a good beating so he doesn't get too full of himself. Wahhahha!"))
+    waitmessage
+    applymovement(4, chuckLeaves)
+    waitmovement(4)
+    playse(SE_EXIT)
+    removeobject(4)
+    addvar(VAR_DEWFORD_TOWN_STATE, 1)
+    release
+    end
+}
+
+script BrawlyDojoRematchRoomBlackbelt {
+
+}
+
+script BrawlyDojoRematchRoomGirl {
+
+}
+
+script BrawlyDojoRematchRoomMankey {
+    bufferspeciesname(0, SPECIES_MANKEY)
+}
+
+movement playerwalkstoBrawlyfromLeft {
+    walk_up*2
+    walk_right
+    face_up
+    step_end
+}
+
+movement playerwalkstoBrawlyfromRight {
+    walk_up*2
+    step_end
+}
+
+movement chuckSurprised {
+    face_down
+    emote_exclamation_mark
+    step_end
+}
+
+movement brawlySurprised {
+    face_down
+    emote_exclamation_mark
+    step_end
+}
+
+movement brawlyFarewellsChuck {
+    face_left
+    step_end
+}
+
+movement brawlyFarewellsChuck2 {
+    face_down
+    step_end
+}
+
+movement playerDodgesBrawly {
+    walk_right
+    face_left
+    step_end
+}
+
+movement brawlyLeaves {
+    walk_down*6
+    step_end
+}
+
+movement chucktakesOneStepDown {
+    walk_down
+    face_right
+    step_end
+}
+
+movement chuckLeaves {
+    walk_down*5
+    step_end
+}

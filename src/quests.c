@@ -1759,7 +1759,7 @@ static u8 CountNumberListRows()
 u8 *DefineQuestOrder()
 {
 	static u8 sortedList[QUEST_COUNT];
-	u8 a, c, d, e;
+	u8 a, c, d;
 	u8 placeholderVariable;
 
 	for (a = 0; a < QUEST_COUNT; a++)
@@ -1790,7 +1790,6 @@ u8 *DefineQuestOrder()
 u8 GenerateSubquestList()
 {
 	u8 parentQuest = sStateDataPtr->parentQuest;
-	u8 mode = sStateDataPtr->filterMode % 10;
 	u8 lastRow = 0, numRow = 0, countQuest = 0;
 
 	for (numRow = 0; numRow < sSideQuests[parentQuest].numSubquests; numRow++)
@@ -1808,7 +1807,7 @@ u8 GenerateSubquestList()
 u8 GenerateList(bool8 isFiltered)
 {
 	u8 mode = sStateDataPtr-> filterMode % 10;
-	u8 lastRow = 0, numRow = 0, offset = 0, newRow = 0, countQuest = 0,
+	u8 numRow = 0, offset = 0, newRow = 0, countQuest = 0,
 	   selectedQuestId = 0;
 	u8 *sortedQuestList;
 
@@ -2358,7 +2357,7 @@ bool8 IsQuestCompletedState(s32 questId)
 	}
 }
 
-bool8 IsQuestUnlocked(s32 questId)
+bool8 UNUSED IsQuestUnlocked(s32 questId)
 {
 	if (QuestMenu_GetSetQuestState(questId, FLAG_GET_UNLOCKED))
 	{
@@ -2403,9 +2402,6 @@ static void QuestMenu_CreateSprite(u16 itemId, u8 idx, u8 spriteType)
 {
 	u8 *ptr = &sItemMenuIconSpriteIds[10];
 	u8 spriteId;
-	struct SpriteSheet spriteSheet;
-	struct CompressedSpritePalette spritePalette;
-	struct SpriteTemplate *spriteTemplate;
 
 	if (ptr[idx] == 0xFF)
 	{
