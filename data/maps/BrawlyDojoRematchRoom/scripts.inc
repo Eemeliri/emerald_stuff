@@ -49,11 +49,19 @@ BrawlyDojoBrawlyNPC_2:
 
 
 BrawlyDojoRematchRoomBlackbelt::
-	return
+	lock
+	faceplayer
+	msgbox BrawlyDojoRematchRoomBlackbelt_Text_0
+	release
+	end
 
 
 BrawlyDojoRematchRoomGirl::
-	return
+	lock
+	faceplayer
+	msgbox BrawlyDojoRematchRoomGirl_Text_0
+	release
+	end
 
 
 BrawlyDojoRematchRoomMankey::
@@ -152,3 +160,13 @@ BrawlyDojoBrawlyNPC_Text_7:
 	.string "sure to give Brawly a good beating so\l"
 	.string "he doesn't get too full of himself.\l"
 	.string "Wahhahha!$"
+
+BrawlyDojoRematchRoomBlackbelt_Text_0:
+	.string "We're still setting things up, so you\n"
+	.string "should come back later if you want to\l"
+	.string "participate.$"
+
+BrawlyDojoRematchRoomGirl_Text_0:
+	.string "We're planning to host a tournament and\n"
+	.string "invite gym leaders to come showcase\l"
+	.string "their skills! It will be amazing!$"

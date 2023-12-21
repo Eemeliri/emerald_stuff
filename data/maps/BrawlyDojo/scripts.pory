@@ -1,1 +1,39 @@
 mapscripts BrawlyDojo_MapScripts {}
+
+script megaKickTrainer {
+    lock
+    msgbox(format("No no, you don't get it, Mega Punch is the superior move!"))
+    release
+    end
+}
+
+script megaPunchTrainer {
+    lock
+    msgbox(format("Fool! Everyone knows Mega Kick is the true path to power!"))
+    release
+    end
+}
+
+script DojoTourist {
+    lock
+    faceplayer
+    msgbox(format("The doors behind me lead to training room and battle arena. I hear the arena is still under construction though."))
+    release
+    end
+}
+
+script DojoTrainee {
+    lock
+    faceplayer
+    msgbox(format("If you want to grow stronger, you should visit the training room."))
+    release
+    end
+}
+
+script DojoTeacher {
+    lock
+    faceplayer
+    msgbox(format("Ahead is the practice room for students, take care not to disturb them."))
+    release
+    end
+}

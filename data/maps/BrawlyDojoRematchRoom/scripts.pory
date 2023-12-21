@@ -44,11 +44,19 @@ script BrawlyDojoBrawlyNPC {
 }
 
 script BrawlyDojoRematchRoomBlackbelt {
-
+    lock
+    faceplayer
+    msgbox(format("We're still setting things up, so you should come back later if you want to participate."))
+    release
+    end
 }
 
 script BrawlyDojoRematchRoomGirl {
-
+    lock
+    faceplayer
+    msgbox(format("We're planning to host a tournament and invite gym leaders to come showcase their skills! It will be amazing!"))
+    release
+    end
 }
 
 script BrawlyDojoRematchRoomMankey {

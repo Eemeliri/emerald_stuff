@@ -12,6 +12,7 @@
 - Update rival's starter
 - Battle bond delphox and chesnaught
 - cynthia uses steven's battle mugshot
+- opening shop turns follower palette to black
 
 
 Ideas for events:

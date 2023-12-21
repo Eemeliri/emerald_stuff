@@ -1,1 +1,15 @@
 mapscripts BrawlyDojoTrainingRoom_MapScripts {}
+
+script dojoFexpert {
+    lock
+    faceplayer
+    msgbox(format("Training yourself mentally and physically is as important as training your Pokémon. Tough challenges cannot be faced with weak body and mind."))
+    release
+    end
+}
+
+script dojoTrainer {
+    msgbox(format("The student is meditating, it would be rude to disturb them."), MSGBOX_AUTOCLOSE)
+    end
+}
+
