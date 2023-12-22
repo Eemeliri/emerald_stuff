@@ -244,7 +244,8 @@ static void Task_WeatherMain(u8 taskId)
              /*Set all NPCs to trigger ground in order to check for shadow
             This is done because the weather can finish changing when the player is not moving
             which may cause the shadow to not show*/
-            for (i = 0; i < ARRAY_COUNT(gObjectEvents); i++) {
+            for (i = 0; i < ARRAY_COUNT(gObjectEvents); i++) 
+            {
                 (&gObjectEvents[i])->triggerGroundEffectsOnMove = TRUE;
             }
         }
@@ -259,6 +260,7 @@ static void Task_WeatherMain(u8 taskId)
 
 static void None_Init(void)
 {
+    Weather_SetBlendCoeffs(8, BASE_SHADOW_INTENSITY);
     gWeatherPtr->targetColorMapIndex = 0;
     gWeatherPtr->colorMapStepDelay = 0;
 }
