@@ -1073,6 +1073,7 @@ static void BuyMenuCollectObjectEventData(void)
     u8 numObjects = 0;
 
     GetXYCoordsOneStepInFrontOfPlayer(&facingX, &facingY);
+    RemoveFollowingPokemon();
 
     for (y = 0; y < OBJECT_EVENTS_COUNT; y++)
         sShopData->viewportObjects[y][OBJ_EVENT_ID] = OBJECT_EVENTS_COUNT;
