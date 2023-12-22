@@ -112,6 +112,7 @@ static void AnimTask_OdorSleuthMovementWaitFinish(u8);
 static void MoveOdorSleuthClone(struct Sprite *);
 static void AnimTask_TeeterDanceMovement_Step(u8);
 static void AnimTask_SlackOffSquish_Step(u8);
+static void AnimTask_HeldItemSquish_Step(u8);
 
 const union AnimCmd gScratchAnimCmds[] =
 {
@@ -5632,4 +5633,56 @@ static void AnimTask_SlackOffSquish_Step(u8 taskId)
 
     if (!RunAffineAnimFromTaskData(&gTasks[taskId]))
         DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_HeldItemSquish(u8 taskId)
+{
+    u8 battler;
+    struct Task *task = &gTasks[taskId];
+
+    if (!gBattleAnimArgs[1])
+        DestroyAnimVisualTask(taskId);
+
+    task->data[0] = 0;
+    task->data[1] = 0;
+    task->data[2] = 0;
+    task->data[3] = gBattleAnimArgs[1];
+    if (gBattleAnimArgs[0] == ANIM_ATTACKER)
+        battler = gBattleAnimAttacker;
+    else
+        battler = gBattleAnimTarget;
+
+    task->data[4] = GetBattlerSpriteCoord(battler, BATTLER_COORD_X);
+    task->data[5] = GetBattlerSpriteCoord(battler, BATTLER_COORD_Y);
+    task->data[6] = GetBattlerSpriteSubpriority(battler);
+    task->data[15] = GetAnimBattlerSpriteId(gBattleAnimArgs[0]);
+    PrepareAffineAnimInTaskData(task, task->data[15], gFacadeSquishAffineAnimCmds);
+    task->func = AnimTask_HeldItemSquish_Step;
+}
+
+static void AnimTask_HeldItemSquish_Step(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    switch (task->data[0])
+    {
+    case 0:
+        if (!RunAffineAnimFromTaskData(task))
+        {
+            if (--task->data[3] == 0)
+            {
+                task->data[0]++;
+            }
+            else
+            {
+                task->data[1] = 0;
+                PrepareAffineAnimInTaskData(task, task->data[15], gFacadeSquishAffineAnimCmds);
+            }
+        }
+        break;
+    case 1:
+        if (task->data[2] == 0)
+            DestroyAnimVisualTask(taskId);
+        break;
+    }
 }
