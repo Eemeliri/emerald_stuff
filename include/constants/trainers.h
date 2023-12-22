@@ -429,10 +429,6 @@
 
 #define F_TRAINER_FEMALE (1 << 7)
 
-#define F_TRAINER_PARTY_CUSTOM_MOVESET        (1 << 0)
-#define F_TRAINER_PARTY_HELD_ITEM             (1 << 1)
-#define F_TRAINER_PARTY_EVERYTHING_CUSTOMIZED (1 << 3)
-
 // Trainer party defines
 #define TRAINER_MON_MALE    1
 #define TRAINER_MON_FEMALE  2
