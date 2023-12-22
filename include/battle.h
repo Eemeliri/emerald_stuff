@@ -59,6 +59,7 @@ struct ResourceFlags
 #define RESOURCE_FLAG_TRACED            0x10
 #define RESOURCE_FLAG_EMERGENCY_EXIT    0x20
 #define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
+#define RESOURCE_FLAG_ICE_FACE          0x80
 
 struct DisableStruct
 {
@@ -66,8 +67,8 @@ struct DisableStruct
     u32 transformedMonOtId;
     u16 disabledMove;
     u16 encoredMove;
-    u8 protectUses;
-    u8 stockpileCounter;
+    u8 protectUses:4;
+    u8 stockpileCounter:4;
     s8 stockpileDef;
     s8 stockpileSpDef;
     s8 stockpileBeforeDef;
@@ -162,6 +163,7 @@ struct ProtectStruct
     u16 silkTrapped:1;
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
+    u16 usedAllySwitch:1;
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
@@ -764,11 +766,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
 
-#define IS_EFFECT_RECOIL(effect)(effect == EFFECT_RECOIL_25      \
-                          || effect == EFFECT_RECOIL_IF_MISS     \
-                          || effect == EFFECT_RECOIL_50          \
-                          || effect == EFFECT_RECOIL_33          \
-                          || effect == EFFECT_RECOIL_33_STATUS)
+#define IS_EFFECT_RECOIL(effect)(effect == EFFECT_RECOIL || effect == EFFECT_RECOIL_IF_MISS)
 
 #define IS_MOVE_RECOIL(move)(IS_EFFECT_RECOIL(gBattleMoves[move].effect))
 

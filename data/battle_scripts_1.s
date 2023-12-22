@@ -69,7 +69,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRecoilIfMiss            @ EFFECT_RECOIL_IF_MISS
 	.4byte BattleScript_EffectMist                    @ EFFECT_MIST
 	.4byte BattleScript_EffectFocusEnergy             @ EFFECT_FOCUS_ENERGY
-	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_25
+	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL
 	.4byte BattleScript_EffectConfuse                 @ EFFECT_CONFUSE
 	.4byte BattleScript_EffectAttackUp2               @ EFFECT_ATTACK_UP_2
 	.4byte BattleScript_EffectDefenseUp2              @ EFFECT_DEFENSE_UP_2
@@ -123,7 +123,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpite                   @ EFFECT_SPITE
 	.4byte BattleScript_EffectHit                     @ EFFECT_FALSE_SWIPE
 	.4byte BattleScript_EffectHealBell                @ EFFECT_HEAL_BELL
-	.4byte BattleScript_EffectHit                     @ EFFECT_ALWAYS_CRIT
 	.4byte BattleScript_EffectTripleKick              @ EFFECT_TRIPLE_KICK
 	.4byte BattleScript_EffectThief                   @ EFFECT_THIEF
 	.4byte BattleScript_EffectMeanLook                @ EFFECT_MEAN_LOOK
@@ -215,7 +214,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSnatch                  @ EFFECT_SNATCH
 	.4byte BattleScript_EffectHit                     @ EFFECT_LOW_KICK
 	.4byte BattleScript_EffectSecretPower             @ EFFECT_SECRET_POWER
-	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_33
 	.4byte BattleScript_EffectTeeterDance             @ EFFECT_TEETER_DANCE
 	.4byte BattleScript_EffectHitEscape               @ EFFECT_HIT_ESCAPE
 	.4byte BattleScript_EffectMudSport                @ EFFECT_MUD_SPORT
@@ -307,9 +305,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGrowth                  @ EFFECT_GROWTH
 	.4byte BattleScript_EffectCloseCombat             @ EFFECT_CLOSE_COMBAT
 	.4byte BattleScript_EffectLastResort              @ EFFECT_LAST_RESORT
-	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_33_STATUS
 	.4byte BattleScript_EffectFlinchStatus            @ EFFECT_FLINCH_STATUS
-	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_50
 	.4byte BattleScript_EffectShellSmash              @ EFFECT_SHELL_SMASH
 	.4byte BattleScript_EffectShiftGear               @ EFFECT_SHIFT_GEAR
 	.4byte BattleScript_EffectDefenseUp3              @ EFFECT_DEFENSE_UP_3
@@ -1526,8 +1522,11 @@ BattleScript_EffectAllySwitch:
 	attackstring
 	ppreduce
 	jumpifnoally BS_ATTACKER, BattleScript_ButItFailed
+	allyswitchfailchance BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+	@ The actual data/gfx swap happens in the move animation. Here it's just the gBattlerAttacker / scripting battler change
+	allyswitchswapbattlers
 	printstring STRINGID_ALLYSWITCHPOSITION
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
@@ -2995,7 +2994,7 @@ BattleScript_EffectTelekinesis:
 	settelekinesis BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	printstring STRINGID_PKMNIDENTIFIED
+	printstring STRINGID_HURLEDINTOTHEAIR
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
@@ -9157,14 +9156,8 @@ BattleScript_SoundproofProtected::
 	goto BattleScript_MoveEnd
 
 BattleScript_IceFaceNullsDamage::
-	attackstring
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
 	call BattleScript_TargetFormChangeWithString
-	goto BattleScript_MoveEnd
+	return
 
 BattleScript_DazzlingProtected::
 	attackstring

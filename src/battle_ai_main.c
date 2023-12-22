@@ -1854,29 +1854,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (aiData->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_DATA->moveAccuracy[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] < 75)
                 ADJUST_SCORE(-6);
             break;
-        case EFFECT_RECOIL_25:
+        case EFFECT_RECOIL:
             if (AI_IsDamagedByRecoil(battlerAtk))
             {
-                u32 recoilDmg = max(1, aiData->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 4);
-                if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
-                    ADJUST_SCORE(-10);
-                break;
-            }
-            break;
-        case EFFECT_RECOIL_33:
-        case EFFECT_RECOIL_33_STATUS:
-            if (AI_IsDamagedByRecoil(battlerAtk))
-            {
-                u32 recoilDmg = max(1, aiData->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 3);
-                if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
-                    ADJUST_SCORE(-10);
-                break;
-            }
-            break;
-        case EFFECT_RECOIL_50:
-            if (AI_IsDamagedByRecoil(battlerAtk))
-            {
-                u32 recoilDmg = max(1, aiData->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 2);
+                u32 recoilDmg = max(1, aiData->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] * max(1, gBattleMoves[move].recoil) / 100);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
                     ADJUST_SCORE(-10);
                 break;
@@ -2727,21 +2708,6 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     ADJUST_SCORE(1);
             }
             break;
-        case EFFECT_ALWAYS_CRIT:
-            // Ally decided to use Frost Breath on us. we must have Anger Point as our ability
-            if (aiData->abilities[battlerAtk] == ABILITY_ANGER_POINT)
-            {
-                if (AI_WhoStrikesFirst(battlerAtk, battlerAtkPartner, move) == AI_IS_SLOWER)   // Partner moving first
-                {
-                    // discourage raising our attack since it's about to be maxed out
-                    if (IsAttackBoostMoveEffect(effect))
-                        ADJUST_SCORE(-3);
-                    // encourage moves hitting multiple opponents
-                    if (!IS_MOVE_STATUS(move) && (moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
-                        ADJUST_SCORE(3);
-                }
-            }
-            break;
         // Don't change weather if ally already decided to do so.
         case EFFECT_SUNNY_DAY:
         case EFFECT_HAIL:
@@ -2753,6 +2719,20 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         }
     } // check partner move effect
+
+    // Adjust for always crit moves
+    if (gBattleMoves[aiData->partnerMove].critBoost == ALWAYS_CRIT && aiData->abilities[battlerAtk] == ABILITY_ANGER_POINT)
+    {
+        if (AI_WhoStrikesFirst(battlerAtk, battlerAtkPartner, move) == AI_IS_SLOWER)   // Partner moving first
+        {
+            // discourage raising our attack since it's about to be maxed out
+            if (IsAttackBoostMoveEffect(effect))
+                ADJUST_SCORE(-3);
+            // encourage moves hitting multiple opponents
+            if (!IS_MOVE_STATUS(move) && (moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
+                ADJUST_SCORE(3);
+        }
+    }
 
     // consider our move effect relative to partner state
     switch (effect)
@@ -3095,16 +3075,16 @@ static bool32 IsPinchBerryItemEffect(u32 holdEffect)
     return FALSE;
 }
 
-static u32 CompareMoveAccuracies(u32 battlerAtk, u32 battlerDef, u32 moveSlot1, u32 moveSlot2)
+static s32 CompareMoveAccuracies(u32 battlerAtk, u32 battlerDef, u32 moveSlot1, u32 moveSlot2)
 {
     u32 acc1 = AI_DATA->moveAccuracy[battlerAtk][battlerDef][moveSlot1];
     u32 acc2 = AI_DATA->moveAccuracy[battlerAtk][battlerDef][moveSlot2];
 
     if (acc1 > acc2)
-        return 0;
-    else if (acc2 > acc1)
         return 1;
-    return 2;
+    else if (acc2 > acc1)
+        return -1;
+    return 0;
 }
 
 static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
@@ -3166,19 +3146,19 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
 
                 switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
                 {
-                case 0:
+                case 1:
                     viableMoveScores[i] -= 2;
                     break;
-                case 1:
+                case -1:
                     viableMoveScores[currId] -= 2;
                     break;
                 }
                 switch (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]))
                 {
-                case 0:
+                case 1:
                     viableMoveScores[i] -= 1;
                     break;
-                case 1:
+                case -1:
                     viableMoveScores[currId] -= 1;
                     break;
                 }
@@ -3725,7 +3705,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         }
         break;
     case EFFECT_BATON_PASS:
-        if (ShouldSwitch(battlerAtk) && (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE
+        if (ShouldSwitch(battlerAtk, FALSE) && (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE
           || (gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK))
           || AnyStatIsRaised(battlerAtk)))
             ADJUST_SCORE(5);
@@ -4387,7 +4367,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             if (IsStatBoostingBerry(item) && aiData->hpPercents[battlerAtk] > 60)
                 ADJUST_SCORE(1);
             else if (ShouldRestoreHpBerry(battlerAtk, item) && !CanAIFaintTarget(battlerAtk, battlerDef, 0)
-              && ((GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == 0 && CanTargetFaintAiWithMod(battlerDef, battlerAtk, 0, 0))
+              && ((GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == 1 && CanTargetFaintAiWithMod(battlerDef, battlerAtk, 0, 0))
                || !CanTargetFaintAiWithMod(battlerDef, battlerAtk, toHeal, 0)))
                 ADJUST_SCORE(1);    // Recycle healing berry if we can't otherwise faint the target and the target wont kill us after we activate the berry
         }
@@ -4996,7 +4976,7 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
 
-    if (gBattleMoves[move].highCritRatio)
+    if (gBattleMoves[move].critBoost > 0)
         ADJUST_SCORE(2);
 
     switch (gBattleMoves[move].effect)

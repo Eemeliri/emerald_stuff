@@ -830,7 +830,9 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                 dmg = 20 * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
                 break;
             case EFFECT_MULTI_HIT:
-                dmg *= (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK ? 5 : 3);
+                dmg *= (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK
+                    && !(move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
+                    ? 5 : 3);
                 break;
             case EFFECT_ENDEAVOR:
                 // If target has less HP than user, Endeavor does no damage
@@ -862,8 +864,6 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             // Handle other multi-strike moves
             if (gBattleMoves[move].strikeCount > 1 && gBattleMoves[move].effect != EFFECT_TRIPLE_KICK)
                 dmg *= gBattleMoves[move].strikeCount;
-            else if (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
-                dmg *= 3;
 
             if (dmg == 0)
                 dmg = 1;
@@ -1024,11 +1024,8 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_MIND_BLOWN:
     case EFFECT_STEEL_BEAM:
         return TRUE;
-    case EFFECT_RECOIL_25:
     case EFFECT_RECOIL_IF_MISS:
-    case EFFECT_RECOIL_50:
-    case EFFECT_RECOIL_33:
-    case EFFECT_RECOIL_33_STATUS:
+    case EFFECT_RECOIL:
         if (AI_IsDamagedByRecoil(battlerAtk))
             return TRUE;
         break;
@@ -1046,7 +1043,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 }
 
 // Checks if one of the moves has side effects or perks, assuming equal dmg or equal no of hits to KO
-u32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
+s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
 {
     bool32 effect1, effect2;
     s32 defAbility = AI_DATA->abilities[battlerDef];
@@ -1066,18 +1063,18 @@ u32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32
     effect1 = AI_IsMoveEffectInMinus(battlerAtk, battlerDef, move1, noOfHitsToKo);
     effect2 = AI_IsMoveEffectInMinus(battlerAtk, battlerDef, move2, noOfHitsToKo);
     if (effect2 && !effect1)
-        return 0;
-    if (effect1 && !effect2)
         return 1;
+    if (effect1 && !effect2)
+        return -1;
 
     effect1 = AI_IsMoveEffectInPlus(battlerAtk, battlerDef, move1, noOfHitsToKo);
     effect2 = AI_IsMoveEffectInPlus(battlerAtk, battlerDef, move2, noOfHitsToKo);
     if (effect2 && !effect1)
-        return 1;
+        return -1;
     if (effect1 && !effect2)
-        return 0;
+        return 1;
 
-    return 2;
+    return 0;
 }
 
 u32 GetNoOfHitsToKO(u32 dmg, s32 hp)
@@ -1161,7 +1158,7 @@ static u32 AI_GetEffectiveness(uq4_12_t multiplier)
     * AI_IS_FASTER: is user(ai) faster
     * AI_IS_SLOWER: is target faster
 */
-u32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
+s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
 {
     u32 fasterAI = 0, fasterPlayer = 0, i;
     s8 prioAI = 0;
@@ -1200,7 +1197,7 @@ u32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
                                       AI_DATA->abilities[battlerAI], AI_DATA->abilities[battler2],
                                       AI_DATA->holdEffects[battlerAI], AI_DATA->holdEffects[battler2],
                                       AI_DATA->speedStats[battlerAI], AI_DATA->speedStats[battler2],
-                                      prioAI, prioBattler2) == 0)
+                                      prioAI, prioBattler2) == 1)
             return AI_IS_FASTER;
         else
             return AI_IS_SLOWER;
@@ -2289,7 +2286,17 @@ bool32 HasSoundMove(u32 battler)
 
 bool32 HasHighCritRatioMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(highCritRatio);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].critBoost > 0
+            && gBattleMoves[moves[i]].critBoost < ALWAYS_CRIT) // don't count always crit moves
+            return TRUE;
+    }
+
+    return FALSE;
 }
 
 bool32 HasMagicCoatAffectedMove(u32 battler)
@@ -2593,8 +2600,8 @@ bool32 ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32
     bool32 shouldSwitch;
     u32 battlerToSwitch;
 
-    shouldSwitch = ShouldSwitch(battlerAtk);
-    battlerToSwitch = *(gBattleStruct->AI_monToSwitchIntoId + battlerAtk);
+    shouldSwitch = ShouldSwitch(battlerAtk, FALSE);
+    battlerToSwitch = gBattleStruct->AI_monToSwitchIntoId[battlerAtk];
 
     if (PartyBattlerShouldAvoidHazards(battlerAtk, battlerToSwitch))
         return DONT_PIVOT;

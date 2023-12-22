@@ -762,8 +762,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else // Player is the OT
     {
-        u32 i;
-
         value = gSaveBlock2Ptr->playerTrainerId[0]
                   | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
                   | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
