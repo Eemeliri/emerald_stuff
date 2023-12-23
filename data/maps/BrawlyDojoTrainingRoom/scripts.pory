@@ -4,6 +4,11 @@ script dojoFexpert {
     lock
     faceplayer
     msgbox(format("Training yourself mentally and physically is as important as training your Pokémon. Tough challenges cannot be faced with weak body and mind."))
+    if (!flag(FLAG_RECEIVED_FOCUS_BAND)) {
+        msgbox(format("Perhaps this will help you focus on your training."))
+        giveitem(ITEM_FOCUS_BAND)
+        setflag(FLAG_RECEIVED_FOCUS_BAND)
+    }
     release
     end
 }
