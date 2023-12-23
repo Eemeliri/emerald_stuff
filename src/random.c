@@ -130,6 +130,14 @@ u16 Random2(void)
     return gRng2Value >> 16;
 }
 
+#define LOOP_RANDOM_START
+#define LOOP_RANDOM_END
+
+#define LOOP_RANDOM (Random())
+
+#endif
+
+
 // NEW
 u16 RandRange(u16 min, u16 max)
 {    
@@ -139,12 +147,6 @@ u16 RandRange(u16 min, u16 max)
     max++;   // make inclusive
     return (Random() % (max - min)) + min;
 }
-#define LOOP_RANDOM_START
-#define LOOP_RANDOM_END
-
-#define LOOP_RANDOM (Random())
-
-#endif
 
 #define SHUFFLE_IMPL \
     u32 tmp; \
