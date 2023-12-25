@@ -4316,6 +4316,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     u32 moveType, move;
     u32 side;
     u32 i, j;
+    u32 partner, partnerMaxHP;
     struct Pokemon *mon;
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
@@ -5014,6 +5015,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattleStruct->transformZeroToHero[side] |= gBitTable[gBattlerPartyIndexes[battler]];
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
+                effect++;
+            }
+            break;
+        case ABILITY_HOSPITALITY:
+            partner = BATTLE_PARTNER(battler);
+            partnerMaxHP = GetNonDynamaxMaxHP(partner);
+
+            if (!gSpecialStatuses[battler].switchInAbilityDone && IsDoubleBattle() && gBattleMons[partner].hp < partnerMaxHP)
+            {
+                gBattlerTarget = partner;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleMoveDamage = (partnerMaxHP / 4) * -1;
+                BattleScriptPushCursorAndCallback(BattleScript_HospitalityActivates);
                 effect++;
             }
             break;
