@@ -1,0 +1,79 @@
+raw `GraniteCave_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CaveHole_CheckFallDownHole
+	map_script MAP_SCRIPT_ON_TRANSITION, CaveHole_FixCrackedGround
+	map_script MAP_SCRIPT_ON_RESUME, GraniteCave_B1F_SetHoleWarp
+	.byte 0
+
+GraniteCave_B1F_SetHoleWarp:
+	setstepcallback STEP_CB_CRACKED_FLOOR
+	setholewarp MAP_GRANITE_CAVE_B2F
+	end
+
+`
+
+script graniteCaveBrock {
+    lock
+    if (flag(FLAG_TEMP_4)) {
+        msgbox(format("Oh hey! Had a change of mind?"), MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+        if (!flag(FLAG_BADGE02_GET)) {
+            msgbox(format("Excelent! Don't worry I won't go all out since you're still a rookie."))
+        } else {
+            msgbox(format("Excelent! This should be exciting!"))
+        }
+        trainerbattle_no_intro(TRAINER_GRANITECAVE_BROCK, "Incredible! You will go far!")
+        goto(graniteCaveBrockPostBattle)
+        }
+        msgbox(format("I see, perhaps another time then?"))
+        release
+        end
+    }
+    msgbox(format("???: No signs for fossils here either..."))
+    waitmessage
+    playse(SE_PIN)
+    applymovement(3, graniteCaveBrockSurprised)
+    waitmovement(3)
+    msgbox(format("Ah, I didn't see you there! My name is Brock and I come from Kanto region. I am currently excavating the caves in Hoenn for fossils."))
+    waitmessage
+    msgbox(format("Brock: Unfortunately I've not found any yet..."))
+    msgbox(format("Regardless, what are you doing in this place? Are you a trainer taking on the gyms?"))
+    msgbox(format("If you don't mind, would you care to battle me? I haven't had a chance to battle in a while so it would be a great workout."), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        if (!flag(FLAG_BADGE02_GET)) {
+            msgbox(format("Excelent! Don't worry I won't go all out since you're still a rookie."))
+        } else {
+            msgbox(format("Excelent! This should be exciting!"))
+        }
+        trainerbattle_no_intro(TRAINER_GRANITECAVE_BROCK, "Incredible! You will go far!")
+        goto(graniteCaveBrockPostBattle)
+    } else {
+    msgbox(format("I see, perhaps another time then?"))
+    setflag(FLAG_TEMP_4)
+    }
+    release
+    end
+}
+
+script graniteCaveBrockPostBattle {
+    msgbox(format("I am surprised, you are extremely skilled for a such a fresh trainer! I enjoyed that battle immensely."))
+    msgbox(format("I have to get back to my work now, but I hope we meet again. It would be great to fight you at full strength once you have even more experience."))
+    msgbox(format("Before I go, I would like you to have this egg, it is for a very special Pokémon that you can't find easily anymore."))
+    giveegg(SPECIES_GROWLITHE_HISUIAN)
+    msgbox(format("And with that, I bid you farewell."))
+    waitmessage
+    fadescreen(FADE_TO_BLACK)
+    removeobject(3)
+    delay(60)
+    fadescreen(FADE_FROM_BLACK)
+    release
+    end
+}
+
+movement graniteCaveBrockSurprised {
+    emote_exclamation_mark
+    delay_16
+    delay_16
+    delay_16
+    face_down
+    step_end
+}

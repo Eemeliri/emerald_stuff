@@ -19,6 +19,7 @@
 #include "field_weather.h"
 #include "graphics.h"
 #include "item.h"
+#include "level_caps.h"
 #include "link.h"
 #include "main.h"
 #include "overworld.h"
@@ -3232,8 +3233,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         case 3:
             // Rare Candy / EXP Candy
             if ((itemEffect[i] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetCurrentLevelCap())
+             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL)
             {
                 u8 param = ItemId_GetHoldEffectParam(item);
                 dataUnsigned = 0;
@@ -4821,7 +4821,7 @@ bool8 TryIncrementMonLevel(struct Pokemon *mon)
         expPoints = gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL];
         SetMonData(mon, MON_DATA_EXP, &expPoints);
     }
-    if (nextLevel > MAX_LEVEL || expPoints < gExperienceTables[gSpeciesInfo[species].growthRate][nextLevel])
+    if (nextLevel > GetCurrentLevelCap() || expPoints < gExperienceTables[gSpeciesInfo[species].growthRate][nextLevel])
     {
         return FALSE;
     }
@@ -5970,30 +5970,6 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum)
 
         return gfx->spritePointers[spriteNum];
     }
-}
-
-u8 GetCurrentLevelCap(void)
-{
-    if (!FlagGet(FLAG_BADGE01_GET))
-        return 15;
-    else if (!FlagGet(FLAG_BADGE02_GET))
-        return 21;
-    else if (!FlagGet(FLAG_BADGE03_GET))
-        return 28;
-    else if (!FlagGet(FLAG_BADGE04_GET))
-        return 35;
-    else if (!FlagGet(FLAG_BADGE05_GET))
-        return 42;
-    else if (!FlagGet(FLAG_BADGE06_GET))
-        return 47;
-    else if (!FlagGet(FLAG_BADGE07_GET))
-        return 52;
-    else if (!FlagGet(FLAG_BADGE08_GET))
-        return 60;
-    else if (!FlagGet(FLAG_IS_CHAMPION))
-        return 70;
-    else
-        return 100;
 }
 
 u16 GetFormSpeciesId(u16 speciesId, u8 formId)

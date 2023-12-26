@@ -37,3 +37,61 @@ script DojoTeacher {
     release
     end
 }
+
+script dojoKubfu {
+    bufferspeciesname(0, SPECIES_KUBFU)
+    lock
+    faceplayer
+    playmoncry(SPECIES_KUBFU, CRY_MODE_NORMAL)
+    msgbox(format("Kub?"))
+    waitmoncry
+    release
+    end
+}
+
+script dojoKubfuGentleman {
+    lock
+    faceplayer
+    msgbox(format("I came here looking for someone strong enough to take care of my Kubfu. I am not capable of giving it the training it requires, such lifestyle is past me now."))
+    if (flag(FLAG_BADGE02_GET)) {
+        msgbox(format("You! You have the badge from Brawly don't you?! Please, take Kubfu and show it the world. Surely a trainer of your caliber is capable of giving it the training it needs?"), MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(format("Thank you! Please take good care of Kubfu!"))
+            playfanfare(MUS_OBTAIN_ITEM)
+            givecustommon(SPECIES_KUBFU, 5, ITEM_NONE, ITEM_CHERISH_BALL)
+            removeobject(7)
+            bufferspeciesname(STR_VAR_1, SPECIES_KUBFU)
+            msgbox(format("{PLAYER} received the {STR_VAR_1} from the gentleman!"))
+            waitfanfare
+            waitmessage
+            if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+                msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    call(Common_EventScript_GetGiftMonPartySlot)
+	                call(Common_EventScript_NameReceivedPartyMon)
+                }
+
+            } else {
+                msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    call(Common_EventScript_NameReceivedBoxMon)
+                }
+            }
+            msgbox(format("Take care now."))
+            fadescreen(FADE_TO_BLACK)
+            closemessage
+            removeobject(6)
+            delay(50)
+            fadescreen(FADE_FROM_BLACK)
+            release
+            end
+        } else {
+            msgbox(format("Oh... I guess you are too busy for such Pokémon..."))
+            release
+            end
+        }
+    }
+    msgbox(format("Nobody here seems to have the experience it takes... Perhaps we will wait until someone of high caliber arrives..."))
+    release
+    end
+}

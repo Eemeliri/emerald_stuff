@@ -12201,6 +12201,69 @@ static const struct TrainerMon sParty_GreenMewtwo[] = {
     }
 };
 
+static const struct TrainerMon sParty_GraniteCaveBrock[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 18,
+    .species = SPECIES_GROWLITHE_HISUIAN,
+    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .heldItem = ITEM_CHERI_BERRY,
+    .moves = {MOVE_STEALTH_ROCK, MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_SCARY_FACE},
+    .ability = ABILITY_ROCK_HEAD,
+    .nature = TRAINER_PARTY_NATURE(NATURE_HASTY),
+    .isShiny = FALSE,
+    .ball = ITEM_HEAVY_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 18,
+    .species = SPECIES_SANDSHREW,
+    .ev = TRAINER_PARTY_EVS(0, 200, 0, 0, 4, 100),
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_RAPID_SPIN, MOVE_BULLDOZE, MOVE_ROLLOUT, MOVE_SANDSTORM},
+    .ability = ABILITY_SAND_RUSH,
+    .nature = TRAINER_PARTY_NATURE(NATURE_ADAMANT),
+    .isShiny = FALSE,
+    .ball = ITEM_GREAT_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 19,
+    .species = SPECIES_CORSOLA,
+    .ev = TRAINER_PARTY_EVS(200, 0, 0, 0, 4, 100),
+    .heldItem = ITEM_MYSTIC_WATER,
+    .moves = {MOVE_ANCIENT_POWER, MOVE_BUBBLE_BEAM, MOVE_AQUA_RING, MOVE_SAFEGUARD},
+    .ability = ABILITY_HUSTLE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_JOLLY),
+    .isShiny = FALSE,
+    .ball = ITEM_DIVE_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 19,
+    .species = SPECIES_AMAURA,
+    .ev = TRAINER_PARTY_EVS(100, 0, 0, 100, 4, 100),
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = {MOVE_FREEZE_DRY, MOVE_ANCIENT_POWER, MOVE_ROUND, MOVE_REFLECT},
+    .ability = ABILITY_REFRIGERATE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_JOLLY),
+    .isShiny = FALSE,
+    .ball = ITEM_MOON_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 30, 21, 21, 21, 21),
+    .lvl = 20,
+    .species = SPECIES_ONIX,
+    .ev = TRAINER_PARTY_EVS(100, 100, 0, 100, 4, 100),
+    .heldItem = ITEM_STONE_PLATE,
+    .moves = {MOVE_SMACK_DOWN, MOVE_DRAGON_BREATH, MOVE_HEAVY_SLAM, MOVE_SLAM},
+    .ability = ABILITY_STURDY,
+    .nature = TRAINER_PARTY_NATURE(NATURE_BOLD),
+    .isShiny = TRUE,
+    .ball = ITEM_POKE_BALL,
+    }
+};
+
 static const struct TrainerMon sParty_PostgameBlaine[] = {
     {
     .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),

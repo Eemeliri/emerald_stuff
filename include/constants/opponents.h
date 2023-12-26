@@ -912,8 +912,23 @@
 #define TRAINER_BRAWLYDOJO_SPDEF            905
 #define TRAINER_BRAWLYDOJO_SPEED            906
 #define TRAINER_BRAWLYDOJO_EXP              907
+#define TRAINER_GRANITECAVE_BROCK           908
+#define TRAINER_UNUSED1                     909
+#define TRAINER_UNUSED2                     910
+#define TRAINER_UNUSED3                     911
+#define TRAINER_UNUSED4                     912
+#define TRAINER_UNUSED5                     913
+#define TRAINER_UNUSED6                     914
+#define TRAINER_UNUSED7                     915
+#define TRAINER_UNUSED8                     916
+#define TRAINER_UNUSED9                     917
+#define TRAINER_UNUSED10                    918
+#define TRAINER_UNUSED11                    919
+#define TRAINER_UNUSED12                    920
+#define TRAINER_UNUSED13                    921
+#define TRAINER_UNUSED14                    922
 
-#define REGULAR_TRAINER_END                 TRAINER_BRAWLYDOJO_EXP
+#define REGULAR_TRAINER_END                 TRAINER_UNUSED14
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -1000,8 +1015,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      978
-#define MAX_TRAINERS_COUNT                  979
+#define TRAINERS_COUNT                      993
+#define MAX_TRAINERS_COUNT                  994
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)

@@ -10803,6 +10803,18 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Iiekspi),
     },
 
+    [TRAINER_GRANITECAVE_BROCK] =
+    {
+        .trainerClass = TRAINER_CLASS_K_LEADER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_BROCK,
+        .trainerName = _("Brock"),
+        .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_SETUP_FIRST_TURN | AI_FLAG_PREFER_STRONGEST_MOVE | AI_FLAG_TRY_TO_FAINT,
+        .party = TRAINER_PARTY(sParty_GraniteCaveBrock),
+    },
+
     [TRAINER_FRONTIER_BROCK] =
     {
         

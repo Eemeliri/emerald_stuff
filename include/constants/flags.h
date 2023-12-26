@@ -684,8 +684,8 @@
 #define FLAG_TEMP_HIDE_FOLLOWER  0x281
 #define FLAG_DEWFORD_GYM_GUARD  0x282
 #define FLAG_DEWFORD_GYM_TM66  0x283
-#define FLAG_UNUSED_0x284  0x284 // Unused Flag
-#define FLAG_UNUSED_0x285  0x285 // Unused Flag
+#define FLAG_GRANITECAVE_BROCK  0x284
+#define FLAG_OBTAINED_KUBFU  0x285 
 #define FLAG_UNUSED_0x286  0x286 // Unused Flag
 #define FLAG_UNUSED_0x287  0x287 // Unused Flag
 #define FLAG_UNUSED_0x288  0x288 // Unused Flag
