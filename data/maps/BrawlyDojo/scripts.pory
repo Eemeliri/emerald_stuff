@@ -60,6 +60,7 @@ script dojoKubfuGentleman {
             playfanfare(MUS_OBTAIN_ITEM)
             givecustommon(SPECIES_KUBFU, 5, ITEM_NONE, ITEM_CHERISH_BALL)
             removeobject(7)
+            showmonpic(SPECIES_KUBFU, 10, 3)
             bufferspeciesname(STR_VAR_1, SPECIES_KUBFU)
             msgbox(format("{PLAYER} received the {STR_VAR_1} from the gentleman!"))
             waitfanfare
@@ -77,6 +78,7 @@ script dojoKubfuGentleman {
                     call(Common_EventScript_NameReceivedBoxMon)
                 }
             }
+            hidemonpic
             msgbox(format("Take care now."))
             fadescreen(FADE_TO_BLACK)
             closemessage

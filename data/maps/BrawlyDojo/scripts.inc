@@ -73,6 +73,7 @@ dojoKubfuGentleman_4:
 	playfanfare MUS_OBTAIN_ITEM
 	givecustommon SPECIES_KUBFU, 5, ITEM_NONE, ITEM_CHERISH_BALL
 	removeobject 7
+	showmonpic SPECIES_KUBFU, 10, 3
 	bufferspeciesname STR_VAR_1, SPECIES_KUBFU
 	msgbox dojoKubfuGentleman_Text_3
 	waitfanfare
@@ -83,6 +84,7 @@ dojoKubfuGentleman_4:
 	compare VAR_RESULT, YES
 	goto_if_eq dojoKubfuGentleman_13
 dojoKubfuGentleman_7:
+	hidemonpic
 	msgbox dojoKubfuGentleman_Text_4
 	fadescreen FADE_TO_BLACK
 	closemessage
