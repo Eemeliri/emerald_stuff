@@ -459,7 +459,7 @@ bool32 BattlerHasAi(u32 battlerId)
 
 bool32 IsAiBattlerAware(u32 battlerId)
 {
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_OMNISCIENT)
+    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT)
         return TRUE;
 
     return BattlerHasAi(battlerId);
@@ -1345,7 +1345,7 @@ u32 AI_DecideHoldEffectForTurn(u32 battlerId)
     else
         holdEffect = GetBattlerHoldEffect(battlerId, FALSE);
 
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_NEGATE_UNAWARE)
         return holdEffect;
 
     if (gStatuses3[battlerId] & STATUS3_EMBARGO)
@@ -1396,7 +1396,7 @@ bool32 AI_IsBattlerGrounded(u32 battlerId)
 
 bool32 DoesBattlerIgnoreAbilityChecks(u32 atkAbility, u32 move)
 {
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
     if (IsMoldBreakerTypeAbility(atkAbility) || gBattleMoves[move].ignoresTargetAbility)
@@ -1407,7 +1407,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 atkAbility, u32 move)
 
 static inline bool32 AI_WeatherHasEffect(struct AiLogicData *aiData)
 {
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return TRUE;   // AI doesn't understand weather supression (handicap)
 
     return aiData->weatherHasEffect;  // weather damping abilities are announced
@@ -1492,7 +1492,7 @@ bool32 IsHazardMoveEffect(u32 moveEffect)
 
 bool32 IsMoveRedirectionPrevented(u32 move, u32 atkAbility)
 {
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;
 
     if (move == MOVE_SKY_DROP
@@ -1821,7 +1821,9 @@ u32 CountNegativeStatStages(u32 battlerId)
 
 bool32 ShouldLowerAttack(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_ATK] > 4
@@ -1838,7 +1840,9 @@ bool32 ShouldLowerAttack(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerDefense(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_DEF] > 4
@@ -1855,7 +1859,9 @@ bool32 ShouldLowerDefense(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerSpeed(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (!AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
@@ -1870,7 +1876,9 @@ bool32 ShouldLowerSpeed(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_SPATK] > 4
@@ -1886,7 +1894,9 @@ bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_SPDEF] > 4
@@ -1902,7 +1912,9 @@ bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerAccuracy(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (defAbility != ABILITY_CONTRARY
@@ -1919,7 +1931,9 @@ bool32 ShouldLowerAccuracy(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 ShouldLowerEvasion(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
-    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (AI_STRIKES_FIRST(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered)
+            && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT)
+            && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_EVASION] > DEFAULT_STAT_STAGE
@@ -3024,7 +3038,7 @@ bool32 ShouldTrap(u32 battlerAtk, u32 battlerDef, u32 move)
     if (BattlerWillFaintFromSecondaryDamage(battlerDef, AI_DATA->abilities[battlerDef]))
         return TRUE;    // battler is taking secondary damage with low HP
 
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_STALL)
+    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL)
     {
         if (!CanTargetFaintAi(battlerDef, battlerAtk))
             return TRUE;    // attacker goes first and opponent can't kill us
@@ -3608,7 +3622,7 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
     if (AI_DATA->hpPercents[battlerAtk] < 80 && AI_RandLessThan(128))
         return;
 
-    if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return; // Damaging moves would get a score boost from AI_TryToFaint or PreferStrongestMove so we don't consider them here
 
     switch (statId)
@@ -3682,8 +3696,8 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
 
 void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
-    || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_PSN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+            || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_PSN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
     if (AI_CanPoison(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove) && AI_DATA->hpPercents[battlerDef] > 20)
@@ -3691,7 +3705,7 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         if (!HasDamagingMove(battlerDef))
             ADJUST_SCORE_PTR(2);
 
-        if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
+        if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
             ADJUST_SCORE_PTR(1);    // stall tactic
 
         if (HasMoveEffect(battlerAtk, EFFECT_VENOSHOCK)
@@ -3706,8 +3720,8 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
 void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
-    || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_BRN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+            || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_BRN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
     if (AI_CanBurn(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
@@ -3726,8 +3740,8 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
 void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
-    || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_PAR || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+            || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_PAR || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
     if (AI_CanParalyze(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
@@ -3748,8 +3762,8 @@ void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
 void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
-    || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_SLP || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+            || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_SLP || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
     if (AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
@@ -3767,8 +3781,8 @@ void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
 void IncreaseConfusionScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
-    || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_CONFUSION || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+            || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_CONFUSION || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
     if (AI_CanConfuse(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
@@ -3786,7 +3800,7 @@ void IncreaseConfusionScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
 
 void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
         return;
 
     if (AI_CanGiveFrostbite(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
