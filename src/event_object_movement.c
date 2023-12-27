@@ -1701,7 +1701,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
         CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, callback, spriteTemplate, &subspriteTables);
 
     if (spriteTemplate->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC) {
-        const struct CompressedSpritePalette *spritePalette = (shiny ? gSpeciesInfo[species].shinyPalette : gSpeciesInfo[species].palette)[species];
+        const struct CompressedSpritePalette *spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
         LoadDynamicFollowerPalette(species, form, shiny);
         spriteTemplate->paletteTag = spritePalette->tag;
     } else if (spriteTemplate->paletteTag != TAG_NONE)
@@ -1853,7 +1853,7 @@ static const struct ObjectEventGraphicsInfo * SpeciesToGraphicsInfo(u16 species,
 
 // Find, or load, the palette for the specified pokemon info
 static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
-    u8 paletteNum;
+    u32 paletteNum;
     // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
     // so that palette tags do not overlap
     const struct CompressedSpritePalette *spritePalette;
@@ -1867,13 +1867,8 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
     else
         spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
 
-    //const struct CompressedSpritePalette *spritePalette = &(shiny ? gFollowMonShinyPaletteTable : gFollowMonPaletteTable)[species];
     if ((paletteNum = IndexOfSpritePaletteTag(spritePalette->tag)) == 0xFF) { // Load compressed palette
       LoadCompressedSpritePaletteDayNight(spritePalette);
-      //LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
-      //LoadObjectEventPalette(spriteTemplate->paletteTag, TRUE);
-      //LoadSpritePaletteDayNight(spritePalette);
-      //DoLoadSpritePaletteDayNight(spritePalette->data, spritePalette->tag * 16);
       paletteNum = IndexOfSpritePaletteTag(spritePalette->tag); // Tag is always present
       if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
         UpdateSpritePaletteWithWeather(paletteNum);
