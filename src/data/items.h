@@ -1932,9 +1932,10 @@ const struct Item gItems[] =
     [ITEM_NUGGET] =
     {
         .name = _("Nugget"),
-        .itemId = ITEM_NUGGET,
-        .price = 10000,
-        .description = sNuggetDesc,
+        .price = 10000 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A nugget of pure\n"
+                                       "gold. Can be sold at\n"
+                                       "a high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1957,9 +1958,10 @@ const struct Item gItems[] =
     [ITEM_TINY_MUSHROOM] =
     {
         .name = _("Tiny Mushroom"),
-        .itemId = ITEM_TINY_MUSHROOM,
-        .price = 500,
-        .description = sTinyMushroomDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A plain mushroom\n"
+                                       "that would sell\n"
+                                       "at a cheap price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
