@@ -1922,7 +1922,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
         critChance = -1;
     }
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
-        || gBattleMoves[gCurrentMove].critBoost == ALWAYS_CRIT
+        || gBattleMoves[gCurrentMove].alwaysCriticalHit
         || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
     {
         critChance = -2;
@@ -1930,7 +1930,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     else
     {
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + gBattleMoves[gCurrentMove].critBoost
+                    + gBattleMoves[gCurrentMove].criticalHitStage
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
@@ -5575,7 +5575,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_NUM_HITS:
             if (gBattlerAttacker != gBattlerTarget
-                && gBattleMoves[gCurrentMove].split != SPLIT_STATUS
+                && gBattleMoves[gCurrentMove].category != BATTLE_CATEGORY_STATUS
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && TARGET_TURN_DAMAGED)
             {
@@ -8171,7 +8171,7 @@ static bool32 HasAttackerFaintedTarget(void)
 
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].category == BATTLE_CATEGORY_STATUS)
             || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
 }
 
@@ -10266,7 +10266,7 @@ static void Cmd_various(void)
     case VARIOUS_PHOTON_GEYSER_CHECK:
     {
         VARIOUS_ARGS();
-        gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(battler) == SPLIT_SPECIAL);
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battler) == BATTLE_CATEGORY_SPECIAL);
         break;
     }
     case VARIOUS_SHELL_SIDE_ARM_CHECK: // 0% chance GameFreak actually checks this way according to DaWobblefet, but this is the only functional explanation at the moment
@@ -15670,7 +15670,7 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
         && !gBattleMoves[move].parentalBondBanned
-        && gBattleMoves[move].split != SPLIT_STATUS
+        && gBattleMoves[move].category != BATTLE_CATEGORY_STATUS
         && gBattleMoves[move].strikeCount < 2)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)

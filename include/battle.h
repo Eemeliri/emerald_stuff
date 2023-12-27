@@ -336,7 +336,7 @@ struct AI_ThinkingStruct
     u16 moveConsidered;
     s32 score[MAX_MON_MOVES];
     u32 funcResult;
-    u32 aiFlags;
+    u32 aiFlags[MAX_BATTLERS_COUNT];
     u8 aiAction;
     u8 aiLogicId;
     struct AI_SavedBattleMon saved[MAX_BATTLERS_COUNT];
@@ -547,7 +547,7 @@ struct ZMoveData
     u8 active:1;   // is z move being used this turn
     u8 zStatusActive:1;
     u8 healReplacement:1;
-    u8 activeSplit:2;  // active z move split
+    u8 activeCategory:2;  // active z move category
     u8 zUnused:1;
     u8 triggerSpriteId;
     u8 possibleZMoves[MAX_BATTLERS_COUNT];
@@ -556,7 +556,7 @@ struct ZMoveData
     u8 used[MAX_BATTLERS_COUNT];   //one per bank for multi-battles
     u16 toBeUsed[MAX_BATTLERS_COUNT];  // z moves per battler to be used
     u16 baseMoves[MAX_BATTLERS_COUNT];
-    u8 splits[MAX_BATTLERS_COUNT];
+    u8 categories[MAX_BATTLERS_COUNT];
 };
 
 struct DynamaxData
@@ -568,8 +568,8 @@ struct DynamaxData
     bool8 dynamaxed[MAX_BATTLERS_COUNT];
     u8 dynamaxTurns[MAX_BATTLERS_COUNT];
     u8 usingMaxMove[MAX_BATTLERS_COUNT];
-    u8 activeSplit;
-    u8 splits[MAX_BATTLERS_COUNT];
+    u8 activeCategory;
+    u8 categories[MAX_BATTLERS_COUNT];
     u16 baseMove[MAX_BATTLERS_COUNT]; // base move of Max Move
     u16 lastUsedBaseMove;
     u16 levelUpHP;
@@ -775,9 +775,9 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
         typeArg = gBattleMoves[move].type;                            \
 }
 
-#define IS_MOVE_PHYSICAL(move)(GetBattleMoveSplit(move) == SPLIT_PHYSICAL)
-#define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
-#define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
+#define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == BATTLE_CATEGORY_PHYSICAL)
+#define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == BATTLE_CATEGORY_SPECIAL)
+#define IS_MOVE_STATUS(move)(gBattleMoves[move].category == BATTLE_CATEGORY_STATUS)
 
 #define IS_EFFECT_RECOIL(effect)(effect == EFFECT_RECOIL || effect == EFFECT_RECOIL_IF_MISS)
 

@@ -10,6 +10,7 @@
 #include "contest.h"
 #include "contest_effect.h"
 #include "data.h"
+#include "battle_util.h"
 #include "daycare.h"
 #include "decompress.h"
 #include "dynamic_placeholder_text_util.h"
@@ -279,7 +280,6 @@ static void PrintMonInfo(void);
 static void PrintNotEggInfo(void);
 static void PrintEggInfo(void);
 static void PutPageWindowTilemaps(u8 a);
-static void RemoveWindowByIndex(u8 a);
 static void PrintPageSpecificText(u8 a);
 static void PrintInfoPage(void);
 static void PrintMemoPage(void);
@@ -288,13 +288,9 @@ static void BufferNatureString(void);
 static void BufferCharacteristicString(void);
 static void GetMetLevelString(u8 *a);
 static bool8 DoesMonOTMatchOwner(void);
-static bool8 DidMonComeFromGBAGames(void);
 static bool8 DidMonComeFromRSE(void);
 static bool8 DidMonComeFromFRLG(void);
-static bool8 DidMonComeFromCD(void);
-static bool8 DidMonComeFromDPPt(void);
 static bool8 IsInGamePartnerMon(void);
-static void PrintEggOTID(void);
 static void BufferEggState(void);
 static void BufferEggMemo(void);
 static void PrintSkillsPage(void);
@@ -1157,7 +1153,7 @@ static u8 ShowSplitIcon(u32 split)
     return sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_SPLIT];
 }
 
-static void DestroySplitIcon(void)
+static void DestroyCategoryIcon(void)
 {
     if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_SPLIT] != 0xFF)
         DestroySprite(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_SPLIT]]);
@@ -2273,7 +2269,6 @@ static bool8 IsValidToViewInMulti(struct Pokemon *mon)
 
 static void ChangePage(u8 taskId, s8 delta)
 {
-    struct PokeSummary *summary = &sMonSummaryScreen->summary;
     s16 *data = gTasks[taskId].data;
 
     ModifyMode = FALSE;
@@ -2340,7 +2335,6 @@ static void ChangePageTask(u8 taskId)
 
 static void SwitchToMoveSelection(u8 taskId)
 {
-    u32 i;
     s16 *data = gTasks[taskId].data;
 
     sMonSummaryScreen->firstMoveIndex = 0;
@@ -2455,7 +2449,7 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
             ClearWindowTilemap(PSS_LABEL_PANE_RIGHT);
             ClearWindowTilemap(PSS_LABEL_PANE_LEFT_MOVE);
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
-            DestroySplitIcon();
+            DestroyCategoryIcon();
             #endif
             ScheduleBgCopyTilemapToVram(0);
             data[0]++;
@@ -2557,7 +2551,7 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
     if (*moveIndexPtr != MAX_MON_MOVES && newMoveIndex == MAX_MON_MOVES && sMonSummaryScreen->newMove == MOVE_NONE)
     {
         #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
-        DestroySplitIcon();
+        DestroyCategoryIcon();
         #endif
         ScheduleBgCopyTilemapToVram(0);
     }
@@ -2572,7 +2566,6 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
 
 static void CloseMoveSelectMode(u8 taskId)
 {
-    u32 i;
     s16 *data = gTasks[taskId].data;
     data[0] = 0;
 
@@ -2593,7 +2586,7 @@ static void Task_SwitchFromMoveDetails(u8 taskId)
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, TRUE);
             SetSpriteInvisibility(SPRITE_ARR_ID_MON_ICON, TRUE);
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
-            DestroySplitIcon();
+            DestroyCategoryIcon();
             #endif
             data[0]++;
             break;
@@ -2852,7 +2845,7 @@ static void Task_SwitchPageInReplaceMove(u8 taskId)
             ClearWindowTilemap(PSS_LABEL_PANE_RIGHT);
             ClearWindowTilemap(PSS_LABEL_PANE_LEFT_MOVE);
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
-            DestroySplitIcon();
+            DestroyCategoryIcon();
             #endif
             ScheduleBgCopyTilemapToVram(0);
             data[0]++;
@@ -3105,21 +3098,8 @@ static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 te
     return *windowIdPtr;
 }
 
-static void RemoveWindowByIndex(u8 windowIndex)
-{
-    u8 *windowIdPtr = &sMonSummaryScreen->windowIds[windowIndex];
-    if (*windowIdPtr != WINDOW_NONE)
-    {
-        ClearWindowTilemap(*windowIdPtr);
-        RemoveWindow(*windowIdPtr);
-        *windowIdPtr = WINDOW_NONE;
-    }
-}
-
 static void PrintPageSpecificText(u8 pageIndex)
 {
-    u16 i;
-
     PrintInfoBar(pageIndex, FALSE);
     sTextPrinterFunctions[pageIndex]();
 }
@@ -3136,10 +3116,8 @@ static void SetTypeSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 
 static void PrintInfoPage(void)
 {
-    u8 x, i;
+    u8 x;
     s64 numExpProgressBarTicks;
-    u16 *dst;
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u16 dexNum = SpeciesToPokedexNum(summary->species);
     u8 digitCount = (NATIONAL_DEX_COUNT > 999 && IsNationalPokedexEnabled()) ? 4 : 3;
@@ -3336,9 +3314,7 @@ static void BufferMonTrainerMemo(void)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, sRegionString_Unknown);
         GetMapNameHandleAquaHideout(metLocationString, sum->metLocation);
 
-        if (!DidMonComeFromGBAGames())
-            StringCopy(metLocationString, sMapName_DistantLand);
-
+        
         if (sum->metLevel == 0)
         {
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
@@ -3477,14 +3453,6 @@ static bool8 DoesMonOTMatchOwner(void)
         return TRUE;
 }
 
-static bool8 DidMonComeFromGBAGames(void)
-{
-    struct PokeSummary *sum = &sMonSummaryScreen->summary;
-    if (sum->metGame >= VERSION_SAPPHIRE && sum->metGame <= VERSION_LEAF_GREEN)
-        return TRUE;
-    return FALSE;
-}
-
 static bool8 DidMonComeFromRSE(void)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
@@ -3618,12 +3586,10 @@ static void PrintSkillsPage(void)
 {
     u8 x, y, i, j;
     s64 numHPBarTicks;
-    u16 *dst;
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     static const u8 sText_Help_Bar[] = _("{DPAD_LEFTRIGHT} Add / Remove 4 EVs\n{L_BUTTON}{R_BUTTON} Add / Remove 64 EVs");
     const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.nature];
-    static const u8 sText_Evs_Disabled[] = _("0");
+    //static const u8 sText_Evs_Disabled[] = _("0");
     u8 offset = 0;
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
@@ -3899,10 +3865,8 @@ static void PrintSkillsPage(void)
 
 static void PrintConditionPage(void)
 {
-    u8 x, i;
+    u8 x;
     s64 numSheenBarTicks;
-    u16 *dst;
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT_HP, PIXEL_FILL(0));
@@ -3964,8 +3928,7 @@ static void PrintMoveNameAndPP(u8 moveIndex)
 {
     u32 pp, color, x;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-
+    
     if (summary->moves[moveIndex] != MOVE_NONE)
     {
         pp = CalculatePPWithBonus(summary->moves[moveIndex], summary->ppBonuses, moveIndex);
@@ -4025,32 +3988,6 @@ static void PrintContestMoves(void)
 
     ScheduleBgCopyTilemapToVram(0);
     PutWindowTilemap(PSS_LABEL_PANE_RIGHT);
-}
-
-static u8 GetBattleMoveCategory(u16 move)
-{
-    if (gBattleMoves[move].power == 0)
-    {
-        return 2;
-    }
-    else
-    {
-        switch (gBattleMoves[move].type)
-        {
-            case TYPE_NORMAL:
-            case TYPE_FIGHTING:
-            case TYPE_FLYING:
-            case TYPE_GROUND:
-            case TYPE_ROCK:
-            case TYPE_BUG:
-            case TYPE_GHOST:
-            case TYPE_POISON:
-            case TYPE_STEEL:
-                return 0;
-            default:
-                return 1;
-        }
-    }
 }
 
 static void PrintMoveDetails(u16 move)
@@ -4126,7 +4063,7 @@ static void PrintMoveDetails(u16 move)
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gMoveFourLineDescriptionPointers[move - 1], 2, 64, 0, 0);
 
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT
-            ShowSplitIcon(GetBattleMoveSplit(move));
+            ShowSplitIcon(GetBattleMoveCategory(move));
             #elif CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
             ShowSplitIcon(GetBattleMoveCategory(move));
             #endif
@@ -4309,7 +4246,6 @@ static void SetMoveTypeIcons(void)
     u8 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
@@ -4360,8 +4296,7 @@ static void SetContestMoveTypeIcons(void)
 static void SetNewMoveTypeIcon(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
-
+    
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 6, TRUE);
@@ -5069,7 +5004,7 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
 
 static u8 WhatRegionWasMonCaughtIn(struct Pokemon *mon)
 {
-    u8 originGame, versionModifier, metLocation;
+    u8 originGame, metLocation;
 
     originGame = GetMonData(mon, MON_DATA_MET_GAME, 0);
     metLocation = GetMonData(mon, MON_DATA_MET_LOCATION, 0);
@@ -5090,11 +5025,11 @@ static u8 *GetMapNameHoennKanto(u8 *dest, u16 regionMapId)
 {
     if (regionMapId < MAPSEC_NONE && gRegionMapEntries[regionMapId].name != 0)
     {
-        StringCopy(dest, gRegionMapEntries[regionMapId].name);
+        return StringCopy(dest, gRegionMapEntries[regionMapId].name);
     }
     else
     {
-        StringCopy(dest, gOrreMapNamePointers[MAPSEC_DISTANT_LAND]);
+        return StringCopy(dest, gOrreMapNamePointers[MAPSEC_DISTANT_LAND]);
     }
 }
 
@@ -5529,10 +5464,10 @@ static u8 *GetMapNameOrre(u8 *dest, u16 regionMapId, bool8 isXD)
 
     if (regionMapId < ORRE_MAPSEC_END && gOrreMapNamePointers[regionMapId] != 0)
     {
-        StringCopy(dest, gOrreMapNamePointers[regionMapId]);
+        return StringCopy(dest, gOrreMapNamePointers[regionMapId]);
     }
     else
     {
-        StringCopy(dest, gOrreMapNamePointers[MAPSEC_DISTANT_LAND]);
+        return StringCopy(dest, gOrreMapNamePointers[MAPSEC_DISTANT_LAND]);
     }
 }

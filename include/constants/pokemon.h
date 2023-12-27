@@ -259,13 +259,10 @@
 #define FLAG_SLICING_MOVE                         (1 << 30)
 #define FLAG_KICKBOXING_BOOST                     (1 << 31) //Kickboxing
 
-// Split defines.
-#define SPLIT_PHYSICAL  0x0
-#define SPLIT_SPECIAL   0x1
-#define SPLIT_STATUS    0x2
-
-// Just for readability
-#define ALWAYS_CRIT         3
+// Move category defines.
+#define BATTLE_CATEGORY_PHYSICAL    0
+#define BATTLE_CATEGORY_SPECIAL     1
+#define BATTLE_CATEGORY_STATUS      2
 
 // Growth rates
 #define GROWTH_MEDIUM_FAST  0

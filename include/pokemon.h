@@ -411,16 +411,16 @@ struct BattleMove
     u16 effect;
     u8 power;
     u8 type:5;
-    u8 split:3;
+    u8 category:3;
 
     u16 accuracy:7;
     u16 recoil:7;
-    u16 critBoost:2;
+    u16 criticalHitStage:2;
+    u8 pp;
     u8 secondaryEffectChance;
-    s8 priority;
 
     u16 target;
-    u8 pp;
+    s8 priority;
     union {
         u8 effect;
         u8 powerOverride;
@@ -433,6 +433,7 @@ struct BattleMove
     u32 snatchAffected:1;
     u32 mirrorMoveBanned:1;
     u32 ignoresKingsRock:1;
+    u32 alwaysCriticalHit:1;
     u32 twoTurnMove:1;
     u32 punchingMove:1;
     u32 kickingMove:1;
