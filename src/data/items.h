@@ -18,6 +18,130 @@
     #define TYPE_BOOST_PARAM 10
 #endif
 
+#define X_ITEM_STAGES (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1
+
+#define TREASURE_FACTOR (I_SELL_VALUE_FRACTION >= GEN_9) ? 2: 1
+
+// Shared Item Description entries
+
+static const u8 sFullHealDesc[]       = _("Heals all the\n"
+                                          "status problems of\n"
+                                          "one Pokémon.");
+
+static const u8 sPokeDollDesc[]       = _("Use to flee from\n"
+                                          "any battle with\n"
+                                          "a wild Pokémon.");
+
+static const u8 sMaxReviveDesc[]      = _("Revives a fainted\n"
+                                          "Pokémon with all\n"
+                                          "its HP.");
+
+static const u8 sHealthFeatherDesc[]  = _("An item that raises\n"
+                                          "the base HP of\n"
+                                          "a Pokémon.");
+
+static const u8 sMuscleFeatherDesc[]  = _("An item that raises\n"
+                                          "the base Attack of\n"
+                                          "a Pokémon.");
+
+static const u8 sResistFeatherDesc[]  = _("An item that raises\n"
+                                          "the base Defense\n"
+                                          "of a Pokémon.");
+
+static const u8 sGeniusFeatherDesc[]  = _("An item that raises\n"
+                                          "the base Sp. Atk.\n"
+                                          "of a Pokémon.");
+
+static const u8 sCleverFeatherDesc[]  = _("An item that raises\n"
+                                          "the base Sp. Def.\n"
+                                          "of a Pokémon.");
+
+static const u8 sSwiftFeatherDesc[]   = _("An item that raises\n"
+                                          "the base Speed of\n"
+                                          "a Pokémon.");
+
+static const u8 sBigMushroomDesc[]    = _("A rare mushroom\n"
+                                          "that would sell at a\n"
+                                          "high price.");
+
+static const u8 sShardsDesc[]         = _("A shard from an\n"
+                                          "ancient item. Can\n"
+                                          "be sold cheaply.");
+
+static const u8 sRootFossilDesc[]     = _("A fossil of an\n"
+                                          "ancient, seafloor-\n"
+                                          "dwelling Pokémon.");
+
+static const u8 sFossilizedFishDesc[] = _("A fossil of an\n"
+                                          "ancient, sea-\n"
+                                          "dwelling Pokémon.");
+
+static const u8 sBeadMailDesc[]       = _("Mail featuring a\n"
+                                          "sketch of the\n"
+                                          "holding Pokémon.");
+
+static const u8 sEvolutionStoneDesc[] = _("Makes certain\n"
+                                          "species of Pokémon\n"
+                                          "evolve.");
+
+static const u8 sNectarDesc[]         = _("Flower nectar that\n"
+                                          "changes the form\n"
+                                          "of certain Pokémon.");
+
+static const u8 sCharizarditeDesc[]   = _("This stone enables\n"
+                                          "Charizard to Mega\n"
+                                          "Evolve in battle.");
+
+static const u8 sMewtwoniteDesc[]     = _("This stone enables\n"
+                                          "Mewtwo to Mega\n"
+                                          "Evolve in battle.");
+
+static const u8 sSeaIncenseDesc[]     = _("A hold item that\n"
+                                          "slightly boosts\n"
+                                          "Water-type moves.");
+
+static const u8 sOddIncenseDesc[]     = _("A hold item that\n"
+                                          "boosts Psychic-\n"
+                                          "type moves.");
+
+static const u8 sRockIncenseDesc[]    = _("A hold item that\n"
+                                          "raises the power of\n"
+                                          "Rock-type moves.");
+
+static const u8 sFullIncenseDesc[]    = _("A held item that\n"
+                                          "makes the holder\n"
+                                          "move slower.");
+
+static const u8 sRoseIncenseDesc[]    = _("A hold item that\n"
+                                          "raises the power of\n"
+                                          "Grass-type moves.");
+
+static const u8 sLuckIncenseDesc[]    = _("Doubles money in\n"
+                                          "battle if the\n"
+                                          "holder takes part.");
+
+static const u8 sPureIncenseDesc[]    = _("A hold item that\n"
+                                          "helps repel wild\n"
+                                          "Pokémon.");
+
+static const u8 sKingsRockDesc[]      = _("A hold item that\n"
+                                          "may cause flinching\n"
+                                          "when the foe is hit.");
+
+static const u8 sFigyBerryDesc[]      = _("A hold item that\n"
+                                          "restores HP but\n"
+                                          "may confuse.");
+
+static const u8 sQuestionMarksDesc[]  = _("?????");
+
+static const u8 sKeyToRoomDesc[]      = _("A key that opens a\n"
+                                          "door inside the\n"
+                                          "Abandoned Ship.");
+
+static const u8 sTeraShardDesc[]      = _("These shards may\n"
+                                          "form when a Tera\n"
+                                          "Pokémon faints.");
+
 const struct Item gItems[] =
 {
     [ITEM_NONE] =
@@ -60,9 +184,10 @@ const struct Item gItems[] =
     [ITEM_ULTRA_BALL] =
     {
         .name = _("Ultra Ball"),
-        .itemId = ITEM_ULTRA_BALL,
-        .price = 800,
-        .description = sUltraBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 800 : 1200,
+        .description = COMPOUND_STRING("A better Ball with\n"
+                                       "a higher catch rate\n"
+                                       "than a Great Ball."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -84,9 +209,10 @@ const struct Item gItems[] =
     [ITEM_PREMIER_BALL] =
     {
         .name = _("Premier Ball"),
-        .itemId = ITEM_PREMIER_BALL,
-        .price = 20,
-        .description = sPremierBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 20 : 200,
+        .description = COMPOUND_STRING("A rare Ball made\n"
+                                       "in commemoration\n"
+                                       "of some event."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -192,9 +318,10 @@ const struct Item gItems[] =
     [ITEM_LUXURY_BALL] =
     {
         .name = _("Luxury Ball"),
-        .itemId = ITEM_LUXURY_BALL,
-        .price = 1000,
-        .description = sLuxuryBallDesc,
+        .price = (I_PRICE >= GEN_8) ? 3000 : 1000,
+        .description = COMPOUND_STRING("A cozy Ball that\n"
+                                       "makes Pokémon\n"
+                                       "more friendly."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -204,9 +331,10 @@ const struct Item gItems[] =
     [ITEM_LEVEL_BALL] =
     {
         .name = _("Level Ball"),
-        .itemId = ITEM_LEVEL_BALL,
-        .price = 0,
-        .description = sLevelBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("A Ball that works\n"
+                                       "well on lower\n"
+                                       "level Pokémon."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -216,9 +344,10 @@ const struct Item gItems[] =
     [ITEM_LURE_BALL] =
     {
         .name = _("Lure Ball"),
-        .itemId = ITEM_LURE_BALL,
-        .price = 0,
-        .description = sLureBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("A Ball that works\n"
+                                       "well on fished\n"
+                                       "up Pokémon."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -228,9 +357,10 @@ const struct Item gItems[] =
     [ITEM_MOON_BALL] =
     {
         .name = _("Moon Ball"),
-        .itemId = ITEM_MOON_BALL,
-        .price = 0,
-        .description = sMoonBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("A Ball that works\n"
+                                       "well on Moon\n"
+                                       "Stone users."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -240,9 +370,10 @@ const struct Item gItems[] =
     [ITEM_FRIEND_BALL] =
     {
         .name = _("Friend Ball"),
-        .itemId = ITEM_FRIEND_BALL,
-        .price = 0,
-        .description = sFriendBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("A Ball that makes\n"
+                                       "a Pokémon friendly\n"
+                                       "when caught."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -252,9 +383,10 @@ const struct Item gItems[] =
     [ITEM_LOVE_BALL] =
     {
         .name = _("Love Ball"),
-        .itemId = ITEM_LOVE_BALL,
-        .price = 0,
-        .description = sLoveBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("Works well on\n"
+                                       "Pokémon of the\n"
+                                       "opposite gender."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -264,9 +396,10 @@ const struct Item gItems[] =
     [ITEM_FAST_BALL] =
     {
         .name = _("Fast Ball"),
-        .itemId = ITEM_FAST_BALL,
-        .price = 0,
-        .description = sFastBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("Works well on\n"
+                                       "very fast\n"
+                                       "Pokémon."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -276,9 +409,10 @@ const struct Item gItems[] =
     [ITEM_HEAVY_BALL] =
     {
         .name = _("Heavy Ball"),
-        .itemId = ITEM_HEAVY_BALL,
-        .price = 0,
-        .description = sHeavyBallDesc,
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING("Works well on\n"
+                                       "very heavy\n"
+                                       "Pokémon."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -312,9 +446,10 @@ const struct Item gItems[] =
     [ITEM_SPORT_BALL] =
     {
         .name = _("Sport Ball"),
-        .itemId = ITEM_SPORT_BALL,
-        .price = 0,
-        .description = sSportBallDesc,
+        .price = (I_PRICE < GEN_3 || I_PRICE >= GEN_9) ? 0 : 300,
+        .description = COMPOUND_STRING("A special Ball used\n"
+                                       "in the Bug-Catching\n"
+                                       "Contest."),
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
         .battleUsage = EFFECT_ITEM_THROW_BALL,
@@ -362,8 +497,7 @@ const struct Item gItems[] =
     [ITEM_POTION] =
     {
         .name = _("Potion"),
-        .itemId = ITEM_POTION,
-        .price = 200,
+        .price = (I_PRICE >= GEN_7) ? 200 : 300,
         .holdEffectParam = 20,
         .description = sPotionDesc,
         .pocket = POCKET_MEDICINE,
@@ -390,8 +524,7 @@ const struct Item gItems[] =
     [ITEM_HYPER_POTION] =
     {
         .name = _("Hyper Potion"),
-        .itemId = ITEM_HYPER_POTION,
-        .price = 1500,
+        .price = (I_PRICE >= GEN_2 || I_PRICE <= GEN_6) ? 1200 : 1500,
         .holdEffectParam = 120,
         .description = sHyperPotionDesc,
         .pocket = POCKET_MEDICINE,
@@ -432,10 +565,11 @@ const struct Item gItems[] =
     [ITEM_REVIVE] =
     {
         .name = _("Revive"),
-        .itemId = ITEM_REVIVE,
-        .price = 2000,
-        .description = sReviveDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 1500,
+        .description = COMPOUND_STRING("Revives a fainted\n"
+                                       "Pokémon with half\n"
+                                       "its HP."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_REVIVE,
@@ -486,8 +620,7 @@ const struct Item gItems[] =
     [ITEM_LEMONADE] =
     {
         .name = _("Lemonade"),
-        .itemId = ITEM_LEMONADE,
-        .price = 400,
+        .price = (I_PRICE >= GEN_7) ? 400 : 350,
         .holdEffectParam = 70,
         .description = sLemonadeDesc,
         .pocket = POCKET_MEDICINE,
@@ -500,8 +633,7 @@ const struct Item gItems[] =
     [ITEM_MOOMOO_MILK] =
     {
         .name = _("Moomoo Milk"),
-        .itemId = ITEM_MOOMOO_MILK,
-        .price = 600,
+        .price = (I_PRICE >= GEN_7) ? 600 : 500,
         .holdEffectParam = 100,
         .description = sMoomooMilkDesc,
         .pocket = POCKET_MEDICINE,
@@ -527,10 +659,17 @@ const struct Item gItems[] =
     [ITEM_ENERGY_ROOT] =
     {
         .name = _("Energy Root"),
-        .itemId = ITEM_ENERGY_ROOT,
-        .price = 1200,
-        .description = sEnergyRootDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 1200 : 800,
+        #if I_HEALTH_RECOVERY >= GEN_7
+            .description = COMPOUND_STRING("A bitter root\n"
+                                           "that restores HP\n"
+                                           "by 120 points."),
+        #else
+            .description = COMPOUND_STRING("A bitter root\n"
+                                           "that restores HP\n"
+                                           "by 200 points."),
+        #endif
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_RESTORE_HP,
@@ -540,10 +679,11 @@ const struct Item gItems[] =
     [ITEM_HEAL_POWDER] =
     {
         .name = _("Heal Powder"),
-        .itemId = ITEM_HEAL_POWDER,
-        .price = 300,
-        .description = sHealPowderDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 300 : 450,
+        .description = COMPOUND_STRING("A bitter powder\n"
+                                       "that heals all\n"
+                                       "status problems."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -566,10 +706,10 @@ const struct Item gItems[] =
     [ITEM_ANTIDOTE] =
     {
         .name = _("Antidote"),
-        .itemId = ITEM_ANTIDOTE,
-        .price = 200,
-        .description = sAntidoteDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 200 : 100,
+        .description = COMPOUND_STRING("Heals a poisoned\n"
+                                       "Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -579,10 +719,10 @@ const struct Item gItems[] =
     [ITEM_PARALYZE_HEAL] =
     {
         .name = _("Paralyze Heal"),
-        .itemId = ITEM_PARALYZE_HEAL,
-        .price = 300,
-        .description = sParalyzeHealDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE == GEN_7) ? 300 : 200,
+        .description = COMPOUND_STRING("Heals a paralyzed\n"
+                                       "Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -592,10 +732,10 @@ const struct Item gItems[] =
     [ITEM_BURN_HEAL] =
     {
         .name = _("Burn Heal"),
-        .itemId = ITEM_BURN_HEAL,
-        .price = 300,
-        .description = sBurnHealDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE == GEN_7) ? 300 : ((I_PRICE <= GEN_7) ? 250 : 200),
+        .description = COMPOUND_STRING("Heals Pokémon\n"
+                                       "of a burn."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -605,10 +745,10 @@ const struct Item gItems[] =
     [ITEM_ICE_HEAL] =
     {
         .name = _("Ice Heal"),
-        .itemId = ITEM_ICE_HEAL,
-        .price = 100,
-        .description = sIceHealDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE == GEN_7) ? 100 : ((I_PRICE <= GEN_7) ? 250 : 200),
+        .description = COMPOUND_STRING("Defrosts a frozen\n"
+                                       "Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -618,10 +758,10 @@ const struct Item gItems[] =
     [ITEM_AWAKENING] =
     {
         .name = _("Awakening"),
-        .itemId = ITEM_AWAKENING,
-        .price = 100,
-        .description = sAwakeningDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_2 && I_PRICE <= GEN_6) ? 250 : ((I_PRICE == GEN_7) ? 100 : 200),
+        .description = COMPOUND_STRING("Awakens a sleeping\n"
+                                       "Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -631,8 +771,7 @@ const struct Item gItems[] =
     [ITEM_FULL_HEAL] =
     {
         .name = _("Full Heal"),
-        .itemId = ITEM_FULL_HEAL,
-        .price = 400,
+        .price = (I_PRICE >= GEN_7) ? 400 : 600,
         .description = sFullHealDesc,
         .pocket = POCKET_MEDICINE,
         .type = ITEM_USE_PARTY_MENU,
@@ -644,8 +783,7 @@ const struct Item gItems[] =
     [ITEM_ETHER] =
     {
         .name = _("Ether"),
-        .itemId = ITEM_ETHER,
-        .price = 1200,
+        .price = (I_PRICE >= GEN_2) ? 1200 : 1,
         .holdEffectParam = 10,
         .description = sEtherDesc,
         .pocket = POCKET_MEDICINE,
@@ -658,8 +796,7 @@ const struct Item gItems[] =
     [ITEM_MAX_ETHER] =
     {
         .name = _("Max Ether"),
-        .itemId = ITEM_MAX_ETHER,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_2) ? 2000 : 1,
         .holdEffectParam = 255,
         .description = sMaxEtherDesc,
         .pocket = POCKET_MEDICINE,
@@ -672,8 +809,7 @@ const struct Item gItems[] =
     [ITEM_ELIXIR] =
     {
         .name = _("Elixir"),
-        .itemId = ITEM_ELIXIR,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_2) ? 3000 : 1,
         .holdEffectParam = 10,
         .description = sElixirDesc,
         .pocket = POCKET_MEDICINE,
@@ -686,8 +822,7 @@ const struct Item gItems[] =
     [ITEM_MAX_ELIXIR] =
     {
         .name = _("Max Elixir"),
-        .itemId = ITEM_MAX_ELIXIR,
-        .price = 4500,
+        .price = (I_PRICE >= GEN_2) ? 4500 : 1,
         .holdEffectParam = 255,
         .description = sMaxElixirDesc,
         .pocket = POCKET_MEDICINE,
@@ -700,8 +835,7 @@ const struct Item gItems[] =
     [ITEM_BERRY_JUICE] =
     {
         .name = _("Berry Juice"),
-        .itemId = ITEM_BERRY_JUICE,
-        .price = 200,
+        .price = 100,
         .holdEffect = HOLD_EFFECT_RESTORE_HP,
         .holdEffectParam = 20,
         .description = sBerryJuiceDesc,
@@ -715,10 +849,11 @@ const struct Item gItems[] =
     [ITEM_SACRED_ASH] =
     {
         .name = _("Sacred Ash"),
-        .itemId = ITEM_SACRED_ASH,
-        .price = 50000,
-        .description = sSacredAshDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 50000 : 200,
+        .description = COMPOUND_STRING("Fully revives and\n"
+                                       "restores all\n"
+                                       "fainted Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_SacredAsh,
         .flingPower = 30,
@@ -727,8 +862,7 @@ const struct Item gItems[] =
     [ITEM_SWEET_HEART] =
     {
         .name = _("Sweet Heart"),
-        .itemId = ITEM_SWEET_HEART,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 100,
         .holdEffectParam = 20,
         .description = sSweetHeartDesc,
         .pocket = POCKET_MEDICINE,
@@ -769,9 +903,8 @@ const struct Item gItems[] =
     [ITEM_RAGE_CANDY_BAR] =
     {
         .name = _("RageCandyBar"),
-        .itemId = ITEM_RAGE_CANDY_BAR,
-        .price = 350,
-        .description = sRageCandyBarDesc,
+        .price = (I_PRICE >= GEN_7) ? 350 : 300,
+        .description = sFullHealDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -782,10 +915,11 @@ const struct Item gItems[] =
     [ITEM_LAVA_COOKIE] =
     {
         .name = _("Lava Cookie"),
-        .itemId = ITEM_LAVA_COOKIE,
-        .price = 350,
-        .description = sLavaCookieDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 350 : 200,
+        .description = COMPOUND_STRING("A local specialty\n"
+                                       "that heals all\n"
+                                       "status problems."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -795,10 +929,9 @@ const struct Item gItems[] =
     [ITEM_OLD_GATEAU] =
     {
         .name = _("Old Gateau"),
-        .itemId = ITEM_OLD_GATEAU,
-        .price = 350,
-        .description = sOldGateauDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 350 : 200,
+        .description = sFullHealDesc,
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -808,9 +941,8 @@ const struct Item gItems[] =
     [ITEM_CASTELIACONE] =
     {
         .name = _("Casteliacone"),
-        .itemId = ITEM_CASTELIACONE,
-        .price = 350,
-        .description = sCasteliaconeDesc,
+        .price = (I_PRICE >= GEN_7) ? 350 : 100,
+        .description = sFullHealDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -821,9 +953,8 @@ const struct Item gItems[] =
     [ITEM_LUMIOSE_GALETTE] =
     {
         .name = _("LumioseGlete"),
-        .itemId = ITEM_LUMIOSE_GALETTE,
-        .price = 350,
-        .description = sLumioseGaletteDesc,
+        .price = (I_PRICE >= GEN_7) ? 350 : 200,
+        .description = sFullHealDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -834,9 +965,8 @@ const struct Item gItems[] =
     [ITEM_SHALOUR_SABLE] =
     {
         .name = _("ShalourSable"),
-        .itemId = ITEM_SHALOUR_SABLE,
-        .price = 350,
-        .description = sShalourSableDesc,
+        .price = (I_PRICE >= GEN_7) ? 350 : 200,
+        .description = sFullHealDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -862,9 +992,9 @@ const struct Item gItems[] =
     [ITEM_HP_UP] =
     {
         .name = _("HP Up"),
-        .itemId = ITEM_HP_UP,
-        .price = 10000,
-        .description = sHPUpDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base HP\n"
+                                       "of one Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -874,9 +1004,10 @@ const struct Item gItems[] =
     [ITEM_PROTEIN] =
     {
         .name = _("Protein"),
-        .itemId = ITEM_PROTEIN,
-        .price = 10000,
-        .description = sProteinDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base\n"
+                                       "Attack stat of one\n"
+                                       "Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -886,9 +1017,10 @@ const struct Item gItems[] =
     [ITEM_IRON] =
     {
         .name = _("Iron"),
-        .itemId = ITEM_IRON,
-        .price = 10000,
-        .description = sIronDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base\n"
+                                       "Defense stat of\n"
+                                       "one Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -898,9 +1030,10 @@ const struct Item gItems[] =
     [ITEM_CALCIUM] =
     {
         .name = _("Calcium"),
-        .itemId = ITEM_CALCIUM,
-        .price = 10000,
-        .description = sCalciumDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base\n"
+                                       "Sp. Atk stat of one\n"
+                                       "Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -910,9 +1043,10 @@ const struct Item gItems[] =
     [ITEM_ZINC] =
     {
         .name = _("Zinc"),
-        .itemId = ITEM_ZINC,
-        .price = 10000,
-        .description = sZincDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base\n"
+                                       "Sp. Def stat of one\n"
+                                       "Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -922,9 +1056,10 @@ const struct Item gItems[] =
     [ITEM_CARBOS] =
     {
         .name = _("Carbos"),
-        .itemId = ITEM_CARBOS,
-        .price = 10000,
-        .description = sCarbosDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the base\n"
+                                       "Speed stat of one\n"
+                                       "Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -934,9 +1069,10 @@ const struct Item gItems[] =
     [ITEM_PP_UP] =
     {
         .name = _("PP Up"),
-        .itemId = ITEM_PP_UP,
-        .price = 10000,
-        .description = sPPUpDesc,
+        .price = (I_PRICE == GEN_1) ? 1 : ((I_PRICE >= GEN_7) ? 10000 : 9800),
+        .description = COMPOUND_STRING("Raises the maximum\n"
+                                       "PP of a selected\n"
+                                       "move."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_PPUp,
@@ -946,9 +1082,10 @@ const struct Item gItems[] =
     [ITEM_PP_MAX] =
     {
         .name = _("PP Max"),
-        .itemId = ITEM_PP_MAX,
-        .price = 10000,
-        .description = sPPMaxDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
+        .description = COMPOUND_STRING("Raises the PP of a\n"
+                                       "move to its maximum\n"
+                                       "points."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_PPUp,
@@ -960,8 +1097,7 @@ const struct Item gItems[] =
     [ITEM_HEALTH_FEATHER] =
     {
         .name = _("HealthFeather"),
-        .itemId = ITEM_HEALTH_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sHealthFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -972,8 +1108,7 @@ const struct Item gItems[] =
     [ITEM_MUSCLE_FEATHER] =
     {
         .name = _("MuscleFeather"),
-        .itemId = ITEM_MUSCLE_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sMuscleFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -984,8 +1119,7 @@ const struct Item gItems[] =
     [ITEM_RESIST_FEATHER] =
     {
         .name = _("ResistFeather"),
-        .itemId = ITEM_RESIST_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sResistFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -996,8 +1130,7 @@ const struct Item gItems[] =
     [ITEM_GENIUS_FEATHER] =
     {
         .name = _("GeniusFeather"),
-        .itemId = ITEM_GENIUS_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sGeniusFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -1008,8 +1141,7 @@ const struct Item gItems[] =
     [ITEM_CLEVER_FEATHER] =
     {
         .name = _("CleverFeather"),
-        .itemId = ITEM_CLEVER_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sCleverFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -1020,8 +1152,7 @@ const struct Item gItems[] =
     [ITEM_SWIFT_FEATHER] =
     {
         .name = _("SwiftFeather"),
-        .itemId = ITEM_SWIFT_FEATHER,
-        .price = 300,
+        .price = (I_PRICE >= GEN_7) ? 300 : 3000,
         .description = sSwiftFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -1034,8 +1165,7 @@ const struct Item gItems[] =
     [ITEM_ABILITY_CAPSULE] =
     {
         .name = _("AbilityCapsle"),
-        .itemId = ITEM_ABILITY_CAPSULE,
-        .price = 10000,
+        .price = (I_PRICE < GEN_7) ? 1000 : ((I_PRICE < GEN_9) ? 10000 : 100000),
         .holdEffectParam = 0,
         .description = sAbilityCapsuleDesc,
         .pocket = POCKET_ITEMS,
@@ -1046,8 +1176,7 @@ const struct Item gItems[] =
     [ITEM_ABILITY_PATCH] =
     {
         .name = _("AbilityPatch"),
-        .itemId = ITEM_ABILITY_PATCH,
-        .price = 0,
+        .price = (I_PRICE >= GEN_9) ? 250000 : 20,
         .holdEffectParam = 0,
         .description = sAbilityPatchDesc,
         .pocket = POCKET_ITEMS,
@@ -1060,9 +1189,10 @@ const struct Item gItems[] =
     [ITEM_LONELY_MINT] =
     {
         .name = _("Lonely Mint"),
-        .itemId = ITEM_LONELY_MINT,
-        .price = 25000,
-        .description = sLonelyMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Attack, but\n"
+                                       "reduces Defense."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1073,9 +1203,10 @@ const struct Item gItems[] =
     [ITEM_ADAMANT_MINT] =
     {
         .name = _("Adamant Mint"),
-        .itemId = ITEM_ADAMANT_MINT,
-        .price = 25000,
-        .description = sAdamantMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Attack, but\n"
+                                       "reduces Sp. Atk."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1086,9 +1217,10 @@ const struct Item gItems[] =
     [ITEM_NAUGHTY_MINT] =
     {
         .name = _("Naughty Mint"),
-        .itemId = ITEM_NAUGHTY_MINT,
-        .price = 25000,
-        .description = sNaughtyMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Attack, but\n"
+                                       "reduces Sp. Def."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1099,9 +1231,10 @@ const struct Item gItems[] =
     [ITEM_BRAVE_MINT] =
     {
         .name = _("Brave Mint"),
-        .itemId = ITEM_BRAVE_MINT,
-        .price = 25000,
-        .description = sBraveMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Attack, but\n"
+                                       "reduces Speed."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1112,9 +1245,10 @@ const struct Item gItems[] =
     [ITEM_BOLD_MINT] =
     {
         .name = _("Bold Mint"),
-        .itemId = ITEM_BOLD_MINT,
-        .price = 25000,
-        .description = sBoldMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Defense, but\n"
+                                       "reduces Attack."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1125,9 +1259,10 @@ const struct Item gItems[] =
     [ITEM_IMPISH_MINT] =
     {
         .name = _("Impish Mint"),
-        .itemId = ITEM_IMPISH_MINT,
-        .price = 25000,
-        .description = sImpishMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Defense, but\n"
+                                       "reduces Sp. Atk."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1138,9 +1273,10 @@ const struct Item gItems[] =
     [ITEM_LAX_MINT] =
     {
         .name = _("Lax Mint"),
-        .itemId = ITEM_LAX_MINT,
-        .price = 25000,
-        .description = sLaxMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Defense, but\n"
+                                       "reduces Sp. Def."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1151,9 +1287,10 @@ const struct Item gItems[] =
     [ITEM_RELAXED_MINT] =
     {
         .name = _("Relaxed Mint"),
-        .itemId = ITEM_RELAXED_MINT,
-        .price = 25000,
-        .description = sRelaxedMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Defense, but\n"
+                                       "reduces Speed."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1164,9 +1301,10 @@ const struct Item gItems[] =
     [ITEM_MODEST_MINT] =
     {
         .name = _("Modest Mint"),
-        .itemId = ITEM_MODEST_MINT,
-        .price = 25000,
-        .description = sModestMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Atk, but\n"
+                                       "reduces Attack."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1177,9 +1315,10 @@ const struct Item gItems[] =
     [ITEM_MILD_MINT] =
     {
         .name = _("Mild Mint"),
-        .itemId = ITEM_MILD_MINT,
-        .price = 25000,
-        .description = sMildMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Atk, but\n"
+                                       "reduces Defense."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1190,9 +1329,10 @@ const struct Item gItems[] =
     [ITEM_RASH_MINT] =
     {
         .name = _("Rash Mint"),
-        .itemId = ITEM_RASH_MINT,
-        .price = 25000,
-        .description = sRashMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Atk, but\n"
+                                       "reduces Sp. Def."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1203,9 +1343,10 @@ const struct Item gItems[] =
     [ITEM_QUIET_MINT] =
     {
         .name = _("Quiet Mint"),
-        .itemId = ITEM_QUIET_MINT,
-        .price = 25000,
-        .description = sQuietMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Atk, but\n"
+                                       "reduces Speed."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1216,9 +1357,10 @@ const struct Item gItems[] =
     [ITEM_CALM_MINT] =
     {
         .name = _("Calm Mint"),
-        .itemId = ITEM_CALM_MINT,
-        .price = 25000,
-        .description = sCalmMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Def, but\n"
+                                       "reduces Attack."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1229,9 +1371,10 @@ const struct Item gItems[] =
     [ITEM_GENTLE_MINT] =
     {
         .name = _("Gentle Mint"),
-        .itemId = ITEM_GENTLE_MINT,
-        .price = 25000,
-        .description = sGentleMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Def, but\n"
+                                       "reduces Defense."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1242,9 +1385,10 @@ const struct Item gItems[] =
     [ITEM_CAREFUL_MINT] =
     {
         .name = _("Careful Mint"),
-        .itemId = ITEM_CAREFUL_MINT,
-        .price = 25000,
-        .description = sCarefulMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Def, but\n"
+                                       "reduces Sp. Atk."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1255,9 +1399,10 @@ const struct Item gItems[] =
     [ITEM_SASSY_MINT] =
     {
         .name = _("Sassy Mint"),
-        .itemId = ITEM_SASSY_MINT,
-        .price = 25000,
-        .description = sSassyMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Sp. Def, but\n"
+                                       "reduces Speed."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1268,9 +1413,10 @@ const struct Item gItems[] =
     [ITEM_TIMID_MINT] =
     {
         .name = _("Timid Mint"),
-        .itemId = ITEM_TIMID_MINT,
-        .price = 25000,
-        .description = sTimidMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Speed, but\n"
+                                       "reduces Attack."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1281,9 +1427,10 @@ const struct Item gItems[] =
     [ITEM_HASTY_MINT] =
     {
         .name = _("Hasty Mint"),
-        .itemId = ITEM_HASTY_MINT,
-        .price = 25000,
-        .description = sHastyMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Speed, but\n"
+                                       "reduces Defense."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1294,9 +1441,10 @@ const struct Item gItems[] =
     [ITEM_JOLLY_MINT] =
     {
         .name = _("Jolly Mint"),
-        .itemId = ITEM_JOLLY_MINT,
-        .price = 25000,
-        .description = sJollyMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Speed, but\n"
+                                       "reduces Sp. Atk."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1307,9 +1455,10 @@ const struct Item gItems[] =
     [ITEM_NAIVE_MINT] =
     {
         .name = _("Naive Mint"),
-        .itemId = ITEM_NAIVE_MINT,
-        .price = 25000,
-        .description = sNaiveMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "ups Speed, but\n"
+                                       "reduces Sp. Def."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1320,9 +1469,10 @@ const struct Item gItems[] =
     [ITEM_SERIOUS_MINT] =
     {
         .name = _("Serious Mint"),
-        .itemId = ITEM_SERIOUS_MINT,
-        .price = 25000,
-        .description = sSeriousMintDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 20,
+        .description = COMPOUND_STRING("Can be smelled. It\n"
+                                       "makes each stat\n"
+                                       "grow equally."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1335,9 +1485,10 @@ const struct Item gItems[] =
     [ITEM_RARE_CANDY] =
     {
         .name = _("Rare Candy"),
-        .itemId = ITEM_RARE_CANDY,
-        .price = 10000,
-        .description = sRareCandyDesc,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 4800,
+        .description = COMPOUND_STRING("Raises the level\n"
+                                       "of a Pokémon by\n"
+                                       "one."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -1426,10 +1577,11 @@ const struct Item gItems[] =
     [ITEM_BLUE_FLUTE] =
     {
         .name = _("Blue Flute"),
-        .itemId = ITEM_BLUE_FLUTE,
-        .price = 20,
-        .description = sBlueFluteDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 20 : 100,
+        .description = COMPOUND_STRING("A glass flute that\n"
+                                       "awakens sleeping\n"
+                                       "Pokémon."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -1439,10 +1591,11 @@ const struct Item gItems[] =
     [ITEM_YELLOW_FLUTE] =
     {
         .name = _("Yellow Flute"),
-        .itemId = ITEM_YELLOW_FLUTE,
-        .price = 20,
-        .description = sYellowFluteDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 20 : 300,
+        .description = COMPOUND_STRING("A glass flute that\n"
+                                       "snaps Pokémon\n"
+                                       "out of confusion."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -1452,10 +1605,11 @@ const struct Item gItems[] =
     [ITEM_RED_FLUTE] =
     {
         .name = _("Red Flute"),
-        .itemId = ITEM_RED_FLUTE,
-        .price = 20,
-        .description = sRedFluteDesc,
-        .pocket = POCKET_MEDICINE,
+        .price = (I_PRICE >= GEN_7) ? 20 : 200,
+        .description = COMPOUND_STRING("A glass flute that\n"
+                                       "snaps Pokémon\n"
+                                       "out of attraction."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
@@ -1467,8 +1621,7 @@ const struct Item gItems[] =
     [ITEM_BLACK_FLUTE] =
     {
         .name = _("Black Flute"),
-        .itemId = ITEM_BLACK_FLUTE,
-        .price = 20,
+        .price = (I_PRICE >= GEN_7) ? 20 : 400,
         .holdEffectParam = 50,
         .description = sBlackFluteDesc,
         .pocket = POCKET_ITEMS,
@@ -1480,8 +1633,7 @@ const struct Item gItems[] =
     [ITEM_WHITE_FLUTE] =
     {
         .name = _("White Flute"),
-        .itemId = ITEM_WHITE_FLUTE,
-        .price = 20,
+        .price = (I_PRICE >= GEN_7) ? 20 : 500,
         .holdEffectParam = 150,
         .description = sWhiteFluteDesc,
         .pocket = POCKET_ITEMS,
@@ -1495,8 +1647,7 @@ const struct Item gItems[] =
     [ITEM_REPEL] =
     {
         .name = _("Repel"),
-        .itemId = ITEM_REPEL,
-        .price = 400,
+        .price = (I_PRICE >= GEN_7) ? 400 : 350,
         .holdEffectParam = 100,
         .description = sRepelDesc,
         .pocket = POCKET_ITEMS,
@@ -1508,8 +1659,7 @@ const struct Item gItems[] =
     [ITEM_SUPER_REPEL] =
     {
         .name = _("Super Repel"),
-        .itemId = ITEM_SUPER_REPEL,
-        .price = 700,
+        .price = (I_PRICE >= GEN_7) ? 700 : 500,
         .holdEffectParam = 200,
         .description = sSuperRepelDesc,
         .pocket = POCKET_ITEMS,
@@ -1521,8 +1671,7 @@ const struct Item gItems[] =
     [ITEM_MAX_REPEL] =
     {
         .name = _("Max Repel"),
-        .itemId = ITEM_MAX_REPEL,
-        .price = 900,
+        .price = (I_PRICE >= GEN_7) ? 900 : 700,
         .holdEffectParam = 250,
         .description = sMaxRepelDesc,
         .pocket = POCKET_ITEMS,
@@ -1583,7 +1732,7 @@ const struct Item gItems[] =
             .importance = 1,
             .pocket = POCKET_KEY_ITEMS,
         #else
-            .price = 1000,
+            .price = (I_PRICE >= GEN_7) ? 1000 : 550,
             .pocket = POCKET_ITEMS,
         #endif
         .type = ITEM_USE_FIELD,
@@ -1598,8 +1747,7 @@ const struct Item gItems[] =
     [ITEM_X_ATTACK] =
     {
         .name = _("X Attack"),
-        .itemId = ITEM_X_ATTACK,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 500,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXAttackDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1612,8 +1760,7 @@ const struct Item gItems[] =
     [ITEM_X_DEFENSE] =
     {
         .name = _("X Defense"),
-        .itemId = ITEM_X_DEFENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 550,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXDefenseDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1626,8 +1773,7 @@ const struct Item gItems[] =
     [ITEM_X_SP_ATK] =
     {
         .name = _("X Sp. Atk"),
-        .itemId = ITEM_X_SP_ATK,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 350,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpAtkDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1640,8 +1786,7 @@ const struct Item gItems[] =
     [ITEM_X_SP_DEF] =
     {
         .name = _("X Sp. Def"),
-        .itemId = ITEM_X_SP_DEF,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 350,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpDefDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1654,8 +1799,7 @@ const struct Item gItems[] =
     [ITEM_X_SPEED] =
     {
         .name = _("X Speed"),
-        .itemId = ITEM_X_SPEED,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 350,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpeedDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1668,8 +1812,7 @@ const struct Item gItems[] =
     [ITEM_X_ACCURACY] =
     {
         .name = _("X Accuracy"),
-        .itemId = ITEM_X_ACCURACY,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 950,
         .holdEffectParam = X_ITEM_STAGES,
         .description = sXAccuracyDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -1682,10 +1825,11 @@ const struct Item gItems[] =
     [ITEM_DIRE_HIT] =
     {
         .name = _("Dire Hit"),
-        .itemId = ITEM_DIRE_HIT,
-        .price = 1000,
-        .description = sDireHitDesc,
-        .pocket = POCKET_BATTLE_ITEMS,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 650,
+        .description = COMPOUND_STRING("Raises the\n"
+                                       "critical-hit ratio\n"
+                                       "during one battle."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_SET_FOCUS_ENERGY,
@@ -1695,10 +1839,11 @@ const struct Item gItems[] =
     [ITEM_GUARD_SPEC] =
     {
         .name = _("Guard Spec."),
-        .itemId = ITEM_GUARD_SPEC,
-        .price = 1500,
-        .description = sGuardSpecDesc,
-        .pocket = POCKET_BATTLE_ITEMS,
+        .price = (I_PRICE >= GEN_7) ? 1500 : 700,
+        .description = COMPOUND_STRING("Prevents stat\n"
+                                       "reduction when\n"
+                                       "used in battle."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_SET_MIST,
@@ -1708,8 +1853,7 @@ const struct Item gItems[] =
     [ITEM_POKE_DOLL] =
     {
         .name = _("Poké Doll"),
-        .itemId = ITEM_POKE_DOLL,
-        .price = 100,
+        .price = (I_PRICE < GEN_7) ? 1000 : ((I_PRICE == GEN_7) ? 100 : 300),
         .description = sPokeDollDesc,
         .pocket = POCKET_BATTLE_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1721,10 +1865,9 @@ const struct Item gItems[] =
     [ITEM_FLUFFY_TAIL] =
     {
         .name = _("Fluffy Tail"),
-        .itemId = ITEM_FLUFFY_TAIL,
-        .price = 100,
-        .description = sFluffyTailDesc,
-        .pocket = POCKET_BATTLE_ITEMS,
+        .price = (I_PRICE >= GEN_7) ? 100 : 1000,
+        .description = sPokeDollDesc,
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_ESCAPE,
@@ -1734,9 +1877,8 @@ const struct Item gItems[] =
     [ITEM_POKE_TOY] =
     {
         .name = _("Poké Toy"),
-        .itemId = ITEM_POKE_TOY,
-        .price = 100,
-        .description = sPokeToyDesc,
+        .price = (I_PRICE >= GEN_7) ? 100 : 1000,
+        .description = sPokeDollDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1764,9 +1906,10 @@ const struct Item gItems[] =
     [ITEM_BOTTLE_CAP] =
     {
         .name = _("Bottle Cap"),
-        .itemId = ITEM_BOTTLE_CAP,
-        .price = 5000,
-        .description = sBottleCapDesc,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 5000,
+        .description = COMPOUND_STRING("A beautiful bottle\n"
+                                       "cap that gives off\n"
+                                       "a silver gleam."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1776,9 +1919,10 @@ const struct Item gItems[] =
     [ITEM_GOLD_BOTTLE_CAP] =
     {
         .name = _("GoldBottlCap"),
-        .itemId = ITEM_GOLD_BOTTLE_CAP,
-        .price = 10000,
-        .description = sGoldBottleCapDesc,
+        .price = (I_PRICE >= GEN_9) ? 60000 : 10000,
+        .description = COMPOUND_STRING("A beautiful bottle\n"
+                                       "cap that gives off\n"
+                                       "a golden gleam."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1800,9 +1944,10 @@ const struct Item gItems[] =
     [ITEM_BIG_NUGGET] =
     {
         .name = _("Big Nugget"),
-        .itemId = ITEM_BIG_NUGGET,
-        .price = 40000,
-        .description = sBigNuggetDesc,
+        .price = (I_PRICE >= GEN_7) ? (40000 * TREASURE_FACTOR) : 20000,
+        .description = COMPOUND_STRING("A big nugget made\n"
+                                       "of gold, sellable\n"
+                                       "at a high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1824,8 +1969,7 @@ const struct Item gItems[] =
     [ITEM_BIG_MUSHROOM] =
     {
         .name = _("Big Mushroom"),
-        .itemId = ITEM_BIG_MUSHROOM,
-        .price = 5000,
+        .price = 5000 * TREASURE_FACTOR,
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1836,9 +1980,8 @@ const struct Item gItems[] =
     [ITEM_BALM_MUSHROOM] =
     {
         .name = _("Balm Mushroom"),
-        .itemId = ITEM_BALM_MUSHROOM,
-        .price = 15000,
-        .description = sBalmMushroomDesc,
+        .price = (I_PRICE >= GEN_7) ? 15000 * TREASURE_FACTOR: 12500,
+        .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1848,9 +1991,10 @@ const struct Item gItems[] =
     [ITEM_PEARL] =
     {
         .name = _("Pearl"),
-        .itemId = ITEM_PEARL,
-        .price = 2000,
-        .description = sPearlDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR: 1400,
+        .description = COMPOUND_STRING("A pretty pearl\n"
+                                       "that would sell at a\n"
+                                       "cheap price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1860,9 +2004,10 @@ const struct Item gItems[] =
     [ITEM_BIG_PEARL] =
     {
         .name = _("Big Pearl"),
-        .itemId = ITEM_BIG_PEARL,
-        .price = 8000,
-        .description = sBigPearlDesc,
+        .price = (I_PRICE >= GEN_7) ? 8000 * TREASURE_FACTOR: 7500,
+        .description = COMPOUND_STRING("A lovely large pearl\n"
+                                       "that would sell at a\n"
+                                       "high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1872,9 +2017,10 @@ const struct Item gItems[] =
     [ITEM_PEARL_STRING] =
     {
         .name = _("Pearl String"),
-        .itemId = ITEM_PEARL_STRING,
-        .price = 20000,
-        .description = sPearlStringDesc,
+        .price = (I_PRICE >= GEN_8) ? 15000 * TREASURE_FACTOR: ((I_PRICE == GEN_7) ? 30000 : 15000),
+        .description = COMPOUND_STRING("Very large pearls\n"
+                                       "that would sell at a\n"
+                                       "high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1884,9 +2030,10 @@ const struct Item gItems[] =
     [ITEM_STARDUST] =
     {
         .name = _("Stardust"),
-        .itemId = ITEM_STARDUST,
-        .price = 3000,
-        .description = sStardustDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 * TREASURE_FACTOR: 2000,
+        .description = COMPOUND_STRING("Beautiful red sand.\n"
+                                       "Can be sold at a\n"
+                                       "high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1896,9 +2043,10 @@ const struct Item gItems[] =
     [ITEM_STAR_PIECE] =
     {
         .name = _("Star Piece"),
-        .itemId = ITEM_STAR_PIECE,
-        .price = 12000,
-        .description = sStarPieceDesc,
+        .price = (I_PRICE >= GEN_7) ? 12000 * TREASURE_FACTOR: 9800,
+        .description = COMPOUND_STRING("A red gem shard.\n"
+                                       "It would sell for a\n"
+                                       "very high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1908,9 +2056,10 @@ const struct Item gItems[] =
     [ITEM_COMET_SHARD] =
     {
         .name = _("Comet Shard"),
-        .itemId = ITEM_COMET_SHARD,
-        .price = 25000,
-        .description = sCometShardDesc,
+        .price = (I_PRICE <= GEN_5) ? 0 : ((I_PRICE == GEN_6) ? 30000 : ((I_PRICE == GEN_7) ? 60000 : 25000 * TREASURE_FACTOR)),
+        .description = COMPOUND_STRING("A comet's shard.\n"
+                                       "It would sell for a\n"
+                                       "high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1944,9 +2093,8 @@ const struct Item gItems[] =
     [ITEM_RED_SHARD] =
     {
         .name = _("Red Shard"),
-        .itemId = ITEM_RED_SHARD,
-        .price = 1000,
-        .description = sRedShardDesc,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 200,
+        .description = sShardsDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1956,9 +2104,8 @@ const struct Item gItems[] =
     [ITEM_BLUE_SHARD] =
     {
         .name = _("Blue Shard"),
-        .itemId = ITEM_BLUE_SHARD,
-        .price = 1000,
-        .description = sBlueShardDesc,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 200,
+        .description = sShardsDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1968,9 +2115,8 @@ const struct Item gItems[] =
     [ITEM_YELLOW_SHARD] =
     {
         .name = _("Yellow Shard"),
-        .itemId = ITEM_YELLOW_SHARD,
-        .price = 1000,
-        .description = sYellowShardDesc,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 200,
+        .description = sShardsDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -1980,9 +2126,8 @@ const struct Item gItems[] =
     [ITEM_GREEN_SHARD] =
     {
         .name = _("Green Shard"),
-        .itemId = ITEM_GREEN_SHARD,
-        .price = 1000,
-        .description = sGreenShardDesc,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 200,
+        .description = sShardsDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2004,9 +2149,10 @@ const struct Item gItems[] =
     [ITEM_HONEY] =
     {
         .name = _("Honey"),
-        .itemId = ITEM_HONEY,
-        .price = 300,
-        .description = sHoneyDesc,
+        .price = (I_PRICE < GEN_5) ? 100 : ((I_PRICE < GEN_8) ? 300 : 900),
+        .description = COMPOUND_STRING("Sweet honey that\n"
+                                       "attracts wild\n"
+                                       "Pokémon when used."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Honey,
@@ -2016,9 +2162,10 @@ const struct Item gItems[] =
     [ITEM_RARE_BONE] =
     {
         .name = _("Rare Bone"),
-        .itemId = ITEM_RARE_BONE,
-        .price = 5000,
-        .description = sRareBoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 5000 * TREASURE_FACTOR: 10000,
+        .description = COMPOUND_STRING("A very rare bone.\n"
+                                       "It can be sold at\n"
+                                       "a high price."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2040,9 +2187,10 @@ const struct Item gItems[] =
     [ITEM_PRETTY_FEATHER] =
     {
         .name = _("PrettyFeather"),
-        .itemId = ITEM_PRETTY_FEATHER,
-        .price = 1000,
-        .description = sPrettyFeatherDesc,
+        .price = (I_PRICE >= GEN_7) ? 1000 * TREASURE_FACTOR: 200,
+        .description = COMPOUND_STRING("A beautiful yet\n"
+                                       "plain feather that\n"
+                                       "does nothing."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2136,9 +2284,10 @@ const struct Item gItems[] =
     [ITEM_STRANGE_SOUVENIR] =
     {
         .name = _("StrngeSouvnr"),
-        .itemId = ITEM_STRANGE_SOUVENIR,
-        .price = 3000,
-        .description = sStrangeSouvenirDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 10,
+        .description = COMPOUND_STRING("An ornament that\n"
+                                       "depicts a Pokémon\n"
+                                       "from Alola."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2153,7 +2302,7 @@ const struct Item gItems[] =
         .itemId = ITEM_HELIX_FOSSIL,
         .description = sHelixFossilDesc,
         #if I_KEY_FOSSILS >= GEN_4
-            .price = 7000,
+            .price = (I_PRICE >= GEN_7) ? 7000: 1000,
             .pocket = POCKET_ITEMS,
         #else
             .price = 0,
@@ -2171,7 +2320,7 @@ const struct Item gItems[] =
         .itemId = ITEM_DOME_FOSSIL,
         .description = sDomeFossilDesc,
         #if I_KEY_FOSSILS >= GEN_4
-            .price = 7000,
+            .price = (I_PRICE >= GEN_7) ? 7000: 1000,
             .pocket = POCKET_ITEMS,
         #else
             .price = 0,
@@ -2189,7 +2338,7 @@ const struct Item gItems[] =
         .itemId = ITEM_OLD_AMBER,
         .description = sOldAmberDesc,
         #if I_KEY_FOSSILS >= GEN_4
-            .price = 10000,
+            .price = 1000,
             .pocket = POCKET_ITEMS,
         #else
             .price = 0,
@@ -2207,7 +2356,7 @@ const struct Item gItems[] =
         .itemId = ITEM_ROOT_FOSSIL,
         .description = sRootFossilDesc,
         #if I_KEY_FOSSILS >= GEN_4
-            .price = 7000,
+            .price = (I_PRICE >= GEN_7) ? 7000: 1000,
             .pocket = POCKET_ITEMS,
         #else
             .price = 0,
@@ -2225,7 +2374,7 @@ const struct Item gItems[] =
         .itemId = ITEM_CLAW_FOSSIL,
         .description = sClawFossilDesc,
         #if I_KEY_FOSSILS >= GEN_4
-            .price = 7000,
+            .price = (I_PRICE >= GEN_7) ? 7000: 1000,
             .pocket = POCKET_ITEMS,
         #else
             .price = 0,
@@ -2240,9 +2389,10 @@ const struct Item gItems[] =
     [ITEM_ARMOR_FOSSIL] =
     {
         .name = _("Armor Fossil"),
-        .itemId = ITEM_ARMOR_FOSSIL,
-        .price = 7000,
-        .description = sArmorFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a\n"
+                                       "prehistoric Poké-\n"
+                                       "mon's head."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2252,9 +2402,10 @@ const struct Item gItems[] =
     [ITEM_SKULL_FOSSIL] =
     {
         .name = _("Skull Fossil"),
-        .itemId = ITEM_SKULL_FOSSIL,
-        .price = 7000,
-        .description = sSkullFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a\n"
+                                       "prehistoric Poké-\n"
+                                       "mon's collar."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2264,9 +2415,10 @@ const struct Item gItems[] =
     [ITEM_COVER_FOSSIL] =
     {
         .name = _("Cover Fossil"),
-        .itemId = ITEM_COVER_FOSSIL,
-        .price = 7000,
-        .description = sCoverFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a\n"
+                                       "prehistoric Poké-\n"
+                                       "mon's back."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2276,9 +2428,10 @@ const struct Item gItems[] =
     [ITEM_PLUME_FOSSIL] =
     {
         .name = _("Plume Fossil"),
-        .itemId = ITEM_PLUME_FOSSIL,
-        .price = 7000,
-        .description = sPlumeFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a\n"
+                                       "prehistoric Poké-\n"
+                                       "mon's wing."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2288,9 +2441,10 @@ const struct Item gItems[] =
     [ITEM_JAW_FOSSIL] =
     {
         .name = _("Jaw Fossil"),
-        .itemId = ITEM_JAW_FOSSIL,
-        .price = 7000,
-        .description = sJawFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a prehis-\n"
+                                       "toric Pokémon's\n"
+                                       "large jaw."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2300,9 +2454,10 @@ const struct Item gItems[] =
     [ITEM_SAIL_FOSSIL] =
     {
         .name = _("Sail Fossil"),
-        .itemId = ITEM_SAIL_FOSSIL,
-        .price = 7000,
-        .description = sSailFossilDesc,
+        .price = (I_PRICE >= GEN_7) ? 7000: 1000,
+        .description = COMPOUND_STRING("A piece of a prehis-\n"
+                                       "toric Pokémon's\n"
+                                       "skin sail."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2460,9 +2615,10 @@ const struct Item gItems[] =
     [ITEM_RED_APRICORN] =
     {
         .name = _("Red Apricorn"),
-        .itemId = ITEM_RED_APRICORN,
-        .price = 200,
-        .description = sRedApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A red apricorn.\n"
+                                       "It assails your\n"
+                                       "nostrils."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2471,9 +2627,10 @@ const struct Item gItems[] =
     [ITEM_BLUE_APRICORN] =
     {
         .name = _("Blue Apricorn"),
-        .itemId = ITEM_BLUE_APRICORN,
-        .price = 200,
-        .description = sBlueApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A blue apricorn.\n"
+                                       "It smells a bit\n"
+                                       "like grass."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2482,9 +2639,10 @@ const struct Item gItems[] =
     [ITEM_YELLOW_APRICORN] =
     {
         .name = _("YellwApricorn"),
-        .itemId = ITEM_YELLOW_APRICORN,
-        .price = 200,
-        .description = sYellowApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A yellow apricorn.\n"
+                                       "It has an invigor-\n"
+                                       "ating scent."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2493,9 +2651,10 @@ const struct Item gItems[] =
     [ITEM_GREEN_APRICORN] =
     {
         .name = _("GreenApricorn"),
-        .itemId = ITEM_GREEN_APRICORN,
-        .price = 200,
-        .description = sGreenApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A green apricorn.\n"
+                                       "It has a strange,\n"
+                                       "aromatic scent."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2504,9 +2663,10 @@ const struct Item gItems[] =
     [ITEM_PINK_APRICORN] =
     {
         .name = _("Pink Apricorn"),
-        .itemId = ITEM_PINK_APRICORN,
-        .price = 200,
-        .description = sPinkApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A pink apricorn.\n"
+                                       "It has a nice,\n"
+                                       "sweet scent."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2515,9 +2675,10 @@ const struct Item gItems[] =
     [ITEM_WHITE_APRICORN] =
     {
         .name = _("WhiteApricorn"),
-        .itemId = ITEM_WHITE_APRICORN,
-        .price = 200,
-        .description = sWhiteApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A white apricorn.\n"
+                                       "It doesn't smell\n"
+                                       "like anything."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2526,9 +2687,10 @@ const struct Item gItems[] =
     [ITEM_BLACK_APRICORN] =
     {
         .name = _("BlackApricorn"),
-        .itemId = ITEM_BLACK_APRICORN,
-        .price = 200,
-        .description = sBlackApricornDesc,
+        .price = (I_PRICE == GEN_4) ? 0 : ((I_PRICE >= GEN_5 && I_PRICE <= GEN_7) ? 20 : 200),
+        .description = COMPOUND_STRING("A black apricorn.\n"
+                                       "It has an inde-\n"
+                                       "scribable scent."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2549,9 +2711,10 @@ const struct Item gItems[] =
     [ITEM_GALARICA_TWIG] =
     {
         .name = _("GalaricaTwig"),
-        .itemId = ITEM_GALARICA_TWIG,
-        .price = 40,
-        .description = sGalaricaTwigDesc,
+        .price = 20 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A twig from a tree\n"
+                                       "in Galar called\n"
+                                       "Galarica."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2561,9 +2724,10 @@ const struct Item gItems[] =
     [ITEM_ARMORITE_ORE] =
     {
         .name = _("Armorite Ore"),
-        .itemId = ITEM_ARMORITE_ORE,
-        .price = 40,
-        .description = sArmoriteOreDesc,
+        .price = 20,
+        .description = COMPOUND_STRING("A rare ore. Can be\n"
+                                       "found in the Isle\n"
+                                       "of Armor at Galar."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2733,9 +2897,8 @@ const struct Item gItems[] =
     [ITEM_FIRE_STONE] =
     {
         .name = _("Fire Stone"),
-        .itemId = ITEM_FIRE_STONE,
-        .price = 3000,
-        .description = sFireStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2745,9 +2908,8 @@ const struct Item gItems[] =
     [ITEM_WATER_STONE] =
     {
         .name = _("Water Stone"),
-        .itemId = ITEM_WATER_STONE,
-        .price = 3000,
-        .description = sWaterStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2757,9 +2919,8 @@ const struct Item gItems[] =
     [ITEM_THUNDER_STONE] =
     {
         .name = _("Thunder Stone"),
-        .itemId = ITEM_THUNDER_STONE,
-        .price = 3000,
-        .description = sThunderStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2769,9 +2930,8 @@ const struct Item gItems[] =
     [ITEM_LEAF_STONE] =
     {
         .name = _("Leaf Stone"),
-        .itemId = ITEM_LEAF_STONE,
-        .price = 3000,
-        .description = sLeafStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2781,9 +2941,8 @@ const struct Item gItems[] =
     [ITEM_ICE_STONE] =
     {
         .name = _("Ice Stone"),
-        .itemId = ITEM_ICE_STONE,
-        .price = 3000,
-        .description = sIceStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2793,9 +2952,8 @@ const struct Item gItems[] =
     [ITEM_SUN_STONE] =
     {
         .name = _("Sun Stone"),
-        .itemId = ITEM_SUN_STONE,
-        .price = 3000,
-        .description = sSunStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2805,9 +2963,8 @@ const struct Item gItems[] =
     [ITEM_MOON_STONE] =
     {
         .name = _("Moon Stone"),
-        .itemId = ITEM_MOON_STONE,
-        .price = 3000,
-        .description = sMoonStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2817,9 +2974,8 @@ const struct Item gItems[] =
     [ITEM_SHINY_STONE] =
     {
         .name = _("Shiny Stone"),
-        .itemId = ITEM_SHINY_STONE,
-        .price = 3000,
-        .description = sShinyStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2829,9 +2985,8 @@ const struct Item gItems[] =
     [ITEM_DUSK_STONE] =
     {
         .name = _("Dusk Stone"),
-        .itemId = ITEM_DUSK_STONE,
-        .price = 3000,
-        .description = sDuskStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2841,9 +2996,8 @@ const struct Item gItems[] =
     [ITEM_DAWN_STONE] =
     {
         .name = _("Dawn Stone"),
-        .itemId = ITEM_DAWN_STONE,
-        .price = 3000,
-        .description = sDawnStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2901,9 +3055,10 @@ const struct Item gItems[] =
     [ITEM_GALARICA_CUFF] =
     {
         .name = _("GalaricaCuff"),
-        .itemId = ITEM_GALARICA_CUFF,
-        .price = 6000,
-        .description = sGalaricaCuffDesc,
+        .price = (I_PRICE >= GEN_9) ? 3000 : 6000,
+        .description = COMPOUND_STRING("A cuff from Galar\n"
+                                       "that makes certain\n"
+                                       "Pokémon evolve."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2913,9 +3068,10 @@ const struct Item gItems[] =
     [ITEM_GALARICA_WREATH] =
     {
         .name = _("GalrcaWreath"),
-        .itemId = ITEM_GALARICA_WREATH,
-        .price = 6000,
-        .description = sGalaricaWreathDesc,
+        .price = (I_PRICE >= GEN_9) ? 3000 : 6000,
+        .description = COMPOUND_STRING("A wreath made in\n"
+                                       "Galar. Makes some\n"
+                                       "Pokémon evolve."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2925,8 +3081,7 @@ const struct Item gItems[] =
     [ITEM_DRAGON_SCALE] =
     {
         .name = _("Dragon Scale"),
-        .itemId = ITEM_DRAGON_SCALE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
         .holdEffect = HOLD_EFFECT_DRAGON_SCALE,
         .holdEffectParam = 10,
         .description = sDragonScaleDesc,
@@ -2939,8 +3094,7 @@ const struct Item gItems[] =
     [ITEM_UPGRADE] =
     {
         .name = _("Upgrade"),
-        .itemId = ITEM_UPGRADE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
         .holdEffect = HOLD_EFFECT_UPGRADE,
         .description = sUpgradeDesc,
         .pocket = POCKET_ITEMS,
@@ -2952,9 +3106,10 @@ const struct Item gItems[] =
     [ITEM_PROTECTOR] =
     {
         .name = _("Protector"),
-        .itemId = ITEM_PROTECTOR,
-        .price = 2000,
-        .description = sProtectorDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("Loved by a certain\n"
+                                       "Pokémon. It's stiff\n"
+                                       "and heavy."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2964,9 +3119,10 @@ const struct Item gItems[] =
     [ITEM_ELECTIRIZER] =
     {
         .name = _("Electirizer"),
-        .itemId = ITEM_ELECTIRIZER,
-        .price = 2000,
-        .description = sElectirizerDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("Loved by a certain\n"
+                                       "Pokémon. It's full\n"
+                                       "of electric energy."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2976,9 +3132,10 @@ const struct Item gItems[] =
     [ITEM_MAGMARIZER] =
     {
         .name = _("Magmarizer"),
-        .itemId = ITEM_MAGMARIZER,
-        .price = 2000,
-        .description = sMagmarizerDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("Loved by a certain\n"
+                                       "Pokémon. It's full\n"
+                                       "of magma energy."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -2988,9 +3145,10 @@ const struct Item gItems[] =
     [ITEM_DUBIOUS_DISC] =
     {
         .name = _("Dubious Disc"),
-        .itemId = ITEM_DUBIOUS_DISC,
-        .price = 2000,
-        .description = sDubiousDiscDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("A transparent device\n"
+                                       "overflowing with\n"
+                                       "dubious data."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -3000,9 +3158,10 @@ const struct Item gItems[] =
     [ITEM_REAPER_CLOTH] =
     {
         .name = _("Reaper Cloth"),
-        .itemId = ITEM_REAPER_CLOTH,
-        .price = 2000,
-        .description = sReaperClothDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("Loved by a certain\n"
+                                       "Pokémon. Imbued with\n"
+                                       "spiritual energy."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -3012,9 +3171,10 @@ const struct Item gItems[] =
     [ITEM_PRISM_SCALE] =
     {
         .name = _("Prism Scale"),
-        .itemId = ITEM_PRISM_SCALE,
-        .price = 2000,
-        .description = sPrismScaleDesc,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 2000 : 500),
+        .description = COMPOUND_STRING("A mysterious scale\n"
+                                       "that evolves certain\n"
+                                       "Pokémon. It shines."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -3024,9 +3184,10 @@ const struct Item gItems[] =
     [ITEM_WHIPPED_DREAM] =
     {
         .name = _("Whipped Dream"),
-        .itemId = ITEM_WHIPPED_DREAM,
-        .price = 2000,
-        .description = sWhippedDreamDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("A soft and sweet\n"
+                                       "treat loved by\n"
+                                       "a certain Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -3036,9 +3197,10 @@ const struct Item gItems[] =
     [ITEM_SACHET] =
     {
         .name = _("Sachet"),
-        .itemId = ITEM_SACHET,
-        .price = 2000,
-        .description = sSachetDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
+        .description = COMPOUND_STRING("A sachet filled with\n"
+                                       "perfumes loved by\n"
+                                       "a certain Pokémon."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
@@ -3048,9 +3210,10 @@ const struct Item gItems[] =
     [ITEM_OVAL_STONE] =
     {
         .name = _("Oval Stone"),
-        .itemId = ITEM_OVAL_STONE,
-        .price = 2000,
-        .description = sOvalStoneDesc,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 2100,
+        .description = COMPOUND_STRING("Makes a certain\n"
+                                       "Pokémon evolve. It's\n"
+                                       "shaped like an egg."),
         .pocket = POCKET_ITEMS,
         .type = EVO_HELD_ITEM_TYPE,
         .fieldUseFunc = EVO_HELD_ITEM_FIELD_FUNC,
@@ -3060,9 +3223,10 @@ const struct Item gItems[] =
     [ITEM_STRAWBERRY_SWEET] =
     {
         .name = _("StrwbrySweet"),
-        .itemId = ITEM_STRAWBERRY_SWEET,
-        .price = 500,
-        .description = sStrawberrySweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("Strawberry-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3072,9 +3236,10 @@ const struct Item gItems[] =
     [ITEM_LOVE_SWEET] =
     {
         .name = _("Love Sweet"),
-        .itemId = ITEM_LOVE_SWEET,
-        .price = 500,
-        .description = sLoveSweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A heart-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3084,9 +3249,10 @@ const struct Item gItems[] =
     [ITEM_BERRY_SWEET] =
     {
         .name = _("Berry Sweet"),
-        .itemId = ITEM_BERRY_SWEET,
-        .price = 500,
-        .description = sBerrySweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A berry-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3096,9 +3262,10 @@ const struct Item gItems[] =
     [ITEM_CLOVER_SWEET] =
     {
         .name = _("Clover Sweet"),
-        .itemId = ITEM_CLOVER_SWEET,
-        .price = 500,
-        .description = sCloverSweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A clover-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3108,9 +3275,10 @@ const struct Item gItems[] =
     [ITEM_FLOWER_SWEET] =
     {
         .name = _("Flower Sweet"),
-        .itemId = ITEM_FLOWER_SWEET,
-        .price = 500,
-        .description = sFlowerSweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A flower-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3120,9 +3288,10 @@ const struct Item gItems[] =
     [ITEM_STAR_SWEET] =
     {
         .name = _("Star Sweet"),
-        .itemId = ITEM_STAR_SWEET,
-        .price = 500,
-        .description = sStarSweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A star-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3132,9 +3301,10 @@ const struct Item gItems[] =
     [ITEM_RIBBON_SWEET] =
     {
         .name = _("Ribbon Sweet"),
-        .itemId = ITEM_RIBBON_SWEET,
-        .price = 500,
-        .description = sRibbonSweetDesc,
+        .price = 500 * TREASURE_FACTOR,
+        .description = COMPOUND_STRING("A ribbon-shaped\n"
+                                       "sweet loved by\n"
+                                       "Milcery."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3144,8 +3314,7 @@ const struct Item gItems[] =
     [ITEM_EVERSTONE] =
     {
         .name = _("Everstone"),
-        .itemId = ITEM_EVERSTONE,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_7) ? 3000 : 200,
         .holdEffect = HOLD_EFFECT_PREVENT_EVOLVE,
         .description = sEverstoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3470,8 +3639,7 @@ const struct Item gItems[] =
     [ITEM_DOUSE_DRIVE] =
     {
         .name = _("Douse Drive"),
-        .itemId = ITEM_DOUSE_DRIVE,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 1000,
         .holdEffect = HOLD_EFFECT_DRIVE,
         .description = sDouseDriveDesc,
         .pocket = POCKET_ITEMS,
@@ -3484,8 +3652,7 @@ const struct Item gItems[] =
     [ITEM_SHOCK_DRIVE] =
     {
         .name = _("Shock Drive"),
-        .itemId = ITEM_SHOCK_DRIVE,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 1000,
         .holdEffect = HOLD_EFFECT_DRIVE,
         .description = sShockDriveDesc,
         .pocket = POCKET_ITEMS,
@@ -3498,8 +3665,7 @@ const struct Item gItems[] =
     [ITEM_BURN_DRIVE] =
     {
         .name = _("Burn Drive"),
-        .itemId = ITEM_BURN_DRIVE,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 1000,
         .holdEffect = HOLD_EFFECT_DRIVE,
         .description = sBurnDriveDesc,
         .pocket = POCKET_ITEMS,
@@ -3512,8 +3678,7 @@ const struct Item gItems[] =
     [ITEM_CHILL_DRIVE] =
     {
         .name = _("Chill Drive"),
-        .itemId = ITEM_CHILL_DRIVE,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 1000,
         .holdEffect = HOLD_EFFECT_DRIVE,
         .description = sChillDriveDesc,
         .pocket = POCKET_ITEMS,
@@ -4446,8 +4611,7 @@ const struct Item gItems[] =
     [ITEM_NORMAL_GEM] =
     {
         .name = _("Normal Gem"),
-        .itemId = ITEM_NORMAL_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sNormalGemDesc,
@@ -4460,8 +4624,7 @@ const struct Item gItems[] =
     [ITEM_FIRE_GEM] =
     {
         .name = _("Fire Gem"),
-        .itemId = ITEM_FIRE_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sFireGemDesc,
@@ -4474,8 +4637,7 @@ const struct Item gItems[] =
     [ITEM_WATER_GEM] =
     {
         .name = _("Water Gem"),
-        .itemId = ITEM_WATER_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sWaterGemDesc,
@@ -4488,8 +4650,7 @@ const struct Item gItems[] =
     [ITEM_ELECTRIC_GEM] =
     {
         .name = _("Electric Gem"),
-        .itemId = ITEM_ELECTRIC_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sElectricGemDesc,
@@ -4502,8 +4663,7 @@ const struct Item gItems[] =
     [ITEM_GRASS_GEM] =
     {
         .name = _("Grass Gem"),
-        .itemId = ITEM_GRASS_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sGrassGemDesc,
@@ -4516,8 +4676,7 @@ const struct Item gItems[] =
     [ITEM_ICE_GEM] =
     {
         .name = _("Ice Gem"),
-        .itemId = ITEM_ICE_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sIceGemDesc,
@@ -4530,8 +4689,7 @@ const struct Item gItems[] =
     [ITEM_FIGHTING_GEM] =
     {
         .name = _("Fighting Gem"),
-        .itemId = ITEM_FIGHTING_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sFightingGemDesc,
@@ -4544,8 +4702,7 @@ const struct Item gItems[] =
     [ITEM_POISON_GEM] =
     {
         .name = _("Poison Gem"),
-        .itemId = ITEM_POISON_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sPoisonGemDesc,
@@ -4558,8 +4715,7 @@ const struct Item gItems[] =
     [ITEM_GROUND_GEM] =
     {
         .name = _("Ground Gem"),
-        .itemId = ITEM_GROUND_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sGroundGemDesc,
@@ -4572,8 +4728,7 @@ const struct Item gItems[] =
     [ITEM_FLYING_GEM] =
     {
         .name = _("Flying Gem"),
-        .itemId = ITEM_FLYING_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sFlyingGemDesc,
@@ -4586,8 +4741,7 @@ const struct Item gItems[] =
     [ITEM_PSYCHIC_GEM] =
     {
         .name = _("Psychic Gem"),
-        .itemId = ITEM_PSYCHIC_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sPsychicGemDesc,
@@ -4600,8 +4754,7 @@ const struct Item gItems[] =
     [ITEM_BUG_GEM] =
     {
         .name = _("Bug Gem"),
-        .itemId = ITEM_BUG_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sBugGemDesc,
@@ -4614,8 +4767,7 @@ const struct Item gItems[] =
     [ITEM_ROCK_GEM] =
     {
         .name = _("Rock Gem"),
-        .itemId = ITEM_ROCK_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sRockGemDesc,
@@ -4628,8 +4780,7 @@ const struct Item gItems[] =
     [ITEM_GHOST_GEM] =
     {
         .name = _("Ghost Gem"),
-        .itemId = ITEM_GHOST_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sGhostGemDesc,
@@ -4642,8 +4793,7 @@ const struct Item gItems[] =
     [ITEM_DRAGON_GEM] =
     {
         .name = _("Dragon Gem"),
-        .itemId = ITEM_DRAGON_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sDragonGemDesc,
@@ -4656,8 +4806,7 @@ const struct Item gItems[] =
     [ITEM_DARK_GEM] =
     {
         .name = _("Dark Gem"),
-        .itemId = ITEM_DARK_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sDarkGemDesc,
@@ -4670,8 +4819,7 @@ const struct Item gItems[] =
     [ITEM_STEEL_GEM] =
     {
         .name = _("Steel Gem"),
-        .itemId = ITEM_STEEL_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sSteelGemDesc,
@@ -4684,8 +4832,7 @@ const struct Item gItems[] =
     [ITEM_FAIRY_GEM] =
     {
         .name = _("Fairy Gem"),
-        .itemId = ITEM_FAIRY_GEM,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GEMS,
         .holdEffectParam = GEM_BOOST_PARAM,
         .description = sFairyGemDesc,
@@ -5157,8 +5304,7 @@ const struct Item gItems[] =
     [ITEM_LIGHT_BALL] =
     {
         .name = _("Light Ball"),
-        .itemId = ITEM_LIGHT_BALL,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 100,
         .holdEffect = HOLD_EFFECT_LIGHT_BALL,
         .description = sLightBallDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5170,8 +5316,7 @@ const struct Item gItems[] =
     [ITEM_LEEK] =
     {
         .name = _("Leek"),
-        .itemId = ITEM_LEEK,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 200,
         .holdEffect = HOLD_EFFECT_LEEK,
         .description = sLeekDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5183,8 +5328,7 @@ const struct Item gItems[] =
     [ITEM_THICK_CLUB] =
     {
         .name = _("Thick Club"),
-        .itemId = ITEM_THICK_CLUB,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 500,
         .holdEffect = HOLD_EFFECT_THICK_CLUB,
         .description = sThickClubDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5196,8 +5340,7 @@ const struct Item gItems[] =
     [ITEM_LUCKY_PUNCH] =
     {
         .name = _("Lucky Punch"),
-        .itemId = ITEM_LUCKY_PUNCH,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 10,
         .holdEffect = HOLD_EFFECT_LUCKY_PUNCH,
         .description = sLuckyPunchDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5209,8 +5352,7 @@ const struct Item gItems[] =
     [ITEM_METAL_POWDER] =
     {
         .name = _("Metal Powder"),
-        .itemId = ITEM_METAL_POWDER,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 10,
         .holdEffect = HOLD_EFFECT_METAL_POWDER,
         .description = sMetalPowderDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5222,8 +5364,7 @@ const struct Item gItems[] =
     [ITEM_QUICK_POWDER] =
     {
         .name = _("Quick Powder"),
-        .itemId = ITEM_QUICK_POWDER,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_7) ? 1000 : 10,
         .holdEffect = HOLD_EFFECT_QUICK_POWDER,
         .description = sQuickPowderDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5235,8 +5376,7 @@ const struct Item gItems[] =
     [ITEM_DEEP_SEA_SCALE] =
     {
         .name = _("DeepSeaScale"),
-        .itemId = ITEM_DEEP_SEA_SCALE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 200,
         .holdEffect = HOLD_EFFECT_DEEP_SEA_SCALE,
         .description = sDeepSeaScaleDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5248,8 +5388,7 @@ const struct Item gItems[] =
     [ITEM_DEEP_SEA_TOOTH] =
     {
         .name = _("DeepSeaTooth"),
-        .itemId = ITEM_DEEP_SEA_TOOTH,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 200,
         .holdEffect = HOLD_EFFECT_DEEP_SEA_TOOTH,
         .description = sDeepSeaToothDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5261,8 +5400,7 @@ const struct Item gItems[] =
     [ITEM_SOUL_DEW] =
     {
         .name = _("Soul Dew"),
-        .itemId = ITEM_SOUL_DEW,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 200,
         .holdEffect = HOLD_EFFECT_SOUL_DEW,
         .holdEffectParam = B_SOUL_DEW_BOOST >= GEN_7 ? 20 : 50,
         .description = sSoulDewDesc,
@@ -5275,8 +5413,7 @@ const struct Item gItems[] =
     [ITEM_ADAMANT_ORB] =
     {
         .name = _("Adamant Orb"),
-        .itemId = ITEM_ADAMANT_ORB,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 10000,
         .holdEffect = HOLD_EFFECT_ADAMANT_ORB,
         .holdEffectParam = 20,
         .description = sAdamantOrbDesc,
@@ -5289,8 +5426,7 @@ const struct Item gItems[] =
     [ITEM_LUSTROUS_ORB] =
     {
         .name = _("Lustrous Orb"),
-        .itemId = ITEM_LUSTROUS_ORB,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 10000,
         .holdEffect = HOLD_EFFECT_LUSTROUS_ORB,
         .holdEffectParam = 20,
         .description = sLustrousOrbDesc,
@@ -5303,8 +5439,7 @@ const struct Item gItems[] =
     [ITEM_GRISEOUS_ORB] =
     {
         .name = _("Griseous Orb"),
-        .itemId = ITEM_GRISEOUS_ORB,
-        .price = 0,
+        .price = (I_PRICE >= GEN_7) ? 0 : 10000,
         .holdEffect = HOLD_EFFECT_GRISEOUS_ORB,
         .holdEffectParam = 20,
         .description = sGriseousOrbDesc,
@@ -5319,8 +5454,7 @@ const struct Item gItems[] =
     [ITEM_SEA_INCENSE] =
     {
         .name = _("Sea Incense"),
-        .itemId = ITEM_SEA_INCENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_WATER_POWER,
         .holdEffectParam = 20,
         .description = sSeaIncenseDesc,
@@ -5333,8 +5467,7 @@ const struct Item gItems[] =
     [ITEM_LAX_INCENSE] =
     {
         .name = _("Lax Incense"),
-        .itemId = ITEM_LAX_INCENSE,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_7) ? 5000 : 9600,
         .holdEffect = HOLD_EFFECT_EVASION_UP,
         .holdEffectParam = 10,
         .description = sLaxIncenseDesc,
@@ -5347,8 +5480,7 @@ const struct Item gItems[] =
     [ITEM_ODD_INCENSE] =
     {
         .name = _("Odd Incense"),
-        .itemId = ITEM_ODD_INCENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_PSYCHIC_POWER,
         .holdEffectParam = 20,
         .description = sOddIncenseDesc,
@@ -5361,8 +5493,7 @@ const struct Item gItems[] =
     [ITEM_ROCK_INCENSE] =
     {
         .name = _("Rock Incense"),
-        .itemId = ITEM_ROCK_INCENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_ROCK_POWER,
         .holdEffectParam = 20,
         .description = sRockIncenseDesc,
@@ -5375,8 +5506,7 @@ const struct Item gItems[] =
     [ITEM_FULL_INCENSE] =
     {
         .name = _("Full Incense"),
-        .itemId = ITEM_FULL_INCENSE,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_7) ? 5000 : 9600,
         .holdEffect = HOLD_EFFECT_LAGGING_TAIL,
         .holdEffectParam = 5,
         .description = sFullIncenseDesc,
@@ -5389,8 +5519,7 @@ const struct Item gItems[] =
     [ITEM_WAVE_INCENSE] =
     {
         .name = _("Wave Incense"),
-        .itemId = ITEM_WAVE_INCENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_WATER_POWER,
         .holdEffectParam = 20,
         .description = sWaveIncenseDesc,
@@ -5403,8 +5532,7 @@ const struct Item gItems[] =
     [ITEM_ROSE_INCENSE] =
     {
         .name = _("Rose Incense"),
-        .itemId = ITEM_ROSE_INCENSE,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_GRASS_POWER,
         .holdEffectParam = 20,
         .description = sRoseIncenseDesc,
@@ -5417,8 +5545,7 @@ const struct Item gItems[] =
     [ITEM_LUCK_INCENSE] =
     {
         .name = _("Luck Incense"),
-        .itemId = ITEM_LUCK_INCENSE,
-        .price = 11000,
+        .price = (I_PRICE >= GEN_7) ? 11000 : 9600,
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
         .description = sLuckIncenseDesc,
         .pocket = POCKET_ITEMS,
@@ -5430,8 +5557,7 @@ const struct Item gItems[] =
     [ITEM_PURE_INCENSE] =
     {
         .name = _("Pure Incense"),
-        .itemId = ITEM_PURE_INCENSE,
-        .price = 6000,
+        .price = (I_PRICE >= GEN_7) ? 6000 : 9600,
         .holdEffect = HOLD_EFFECT_REPEL,
         .description = sPureIncenseDesc,
         .pocket = POCKET_ITEMS,
@@ -5520,8 +5646,7 @@ const struct Item gItems[] =
     [ITEM_POWER_WEIGHT] =
     {
         .name = _("Power Weight"),
-        .itemId = ITEM_POWER_WEIGHT,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerWeightDesc,
@@ -5535,8 +5660,7 @@ const struct Item gItems[] =
     [ITEM_POWER_BRACER] =
     {
         .name = _("Power Bracer"),
-        .itemId = ITEM_POWER_BRACER,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerBracerDesc,
@@ -5550,8 +5674,7 @@ const struct Item gItems[] =
     [ITEM_POWER_BELT] =
     {
         .name = _("Power Belt"),
-        .itemId = ITEM_POWER_BELT,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerBeltDesc,
@@ -5565,8 +5688,7 @@ const struct Item gItems[] =
     [ITEM_POWER_LENS] =
     {
         .name = _("Power Lens"),
-        .itemId = ITEM_POWER_LENS,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerLensDesc,
@@ -5580,8 +5702,7 @@ const struct Item gItems[] =
     [ITEM_POWER_BAND] =
     {
         .name = _("Power Band"),
-        .itemId = ITEM_POWER_BAND,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerBandDesc,
@@ -5595,8 +5716,7 @@ const struct Item gItems[] =
     [ITEM_POWER_ANKLET] =
     {
         .name = _("Power Anklet"),
-        .itemId = ITEM_POWER_ANKLET,
-        .price = 3000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : 3000,
         .holdEffect = HOLD_EFFECT_POWER_ITEM,
         .holdEffectParam = 8,
         .description = sPowerAnkletDesc,
@@ -5612,8 +5732,7 @@ const struct Item gItems[] =
     [ITEM_SILK_SCARF] =
     {
         .name = _("Silk Scarf"),
-        .itemId = ITEM_SILK_SCARF,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_NORMAL_POWER,
         .holdEffectParam = 20,
         .description = sSilkScarfDesc,
@@ -5626,8 +5745,7 @@ const struct Item gItems[] =
     [ITEM_CHARCOAL] =
     {
         .name = _("Charcoal"),
-        .itemId = ITEM_CHARCOAL,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 9800),
         .holdEffect = HOLD_EFFECT_FIRE_POWER,
         .holdEffectParam = 20,
         .description = sCharcoalDesc,
@@ -5640,8 +5758,7 @@ const struct Item gItems[] =
     [ITEM_MYSTIC_WATER] =
     {
         .name = _("Mystic Water"),
-        .itemId = ITEM_MYSTIC_WATER,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_WATER_POWER,
         .holdEffectParam = 20,
         .description = sMysticWaterDesc,
@@ -5654,8 +5771,7 @@ const struct Item gItems[] =
     [ITEM_MAGNET] =
     {
         .name = _("Magnet"),
-        .itemId = ITEM_MAGNET,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_ELECTRIC_POWER,
         .holdEffectParam = 20,
         .description = sMagnetDesc,
@@ -5668,8 +5784,7 @@ const struct Item gItems[] =
     [ITEM_MIRACLE_SEED] =
     {
         .name = _("Miracle Seed"),
-        .itemId = ITEM_MIRACLE_SEED,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_GRASS_POWER,
         .holdEffectParam = 20,
         .description = sMiracleSeedDesc,
@@ -5682,8 +5797,7 @@ const struct Item gItems[] =
     [ITEM_NEVER_MELT_ICE] =
     {
         .name = _("Never-MeltIce"),
-        .itemId = ITEM_NEVER_MELT_ICE,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_ICE_POWER,
         .holdEffectParam = 20,
         .description = sNeverMeltIceDesc,
@@ -5696,8 +5810,7 @@ const struct Item gItems[] =
     [ITEM_BLACK_BELT] =
     {
         .name = _("Black Belt"),
-        .itemId = ITEM_BLACK_BELT,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_FIGHTING_POWER,
         .holdEffectParam = 20,
         .description = sBlackBeltDesc,
@@ -5710,8 +5823,7 @@ const struct Item gItems[] =
     [ITEM_POISON_BARB] =
     {
         .name = _("Poison Barb"),
-        .itemId = ITEM_POISON_BARB,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_POISON_POWER,
         .holdEffectParam = 20,
         .description = sPoisonBarbDesc,
@@ -5724,8 +5836,7 @@ const struct Item gItems[] =
     [ITEM_SOFT_SAND] =
     {
         .name = _("Soft Sand"),
-        .itemId = ITEM_SOFT_SAND,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_GROUND_POWER,
         .holdEffectParam = 20,
         .description = sSoftSandDesc,
@@ -5738,8 +5849,7 @@ const struct Item gItems[] =
     [ITEM_SHARP_BEAK] =
     {
         .name = _("Sharp Beak"),
-        .itemId = ITEM_SHARP_BEAK,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_FLYING_POWER,
         .holdEffectParam = 20,
         .description = sSharpBeakDesc,
@@ -5752,8 +5862,7 @@ const struct Item gItems[] =
     [ITEM_TWISTED_SPOON] =
     {
         .name = _("Twisted Spoon"),
-        .itemId = ITEM_TWISTED_SPOON,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_PSYCHIC_POWER,
         .holdEffectParam = 20,
         .description = sTwistedSpoonDesc,
@@ -5766,8 +5875,7 @@ const struct Item gItems[] =
     [ITEM_SILVER_POWDER] =
     {
         .name = _("Silver Powder"),
-        .itemId = ITEM_SILVER_POWDER,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_BUG_POWER,
         .holdEffectParam = 20,
         .description = sSilverPowderDesc,
@@ -5780,8 +5888,7 @@ const struct Item gItems[] =
     [ITEM_HARD_STONE] =
     {
         .name = _("Hard Stone"),
-        .itemId = ITEM_HARD_STONE,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_ROCK_POWER,
         .holdEffectParam = 20,
         .description = sHardStoneDesc,
@@ -5794,8 +5901,7 @@ const struct Item gItems[] =
     [ITEM_SPELL_TAG] =
     {
         .name = _("Spell Tag"),
-        .itemId = ITEM_SPELL_TAG,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_GHOST_POWER,
         .holdEffectParam = 20,
         .description = sSpellTagDesc,
@@ -5808,8 +5914,7 @@ const struct Item gItems[] =
     [ITEM_DRAGON_FANG] =
     {
         .name = _("Dragon Fang"),
-        .itemId = ITEM_DRAGON_FANG,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_DRAGON_POWER,
         .holdEffectParam = 20,
         .description = sDragonFangDesc,
@@ -5822,8 +5927,7 @@ const struct Item gItems[] =
     [ITEM_BLACK_GLASSES] =
     {
         .name = _("Black Glasses"),
-        .itemId = ITEM_BLACK_GLASSES,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_DARK_POWER,
         .holdEffectParam = 20,
         .description = sBlackGlassesDesc,
@@ -5836,8 +5940,7 @@ const struct Item gItems[] =
     [ITEM_METAL_COAT] =
     {
         .name = _("Metal Coat"),
-        .itemId = ITEM_METAL_COAT,
-        .price = 2000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 2000 : 100),
         .holdEffect = HOLD_EFFECT_STEEL_POWER,
         .holdEffectParam = 20,
         .description = sMetalCoatDesc,
@@ -5852,11 +5955,12 @@ const struct Item gItems[] =
     [ITEM_CHOICE_BAND] =
     {
         .name = _("Choice Band"),
-        .itemId = ITEM_CHOICE_BAND,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 100000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_CHOICE_BAND,
-        .description = sChoiceBandDesc,
-        .pocket = POCKET_BATTLE_ITEMS,
+        .description = COMPOUND_STRING("Boosts Attack, but\n"
+                                       "allows the use of\n"
+                                       "only one move."),
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
@@ -5865,8 +5969,7 @@ const struct Item gItems[] =
     [ITEM_CHOICE_SPECS] =
     {
         .name = _("Choice Specs"),
-        .itemId = ITEM_CHOICE_SPECS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 100000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_CHOICE_SPECS,
         .description = sChoiceSpecsDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5878,8 +5981,7 @@ const struct Item gItems[] =
     [ITEM_CHOICE_SCARF] =
     {
         .name = _("Choice Scarf"),
-        .itemId = ITEM_CHOICE_SCARF,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 100000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_CHOICE_SCARF,
         .description = sChoiceScarfDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5893,8 +5995,7 @@ const struct Item gItems[] =
     [ITEM_FLAME_ORB] =
     {
         .name = _("Flame Orb"),
-        .itemId = ITEM_FLAME_ORB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_FLAME_ORB,
         .description = sFlameOrbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5906,8 +6007,7 @@ const struct Item gItems[] =
     [ITEM_TOXIC_ORB] =
     {
         .name = _("Toxic Orb"),
-        .itemId = ITEM_TOXIC_ORB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_TOXIC_ORB,
         .description = sToxicOrbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5921,8 +6021,7 @@ const struct Item gItems[] =
     [ITEM_DAMP_ROCK] =
     {
         .name = _("Damp Rock"),
-        .itemId = ITEM_DAMP_ROCK,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_DAMP_ROCK,
         .description = sDampRockDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5934,8 +6033,7 @@ const struct Item gItems[] =
     [ITEM_HEAT_ROCK] =
     {
         .name = _("Heat Rock"),
-        .itemId = ITEM_HEAT_ROCK,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_HEAT_ROCK,
         .description = sHeatRockDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5947,8 +6045,7 @@ const struct Item gItems[] =
     [ITEM_SMOOTH_ROCK] =
     {
         .name = _("Smooth Rock"),
-        .itemId = ITEM_SMOOTH_ROCK,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_SMOOTH_ROCK,
         .description = sSmoothRockDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5960,8 +6057,7 @@ const struct Item gItems[] =
     [ITEM_ICY_ROCK] =
     {
         .name = _("Icy Rock"),
-        .itemId = ITEM_ICY_ROCK,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_ICY_ROCK,
         .description = sIcyRockDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -5975,8 +6071,7 @@ const struct Item gItems[] =
     [ITEM_ELECTRIC_SEED] =
     {
         .name = _("Electric Seed"),
-        .itemId = ITEM_ELECTRIC_SEED,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_SEEDS,
         .holdEffectParam = HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN,
         .description = sElectricSeedDesc,
@@ -5989,8 +6084,7 @@ const struct Item gItems[] =
     [ITEM_PSYCHIC_SEED] =
     {
         .name = _("Psychic Seed"),
-        .itemId = ITEM_PSYCHIC_SEED,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_SEEDS,
         .holdEffectParam = HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN,
         .description = sPsychicSeedDesc,
@@ -6003,8 +6097,7 @@ const struct Item gItems[] =
     [ITEM_MISTY_SEED] =
     {
         .name = _("Misty Seed"),
-        .itemId = ITEM_MISTY_SEED,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_SEEDS,
         .holdEffectParam = HOLD_EFFECT_PARAM_MISTY_TERRAIN,
         .description = sMistySeedDesc,
@@ -6017,8 +6110,7 @@ const struct Item gItems[] =
     [ITEM_GRASSY_SEED] =
     {
         .name = _("Grassy Seed"),
-        .itemId = ITEM_GRASSY_SEED,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_SEEDS,
         .holdEffectParam = HOLD_EFFECT_PARAM_GRASSY_TERRAIN,
         .description = sGrassySeedDesc,
@@ -6033,8 +6125,7 @@ const struct Item gItems[] =
     [ITEM_ABSORB_BULB] =
     {
         .name = _("Absorb Bulb"),
-        .itemId = ITEM_ABSORB_BULB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_ABSORB_BULB,
         .holdEffectParam = 0,
         .description = sAbsorbBulbDesc,
@@ -6047,8 +6138,7 @@ const struct Item gItems[] =
     [ITEM_CELL_BATTERY] =
     {
         .name = _("Cell Battery"),
-        .itemId = ITEM_CELL_BATTERY,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_CELL_BATTERY,
         .holdEffectParam = 0,
         .description = sCellBatteryDesc,
@@ -6061,8 +6151,7 @@ const struct Item gItems[] =
     [ITEM_LUMINOUS_MOSS] =
     {
         .name = _("Luminous Moss"),
-        .itemId = ITEM_LUMINOUS_MOSS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_7) ? 4000 : 1000),
         .holdEffect = HOLD_EFFECT_LUMINOUS_MOSS,
         .holdEffectParam = 0,
         .description = sLuminousMossDesc,
@@ -6075,8 +6164,7 @@ const struct Item gItems[] =
     [ITEM_SNOWBALL] =
     {
         .name = _("Snowball"),
-        .itemId = ITEM_SNOWBALL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_SNOWBALL,
         .holdEffectParam = 0,
         .description = sSnowballDesc,
@@ -6091,8 +6179,7 @@ const struct Item gItems[] =
     [ITEM_BRIGHT_POWDER] =
     {
         .name = _("Bright Powder"),
-        .itemId = ITEM_BRIGHT_POWDER,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 4000 : 10),
         .holdEffect = HOLD_EFFECT_EVASION_UP,
         .holdEffectParam = 10,
         .description = sBrightPowderDesc,
@@ -6105,8 +6192,7 @@ const struct Item gItems[] =
     [ITEM_WHITE_HERB] =
     {
         .name = _("White Herb"),
-        .itemId = ITEM_WHITE_HERB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_RESTORE_STATS,
         .description = sWhiteHerbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6118,12 +6204,18 @@ const struct Item gItems[] =
     [ITEM_EXP_SHARE] =
     {
         .name = _("Exp. Share"),
-        .itemId = ITEM_EXP_SHARE,
-        .price = 0,
-        .importance = 1,
         .holdEffect = HOLD_EFFECT_EXP_SHARE,
-        .description = sExpShareDesc,
-        .registrability = TRUE,
+        #if I_EXP_SHARE_ITEM >= GEN_6
+            .price = 0,
+            .description = COMPOUND_STRING("This device gives\n"
+                                           "exp. to other\n"
+                                           "party members."),
+        #else
+            .price = 3000,
+            .description = COMPOUND_STRING("A hold item that\n"
+                                           "gets Exp. points\n"
+                                           "from battles."),
+        #endif
         .pocket = I_EXP_SHARE_ITEM >= GEN_6 ? POCKET_KEY_ITEMS : POCKET_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_ExpShare,
@@ -6132,8 +6224,7 @@ const struct Item gItems[] =
     [ITEM_QUICK_CLAW] =
     {
         .name = _("Quick Claw"),
-        .itemId = ITEM_QUICK_CLAW,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_QUICK_CLAW,
         .holdEffectParam = 20,
         .description = sQuickClawDesc,
@@ -6146,8 +6237,7 @@ const struct Item gItems[] =
     [ITEM_SOOTHE_BELL] =
     {
         .name = _("Soothe Bell"),
-        .itemId = ITEM_SOOTHE_BELL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_FRIENDSHIP_UP,
         .description = sSootheBellDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6159,8 +6249,7 @@ const struct Item gItems[] =
     [ITEM_MENTAL_HERB] =
     {
         .name = _("Mental Herb"),
-        .itemId = ITEM_MENTAL_HERB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_MENTAL_HERB,
         .description = sMentalHerbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6172,8 +6261,7 @@ const struct Item gItems[] =
     [ITEM_KINGS_ROCK] =
     {
         .name = _("King's Rock"),
-        .itemId = ITEM_KINGS_ROCK,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 5000 : 100),
         .holdEffect = HOLD_EFFECT_FLINCH,
         .holdEffectParam = 10,
         .description = sKingsRockDesc,
@@ -6186,8 +6274,7 @@ const struct Item gItems[] =
     [ITEM_AMULET_COIN] =
     {
         .name = _("Amulet Coin"),
-        .itemId = ITEM_AMULET_COIN,
-        .price = 10000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 10000 : 100),
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
         .description = sAmuletCoinDesc,
         .pocket = POCKET_ITEMS,
@@ -6199,8 +6286,7 @@ const struct Item gItems[] =
     [ITEM_CLEANSE_TAG] =
     {
         .name = _("Cleanse Tag"),
-        .itemId = ITEM_CLEANSE_TAG,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_7) ? 5000 : 200,
         .holdEffect = HOLD_EFFECT_REPEL,
         .description = sCleanseTagDesc,
         .pocket = POCKET_ITEMS,
@@ -6212,8 +6298,7 @@ const struct Item gItems[] =
     [ITEM_SMOKE_BALL] =
     {
         .name = _("Smoke Ball"),
-        .itemId = ITEM_SMOKE_BALL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_CAN_ALWAYS_RUN,
         .description = sSmokeBallDesc,
         .pocket = POCKET_ITEMS,
@@ -6225,8 +6310,7 @@ const struct Item gItems[] =
     [ITEM_FOCUS_BAND] =
     {
         .name = _("Focus Band"),
-        .itemId = ITEM_FOCUS_BAND,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_FOCUS_BAND,
         .holdEffectParam = 10,
         .description = sFocusBandDesc,
@@ -6239,8 +6323,7 @@ const struct Item gItems[] =
     [ITEM_LUCKY_EGG] =
     {
         .name = _("Lucky Egg"),
-        .itemId = ITEM_LUCKY_EGG,
-        .price = 10000,
+        .price = (I_PRICE >= GEN_7) ? 10000 : 200,
         .holdEffect = HOLD_EFFECT_LUCKY_EGG,
         .description = sLuckyEggDesc,
         .pocket = POCKET_ITEMS,
@@ -6252,8 +6335,7 @@ const struct Item gItems[] =
     [ITEM_SCOPE_LENS] =
     {
         .name = _("Scope Lens"),
-        .itemId = ITEM_SCOPE_LENS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_SCOPE_LENS,
         .description = sScopeLensDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6265,8 +6347,7 @@ const struct Item gItems[] =
     [ITEM_LEFTOVERS] =
     {
         .name = _("Leftovers"),
-        .itemId = ITEM_LEFTOVERS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_LEFTOVERS,
         .holdEffectParam = 10,
         .description = sLeftoversDesc,
@@ -6279,8 +6360,7 @@ const struct Item gItems[] =
     [ITEM_SHELL_BELL] =
     {
         .name = _("Shell Bell"),
-        .itemId = ITEM_SHELL_BELL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_SHELL_BELL,
         .holdEffectParam = 8,
         .description = sShellBellDesc,
@@ -6293,8 +6373,7 @@ const struct Item gItems[] =
     [ITEM_WIDE_LENS] =
     {
         .name = _("Wide Lens"),
-        .itemId = ITEM_WIDE_LENS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_WIDE_LENS,
         .holdEffectParam = 10,
         .description = sWideLensDesc,
@@ -6307,8 +6386,7 @@ const struct Item gItems[] =
     [ITEM_MUSCLE_BAND] =
     {
         .name = _("Muscle Band"),
-        .itemId = ITEM_MUSCLE_BAND,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_MUSCLE_BAND,
         .holdEffectParam = 10,
         .description = sMuscleBandDesc,
@@ -6321,8 +6399,7 @@ const struct Item gItems[] =
     [ITEM_WISE_GLASSES] =
     {
         .name = _("Wise Glasses"),
-        .itemId = ITEM_WISE_GLASSES,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_WISE_GLASSES,
         .holdEffectParam = 10,
         .description = sWiseGlassesDesc,
@@ -6335,8 +6412,7 @@ const struct Item gItems[] =
     [ITEM_EXPERT_BELT] =
     {
         .name = _("Expert Belt"),
-        .itemId = ITEM_EXPERT_BELT,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_EXPERT_BELT,
         .holdEffectParam = 20,
         .description = sExpertBeltDesc,
@@ -6349,8 +6425,7 @@ const struct Item gItems[] =
     [ITEM_LIGHT_CLAY] =
     {
         .name = _("Light Clay"),
-        .itemId = ITEM_LIGHT_CLAY,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_LIGHT_CLAY,
         .description = sLightClayDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6362,8 +6437,7 @@ const struct Item gItems[] =
     [ITEM_LIFE_ORB] =
     {
         .name = _("Life Orb"),
-        .itemId = ITEM_LIFE_ORB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_LIFE_ORB,
         .description = sLifeOrbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6375,8 +6449,7 @@ const struct Item gItems[] =
     [ITEM_POWER_HERB] =
     {
         .name = _("Power Herb"),
-        .itemId = ITEM_POWER_HERB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_POWER_HERB,
         .description = sPowerHerbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6388,8 +6461,7 @@ const struct Item gItems[] =
     [ITEM_FOCUS_SASH] =
     {
         .name = _("Focus Sash"),
-        .itemId = ITEM_FOCUS_SASH,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_FOCUS_SASH,
         .description = sFocusSashDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6401,8 +6473,7 @@ const struct Item gItems[] =
     [ITEM_ZOOM_LENS] =
     {
         .name = _("Zoom Lens"),
-        .itemId = ITEM_ZOOM_LENS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_ZOOM_LENS,
         .holdEffectParam = 20,
         .description = sZoomLensDesc,
@@ -6415,8 +6486,7 @@ const struct Item gItems[] =
     [ITEM_METRONOME] =
     {
         .name = _("Metronome"),
-        .itemId = ITEM_METRONOME,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_METRONOME,
         .holdEffectParam = 20,
         .description = sMetronomeDesc,
@@ -6429,8 +6499,7 @@ const struct Item gItems[] =
     [ITEM_IRON_BALL] =
     {
         .name = _("Iron Ball"),
-        .itemId = ITEM_IRON_BALL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_IRON_BALL,
         .description = sIronBallDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6442,8 +6511,7 @@ const struct Item gItems[] =
     [ITEM_LAGGING_TAIL] =
     {
         .name = _("Lagging Tail"),
-        .itemId = ITEM_LAGGING_TAIL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_LAGGING_TAIL,
         .description = sLaggingTailDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6455,8 +6523,7 @@ const struct Item gItems[] =
     [ITEM_DESTINY_KNOT] =
     {
         .name = _("Destiny Knot"),
-        .itemId = ITEM_DESTINY_KNOT,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_DESTINY_KNOT,
         .description = sDestinyKnotDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6468,8 +6535,7 @@ const struct Item gItems[] =
     [ITEM_BLACK_SLUDGE] =
     {
         .name = _("Black Sludge"),
-        .itemId = ITEM_BLACK_SLUDGE,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_BLACK_SLUDGE,
         .description = sBlackSludgeDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6481,8 +6547,7 @@ const struct Item gItems[] =
     [ITEM_GRIP_CLAW] =
     {
         .name = _("Grip Claw"),
-        .itemId = ITEM_GRIP_CLAW,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_GRIP_CLAW,
         .description = sGripClawDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6494,8 +6559,7 @@ const struct Item gItems[] =
     [ITEM_STICKY_BARB] =
     {
         .name = _("Sticky Barb"),
-        .itemId = ITEM_STICKY_BARB,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_STICKY_BARB,
         .description = sStickyBarbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6507,8 +6571,7 @@ const struct Item gItems[] =
     [ITEM_SHED_SHELL] =
     {
         .name = _("Shed Shell"),
-        .itemId = ITEM_SHED_SHELL,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_SHED_SHELL,
         .description = sShedShellDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6520,8 +6583,7 @@ const struct Item gItems[] =
     [ITEM_BIG_ROOT] =
     {
         .name = _("Big Root"),
-        .itemId = ITEM_BIG_ROOT,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_BIG_ROOT,
         .holdEffectParam = 30,
         .description = sBigRootDesc,
@@ -6534,8 +6596,7 @@ const struct Item gItems[] =
     [ITEM_RAZOR_CLAW] =
     {
         .name = _("Razor Claw"),
-        .itemId = ITEM_RAZOR_CLAW,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 5000 : 2100),
         .holdEffect = HOLD_EFFECT_SCOPE_LENS,
         .description = sRazorClawDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6547,8 +6608,7 @@ const struct Item gItems[] =
     [ITEM_RAZOR_FANG] =
     {
         .name = _("Razor Fang"),
-        .itemId = ITEM_RAZOR_FANG,
-        .price = 5000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 5000 : 2100),
         .holdEffect = HOLD_EFFECT_FLINCH,
         .holdEffectParam = 10,
         .description = sRazorFangDesc,
@@ -6561,8 +6621,7 @@ const struct Item gItems[] =
     [ITEM_EVIOLITE] =
     {
         .name = _("Eviolite"),
-        .itemId = ITEM_EVIOLITE,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_EVIOLITE,
         .holdEffectParam = 50,
         .description = sEvioliteDesc,
@@ -6575,8 +6634,7 @@ const struct Item gItems[] =
     [ITEM_FLOAT_STONE] =
     {
         .name = _("Float Stone"),
-        .itemId = ITEM_FLOAT_STONE,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_FLOAT_STONE,
         .description = sFloatStoneDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6588,8 +6646,7 @@ const struct Item gItems[] =
     [ITEM_ROCKY_HELMET] =
     {
         .name = _("Rocky Helmet"),
-        .itemId = ITEM_ROCKY_HELMET,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_ROCKY_HELMET,
         .holdEffectParam = 0,
         .description = sRockyHelmetDesc,
@@ -6602,8 +6659,7 @@ const struct Item gItems[] =
     [ITEM_AIR_BALLOON] =
     {
         .name = _("Air Balloon"),
-        .itemId = ITEM_AIR_BALLOON,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_AIR_BALLOON,
         .holdEffectParam = 0,
         .description = sAirBalloonDesc,
@@ -6616,8 +6672,7 @@ const struct Item gItems[] =
     [ITEM_RED_CARD] =
     {
         .name = _("Red Card"),
-        .itemId = ITEM_RED_CARD,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_RED_CARD,
         .holdEffectParam = 0,
         .description = sRedCardDesc,
@@ -6630,8 +6685,7 @@ const struct Item gItems[] =
     [ITEM_RING_TARGET] =
     {
         .name = _("Ring Target"),
-        .itemId = ITEM_RING_TARGET,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_RING_TARGET,
         .holdEffectParam = 0,
         .description = sRingTargetDesc,
@@ -6644,8 +6698,7 @@ const struct Item gItems[] =
     [ITEM_BINDING_BAND] =
     {
         .name = _("Binding Band"),
-        .itemId = ITEM_BINDING_BAND,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_BINDING_BAND,
         .description = sBindingBandDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6657,8 +6710,7 @@ const struct Item gItems[] =
     [ITEM_EJECT_BUTTON] =
     {
         .name = _("Eject Button"),
-        .itemId = ITEM_EJECT_BUTTON,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_EJECT_BUTTON,
         .holdEffectParam = 0,
         .description = sEjectButtonDesc,
@@ -6671,8 +6723,7 @@ const struct Item gItems[] =
     [ITEM_WEAKNESS_POLICY] =
     {
         .name = _("WeaknssPolicy"),
-        .itemId = ITEM_WEAKNESS_POLICY,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : 1000,
         .holdEffect = HOLD_EFFECT_WEAKNESS_POLICY,
         .holdEffectParam = 0,
         .description = sWeaknessPolicyDesc,
@@ -6685,8 +6736,7 @@ const struct Item gItems[] =
     [ITEM_ASSAULT_VEST] =
     {
         .name = _("Assault Vest"),
-        .itemId = ITEM_ASSAULT_VEST,
-        .price = 1000,
+        .price = (I_PRICE >= GEN_9) ? 50000 : 1000,
         .holdEffect = HOLD_EFFECT_ASSAULT_VEST,
         .holdEffectParam = 50,
         .description = sAssaultVestDesc,
@@ -6699,8 +6749,7 @@ const struct Item gItems[] =
     [ITEM_SAFETY_GOGGLES] =
     {
         .name = _("SafetyGoggles"),
-        .itemId = ITEM_SAFETY_GOGGLES,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 1000),
         .holdEffect = HOLD_EFFECT_SAFETY_GOGGLES,
         .description = sSafetyGogglesDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6712,8 +6761,7 @@ const struct Item gItems[] =
     [ITEM_ADRENALINE_ORB] =
     {
         .name = _("AdrenalineOrb"),
-        .itemId = ITEM_ADRENALINE_ORB,
-        .price = 300,
+        .price = (I_PRICE >= GEN_9) ? 5000 : ((I_PRICE >= GEN_8) ? 4000 : 300),
         .holdEffect = HOLD_EFFECT_ADRENALINE_ORB,
         .description = sAdrenalineOrbDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6725,8 +6773,7 @@ const struct Item gItems[] =
     [ITEM_TERRAIN_EXTENDER] =
     {
         .name = _("TerainExtendr"),
-        .itemId = ITEM_TERRAIN_EXTENDER,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : 4000,
         .holdEffect = HOLD_EFFECT_TERRAIN_EXTENDER,
         .description = sTerrainExtenderDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6738,8 +6785,7 @@ const struct Item gItems[] =
     [ITEM_PROTECTIVE_PADS] =
     {
         .name = _("ProtectvePads"),
-        .itemId = ITEM_PROTECTIVE_PADS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : 4000,
         .holdEffect = HOLD_EFFECT_PROTECTIVE_PADS,
         .description = sProtectivePadsDesc,
         .pocket = POCKET_BATTLE_ITEMS,
@@ -6751,8 +6797,7 @@ const struct Item gItems[] =
     [ITEM_THROAT_SPRAY] =
     {
         .name = _("Throat Spray"),
-        .itemId = ITEM_THROAT_SPRAY,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_THROAT_SPRAY,
         .description = sThroatSprayDesc,
         .pocket = POCKET_ITEMS,
@@ -6764,8 +6809,7 @@ const struct Item gItems[] =
     [ITEM_EJECT_PACK] =
     {
         .name = _("Eject Pack"),
-        .itemId = ITEM_EJECT_PACK,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : 4000,
         .holdEffect = HOLD_EFFECT_EJECT_PACK,
         .description = sEjectPackDesc,
         .pocket = POCKET_ITEMS,
@@ -6777,8 +6821,7 @@ const struct Item gItems[] =
     [ITEM_HEAVY_DUTY_BOOTS] =
     {
         .name = _("Heavy-DtyBts"),
-        .itemId = ITEM_HEAVY_DUTY_BOOTS,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_HEAVY_DUTY_BOOTS,
         .description = sHeavyDutyBootsDesc,
         .pocket = POCKET_ITEMS,
@@ -6790,8 +6833,7 @@ const struct Item gItems[] =
     [ITEM_BLUNDER_POLICY] =
     {
         .name = _("BlundrPolicy"),
-        .itemId = ITEM_BLUNDER_POLICY,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 30000 : 4000,
         .holdEffect = HOLD_EFFECT_BLUNDER_POLICY,
         .description = sBlunderPolicyDesc,
         .pocket = POCKET_ITEMS,
@@ -6803,8 +6845,7 @@ const struct Item gItems[] =
     [ITEM_ROOM_SERVICE] =
     {
         .name = _("Room Service"),
-        .itemId = ITEM_ROOM_SERVICE,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_ROOM_SERVICE,
         .description = sRoomServiceDesc,
         .pocket = POCKET_ITEMS,
@@ -6816,8 +6857,7 @@ const struct Item gItems[] =
     [ITEM_UTILITY_UMBRELLA] =
     {
         .name = _("UtltyUmbrlla"),
-        .itemId = ITEM_UTILITY_UMBRELLA,
-        .price = 4000,
+        .price = (I_PRICE >= GEN_9) ? 15000 : 4000,
         .holdEffect = HOLD_EFFECT_UTILITY_UMBRELLA,
         .description = sUtilityUmbrellaDesc,
         .pocket = POCKET_ITEMS,
@@ -6831,8 +6871,7 @@ const struct Item gItems[] =
     [ITEM_CHERI_BERRY] =
     {
         .name = _("Cheri Berry"),
-        .itemId = ITEM_CHERI_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_PAR,
         .description = sCheriBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6845,8 +6884,7 @@ const struct Item gItems[] =
     [ITEM_CHESTO_BERRY] =
     {
         .name = _("Chesto Berry"),
-        .itemId = ITEM_CHESTO_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_SLP,
         .description = sChestoBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6859,8 +6897,7 @@ const struct Item gItems[] =
     [ITEM_PECHA_BERRY] =
     {
         .name = _("Pecha Berry"),
-        .itemId = ITEM_PECHA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_PSN,
         .description = sPechaBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6873,8 +6910,7 @@ const struct Item gItems[] =
     [ITEM_RAWST_BERRY] =
     {
         .name = _("Rawst Berry"),
-        .itemId = ITEM_RAWST_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_BRN,
         .description = sRawstBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6887,8 +6923,7 @@ const struct Item gItems[] =
     [ITEM_ASPEAR_BERRY] =
     {
         .name = _("Aspear Berry"),
-        .itemId = ITEM_ASPEAR_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_FRZ,
         .description = sAspearBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6901,8 +6936,7 @@ const struct Item gItems[] =
     [ITEM_LEPPA_BERRY] =
     {
         .name = _("Leppa Berry"),
-        .itemId = ITEM_LEPPA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESTORE_PP,
         .holdEffectParam = 10,
         .description = sLeppaBerryDesc,
@@ -6916,8 +6950,7 @@ const struct Item gItems[] =
     [ITEM_ORAN_BERRY] =
     {
         .name = _("Oran Berry"),
-        .itemId = ITEM_ORAN_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESTORE_HP,
         .holdEffectParam = 10,
         .description = sOranBerryDesc,
@@ -6931,8 +6964,7 @@ const struct Item gItems[] =
     [ITEM_PERSIM_BERRY] =
     {
         .name = _("Persim Berry"),
-        .itemId = ITEM_PERSIM_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_CONFUSION,
         .description = sPersimBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6945,8 +6977,7 @@ const struct Item gItems[] =
     [ITEM_LUM_BERRY] =
     {
         .name = _("Lum Berry"),
-        .itemId = ITEM_LUM_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_STATUS,
         .description = sLumBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -6959,8 +6990,7 @@ const struct Item gItems[] =
     [ITEM_SITRUS_BERRY] =
     {
         .name = _("Sitrus Berry"),
-        .itemId = ITEM_SITRUS_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         #if I_SITRUS_BERRY_HEAL >= GEN_4
             .holdEffect = HOLD_EFFECT_RESTORE_PCT_HP,
             .holdEffectParam = 25,
@@ -6979,8 +7009,7 @@ const struct Item gItems[] =
     [ITEM_FIGY_BERRY] =
     {
         .name = _("Figy Berry"),
-        .itemId = ITEM_FIGY_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CONFUSE_SPICY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -6993,8 +7022,7 @@ const struct Item gItems[] =
     [ITEM_WIKI_BERRY] =
     {
         .name = _("Wiki Berry"),
-        .itemId = ITEM_WIKI_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CONFUSE_DRY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sWikiBerryDesc,
@@ -7007,8 +7035,7 @@ const struct Item gItems[] =
     [ITEM_MAGO_BERRY] =
     {
         .name = _("Mago Berry"),
-        .itemId = ITEM_MAGO_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CONFUSE_SWEET,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sMagoBerryDesc,
@@ -7021,8 +7048,7 @@ const struct Item gItems[] =
     [ITEM_AGUAV_BERRY] =
     {
         .name = _("Aguav Berry"),
-        .itemId = ITEM_AGUAV_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CONFUSE_BITTER,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sAguavBerryDesc,
@@ -7035,8 +7061,7 @@ const struct Item gItems[] =
     [ITEM_IAPAPA_BERRY] =
     {
         .name = _("Iapapa Berry"),
-        .itemId = ITEM_IAPAPA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CONFUSE_SOUR,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sIapapaBerryDesc,
@@ -7049,9 +7074,10 @@ const struct Item gItems[] =
     [ITEM_RAZZ_BERRY] =
     {
         .name = _("Razz Berry"),
-        .itemId = ITEM_RAZZ_BERRY,
-        .price = 20,
-        .description = sRazzBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Razz."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7061,9 +7087,10 @@ const struct Item gItems[] =
     [ITEM_BLUK_BERRY] =
     {
         .name = _("Bluk Berry"),
-        .itemId = ITEM_BLUK_BERRY,
-        .price = 20,
-        .description = sBlukBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Bluk."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7073,9 +7100,10 @@ const struct Item gItems[] =
     [ITEM_NANAB_BERRY] =
     {
         .name = _("Nanab Berry"),
-        .itemId = ITEM_NANAB_BERRY,
-        .price = 20,
-        .description = sNanabBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Nanab."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7085,9 +7113,10 @@ const struct Item gItems[] =
     [ITEM_WEPEAR_BERRY] =
     {
         .name = _("Wepear Berry"),
-        .itemId = ITEM_WEPEAR_BERRY,
-        .price = 20,
-        .description = sWepearBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Wepear."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7097,9 +7126,10 @@ const struct Item gItems[] =
     [ITEM_PINAP_BERRY] =
     {
         .name = _("Pinap Berry"),
-        .itemId = ITEM_PINAP_BERRY,
-        .price = 20,
-        .description = sPinapBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Pinap."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7109,9 +7139,10 @@ const struct Item gItems[] =
     [ITEM_POMEG_BERRY] =
     {
         .name = _("Pomeg Berry"),
-        .itemId = ITEM_POMEG_BERRY,
-        .price = 20,
-        .description = sPomegBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base HP."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7121,9 +7152,10 @@ const struct Item gItems[] =
     [ITEM_KELPSY_BERRY] =
     {
         .name = _("Kelpsy Berry"),
-        .itemId = ITEM_KELPSY_BERRY,
-        .price = 20,
-        .description = sKelpsyBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base Attack."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7133,9 +7165,10 @@ const struct Item gItems[] =
     [ITEM_QUALOT_BERRY] =
     {
         .name = _("Qualot Berry"),
-        .itemId = ITEM_QUALOT_BERRY,
-        .price = 20,
-        .description = sQualotBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base Defense."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7145,9 +7178,10 @@ const struct Item gItems[] =
     [ITEM_HONDEW_BERRY] =
     {
         .name = _("Hondew Berry"),
-        .itemId = ITEM_HONDEW_BERRY,
-        .price = 20,
-        .description = sHondewBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base Sp. Atk."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7157,9 +7191,10 @@ const struct Item gItems[] =
     [ITEM_GREPA_BERRY] =
     {
         .name = _("Grepa Berry"),
-        .itemId = ITEM_GREPA_BERRY,
-        .price = 20,
-        .description = sGrepaBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base Sp. Def."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7169,9 +7204,10 @@ const struct Item gItems[] =
     [ITEM_TAMATO_BERRY] =
     {
         .name = _("Tamato Berry"),
-        .itemId = ITEM_TAMATO_BERRY,
-        .price = 20,
-        .description = sTamatoBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("Makes a Pokémon\n"
+                                       "friendly but lowers\n"
+                                       "base Speed."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
@@ -7181,9 +7217,10 @@ const struct Item gItems[] =
     [ITEM_CORNN_BERRY] =
     {
         .name = _("Cornn Berry"),
-        .itemId = ITEM_CORNN_BERRY,
-        .price = 20,
-        .description = sCornnBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Cornn."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7193,9 +7230,10 @@ const struct Item gItems[] =
     [ITEM_MAGOST_BERRY] =
     {
         .name = _("Magost Berry"),
-        .itemId = ITEM_MAGOST_BERRY,
-        .price = 20,
-        .description = sMagostBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Magost."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7205,9 +7243,10 @@ const struct Item gItems[] =
     [ITEM_RABUTA_BERRY] =
     {
         .name = _("Rabuta Berry"),
-        .itemId = ITEM_RABUTA_BERRY,
-        .price = 20,
-        .description = sRabutaBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Rabuta."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7217,9 +7256,10 @@ const struct Item gItems[] =
     [ITEM_NOMEL_BERRY] =
     {
         .name = _("Nomel Berry"),
-        .itemId = ITEM_NOMEL_BERRY,
-        .price = 20,
-        .description = sNomelBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Nomel."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7229,9 +7269,10 @@ const struct Item gItems[] =
     [ITEM_SPELON_BERRY] =
     {
         .name = _("Spelon Berry"),
-        .itemId = ITEM_SPELON_BERRY,
-        .price = 20,
-        .description = sSpelonBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Spelon."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7241,9 +7282,10 @@ const struct Item gItems[] =
     [ITEM_PAMTRE_BERRY] =
     {
         .name = _("Pamtre Berry"),
-        .itemId = ITEM_PAMTRE_BERRY,
-        .price = 20,
-        .description = sPamtreBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Pamtre."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7253,9 +7295,10 @@ const struct Item gItems[] =
     [ITEM_WATMEL_BERRY] =
     {
         .name = _("Watmel Berry"),
-        .itemId = ITEM_WATMEL_BERRY,
-        .price = 20,
-        .description = sWatmelBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Watmel."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7265,9 +7308,10 @@ const struct Item gItems[] =
     [ITEM_DURIN_BERRY] =
     {
         .name = _("Durin Berry"),
-        .itemId = ITEM_DURIN_BERRY,
-        .price = 20,
-        .description = sDurinBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Durin."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7277,9 +7321,10 @@ const struct Item gItems[] =
     [ITEM_BELUE_BERRY] =
     {
         .name = _("Belue Berry"),
-        .itemId = ITEM_BELUE_BERRY,
-        .price = 20,
-        .description = sBelueBerryDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow Belue."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7289,8 +7334,7 @@ const struct Item gItems[] =
     [ITEM_CHILAN_BERRY] =
     {
         .name = _("Chilan Berry"),
-        .itemId = ITEM_CHILAN_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_NORMAL,
         .description = sChilanBerryDesc,
@@ -7303,8 +7347,7 @@ const struct Item gItems[] =
     [ITEM_OCCA_BERRY] =
     {
         .name = _("Occa Berry"),
-        .itemId = ITEM_OCCA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_FIRE,
         .description = sOccaBerryDesc,
@@ -7317,8 +7360,7 @@ const struct Item gItems[] =
     [ITEM_PASSHO_BERRY] =
     {
         .name = _("Passho Berry"),
-        .itemId = ITEM_PASSHO_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_WATER,
         .description = sPasshoBerryDesc,
@@ -7331,8 +7373,7 @@ const struct Item gItems[] =
     [ITEM_WACAN_BERRY] =
     {
         .name = _("Wacan Berry"),
-        .itemId = ITEM_WACAN_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_ELECTRIC,
         .description = sWacanBerryDesc,
@@ -7345,8 +7386,7 @@ const struct Item gItems[] =
     [ITEM_RINDO_BERRY] =
     {
         .name = _("Rindo Berry"),
-        .itemId = ITEM_RINDO_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_GRASS,
         .description = sRindoBerryDesc,
@@ -7359,8 +7399,7 @@ const struct Item gItems[] =
     [ITEM_YACHE_BERRY] =
     {
         .name = _("Yache Berry"),
-        .itemId = ITEM_YACHE_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_ICE,
         .description = sYacheBerryDesc,
@@ -7373,8 +7412,7 @@ const struct Item gItems[] =
     [ITEM_CHOPLE_BERRY] =
     {
         .name = _("Chople Berry"),
-        .itemId = ITEM_CHOPLE_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_FIGHTING,
         .description = sChopleBerryDesc,
@@ -7387,8 +7425,7 @@ const struct Item gItems[] =
     [ITEM_KEBIA_BERRY] =
     {
         .name = _("Kebia Berry"),
-        .itemId = ITEM_KEBIA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_POISON,
         .description = sKebiaBerryDesc,
@@ -7401,8 +7438,7 @@ const struct Item gItems[] =
     [ITEM_SHUCA_BERRY] =
     {
         .name = _("Shuca Berry"),
-        .itemId = ITEM_SHUCA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_GROUND,
         .description = sShucaBerryDesc,
@@ -7415,8 +7451,7 @@ const struct Item gItems[] =
     [ITEM_COBA_BERRY] =
     {
         .name = _("Coba Berry"),
-        .itemId = ITEM_COBA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_FLYING,
         .description = sCobaBerryDesc,
@@ -7429,8 +7464,7 @@ const struct Item gItems[] =
     [ITEM_PAYAPA_BERRY] =
     {
         .name = _("Payapa Berry"),
-        .itemId = ITEM_PAYAPA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_PSYCHIC,
         .description = sPayapaBerryDesc,
@@ -7443,8 +7477,7 @@ const struct Item gItems[] =
     [ITEM_TANGA_BERRY] =
     {
         .name = _("Tanga Berry"),
-        .itemId = ITEM_TANGA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_BUG,
         .description = sTangaBerryDesc,
@@ -7457,8 +7490,7 @@ const struct Item gItems[] =
     [ITEM_CHARTI_BERRY] =
     {
         .name = _("Charti Berry"),
-        .itemId = ITEM_CHARTI_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_ROCK,
         .description = sChartiBerryDesc,
@@ -7471,8 +7503,7 @@ const struct Item gItems[] =
     [ITEM_KASIB_BERRY] =
     {
         .name = _("Kasib Berry"),
-        .itemId = ITEM_KASIB_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_GHOST,
         .description = sKasibBerryDesc,
@@ -7485,8 +7516,7 @@ const struct Item gItems[] =
     [ITEM_HABAN_BERRY] =
     {
         .name = _("Haban Berry"),
-        .itemId = ITEM_HABAN_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_DRAGON,
         .description = sHabanBerryDesc,
@@ -7499,8 +7529,7 @@ const struct Item gItems[] =
     [ITEM_COLBUR_BERRY] =
     {
         .name = _("Colbur Berry"),
-        .itemId = ITEM_COLBUR_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_DARK,
         .description = sColburBerryDesc,
@@ -7513,8 +7542,7 @@ const struct Item gItems[] =
     [ITEM_BABIRI_BERRY] =
     {
         .name = _("Babiri Berry"),
-        .itemId = ITEM_BABIRI_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_STEEL,
         .description = sBabiriBerryDesc,
@@ -7527,8 +7555,7 @@ const struct Item gItems[] =
     [ITEM_ROSELI_BERRY] =
     {
         .name = _("Roseli Berry"),
-        .itemId = ITEM_ROSELI_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RESIST_BERRY,
         .holdEffectParam = TYPE_FAIRY,
         .description = sRoseliBerryDesc,
@@ -7541,8 +7568,7 @@ const struct Item gItems[] =
     [ITEM_LIECHI_BERRY] =
     {
         .name = _("Liechi Berry"),
-        .itemId = ITEM_LIECHI_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_ATTACK_UP,
         .holdEffectParam = 4,
         .description = sLiechiBerryDesc,
@@ -7555,8 +7581,7 @@ const struct Item gItems[] =
     [ITEM_GANLON_BERRY] =
     {
         .name = _("Ganlon Berry"),
-        .itemId = ITEM_GANLON_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_DEFENSE_UP,
         .holdEffectParam = 4,
         .description = sGanlonBerryDesc,
@@ -7569,8 +7594,7 @@ const struct Item gItems[] =
     [ITEM_SALAC_BERRY] =
     {
         .name = _("Salac Berry"),
-        .itemId = ITEM_SALAC_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_SPEED_UP,
         .holdEffectParam = 4,
         .description = sSalacBerryDesc,
@@ -7583,8 +7607,7 @@ const struct Item gItems[] =
     [ITEM_PETAYA_BERRY] =
     {
         .name = _("Petaya Berry"),
-        .itemId = ITEM_PETAYA_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_SP_ATTACK_UP,
         .holdEffectParam = 4,
         .description = sPetayaBerryDesc,
@@ -7597,8 +7620,7 @@ const struct Item gItems[] =
     [ITEM_APICOT_BERRY] =
     {
         .name = _("Apicot Berry"),
-        .itemId = ITEM_APICOT_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_SP_DEFENSE_UP,
         .holdEffectParam = 4,
         .description = sApicotBerryDesc,
@@ -7611,8 +7633,7 @@ const struct Item gItems[] =
     [ITEM_LANSAT_BERRY] =
     {
         .name = _("Lansat Berry"),
-        .itemId = ITEM_LANSAT_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CRITICAL_UP,
         .holdEffectParam = 4,
         .description = sLansatBerryDesc,
@@ -7625,8 +7646,7 @@ const struct Item gItems[] =
     [ITEM_STARF_BERRY] =
     {
         .name = _("Starf Berry"),
-        .itemId = ITEM_STARF_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_RANDOM_STAT_UP,
         .holdEffectParam = 4,
         .description = sStarfBerryDesc,
@@ -7639,8 +7659,7 @@ const struct Item gItems[] =
     [ITEM_ENIGMA_BERRY] =
     {
         .name = _("Enigma Berry"),
-        .itemId = ITEM_ENIGMA_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_ENIGMA_BERRY,
         .description = sEnigmaBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -7652,8 +7671,7 @@ const struct Item gItems[] =
     [ITEM_MICLE_BERRY] =
     {
         .name = _("Micle Berry"),
-        .itemId = ITEM_MICLE_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_MICLE_BERRY,
         .holdEffectParam = 4,
         .description = sMicleBerryDesc,
@@ -7666,8 +7684,7 @@ const struct Item gItems[] =
     [ITEM_CUSTAP_BERRY] =
     {
         .name = _("Custap Berry"),
-        .itemId = ITEM_CUSTAP_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CUSTAP_BERRY,
         .holdEffectParam = 4,
         .description = sCustapBerryDesc,
@@ -7680,8 +7697,7 @@ const struct Item gItems[] =
     [ITEM_JABOCA_BERRY] =
     {
         .name = _("Jaboca Berry"),
-        .itemId = ITEM_JABOCA_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_JABOCA_BERRY,
         .description = sJabocaBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -7693,8 +7709,7 @@ const struct Item gItems[] =
     [ITEM_ROWAP_BERRY] =
     {
         .name = _("Rowap Berry"),
-        .itemId = ITEM_ROWAP_BERRY,
-        .price = 2000,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_ROWAP_BERRY,
         .description = sRowapBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -7706,8 +7721,7 @@ const struct Item gItems[] =
     [ITEM_KEE_BERRY] =
     {
         .name = _("Kee Berry"),
-        .itemId = ITEM_KEE_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_KEE_BERRY,
         .description = sKeeBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -7719,8 +7733,7 @@ const struct Item gItems[] =
     [ITEM_MARANGA_BERRY] =
     {
         .name = _("Maranga Berry"),
-        .itemId = ITEM_MARANGA_BERRY,
-        .price = 20,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_MARANGA_BERRY,
         .description = sMarangaBerryDesc,
         .pocket = POCKET_BERRIES,
@@ -7732,9 +7745,10 @@ const struct Item gItems[] =
     [ITEM_ENIGMA_BERRY_E_READER] =
     {
         .name = _("Enigma Berry"),
-        .itemId = ITEM_ENIGMA_BERRY,
-        .price = 20,
-        .description = sEnigmaBerryEReaderDesc,
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING("{POKEBLOCK} ingredient.\n"
+                                       "Plant in loamy soil\n"
+                                       "to grow a mystery."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU, // Type handled by ItemUseOutOfBattle_EnigmaBerry
         .fieldUseFunc = ItemUseOutOfBattle_EnigmaBerry,
@@ -9917,6 +9931,8 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
     },
+
+// GEN 9 ITEMS
 
     [ITEM_CLEAR_AMULET] =
     {
