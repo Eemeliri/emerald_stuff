@@ -20,9 +20,9 @@ void LoadCompressedSpritePaletteDayNight(const struct CompressedSpritePalette *s
 
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer);
 
-void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality, u8 metGame);
+void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality);
 void HandleLoadSpecialPokePicCustom(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFemale);
-void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic, u8 metGame);
+void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic);
 
 u32 GetDecompressedDataSize(const u32 *ptr);
 
