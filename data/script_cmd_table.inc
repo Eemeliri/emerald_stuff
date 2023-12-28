@@ -237,6 +237,8 @@ gScriptCmdTable::
 	.4byte ScrCmd_hideitemdesc              @ 0xea
 	.4byte ScrCmd_calculatemonstats  		@ 0xeb
 	.4byte ScrCmd_setwildbattle2			@ 0xec
+	.4byte ScrCmd_dynmultichoice            @ 0xed
+	.4byte ScrCmd_dynmultipush              @ 0xee
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

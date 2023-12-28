@@ -1,4 +1,4 @@
-.set LOCALID_MART_EMPLOYEE, 2
+raw `.set LOCALID_MART_EMPLOYEE, 2
 .set LOCALID_FOOTPRINTS_MAN, 3
 .set LOCALID_RIVAL, 4
 
@@ -400,46 +400,37 @@ OldaleTown_Text_TownSign:
 	.string "Oldale Town\n"
 	.string "“Where things start off scarce.”$"
 
-multichoiceTest::
-	lock
-	faceplayer
-	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_DEFAULT
-	random ITEMS_COUNT
-	bufferitemname STR_VAR_1, VAR_RESULT
-	dynmultipush multichoiceTest_Text_0, VAR_RESULT
-	random ITEMS_COUNT
-	bufferitemname STR_VAR_2, VAR_RESULT
-	dynmultipush multichoiceTest_Text_1, VAR_RESULT
-	random ITEMS_COUNT
-	bufferitemname STR_VAR_3, VAR_RESULT
-	dynmultipush multichoiceTest_Text_2, VAR_RESULT
-	dynmultistack 0, 0, TRUE, 6, FALSE, VAR_0x800A, DYN_MULTICHOICE_CB_SHOW_ITEM
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, multichoiceTest_Text_3, multichoiceTest_Text_4, multichoiceTest_Text_5
-	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, multichoiceTest_Text_3, multichoiceTest_Text_4, multichoiceTest_Text_5, multichoiceTest_Text_6
-	buffernumberstring STR_VAR_1, VAR_RESULT
-	msgbox multichoiceTest_Text_0, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
+`
 
+script multichoiceTest {
+    lock 
+    faceplayer
+    msgbox (LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_DEFAULT)
 
-multichoiceTest_Text_0:
-	.string "{STR_VAR_1}$"
+    // random items with visualization example
 
-multichoiceTest_Text_1:
-	.string "{STR_VAR_2}$"
+    random(ITEMS_COUNT)
+    bufferitemname(STR_VAR_1, VAR_RESULT)
+    dynmultipush("{STR_VAR_1}", VAR_RESULT)
+    random(ITEMS_COUNT)
+    bufferitemname(STR_VAR_2, VAR_RESULT)
+    dynmultipush("{STR_VAR_2}", VAR_RESULT)
+    random(ITEMS_COUNT)
+    bufferitemname(STR_VAR_3, VAR_RESULT)
+    dynmultipush("{STR_VAR_3}", VAR_RESULT)
+    dynmultistack(0, 0, TRUE, 6, FALSE, VAR_0x800A, DYN_MULTICHOICE_CB_SHOW_ITEM)
 
-multichoiceTest_Text_2:
-	.string "{STR_VAR_3}$"
+    // inline example without scrolling
 
-multichoiceTest_Text_3:
-	.string "Option 1$"
+    dynmultichoice(0,0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, "Option 1", "Option 2", "Option 3")
 
-multichoiceTest_Text_4:
-	.string "Option 2$"
+    // inline example with scrolling
 
-multichoiceTest_Text_5:
-	.string "Option 3$"
+    dynmultichoice(0,0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Option 1", "Option 2", "Option 3", "Option 4")
 
-multichoiceTest_Text_6:
-	.string "Option 4$"
+    buffernumberstring(STR_VAR_1, VAR_RESULT)
+    msgbox("{STR_VAR_1}", MSGBOX_DEFAULT)
+    closemessage
+    release
+    end
+}
