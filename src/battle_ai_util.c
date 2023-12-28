@@ -364,6 +364,7 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_WATER_SPORT,
     EFFECT_DRAGON_DANCE,
     EFFECT_CAMOUFLAGE,
+    EFFECT_FILLET_AWAY,
 };
 
 // For the purposes of determining the most powerful move in a moveset, these
@@ -2166,6 +2167,7 @@ bool32 IsAttackBoostMoveEffect(u32 effect)
     case EFFECT_BELLY_DRUM:
     case EFFECT_BULK_UP:
     case EFFECT_GROWTH:
+    case EFFECT_FILLET_AWAY:
         return TRUE;
     default:
         return FALSE;
