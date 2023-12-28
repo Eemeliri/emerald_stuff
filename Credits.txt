@@ -37,7 +37,7 @@ Hyo-oppa - amazing trainer sprites
 Duke - Move name instead of TM name in shops
 GriffinR - Disabled the union room check when entering Pokecenters
 CitrusBolt - DNS overrides fix from heliodor code, last used ball gfx, Summary page
-Sbird - TM serialisation, TM learnset method, fast battle intro
+Sbird - TM serialisation, TM learnset method, fast battle intro, dynamic multichoice
 Dat.H A - Spinda Second Frame
 ShinyDragonHunter - Spinda Second Frame, Arbok variants
 Dreadwing93 - Arbok variant sprites
