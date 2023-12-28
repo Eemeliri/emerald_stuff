@@ -178,11 +178,6 @@ static const u8 sReviveDesc[] = _(
     "Pokémon with half\n"
     "its HP.");
 
-static const u8 sMaxReviveDesc[] = _(
-    "Revives a fainted\n"
-    "Pokémon with all\n"
-    "its HP.");
-
 static const u8 sFreshWaterDesc[] = _(
     "A mineral water\n"
     "that restores HP\n"
@@ -262,11 +257,6 @@ static const u8 sIceHealDesc[] = _(
 static const u8 sAwakeningDesc[] = _(
     "Awakens a sleeping\n"
     "Pokémon.");
-
-static const u8 sFullHealDesc[] = _(
-    "Heals all the\n"
-    "status problems of\n"
-    "one Pokémon.");
 
 static const u8 sEtherDesc[] = _(
     "Restores the PP\n"
@@ -387,36 +377,6 @@ static const u8 sPPMaxDesc[] = _(
     "move to its maximum\n"
     "points.");
 
-// EV Feathers
-static const u8 sHealthFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base HP of\n"
-    "a Pokémon.");
-
-static const u8 sMuscleFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base Attack of\n"
-    "a Pokémon.");
-
-static const u8 sResistFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base Defense\n"
-    "of a Pokémon.");
-
-static const u8 sGeniusFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base Sp. Atk.\n"
-    "of a Pokémon.");
-
-static const u8 sCleverFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base Sp. Def.\n"
-    "of a Pokémon.");
-
-static const u8 sSwiftFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base Speed of\n"
-    "a Pokémon.");
 
 // Ability Modifiers
 static const u8 sAbilityCapsuleDesc[] = _(
@@ -710,10 +670,6 @@ static const u8 sGuardSpecDesc[] = _(
     "used in battle.");
 
 // Escape Items
-static const u8 sPokeDollDesc[] = _(
-    "Use to flee from\n"
-    "any battle with\n"
-    "a wild Pokémon.");
 
 static const u8 sFluffyTailDesc[] = _(
     "Use to flee from\n"
@@ -755,11 +711,6 @@ static const u8 sTinyMushroomDesc[] = _(
     "A plain mushroom\n"
     "that would sell\n"
     "at a cheap price.");
-
-static const u8 sBigMushroomDesc[] = _(
-    "A rare mushroom\n"
-    "that would sell at a\n"
-    "high price.");
 
 static const u8 sBalmMushroomDesc[] = _(
     "A rare mushroom\n"
@@ -907,10 +858,6 @@ static const u8 sOldAmberDesc[] = _(
     "the genes of an\n"
     "ancient Pokémon.");
 
-static const u8 sRootFossilDesc[] = _(
-    "A fossil of an\n"
-    "ancient, seafloor-\n"
-    "dwelling Pokémon.");
 
 static const u8 sClawFossilDesc[] = _(
     "A fossil of an\n"
@@ -951,11 +898,6 @@ static const u8 sFossilizedBirdDesc[] = _(
     "A fossil of an\n"
     "ancient, sky-\n"
     "soaring Pokémon.");
-
-static const u8 sFossilizedFishDesc[] = _(
-    "A fossil of an\n"
-    "ancient, sea-\n"
-    "dwelling Pokémon.");
 
 static const u8 sFossilizedDrakeDesc[] = _(
     "A fossil of an\n"
@@ -1094,11 +1036,6 @@ static const u8 sWaveMailDesc[] = _(
     "A Wailmer-print\n"
     "Mail to be held by\n"
     "a Pokémon.");
-
-static const u8 sBeadMailDesc[] = _(
-    "Mail featuring a\n"
-    "sketch of the\n"
-    "holding Pokémon.");
 
 static const u8 sShadowMailDesc[] = _(
     "A Duskull-print\n"
@@ -1556,11 +1493,6 @@ static const u8 sVenusauriteDesc[] = _(
     "Venusaur to Mega\n"
     "Evolve in battle.");
 
-static const u8 sCharizarditeDesc[] = _(
-    "This stone enables\n"
-    "Charizard to Mega\n"
-    "Evolve in battle.");
-
 static const u8 sBlastoisiniteDesc[] = _(
     "This stone enables\n"
     "Blastoise to Mega\n"
@@ -1609,11 +1541,6 @@ static const u8 sGyaradositeDesc[] = _(
 static const u8 sAerodactyliteDesc[] = _(
     "This stone enables\n"
     "Aerodactyl to Mega\n"
-    "Evolve in battle.");
-
-static const u8 sMewtwoniteDesc[] = _(
-    "This stone enables\n"
-    "Mewtwo to Mega\n"
     "Evolve in battle.");
 
 static const u8 sAmpharositeDesc[] = _(
@@ -2111,50 +2038,16 @@ static const u8 sGriseousOrbDesc[] = _(
     "type moves.");
 
 // Incenses
-static const u8 sSeaIncenseDesc[] = _(
-    "A hold item that\n"
-    "slightly boosts\n"
-    "Water-type moves.");
 
 static const u8 sLaxIncenseDesc[] = _(
     "A hold item that\n"
     "slightly lowers the\n"
     "foe's accuracy.");
 
-static const u8 sOddIncenseDesc[] = _(
-    "A hold item that\n"
-    "boosts Psychic-\n"
-    "type moves.");
-
-static const u8 sRockIncenseDesc[] = _(
-    "A hold item that\n"
-    "raises the power of\n"
-    "Rock-type moves.");
-
-static const u8 sFullIncenseDesc[] = _(
-    "A held item that\n"
-    "makes the holder\n"
-    "move slower.");
-
 static const u8 sWaveIncenseDesc[] = _(
     "A hold item that\n"
     "slightly boosts\n"
     "Water-type moves.");
-
-static const u8 sRoseIncenseDesc[] = _(
-    "A hold item that\n"
-    "raises the power of\n"
-    "Grass-type moves.");
-
-static const u8 sLuckIncenseDesc[] = _(
-    "Doubles money in\n"
-    "battle if the\n"
-    "holder takes part.");
-
-static const u8 sPureIncenseDesc[] = _(
-    "A hold item that\n"
-    "helps repel wild\n"
-    "Pokémon.");
 
 // Contest Scarves
 static const u8 sRedScarfDesc[] = _(
@@ -2437,11 +2330,6 @@ static const u8 sMentalHerbDesc[] = _(
     "snaps Pokémon out\n"
     "of infatuation.");
 #endif
-
-static const u8 sKingsRockDesc[] = _(
-    "A hold item that\n"
-    "may cause flinching\n"
-    "when the foe is hit.");
 
 static const u8 sAmuletCoinDesc[] = _(
     "Doubles money in\n"
@@ -2739,11 +2627,6 @@ static const u8 sSitrusBerryDesc[] = _(
     "restores 30 HP in\n"
     "battle.");
 #endif
-
-static const u8 sFigyBerryDesc[] = _(
-    "A hold item that\n"
-    "restores HP but\n"
-    "may confuse.");
 
 static const u8 sWikiBerryDesc[] = _(
     "A hold item that\n"
@@ -3993,11 +3876,6 @@ static const u8 sTinyBambooShootDesc[] = _(
     "A small and rare\n"
     "bamboo shoot. Best\n"
     "sold to gourmands.");
-
-static const u8 sTeraShardDesc[] = _(
-    "These shards may\n"
-    "form when a Tera\n"
-    "Pokémon faints.");
 
 static const u8 sAdamantCrystalDesc[] = _(
     "A large, glowing gem\n"

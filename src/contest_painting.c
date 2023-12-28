@@ -363,15 +363,14 @@ static void VBlankCB_ContestPainting(void)
 
 static void InitContestMonPixels(u16 species, bool8 backPic)
 {
-    const void *pal = GetMonSpritePalFromSpeciesAndPersonality(species, gContestPaintingWinner->trainerId, gContestPaintingWinner->personality);
+    const void *pal = GetMonSpritePalFromSpeciesAndPersonality(species, gContestPaintingWinner->isShiny, gContestPaintingWinner->personality);
     LZDecompressVram(pal, gContestPaintingMonPalette);
     if (!backPic)
     {
         HandleLoadSpecialPokePic(TRUE,
                                 gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
                                 species,
-                                gContestPaintingWinner->personality,
-                                VERSION_EMERALD);
+                                gContestPaintingWinner->personality);
         _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
     else
@@ -379,8 +378,7 @@ static void InitContestMonPixels(u16 species, bool8 backPic)
         HandleLoadSpecialPokePic(FALSE,
                                 gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT],
                                 species,
-                                gContestPaintingWinner->personality,
-                                VERSION_EMERALD);
+                                gContestPaintingWinner->personality);
         _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
 }

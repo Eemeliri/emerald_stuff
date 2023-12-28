@@ -145,7 +145,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     {
         u16 species;
         u16 species2;
-        u8 isEgg;
+        u8 isEgg:1;
+        u8 isShiny:1;
         u8 level;
         u8 ribbonCount;
         u8 ailment;
@@ -191,6 +192,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 spatkEV;
         u8 spdefEV;
         u8 speedEV;
+        u8 teraType;
     } summary;
     u16 bgTilemapBufferPage[0x400];
     u16 bgTilemapBufferBG[0x400];
@@ -1608,6 +1610,8 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
             sMonSummaryScreen->minPageIndex = sMonSummaryScreen->trueMinPageIndex;
             sMonSummaryScreen->maxPageIndex = sMonSummaryScreen->trueMaxPageIndex;
         }
+        sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
+        sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
         return TRUE;
     }
     sMonSummaryScreen->switchCounter++;
@@ -4238,6 +4242,10 @@ static void SetMonTypeIcons(void)
     {
         SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[0], 184, 65, SPRITE_ARR_ID_TYPE);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, TRUE);
+        if (P_SHOW_TERA_TYPE >= GEN_9)
+        {
+            SetTypeSpritePosAndPal(summary->teraType, 200, 48, SPRITE_ARR_ID_TYPE + 2);
+        }
     }
 }
 
@@ -4366,8 +4374,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
                                      summary->species2,
-                                     summary->pid,
-                                     VERSION_EMERALD);
+                                     summary->pid);
         #else
             if (ShouldIgnoreDeoxysForm(3, sMonSummaryScreen->curMonIndex))
                 HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[summary->species2], gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT], summary->species2, summary->pid);
@@ -4383,16 +4390,14 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
                 HandleLoadSpecialPokePic(TRUE,
                                          gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
                                          summary->species2,
-                                         summary->pid,
-                                         VERSION_EMERALD);
+                                         summary->pid);
             }
             else
             {
                 HandleLoadSpecialPokePic(TRUE,
                                          MonSpritesGfxManager_GetSpritePtr(MON_SPR_GFX_MANAGER_A, B_POSITION_OPPONENT_LEFT),
                                          summary->species2,
-                                         summary->pid,
-                                         VERSION_EMERALD);
+                                         summary->pid);
             }
         #else
             if (gMonSpritesGfxPtr != NULL)
@@ -4414,7 +4419,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
         (*state)++;
         return 0xFF;
     case 1:
-        LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(summary->species2, summary->OTID, summary->pid), summary->species2);
+        LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(summary->species2, summary->isShiny, summary->pid), summary->species2);
         SetMultiuseSpriteTemplateToPokemon(summary->species2, B_POSITION_OPPONENT_LEFT);
         (*state)++;
         return 0xFF;

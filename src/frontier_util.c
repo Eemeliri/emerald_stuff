@@ -7870,10 +7870,7 @@ void CreateFrontierBrainPokemon(void)
 
         do
         {
-            do
-            {
-                j = Random32(); //should just be one while loop, but that doesn't match
-            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+            j = Random32(); //should just be one while loop, but that doesn't match
         } while (sFrontierBrainsMons[facility][symbol][i].nature != GetNatureFromPersonality(j));
         CreateMon(&gEnemyParty[monPartyId],
                   sFrontierBrainsMons[facility][symbol][i].species,
@@ -7892,6 +7889,8 @@ void CreateFrontierBrainPokemon(void)
                 friendship = 0;
         }
         SetMonData(&gEnemyParty[monPartyId], MON_DATA_FRIENDSHIP, &friendship);
+        j = FALSE;
+        SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_IS_SHINY, &j);
         CalculateMonStats(&gEnemyParty[monPartyId]);
         monPartyId++;
     }
@@ -7936,10 +7935,9 @@ void CreateFrontierGymLeaderPokemon(u16 trainerId)
     {
         do
         {
-            do
-            {
-                j = Random32(); //should just be one while loop, but that doesn't match
-            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+
+			j = Random32(); //should just be one while loop, but that doesn't match
+
         } while (sFrontierGymLeaderMons[trainerId][k][randomOrdering[i]].nature != GetNatureFromPersonality(j));
         CreateMon(&gEnemyParty[monPartyId],
                   sFrontierGymLeaderMons[trainerId][k][randomOrdering[i]].species,
@@ -8000,10 +7998,9 @@ void CreateFrontierChampionPokemon(u16 trainerId)
     {
         do
         {
-            do
-            {
-                j = Random32(); //should just be one while loop, but that doesn't match
-            } while (IsShinyOtIdPersonality(FRONTIER_BRAIN_OTID, j));
+        
+			j = Random32(); //should just be one while loop, but that doesn't match
+
         } while (sFrontierChampionMons[trainerId][randomOrdering[i]].nature != GetNatureFromPersonality(j));
         CreateMon(&gEnemyParty[monPartyId],
                   sFrontierChampionMons[trainerId][randomOrdering[i]].species,

@@ -84,12 +84,12 @@ void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffe
     LZ77UnCompWram(src->data, buffer);
 }
 
-void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality, u8 metGame)
+void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
 {
-    LoadSpecialPokePic(dest, species, personality, isFrontPic, metGame);
+    LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
-void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic, u8 metGame)
+void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic)
 {
     species = SanitizeSpeciesId(species);
     if (species == SPECIES_UNOWN)
