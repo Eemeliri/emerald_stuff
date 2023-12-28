@@ -3681,7 +3681,7 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->atkIV, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -3714,7 +3714,7 @@ static void PrintSkillsPage(void)
 				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->defIV, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -3746,7 +3746,7 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spatkIV, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -3778,7 +3778,7 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spdefIV, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -3809,7 +3809,7 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->speedIV, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -3827,16 +3827,14 @@ static void PrintSkillsPage(void)
 	}
 	
 	//---------------------------------------------------------------------------------------------------------
-	y = 100;
+	y = 101;
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				x = 8;
-				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_Stats, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_Stats, 69, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 			break;
 			case 1:
-				x = 13;
-				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_IVs, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_IVs, 103, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 			break;
 			case 2:
 				x = 16;
