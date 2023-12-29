@@ -3850,14 +3850,14 @@ static void PrintSkillsPage(void)
 	
     if (!ModifyMode) {
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 5, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
-        StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
+        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].name);
         x = GetStringCenterAlignXOffset(1, gStringVar1, 88) + 58;
         if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, NULL) == 2) {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PP_UNK_5);
         } else {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         }
-        StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
+        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].description);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 5, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     } else {
         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Help_Bar, 16, 116, 4, PSS_COLOR_BLACK_GRAY_SHADOW);
