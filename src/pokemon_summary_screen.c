@@ -1347,7 +1347,7 @@ static bool8 LoadGraphics(void)
         gMain.state++;
         break;
     case 19:
-        CreateHealthBarSprites(TAG_HEALTH_BAR, TAG_HEALTH_BAR);
+        //CreateHealthBarSprites(TAG_HEALTH_BAR, TAG_HEALTH_BAR);
         gMain.state++;
         break;
     case 20:
@@ -3605,35 +3605,52 @@ static void PrintSkillsPage(void)
 		if(j == gCurrentModifyIndex && ModifyMode){
 			switch(j){
 				case 0:
-					y = 0;
+					y = 2;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 1:
-					y = 3;
+					y = 4;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 2:
-					y = 5;
+					y = 6;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 3:
-					y = 7;
+					y = 8;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 4:
-					y = 9;
+					y = 10;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 5:
-					y = 11;
+					y = 12;
 					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 			}
 		}
 	}
+
+    //---------------------------------------------------------------------------------------------------------
+	y = 1;
+	for(i = 0; i < NUM_STAT_TYPES; i++){
+		switch(i){
+			case 0:
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_Stats, 67, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+			break;
+			case 1:
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_IVs, 101, y, 0, PP_UNK_4);
+			break;
+			case 2:
+				x = 16;
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_EVs, (x * 8)-1, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+			break;
+		}	
+	}
 	
 	// HP----------------------------------------------------------------------------------------------------
-	y = 0;
+	y = 17;
 	PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_HP3, 12, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 	
 	for(i = 0; i < NUM_STAT_TYPES; i++){
@@ -3643,18 +3660,21 @@ static void PrintSkillsPage(void)
 				StringAppend(gStringVar1, gText_Slash);
                 ConvertIntToDecimalStringN(gStringVar2, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
 				StringAppend(gStringVar1, gStringVar2);
-				x = 7;
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+				x = 8;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->hpIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;  
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8)+1 + offset, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 			break;
 		}	
         offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
@@ -3667,7 +3687,7 @@ static void PrintSkillsPage(void)
         numHPBarTicks = 1;
 
 	// Attack ----------------------------------------------------------------------------------------------------
-	y = 24;
+	y = 33;
 	
     if (natureMod[STAT_ATK - 1] > 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
@@ -3681,26 +3701,26 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 1);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->atkIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
 
                     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 		}	
 	}	
 
 	// Defense ----------------------------------------------------------------------------------------------------
-	y = 40;
+	y = 49;
 	
     if (natureMod[STAT_DEF - 1] > 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
@@ -3714,25 +3734,25 @@ static void PrintSkillsPage(void)
 				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 1);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->defIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
                     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 		}	
 	}	
 	
 	// Sp.Atk ----------------------------------------------------------------------------------------------------
-	y = 56;
+	y = 65;
 	
     if (natureMod[STAT_SPATK - 1] > 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
@@ -3746,25 +3766,25 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 1);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spatkIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
                     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 		}	
 	}
 	
 	// Sp.Def ----------------------------------------------------------------------------------------------------
-	y = 72;
+	y = 81;
 	
     if (natureMod[STAT_SPDEF - 1] > 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
@@ -3778,25 +3798,25 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 1);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spdefIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
                     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 		}	
 	}
 	
 	// Speed ----------------------------------------------------------------------------------------------------
-	y = 88;
+	y = 97;
     if (natureMod[STAT_SPEED - 1] > 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
     else if (natureMod[STAT_SPEED - 1] < 0)
@@ -3809,43 +3829,27 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 70 + offset, y, 0, 1);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->speedIV, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, PP_UNK_4);
 			break;
 			case 2:
                     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
                 offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 		}	
 	}
 	
-	//---------------------------------------------------------------------------------------------------------
-	y = 101;
-	for(i = 0; i < NUM_STAT_TYPES; i++){
-		switch(i){
-			case 0:
-				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_Stats, 69, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-			break;
-			case 1:
-				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_IVs, 103, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-			break;
-			case 2:
-				x = 16;
-				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_EVs, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-			break;
-		}	
-	}
 	//---------------------------------------------------------------------------------------------------------
 	
     if (!ModifyMode) {
-        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 5, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
         x = GetStringCenterAlignXOffset(1, gStringVar1, 88) + 58;
         if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, NULL) == 2) {
@@ -3854,7 +3858,7 @@ static void PrintSkillsPage(void)
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         }
         StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
-        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 8, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 5, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     } else {
         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Help_Bar, 16, 116, 4, PSS_COLOR_BLACK_GRAY_SHADOW);
     }
@@ -4694,7 +4698,7 @@ static void CreateHealthBarSprites(u16 tileTag, u16 palTag)
         };
 
         sHealthBar->spritePositions[i] = i * 8 + 158;
-        spriteId = CreateSprite(&template, sHealthBar->spritePositions[i], 38, 0);
+        spriteId = CreateSprite(&template, sHealthBar->spritePositions[i], 125, 0);
         sHealthBar->sprites[i] = &gSprites[spriteId];
         sHealthBar->sprites[i]->oam.priority = 1;
         sHealthBar->sprites[i]->invisible = TRUE;
