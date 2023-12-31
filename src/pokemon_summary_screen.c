@@ -1598,6 +1598,8 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         break;
     default:
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
+        sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
+        sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
         sum->fatefulEncounter = GetMonData(mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER);
         if (sum->isEgg)
         {
@@ -1610,8 +1612,6 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
             sMonSummaryScreen->minPageIndex = sMonSummaryScreen->trueMinPageIndex;
             sMonSummaryScreen->maxPageIndex = sMonSummaryScreen->trueMaxPageIndex;
         }
-        sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
-        sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
         return TRUE;
     }
     sMonSummaryScreen->switchCounter++;
