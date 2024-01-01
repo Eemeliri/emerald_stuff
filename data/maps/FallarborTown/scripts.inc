@@ -7,7 +7,6 @@ FallarborTown_OnTransition:
 	setflag FLAG_VISITED_ROUTE111
 	setflag FLAG_VISITED_ROUTE113
 	setvar VAR_CONTEST_HALL_STATE, 0
-	clearflag FLAG_CONTEST_SKETCH_CREATED
 	end
 
 FallarborTown_EventScript_ExpertM::

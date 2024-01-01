@@ -320,9 +320,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_WATER_VEIL, ABILITY_COMPETITIVE },
         #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+            .abilities = { ABILITY_TORRENT, ABILITY_WATER_VEIL, ABILITY_DEFIANT },
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Piplup"),
@@ -372,9 +372,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_WATER_VEIL, ABILITY_COMPETITIVE },
         #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+            .abilities = { ABILITY_TORRENT, ABILITY_WATER_VEIL, ABILITY_DEFIANT },
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Prinplup"),
@@ -424,9 +424,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_STEELWORKER, ABILITY_COMPETITIVE },
         #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+            .abilities = { ABILITY_TORRENT, ABILITY_STEELWORKER, ABILITY_DEFIANT },
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Empoleon"),

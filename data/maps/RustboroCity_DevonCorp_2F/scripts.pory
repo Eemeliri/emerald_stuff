@@ -1,4 +1,4 @@
-.set LOCALID_FOSSIL_SCIENTIST, 5
+raw `.set LOCALID_FOSSIL_SCIENTIST, 5
 
 RustboroCity_DevonCorp_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_2F_OnTransition
@@ -304,119 +304,53 @@ RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext:
 	.string "One couldn't ask for a better\n"
 	.string "environment as an engineer.$"
 
-dreamResearcherQuest::
-	lock
-	faceplayer
-	returnqueststate QUEST_9
-	switch VAR_RESULT
-	case 1, dreamResearcherQuest_3
-	case 2, dreamResearcherQuest_4
-	case 4, dreamResearcherQuest_5
-dreamResearcherQuest_1:
-	release
-	end
+`
+script dreamResearcherQuest {
+    lock
+    faceplayer
+    returnqueststate(QUEST_9)
+    switch(var(VAR_RESULT)) {
+        case 1:
+            msgbox(format("I'm trying to develop a new program that can analyze dreams of Pokémon. However I'm missing a test subject. Could you help me find an Abra for my research? I can reward you for the trouble."), MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                msgbox(format("Many thanks! I think you can find wild Abras in Route 116."))
+                startquest(QUEST_9)
+            } else {
+                msgbox(format("Oh... That's a shame."))
+            }
+        case 2:
+            msgbox(format("Hi again, Any luck finding an Abra?"))
+            setvar(0x8005, SPECIES_ABRA)
+            special(CheckSpecies)
+            if (var(VAR_RESULT) == TRUE) {
+                playse(SE_PIN)
+                applymovement(4, dreamResearchersurprised)
+                waitse
+                waitmovement(4)
+                msgbox(format("That's it! You found one! Allow me just a moment so I can run the tests!"))
+                fadescreen(FADE_TO_BLACK)
+                msgbox(format("You waited while the researcher started running tests with the sleepy Abra."))
+                waitmessage
+                delay(60)
+                msgbox(format("...Four hours later."))
+                waitbuttonpress
+                fadescreen(FADE_FROM_BLACK)
+                msgbox(format("It's done, and with great results thanks to you! The time just flies by when you're working, doesn't it?"))
+                msgbox(format("You can have your Abra back, and here's the promised reward."))
+                giveitem(ITEM_WHIPPED_DREAM)
+                msgbox(format("One day I hope to be able to enter the dreams of Pokémons!"))
+                completequest(QUEST_9)
+            } else {
+                msgbox(format("Not yet? Take your time, I have hourly wage so there's no rush. You can find Abras in Route 116."))
+            }
+        case 4:
+            msgbox(format("Hi again! My research has been going great and we're making great progress on the dream research. We still can't enter inside dreams, but hopefully soon."))
+    }
+    release
+    end
+}
 
-dreamResearcherQuest_3:
-	msgbox dreamResearcherQuest_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq dreamResearcherQuest_6
-	msgbox dreamResearcherQuest_Text_2
-	goto dreamResearcherQuest_1
-
-dreamResearcherQuest_4:
-	msgbox dreamResearcherQuest_Text_3
-	setvar 0x8005, SPECIES_ABRA
-	special CheckSpecies
-	compare VAR_RESULT, TRUE
-	goto_if_eq dreamResearcherQuest_9
-	msgbox dreamResearcherQuest_Text_10
-	goto dreamResearcherQuest_1
-
-dreamResearcherQuest_5:
-	msgbox dreamResearcherQuest_Text_11
-	goto dreamResearcherQuest_1
-
-dreamResearcherQuest_6:
-	msgbox dreamResearcherQuest_Text_1
-	startquest QUEST_9
-	goto dreamResearcherQuest_1
-
-dreamResearcherQuest_9:
-	playse SE_PIN
-	applymovement 4, dreamResearchersurprised
-	waitse
-	waitmovement 4
-	msgbox dreamResearcherQuest_Text_4
-	fadescreen FADE_TO_BLACK
-	msgbox dreamResearcherQuest_Text_5
-	waitmessage
-	delay 60
-	msgbox dreamResearcherQuest_Text_6
-	waitbuttonpress
-	fadescreen FADE_FROM_BLACK
-	msgbox dreamResearcherQuest_Text_7
-	msgbox dreamResearcherQuest_Text_8
-	giveitem ITEM_WHIPPED_DREAM
-	msgbox dreamResearcherQuest_Text_9
-	completequest QUEST_9
-	goto dreamResearcherQuest_1
-
-
-dreamResearchersurprised:
-	emote_exclamation_mark
-	step_end
-
-dreamResearcherQuest_Text_0:
-	.string "I'm trying to develop a new program\n"
-	.string "that can analyze dreams of Pokémon.\l"
-	.string "However I'm missing a test subject.\l"
-	.string "Could you help me find an Abra for my\l"
-	.string "research? I can reward you for the\l"
-	.string "trouble.$"
-
-dreamResearcherQuest_Text_1:
-	.string "Many thanks! I think you can find wild\n"
-	.string "Abras in Route 116.$"
-
-dreamResearcherQuest_Text_2:
-	.string "Oh... That's a shame.$"
-
-dreamResearcherQuest_Text_3:
-	.string "Hi again, Any luck finding an Abra?$"
-
-dreamResearcherQuest_Text_4:
-	.string "That's it! You found one! Allow me just a\n"
-	.string "moment so I can run the tests!$"
-
-dreamResearcherQuest_Text_5:
-	.string "You waited while the researcher\n"
-	.string "started running tests with the sleepy\l"
-	.string "Abra.$"
-
-dreamResearcherQuest_Text_6:
-	.string "...Four hours later.$"
-
-dreamResearcherQuest_Text_7:
-	.string "It's done, and with great results\n"
-	.string "thanks to you! The time just flies by\l"
-	.string "when you're working, doesn't it?$"
-
-dreamResearcherQuest_Text_8:
-	.string "You can have your Abra back, and here's\n"
-	.string "the promised reward.$"
-
-dreamResearcherQuest_Text_9:
-	.string "One day I hope to be able to enter the\n"
-	.string "dreams of Pokémons!$"
-
-dreamResearcherQuest_Text_10:
-	.string "Not yet? Take your time, I have hourly\n"
-	.string "wage so there's no rush. You can find\l"
-	.string "Abras in Route 116.$"
-
-dreamResearcherQuest_Text_11:
-	.string "Hi again! My research has been going\n"
-	.string "great and we're making great progress\l"
-	.string "on the dream research. We still can't\l"
-	.string "enter inside dreams, but hopefully\l"
-	.string "soon.$"
+movement dreamResearchersurprised {
+    emote_exclamation_mark
+    step_end
+}
