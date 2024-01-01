@@ -92,6 +92,7 @@ EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GF
 EWRAM_DATA static u8 sTriedEvolving = 0;
 
 #include "data/battle_moves.h"
+#include "data/abilities.h"
 
 // Used in an unreferenced function in RS.
 // Unreferenced here and in FRLG.
@@ -365,6 +366,35 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
 };
 
 #include "data/pokemon/item_effects.h"
+
+const u8 *const gNatureNamePointers[NUM_NATURES] =
+{
+    [NATURE_HARDY] = COMPOUND_STRING("Hardy"),
+    [NATURE_LONELY] = COMPOUND_STRING("Lonely"),
+    [NATURE_BRAVE] = COMPOUND_STRING("Brave"),
+    [NATURE_ADAMANT] = COMPOUND_STRING("Adamant"),
+    [NATURE_NAUGHTY] = COMPOUND_STRING("Naughty"),
+    [NATURE_BOLD] = COMPOUND_STRING("Bold"),
+    [NATURE_DOCILE] = COMPOUND_STRING("Docile"),
+    [NATURE_RELAXED] = COMPOUND_STRING("Relaxed"),
+    [NATURE_IMPISH] = COMPOUND_STRING("Impish"),
+    [NATURE_LAX] = COMPOUND_STRING("Lax"),
+    [NATURE_TIMID] = COMPOUND_STRING("Timid"),
+    [NATURE_HASTY] = COMPOUND_STRING("Hasty"),
+    [NATURE_SERIOUS] = COMPOUND_STRING("Serious"),
+    [NATURE_JOLLY] = COMPOUND_STRING("Jolly"),
+    [NATURE_NAIVE] = COMPOUND_STRING("Naive"),
+    [NATURE_MODEST] = COMPOUND_STRING("Modest"),
+    [NATURE_MILD] = COMPOUND_STRING("Mild"),
+    [NATURE_QUIET] = COMPOUND_STRING("Quiet"),
+    [NATURE_BASHFUL] = COMPOUND_STRING("Bashful"),
+    [NATURE_RASH] = COMPOUND_STRING("Rash"),
+    [NATURE_CALM] = COMPOUND_STRING("Calm"),
+    [NATURE_GENTLE] = COMPOUND_STRING("Gentle"),
+    [NATURE_SASSY] = COMPOUND_STRING("Sassy"),
+    [NATURE_CAREFUL] = COMPOUND_STRING("Careful"),
+    [NATURE_QUIRKY] = COMPOUND_STRING("Quirky"),
+};
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 {                      // Attack  Defense  Speed  Sp.Atk  Sp. Def
@@ -792,7 +822,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 personality;
     u32 value;
     u16 checksum;
-    struct SiiRtcInfo rtc;
+    //struct SiiRtcInfo rtc;
     u8 i;
     u8 availableIVs[NUM_STATS];
     u8 selectedIvs[LEGENDARY_PERFECT_IV_COUNT];

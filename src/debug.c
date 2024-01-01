@@ -1445,6 +1445,7 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
         PlaySE(SE_SELECT);
         if ((func = sDebugMenu_Actions_Flags[input]) != NULL)
         {
+            Debug_RedrawListMenu(taskId);
             func(taskId);
 
             // Remove TRUE/FALSE window for functions that haven't been assigned flags
@@ -1454,8 +1455,6 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
                 RemoveWindow(gTasks[taskId].tSubWindowId);
                 Free(sDebugMenuListData);
             }
-            else
-                Debug_RedrawListMenu(taskId);
         }
     }
     else if (JOY_NEW(B_BUTTON))
@@ -3281,7 +3280,7 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
         StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
         abilityId = GetAbilityBySpecies(sDebugMonData->species, 0);
-        StringCopy(gStringVar1, gAbilityNames[abilityId]);
+        StringCopy(gStringVar1, gAbilities[abilityId].name);
         StringExpandPlaceholders(gStringVar4, sDebugText_PokemonAbility);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
 
@@ -3326,7 +3325,7 @@ static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId)
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 2);
         StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
-        StringCopy(gStringVar1, gAbilityNames[abilityId]);
+        StringCopy(gStringVar1, gAbilities[abilityId].name);
         StringExpandPlaceholders(gStringVar4, sDebugText_PokemonAbility);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
     }

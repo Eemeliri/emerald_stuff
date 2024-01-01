@@ -343,7 +343,6 @@ static u8 *GetMapNameOrre(u8 *dest, u16 mapSecId, bool8 isXD);
 
 // const rom data
 #include "data/text/move_descriptions.h"
-#include "data/text/nature_names.h"
 #include "data/text/characteristics.h"
 #include "data/text/met_locations.h"
 
@@ -3850,14 +3849,14 @@ static void PrintSkillsPage(void)
 	
     if (!ModifyMode) {
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 5, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
-        StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
+        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].name);
         x = GetStringCenterAlignXOffset(1, gStringVar1, 88) + 58;
         if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, NULL) == 2) {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PP_UNK_5);
         } else {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         }
-        StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)]);
+        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].description);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 5, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     } else {
         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Help_Bar, 16, 116, 4, PSS_COLOR_BLACK_GRAY_SHADOW);
@@ -4277,10 +4276,7 @@ static void SetMoveTypeIcons(void)
             }
             else
             {   
-                if (summary->moves[i] == MOVE_IVY_CUDGEL && ItemId_GetHoldEffect(summary->item) == HOLD_EFFECT_MASK)
-                    SetTypeSpritePosAndPal(ItemId_GetSecondaryId(summary->item), 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
-                else
-                    SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
+                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
             }
         }
         else

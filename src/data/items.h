@@ -10453,36 +10453,36 @@ const struct Item gItems[] =
     {
         .name = _("CornrstneMask"),
         .price = 0,
-        .holdEffect = HOLD_EFFECT_MASK,
-        .description = sCornerstoneMaskDesc,
+        .description = COMPOUND_STRING("Allows Ogerpon to\n"
+                                       "wield the Rock-\n"
+                                       "type in battle."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_ROCK,
     },
 
     [ITEM_WELLSPRING_MASK] =
     {
         .name = _("WellsprngMask"),
         .price = 0,
-        .holdEffect = HOLD_EFFECT_MASK,
-        .description = sWellspringMaskDesc,
+        .description = COMPOUND_STRING("Allows Ogerpon to\n"
+                                       "wield the Water-\n"
+                                       "type in battle."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_WATER,
     },
 
     [ITEM_HEARTHFLAME_MASK] =
     {
         .name = _("HrthflameMask"),
         .price = 0,
-        .holdEffect = HOLD_EFFECT_MASK,
-        .description = sHearthflameMaskDesc,
+        .description = COMPOUND_STRING("Allows Ogerpon to\n"
+                                       "wield the Fire-\n"
+                                       "type in battle."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_FIRE,
     },
 
     [ITEM_HEALTH_MOCHI] =
@@ -10569,6 +10569,28 @@ const struct Item gItems[] =
         .importance = 1,
         .description = sGlimmeringCharmDesc,
         .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_METAL_ALLOY] =
+    {
+        .name = _("Metal Alloy"),
+        .price = 6000,
+        .description = COMPOUND_STRING("A peculiar metal\n"
+                                       "that makes certain\n"
+                                       "Pokémon evolve."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+    },
+
+    [ITEM_STELLAR_TERA_SHARD] =
+    {
+        .name = _("StllrTeraShrd"),
+        .price = 0,
+        .description = sTeraShardDesc,
+        .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
