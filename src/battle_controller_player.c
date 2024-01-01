@@ -261,14 +261,14 @@ static u16 UNUSED GetPrevBall(u16 ballId)
 
 static u16 UNUSED GetNextBall(u16 ballId)
 {
-    u16 ballNext = 0;
+    u32 ballNext = ITEM_NONE;
     s32 i;
     CompactItemsInBagPocket(&gBagPockets[BALLS_POCKET]);
-    for (i = 0; i < gBagPockets[BALLS_POCKET].capacity; i++)
+    for (i = 1; i < gBagPockets[BALLS_POCKET].capacity; i++)
     {
-        if (ballId == gBagPockets[BALLS_POCKET].itemSlots[i].itemId)
+        if (ballId == gBagPockets[BALLS_POCKET].itemSlots[i-1].itemId)
         {
-            ballNext = gBagPockets[BALLS_POCKET].itemSlots[i+1].itemId;
+            ballNext = gBagPockets[BALLS_POCKET].itemSlots[i].itemId;
             break;
         }
     }

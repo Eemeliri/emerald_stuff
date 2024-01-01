@@ -6107,6 +6107,7 @@ static void Cmd_moveend(void)
             gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleStruct->hitSwitchTargetFailed = FALSE;
             gBattleStruct->isAtkCancelerForCalledMove = FALSE;
+            gBattleStruct->swapDamageCategory = FALSE;
             gBattleStruct->enduredDamage = 0;
             gBattleScripting.moveendState++;
             break;
@@ -16602,5 +16603,10 @@ void BS_AllySwitchFailChance(void)
             gDisableStructs[gBattlerAttacker].protectUses++;
         }
     }
+}
+void BS_SetPhotonGeyserCategory(void)
+{
+    NATIVE_ARGS();
+    gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(gBattlerAttacker) == SPLIT_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

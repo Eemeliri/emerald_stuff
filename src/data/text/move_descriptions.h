@@ -3332,6 +3332,54 @@ static const u8 sMalignantChainDescription[] = _(
     "A corrosive chain attack\n"
     "that may badly poison.");
 
+static const u8 sElectroShotDescription[] = _(
+    "Absorbs electricity in one turn,\n"
+    "then attacks next turn.");
+
+static const u8 sTeraStarstormDescription[] = _(
+    "Damages all opponents if user is\n"
+    "Stellar form Terapagos.");
+
+static const u8 sFickleBeamDescription[] = _(
+    "Shoots a beam of light. Sometimes\n"
+    "twice as strong.");
+
+static const u8 sBurningBulwarkDescription[] = _(
+    "Evades attack, and burns\n"
+    "the foe if struck.");
+
+static const u8 sTachyonCutterDescription[] = _(
+    "Launches particle blades at\n"
+    "the target. Strikes twice.");
+
+static const u8 sDragonCheerDescription[] = _(
+    "Increases allies' critical hit\n"
+    "ration, especially if Dragons.");
+
+static const u8 sAlluringVoiceDescription[] = _(
+    "Confuses the target if their\n"
+    "stats were boosted this turn.");
+
+static const u8 sTemperFlareDescription[] = _(
+    "A desperation attack. Power\n"
+    "doubles if last move failed.");
+
+static const u8 sSupercellSlamDescription[] = _(
+    "An electrified slam. If it\n"
+    "misses, the user is hurt.");
+
+static const u8 sPsychicNoiseDescription[] = _(
+    "Unpleasant sound waves that\n"
+    "damage and prevent healing.");
+
+static const u8 sUpperHandDescription[] = _(
+    "Makes the target flinch if\n"
+    "readying a priority move.");
+
+static const u8 sMalignantChainDescription[] = _(
+    "A corrosive chain attack\n"
+    "that may badly poison.");
+
 const u8 gNotDoneYetDescription[] = _(
     "This move can't be used. Its\n"
     "effect is in development.");
