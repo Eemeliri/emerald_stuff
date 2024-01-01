@@ -765,7 +765,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
         gBattleStruct->zmove.active = TRUE;
     }
     else if (gBattleMoves[move].effect == EFFECT_PHOTON_GEYSER)
-        gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(gBattlerAttacker) == SPLIT_PHYSICAL);
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == BATTLE_CATEGORY_PHYSICAL);
 
     if (gBattleMoves[move].effect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();

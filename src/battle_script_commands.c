@@ -16607,6 +16607,6 @@ void BS_AllySwitchFailChance(void)
 void BS_SetPhotonGeyserCategory(void)
 {
     NATIVE_ARGS();
-    gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(gBattlerAttacker) == SPLIT_PHYSICAL);
+    gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == BATTLE_CATEGORY_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
