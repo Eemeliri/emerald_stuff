@@ -2844,7 +2844,7 @@
           "map": "MAP_UNDERWATER_ROUTE126",
           "base_label": "gUnderwater_Route126",
           "water_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 12,
             "mons": [
               {
                 "min_level": 20,
