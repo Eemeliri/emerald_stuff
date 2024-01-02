@@ -1,5 +1,5 @@
 Everyone who worked on the Pret disassembly and RHH expansion
-Pawkkie - Various resources and shadows fix
+Pawkkie - Various resources and shadows port of merrps
 quocmanh94 - HGSS berry animation
 Voluptua - town map port
 Beniboy for helping with numerous issues during developement
@@ -16,7 +16,7 @@ Phyromatical - distortion world tileset
 SkyVotex and Banjora Marxville for tileset/palettes
 Sierraffinity - Day/Night System, e-Reader functionality
 Spherical Ice - Sliding puzzles
-Merrp - Following Pokemon
+Merrp - Following Pokemon, Shadows
 Fo0xerz - Lawrence III sprite
 ghoulslash - DexNav, Auto-run, Mart Items by Badge Count, Bag Sorting, Repeated Field Medicine Use, Pokecenters don't count eggs, Overworld Expansion, givecustommon 
 ipatix - High Quality Audio Mixer
@@ -39,7 +39,7 @@ GriffinR - Disabled the union room check when entering Pokecenters
 CitrusBolt - DNS overrides fix from heliodor code, last used ball gfx, Summary page
 Sbird - TM serialisation, TM learnset method, fast battle intro, dynamic multichoice
 Dat.H A - Spinda Second Frame
-ShinyDragonHunter - Spinda Second Frame, Arbok variants
+ShinyDragonHunter - Spinda Second Frame, Arbok variants, cleanup repo, frlg sprites
 Dreadwing93 - Arbok variant sprites
 Hbdfreitas - BW style hp bars
 PokemonCrazy - Move effectiveness
