@@ -897,6 +897,10 @@ u8 GetTrainerBattleTransition(void)
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         return B_TRANSITION_CHAMPION;
 
+
+    if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_CYNTHIA)
+            return B_TRANSITION_CYNTHIA;
+
     if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR)
     {
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_SIDNEY)
@@ -906,7 +910,7 @@ u8 GetTrainerBattleTransition(void)
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_GLACIA)
             return B_TRANSITION_GLACIA;
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_DRAKE)
-            return B_TRANSITION_DRAKE;
+            return B_TRANSITION_DRAKE;       
         return B_TRANSITION_CHAMPION;
     }
 
