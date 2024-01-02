@@ -116,7 +116,7 @@ EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
 static const u8 sBattleTransitionTable_Wild[][2] =
 {
     [TRANSITION_TYPE_NORMAL] = {B_TRANSITION_SLICE,          B_TRANSITION_WHITE_BARS_FADE},
-    [TRANSITION_TYPE_CAVE]   = {B_TRANSITION_SLICE, B_TRANSITION_WHITE_BARS_FADE},
+    [TRANSITION_TYPE_CAVE]   = {B_TRANSITION_CLOCKWISE_WIPE, B_TRANSITION_GRID_SQUARES},
     [TRANSITION_TYPE_FLASH]  = {B_TRANSITION_BLUR,           B_TRANSITION_GRID_SQUARES},
     [TRANSITION_TYPE_WATER]  = {B_TRANSITION_WAVE,           B_TRANSITION_RIPPLE},
 };
@@ -897,6 +897,10 @@ u8 GetTrainerBattleTransition(void)
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         return B_TRANSITION_CHAMPION;
 
+
+    if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_CYNTHIA)
+            return B_TRANSITION_CYNTHIA;
+
     if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR)
     {
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_SIDNEY)
@@ -906,7 +910,7 @@ u8 GetTrainerBattleTransition(void)
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_GLACIA)
             return B_TRANSITION_GLACIA;
         if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_ELITE_FOUR_DRAKE)
-            return B_TRANSITION_DRAKE;
+            return B_TRANSITION_DRAKE;       
         return B_TRANSITION_CHAMPION;
     }
 
