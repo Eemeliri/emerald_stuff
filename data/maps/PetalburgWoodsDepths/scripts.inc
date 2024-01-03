@@ -90,8 +90,7 @@ villagegirlwithphantump_Text_1:
 villageMan_Text_0:
 	.string "Our village doesn't offer much, in fact\n"
 	.string "we don't even have a name for it. Feel\l"
-	.string "free to take a look around\l"
-	.string "nonetheless.$"
+	.string "free to take a look around nonetheless.$"
 
 villageLady_Text_0:
 	.string "Oh a visitor? We don't see many\n"
@@ -109,8 +108,8 @@ shrineSign_Text_0:
 worriedOldManFarfetchd_Text_0:
 	.string "Oh what am I to do... Oh, excuse me! Have\n"
 	.string "you seen my dear Farfetch'd? We we're\l"
-	.string "just on the way back to the village,\l"
-	.string "but she disappeared along the way.$"
+	.string "just on the way back to the village, but\l"
+	.string "she disappeared along the way.$"
 
 worriedOldManFarfetchd_Text_1:
 	.string "Could I ask you to look for her?$"

@@ -5384,7 +5384,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_VS_AQUA_MAGMA;
         case TRAINER_CLASS_LEADER:
-            return MUS_HG_VS_GYM_LEADER;
+            return MUS_VS_GYM_LEADER;
         case TRAINER_CLASS_CHAMPION:
             return MUS_DP_VS_CHAMPION;
         case TRAINER_CLASS_K_LEADER:

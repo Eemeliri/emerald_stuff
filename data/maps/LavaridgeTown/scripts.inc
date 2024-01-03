@@ -1,3 +1,4 @@
+
 .set LOCALID_RIVAL_ON_BIKE, 7
 .set LOCALID_RIVAL, 8
 
@@ -518,10 +519,10 @@ BlainePostgame_Text_2:
 
 BlainePostgame_Text_3:
 	.string "However now that you are here, I'm on\n"
-	.string "the mood for something better than\l"
-	.string "hot springs, how about we battle\l"
-	.string "instead? It's been a while since I got\l"
-	.string "to face a worthy trainer.$"
+	.string "the mood for something better than hot\l"
+	.string "springs, how about we battle instead?\l"
+	.string "It's been a while since I got to face a\l"
+	.string "worthy trainer.$"
 
 BlainePostgame_Text_4:
 	.string "Are you up for a heated battle?$"
@@ -545,8 +546,8 @@ BlainePostgame_Text_8:
 
 BlainePostgame_Text_9:
 	.string "How about you take this old map as a\n"
-	.string "reward for besting me, It hides a\l"
-	.string "secret worthy of a champion.$"
+	.string "reward for besting me, It hides a secret\l"
+	.string "worthy of a champion.$"
 
 BlainePostgame_Text_10:
 	.string "I hear Lilycove city's port has a fellow\n"

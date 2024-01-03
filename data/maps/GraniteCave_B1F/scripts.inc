@@ -108,8 +108,8 @@ graniteCaveBrock_Text_5:
 
 graniteCaveBrock_Text_6:
 	.string "Ah, I didn't see you there! My name is\n"
-	.string "Brock and I come from Kanto region. I\l"
-	.string "am currently excavating the caves in\l"
+	.string "Brock and I come from Kanto region. I am\l"
+	.string "currently excavating the caves in\l"
 	.string "Hoenn for fossils.$"
 
 graniteCaveBrock_Text_7:
@@ -134,8 +134,8 @@ graniteCaveBrockPostBattle_Text_0:
 
 graniteCaveBrockPostBattle_Text_1:
 	.string "I have to get back to my work now, but I\n"
-	.string "hope we meet again. It would be great\l"
-	.string "to fight you at full strength once you\l"
+	.string "hope we meet again. It would be great to\l"
+	.string "fight you at full strength once you\l"
 	.string "have even more experience.$"
 
 graniteCaveBrockPostBattle_Text_2:

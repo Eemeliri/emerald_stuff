@@ -1,3 +1,4 @@
+
 @ Sailing to and from Dewford uses local IDs from different maps
 @ e.g. Route 104's sail to Dewford script references local IDs from Dewford's map
 @ All of these local IDs are labeled here

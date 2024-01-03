@@ -1,3 +1,4 @@
+
 VerityCavern_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerityCavern_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerityCavern_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE

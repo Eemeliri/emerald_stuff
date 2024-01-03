@@ -1,3 +1,4 @@
+
 .set LOCALID_WALLACE, 1
 .set LOCALID_RIVAL, 2
 .set LOCALID_BIRCH, 3
@@ -469,8 +470,8 @@ CynthiaToRight:
 
 Cynthia_Appears_Text_0:
 	.string "...Is what I would have said, however\n"
-	.string "someone else came before you and is\l"
-	.string "now the champion of Hoenn.$"
+	.string "someone else came before you and is now\l"
+	.string "the champion of Hoenn.$"
 
 Cynthia_Appears_Text_1:
 	.string "Cynthia: Hello {PLAYER}, It's been\n"

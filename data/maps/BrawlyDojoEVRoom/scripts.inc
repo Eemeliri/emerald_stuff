@@ -78,8 +78,8 @@ tiredGirlDojo_Text_1:
 	.string "I can't take it anymore, I haven't been\n"
 	.string "able to sleep even a wink for days\l"
 	.string "because the person next to me\l"
-	.string "constantly talks in his sleep! I want\l"
-	.string "to quit!$"
+	.string "constantly talks in his sleep! I want to\l"
+	.string "quit!$"
 
 tiredGirlDojo_Text_2:
 	.string "...This person could benefit from a\n"

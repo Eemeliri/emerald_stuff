@@ -493,8 +493,8 @@ HyperTrainer_Lady_Text_0:
 	.string "interested in strenghtening your\l"
 	.string "Pokemon? I may not look like it, but I\l"
 	.string "was quite a drill sergeant in my youth!\l"
-	.string "If you find me some silvery bottle\l"
-	.string "caps, I can unlock your Pokemon's true\l"
+	.string "If you find me some silvery bottle caps,\l"
+	.string "I can unlock your Pokemon's true\l"
 	.string "potential.$"
 
 HyperTrainer_Lady_Text_1:

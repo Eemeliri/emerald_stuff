@@ -110,8 +110,8 @@ PicnickerNearTunnelExit_Text_0:
 
 SailorNearDesertTown_Text_0:
 	.string "Ahead lies the Vajra Town, you should\n"
-	.string "stop by to rest after your trip\l"
-	.string "through the desert!$"
+	.string "stop by to rest after your trip through\l"
+	.string "the desert!$"
 
 HikerAtVajraDesertEntrance_Text_0:
 	.string "If you are looking for a place to rest,\n"

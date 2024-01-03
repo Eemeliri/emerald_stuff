@@ -267,13 +267,13 @@ challengeGreenFromLeft_Text_3:
 	.string "Green: See that strong Pokémon up\n"
 	.string "there? That's Mewtwo, an artificial\l"
 	.string "species created solely for battles. It\l"
-	.string "has been resting in this cave for a\l"
-	.string "very long time.$"
+	.string "has been resting in this cave for a very\l"
+	.string "long time.$"
 
 challengeGreenFromLeft_Text_4:
 	.string "Green: How about we fight over who gets\n"
-	.string "to catch it? I'll even throw you a\l"
-	.string "little bonus if you manage to beat me!$"
+	.string "to catch it? I'll even throw you a little\l"
+	.string "bonus if you manage to beat me!$"
 
 challengeGreenFromLeft_Text_5:
 	.string "Green: Ready? Don't except an easy\n"
@@ -290,8 +290,8 @@ challengeGreenFromLeft_Text_7:
 
 challengeGreenFromLeft_Text_8:
 	.string "Green: As promised, you will get to\n"
-	.string "catch Mewtwo, although if you fail I\l"
-	.string "will come to pick up your pieces.$"
+	.string "catch Mewtwo, although if you fail I will\l"
+	.string "come to pick up your pieces.$"
 
 challengeGreenFromLeft_Text_9:
 	.string "Green: And that added bonus I was\n"

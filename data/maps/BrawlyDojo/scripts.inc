@@ -143,9 +143,9 @@ dojoKubfuGentleman_Text_0:
 
 dojoKubfuGentleman_Text_1:
 	.string "You! You have the badge from Brawly\n"
-	.string "don't you?! Please, take Kubfu and\l"
-	.string "show it the world. Surely a trainer of\l"
-	.string "your caliber is capable of giving it the\l"
+	.string "don't you?! Please, take Kubfu and show\l"
+	.string "it the world. Surely a trainer of your\l"
+	.string "caliber is capable of giving it the\l"
 	.string "training it needs?$"
 
 dojoKubfuGentleman_Text_2:

@@ -947,7 +947,13 @@
 
 #define HG_MUSIC_END                      MUS_HG_WIN_MINIGAME
 
-#define END_MUS                         HG_MUSIC_END
+// Custom music
+#define MUS_CUSTOM_START                  (HG_MUSIC_END + 1) // 899
+#define MUS_PERSONA_FACE_MYSELF           899 // Persona I'll face myself
+
+#define MUS_CUSTOM_END                    MUS_PERSONA_FACE_MYSELF
+
+#define END_MUS                         MUS_CUSTOM_END
 
 #define MUS_ROUTE118                      0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 

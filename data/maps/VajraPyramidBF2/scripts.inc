@@ -316,8 +316,8 @@ weightStatuePlayer_Text_0:
 
 weightStatuePlayer_Text_1:
 	.string "It seems to be an empty weight that\n"
-	.string "awaits something, place\l"
-	.string "{STR_VAR_1} to it?$"
+	.string "awaits something, place {STR_VAR_1}\l"
+	.string "to it?$"
 
 weightStatuePlayer_Text_2:
 	.string "It seems {STR_VAR_1} weighted the\n"
@@ -332,9 +332,9 @@ firstTwoPuzzlesCleared_Text_0:
 
 heightSign_Text_0:
 	.string "In this hall of towering grace, Four\n"
-	.string "sentinels stand, each a different\l"
-	.string "face. From the shortest that crouches\l"
-	.string "to the tallest that soars, Match your\l"
+	.string "sentinels stand, each a different face.\l"
+	.string "From the shortest that crouches to the\l"
+	.string "tallest that soars, Match your\l"
 	.string "Partner's height to each of our own.$"
 
 heightStatue1_Text_0:
@@ -354,8 +354,8 @@ heightStatue3_Text_0:
 
 heightStatuePlayer_Text_0:
 	.string "It seems to be an empty pedastal that\n"
-	.string "awaits something, place\l"
-	.string "{STR_VAR_1} to it?$"
+	.string "awaits something, place {STR_VAR_1}\l"
+	.string "to it?$"
 
 heightStatuePlayer_Text_1:
 	.string "It seems {STR_VAR_1} was of correct\n"
