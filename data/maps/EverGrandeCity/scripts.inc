@@ -152,10 +152,10 @@ birchPostgameEverGrande_Text_6:
 
 birchPostgameEverGrande_Text_7:
 	.string "You caught a Shaymin? That's amazing!\n"
-	.string "That is an extremely rare Pokémon,\l"
-	.string "that can purify pollution. I can't wait\l"
-	.string "to tell Prof. Rowan about this! You\l"
-	.string "keep up the good work, I'll head back to\l"
+	.string "That is an extremely rare Pokémon, that\l"
+	.string "can purify pollution. I can't wait to\l"
+	.string "tell Prof. Rowan about this! You keep up\l"
+	.string "the good work, I'll head back to\l"
 	.string "Littleroot now. Take care!$"
 
 birchPostgameEverGrande_Text_8:

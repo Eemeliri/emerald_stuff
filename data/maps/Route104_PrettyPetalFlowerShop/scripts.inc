@@ -1,3 +1,5 @@
+
+
 .set LOCALID_OWNER, 1
 
 Route104_PrettyPetalFlowerShop_MapScripts::
@@ -127,8 +129,8 @@ gracideaNPC_Text_0:
 gracideaNPC_Text_1:
 	.string "In my hometown back in Sinnoh, we have\n"
 	.string "these beautiful Gracidea flowers\l"
-	.string "blooming all over the village, perhaps\l"
-	.string "it might match your description?$"
+	.string "blooming all over the village, perhaps it\l"
+	.string "might match your description?$"
 
 gracideaNPC_Text_2:
 	.string "Don't worry about having to pay back,\n"

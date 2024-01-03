@@ -1,3 +1,4 @@
+
 AlteringCave_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, AlteringCave_OnTransition
     map_script MAP_SCRIPT_ON_LOAD, AlteringCave_OnLoad

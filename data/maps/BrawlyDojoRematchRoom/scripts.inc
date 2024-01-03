@@ -157,8 +157,8 @@ BrawlyDojoBrawlyNPC_Text_6:
 
 BrawlyDojoBrawlyNPC_Text_7:
 	.string "I sense some potential in you kid, make\n"
-	.string "sure to give Brawly a good beating so\l"
-	.string "he doesn't get too full of himself.\l"
+	.string "sure to give Brawly a good beating so he\l"
+	.string "doesn't get too full of himself.\l"
 	.string "Wahhahha!$"
 
 BrawlyDojoRematchRoomBlackbelt_Text_0:

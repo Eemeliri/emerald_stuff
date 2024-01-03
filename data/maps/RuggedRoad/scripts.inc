@@ -80,16 +80,16 @@ RuggedRoadCaveSign_Text_0:
 
 trainerSchooldKidRuggedRoad_Text_0:
 	.string "I'm on my way back to Petalburg, but\n"
-	.string "first let me test something I learned\l"
-	.string "in school!$"
+	.string "first let me test something I learned in\l"
+	.string "school!$"
 
 trainerSchooldKidRuggedRoad_Text_1:
 	.string "I need to study harder...$"
 
 trainerSchooldKidRuggedRoad_Text_2:
 	.string "Have you already challenged Roxanne?\n"
-	.string "She sometimes visits the trainer\l"
-	.string "school to teach us!$"
+	.string "She sometimes visits the trainer school\l"
+	.string "to teach us!$"
 
 trainerHikerRuggedRoad_Text_0:
 	.string "I hear there is a cave around here, did\n"
