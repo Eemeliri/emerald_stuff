@@ -5404,7 +5404,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_FACTORY_HEAD:
         case TRAINER_CLASS_PIKE_QUEEN:
         case TRAINER_CLASS_PKMN_TRAINER:  // This is for Red and Green
-            return MUS_RG_VS_CHAMPION;
+            return MUS_HG_VS_FRONTIER_BRAIN;
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_HG_VS_FRONTIER_BRAIN;
         case TRAINER_CLASS_GGRUNT_F:

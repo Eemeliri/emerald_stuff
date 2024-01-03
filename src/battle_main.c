@@ -1947,16 +1947,16 @@ u8 scaleBiasedLevel(u8 scaledLevel, u8 lvl) {
     switch(rand_diff)
     {
         case 0:
-            rand_diff = 0;
+            rand_diff = 1;
             break;
         case 1:
-            rand_diff = -1;
+            rand_diff = 0;
             break;
         case 2:
-            rand_diff = -2;
+            rand_diff = -1;
             break;
         case 3:
-            rand_diff = -3;
+            rand_diff = -2;
     }
     if (scaledLevel + lvl > 100)
     {
@@ -1980,6 +1980,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u8 scaledLevel;
     s32 i, j;
     u8 monsCount;
+    u8 trainerClass;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
@@ -2033,6 +2034,9 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             if (gSaveBlock2Ptr->optionsLevelScaling == 1) {
                 biasedLevel = partyData[i].lvl;
             }
+            /* if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER) {
+                biasedLevel = partyData[i].lvl;
+            } */
             if(HasLevelEvolution(partyData[i].species, biasedLevel))
                 CreateMon(&party[i], HasLevelEvolution(partyData[i].species, biasedLevel), biasedLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
             else 
