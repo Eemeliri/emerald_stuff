@@ -190,8 +190,8 @@ static const u16 sTypeEffectivenessTable[NUMBER_OF_MON_TYPES][NUMBER_OF_MON_TYPE
 
 #undef Xs
 
-//static EWRAM_DATA bool8 sAckBallUseBtn = FALSE;
-//static EWRAM_DATA bool8 sBallSwapped = FALSE;
+static EWRAM_DATA bool8 sAckBallUseBtn = FALSE;
+static EWRAM_DATA bool8 sBallSwapped = FALSE;
 
 void SetControllerToPlayer(u32 battler)
 {
@@ -234,7 +234,7 @@ static void CompleteOnBattlerSpritePosX_0(u32 battler)
         PlayerBufferExecCompleted(battler);
 }
 
-static u16 UNUSED GetPrevBall(u16 ballId)
+static u16 GetPrevBall(u16 ballId)
 {
     u16 ballPrev;
     s32 i, j;
@@ -259,7 +259,7 @@ static u16 UNUSED GetPrevBall(u16 ballId)
     return gBagPockets[BALLS_POCKET].itemSlots[i].itemId;
 }
 
-static u16 UNUSED GetNextBall(u16 ballId)
+static u16 GetNextBall(u16 ballId)
 {
     u32 ballNext = ITEM_NONE;
     s32 i;
