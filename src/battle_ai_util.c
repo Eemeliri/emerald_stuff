@@ -103,58 +103,6 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_FILLET_AWAY,
 };
 
-// For the purposes of determining the most powerful move in a moveset, these
-// moves are treated the same as having a power of 0 or 1
-#define IGNORED_MOVES_END 0xFFFF
-static const u16 sIgnoredPowerfulMoveEffects[] =
-{
-    EFFECT_EXPLOSION,
-    EFFECT_DREAM_EATER,
-    EFFECT_RECHARGE,
-    EFFECT_SKULL_BASH,
-    EFFECT_SOLAR_BEAM,
-    EFFECT_SPIT_UP,
-    EFFECT_FOCUS_PUNCH,
-    EFFECT_SUPERPOWER,
-    EFFECT_ERUPTION,
-    EFFECT_OVERHEAT,
-    EFFECT_MIND_BLOWN,
-    EFFECT_MAKE_IT_RAIN,
-    IGNORED_MOVES_END
-};
-
-static const u16 sIgnoreMoldBreakerMoves[] =
-{
-    MOVE_MOONGEIST_BEAM,
-    MOVE_SUNSTEEL_STRIKE,
-    MOVE_PHOTON_GEYSER,
-    MOVE_LIGHT_THAT_BURNS_THE_SKY,
-    MOVE_MENACING_MOONRAZE_MAELSTROM,
-    MOVE_SEARING_SUNRAZE_SMASH,
-};
-
-static const u16 sRechargeMoves[] =
-{
-    MOVE_HYPER_BEAM,
-    MOVE_GIGA_IMPACT,
-    MOVE_ROCK_WRECKER,
-    MOVE_ROAR_OF_TIME,
-    MOVE_PRISMATIC_LASER,
-    MOVE_METEOR_ASSAULT,
-    MOVE_ETERNABEAM,
-};
-
-static const u16 sOtherMoveCallingMoves[] =
-{
-    MOVE_ASSIST,
-    MOVE_COPYCAT,
-    MOVE_ME_FIRST,
-    MOVE_METRONOME,
-    MOVE_MIRROR_MOVE,
-    MOVE_NATURE_POWER,
-    MOVE_SLEEP_TALK,
-};
-
 // Functions
 u32 GetAIChosenMove(u32 battlerId)
 {
@@ -784,7 +732,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 }
 
 // Checks if one of the moves has side effects or perks, assuming equal dmg or equal no of hits to KO
-u32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
+s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
 {
     bool32 effect1, effect2;
     s32 defAbility = AI_DATA->abilities[battlerDef];

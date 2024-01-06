@@ -29,7 +29,6 @@
 #include "constants/battle_anim.h"
 #include "constants/battle_partner.h"
 
-
 // .rodata
 static const u16 sUnrefArray[] = {0x0300, 0x0000}; //OamData?
 
