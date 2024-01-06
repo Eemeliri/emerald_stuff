@@ -2683,7 +2683,7 @@ void FreeAndReserveObjectSpritePalettes(void)
     gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT;
 }
 
-void LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
+u8 LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
 {
     u16 i = FindObjectEventPaletteIndexByTag(paletteTag);
 
@@ -2693,7 +2693,7 @@ void LoadObjectEventPalette(u16 paletteTag, bool8 shouldTint)
 #else
     if (i != OBJ_EVENT_PAL_TAG_NONE)
 #endif
-        LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
+        return LoadSpritePaletteIfTagExists(&sObjectEventSpritePalettes[i], shouldTint);
 }
 
 static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *spritePalette, bool8 shouldTint)
