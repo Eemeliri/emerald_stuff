@@ -2,6 +2,7 @@
 #define GUARD_DATA_H
 
 #include "constants/moves.h"
+#include "constants/trainers.h"
 
 #define SPECIES_SHINY_TAG 5000
 #define N_FOLLOWER_HAPPY_MESSAGES 31
@@ -37,6 +38,22 @@ struct MonCoords
     // uses it as a u8 and casting won't match.
     u8 size; // u8 width:4, height:4;
     u8 y_offset;
+};
+
+struct TrainerSprite
+{
+    u8 y_offset;
+    struct CompressedSpriteSheet frontPic;
+    struct CompressedSpritePalette palette;
+    const union AnimCmd *const *const animation;
+};
+
+struct TrainerBacksprite
+{
+    struct MonCoords coordinates;
+    struct CompressedSpriteSheet backPic;
+    struct CompressedSpritePalette palette;
+    const union AnimCmd *const *const animation;
 };
 
 #define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
@@ -81,6 +98,13 @@ struct Trainer
     /*0x1F*/ u8 partySize;
 };
 
+struct TrainerClass
+{
+    u8 name[17];
+    u8 money;
+    u16 ball;
+};
+
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
 
 struct FollowerMsgInfo {
@@ -117,15 +141,10 @@ extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[];
 extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 
 extern const union AnimCmd sAnim_GeneralFrame0[];
+extern const union AnimCmd sAnim_GeneralFrame3[];
 extern const union AnimCmd *const gAnims_MonPic[];
-extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
-extern const struct MonCoords gTrainerFrontPicCoords[];
-extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
-extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
-extern const union AnimCmd *const *const gTrainerBackAnimsPtrTable[];
-extern const struct MonCoords gTrainerBackPicCoords[];
-extern const struct CompressedSpriteSheet gTrainerBackPicTable[]; // functionally unused
-extern const struct CompressedSpritePalette gTrainerBackPicPaletteTable[];
+extern const struct TrainerSprite gTrainerSprites[];
+extern const struct TrainerBacksprite gTrainerBacksprites[];
 
 extern const struct CompressedSpritePalette gFollowMonPaletteTable[];
 extern const struct CompressedSpritePalette gFollowMonShinyPaletteTable[];
@@ -135,7 +154,7 @@ extern const struct CompressedSpritePalette gFollowMonShinyPaletteTableFemale[];
 extern const struct Trainer gTrainers[];
 extern const struct Trainer gBattlePartners[];
 
-extern const u8 gTrainerClassNames[][17];
+extern const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT];
 extern const u8 gMoveNames[MOVES_COUNT_DYNAMAX][MOVE_NAME_LENGTH + 1];
 extern const u8 *const gZMoveNames[];
 extern const u8 *const gMaxMoveNames[];

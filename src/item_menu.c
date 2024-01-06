@@ -223,6 +223,7 @@ static void ConfirmToss(u8);
 static void CancelToss(u8);
 static void ConfirmSell(u8);
 static void CancelSell(u8);
+static void Task_FadeAndCloseBagMenuIfMulch(u8 taskId);
 
 //bag sort
 static void Task_LoadBagSortOptions(u8 taskId);
@@ -388,7 +389,8 @@ static const TaskFunc sContextMenuFuncs[] = {
     [ITEMMENULOCATION_QUIZ_LADY] =              Task_ItemContext_Normal,
     [ITEMMENULOCATION_APPRENTICE] =             Task_ItemContext_Normal,
     [ITEMMENULOCATION_WALLY] =                  NULL,
-    [ITEMMENULOCATION_PCBOX] =                  Task_ItemContext_GiveToPC
+    [ITEMMENULOCATION_PCBOX] =                  Task_ItemContext_GiveToPC,
+    [ITEMMENULOCATION_BERRY_TREE_MULCH] =       Task_FadeAndCloseBagMenuIfMulch,
 };
 
 static const struct YesNoFuncTable sYesNoTossFunctions = {ConfirmToss, CancelToss};
@@ -788,6 +790,11 @@ void CB2_ChoosePokeBall(void)
 {
     GoToBagMenu(ITEMMENULOCATION_BERRY_TREE, BALLS_POCKET, CB2_ReturnToFieldContinueScript);
 }
+// Choosing mulch to use
+void CB2_ChooseMulch(void)
+{
+    GoToBagMenu(ITEMMENULOCATION_BERRY_TREE_MULCH, ITEMS_POCKET, CB2_ReturnToFieldContinueScript);
+}
 
 // Choosing berry for Berry Blender or Berry Crush
 void ChooseBerryForMachine(void (*exitCallback)(void))
@@ -841,7 +848,8 @@ void GoToBagMenu(u8 location, u8 pocket, void ( *exitCallback)())
         if (pocket < POCKETS_COUNT)
             gBagPosition.pocket = pocket;
         if (gBagPosition.location == ITEMMENULOCATION_BERRY_TREE ||
-            gBagPosition.location == ITEMMENULOCATION_BERRY_BLENDER_CRUSH)
+            gBagPosition.location == ITEMMENULOCATION_BERRY_BLENDER_CRUSH ||
+            gBagPosition.location == ITEMMENULOCATION_BERRY_TREE_MULCH)
             gBagMenu->pocketSwitchDisabled = TRUE;
         gBagMenu->newScreenCallback = NULL;
         gBagMenu->toSwapPos = NOT_SWAPPING;
@@ -1291,6 +1299,23 @@ void Task_FadeAndCloseBagMenu(u8 taskId)
 {
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_CloseBagMenu;
+}
+
+static void Task_FadeAndCloseBagMenuIfMulch(u8 taskId)
+{
+    if (gSpecialVar_ItemId == ITEM_GROWTH_MULCH ||
+        gSpecialVar_ItemId == ITEM_DAMP_MULCH ||
+        gSpecialVar_ItemId == ITEM_STABLE_MULCH ||
+        gSpecialVar_ItemId == ITEM_GOOEY_MULCH ||
+        gSpecialVar_ItemId == ITEM_RICH_MULCH ||
+        gSpecialVar_ItemId == ITEM_SURPRISE_MULCH ||
+        gSpecialVar_ItemId == ITEM_BOOST_MULCH ||
+        gSpecialVar_ItemId == ITEM_AMAZE_MULCH)
+    {
+        Task_FadeAndCloseBagMenu(taskId);
+        return;
+    }
+    DisplayDadsAdviceCannotUseItemMessage(taskId, FALSE);
 }
 
 static void Task_CloseBagMenu(u8 taskId)
@@ -1827,6 +1852,7 @@ static void OpenContextMenu(u8 taskId)
     case ITEMMENULOCATION_SHOP:
     case ITEMMENULOCATION_BERRY_TREE:
     case ITEMMENULOCATION_ITEMPC:
+    case ITEMMENULOCATION_BERRY_TREE_MULCH:
     default:
         if (MenuHelpers_IsLinkActive() == TRUE || InUnionRoom() == TRUE)
         {

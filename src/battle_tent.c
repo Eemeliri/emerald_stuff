@@ -309,7 +309,7 @@ static void GenerateInitialRentalMons(void)
     i = 0;
     while (i != PARTY_SIZE)
     {
-        // Cannot have two pokemon of the same species.
+        // Cannot have two Pokémon of the same species.
         monSetId = Random() % NUM_SLATEPORT_TENT_MONS;
         for (j = firstMonId; j < firstMonId + i; j++)
         {

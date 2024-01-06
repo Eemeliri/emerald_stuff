@@ -52,7 +52,7 @@ const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
     },
 };
 
-// Placeholders for pokemon sprites to be created for a move animation effect (e.g. Role Play / Snatch)
+// Placeholders for Pokémon sprites to be created for a move animation effect (e.g. Role Play / Snatch)
 #define TAG_MOVE_EFFECT_MON_1 55125
 #define TAG_MOVE_EFFECT_MON_2 55126
 

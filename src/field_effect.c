@@ -1,5 +1,6 @@
 #include "global.h"
 #include "day_night.h"
+#include "data.h"
 #include "decompress.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
@@ -261,8 +262,6 @@ static void UseVsSeeker_CleanUpFieldEffect(struct Task *task);
 static u8 sActiveList[32];
 
 // External declarations
-extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
-extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern u8 *gFieldEffectScriptPointers[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
@@ -278,7 +277,7 @@ static const u32 sHofMonitorBig_Gfx[] = INCBIN_U32("graphics/field_effects/pics/
 static const u8 sHofMonitorSmall_Gfx[] = INCBIN_U8("graphics/field_effects/pics/hof_monitor_small.4bpp");
 static const u16 sHofMonitor_Pal[16] = INCBIN_U16("graphics/field_effects/palettes/hof_monitor.gbapal");
 
-// Graphics for the lights streaking past your Pokemon when it uses a field move.
+// Graphics for the lights streaking past your Pokémon when it uses a field move.
 static const u32 sFieldMoveStreaksOutdoors_Gfx[] = INCBIN_U32("graphics/field_effects/pics/field_move_streaks.4bpp");
 static const u16 sFieldMoveStreaksOutdoors_Pal[16] = INCBIN_U16("graphics/field_effects/pics/field_move_streaks.gbapal");
 static const u16 sFieldMoveStreaksOutdoors_Tilemap[320] = INCBIN_U16("graphics/field_effects/pics/field_move_streaks.bin");
@@ -960,10 +959,10 @@ bool8 FieldEffectActiveListContains(u8 id)
 u8 CreateTrainerSprite(u8 trainerSpriteID, s16 x, s16 y, u8 subpriority, u8 *buffer)
 {
     struct SpriteTemplate spriteTemplate;
-    LoadCompressedSpritePaletteOverrideBuffer(&gTrainerFrontPicPaletteTable[trainerSpriteID], buffer);
-    LoadCompressedSpriteSheetOverrideBuffer(&gTrainerFrontPicTable[trainerSpriteID], buffer);
-    spriteTemplate.tileTag = gTrainerFrontPicTable[trainerSpriteID].tag;
-    spriteTemplate.paletteTag = gTrainerFrontPicPaletteTable[trainerSpriteID].tag;
+    LoadCompressedSpritePaletteOverrideBuffer(&gTrainerSprites[trainerSpriteID].palette, buffer);
+    LoadCompressedSpriteSheetOverrideBuffer(&gTrainerSprites[trainerSpriteID].frontPic, buffer);
+    spriteTemplate.tileTag = gTrainerSprites[trainerSpriteID].frontPic.tag;
+    spriteTemplate.paletteTag = gTrainerSprites[trainerSpriteID].palette.tag;
     spriteTemplate.oam = &sOam_64x64;
     spriteTemplate.anims = gDummySpriteAnimTable;
     spriteTemplate.images = NULL;
@@ -974,8 +973,8 @@ u8 CreateTrainerSprite(u8 trainerSpriteID, s16 x, s16 y, u8 subpriority, u8 *buf
 
 static void UNUSED LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
 {
-    LZDecompressVram(gTrainerFrontPicTable[gender].data, dest);
-    LoadCompressedPalette(gTrainerFrontPicPaletteTable[gender].data, palOffset, PLTT_SIZE_4BPP);
+    LZDecompressVram(gTrainerSprites[gender].frontPic.data, dest);
+    LoadCompressedPalette(gTrainerSprites[gender].palette.data, palOffset, PLTT_SIZE_4BPP);
 }
 
 u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)

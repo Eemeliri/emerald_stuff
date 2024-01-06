@@ -39,13 +39,14 @@
 #define B_MULTIPLE_TARGETS_DMG      GEN_LATEST // In Gen4+, damage dealt by moves that hit multiple targets at once is reduced to 75%. Before, it was 50%.
 
 // Type settings
-#define B_GHOSTS_ESCAPE             GEN_8 // In Gen6+, abilities like Shadow Tag or moves like Mean Look fail on Ghost-type Pokémon. They can also escape any Wild Battle.
-#define B_PARALYZE_ELECTRIC         GEN_8 // In Gen6+, Electric-type Pokémon can't be paralyzed.
-#define B_POWDER_GRASS              GEN_8 // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
-#define B_STEEL_RESISTANCES         GEN_8 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
-#define B_PRANKSTER_DARK_TYPES      GEN_8 // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
-#define B_SHEER_COLD_IMMUNITY       GEN_8 // In Gen7+, Ice-types are immune to Sheer Cold
-#define B_ROOST_PURE_FLYING         GEN_8 // In Gen5+, Roost makes pure Flying-types into Normal-type.
+#define B_GHOSTS_ESCAPE             GEN_LATEST // In Gen6+, abilities like Shadow Tag or moves like Mean Look fail on Ghost-type Pokémon. They can also escape any Wild Battle.
+#define B_PARALYZE_ELECTRIC         GEN_LATEST // In Gen6+, Electric-type Pokémon can't be paralyzed.
+#define B_POWDER_GRASS              GEN_LATEST // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
+#define B_STEEL_RESISTANCES         GEN_LATEST // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
+#define B_PRANKSTER_DARK_TYPES      GEN_LATEST // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
+#define B_SHEER_COLD_IMMUNITY       GEN_LATEST // In Gen7+, Ice-types are immune to Sheer Cold
+#define B_ROOST_PURE_FLYING         GEN_LATEST // In Gen5+, Roost makes pure Flying-types into Normal-type.
+#define B_STATUS_TYPE_IMMUNITY      GEN_LATEST // In Gen1, Pokémon were immune to paralysis/freeze/burn side effects of attacking moves, if they shared a type with the move.
 
 // Turn settings
 #define B_BINDING_TURNS             GEN_LATEST // In Gen5+, binding moves last for 4-5 turns instead of 2-5 turns. (With Grip Claw, 7 and 5 turns respectively.)
@@ -111,8 +112,8 @@
 #define B_STOCKPILE_RAISES_DEFS     GEN_LATEST // In Gen4+, Stockpile also raises Defense and Sp. Defense stats. Once Spit Up / Swallow is used, these stat changes are lost.
 #define B_TRANSFORM_SHINY           GEN_LATEST // In Gen4+, Transform will copy the shiny state of the opponent instead of maintaining its own shiny state.
 #define B_TRANSFORM_FORM_CHANGES    GEN_LATEST // In Gen5+, Transformed Pokemon cannot change forms.
-#define B_WIDE_GUARD                GEN_LATEST // In Gen5 only, Quick Guard has a chance to fail if used consecutively.
-#define B_QUICK_GUARD               GEN_LATEST // In Gen5 only, Wide Guard has a chance to fail if used consecutively.
+#define B_WIDE_GUARD                GEN_LATEST // In Gen5 only, Wide Guard has a chance to fail if used consecutively.
+#define B_QUICK_GUARD               GEN_LATEST // In Gen5 only, Quick Guard has a chance to fail if used consecutively.
 #define B_IMPRISON                  GEN_LATEST // In Gen5+, Imprison doesn't fail if opposing pokemon don't have any moves the user knows.
 #define B_ALLY_SWITCH_FAIL_CHANCE   GEN_LATEST // In Gen9, using Ally Switch consecutively decreases the chance of success for each consecutive use.
 #define B_SKETCH_BANS               GEN_LATEST // In Gen9+, Sketch is unable to copy more moves than in previous generations.

@@ -41,6 +41,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "start_menu.h"
+#include "level_caps.h"
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"

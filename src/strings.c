@@ -270,7 +270,8 @@ const u8 *const gBagMenu_ReturnToStrings[] =
     [ITEMMENULOCATION_QUIZ_LADY]           = gText_TheField,
     [ITEMMENULOCATION_APPRENTICE]          = gText_TheField,
     [ITEMMENULOCATION_WALLY]               = gText_TheBattle,
-    [ITEMMENULOCATION_PCBOX]               = gText_ThePC
+    [ITEMMENULOCATION_PCBOX]               = gText_ThePC,
+    [ITEMMENULOCATION_BERRY_TREE_MULCH]    = gText_TheField,
 };
 
 const u8 *const gPyramidBagMenu_ReturnToStrings[] =
@@ -2408,3 +2409,5 @@ const u8 gText_SubQuest2_Desc17[] = _("Description Sub 17");
 const u8 gText_SubQuest2_Desc18[] = _("Description Sub 18");
 const u8 gText_SubQuest2_Desc19[] = _("Description Sub 19");
 const u8 gText_SubQuest2_Desc20[] = _("Description Sub 20");
+const u8 gText_Fertilize[] = _("Fertilize");
+const u8 gText_PlantBerry[] = _("Plant Berry");
