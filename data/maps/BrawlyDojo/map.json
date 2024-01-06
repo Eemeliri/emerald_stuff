@@ -93,7 +93,7 @@
       "flag": "FLAG_OBTAINED_KUBFU"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_OW_MON",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_KUBFU",
       "x": 24,
       "y": 11,
       "elevation": 0,
