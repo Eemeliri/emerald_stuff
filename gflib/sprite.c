@@ -889,9 +889,13 @@ void BeginAnim(struct Sprite *sprite)
         if (!(sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
             SetSpriteOamFlipBits(sprite, hFlip, vFlip);
 
-        if (sprite->usingSheet)
+        if (sprite->usingSheet) {
+            #if OW_GFX_COMPRESS
+            if (sprite->sheetSpan)
+                imageValue = (imageValue + 1) << sprite->sheetSpan;
+            #endif
             sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-        else
+        } else
             RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
     }
 }
@@ -941,9 +945,13 @@ void AnimCmd_frame(struct Sprite *sprite)
     if (!(sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
         SetSpriteOamFlipBits(sprite, hFlip, vFlip);
 
-    if (sprite->usingSheet)
+    if (sprite->usingSheet) {
+        #if OW_GFX_COMPRESS
+        if (sprite->sheetSpan)
+            imageValue = (imageValue + 1) << sprite->sheetSpan;
+        #endif
         sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-    else
+    } else
         RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
 }
 
@@ -975,9 +983,13 @@ void AnimCmd_jump(struct Sprite *sprite)
     if (!(sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
         SetSpriteOamFlipBits(sprite, hFlip, vFlip);
 
-    if (sprite->usingSheet)
+    if (sprite->usingSheet) {
+        #if OW_GFX_COMPRESS
+        if (sprite->sheetSpan)
+            imageValue = (imageValue + 1) << sprite->sheetSpan;
+        #endif
         sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-    else
+    } else
         RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
 }
 
@@ -1357,6 +1369,10 @@ void SetSpriteSheetFrameTileNum(struct Sprite *sprite)
     if (sprite->usingSheet)
     {
         s16 tileOffset = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.imageValue;
+        #if OW_GFX_COMPRESS
+        if (sprite->sheetSpan)
+            tileOffset = (tileOffset + 1) << sprite->sheetSpan;
+        #endif
         if (tileOffset < 0)
             tileOffset = 0;
         sprite->oam.tileNum = sprite->sheetTileStart + tileOffset;
@@ -1446,24 +1462,24 @@ u16 LoadSpriteSheet(const struct SpriteSheet *sheet)
     else
     {
         AllocSpriteTileRange(sheet->tag, (u16)tileStart, sheet->size / TILE_SIZE_4BPP);
-        CpuCopy16(sheet->data, (u8 *)OBJ_VRAM0 + TILE_SIZE_4BPP * tileStart, sheet->size);
+        CpuSmartCopy16(sheet->data, (u8 *)OBJ_VRAM0 + TILE_SIZE_4BPP * tileStart, sheet->size);
         return (u16)tileStart;
     }
 }
 
-// Like LoadSpriteSheet, but checks if already, and uses template image frames
-u16 LoadSpriteSheetByTemplate(const struct SpriteTemplate *template, u8 frame) {
+// Like LoadSpriteSheet, but checks if already loaded, and uses template image frames
+u16 LoadSpriteSheetByTemplate(const struct SpriteTemplate *template, u32 frame, s32 offset) {
     u16 tileStart;
-    struct SpriteSheet tempSheet;
+    struct SpriteSheet sheet;
     // error if template is null or tile tag or images not set
     if (!template || template->tileTag == TAG_NONE || !template->images)
         return TAG_NONE;
     if ((tileStart = GetSpriteTileStartByTag(template->tileTag)) != TAG_NONE) // return if already loaded
         return tileStart;
-    tempSheet.data = template->images[frame].data;
-    tempSheet.size = template->images[frame].size;
-    tempSheet.tag = template->tileTag;
-    return LoadSpriteSheet(&tempSheet);
+    sheet.data = template->images[frame].data - offset;
+    sheet.size = template->images[frame].size;
+    sheet.tag = template->tileTag;
+    return LoadSpriteSheet(&sheet);
 }
 
 void LoadSpriteSheets(const struct SpriteSheet *sheets)
@@ -1492,6 +1508,10 @@ void FreeSpriteTilesByTag(u16 tag)
             FREE_SPRITE_TILE(i);
 
         sSpriteTileRangeTags[index] = TAG_NONE;
+        #if DEBUG
+        // If debugging, visibly clear the freed tiles
+        CpuSmartFill16(0, (u8 *)OBJ_VRAM0 + TILE_SIZE_4BPP * start, count * TILE_SIZE_4BPP);
+        #endif
     }
 }
 
@@ -1739,4 +1759,26 @@ bool8 AddSubspritesToOamBuffer(struct Sprite *sprite, struct OamData *destOam, u
 u8 LoadSpritePaletteDayNight(const struct SpritePalette *palette)
 {
     return LoadSpritePalette_HandleDayNight(palette, TRUE);
+}
+static const u8 sSpanPerImage[4][4] =
+{
+    [ST_OAM_SQUARE]      = {
+        [ST_OAM_SIZE_0] = 0, // SPRITE_SIZE_8x8
+        [ST_OAM_SIZE_1] = 2, // SPRITE_SIZE_16x16
+        [ST_OAM_SIZE_2] = 4, // SPRITE_SIZE_32x32
+        [ST_OAM_SIZE_3] = 6  // SPRITE_SIZE_64x64
+    },
+    [ST_OAM_H_RECTANGLE ... ST_OAM_V_RECTANGLE] = {
+        [ST_OAM_SIZE_0] = 1, // SPRITE_SIZE_16x8
+        [ST_OAM_SIZE_1] = 2, // SPRITE_SIZE_32x8
+        [ST_OAM_SIZE_2] = 3, // SPRITE_SIZE_32x16
+        [ST_OAM_SIZE_3] = 5  // SPRITE_SIZE_64x32
+    },
+};
+
+// For a given sprite shape & size, returns
+// the value for sheetSpan:
+// i.e, a 32x32 sprite has span 4, because 1 << 4 == 16 == 4x4 tiles
+u32 GetSpanPerImage(u32 shape, u32 size) {
+    return sSpanPerImage[shape][size];
 }
