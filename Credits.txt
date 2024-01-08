@@ -32,6 +32,7 @@ Bassoonian - Pokemon date met in summary screen
 Jaizu - Keyboard swaps to lowercase after the first letter, and for some firered tiles
 Aveontrainer - Gen 3 style overworld object sprites
 Devolov - Exp all with one message
+MandL27 and Amelia - Type icons
 NotToDisturb - Object alpha shadows
 Hyo-oppa - amazing trainer sprites
 Duke - Move name instead of TM name in shops

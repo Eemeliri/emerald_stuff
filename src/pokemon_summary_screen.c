@@ -693,31 +693,31 @@ const struct SpriteTemplate gSpriteTemplate_MoveTypes =
 };
 static const u8 sMoveTypeToOamPaletteNum[NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT] =
 {
-    [TYPE_NORMAL] = 13,
+    [TYPE_NORMAL] = 15,
     [TYPE_FIGHTING] = 13,
     [TYPE_FLYING] = 14,
-    [TYPE_POISON] = 14,
+    [TYPE_POISON] = 15,
     [TYPE_GROUND] = 13,
-    [TYPE_ROCK] = 13,
-    [TYPE_BUG] = 15,
+    [TYPE_ROCK] = 15,
+    [TYPE_BUG] = 13,
     [TYPE_GHOST] = 14,
-    [TYPE_STEEL] = 13,
+    [TYPE_STEEL] = 14,
     [TYPE_MYSTERY] = 15,
     [TYPE_FIRE] = 13,
     [TYPE_WATER] = 14,
-    [TYPE_GRASS] = 15,
+    [TYPE_GRASS] = 13,
     [TYPE_ELECTRIC] = 13,
-    [TYPE_PSYCHIC] = 14,
+    [TYPE_PSYCHIC] = 15,
     [TYPE_ICE] = 14,
-    [TYPE_DRAGON] = 15,
-    [TYPE_DARK] = 13,
+    [TYPE_DRAGON] = 14,
+    [TYPE_DARK] = 15,
     #ifdef TYPE_FAIRY
-    [TYPE_FAIRY] = 14,
+    [TYPE_FAIRY] = 15,
     #endif
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_COOL] = 13,
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_BEAUTY] = 14,
-    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_CUTE] = 14,
-    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_SMART] = 15,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_CUTE] = 15,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_SMART] = 13,
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_TOUGH] = 13,
 };
 static const struct OamData sOamData_MoveSelector =
