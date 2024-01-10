@@ -1396,7 +1396,8 @@ bool8 IsMapTypeOutdoors(u8 mapType)
      || mapType == MAP_TYPE_TOWN
      || mapType == MAP_TYPE_UNDERWATER
      || mapType == MAP_TYPE_CITY
-     || mapType == MAP_TYPE_OCEAN_ROUTE)
+     || mapType == MAP_TYPE_OCEAN_ROUTE
+     || mapType == MAP_TYPE_OUTDOOR_DUNGEON)
         return TRUE;
     else
         return FALSE;

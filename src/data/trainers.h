@@ -10283,7 +10283,6 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = 0,
-        .partySize = ARRAY_COUNT(sParty_Steven_SouthernIsland),
         .party = TRAINER_PARTY(sParty_Steven_SouthernIsland),
     },
 

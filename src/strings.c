@@ -2411,3 +2411,5 @@ const u8 gText_SubQuest2_Desc19[] = _("Description Sub 19");
 const u8 gText_SubQuest2_Desc20[] = _("Description Sub 20");
 const u8 gText_Fertilize[] = _("Fertilize");
 const u8 gText_PlantBerry[] = _("Plant Berry");
+const u8 gText_AM[] = _("AM");
+const u8 gText_PM[] = _("PM");

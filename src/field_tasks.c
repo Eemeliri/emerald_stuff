@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bike.h"
 #include "clock.h"
+#include "palette.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "field_camera.h"
@@ -178,10 +179,9 @@ static void Task_RunTimeBasedEvents(u8 taskId)
         RunTimeBasedEvents(data);
         UpdateAmbientCry(&tAmbientCryState, (u16*) &tAmbientCryDelay);
     }
-
     if (tForceTimeUpdate)
     {
-        tForceTimeUpdate = 0;
+        tForceTimeUpdate = FALSE;
         DoTimeBasedEvents();
     }
 }
@@ -190,8 +190,8 @@ void ForceTimeBasedEvents(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_RunTimeBasedEvents);
 
-    if (taskId != 0xFF)
-        gTasks[taskId].tForceTimeUpdate = 1;
+    if (taskId != TASK_NONE)
+        gTasks[taskId].tForceTimeUpdate = TRUE;
 }
 
 #undef tState

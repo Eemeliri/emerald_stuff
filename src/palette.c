@@ -95,6 +95,7 @@ void LoadPalette(const void *src, u16 offset, u16 size)
 
 void FillPalette(u16 value, u16 offset, u16 size)
 {
+    FillDNPlttBufferWithBlack(offset, size);
     CpuFill16(value, gPlttBufferUnfaded + offset, size);
     CpuFill16(value, gPlttBufferFaded + offset, size);
 }

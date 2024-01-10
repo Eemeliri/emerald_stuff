@@ -1,6 +1,7 @@
 #include "global.h"
 #include "rtc.h"
 #include "string_util.h"
+#include "strings.h"
 #include "text.h"
 #include "event_data.h"
 
@@ -324,9 +325,20 @@ void RtcCalcLocalTime(void)
 
 void RtcCalcLocalTimeFast(void)
 {
-    RtcGetInfoFast(&sRtc);
+    if (sErrorStatus & RTC_ERR_FLAG_MASK)
+    {
+        sRtc = sRtcDummy;
+    }
+    else
+    {
+        RtcGetStatus(&sRtc);
+        RtcDisableInterrupts();
+        SiiRtcGetTime(&sRtc);
+        RtcRestoreInterrupts();
+    }
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
 }
+
 bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 {
     if (end < begin)
@@ -403,4 +415,36 @@ void RtcGetDayOfWeek(void)
 {
     RtcGetInfo(&sRtc);
     gSpecialVar_Result = sRtc.dayOfWeek;
+}
+void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool8 is24Hour)
+{
+    RtcCalcLocalTime();
+    switch (is24Hour)
+    {
+    case TRUE:
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, hour, STR_CONV_MODE_LEADING_ZEROS, 2);
+        *txtPtr++ = CHAR_COLON;
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, minute, STR_CONV_MODE_LEADING_ZEROS, 2);
+        break;
+    case FALSE:
+        if (hour == 0)
+            hour = 12;
+
+        if (hour < 13)
+            txtPtr = ConvertIntToDecimalStringN(txtPtr, hour, STR_CONV_MODE_LEADING_ZEROS, 2);
+        else
+            txtPtr = ConvertIntToDecimalStringN(txtPtr, hour - 12, STR_CONV_MODE_LEADING_ZEROS, 2);
+
+        *txtPtr++ = CHAR_COLON;
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, minute, STR_CONV_MODE_LEADING_ZEROS, 2);
+        txtPtr = StringAppend(txtPtr, gText_Space);
+        if (hour < 13)
+            txtPtr = StringAppend(txtPtr, gText_AM);
+        else
+            txtPtr = StringAppend(txtPtr, gText_PM);
+        break;
+    }
+
+    *txtPtr++ = EOS;
+    *txtPtr = EOS;
 }
