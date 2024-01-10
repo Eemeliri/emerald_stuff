@@ -6374,5 +6374,8 @@ extern const u32 gSummaryScreenPageContestMovesTilemap[];
 extern const u32 gSummaryScreenPageContestMoveDetailsTilemap[];
 extern const u32 gSummaryScreenPageContestNewMoveTilemap[];
 extern const u32 gSummaryScreenPageConditionTilemap[];
+// BSBob map pop-ups
+extern const u8 gPopUpWindowBorder_Tiles[];
+extern const u16 gPopUpWindowBorder_Palette[];
 
 #endif //GUARD_GRAPHICS_H
