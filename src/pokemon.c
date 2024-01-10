@@ -38,6 +38,7 @@
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
+#include "palette.h"
 #include "task.h"
 #include "text.h"
 #include "trainer_hill.h"
