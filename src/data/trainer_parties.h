@@ -12288,10 +12288,10 @@ static const struct TrainerMon sParty_GraniteCaveBrock[] = {
 
 static const struct TrainerMon sParty_Route115Falkner[] = {
     {
-    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .iv = TRAINER_PARTY_IVS(20, 10, 21, 21, 21, 21),
     .lvl = 13,
     .species = SPECIES_RUFFLET,
-    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .ev = TRAINER_PARTY_EVS(0, 200, 0, 0, 4, 200),
     .heldItem = ITEM_PECHA_BERRY,
     .moves = {MOVE_HONE_CLAWS, MOVE_WING_ATTACK, MOVE_SWIFT, MOVE_HELPING_HAND},
     .ability = ABILITY_HUSTLE,
@@ -12300,10 +12300,10 @@ static const struct TrainerMon sParty_Route115Falkner[] = {
     .ball = ITEM_QUICK_BALL,
     },
     {
-    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .iv = TRAINER_PARTY_IVS(20, 10, 21, 21, 21, 21),
     .lvl = 14,
     .species = SPECIES_NOIBAT,
-    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .ev = TRAINER_PARTY_EVS(100, 100, 0, 100, 4, 100),
     .heldItem = ITEM_ORAN_BERRY,
     .moves = {MOVE_WING_ATTACK, MOVE_AIR_CUTTER, MOVE_DEFOG, MOVE_TAUNT},
     .ability = ABILITY_INFILTRATOR,
@@ -12315,7 +12315,7 @@ static const struct TrainerMon sParty_Route115Falkner[] = {
     .iv = TRAINER_PARTY_IVS(10, 10, 11, 11, 11, 11),
     .lvl = 14,
     .species = SPECIES_GLIGAR,
-    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 200),
     .heldItem = ITEM_YACHE_BERRY,
     .moves = {MOVE_QUICK_ATTACK, MOVE_FURY_CUTTER, MOVE_KNOCK_OFF, MOVE_POISON_STING},
     .ability = ABILITY_IMMUNITY,
@@ -12327,7 +12327,7 @@ static const struct TrainerMon sParty_Route115Falkner[] = {
     .iv = TRAINER_PARTY_IVS(20, 10, 21, 21, 21, 21),
     .lvl = 15,
     .species = SPECIES_PIDGEOTTO,
-    .ev = TRAINER_PARTY_EVS(4, 0, 0, 100, 0, 100),
+    .ev = TRAINER_PARTY_EVS(4, 100, 0, 100, 0, 100),
     .heldItem = ITEM_SITRUS_BERRY,
     .moves = {MOVE_WING_ATTACK, MOVE_AIR_CUTTER, MOVE_QUICK_ATTACK, MOVE_TWISTER},
     .ability = ABILITY_BIG_PECKS,
