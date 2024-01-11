@@ -4,22 +4,23 @@
 #include "level_caps.h"
 #include "pokemon.h"
 
-const u16 sLevelCapFlagMap[][2] =
-{
-    {FLAG_BADGE01_GET, 15},
-    {FLAG_BADGE02_GET, 21},
-    {FLAG_BADGE03_GET, 30},
-    {FLAG_BADGE04_GET, 36},
-    {FLAG_BADGE05_GET, 41},
-    {FLAG_BADGE06_GET, 47},
-    {FLAG_BADGE07_GET, 53},
-    {FLAG_BADGE08_GET, 60},
-    {FLAG_IS_CHAMPION, 70},
-};
 
-u8 GetCurrentLevelCap(void)
+u32 GetCurrentLevelCap(void)
 {
-    u8 i;
+    static const u32 sLevelCapFlagMap[][2] =
+    {
+        {FLAG_BADGE01_GET, 15},
+        {FLAG_BADGE02_GET, 21},
+        {FLAG_BADGE03_GET, 30},
+        {FLAG_BADGE04_GET, 36},
+        {FLAG_BADGE05_GET, 41},
+        {FLAG_BADGE06_GET, 47},
+        {FLAG_BADGE07_GET, 53},
+        {FLAG_BADGE08_GET, 60},
+        {FLAG_IS_CHAMPION, 70},
+    };
+
+    u32 i;
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {
@@ -37,13 +38,13 @@ u8 GetCurrentLevelCap(void)
     return MAX_LEVEL;
 }
 
-const u16 sExpScalingDown[5] = { 4, 8, 16, 32, 64 };
-const u16 sExpScalingUp[5]   = { 16, 8, 4, 2, 1 };
-
-u16 GetSoftLevelCapExpValue(u8 level, u32 expValue)
+u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
 {
-    u8 levelDifference;
-    u8 currentLevelCap = GetCurrentLevelCap();
+    static const u32 sExpScalingDown[5] = { 4, 8, 16, 32, 64 };
+    static const u32 sExpScalingUp[5]   = { 16, 8, 4, 2, 1 };
+
+    u32 levelDifference;
+    u32 currentLevelCap = GetCurrentLevelCap();
 
     if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
         return expValue;
