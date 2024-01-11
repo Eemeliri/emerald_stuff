@@ -163,6 +163,7 @@ Route115_Falkner::
 	msgbox Route115_Falkner_Text_9
 	fadescreen FADE_TO_BLACK
 	delay 30
+	closemessage
 	removeobject 24
 	removeobject 25
 	delay 30
