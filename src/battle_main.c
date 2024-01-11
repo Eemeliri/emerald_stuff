@@ -407,6 +407,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     TRAINER_CLASS(G_ADMIN, "Galactic Admin", 20, DEFAULT_BALL),
     TRAINER_CLASS(PKMN_TRAINER, "{PKMN} Trainer", DEFAULT_MONEY, DEFAULT_BALL),
     TRAINER_CLASS(K_LEADER, "Gym Leader", 20, DEFAULT_BALL),
+    TRAINER_CLASS(J_LEADER, "Gym Leader", 20, DEFAULT_BALL),
     TRAINER_CLASS(SPIRIT, "Spirit", DEFAULT_MONEY, DEFAULT_BALL),
     TRAINER_CLASS(LAWRENCE, "Collector", 20, DEFAULT_BALL),
 };
@@ -5329,6 +5330,7 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_CHAMPION:
             PlayBGM(MUS_DP_VICTORY_CHAMPION);
             break;
+        case TRAINER_CLASS_J_LEADER:
         case TRAINER_CLASS_K_LEADER:
             PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
             break;

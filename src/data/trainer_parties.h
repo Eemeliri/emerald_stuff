@@ -3263,14 +3263,14 @@ static const struct TrainerMon sParty_Drake[] = {
 
 static const struct TrainerMon sParty_Roxanne1[] = {
     {
-    .iv = TRAINER_PARTY_IVS(10, 15, 0, 15, 0, 0),
+    .iv = TRAINER_PARTY_IVS(10, 15, 10, 15, 10, 10),
     .lvl = 14,
     .species = SPECIES_RHYHORN,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_HORN_ATTACK, MOVE_SCARY_FACE, MOVE_ICE_FANG, MOVE_ROCK_TOMB}
     },
     {
-    .iv = TRAINER_PARTY_IVS(10, 0, 15, 15, 15, 0),
+    .iv = TRAINER_PARTY_IVS(10, 10, 15, 15, 15, 10),
     .lvl = 14,
     .species = SPECIES_LILEEP,
     .heldItem = ITEM_NONE,
@@ -3278,7 +3278,7 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .moves = {MOVE_SANDSTORM, MOVE_ABSORB, MOVE_CONSTRICT, MOVE_ROCK_TOMB}
     },
     {
-    .iv = TRAINER_PARTY_IVS(15, 0, 15, 15, 15, 0),
+    .iv = TRAINER_PARTY_IVS(15, 10, 15, 15, 15, 10),
     .lvl = 15,
     .species = SPECIES_NOSEPASS,
     .ball = ITEM_FRIEND_BALL,
@@ -12284,6 +12284,57 @@ static const struct TrainerMon sParty_GraniteCaveBrock[] = {
     .isShiny = TRUE,
     .ball = ITEM_POKE_BALL,
     }
+};
+
+static const struct TrainerMon sParty_Route115Falkner[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 13,
+    .species = SPECIES_RUFFLET,
+    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .heldItem = ITEM_PECHA_BERRY,
+    .moves = {MOVE_HONE_CLAWS, MOVE_WING_ATTACK, MOVE_SWIFT, MOVE_HELPING_HAND},
+    .ability = ABILITY_HUSTLE,
+    .nature = TRAINER_PARTY_NATURE(NATURE_HASTY),
+    .isShiny = FALSE,
+    .ball = ITEM_QUICK_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 0, 21, 21, 21, 21),
+    .lvl = 14,
+    .species = SPECIES_NOIBAT,
+    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_WING_ATTACK, MOVE_AIR_CUTTER, MOVE_DEFOG, MOVE_TAUNT},
+    .ability = ABILITY_INFILTRATOR,
+    .nature = TRAINER_PARTY_NATURE(NATURE_HARDY),
+    .isShiny = FALSE,
+    .ball = ITEM_GREAT_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(10, 10, 11, 11, 11, 11),
+    .lvl = 14,
+    .species = SPECIES_GLIGAR,
+    .ev = TRAINER_PARTY_EVS(0, 100, 0, 0, 4, 100),
+    .heldItem = ITEM_YACHE_BERRY,
+    .moves = {MOVE_QUICK_ATTACK, MOVE_FURY_CUTTER, MOVE_KNOCK_OFF, MOVE_POISON_STING},
+    .ability = ABILITY_IMMUNITY,
+    .nature = TRAINER_PARTY_NATURE(NATURE_CAREFUL),
+    .isShiny = FALSE,
+    .ball = ITEM_POKE_BALL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 10, 21, 21, 21, 21),
+    .lvl = 15,
+    .species = SPECIES_PIDGEOTTO,
+    .ev = TRAINER_PARTY_EVS(4, 0, 0, 100, 0, 100),
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = {MOVE_WING_ATTACK, MOVE_AIR_CUTTER, MOVE_QUICK_ATTACK, MOVE_TWISTER},
+    .ability = ABILITY_BIG_PECKS,
+    .nature = TRAINER_PARTY_NATURE(NATURE_HASTY),
+    .isShiny = FALSE,
+    .ball = ITEM_QUICK_BALL,
+    },
 };
 
 static const struct TrainerMon sParty_PostgameBlaine[] = {

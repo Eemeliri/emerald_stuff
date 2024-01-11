@@ -913,7 +913,7 @@
 #define TRAINER_BRAWLYDOJO_SPEED            906
 #define TRAINER_BRAWLYDOJO_EXP              907
 #define TRAINER_GRANITECAVE_BROCK           908
-#define TRAINER_UNUSED1                     909
+#define TRAINER_ROUTE115_FALKNER            909
 #define TRAINER_UNUSED2                     910
 #define TRAINER_UNUSED3                     911
 #define TRAINER_UNUSED4                     912

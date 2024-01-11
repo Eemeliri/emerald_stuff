@@ -866,6 +866,18 @@ static const struct SpriteFrameImage sPicTable_Chuck[] = {
     overworld_frame(gObjectEventPic_Chuck, 2, 4, 8),
 };
 
+static const struct SpriteFrameImage sPicTable_Falkner[] = {
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Falkner, 2, 4, 8),
+};
+
 static const struct SpriteFrameImage sPicTable_Steven[] = {
     overworld_ascending_frames(gObjectEventPic_Steven, 2, 4),
 };

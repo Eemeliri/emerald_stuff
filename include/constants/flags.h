@@ -686,7 +686,7 @@
 #define FLAG_DEWFORD_GYM_TM66  0x283
 #define FLAG_GRANITECAVE_BROCK  0x284
 #define FLAG_OBTAINED_KUBFU  0x285 
-#define FLAG_UNUSED_0x286  0x286 // Unused Flag
+#define FLAG_HIDE_ROUTE115_FALKNER  0x286
 #define FLAG_UNUSED_0x287  0x287 // Unused Flag
 #define FLAG_UNUSED_0x288  0x288 // Unused Flag
 #define FLAG_UNUSED_0x289  0x289 // Unused Flag

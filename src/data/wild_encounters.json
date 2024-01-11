@@ -16150,7 +16150,7 @@
           "map": "MAP_RUGGED_CAVE",
           "base_label": "gRuggedCave0",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 5,
             "mons": [
               {
                 "min_level": 9,

@@ -2328,7 +2328,6 @@ Route116_Text_DevanPostBattle:
 	.string "types, that's what I ought to do.$"
 
 Route116_Text_JohnsonIntro:
-	.string "It's a dead end up here.\n"
 	.string "I'm bored, so can we battle?$"
 
 Route116_Text_JohnsonDefeat:
