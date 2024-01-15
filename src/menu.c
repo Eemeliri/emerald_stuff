@@ -19,6 +19,7 @@
 #include "text_window.h"
 #include "window.h"
 #include "constants/songs.h"
+#include "map_name_popup.h"
 
 #define DLG_WINDOW_PALETTE_NUM 15
 #define DLG_WINDOW_BASE_TILE_NUM 0x200
@@ -59,7 +60,7 @@ static void WindowFunc_DrawStdFrameWithCustomTileAndPalette(u8, u8, u8, u8, u8, 
 static void WindowFunc_ClearStdWindowAndFrameToTransparent(u8, u8, u8, u8, u8, u8);
 static void task_free_buf_after_copying_tile_data_to_vram(u8 taskId);
 
-EWRAM_DATA u8 gPopupTaskId;
+EWRAM_DATA u8 gPopupTaskId = 0;
 
 static EWRAM_DATA u8 sStartMenuWindowId = 0;
 static EWRAM_DATA u8 sPrimaryPopupWindowId = 0;
@@ -522,7 +523,7 @@ static u16 UNUSED GetStandardFrameBaseTileNum(void)
     return STD_WINDOW_BASE_TILE_NUM;
 }
 
-u8 AddMapNamePopUpWindow(void)
+u8 AddPrimaryPopUpWindow(void)
 {
     if (sPrimaryPopupWindowId == WINDOW_NONE)
         sPrimaryPopupWindowId = AddWindowParameterized(0, 0, 0, 30, 3, 14, 0x107);
@@ -536,7 +537,7 @@ u8 GetPrimaryPopUpWindowId(void)
 
 void RemovePrimaryPopUpWindow(void)
 {
-    if (sPrimaryPopupWindowId   != WINDOW_NONE)
+    if (sPrimaryPopupWindowId  != WINDOW_NONE)
     {
         RemoveWindow(sPrimaryPopupWindowId);
         sPrimaryPopupWindowId = WINDOW_NONE;
@@ -2182,7 +2183,7 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
 }
 
 // BSBob map pop-ups
-u8 AddWeatherPopUpWindow(void)
+u8 AddSecondaryPopUpWindow(void)
 {
     if (sSecondaryPopupWindowId == WINDOW_NONE)
         sSecondaryPopupWindowId = AddWindowParameterized(0, 0, 17, 30, 3, 14, 0x161);
@@ -2211,7 +2212,8 @@ void HBlankCB_DoublePopupWindow(void)
     if (scanline < 80 || scanline > 160)
     {
         REG_BG0VOFS = offset;
-        //REG_BLDALPHA = BLDALPHA_BLEND(12, 7);
+        if(MAP_POPUP_ALPHA_BLEND)
+            REG_BLDALPHA = BLDALPHA_BLEND(15, 5);
     }
     else
     {

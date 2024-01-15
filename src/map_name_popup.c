@@ -19,25 +19,26 @@
 #include "constants/layouts.h"
 #include "constants/region_map_sections.h"
 #include "constants/weather.h"
-#include "field_weather.h"
 
 // static functions
 static void Task_MapNamePopUpWindow(u8 taskId);
 static void ShowMapNamePopUpWindow(void);
 static void LoadMapNamePopUpWindowBgs(void);
 
-static const u16 sMapPopUp_Palette[16] = INCBIN_U16("graphics/interface/map_popup_palette.gbapal");
+static const u8 sMapPopUpTiles_Primary[] = INCBIN_U8("graphics/interface/map_popup_primary.4bpp");
+static const u8 sMapPopUpTiles_Secondary[] = INCBIN_U8("graphics/interface/map_popup_secondary.4bpp");
+static const u16 sMapPopUpTiles_Palette[16] = INCBIN_U16("graphics/interface/map_popup_palette.gbapal");
 
-static const u8 sText_PyramidFloor1[] = _("Pyramid Floor 1");
-static const u8 sText_PyramidFloor2[] = _("Pyramid Floor 2");
-static const u8 sText_PyramidFloor3[] = _("Pyramid Floor 3");
-static const u8 sText_PyramidFloor4[] = _("Pyramid Floor 4");
-static const u8 sText_PyramidFloor5[] = _("Pyramid Floor 5");
-static const u8 sText_PyramidFloor6[] = _("Pyramid Floor 6");
-static const u8 sText_PyramidFloor7[] = _("Pyramid Floor 7");
-static const u8 sText_Pyramid[] = _("Pyramid");
+static const u8 sText_PyramidFloor1[] = _("PYRAMID FLOOR 1");
+static const u8 sText_PyramidFloor2[] = _("PYRAMID FLOOR 2");
+static const u8 sText_PyramidFloor3[] = _("PYRAMID FLOOR 3");
+static const u8 sText_PyramidFloor4[] = _("PYRAMID FLOOR 4");
+static const u8 sText_PyramidFloor5[] = _("PYRAMID FLOOR 5");
+static const u8 sText_PyramidFloor6[] = _("PYRAMID FLOOR 6");
+static const u8 sText_PyramidFloor7[] = _("PYRAMID FLOOR 7");
+static const u8 sText_Pyramid[] = _("PYRAMID");
 
-static const u8 *const sBattlePyramid_MapHeaderStrings[FRONTIER_STAGES_PER_CHALLENGE + 1] =
+static const u8 * const sBattlePyramid_MapHeaderStrings[FRONTIER_STAGES_PER_CHALLENGE + 1] =
 {
     sText_PyramidFloor1,
     sText_PyramidFloor2,
@@ -84,7 +85,10 @@ void ShowMapNamePopup(void)
         {
             // New pop up window
             gPopupTaskId = CreateTask(Task_MapNamePopUpWindow, 100);
-            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+
+            if (MAP_POPUP_ALPHA_BLEND)
+                SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+
             gTasks[gPopupTaskId].tState = STATE_PRINT;
             gTasks[gPopupTaskId].tYOffset = POPUP_OFFSCREEN_Y;
         }
@@ -177,9 +181,14 @@ void HideMapNamePopUpWindow(void)
         DisableInterrupts(INTR_FLAG_HBLANK);
         SetHBlankCallback(NULL);
         SetGpuReg_ForcedBlank(REG_OFFSET_BG0VOFS, 0);
-        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
-        //SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(12, 7));
+
+        if (MAP_POPUP_ALPHA_BLEND)
+        {
+            SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ);
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(12, 7));
+        }
+
         DestroyTask(gPopupTaskId);
     }
 }
@@ -188,7 +197,7 @@ static void ShowMapNamePopUpWindow(void)
 {
     u8 mapDisplayHeader[24];
     u8 *withoutPrefixPtr;
-    u8 mapNameX, timeX, mapNameY, timeY, mapNamePopUpWindowId, weatherPopUpWindowId;
+    u8 mapNameX, timeX, mapNameY, timeY, primaryPopUpWindowId, secondaryPopUpWindowId;
     const u8 *mapDisplayHeaderSource;
 
     mapNameX = 8;
@@ -196,13 +205,13 @@ static void ShowMapNamePopUpWindow(void)
     timeX = 5;
     timeY = 8;
 
-    //SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
+    if (MAP_POPUP_ALPHA_BLEND)
+        SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
 
-    mapNamePopUpWindowId = AddMapNamePopUpWindow();
-    weatherPopUpWindowId = AddWeatherPopUpWindow();
+    primaryPopUpWindowId = AddPrimaryPopUpWindow();
+    secondaryPopUpWindowId = AddSecondaryPopUpWindow();
 
     LoadMapNamePopUpWindowBgs();
-    LoadPalette(gPopUpWindowBorder_Palette, 0xE0, 32);
 
     if (InBattlePyramid())
     {
@@ -221,30 +230,28 @@ static void ShowMapNamePopUpWindow(void)
     else
     {
         withoutPrefixPtr = &(mapDisplayHeader[3]);
-        FlagSet(FLAG_TEMP_1);
         GetMapName(withoutPrefixPtr, gMapHeader.regionMapSectionId, 0);
-        FlagClear(FLAG_TEMP_1);
     }
 
     mapDisplayHeader[0] = EXT_CTRL_CODE_BEGIN;
     mapDisplayHeader[1] = EXT_CTRL_CODE_HIGHLIGHT;
     mapDisplayHeader[2] = TEXT_COLOR_TRANSPARENT;
 
-    AddTextPrinterParameterized(mapNamePopUpWindowId, FONT_SHORT, mapDisplayHeader, mapNameX, mapNameY, TEXT_SKIP_DRAW, NULL);
-    FormatDecimalTimeWithoutSeconds(withoutPrefixPtr, gLocalTime.hours, gLocalTime.minutes, FALSE);
-    AddTextPrinterParameterized(weatherPopUpWindowId, FONT_SMALL, mapDisplayHeader, GetStringRightAlignXOffset(FONT_SMALL, mapDisplayHeader, DISPLAY_WIDTH) - timeX, timeY, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(primaryPopUpWindowId, FONT_SHORT, mapDisplayHeader, mapNameX, mapNameY, TEXT_SKIP_DRAW, NULL);
+    FormatDecimalTimeWithoutSeconds(withoutPrefixPtr, gLocalTime.hours, gLocalTime.minutes, MAP_POPUP_24_HOUR_TIME);
+    AddTextPrinterParameterized(secondaryPopUpWindowId, FONT_SMALL, mapDisplayHeader, GetStringRightAlignXOffset(FONT_SMALL, mapDisplayHeader, DISPLAY_WIDTH) - timeX, timeY, TEXT_SKIP_DRAW, NULL);
 
-    CopyWindowToVram(mapNamePopUpWindowId, COPYWIN_FULL);
-    CopyWindowToVram(weatherPopUpWindowId, COPYWIN_FULL);
+    CopyWindowToVram(primaryPopUpWindowId, COPYWIN_FULL);
+    CopyWindowToVram(secondaryPopUpWindowId, COPYWIN_FULL);
 }
 
 static void LoadMapNamePopUpWindowBgs(void)
 {
-    u8 mapNamePopUpWindowId = GetPrimaryPopUpWindowId();
-    u8 weatherPopUpWindowId = GetSecondaryPopUpWindowId();
+    u8 primaryPopUpWindowId = GetPrimaryPopUpWindowId();
+    u8 secondaryPopUpWindowId = GetSecondaryPopUpWindowId();
     u16 regionMapSectionId = gMapHeader.regionMapSectionId;
 
-    if (regionMapSectionId >= KANTO_MAPSEC_START && regionMapSectionId <= MAPSEC_NONE)
+    if (regionMapSectionId >= KANTO_MAPSEC_START)
     {
         if (regionMapSectionId > KANTO_MAPSEC_END)
             regionMapSectionId -= KANTO_MAPSEC_COUNT;
@@ -252,9 +259,11 @@ static void LoadMapNamePopUpWindowBgs(void)
             regionMapSectionId = 0; // Discard kanto region sections;
     }
 
-    PutWindowTilemap(mapNamePopUpWindowId);
-    PutWindowTilemap(weatherPopUpWindowId);
+    LoadPalette(sMapPopUpTiles_Palette, BG_PLTT_ID(14), sizeof(sMapPopUpTiles_Palette));
 
-    BlitBitmapRectToWindow(mapNamePopUpWindowId, gPopUpWindowBorder_Tiles, 0, 0, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
-    BlitBitmapRectToWindow(weatherPopUpWindowId, gPopUpWindowBorder_Tiles, 0, 24, DISPLAY_WIDTH, 24, 0, 0, DISPLAY_WIDTH, 24);
+    CopyToWindowPixelBuffer(primaryPopUpWindowId, sMapPopUpTiles_Primary, sizeof(sMapPopUpTiles_Primary), 0);
+    CopyToWindowPixelBuffer(secondaryPopUpWindowId, sMapPopUpTiles_Secondary, sizeof(sMapPopUpTiles_Secondary), 0);
+
+    PutWindowTilemap(primaryPopUpWindowId);
+    PutWindowTilemap(secondaryPopUpWindowId);
 }

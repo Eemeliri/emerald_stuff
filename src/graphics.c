@@ -2063,7 +2063,4 @@ const u32 gSummaryExpBar_Tiles[] = INCBIN_U32("graphics/summary_screen/exp_bar.4
 const u32 gSummaryHealthBar_Tiles[] = INCBIN_U32("graphics/summary_screen/hp_bar.4bpp.lz");
 const u16 gExpBarHealthBarGreenPal[] = INCBIN_U16("graphics/summary_screen/hp-exp_bar.gbapal");
 
-// BSBob map pop-ups
-const u8 gPopUpWindowBorder_Tiles[] = INCBIN_U8("graphics/interface/map_popup_tiles.4bpp");
-const u16 gPopUpWindowBorder_Palette[] = INCBIN_U16("graphics/interface/map_popup_palette.gbapal");
 
