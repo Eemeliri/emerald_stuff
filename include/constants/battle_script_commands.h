@@ -246,10 +246,8 @@
 #define VARIOUS_STORE_HEALING_WISH                   153
 #define VARIOUS_HIT_SWITCH_TARGET_FAILED             154
 #define VARIOUS_TRY_REVIVAL_BLESSING                 155
-#define VARIOUS_TRY_TRAINER_SLIDE_MSG_Z_MOVE         156
-#define VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION 157
-#define VARIOUS_TRY_ACTIVATE_ROCKY_END               158
-#define VARIOUS_HANDLE_ULTRA_BURST                   159
+#define VARIOUS_TRY_ACTIVATE_ROCKY_END               156
+#define VARIOUS_SET_ARG_TO_BATTLE_DAMAGE             157
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

@@ -700,8 +700,10 @@
 #define STRINGID_ARAINBOWAPPEAREDONSIDE               698
 #define STRINGID_THETWOMOVESBECOMEONE                 699
 #define STRINGID_ELECTROSHOCKCHARGING                 700
+#define STRINGID_ITEMWASUSEDUP                        701
+#define STRINGID_ATTACKERLOSTITSTYPE                  702
 
-#define BATTLESTRINGS_COUNT                           701
+#define BATTLESTRINGS_COUNT                           703
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
