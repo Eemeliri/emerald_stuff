@@ -2065,8 +2065,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .baseSpeed     = 60,
         .baseSpAttack  = AEGISLASH_MAIN_STAT,
         .baseSpDefense = 50,
+    #if P_UPDATED_EVS >= GEN_7
         .evYield_Attack = 2,
         .evYield_SpAttack = 1,
+    #else
+        .evYield_Defense = 2,
+        .evYield_SpDefense = 1,
+    #endif
         .description = COMPOUND_STRING(
             "Once upon a time, a king with an\n"
             "Aegislash reigned over the land. His\n"
@@ -4332,7 +4337,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 11,
         .weight = 278,
         .description = COMPOUND_STRING(
-            ""),
+            "The impurities upon its body's surface\n"
+            "have fallen away, sparkling so brilliantly\n"
+            "that cannot be observed directly.\n"
+            "It is known as “the Royal Pink Princess”."),
         .pokemonScale = 365,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -4422,7 +4430,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 65,
         .weight = 490,
         .description = COMPOUND_STRING(
-            ""),
+            "It is the true form of Hoopa, which has had\n"
+            "its power sealed away. The rings it carries\n"
+            "have the power to bend dimensions and are\n"
+            "able to seize anything in the world."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
