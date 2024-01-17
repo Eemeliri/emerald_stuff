@@ -1011,3 +1011,14 @@ const struct Tileset gTileset_DewfordDojoBuilding =
     .metatileAttributes = gMetatileAttributes_DewfordDojoBuilding,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Cave2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Cave2,
+    .palettes = gTilesetPalettes_Cave2,
+    .metatiles = gMetatiles_Cave2,
+    .metatileAttributes = gMetatileAttributes_Cave2,
+    .callback = NULL,
+};

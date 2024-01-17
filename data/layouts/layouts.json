@@ -5110,6 +5110,16 @@
       "secondary_tileset": "gTileset_DewfordDojoBuilding",
       "border_filepath": "data/layouts/BrawlyDojoTrainingRoom/border.bin",
       "blockdata_filepath": "data/layouts/BrawlyDojoTrainingRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARK_CAVE",
+      "name": "DarkCave_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave2",
+      "border_filepath": "data/layouts/DarkCave/border.bin",
+      "blockdata_filepath": "data/layouts/DarkCave/map.bin"
     }
   ]
 }
