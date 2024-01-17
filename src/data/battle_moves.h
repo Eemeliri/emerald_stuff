@@ -11156,7 +11156,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_DARTS] =
     {
-        .effect = EFFECT_MULTI_HIT, //TODO
+        .effect = EFFECT_HIT, // TODO: EFFECT_DRAGON_DARTS
         .power = 50,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -13567,7 +13567,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHIC_NOISE] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_PSYCHIC_NOISE
+        .effect = EFFECT_HIT,
         .power = 75,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
@@ -13577,6 +13577,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .soundMove = TRUE,
         .ignoresSubstitute = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_PSYCHIC_NOISE,
+            .chance = 100,
+        }),
     },
 
     [MOVE_UPPER_HAND] =

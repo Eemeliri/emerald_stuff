@@ -3122,6 +3122,9 @@ u8 GetMonsStateToDoubles_2(void)
     s32 aliveCount = 0;
     s32 i;
 
+    if (OW_DOUBLE_APPROACH_WITH_ONE_MON)
+        return PLAYER_HAS_TWO_USABLE_MONS;
+
     for (i = 0; i < PARTY_SIZE; i++)
     {
         u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL);
@@ -3508,15 +3511,15 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             }
 
             // Cure status
-            if ((itemEffect[i] & ITEM3_SLEEP) && HealStatusConditions(mon, partyIndex, STATUS1_SLEEP, battlerId) == 0)
+            if ((itemEffect[i] & ITEM3_SLEEP) && HealStatusConditions(mon, STATUS1_SLEEP, battlerId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[i] & ITEM3_POISON) && HealStatusConditions(mon, partyIndex, STATUS1_PSN_ANY | STATUS1_TOXIC_COUNTER, battlerId) == 0)
+            if ((itemEffect[i] & ITEM3_POISON) && HealStatusConditions(mon, STATUS1_PSN_ANY | STATUS1_TOXIC_COUNTER, battlerId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[i] & ITEM3_BURN) && HealStatusConditions(mon, partyIndex, STATUS1_BURN, battlerId) == 0)
+            if ((itemEffect[i] & ITEM3_BURN) && HealStatusConditions(mon, STATUS1_BURN, battlerId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[i] & ITEM3_FREEZE) && HealStatusConditions(mon, partyIndex, STATUS1_FREEZE | STATUS1_FROSTBITE, battlerId) == 0)
+            if ((itemEffect[i] & ITEM3_FREEZE) && HealStatusConditions(mon, STATUS1_FREEZE | STATUS1_FROSTBITE, battlerId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[i] & ITEM3_PARALYSIS) && HealStatusConditions(mon, partyIndex, STATUS1_PARALYSIS, battlerId) == 0)
+            if ((itemEffect[i] & ITEM3_PARALYSIS) && HealStatusConditions(mon, STATUS1_PARALYSIS, battlerId) == 0)
                 retVal = FALSE;
             break;
 
@@ -3852,7 +3855,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     return retVal;
 }
 
-bool8 HealStatusConditions(struct Pokemon *mon, u32 battlePartyId, u32 healMask, u8 battlerId)
+bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
 {
     u32 status = GetMonData(mon, MON_DATA_STATUS, 0);
 
@@ -5716,11 +5719,14 @@ static s32 GetWildMonTableIdInAlteringCave(u16 species)
 
 static inline bool32 CanFirstMonBoostHeldItemRarity(void)
 {
+    u32 ability;
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return FALSE;
-    else if ((OW_COMPOUND_EYES < GEN_9) && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
+    
+    ability = GetMonAbility(&gPlayerParty[0]);
+    if ((OW_COMPOUND_EYES < GEN_9) && ability == ABILITY_COMPOUND_EYES)
         return TRUE;
-    else if ((OW_SUPER_LUCK == GEN_8) && GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK)
+    else if ((OW_SUPER_LUCK == GEN_8) && ability == ABILITY_SUPER_LUCK)
         return TRUE;
     return FALSE;
 }
