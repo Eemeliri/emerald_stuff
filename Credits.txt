@@ -19,6 +19,7 @@ Sierraffinity - Day/Night System, e-Reader functionality
 Spherical Ice - Sliding puzzles
 Merrp - Following Pokemon, Shadows
 Fo0xerz - Lawrence III sprite
+Nicoswag - Ability popup design
 ghoulslash - DexNav, Auto-run, Mart Items by Badge Count, Bag Sorting, Repeated Field Medicine Use, Pokecenters don't count eggs, Overworld Expansion, givecustommon 
 ipatix - High Quality Audio Mixer
 Wyserth - Decapitalisation
