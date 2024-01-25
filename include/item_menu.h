@@ -21,6 +21,8 @@ enum {
     ITEMMENULOCATION_LAST,
 };
 
+
+
 // Window IDs for the item menu
 enum {
     ITEMWIN_1x1,
@@ -58,10 +60,16 @@ struct BagPosition
 
 extern struct BagPosition gBagPosition;
 
+enum{
+	BAG_MENU_BG_NORMAL,
+	BAG_MENU_BG_SCROLLING,
+	NUM_BAG_BACKGROUNDS,
+};
+
 struct BagMenu
 {
     void (*newScreenCallback)(void);
-    u8 tilemapBuffer[BG_SCREEN_SIZE];
+    u8 tilemapBuffer[NUM_BAG_BACKGROUNDS][BG_SCREEN_SIZE];
     u8 spriteIds[ITEMMENUSPRITE_COUNT];
     u8 windowIds[ITEMWIN_COUNT];
     u8 toSwapPos;
