@@ -5,7 +5,7 @@ BSBob - Map popup
 Voluptua - town map port
 Beniboy for helping with numerous issues during developement
 Skeli, Ghoulslash, HN, Karathan, McBoy, Greenphx, MGriffin, BSBob, Raymie Humbert, missiri and Tustin2121 for Quest Menu
-BelialClover for EV allocation system
+BelialClover/Rioluwott for EV allocation system, ROWE bag screen
 Paccy - his glimmering emerald was used as a base
 KingTapir - Desert Tiles
 Zeo254 - some tilesets
