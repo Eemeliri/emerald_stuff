@@ -1303,7 +1303,7 @@ void AnimatePartySlot(u8 slot, u8 animNum)
             if (animNum == 0)
                 SetBgTilemapPalette(1, 23, 17, 7, 2, 1);
             else
-                SetBgTilemapPalette(1, 23, 17, 7, 2, 2);
+                SetBgTilemapPalette(1, 23, 17, 7, 2, 1);
         }
         else if (animNum == 0)
         {
@@ -1311,7 +1311,7 @@ void AnimatePartySlot(u8 slot, u8 animNum)
         }
         else
         {
-            SetBgTilemapPalette(1, 23, 18, 7, 2, 2);
+            SetBgTilemapPalette(1, 23, 18, 7, 2, 1);
         }
         spriteId = sPartyMenuInternal->spriteIdCancelPokeball;
         break;
