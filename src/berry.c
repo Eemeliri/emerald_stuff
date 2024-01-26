@@ -40,7 +40,7 @@ static void AddTreeBonus(struct BerryTree *tree, u8 bonus);
 #error "OW_BERRY_GROWTH_RATE must be between GEN_3 and GEN_7!"
 #endif
 
-#if OW_BERRY_YIELD_RATE < GEN_3 || (OW_BERRY_YIELD_RATE > GEN_6 && OW_BERRY_GROWTH_RATE != GEN_6_ORAS)
+#if OW_BERRY_YIELD_RATE < GEN_3 || (OW_BERRY_YIELD_RATE > GEN_6 && OW_BERRY_YIELD_RATE != GEN_6_ORAS)
 #error "OW_BERRY_YIELD_RATE must be between GEN_3 and GEN_6!"
 #elif OW_BERRY_YIELD_RATE == GEN_5
 #error "OW_BERRY_YIELD_RATE can not be GEN_5!"
@@ -1983,11 +1983,6 @@ void GetBerryNameByBerryType(u8 berry, u8 *string)
     string[BERRY_NAME_LENGTH] = EOS;
 }
 
-void GetBerryCountStringByBerryType(u8 berry, u8 *dest, u32 berryCount)
-{
-    GetBerryCountString(dest, GetBerryInfo(berry)->name, berryCount);
-}
-
 void AllowBerryTreeGrowth(u8 id)
 {
     GetBerryTreeInfo(id)->stopGrowth = FALSE;
@@ -2130,7 +2125,7 @@ void ObjectEventInteractionGetBerryTreeData(void)
         gSpecialVar_0x8004 = GetStageByBerryTreeId(id);
     gSpecialVar_0x8005 = GetNumStagesWateredByBerryTreeId(id);
     gSpecialVar_0x8006 = GetBerryCountByBerryTreeId(id);
-    GetBerryCountStringByBerryType(berry, gStringVar1, gSpecialVar_0x8006);
+    CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar1, gSpecialVar_0x8006);
 }
 
 void ObjectEventInteractionGetBerryName(void)
@@ -2146,12 +2141,12 @@ void ObjectEventInteractionGetBerryCountString(void)
     u8 count = GetBerryCountByBerryTreeId(treeId);
     
     gSpecialVar_0x8006 = BerryTypeToItemId(berry);
-    GetBerryCountStringByBerryType(berry, gStringVar1, count);
+    CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar1, count);
     berry = GetTreeMutationValue(treeId);
     if (berry > 0)
     {
         count = 1;
-        GetBerryCountStringByBerryType(berry, gStringVar3, count);
+        CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar3, count);
         gSpecialVar_Result = TRUE;
     }
     else
