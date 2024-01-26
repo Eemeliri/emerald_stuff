@@ -1465,8 +1465,8 @@ static void Task_BagMenu_HandleInput(u8 taskId)
     s32 listPosition;
     
     //Scrolling BG
-    ChangeBgX(3, 128, 1);
-    ChangeBgY(3, 128, 2);
+    ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3, Q_8_8(-0.25), 2);
 
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
@@ -1631,8 +1631,8 @@ static void Task_SwitchBagPocket(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    ChangeBgX(3, 128, 1);
-    ChangeBgY(3, 128, 2);
+    ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3, Q_8_8(-0.25), 2);
 
     if (!MenuHelpers_IsLinkActive() && !IsWallysBag())
     {
@@ -1730,8 +1730,8 @@ static void Task_HandleSwappingItemsInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    ChangeBgX(3, 128, 1);
-    ChangeBgY(3, 128, 2);
+    ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3, Q_8_8(-0.25), 2);
 
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
@@ -1988,8 +1988,8 @@ static void Task_ItemContext_Normal(u8 taskId)
 
 static void Task_ItemContext_SingleRow(u8 taskId)
 {
-    ChangeBgX(3, 128, 1);
-    ChangeBgY(3, 128, 2);
+    ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3, Q_8_8(-0.25), 2);
 
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
@@ -2012,8 +2012,8 @@ static void Task_ItemContext_SingleRow(u8 taskId)
 
 static void Task_ItemContext_MultipleRows(u8 taskId)
 {
-    ChangeBgX(3, 128, 1);
-    ChangeBgY(3, 128, 2);
+    ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3, Q_8_8(-0.25), 2);
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
         s8 cursorPos = Menu_GetCursorPos();
