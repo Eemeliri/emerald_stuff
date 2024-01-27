@@ -318,6 +318,7 @@ static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
 EWRAM_DATA static u16 sStatsMoves[MOVES_COUNT_TOTAL] = {0};
 EWRAM_DATA static u16 sStatsMovesTMHM_ID[NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES] = {0};
 
+EWRAM_DATA u16 gSpeciesToLoad = SPECIES_NONE;
 
 struct SearchOptionText
 {
@@ -618,6 +619,8 @@ static u8 ShowCategoryIcon(u32 category);
 static void DestroyCategoryIcon(void);
 
 static u16 NationalPokedexNumToSpeciesHGSS(u16 nationalNum);
+
+static u16 SpeciesToDexListNum(u16 species);
 
 #define TAG_CATEGORY_ICONS 30004
 
@@ -2135,6 +2138,11 @@ void CB2_OpenPokedexPlusHGSS(void)
         SetMainCallback2(CB2_Pokedex);
         CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x80);
+
+        // force load species from party menu
+        if (gSpeciesToLoad != SPECIES_NONE)
+            sPokedexView->selectedPokemon = SpeciesToDexListNum(gSpeciesToLoad);
+
         break;
     }
 }
@@ -2219,6 +2227,21 @@ static void Task_OpenPokedexMainPage(u8 taskId)
 static void Task_HandlePokedexInput(u8 taskId)
 {
     SetGpuReg(REG_OFFSET_BG0VOFS, sPokedexView->menuY);
+
+    // force load species from party menu
+    if (gSpeciesToLoad != SPECIES_NONE)
+    {
+        if (GetFormIdFromFormSpeciesId(gSpeciesToLoad) != 0)
+            sPokedexView->formSpecies = gSpeciesToLoad;
+
+        TryDestroyStatBars();
+        UpdateSelectedMonSpriteId();
+        BeginNormalPaletteFade(~(1 << (gSprites[sPokedexView->selectedMonSpriteId].oam.paletteNum + 16)), 0, 0, 0x10, RGB_BLACK);
+        gSprites[sPokedexView->selectedMonSpriteId].callback = SpriteCB_MoveMonForInfoScreen;
+        gTasks[taskId].func = Task_OpenInfoScreenAfterMonMovement;
+        PlaySE(SE_PIN);
+        FreeWindowAndBgBuffers();
+    }
 
     if (sPokedexView->menuY)
     {
@@ -2373,10 +2396,18 @@ static void Task_WaitForExitInfoScreen(u8 taskId)
     }
     else
     {
+        // close directly to party menu if opened from party menu
+        if (gSpeciesToLoad != SPECIES_NONE)
+        {
+            gTasks[taskId].func = Task_ClosePokedex;
+        }
+        else
+        {
         // Exiting, back to list view
         sLastSelectedPokemon = sPokedexView->selectedPokemon;
         sPokeBallRotation = sPokedexView->pokeBallRotation;
         gTasks[taskId].func = Task_OpenPokedexMainPage;
+        }
     }
 }
 
@@ -2392,7 +2423,12 @@ static void Task_ClosePokedex(u8 taskId)
         ClearMonSprites();
         FreeWindowAndBgBuffers();
         DestroyTask(taskId);
-        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        if (gSpeciesToLoad != SPECIES_NONE)
+            SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
+        else
+            SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+
+        gSpeciesToLoad = SPECIES_NONE;
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         Free(sPokedexView);
     }
@@ -2828,6 +2864,10 @@ static void CreateMonSpritesAtPos(u16 selectedMon, u16 ignored)
     u16 dexNum;
     u8 spriteId;
 
+    // if we load in a particular form from the party menu, we need to load the sprite for it
+    // but only for the middle mon
+    bool8 loadForm = gSpeciesToLoad != SPECIES_NONE && GetFormIdFromFormSpeciesId(gSpeciesToLoad) != 0;
+
     gPaletteFade.bufferTransferDisabled = TRUE;
 
     for (i = 0; i < MAX_MONS_ON_SCREEN; i++)
@@ -2847,9 +2887,14 @@ static void CreateMonSpritesAtPos(u16 selectedMon, u16 ignored)
     dexNum = GetPokemonSpriteToDisplay(selectedMon);
     if (dexNum != 0xFFFF)
     {
+        if (loadForm)
+            sPokedexView->formSpecies = gSpeciesToLoad;
         spriteId = CreatePokedexMonSprite(dexNum, SCROLLING_MON_X, 0x50);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = 0;
+
+        if (loadForm)
+            sPokedexView->formSpecies = 0;
     }
 
     // Create bottom mon sprite
@@ -8685,4 +8730,18 @@ static void PrintSearchParameterTitle(u32 y, const u8 *str)
 static void ClearSearchParameterBoxText(void)
 {
     ClearSearchMenuRect(144, 8, 96, 96);
+}
+
+static u16 SpeciesToDexListNum(u16 species)
+{
+    int i;
+    u16 targetNum = SpeciesToPokedexNum(species);
+
+    for (i = 0; i < NATIONAL_DEX_COUNT; i++)
+    {
+        if (sPokedexView->pokedexList[i].dexNum == targetNum)
+            return i;
+    }
+
+    return SPECIES_NONE;
 }

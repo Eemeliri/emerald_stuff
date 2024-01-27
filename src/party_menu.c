@@ -13,6 +13,7 @@
 #include "data.h"
 #include "decompress.h"
 #include "easy_chat.h"
+#include "pokedex_plus_hgss.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "evolution_scene.h"
@@ -107,6 +108,7 @@ enum {
     MENU_CATALOG_MOWER,
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
+    MENU_POKEDEX,
     MENU_FIELD_MOVES
 };
 
@@ -509,6 +511,7 @@ static bool8 SetUpFieldMove_RockClimb(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
+static void CursorCb_Pokedex(u8 taskId);
 
 // static const data
 #include "data/party_menu.h"
@@ -2931,6 +2934,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         else
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
     }
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_POKEDEX);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -6100,6 +6104,15 @@ static void Task_SacredAshDisplayHPRestored(u8 taskId)
 #undef tUsedOnSlot
 #undef tHadEffect
 #undef tLastSlotUsed
+
+static void CursorCb_Pokedex(u8 taskId)
+{
+    gSpeciesToLoad = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
+
+    PlaySE(SE_SELECT);
+    sPartyMenuInternal->exitCallback = CB2_OpenPokedexPlusHGSS;
+    Task_ClosePartyMenu(taskId);
+}
 
 void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 {
