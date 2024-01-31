@@ -159,9 +159,6 @@ extern const struct Trainer gTrainers[];
 extern const struct Trainer gBattlePartners[];
 
 extern const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT];
-extern const u8 gMoveNames[MOVES_COUNT_DYNAMAX][MOVE_NAME_LENGTH + 1];
-extern const u8 *const gZMoveNames[];
-extern const u8 *const gMaxMoveNames[];
 
 // Follower text messages
 extern const struct FollowerMsgInfo gFollowerHappyMessages[];

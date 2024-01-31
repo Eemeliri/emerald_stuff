@@ -739,13 +739,13 @@ static void HandleInputChooseMove(u32 battler)
 
             QueueZMove(battler, chosenMove);
             gBattleStruct->zmove.viewing = FALSE;
-            if (gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].category != BATTLE_CATEGORY_STATUS)
+            if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category != DAMAGE_CATEGORY_STATUS)
                 moveTarget = MOVE_TARGET_SELECTED;  //damaging z moves always have selected target
         }
 
         // Status moves turn into Max Guard when Dynamaxed, targets user.
         if ((IsDynamaxed(battler) || gBattleStruct->dynamax.playerSelect))
-            moveTarget = gBattleMoves[GetMaxMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]])].target;
+            moveTarget = gMovesInfo[GetMaxMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]])].target;
 
         if (moveTarget & MOVE_TARGET_USER)
             gMultiUsePlayerCursor = battler;
@@ -1729,9 +1729,9 @@ static void MoveSelectionDisplayMoveNames(u32 battler)
         MoveSelectionDestroyCursorAt(i);
         if ((gBattleStruct->dynamax.playerSelect && CanDynamax(battler))
             || IsDynamaxed(battler))
-            StringCopy(gDisplayedStringBattle, gMoveNames[GetMaxMove(battler, moveInfo->moves[i])]);
+            StringCopy(gDisplayedStringBattle, GetMoveName(GetMaxMove(battler, moveInfo->moves[i])));
         else
-            StringCopy(gDisplayedStringBattle, gMoveNames[moveInfo->moves[i]]);
+            StringCopy(gDisplayedStringBattle, GetMoveName(moveInfo->moves[i]));
         // Prints on windows B_WIN_MOVE_NAME_1, B_WIN_MOVE_NAME_2, B_WIN_MOVE_NAME_3, B_WIN_MOVE_NAME_4
         BattlePutTextOnWindow(gDisplayedStringBattle, i + B_WIN_MOVE_NAME_1);
         if (moveInfo->moves[i] != MOVE_NONE)
@@ -1771,26 +1771,26 @@ u8 TypeEffectiveness(struct ChooseMoveStruct *moveInfo, u8 targetId, u32 battler
 {
 	bool8 isInverse = (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE)) ? TRUE : FALSE;
 
-	if (gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].power == 0)
+	if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].power == 0)
 		return 10;
 	else
 	{
-		u16 mod = sTypeEffectivenessTable[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type][gBattleMons[targetId].type1];
+		u16 mod = sTypeEffectivenessTable[gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type][gBattleMons[targetId].type1];
 
 		if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
 		{
-			u16 mod2 = sTypeEffectivenessTable[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type][gBattleMons[targetId].type2];
+			u16 mod2 = sTypeEffectivenessTable[gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type][gBattleMons[targetId].type2];
 			MulModifier(&mod, mod2);
 		}
 
-		if (gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].effect == EFFECT_TWO_TYPED_MOVE)
+		if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].effect == EFFECT_TWO_TYPED_MOVE)
 		{
-			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].argument][gBattleMons[targetId].type1];
+			u16 mod3 = sTypeEffectivenessTable[gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].argument][gBattleMons[targetId].type1];
 			MulModifier(&mod, mod3);
 
 			if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
 			{
-				u16 mod4 = sTypeEffectivenessTable[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].argument][gBattleMons[targetId].type2];
+				u16 mod4 = sTypeEffectivenessTable[gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].argument][gBattleMons[targetId].type2];
 				MulModifier(&mod, mod4);
 			}
 		}
@@ -1836,7 +1836,7 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId, u32 battler)
 	txtPtr[0] = 1;
 	txtPtr++;
 
-	StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
+	StringCopy(txtPtr, gTypeNames[gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
 	BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, targetId, battler));
 }
 
@@ -1864,10 +1864,10 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK_TERA)
             type = gBattleMons[battler].type2;
         else
-            type = gBattleMoves[MOVE_IVY_CUDGEL].type;
+            type = gMovesInfo[MOVE_IVY_CUDGEL].type;
     }
     else
-        type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+        type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
 
     StringCopy(txtPtr, gTypeNames[type]);
     BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, 1, battler));
