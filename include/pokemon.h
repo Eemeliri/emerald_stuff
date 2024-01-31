@@ -5,6 +5,7 @@
 #include "constants/items.h"
 #include "constants/region_map_sections.h"
 #include "constants/map_groups.h"
+#include "contest_effect.h"
 
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 #define FORM_SPECIES_END (0xffff)
@@ -444,8 +445,10 @@ struct SpeciesInfo /*0x8C*/
  /* 0x84 */ const struct FormChange *formChangeTable;
 };
 
-struct BattleMove
+struct MoveInfo
 {
+    const u8 *name;
+    const u8 *description;
     u16 effect;
     u8 power;
     u8 type:5;
@@ -517,6 +520,12 @@ struct BattleMove
 
     // primary/secondary effects
     const struct AdditionalEffect *additionalEffects;
+
+    // contest parameters
+    u8 contestEffect;
+    u8 contestCategory:3;
+    u8 contestComboStarterId;
+    u8 contestComboMoves[MAX_COMBO_MOVES];
 };
 
 #define EFFECTS_ARR(...) (const struct AdditionalEffect[]) {__VA_ARGS__}
@@ -599,7 +608,7 @@ extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
 extern struct SpriteTemplate gMultiuseSpriteTemplate;
 
-extern const struct BattleMove gBattleMoves[];
+extern const struct MoveInfo gMovesInfo[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct SpeciesInfo gSpeciesInfo[];
@@ -612,7 +621,7 @@ extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u32 sExpCandyExperienceTable[];
-extern const struct Ability gAbilities[];
+extern const struct Ability gAbilitiesInfo[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
@@ -750,7 +759,6 @@ void CreateTask_PlayMapChosenOrBattleBGM(u16 songId);
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon);
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, bool32 isShiny, u32 personality);
 bool8 IsMoveHM(u16 move);
-bool32 IsHMMove2(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
 s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);
 s8 GetFlavorRelationByPersonality(u32 personality, u8 flavor);
@@ -798,5 +806,6 @@ u16 GetCryIdBySpecies(u16 species);
 u16 GetSpeciesPreEvolution(u16 species);
 void HealPokemon(struct Pokemon *mon);
 void HealBoxPokemon(struct BoxPokemon *boxMon);
+const u8 *GetMoveName(u16 moveId);
 
 #endif // GUARD_POKEMON_H

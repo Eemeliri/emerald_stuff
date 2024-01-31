@@ -2971,15 +2971,12 @@ void BufferStringBattle(u16 stringID, u32 battler)
         }
         break;
     case STRINGID_USEDMOVE: // Pokémon used a move msg
-        if (gBattleStruct->zmove.active && gBattleStruct->zmove.activeCategory != BATTLE_CATEGORY_STATUS)
-            StringCopy(gBattleTextBuff3, GetZMoveName(gBattleMsgDataPtr->currentMove));
-        else if (IsMaxMove(gBattleMsgDataPtr->currentMove))
-            StringCopy(gBattleTextBuff3, GetMaxMoveName(gBattleMsgDataPtr->currentMove));
-        else if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT)
+        if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
+         && !IsZMove(gBattleMsgDataPtr->currentMove)
+         && !IsMaxMove(gBattleMsgDataPtr->currentMove))
             StringCopy(gBattleTextBuff3, sATypeMove_Table[*(&gBattleStruct->stringMoveType)]);
         else
-            StringCopy(gBattleTextBuff3, gMoveNames[gBattleMsgDataPtr->currentMove]);
-
+            StringCopy(gBattleTextBuff3, GetMoveName(gBattleMsgDataPtr->currentMove));
         stringPtr = sText_AttackerUsedX;
         break;
     case STRINGID_BATTLEEND: // battle end
@@ -3249,6 +3246,13 @@ static const u8 *BattleStringGetPlayerName(u8 *text, u8 battler)
         break;
     }
 
+    if (DECAP_ENABLED && !DECAP_NICKNAMES && toCpy != text && *toCpy != CHAR_FIXED_CASE)
+    {
+        *text = CHAR_FIXED_CASE;
+        StringCopyN(text+1, toCpy, PLAYER_NAME_LENGTH);
+        toCpy = text;
+    }
+
     return toCpy;
 }
 
@@ -3308,7 +3312,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
         if (*src == PLACEHOLDER_BEGIN)
         {
             src++;
-            switch (*src)
+            switch (*src & ~PLACEHOLDER_FIXED_MASK)
             {
             case B_TXT_BUFF1:
                 if (gBattleTextBuff1[0] == B_BUFF_PLACEHOLDER_BEGIN)
@@ -3405,20 +3409,20 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 HANDLE_NICKNAME_STRING_CASE(gBattleScripting.battler)
                 break;
             case B_TXT_CURRENT_MOVE: // current move name
-                if (gBattleStruct->zmove.active)
-                    toCpy = GetZMoveName(gBattleMsgDataPtr->currentMove);
-                else if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT)
+                if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
+                 && !IsZMove(gBattleMsgDataPtr->currentMove)
+                 && !IsMaxMove(gBattleMsgDataPtr->currentMove))
                     toCpy = sATypeMove_Table[gBattleStruct->stringMoveType];
                 else
-                    toCpy = gMoveNames[gBattleMsgDataPtr->currentMove];
+                    toCpy = GetMoveName(gBattleMsgDataPtr->currentMove);
                 break;
             case B_TXT_LAST_MOVE: // originally used move name
-                if (gBattleStruct->zmove.active)
-                    toCpy = GetZMoveName(gBattleMsgDataPtr->originallyUsedMove);
-                else if (gBattleMsgDataPtr->originallyUsedMove >= MOVES_COUNT)
+                if (gBattleMsgDataPtr->originallyUsedMove >= MOVES_COUNT
+                 && !IsZMove(gBattleMsgDataPtr->currentMove)
+                 && !IsMaxMove(gBattleMsgDataPtr->currentMove))
                     toCpy = sATypeMove_Table[gBattleStruct->stringMoveType];
                 else
-                    toCpy = gMoveNames[gBattleMsgDataPtr->originallyUsedMove];
+                    toCpy = GetMoveName(gBattleMsgDataPtr->originallyUsedMove);
                 break;
             case B_TXT_LAST_ITEM: // last used item
                 if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
@@ -3464,19 +3468,19 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 break;
             case B_TXT_LAST_ABILITY: // last used ability
-                toCpy = gAbilities[gLastUsedAbility].name;
+                toCpy = gAbilitiesInfo[gLastUsedAbility].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
-                toCpy = gAbilities[sBattlerAbilities[gBattlerAttacker]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
                 break;
             case B_TXT_DEF_ABILITY: // target ability
-                toCpy = gAbilities[sBattlerAbilities[gBattlerTarget]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
                 break;
             case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
-                toCpy = gAbilities[sBattlerAbilities[gBattleScripting.battler]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
                 break;
             case B_TXT_EFF_ABILITY: // effect battler ability
-                toCpy = gAbilities[sBattlerAbilities[gEffectBattler]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;
                 break;
             case B_TXT_TRAINER1_CLASS: // trainer class name
                 toCpy = BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A);
@@ -3683,11 +3687,28 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
 
             if (toCpy != NULL)
             {
-                while (*toCpy != EOS)
+                if (DECAP_ENABLED)
                 {
-                    dst[dstID] = *toCpy;
-                    dstID++;
-                    toCpy++;
+                    bool32 fixedCase = *src & PLACEHOLDER_FIXED_MASK;
+
+                    if (fixedCase)
+                        dst[dstID++] = CHAR_FIXED_CASE;
+
+                    while (*toCpy != EOS)
+                    {
+                        if (*toCpy == CHAR_FIXED_CASE)
+                            fixedCase = TRUE;
+                        else if (*toCpy == CHAR_UNFIX_CASE)
+                            fixedCase = FALSE;
+                        dst[dstID++] = *toCpy++;
+                    }
+                    if (fixedCase)
+                        dst[dstID++] = CHAR_UNFIX_CASE;
+                }
+                else
+                {
+                    while (*toCpy != EOS)
+                        dst[dstID++] = *toCpy++;
                 }
             }
 
@@ -3779,7 +3800,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcID += src[srcID + 1] + 3;
             break;
         case B_BUFF_MOVE: // move name
-            StringAppend(dst, gMoveNames[T1_READ_16(&src[srcID + 1])]);
+            StringAppend(dst, GetMoveName(T1_READ_16(&src[srcID + 1])));
             srcID += 3;
             break;
         case B_BUFF_TYPE: // type name
@@ -3838,7 +3859,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcID += 2;
             break;
         case B_BUFF_ABILITY: // ability names
-            StringAppend(dst, gAbilities[T1_READ_16(&src[srcID + 1])].name);
+            StringAppend(dst, gAbilitiesInfo[T1_READ_16(&src[srcID + 1])].name);
             srcID += 3;
             break;
         case B_BUFF_ITEM: // item name
@@ -4037,7 +4058,7 @@ void SetPpNumbersPaletteInMoveSelection(u32 battler)
         var = GetCurrentPpToMaxPpState(chooseMoveStruct->currentPp[gMoveSelectionCursor[battler]],
                          chooseMoveStruct->maxPp[gMoveSelectionCursor[battler]]);
     else
-        var = GetCurrentPpToMaxPpState(chooseMoveStruct->currentPp[gMoveSelectionCursor[battler]], gBattleMoves[gMoveSelectionCursor[battler]].pp);
+        var = GetCurrentPpToMaxPpState(chooseMoveStruct->currentPp[gMoveSelectionCursor[battler]], gMovesInfo[gMoveSelectionCursor[battler]].pp);
 
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 12] = palPtr[(var * 2) + 0];
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 11] = palPtr[(var * 2) + 1];

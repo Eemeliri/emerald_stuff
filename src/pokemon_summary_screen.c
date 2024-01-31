@@ -19,6 +19,7 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "item.h"
+#include "data/text/summary_screen_move_descriptions.h"
 #include "link.h"
 #include "m4a.h"
 #include "malloc.h"
@@ -343,7 +344,6 @@ static u8 *GetMapNameHoennKanto(u8 *dest, u16 mapSecId);
 static u8 *GetMapNameOrre(u8 *dest, u16 mapSecId, bool8 isXD);
 
 // const rom data
-#include "data/text/move_descriptions.h"
 #include "data/text/characteristics.h"
 #include "data/text/met_locations.h"
 
@@ -2926,7 +2926,7 @@ static bool8 CanReplaceMove(void)
         return TRUE;
     else if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES
         || sMonSummaryScreen->newMove == MOVE_NONE
-        || IsMoveHm(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]) != TRUE)
+        || IsMoveHM(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]) != TRUE)
         return TRUE;
     else
         return FALSE;
@@ -3852,14 +3852,14 @@ static void PrintSkillsPage(void)
 	
     if (!ModifyMode) {
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 5, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
-        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].name);
+        StringCopy(gStringVar1, gAbilitiesInfo[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].name);
         x = GetStringCenterAlignXOffset(1, gStringVar1, 88) + 58;
         if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, NULL) == 2) {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PP_UNK_5);
         } else {
             PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         }
-        StringCopy(gStringVar1, gAbilities[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].description);
+        StringCopy(gStringVar1, gAbilitiesInfo[GetAbilityBySpecies(sMonSummaryScreen->summary.species, summary->abilityNum)].description);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 5, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     } else {
         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Help_Bar, 16, 116, 4, PSS_COLOR_BLACK_GRAY_SHADOW);
@@ -3940,7 +3940,7 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     if (summary->moves[moveIndex] != MOVE_NONE)
     {
         pp = CalculatePPWithBonus(summary->moves[moveIndex], summary->ppBonuses, moveIndex);
-        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gMoveNames[summary->moves[moveIndex]], 64, moveIndex * 29, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, GetMoveName(summary->moves[moveIndex]), 64, moveIndex * 29, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
         ConvertIntToDecimalStringN(gStringVar1, summary->pp[moveIndex], STR_CONV_MODE_LEFT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_LEFT_ALIGN, 2);
         StringAppend(gStringVar1, gText_Slash);
@@ -4049,22 +4049,22 @@ static void PrintMoveDetails(u16 move)
             }
             else
             {
-                if (gBattleMoves[move].power < 2)
+                if (gMovesInfo[move].power < 2)
                     StringCopy(gStringVar1, gText_ThreeDashes);
                 else
-                    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                    ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
             }
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1, 84, POWER_AND_ACCURACY_Y, 0, 0);
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, sText_Accuracy, 8, POWER_AND_ACCURACY_Y_2, 0, 1);
 
-            if (gBattleMoves[move].accuracy == 0)
+            if (gMovesInfo[move].accuracy == 0)
             {
                 StringCopy(gStringVar1, gText_ThreeDashes);
             }
             else
-                ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1, 84, POWER_AND_ACCURACY_Y_2, 0, 0);
 
@@ -4082,14 +4082,14 @@ static void PrintMoveDetails(u16 move)
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, sText_Appeal, 8, POWER_AND_ACCURACY_Y, 0, 1);
 
-            if (gContestEffects[gContestMoves[move].effect].appeal / 10 > 4)
+            if (gContestEffects[gMovesInfo[move].contestEffect].appeal / 10 > 4)
             {
                 heartRow1 = 4;
-                heartRow2 = gContestEffects[gContestMoves[move].effect].appeal / 10 - 4;
+                heartRow2 = gContestEffects[gMovesInfo[move].contestEffect].appeal / 10 - 4;
             }
             else
             {
-                heartRow1 = gContestEffects[gContestMoves[move].effect].appeal / 10;
+                heartRow1 = gContestEffects[gMovesInfo[move].contestEffect].appeal / 10;
                 heartRow2 = 0;
             }
             FillBgTilemapBufferRect(1, TILE_FILLED_APPEAL_HEART, 9, 8, heartRow1, 1, 3);
@@ -4097,21 +4097,21 @@ static void PrintMoveDetails(u16 move)
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, sText_Jam, 8, POWER_AND_ACCURACY_Y_2, 0, 1);
 
-            if (gContestEffects[gContestMoves[move].effect].jam / 10 > 4)
+            if (gContestEffects[gMovesInfo[move].contestEffect].jam / 10 > 4)
             {
                 heartRow1 = 4;
-                heartRow2 = gContestEffects[gContestMoves[move].effect].jam / 10 - 4;
+                heartRow2 = gContestEffects[gMovesInfo[move].contestEffect].jam / 10 - 4;
             }
             else
             {
-                heartRow1 = gContestEffects[gContestMoves[move].effect].jam / 10;
+                heartRow1 = gContestEffects[gMovesInfo[move].contestEffect].jam / 10;
                 heartRow2 = 0;
             }
             FillBgTilemapBufferRect(1, TILE_FILLED_JAM_HEART, 9, 10, heartRow1, 1, 3);
             FillBgTilemapBufferRect(1, TILE_FILLED_JAM_HEART, 9, 11, heartRow2, 1, 3);
             CopyBgTilemapBufferToVram(1);
 
-            PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gContestEffectFourLineDescriptionPointers[gContestMoves[move].effect], 8, 64, 0, 0);
+            PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gContestEffectFourLineDescriptionPointers[gMovesInfo[move].contestEffect], 8, 64, 0, 0);
         }
 
         PutWindowTilemap(PSS_LABEL_PANE_LEFT_MOVE);
@@ -4136,8 +4136,8 @@ static void PrintNewMoveDetailsOrCancelText(void)
 
     if (sMonSummaryScreen->newMove != MOVE_NONE)
     {
-        pp = gBattleMoves[sMonSummaryScreen->newMove].pp;
-        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT_BOTTOM, gMoveNames[sMonSummaryScreen->newMove], 64, 12, 0, 1);
+        pp = gMovesInfo[sMonSummaryScreen->newMove].pp;
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT_BOTTOM, GetMoveName(sMonSummaryScreen->newMove), 64, 12, 0, 1);
         ConvertIntToDecimalStringN(gStringVar1, pp, STR_CONV_MODE_LEFT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_LEFT_ALIGN, 2);
         StringAppend(gStringVar1, gText_Slash);
@@ -4283,7 +4283,7 @@ static void SetMoveTypeIcons(void)
             }
             else
             {   
-                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
+                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
             }
         }
         else
@@ -4300,7 +4300,7 @@ static void SetContestMoveTypeIcons(void)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
-            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gContestMoves[summary->moves[i]].contestCategory, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
+            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[summary->moves[i]].contestCategory, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
         else
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 2 + i, TRUE);
     }
@@ -4335,12 +4335,12 @@ static void SetNewMoveTypeIcon(void)
             }
             else
             {
-                SetTypeSpritePosAndPal(gBattleMoves[sMonSummaryScreen->newMove].type, 116, 136, SPRITE_ARR_ID_TYPE + 6);
+                SetTypeSpritePosAndPal(gMovesInfo[sMonSummaryScreen->newMove].type, 116, 136, SPRITE_ARR_ID_TYPE + 6);
             }
         }
         else
         {
-            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gContestMoves[sMonSummaryScreen->newMove].contestCategory, 116, 136, SPRITE_ARR_ID_TYPE + 6);
+            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 116, 136, SPRITE_ARR_ID_TYPE + 6);
         }
     }
 }

@@ -20751,6 +20751,7 @@ static const u16 sArceusTeachableLearnset[] = {
     MOVE_SWIFT,
     MOVE_SWORDS_DANCE,
     MOVE_THUNDER_WAVE,
+    MOVE_ROCK_CLIMB,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_ARCEUS
@@ -27511,6 +27512,7 @@ static const u16 sTyrantrumTeachableLearnset[] = {
     MOVE_SLEEP_TALK,
     MOVE_SNORE,
     MOVE_SWAGGER,
+    MOVE_DRAGON_TAIL,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TYRUNT

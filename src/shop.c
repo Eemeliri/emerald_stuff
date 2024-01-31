@@ -772,7 +772,7 @@ static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *nam
         if (ItemId_GetPocket(item) != POCKET_TM_HM)
             CopyItemName(item, name);
         else
-            StringCopy(name, gMoveNames[ItemIdToBattleMoveId(item)]);
+            StringCopy(name, gMovesInfo[ItemIdToBattleMoveId(item)].name);
     else
         StringCopy(name, gDecorations[item].name);
 
@@ -1242,7 +1242,7 @@ static void Task_BuyMenu(u8 taskId)
                     }
                     else if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
                     {
-                        StringCopy(gStringVar2, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+                        StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
                         BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany2, Task_BuyHowManyDialogueInit);
                     }
                     else
