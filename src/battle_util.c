@@ -4017,50 +4017,79 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     switch (caseID)
     {
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:
-        gBattleScripting.battler = battler;
-        if (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
         {
-            u16 terrainFlags = VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
-            gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
-            switch (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
-            {
-            case STATUS_FIELD_ELECTRIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
-                break;
-            case STATUS_FIELD_MISTY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
-                break;
-            case STATUS_FIELD_GRASSY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
-                break;
-            case STATUS_FIELD_PSYCHIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
-                break;
-            }
+            u8 varTerrainTimer = VarGet(B_VAR_TERRAIN_TIMER);
 
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
+            gBattleScripting.battler = battler;
+            if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+            {
+                u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
+
+                if (varTerrainTimer == 0)
+                {
+                    gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
+                }
+                else
+                {
+                    gFieldStatuses |= terrainFlags;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
+
+                switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+                {
+                case STATUS_FIELD_ELECTRIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+                    break;
+                case STATUS_FIELD_MISTY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+                    break;
+                case STATUS_FIELD_GRASSY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
+                    break;
+                case STATUS_FIELD_PSYCHIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+                    break;
+                }
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
+            }
+            else if (B_THUNDERSTORM_TERRAIN == TRUE
+                && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM
+                && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+            {
+                // overworld weather started rain, so just do electric terrain anim
+                if (varTerrainTimer == 0)
+                {
+                    gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+                }
+                else
+                {
+                    gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
+            }
+            else if (B_FOG_TERRAIN == TRUE
+                && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
+                && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+            {
+                if (varTerrainTimer == 0)
+                {
+                    gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+                }
+                else
+                {
+                    gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
+            }
         }
-        else if (B_THUNDERSTORM_TERRAIN == TRUE
-            && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM
-            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-        {
-            // overworld weather started rain, so just do electric terrain anim
-            gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
-        }
-        else if (B_FOG_TERRAIN == TRUE
-            && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
-            && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-        {
-            gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
-        }
-    break;
+        break;
     case ABILITYEFFECT_SWITCH_IN_WEATHER:
         gBattleScripting.battler = battler;
         if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))
@@ -4122,11 +4151,11 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         switch (gLastUsedAbility)
         {
         case ABILITYEFFECT_SWITCH_IN_TERRAIN:
-            if (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+            if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
             {
-                u16 terrainFlags = VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
+                u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
                 gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
-                switch (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+                switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
                 {
                 case STATUS_FIELD_ELECTRIC_TERRAIN:
                     gBattleCommunication[MULTISTRING_CHOOSER] = 2;
@@ -4540,6 +4569,17 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_SUPERSWEET_SYRUP:
+            if (!gSpecialStatuses[battler].switchInAbilityDone
+                    && !(gBattleStruct->abilityActivated[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
+            {
+                gBattleStruct->abilityActivated[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+                gBattlerAttacker = battler;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SupersweetSyrupActivates);
+                effect++;
+            }
+            break;
         case ABILITY_TRACE:
             if (!(gSpecialStatuses[battler].traced))
             {
@@ -4571,12 +4611,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_INTREPID_SWORD:
             if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
-                 && !(gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
+                 && !(gBattleStruct->abilityActivated[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gBattleScripting.savedBattler = gBattlerAttacker;
                 gBattlerAttacker = battler;
                 if (B_INTREPID_SWORD == GEN_9)
-                    gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+                    gBattleStruct->abilityActivated[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
@@ -4585,12 +4625,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_DAUNTLESS_SHIELD:
             if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)
-                 && !(gBattleStruct->dauntlessShieldBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
+                 && !(gBattleStruct->abilityActivated[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gBattleScripting.savedBattler = gBattlerAttacker;
                 gBattlerAttacker = battler;
                 if (B_DAUNTLESS_SHIELD == GEN_9)
-                    gBattleStruct->dauntlessShieldBoost[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+                    gBattleStruct->abilityActivated[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
@@ -6644,7 +6684,7 @@ static u8 ItemHealHp(u32 battler, u32 itemId, bool32 end2, bool32 percentHeal)
             gBattlescriptCurrInstr = BattleScript_ItemHealHP_RemoveItemRet;
         }
         if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_EMERGENCY_EXIT
-         && GetNonDynamaxMaxHP(battler) > gBattleMons[battler].maxHP / 2)
+         && GetNonDynamaxHP(battler) >= GetNonDynamaxMaxHP(battler)  / 2)
             gBattleResources->flags->flags[battler] &= ~RESOURCE_FLAG_EMERGENCY_EXIT;
 
         return ITEM_HP_CHANGE;
@@ -6942,7 +6982,7 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
         break;
     case HOLD_EFFECT_CRITICAL_UP: // lansat berry
         if (B_BERRIES_INSTANT >= GEN_4
-            && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY)
+            && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY_ANY)
             && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, gLastUsedItem), gLastUsedItem))
         {
             gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
@@ -7067,7 +7107,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
                 if (B_BERRIES_INSTANT >= GEN_4
-                    && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY)
+                    && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY_ANY)
                     && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, gLastUsedItem), gLastUsedItem))
                 {
                     gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
@@ -7378,7 +7418,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     effect = StatRaiseBerry(battler, gLastUsedItem, STAT_SPDEF, TRUE);
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
-                if (!moveTurn && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY)
+                if (!moveTurn && !(gBattleMons[battler].status2 & STATUS2_FOCUS_ENERGY_ANY)
                     && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, gLastUsedItem), gLastUsedItem))
                 {
                     gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;

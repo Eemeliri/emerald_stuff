@@ -325,91 +325,89 @@ const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
     [TYPE_FAIRY] = _("Fairy"),
 };
 
-#define DEFAULT_MONEY 5
-#define DEFAULT_BALL ITEM_POKE_BALL
-
-#define TRAINER_CLASS(trainerClass, trainerName, trainerMoney, trainerBall) \
-    [TRAINER_CLASS_##trainerClass] =                                        \
-    {                                                                       \
-        .name = _(trainerName),                                             \
-        .money = trainerMoney,                                              \
-        .ball = trainerBall,                                                \
+// extra args are money and ball
+#define TRAINER_CLASS(trainerClass, trainerName, ...)   \
+    [TRAINER_CLASS_##trainerClass] =                    \
+    {                                                   \
+        .name = _(trainerName),                         \
+        .money = DEFAULT(5, __VA_ARGS__),               \
+        .ball = DEFAULT_2(ITEM_POKE_BALL, __VA_ARGS__), \
     }
 
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
 {
-    TRAINER_CLASS(GGRUNT_M, "Galactic Grunt", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(GGRUNT_F, "Galactic Grunt", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(HIKER, "Hiker", 10, DEFAULT_BALL),
-    TRAINER_CLASS(TEAM_AQUA, "Team Aqua", 5, DEFAULT_BALL),
+    TRAINER_CLASS(GGRUNT_M, "Galactic Grunt"),
+    TRAINER_CLASS(GGRUNT_F, "Galactic Grunt"),
+    TRAINER_CLASS(HIKER, "Hiker", 10),
+    TRAINER_CLASS(TEAM_AQUA, "Team Aqua", 5),
     TRAINER_CLASS(PKMN_BREEDER, "{PKMN} Breeder", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL),
     TRAINER_CLASS(COOLTRAINER, "Cooltrainer", 12, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(BIRD_KEEPER, "Bird Keeper", 8, DEFAULT_BALL),
+    TRAINER_CLASS(BIRD_KEEPER, "Bird Keeper", 8),
     TRAINER_CLASS(COLLECTOR, "Collector", 15, ITEM_PREMIER_BALL),
     TRAINER_CLASS(SWIMMER_M, "Swimmer♂", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TEAM_MAGMA, "Team Magma", 5, DEFAULT_BALL),
-    TRAINER_CLASS(EXPERT, "Expert", 10, DEFAULT_BALL),
-    TRAINER_CLASS(AQUA_ADMIN, "Aqua Admin", 10, DEFAULT_BALL),
+    TRAINER_CLASS(TEAM_MAGMA, "Team Magma", 5),
+    TRAINER_CLASS(EXPERT, "Expert", 10),
+    TRAINER_CLASS(AQUA_ADMIN, "Aqua Admin", 10),
     TRAINER_CLASS(BLACK_BELT, "Black Belt", 8, ITEM_ULTRA_BALL),
     TRAINER_CLASS(AQUA_LEADER, "Aqua Leader", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(HEX_MANIAC, "Hex maniac", 6, DEFAULT_BALL),
-    TRAINER_CLASS(AROMA_LADY, "Aroma lady", 10, DEFAULT_BALL),
-    TRAINER_CLASS(RUIN_MANIAC, "Ruin maniac", 15, DEFAULT_BALL),
-    TRAINER_CLASS(INTERVIEWER, "Interviewer", 12, DEFAULT_BALL),
-    TRAINER_CLASS(TUBER_F, "Tuber", 1, DEFAULT_BALL),
-    TRAINER_CLASS(TUBER_M, "Tuber", 1, DEFAULT_BALL),
-    TRAINER_CLASS(LADY, "Lady", 50, DEFAULT_BALL),
-    TRAINER_CLASS(BEAUTY, "Beauty", 20, DEFAULT_BALL),
-    TRAINER_CLASS(RICH_BOY, "Rich Boy", 50, DEFAULT_BALL),
-    TRAINER_CLASS(POKEMANIAC, "Pokémaniac", 15, DEFAULT_BALL),
-    TRAINER_CLASS(GUITARIST, "Guitarist", 8, DEFAULT_BALL),
-    TRAINER_CLASS(KINDLER, "Kindler", 8, DEFAULT_BALL),
-    TRAINER_CLASS(CAMPER, "Camper", 4, DEFAULT_BALL),
-    TRAINER_CLASS(PICNICKER, "Picnicker", 4, DEFAULT_BALL),
-    TRAINER_CLASS(BUG_MANIAC, "Bug Maniac", 15, DEFAULT_BALL),
-    TRAINER_CLASS(PSYCHIC, "Psychic", 6, DEFAULT_BALL),
+    TRAINER_CLASS(HEX_MANIAC, "Hex maniac", 6),
+    TRAINER_CLASS(AROMA_LADY, "Aroma lady", 10),
+    TRAINER_CLASS(RUIN_MANIAC, "Ruin maniac", 15),
+    TRAINER_CLASS(INTERVIEWER, "Interviewer", 12),
+    TRAINER_CLASS(TUBER_F, "Tuber", 1),
+    TRAINER_CLASS(TUBER_M, "Tuber", 1),
+    TRAINER_CLASS(LADY, "Lady", 50),
+    TRAINER_CLASS(BEAUTY, "Beauty", 20),
+    TRAINER_CLASS(RICH_BOY, "Rich Boy", 50),
+    TRAINER_CLASS(POKEMANIAC, "Pokémaniac", 15),
+    TRAINER_CLASS(GUITARIST, "Guitarist", 8),
+    TRAINER_CLASS(KINDLER, "Kindler", 8),
+    TRAINER_CLASS(CAMPER, "Camper", 4),
+    TRAINER_CLASS(PICNICKER, "Picnicker", 4),
+    TRAINER_CLASS(BUG_MANIAC, "Bug Maniac", 15),
+    TRAINER_CLASS(PSYCHIC, "Psychic", 6),
     TRAINER_CLASS(GENTLEMAN, "Gentleman", 20, ITEM_LUXURY_BALL),
     TRAINER_CLASS(ELITE_FOUR, "Elite Four", 25, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(LEADER, "Leader", 25, DEFAULT_BALL),
-    TRAINER_CLASS(SCHOOL_KID, "School Kid", 5, DEFAULT_BALL),
-    TRAINER_CLASS(SR_AND_JR, "Sr. and Jr.", 4, DEFAULT_BALL),
-    TRAINER_CLASS(WINSTRATE, "Winstrate", 10, DEFAULT_BALL),
-    TRAINER_CLASS(POKEFAN, "Pokéfan", 20, DEFAULT_BALL),
-    TRAINER_CLASS(YOUNGSTER, "Youngster", 4, DEFAULT_BALL),
-    TRAINER_CLASS(CHAMPION, "Champion", 50, DEFAULT_BALL),
+    TRAINER_CLASS(LEADER, "Leader", 25),
+    TRAINER_CLASS(SCHOOL_KID, "School Kid", 5),
+    TRAINER_CLASS(SR_AND_JR, "Sr. and Jr.", 4),
+    TRAINER_CLASS(WINSTRATE, "Winstrate", 10),
+    TRAINER_CLASS(POKEFAN, "Pokéfan", 20),
+    TRAINER_CLASS(YOUNGSTER, "Youngster", 4),
+    TRAINER_CLASS(CHAMPION, "Champion", 50),
     TRAINER_CLASS(FISHERMAN, "Fisherman", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_DIVE_BALL : ITEM_LURE_BALL),
-    TRAINER_CLASS(TRIATHLETE, "Triathlete", 10, DEFAULT_BALL),
-    TRAINER_CLASS(DRAGON_TAMER, "Dragon Tamer", 12, DEFAULT_BALL),
-    TRAINER_CLASS(NINJA_BOY, "Ninja Boy", 3, DEFAULT_BALL),
-    TRAINER_CLASS(BATTLE_GIRL, "Battle Girl", 6, DEFAULT_BALL),
-    TRAINER_CLASS(PARASOL_LADY, "Parasol Lady", 10, DEFAULT_BALL),
+    TRAINER_CLASS(TRIATHLETE, "Triathlete", 10),
+    TRAINER_CLASS(DRAGON_TAMER, "Dragon Tamer", 12),
+    TRAINER_CLASS(NINJA_BOY, "Ninja Boy", 3),
+    TRAINER_CLASS(BATTLE_GIRL, "Battle Girl", 6),
+    TRAINER_CLASS(PARASOL_LADY, "Parasol Lady", 10),
     TRAINER_CLASS(SWIMMER_F, "Swimmer♀", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TWINS, "Twins", 3, DEFAULT_BALL),
-    TRAINER_CLASS(SAILOR, "Sailor", 8, DEFAULT_BALL),
-    TRAINER_CLASS(COOLTRAINER_2, "Cooltrainer", DEFAULT_MONEY, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(MAGMA_ADMIN, "Magma Admin", 10, DEFAULT_BALL),
-    TRAINER_CLASS(RIVAL, "{PKMN} Trainer", 15, DEFAULT_BALL),
-    TRAINER_CLASS(BUG_CATCHER, "Bug Catcher", 4, DEFAULT_BALL),
-    TRAINER_CLASS(PKMN_RANGER, "{PKMN} Ranger", 12, DEFAULT_BALL),
+    TRAINER_CLASS(TWINS, "Twins", 3),
+    TRAINER_CLASS(SAILOR, "Sailor", 8),
+    TRAINER_CLASS(COOLTRAINER_2, "Cooltrainer", 12, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(MAGMA_ADMIN, "Magma Admin", 10),
+    TRAINER_CLASS(RIVAL, "{PKMN} Trainer", 15),
+    TRAINER_CLASS(BUG_CATCHER, "Bug Catcher", 4),
+    TRAINER_CLASS(PKMN_RANGER, "{PKMN} Ranger", 12),
     TRAINER_CLASS(MAGMA_LEADER, "Magma Leader", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(LASS, "Lass", 4, DEFAULT_BALL),
-    TRAINER_CLASS(YOUNG_COUPLE, "Young Couple", 8, DEFAULT_BALL),
-    TRAINER_CLASS(OLD_COUPLE, "Old Couple", 10, DEFAULT_BALL),
-    TRAINER_CLASS(SIS_AND_BRO, "Sis and Bro", 3, DEFAULT_BALL),
-    TRAINER_CLASS(SALON_MAIDEN, "Salon Maiden", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(DOME_ACE, "Dome Ace", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PALACE_MAVEN, "Palace Maven", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(ARENA_TYCOON, "Arena Tycoon", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(FACTORY_HEAD, "Factory Head", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PIKE_QUEEN, "Pike Queen", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PYRAMID_KING, "Pyramid King", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(RS_PROTAG, "{PKMN} Trainer", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(G_ADMIN, "Galactic Admin", 20, DEFAULT_BALL),
-    TRAINER_CLASS(PKMN_TRAINER, "{PKMN} Trainer", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(K_LEADER, "Gym Leader", 20, DEFAULT_BALL),
-    TRAINER_CLASS(J_LEADER, "Gym Leader", 20, DEFAULT_BALL),
-    TRAINER_CLASS(SPIRIT, "Spirit", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(LAWRENCE, "Collector", 20, DEFAULT_BALL),
+    TRAINER_CLASS(LASS, "Lass", 4),
+    TRAINER_CLASS(YOUNG_COUPLE, "Young Couple", 8),
+    TRAINER_CLASS(OLD_COUPLE, "Old Couple", 10),
+    TRAINER_CLASS(SIS_AND_BRO, "Sis and Bro", 3),
+    TRAINER_CLASS(SALON_MAIDEN, "Salon Maiden"),
+    TRAINER_CLASS(DOME_ACE, "Dome Ace"),
+    TRAINER_CLASS(PALACE_MAVEN, "Palace Maven"),
+    TRAINER_CLASS(ARENA_TYCOON, "Arena Tycoon"),
+    TRAINER_CLASS(FACTORY_HEAD, "Factory Head"),
+    TRAINER_CLASS(PIKE_QUEEN, "Pike Queen"),
+    TRAINER_CLASS(PYRAMID_KING, "Pyramid King"),
+    TRAINER_CLASS(RS_PROTAG, "{PKMN} Trainer"),
+    TRAINER_CLASS(G_ADMIN, "Galactic Admin", 20),
+    TRAINER_CLASS(PKMN_TRAINER, "{PKMN} Trainer"),
+    TRAINER_CLASS(K_LEADER, "Gym Leader", 20),
+    TRAINER_CLASS(J_LEADER, "Gym Leader", 20),
+    TRAINER_CLASS(SPIRIT, "Spirit"),
+    TRAINER_CLASS(LAWRENCE, "Collector", 20),
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -3188,7 +3186,7 @@ void SwitchInClearSetData(u32 battler)
     }
     if (gMovesInfo[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
-        gBattleMons[battler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
+        gBattleMons[battler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY_ANY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
         gStatuses3[battler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
                                        | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
                                        | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
@@ -4157,7 +4155,7 @@ static void HandleTurnActionSelectionState(void)
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {
-                AI_DATA->mostSuitableMonId = GetMostSuitableMonToSwitchInto(battler, FALSE);
+                AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, FALSE);
                 gBattleStruct->aiMoveOrAction[battler] = ComputeBattleAiScores(battler);
             }
             // fallthrough

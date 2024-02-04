@@ -9,9 +9,8 @@
 
 // The Gen. 4+ contest data comes from urpg's contest movedex.
 
-#define FIRST(a, ...) a
 #if B_EXPANDED_MOVE_NAMES == TRUE
-#define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(FIRST(__VA_OPT__(__VA_ARGS__, ) _name))
+#define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(DEFAULT(_name, __VA_ARGS__))
 #else
 #define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(_name)
 #endif
@@ -2889,6 +2888,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ACC_UP_1 },
+        .argument = STATUS2_FOCUS_ENERGY,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
@@ -19870,7 +19870,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Increases allies' critical hit\n"
             "ratio, especially if Dragons."),
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_DRAGON_CHEER
+        .effect = EFFECT_DRAGON_CHEER,
         .power = 0,
         .type = TYPE_DRAGON,
         .accuracy = 0,
@@ -19963,11 +19963,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_UPPER_HAND] =
     {
+        .effect = EFFECT_UPPER_HAND,
         .name = COMPOUND_STRING("Upper Hand"),
         .description = COMPOUND_STRING(
             "Makes the target flinch if\n"
             "readying a priority move."),
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_UPPER_HAND
         .power = 65,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -19976,6 +19976,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 3,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .sheerForceBoost = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_FLINCH,
+            .chance = 100,
+        }),
     },
 
     [MOVE_MALIGNANT_CHAIN] =

@@ -5,6 +5,7 @@
 #include "battle_anim.h"
 #include "battle_ai_util.h"
 #include "battle_ai_main.h"
+#include "battle_controllers.h"
 #include "battle_factory.h"
 #include "battle_setup.h"
 #include "battle_z_move.h"
@@ -455,11 +456,21 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     }
 }
 
-static bool32 AI_SwitchMonIfSuitable(u32 battler)
+static bool32 AI_SwitchMonIfSuitable(u32 battler, bool32 doubleBattle)
 {
-    u32 monToSwitchId = AI_DATA->mostSuitableMonId;
-    if (monToSwitchId != PARTY_SIZE)
+    u32 monToSwitchId = AI_DATA->mostSuitableMonId[battler];
+    if (monToSwitchId != PARTY_SIZE && IsValidForBattle(&GetBattlerParty(battler)[monToSwitchId]))
     {
+        gBattleMoveDamage = monToSwitchId;
+        // Edge case: See if partner already chose to switch into the same mon
+        if (doubleBattle)
+        {
+            u32 partner = BATTLE_PARTNER(battler);
+            if (AI_DATA->shouldSwitchMon & gBitTable[partner] && AI_DATA->monToSwitchId[partner] == monToSwitchId)
+            {
+                return FALSE;
+            }
+        }
         AI_DATA->shouldSwitchMon |= gBitTable[battler];
         AI_DATA->monToSwitchId[battler] = monToSwitchId;
         return TRUE;
@@ -496,7 +507,7 @@ static bool32 AI_ShouldSwitchIfBadMoves(u32 battler, bool32 doubleBattle)
                             break;
                     }
                 }
-                if (i == MAX_BATTLERS_COUNT && AI_SwitchMonIfSuitable(battler))
+                if (i == MAX_BATTLERS_COUNT && AI_SwitchMonIfSuitable(battler, doubleBattle))
                     return TRUE;
             }
             else
@@ -507,7 +518,7 @@ static bool32 AI_ShouldSwitchIfBadMoves(u32 battler, bool32 doubleBattle)
                         break;
                 }
 
-                if (i == MAX_MON_MOVES && AI_SwitchMonIfSuitable(battler))
+                if (i == MAX_MON_MOVES && AI_SwitchMonIfSuitable(battler, doubleBattle))
                     return TRUE;
             }
 
@@ -519,7 +530,7 @@ static bool32 AI_ShouldSwitchIfBadMoves(u32 battler, bool32 doubleBattle)
             && IsTruantMonVulnerable(battler, gBattlerTarget)
             && gDisableStructs[battler].truantCounter
             && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
-            && AI_SwitchMonIfSuitable(battler))
+            && AI_SwitchMonIfSuitable(battler, doubleBattle))
         {
             return TRUE;
         }
@@ -1466,7 +1477,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_FOCUS_ENERGY:
-            if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
+            if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY_ANY)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_CONFUSE:
@@ -1751,6 +1762,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_FOLLOW_ME:
         case EFFECT_HELPING_HAND:
+        case EFFECT_DRAGON_CHEER:
             if (!isDoubleBattle
               || !IsBattlerAlive(BATTLE_PARTNER(battlerAtk))
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove)
@@ -2648,6 +2660,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (IsDynamaxed(battlerDef))
                 ADJUST_SCORE(-10);
             break;
+        case EFFECT_UPPER_HAND:
+            if (predictedMove == MOVE_NONE || IS_MOVE_STATUS(predictedMove) || AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_SLOWER || GetMovePriority(battlerDef, move) < 1 || GetMovePriority(battlerDef, move) > 3) // Opponent going first or not using priority move
+                ADJUST_SCORE(-10);
+            break;
         case EFFECT_PLACEHOLDER:
             return 0;   // cannot even select
     } // move effect checks
@@ -2766,6 +2782,13 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             RETURN_SCORE_PLUS(DECENT_EFFECT);   // partner has earthquake or magnitude -> good idea to use magnet rise
         }
         break;
+    case EFFECT_DRAGON_CHEER:
+        if (gBattleMons[battlerAtkPartner].status2 & STATUS2_FOCUS_ENERGY_ANY || !HasDamagingMove(battlerAtkPartner))
+            ADJUST_SCORE(-5);
+        else if (atkPartnerHoldEffect == HOLD_EFFECT_SCOPE_LENS
+              || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_DRAGON)
+              || gMovesInfo[aiData->partnerMove].criticalHitStage > 0)
+            ADJUST_SCORE(GOOD_EFFECT);
     } // our effect relative to partner
 
     // consider global move effects
