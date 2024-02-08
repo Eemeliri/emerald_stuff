@@ -3193,7 +3193,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_DESTINY_BOND;
             gStatuses3[gBattlerAttacker] &= ~STATUS3_GRUDGE;
             gStatuses4[gBattlerAttacker] &= ~ STATUS4_GLAIVE_RUSH;
-            gBattleScripting.tripleKickPower = 0;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_SKY_DROP:
@@ -3607,6 +3606,10 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
 
                 gBattleStruct->beatUpSlot = 0;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+            }
+            else
+            {
+                gMultiHitCounter = 0;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
@@ -4744,6 +4747,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gSpecialStatuses[battler].switchInAbilityDone && IsDoubleBattle() && gBattleMons[partner].hp < gBattleMons[partner].maxHP)
             {
                 gBattlerTarget = partner;
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattleMoveDamage = (GetNonDynamaxMaxHP(partner) / 4) * -1;
                 BattleScriptPushCursorAndCallback(BattleScript_HospitalityActivates);
@@ -6566,6 +6570,7 @@ static u8 DamagedStatBoostBerryEffect(u32 battler, u8 statId, u8 category)
      && (gBattleScripting.overrideBerryRequirements
          || (!DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
              && GetBattleMoveCategory(gCurrentMove) == category
+             && battler != gBattlerAttacker
              && TARGET_TURN_DAMAGED))
         )
     {
@@ -8102,6 +8107,7 @@ u8 IsMonDisobedient(void)
             } while (gBitTable[gCurrMovePos] & calc);
 
             gCalledMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+            SetAtkCancellerForCalledMove();
             gBattlescriptCurrInstr = BattleScript_IgnoresAndUsesRandomMove;
             gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
             gHitMarker |= HITMARKER_DISOBEDIENT_MOVE;
@@ -11137,6 +11143,17 @@ bool32 MoveHasMoveEffectSelf(u32 move, u32 moveEffect)
 bool32 MoveHasMoveEffectSelfArg(u32 move, u32 moveEffect, u32 argument)
 {
     return (gMovesInfo[move].argument == argument) && MoveHasMoveEffectSelf(move, moveEffect);
+}
+
+bool32 MoveHasChargeTurnMoveEffect(u32 move)
+{
+    u8 i = 0;
+    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    {
+        if (gMovesInfo[move].additionalEffects[i].onChargeTurnOnly)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)

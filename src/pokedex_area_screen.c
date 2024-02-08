@@ -113,9 +113,11 @@ static void CreateAreaUnknownSprites(void);
 static void Task_HandlePokedexAreaScreenInput(u8);
 static void ResetPokedexAreaMapBg(void);
 static void DestroyAreaScreenSprites(void);
+static void LoadHGSSScreenSelectBarSubmenu(void);
 
 static const u32 sAreaGlow_Pal[] = INCBIN_U32("graphics/pokedex/area_glow.gbapal");
 static const u32 sAreaGlow_Gfx[] = INCBIN_U32("graphics/pokedex/area_glow.4bpp.lz");
+static const u32 sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/SelectBar.bin.lz");
 
 static const u16 sSpeciesHiddenFromAreaScreen[] = { SPECIES_WYNAUT };
 
@@ -808,44 +810,46 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         case 2:
             if (TryShowPokedexAreaMap() == TRUE)
                 return;
-            PokedexAreaMapChangeBgY(-8);
-            break;
-        case 3:
-            ResetDrawAreaGlowState();
-            sPokedexAreaScreen->state=TIME_DAY;
-            break;
-        case 4:
-            if (DrawAreaGlow())
-                return;
-            break;
-        case 5:
-            ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap);
-            CreateRegionMapPlayerIcon(1, 1);
-            PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(0, -8);
-            break;
-        case 6:
-            CreateAreaMarkerSprites();
-            break;
-        case 7:
-            LoadAreaUnknownGraphics();
-            break;
-        case 8:
-            CreateAreaUnknownSprites();
-            break;
-        case 9:
-            BeginNormalPaletteFade(PALETTES_ALL & ~(0x14), 0, 16, 0, RGB(0, 0, 0));
-            break;
-        case 10:
-            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_ALL);
-            StartAreaGlow();
-            ShowBg(2);
-            ShowBg(3); // TryShowPokedexAreaMap will have done this already
-            SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
+                PokedexAreaMapChangeBgY(-8);
         break;
-        case 11:
-            gTasks[taskId].func = Task_HandlePokedexAreaScreenInput;
-            gTasks[taskId].tState = 0;
+    case 3:
+        ResetDrawAreaGlowState();
+        break;
+    case 4:
+        if (DrawAreaGlow())
             return;
+        break;
+    case 5:
+        ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap);
+        CreateRegionMapPlayerIcon(1, 1);
+        PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(0, -8);
+        break;
+    case 6:
+        CreateAreaMarkerSprites();
+        break;
+    case 7:
+        LoadAreaUnknownGraphics();
+        break;
+    case 8:
+        CreateAreaUnknownSprites();
+        break;
+    case 9:
+        BeginNormalPaletteFade(PALETTES_ALL & ~(0x14), 0, 16, 0, RGB_BLACK);
+        break;
+    case 10:
+        if (POKEDEX_PLUS_HGSS)
+            LoadHGSSScreenSelectBarSubmenu();
+
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_ALL);
+        StartAreaGlow();
+        ShowBg(2);
+        ShowBg(3); // TryShowPokedexAreaMap will have done this already
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
+        break;
+    case 11:
+        gTasks[taskId].func = Task_HandlePokedexAreaScreenInput;
+        gTasks[taskId].tState = 0;
+        return;
     }
 
     gTasks[taskId].tState++;
@@ -1003,4 +1007,10 @@ static void CreateAreaUnknownSprites(void)
             }
         }
     }
+}
+
+static void LoadHGSSScreenSelectBarSubmenu(void)
+{
+    CopyToBgTilemapBuffer(1, sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap, 0, 0);
+    CopyBgTilemapBufferToVram(1);
 }
