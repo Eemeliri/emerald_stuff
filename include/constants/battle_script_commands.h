@@ -6,10 +6,10 @@
 #define sBIDE_DMG                    (gBattleScripting + 0x04) // bideDmg
 #define sMULTIHIT_STRING             (gBattleScripting + 0x08) // multihitString
 #define sEXP_CATCH                   (gBattleScripting + 0x0E) // expOnCatch
-#define sTWOTURN_STRINGID            (gBattleScripting + 0x0F) // twoTurnsMoveStringId
+#define sUNUSED                      (gBattleScripting + 0x0F) // unused
 #define sB_ANIM_ARG1                 (gBattleScripting + 0x10) // animArg1
 #define sB_ANIM_ARG2                 (gBattleScripting + 0x11) // animArg2
-#define sTRIPLE_KICK_POWER           (gBattleScripting + 0x12) // tripleKickPower
+#define sSAVED_STRINID               (gBattleScripting + 0x12) // savedStringId
 #define sMOVEEND_STATE               (gBattleScripting + 0x14) // moveendState
 #define sSAVED_STAT_CHANGER          (gBattleScripting + 0x15) // savedStatChanger
 #define sSHIFT_SWITCHED              (gBattleScripting + 0x16) // shiftSwitched
@@ -325,8 +325,9 @@
 #define MOVEEND_SYMBIOSIS                         34
 #define MOVEEND_OPPORTUNIST                       35    // Occurs after other stat change items/abilities to try and copy the boosts
 #define MOVEEND_SAME_MOVE_TURNS                   36
-#define MOVEEND_CLEAR_BITS                        37
-#define MOVEEND_COUNT                             38
+#define MOVEEND_SET_EVOLUTION_TRACKER             37
+#define MOVEEND_CLEAR_BITS                        38
+#define MOVEEND_COUNT                             39
 
 // switch cases
 #define B_SWITCH_NORMAL     0
