@@ -7,19 +7,17 @@
 #define SECTOR_FOOTER_SIZE 12
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SECTOR_FOOTER_SIZE)
 
-#define NUM_SAVE_SLOTS 2
-
 // If the sector's signature field is not this value then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x8012025
 
 #define SPECIAL_SECTOR_SENTINEL 0xB39D
 
-#define SECTOR_ID_SAVEBLOCK2          0
-#define SECTOR_ID_SAVEBLOCK1_START    1
-#define SECTOR_ID_SAVEBLOCK1_END      4
-#define SECTOR_ID_PKMN_STORAGE_START  5
-#define SECTOR_ID_PKMN_STORAGE_END   13
-#define NUM_SECTORS_PER_SLOT         14
+#define SECTOR_ID_SAVEBLOCK2         0
+#define SECTOR_ID_SAVEBLOCK1_START   1
+#define SECTOR_ID_SAVEBLOCK1_END     14
+#define SECTOR_ID_PKMN_STORAGE_START 15
+#define SECTOR_ID_PKMN_STORAGE_END   28
+#define NUM_SECTORS_PER_SLOT         28
 // Save Slot 1: 0-13;  Save Slot 2: 14-27
 #define SECTOR_ID_HOF_1              28
 #define SECTOR_ID_HOF_2              29
