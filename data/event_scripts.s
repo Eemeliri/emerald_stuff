@@ -1213,3 +1213,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/BrawlyDojoTrainingRoom/scripts.inc"
 
 	.include "data/maps/DarkCave/scripts.inc"
+
+	.include "data/maps/MirageWaterway/scripts.inc"
