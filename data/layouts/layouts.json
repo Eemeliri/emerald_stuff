@@ -5127,7 +5127,7 @@
       "width": 30,
       "height": 70,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/MirageWaterway/border.bin",
       "blockdata_filepath": "data/layouts/MirageWaterway/map.bin"
     }
