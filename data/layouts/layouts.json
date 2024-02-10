@@ -5120,6 +5120,16 @@
       "secondary_tileset": "gTileset_Cave2",
       "border_filepath": "data/layouts/DarkCave/border.bin",
       "blockdata_filepath": "data/layouts/DarkCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_WATERWAY",
+      "name": "MirageWaterway_Layout",
+      "width": 30,
+      "height": 70,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/MirageWaterway/border.bin",
+      "blockdata_filepath": "data/layouts/MirageWaterway/map.bin"
     }
   ]
 }

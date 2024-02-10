@@ -2409,6 +2409,7 @@ bool8 ScrCmd_checkmonmodernfatefulencounter(struct ScriptContext *ctx)
 
 bool8 ScrCmd_trywondercardscript(struct ScriptContext *ctx)
 {
+    #if FREE_MYSTERY_EVENT_BUFFERS == FALSE
     struct RamScriptData* scriptData = &gSaveBlock1Ptr->ramScript.data;
     const u8* script = scriptData->script;
 
@@ -2418,6 +2419,9 @@ bool8 ScrCmd_trywondercardscript(struct ScriptContext *ctx)
         ScriptJump(ctx, script);
     }
     return FALSE;
+    #else
+    return FALSE;
+    #endif //FREE_MYSTERY_EVENT_BUFFERS
 }
 
 // This warp is only used by the Union Room.

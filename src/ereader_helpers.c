@@ -374,7 +374,6 @@ static const struct TrainerHillTrainer sTrainerHillTrainerTemplates_JP[] = {
 };
 
 
-
 static bool32 ValidateTrainerChecksum(struct EReaderTrainerHillTrainer * hillTrainer)
 {
     int checksum = CalcByteArraySum((u8 *)hillTrainer, offsetof(typeof(*hillTrainer), checksum));
