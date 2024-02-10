@@ -178,12 +178,14 @@ bool32 IsWonderNewsSameAsSaved(const u8 *news)
 
 void ClearSavedWonderCardAndRelated(void)
 {
+    #if FREE_MYSTERY_GIFT == FALSE
     ClearSavedWonderCard();
     ClearSavedWonderCardMetadata();
     ClearSavedTrainerIds();
     ClearRamScript();
     ClearMysteryGiftFlags();
     ClearMysteryGiftVars();
+    #endif //FREE_MYSTERY_GIFT
     ClearEReaderTrainer(&gSaveBlock1Ptr->frontier.ereaderTrainer[0]);
 }
 
