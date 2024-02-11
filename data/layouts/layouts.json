@@ -5130,6 +5130,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/MirageWaterway/border.bin",
       "blockdata_filepath": "data/layouts/MirageWaterway/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIRAGE_UNDERWATER",
+      "name": "MirageUnderwater_Layout",
+      "width": 30,
+      "height": 70,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater2",
+      "border_filepath": "data/layouts/MirageUnderwater/border.bin",
+      "blockdata_filepath": "data/layouts/MirageUnderwater/map.bin"
     }
   ]
 }

@@ -258,3 +258,6 @@ const u16 gMetatileAttributes_DewfordDojoBuilding[] = INCBIN_U16("data/tilesets/
 
 const u16 gMetatiles_Cave2[] = INCBIN_U16("data/tilesets/secondary/cave_2/metatiles.bin");
 const u16 gMetatileAttributes_Cave2[] = INCBIN_U16("data/tilesets/secondary/cave_2/metatile_attributes.bin");
+
+const u16 gMetatiles_Underwater2[] = INCBIN_U16("data/tilesets/secondary/underwater_2/metatiles.bin");
+const u16 gMetatileAttributes_Underwater2[] = INCBIN_U16("data/tilesets/secondary/underwater_2/metatile_attributes.bin");

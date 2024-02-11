@@ -484,7 +484,8 @@
     "RuggedCave",
     "RuggedCave2",
     "RuggedCave3",
-    "DarkCave"
+    "DarkCave",
+    "MirageUnderwater"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

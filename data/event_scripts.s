@@ -1215,3 +1215,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/DarkCave/scripts.inc"
 
 	.include "data/maps/MirageWaterway/scripts.inc"
+
+	.include "data/maps/MirageUnderwater/scripts.inc"
