@@ -274,7 +274,28 @@
 #define VAR_HALL_OF_FAMES                    0x40FE // How many times made to Hall of fame
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
-#define VARS_END                                         0x40FF
+#define VAR_NEW_1                            0x4100 // Unused Var
+#define VAR_NEW_2                            0x4101 // Unused Var
+#define VAR_NEW_3                            0x4102 // Unused Var
+#define VAR_NEW_4                            0x4103 // Unused Var
+#define VAR_NEW_5                            0x4104 // Unused Var
+#define VAR_NEW_6                            0x4105 // Unused Var
+#define VAR_NEW_7                            0x4106 // Unused Var
+#define VAR_NEW_8                            0x4107 // Unused Var
+#define VAR_NEW_9                            0x4108 // Unused Var
+#define VAR_NEW_10                           0x4109 // Unused Var
+#define VAR_NEW_11                           0x410A // Unused Var
+#define VAR_NEW_12                           0x410B // Unused Var
+#define VAR_NEW_13                           0x410C // Unused Var
+#define VAR_NEW_14                           0x410D // Unused Var
+#define VAR_NEW_15                           0x410E // Unused Var
+#define VAR_NEW_16                           0x410F // Unused Var
+#define VAR_NEW_17                           0x4110 // Unused Var
+#define VAR_NEW_18                           0x4111 // Unused Var
+#define VAR_NEW_19                           0x4112 // Unused Var
+#define VAR_NEW_20                           0x4113 // Unused Var
+
+#define VARS_END                                         0x4113
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
