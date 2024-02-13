@@ -15,8 +15,7 @@
 
 #define TINT_MORNING Q_8_8(0.7), Q_8_8(0.7), Q_8_8(0.9)
 #define TINT_DAY Q_8_8(1.0), Q_8_8(1.0), Q_8_8(1.0)
-#define TINT_NIGHT Q_8_8(0.4), Q_8_8(0.4), Q_8_8(0.92)
-#define TINT_LATE_NIGHT Q_8_8(0.3), Q_8_8(0.3), Q_8_8(0.8)
+#define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.6), Q_8_8(0.92)
 
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA const struct PaletteOverride *gPaletteOverrides[4] = {NULL};
@@ -31,8 +30,8 @@ static EWRAM_DATA struct {
 } sDNSystemControl = {0};
 
 static const u16 sTimeOfDayTints[][3] = {
-    [0] =   {TINT_LATE_NIGHT},
-    [1] =   {TINT_LATE_NIGHT},
+    [0] =   {TINT_NIGHT},
+    [1] =   {TINT_NIGHT},
     [2] =   {TINT_NIGHT},
     [3] =   {TINT_NIGHT},
     [4] =   {Q_8_8(0.6), Q_8_8(0.65), Q_8_8(1.0)},
@@ -46,15 +45,15 @@ static const u16 sTimeOfDayTints[][3] = {
     [12] =  {TINT_DAY},
     [13] =  {TINT_DAY},
     [14] =  {TINT_DAY},
-    [15] =  {Q_8_8(1.0), Q_8_8(1.0), Q_8_8(0.91)},
-    [16] =  {Q_8_8(0.92), Q_8_8(0.85), Q_8_8(0.81)},
-    [17] =  {Q_8_8(0.78), Q_8_8(0.73), Q_8_8(0.53)},
-    [18] =  {Q_8_8(0.74), Q_8_8(0.52), Q_8_8(0.49)},
-    [19] =  {Q_8_8(0.56), Q_8_8(0.56), Q_8_8(0.68)},
-    [20] =  {TINT_NIGHT},
+    [15] =  {TINT_DAY},
+    [16] =  {TINT_DAY},
+    [17] =  {Q_8_8(1.0), Q_8_8(0.98), Q_8_8(0.9)},
+    [18] =  {Q_8_8(0.9), Q_8_8(0.7), Q_8_8(0.67)},
+    [19] =  {Q_8_8(0.75), Q_8_8(0.66), Q_8_8(0.77)},
+    [20] =  {Q_8_8(0.7), Q_8_8(0.63), Q_8_8(0.82)},
     [21] =  {TINT_NIGHT},
-    [22] =  {TINT_LATE_NIGHT},
-    [23] =  {TINT_LATE_NIGHT},
+    [22] =  {TINT_NIGHT},
+    [23] =  {TINT_NIGHT},
 };
 
 static bool32 IsBetweenHours2(s32 hour, s32 begin, s32 end)
