@@ -927,8 +927,26 @@
 #define TRAINER_UNUSED12                    920
 #define TRAINER_UNUSED13                    921
 #define TRAINER_UNUSED14                    922
+#define TRAINER_UNUSED15                    923
+#define TRAINER_UNUSED16                    924
+#define TRAINER_UNUSED17                    925
+#define TRAINER_UNUSED18                    926
+#define TRAINER_UNUSED19                    927
+#define TRAINER_UNUSED20                    928
+#define TRAINER_UNUSED21                    929
+#define TRAINER_UNUSED22                    930
+#define TRAINER_UNUSED23                    931
+#define TRAINER_UNUSED24                    932
+#define TRAINER_UNUSED25                    933
+#define TRAINER_UNUSED26                    934
+#define TRAINER_UNUSED27                    935
+#define TRAINER_UNUSED28                    936
+#define TRAINER_UNUSED29                    937
+#define TRAINER_UNUSED30                    938
+#define TRAINER_UNUSED31                    939
+#define TRAINER_UNUSED32                    940
 
-#define REGULAR_TRAINER_END                 TRAINER_UNUSED14
+#define REGULAR_TRAINER_END                 TRAINER_UNUSED32
 
 #define TRAINER_FRONTIER_BROCK              REGULAR_TRAINER_END + 1
 #define TRAINER_FRONTIER_MISTY              REGULAR_TRAINER_END + 2
@@ -1015,8 +1033,8 @@
 //#define TRAINERS_COUNT                      857
 //#define MAX_TRAINERS_COUNT                  864
 
-#define TRAINERS_COUNT                      993
-#define MAX_TRAINERS_COUNT                  994
+#define TRAINERS_COUNT                      1011
+#define MAX_TRAINERS_COUNT                  1012
 #define FIRST_PWT_TRAINER                   TRAINER_FRONTIER_BROCK
 #define LAST_PWT_TRAINER                    TRAINER_FRONTIER_IRIS
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
