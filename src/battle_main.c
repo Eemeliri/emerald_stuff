@@ -1971,11 +1971,9 @@ u8 scaleBiasedLevel(u8 scaledLevel, u8 lvl) {
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
-    u8 fixedIV;
     u8 scaledLevel;
     s32 i, j;
     u8 monsCount;
-    u8 trainerClass;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
@@ -5893,7 +5891,6 @@ u16 HasLevelEvolution(u16 species, u8 level)
 {
 
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
-    u16 targetSpecies = 0;
 
 	if(evolutions[0].param && evolutions[0].param <= level)
 	{

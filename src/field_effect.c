@@ -835,7 +835,6 @@ void FieldEffectScript_LoadTiles(u8 **script)
 
 void FieldEffectScript_LoadFadedPalette(u8 **script)
 {
-    u8 paletteSlot;
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
     LoadSpritePaletteDayNight(palette);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));

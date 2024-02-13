@@ -1451,7 +1451,7 @@ void CreateEnemyEventMon(void)
     }
 }
 
-static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
+static u16 UNUSED CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
 {
     u16 checksum = 0;
     union PokemonSubstruct *substruct0 = GetSubstruct(boxMon, 0);
