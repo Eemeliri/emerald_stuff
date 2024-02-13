@@ -9619,7 +9619,7 @@ Move_EERIE_IMPULSE::
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 32, 30, 0, 40, 0
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 32, 30, 0, 40, 1
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 32, 30, 0, 40, 0
- 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 32, 30, 0, 40, 2
+	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 32, 30, 0, 40, 2
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 48, 30, 0, 40, 0
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 48, 30, 0, 40, 1
 	createsprite gZapCannonSparkSpriteTemplate, ANIM_TARGET, 4, 10, 0, 48, 30, 0, 40, 0
@@ -10284,7 +10284,7 @@ Move_THOUSAND_WAVES::
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER            @I placed this one here, because it ruins the teleport animation
 	loopsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET, 0x3, 0x15
- 	call ThousandWavesRecover
+	call ThousandWavesRecover
 	createsprite gThousandWavesGreenRecoverTemplate, ANIM_ATTACKER, 2, 0x28, 0xfff6, 0xd
 	delay 0x3
 	createsprite gThousandWavesGreenRecoverTemplate, ANIM_ATTACKER, 2, 0xffdd, 0x8, 0xd
@@ -10512,7 +10512,7 @@ Move_ORIGIN_PULSE::
 	delay 0x10
 	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
 	playsewithpan SE_INTRO_BLAST, SOUND_PAN_ATTACKER
- 	waitforvisualfinish
+	waitforvisualfinish
 	createsprite gOriginPulseOrbTemplate, ANIM_ATTACKER, 2, 0x0
 	createsprite gOriginPulseOrbTemplate, ANIM_ATTACKER, 2, 0x2b
 	createsprite gOriginPulseOrbTemplate, ANIM_ATTACKER, 2, 0x55
@@ -12095,7 +12095,7 @@ Move_CORE_ENFORCER::
 	delay 0x1
 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0xfffa, 0xffe2, 0x1, 0x3
 	delay 0x1
- 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0xffff, 0xffe2, 0x1, 0x3
+	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0xffff, 0xffe2, 0x1, 0x3
 	delay 0x1
 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0x5, 0xffe2, 0x1, 0x3
 	delay 0x1
@@ -12138,7 +12138,7 @@ Move_CORE_ENFORCER::
 	createsprite gCoreEnforcerBeamTemplate, ANIM_TARGET, 3, 0xf, 0x0, 0x14, 0x5
 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0x7, 0x3, 0x1, 0x3
 	delay 0x1
- 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0xC, 0x3, 0x1, 0x3
+	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0xC, 0x3, 0x1, 0x3
 	delay 0x1
 	createsprite gCoreEnforcerImpactTemplate, ANIM_TARGET, 3, 0x11, 0x3, 0x1, 0x3
 	delay 0x1
@@ -13579,7 +13579,7 @@ Move_PHOTON_GEYSER::
 	unloadspritegfx ANIM_TAG_YELLOW_BALL @confuse ray (for zap cannon)
 	unloadspritegfx ANIM_TAG_BLACK_BALL_2 @zap cannon
 	unloadspritegfx ANIM_TAG_AIR_WAVE_2 @white/gray color
-    @Shoot beam to the sky
+	@Shoot beam to the sky
 	loadspritegfx ANIM_TAG_STRAIGHT_BEAM
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x6, 0x0, 0x10, 0x43FF  @Light yellow
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 4, 0, 96, 1
@@ -13701,7 +13701,7 @@ Move_SNIPE_SHOT::
 	loadspritegfx ANIM_TAG_LEER
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0, 0, 16, 0 @;Black
 	waitforvisualfinish
- 	createsprite gLeerSpriteTemplate, ANIM_TARGET, 2, 0x18, -12
+	createsprite gLeerSpriteTemplate, ANIM_TARGET, 2, 0x18, -12
 	playsewithpan SE_M_DETECT, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	delay 0x20
