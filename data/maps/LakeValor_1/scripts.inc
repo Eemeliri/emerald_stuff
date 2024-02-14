@@ -195,7 +195,7 @@ lakeOfValor_Text_MayTimeToHeadBack:
 
 lakeOfValor_Text_BrendanlakeOfValorPokemon:
 	.string "Brendan: Okay, so it's this one and\n"
-	.string "that one that live on Route 103…$"
+	.string "that one that live on Lake of Valor…$"
 
 lakeOfValor_Text_BrendanLetsBattle:
 	.string "Hey, it's {PLAYER}!\p"

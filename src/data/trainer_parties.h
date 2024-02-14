@@ -6515,6 +6515,7 @@ static const struct TrainerMon sParty_BrendanRoute103Mudkip[] = {
     {
     .lvl = 5,
     .species = SPECIES_CHIKORITA,
+    .moves = {MOVE_TACKLE, MOVE_GROWL}
     }
 };
 
@@ -6558,6 +6559,7 @@ static const struct TrainerMon sParty_BrendanRoute103Treecko[] = {
     {
     .lvl = 5,
     .species = SPECIES_TORCHIC,
+    .moves = {MOVE_TACKLE, MOVE_GROWL}
     }
 };
 
@@ -6601,6 +6603,7 @@ static const struct TrainerMon sParty_BrendanRoute103Torchic[] = {
     {
     .lvl = 5,
     .species = SPECIES_PIPLUP,
+    .moves = {MOVE_POUND, MOVE_GROWL}
     }
 };
 
@@ -6644,6 +6647,7 @@ static const struct TrainerMon sParty_MayRoute103Mudkip[] = {
     {
     .lvl = 5,
     .species = SPECIES_CHIKORITA,
+    .moves = {MOVE_TACKLE, MOVE_GROWL}
     }
 };
 
@@ -6687,6 +6691,7 @@ static const struct TrainerMon sParty_MayRoute103Treecko[] = {
     {
     .lvl = 5,
     .species = SPECIES_TORCHIC,
+    .moves = {MOVE_TACKLE, MOVE_GROWL}
     }
 };
 
@@ -6730,6 +6735,7 @@ static const struct TrainerMon sParty_MayRoute103Torchic[] = {
     {
     .lvl = 5,
     .species = SPECIES_PIPLUP,
+    .moves = {MOVE_POUND, MOVE_GROWL}
     }
 };
 
