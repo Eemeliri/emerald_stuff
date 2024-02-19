@@ -3,7 +3,6 @@
 #include "task.h"
 #include "main.h"
 #include "overworld.h"
-#include "dexnav.h"
 #include "field_weather.h"
 #include "palette.h"
 #include "pokemon_storage_system.h"
@@ -42,6 +41,7 @@ static bool32 SetActivePokenavMenu(u32);
 static bool32 AnyMonHasRibbon(void);
 static void InitPokenavResources(struct PokenavResources *);
 static void InitKeys_(void);
+static void FreePokenavResources(void);
 static void VBlankCB_Pokenav(void);
 static void CB2_Pokenav(void);
 static void Task_RunLoopedTask_LinkMode(u8);
@@ -49,7 +49,7 @@ static void Task_RunLoopedTask(u8);
 static void Task_Pokenav(u8);
 static void CB2_InitPokenavForTutorial(void);
 
-const struct PokenavCallbacks PokenavMenuCallbacks[17] =
+const struct PokenavCallbacks PokenavMenuCallbacks[15] =
 {
     [POKENAV_MAIN_MENU - POKENAV_MENU_IDS_START] =
     {
@@ -361,7 +361,7 @@ static void CB2_InitPokenavForTutorial(void)
     }
 }
 
-void FreePokenavResources(void)
+static void FreePokenavResources(void)
 {
     int i;
 

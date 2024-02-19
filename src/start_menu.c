@@ -345,8 +345,11 @@ static void BuildNormalStartMenu(void)
     
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
-         if (!MapHasNoEncounterData() && FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
-                AddStartMenuAction(MENU_ACTION_DEXNAV);
+    if (!MapHasNoEncounterData() && FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_DEXNAV);
+
+    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
@@ -367,10 +370,12 @@ static void BuildDebugStartMenu(void)
     AddStartMenuAction(MENU_ACTION_DEBUG);
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
-        if (!MapHasNoEncounterData() && FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
-                AddStartMenuAction(MENU_ACTION_DEXNAV);
+    if (!MapHasNoEncounterData() && FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_DEXNAV);
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
+    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+        AddStartMenuAction(MENU_ACTION_POKENAV);
     AddStartMenuAction(MENU_ACTION_BAG);
     AddStartMenuAction(MENU_ACTION_QUEST_MENU);
     AddStartMenuAction(MENU_ACTION_PLAYER);

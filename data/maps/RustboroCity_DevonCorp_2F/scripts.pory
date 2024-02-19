@@ -214,13 +214,13 @@ RustboroCity_DevonCorp_2F_Text_WeFinallyMadeNewBalls:
 	.string "Please give them a try!$"
 
 RustboroCity_DevonCorp_2F_Text_IMadePokenav:
-	.string "I made the Devnav!\p"
+	.string "I made the Pokénav!\p"
 	.string "As an engineer, I feel blessed to have\n"
 	.string "made something so great!$"
 
 RustboroCity_DevonCorp_2F_Text_WowThatsAPokenav:
 	.string "Oh, wow!\n"
-	.string "That's a Devnav!\p"
+	.string "That's a Pokénav!\p"
 	.string "It came about as a result of our\n"
 	.string "President's desire to learn about\l"
 	.string "the feelings of Pokémon.$"
@@ -289,7 +289,7 @@ RustboroCity_DevonCorp_2F_Text_TooManyPokemon:
 
 RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature:
 	.string "I'm trying to develop a new feature\n"
-	.string "for the Devnav…\p"
+	.string "for the Pokénav…\p"
 	.string "But it's not going well.$"
 
 RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext:
@@ -307,7 +307,7 @@ script dreamResearcherQuest {
     returnqueststate(QUEST_9)
     switch(var(VAR_RESULT)) {
         case 1:
-            msgbox(format("I'm trying to develop a new program that can analyze dreams of Pokémon. However I'm missing a test subject. Could you help me find an Abra for my research? I can reward you for the trouble."), MSGBOX_YESNO)
+            msgbox(format("I'm trying to develop a new program that can analyze dreams of Pokémon. However I'm missing a test subject. Could you help me find an Abra for my research? I can reward you with our latest piece of technology, a Dexnav."), MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES) {
                 msgbox(format("Many thanks! I think you can find wild Abras in Route 116."))
                 startquest(QUEST_9)
@@ -333,7 +333,10 @@ script dreamResearcherQuest {
                 fadescreen(FADE_FROM_BLACK)
                 msgbox(format("It's done, and with great results thanks to you! The time just flies by when you're working, doesn't it?"))
                 msgbox(format("You can have your Abra back, and here's the promised reward."))
-                giveitem(ITEM_WHIPPED_DREAM)
+				playfanfare(MUS_OBTAIN_ITEM)
+				msgbox(format("{PLAYER} received a Pokénav."))
+                setflag(FLAG_SYS_DEXNAV_GET)
+				waitfanfare
                 msgbox(format("One day I hope to be able to enter the dreams of Pokémons!"))
                 completequest(QUEST_9)
             } else {
