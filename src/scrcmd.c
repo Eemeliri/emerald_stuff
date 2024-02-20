@@ -1592,8 +1592,8 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u16 species = VarGet(ScriptReadHalfword(ctx));
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
-
-    ScriptMenu_ShowPokemonPic(species, x, y);
+    bool8 shiny = ScriptReadByte(ctx);
+    ScriptMenu_ShowPokemonPic(species, x, y, shiny);
     return FALSE;
 }
 
