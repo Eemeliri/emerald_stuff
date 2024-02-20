@@ -2,7 +2,7 @@ Everyone who worked on the Pret disassembly and RHH expansion
 Pawkkie - Various resources and shadows port of merrps
 quocmanh94 - HGSS berry animation
 BSBob - Map popup
-Ravepossum - Map popup, pokedex from party menu
+Ravepossum - Map popup, pokedex from party menu, showmonpic shinyness
 Voluptua - town map port
 Beniboy for helping with numerous issues during developement
 Skeli, Ghoulslash, HN, Karathan, McBoy, Greenphx, MGriffin, BSBob, Raymie Humbert, missiri and Tustin2121 for Quest Menu
