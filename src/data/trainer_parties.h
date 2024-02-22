@@ -154,16 +154,19 @@ static const struct TrainerMon sParty_GruntRusturfTunnel[] = {
     
     .lvl = 16,
     .species = SPECIES_CARVANHA,
+    .ev = TRAINER_PARTY_EVS(10, 31, 10, 10, 10, 10),
     },
     {
     
-    .lvl = 16,
+    .lvl = 17,
     .species = SPECIES_RATTATA_ALOLAN,
+    .ev = TRAINER_PARTY_EVS(10, 31, 10, 10, 10, 10),
     },
     {
     
-    .lvl = 16,
-    .species = SPECIES_ZIGZAGOON_GALARIAN,
+    .lvl = 18,
+    .species = SPECIES_LINOONE_GALARIAN,
+    .ev = TRAINER_PARTY_EVS(10, 10, 10, 10, 10, 10),
     }
 };
 
