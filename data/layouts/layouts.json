@@ -5140,6 +5140,16 @@
       "secondary_tileset": "gTileset_Underwater2",
       "border_filepath": "data/layouts/MirageUnderwater/border.bin",
       "blockdata_filepath": "data/layouts/MirageUnderwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_CITY",
+      "name": "OlivineCity_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_JohtoGeneral",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/OlivineCity/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineCity/map.bin"
     }
   ]
 }

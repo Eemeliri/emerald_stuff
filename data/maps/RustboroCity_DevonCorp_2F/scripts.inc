@@ -325,11 +325,11 @@ dreamResearcherQuest_4:
 	special CheckSpecies
 	compare VAR_RESULT, TRUE
 	goto_if_eq dreamResearcherQuest_9
-	msgbox dreamResearcherQuest_Text_11
+	msgbox dreamResearcherQuest_Text_12
 	goto dreamResearcherQuest_1
 
 dreamResearcherQuest_5:
-	msgbox dreamResearcherQuest_Text_12
+	msgbox dreamResearcherQuest_Text_13
 	goto dreamResearcherQuest_1
 
 dreamResearcherQuest_6:
@@ -354,9 +354,10 @@ dreamResearcherQuest_9:
 	msgbox dreamResearcherQuest_Text_8
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox dreamResearcherQuest_Text_9
+	msgbox dreamResearcherQuest_Text_10
 	setflag FLAG_SYS_DEXNAV_GET
 	waitfanfare
-	msgbox dreamResearcherQuest_Text_10
+	msgbox dreamResearcherQuest_Text_11
 	completequest QUEST_9
 	goto dreamResearcherQuest_1
 
@@ -405,18 +406,26 @@ dreamResearcherQuest_Text_8:
 	.string "the promised reward.$"
 
 dreamResearcherQuest_Text_9:
-	.string "{PLAYER} received a Pokénav.$"
+	.string "{PLAYER} received a Dexnav.$"
 
 dreamResearcherQuest_Text_10:
-	.string "One day I hope to be able to enter the\n"
-	.string "dreams of Pokémons!$"
+	.string "This device allows you to more\n"
+	.string "comfortably catch lots of Pokémon!\l"
+	.string "It's still in F&F alpha phase, however I\l"
+	.string "believe the president would want you to\l"
+	.string "have it.$"
 
 dreamResearcherQuest_Text_11:
+	.string "I'll continue my research and one day\n"
+	.string "hope to be able to enter the dreams of\l"
+	.string "Pokémons!$"
+
+dreamResearcherQuest_Text_12:
 	.string "Not yet? Take your time, I have hourly\n"
 	.string "wage so there's no rush. You can find\l"
 	.string "Abras in Route 116.$"
 
-dreamResearcherQuest_Text_12:
+dreamResearcherQuest_Text_13:
 	.string "Hi again! My research has been going\n"
 	.string "great and we're making great progress\l"
 	.string "on the dream research. We still can't\l"

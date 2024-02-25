@@ -69,14 +69,27 @@ graniteCaveBrockPostBattle::
 	msgbox graniteCaveBrockPostBattle_Text_1
 	msgbox graniteCaveBrockPostBattle_Text_2
 	giveegg SPECIES_GROWLITHE_HISUIAN
-	msgbox graniteCaveBrockPostBattle_Text_3
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq graniteCaveBrockPostBattle_2
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox graniteCaveBrockPostBattle_Text_4
+	waitfanfare
+graniteCaveBrockPostBattle_1:
+	msgbox graniteCaveBrockPostBattle_Text_5
 	waitmessage
 	fadescreen FADE_TO_BLACK
+	closemessage
 	removeobject 3
 	delay 60
 	fadescreen FADE_FROM_BLACK
 	release
 	end
+
+graniteCaveBrockPostBattle_2:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox graniteCaveBrockPostBattle_Text_3
+	waitfanfare
+	goto graniteCaveBrockPostBattle_1
 
 
 graniteCaveBrockSurprised:
@@ -145,4 +158,11 @@ graniteCaveBrockPostBattle_Text_2:
 	.string "anymore.$"
 
 graniteCaveBrockPostBattle_Text_3:
+	.string "{PLAYER} obtained a mysterious Egg!\n"
+	.string "It was sent to PC.$"
+
+graniteCaveBrockPostBattle_Text_4:
+	.string "{PLAYER} obtained a mysterious Egg!$"
+
+graniteCaveBrockPostBattle_Text_5:
 	.string "And with that, I bid you farewell.$"

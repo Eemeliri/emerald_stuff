@@ -1033,3 +1033,47 @@ const struct Tileset gTileset_Underwater2 =
     .metatileAttributes = gMetatileAttributes_Underwater2,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_JohtoGeneral =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_JohtoGeneral,
+    .palettes = gTilesetPalettes_JohtoGeneral,
+    .metatiles = gMetatiles_JohtoGeneral,
+    .metatileAttributes = gMetatileAttributes_JohtoGeneral,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoSecondary =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoSecondary,
+    .palettes = gTilesetPalettes_JohtoSecondary,
+    .metatiles = gMetatiles_JohtoSecondary,
+    .metatileAttributes = gMetatileAttributes_JohtoSecondary,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Sky =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Sky,
+    .palettes = gTilesetPalettes_Sky,
+    .metatiles = gMetatiles_Sky,
+    .metatileAttributes = gMetatileAttributes_Sky,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoOlivine =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoOlivine,
+    .palettes = gTilesetPalettes_JohtoOlivine,
+    .metatiles = gMetatiles_JohtoOlivine,
+    .metatileAttributes = gMetatileAttributes_JohtoOlivine,
+    .callback = NULL,
+};

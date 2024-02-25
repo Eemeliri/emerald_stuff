@@ -334,10 +334,11 @@ script dreamResearcherQuest {
                 msgbox(format("It's done, and with great results thanks to you! The time just flies by when you're working, doesn't it?"))
                 msgbox(format("You can have your Abra back, and here's the promised reward."))
 				playfanfare(MUS_OBTAIN_ITEM)
-				msgbox(format("{PLAYER} received a Pokénav."))
+				msgbox(format("{PLAYER} received a Dexnav."))
+				msgbox(format("This device allows you to more comfortably catch lots of Pokémon! It's still in F&F alpha phase, however I believe the president would want you to have it."))
                 setflag(FLAG_SYS_DEXNAV_GET)
 				waitfanfare
-                msgbox(format("One day I hope to be able to enter the dreams of Pokémons!"))
+                msgbox(format("I'll continue my research and one day hope to be able to enter the dreams of Pokémons!"))
                 completequest(QUEST_9)
             } else {
                 msgbox(format("Not yet? Take your time, I have hourly wage so there's no rush. You can find Abras in Route 116."))

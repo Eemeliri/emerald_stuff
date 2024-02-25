@@ -1121,6 +1121,9 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     {
         metLocation = METLOC_SPECIAL_EGG;
         SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
+    } else {
+        metLocation = GetCurrentRegionMapSectionId();
+        SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
     }
 
     isEgg = TRUE;

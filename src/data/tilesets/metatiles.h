@@ -261,3 +261,15 @@ const u16 gMetatileAttributes_Cave2[] = INCBIN_U16("data/tilesets/secondary/cave
 
 const u16 gMetatiles_Underwater2[] = INCBIN_U16("data/tilesets/secondary/underwater_2/metatiles.bin");
 const u16 gMetatileAttributes_Underwater2[] = INCBIN_U16("data/tilesets/secondary/underwater_2/metatile_attributes.bin");
+
+const u16 gMetatiles_JohtoGeneral[] = INCBIN_U16("data/tilesets/primary/johto_general/metatiles.bin");
+const u16 gMetatileAttributes_JohtoGeneral[] = INCBIN_U16("data/tilesets/primary/johto_general/metatile_attributes.bin");
+
+const u16 gMetatiles_JohtoSecondary[] = INCBIN_U16("data/tilesets/secondary/johto_secondary/metatiles.bin");
+const u16 gMetatileAttributes_JohtoSecondary[] = INCBIN_U16("data/tilesets/secondary/johto_secondary/metatile_attributes.bin");
+
+const u16 gMetatiles_Sky[] = INCBIN_U16("data/tilesets/primary/sky/metatiles.bin");
+const u16 gMetatileAttributes_Sky[] = INCBIN_U16("data/tilesets/primary/sky/metatile_attributes.bin");
+
+const u16 gMetatiles_JohtoOlivine[] = INCBIN_U16("data/tilesets/secondary/johto_olivine/metatiles.bin");
+const u16 gMetatileAttributes_JohtoOlivine[] = INCBIN_U16("data/tilesets/secondary/johto_olivine/metatile_attributes.bin");

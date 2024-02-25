@@ -2137,26 +2137,26 @@ static void HandleSpecialTrainerBattleEnd(void)
     case SPECIAL_BATTLE_FACTORY:
         if (gSaveBlock1Ptr->frontier.battlesCount < 0xFFFFFF)
         {
-            if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
-            {
+            //if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+            //{
                 FlagClear(FLAG_LIMIT_TO_50);
 
                 for (i = 0; i < PARTY_SIZE; i++)
                     CalculateMonStats(&gPlayerParty[i]);
-            }
+            //}
             gSaveBlock1Ptr->frontier.battlesCount++;
             if (gSaveBlock1Ptr->frontier.battlesCount % 20 == 0)
                 UpdateGymLeaderRematch();
         }
         else
         {
-            if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
-            {
+           /*  if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+            { */
                 FlagClear(FLAG_LIMIT_TO_50);
 
                 for (i = 0; i < PARTY_SIZE; i++)
                     CalculateMonStats(&gPlayerParty[i]);
-            }
+            //}
             gSaveBlock1Ptr->frontier.battlesCount = 0xFFFFFF;
         }
         break;
@@ -2210,13 +2210,13 @@ void DoSpecialTrainerBattle(void)
 {
     s32 i, j;
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
-    {
+    //if (FlagGet(FLAG_SYS_GAME_CLEAR) == TRUE)
+    //{
         FlagSet(FLAG_LIMIT_TO_50);
 
         for (j = 0; j < PARTY_SIZE; j++)
             CalculateMonStats(&gPlayerParty[j]);
-    }
+    //}
     gBattleScripting.specialTrainerBattleType = gSpecialVar_0x8004;
     switch (gSpecialVar_0x8004)
     {

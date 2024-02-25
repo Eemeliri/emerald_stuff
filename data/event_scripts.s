@@ -1217,3 +1217,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/MirageWaterway/scripts.inc"
 
 	.include "data/maps/MirageUnderwater/scripts.inc"
+
+	.include "data/maps/OlivineCity/scripts.inc"
