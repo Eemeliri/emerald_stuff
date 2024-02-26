@@ -1640,6 +1640,16 @@ const u16 gTilesetPalOverride_General01[16] = INCBIN_U16("data/tilesets/primary/
 
 const u16 gTilesetPalOverride_General05[16] = INCBIN_U16("data/tilesets/primary/general/palettes/05_over.gbapal");
 
+const u16 gTilesetPalOverride_GeneralJohto00[16] = INCBIN_U16("data/tilesets/primary/johto_general/palettes/00_over.gbapal");
+
+const u16 gTilesetPalOverride_GeneralJohto01[16] = INCBIN_U16("data/tilesets/primary/johto_general/palettes/01_over.gbapal");
+
+const u16 gTilesetPalOverride_JohtoOlivine08[16] = INCBIN_S16("data/tilesets/secondary/johto_olivine/palettes/08_over.gbapal");
+
+const u16 gTilesetPalOverride_JohtoOlivine09[16] = INCBIN_S16("data/tilesets/secondary/johto_olivine/palettes/09_over.gbapal");
+
+const u16 gTilesetPalOverride_JohtoOlivine10[16] = INCBIN_S16("data/tilesets/secondary/johto_olivine/palettes/10_over.gbapal");
+
 const u16 gTilesetPalOverride_Petalburg06[16] = INCBIN_U16("data/tilesets/secondary/petalburg/palettes/06_over.gbapal");
 
 const u16 gTilesetPalOverride_Petalburg09[16] = INCBIN_U16("data/tilesets/secondary/petalburg/palettes/09_over.gbapal");

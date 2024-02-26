@@ -17,6 +17,25 @@ const struct PaletteOverride gTilesetPalOverrides_General[] =
     },
 };
 
+const struct PaletteOverride gTilesetPalOverrides_GeneralJohto[] =
+{
+    {
+        .slot = 0,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_GeneralJohto00,
+    },
+    {
+        .slot = 1,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_GeneralJohto01,
+    },
+    {
+        .slot = 0xFF,
+    },
+};
+
 const struct PaletteOverride gTilesetPalOverrides_Petalburg[] =
 {
     {
@@ -36,6 +55,31 @@ const struct PaletteOverride gTilesetPalOverrides_Petalburg[] =
         .startHour = HOUR_EVENING,
         .endHour = HOUR_MORNING,
         .palette = gTilesetPalOverride_Petalburg12,
+    },
+    {
+        .slot = 0xFF,
+    },
+};
+
+const struct PaletteOverride gTilesetPalOverrides_JohtoOlivine[] =
+{
+    {
+        .slot = 8,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_JohtoOlivine08,
+    },
+    {
+        .slot = 9,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_JohtoOlivine09,
+    },
+    {
+        .slot = 10,
+        .startHour = HOUR_EVENING,
+        .endHour = HOUR_MORNING,
+        .palette = gTilesetPalOverride_JohtoOlivine10,
     },
     {
         .slot = 0xFF,

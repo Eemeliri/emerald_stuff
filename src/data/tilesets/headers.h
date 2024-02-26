@@ -1042,7 +1042,8 @@ const struct Tileset gTileset_JohtoGeneral =
     .palettes = gTilesetPalettes_JohtoGeneral,
     .metatiles = gMetatiles_JohtoGeneral,
     .metatileAttributes = gMetatileAttributes_JohtoGeneral,
-    .callback = NULL,
+    .callback = InitTilesetAnim_Johto_General,
+    .paletteOverrides = gTilesetPalOverrides_GeneralJohto,
 };
 
 const struct Tileset gTileset_JohtoSecondary =
@@ -1076,4 +1077,5 @@ const struct Tileset gTileset_JohtoOlivine =
     .metatiles = gMetatiles_JohtoOlivine,
     .metatileAttributes = gMetatileAttributes_JohtoOlivine,
     .callback = NULL,
+    .paletteOverrides = gTilesetPalOverrides_JohtoOlivine,
 };

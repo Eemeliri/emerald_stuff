@@ -5144,8 +5144,8 @@
     {
       "id": "LAYOUT_OLIVINE_CITY",
       "name": "OlivineCity_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 59,
+      "height": 54,
       "primary_tileset": "gTileset_JohtoGeneral",
       "secondary_tileset": "gTileset_JohtoOlivine",
       "border_filepath": "data/layouts/OlivineCity/border.bin",

@@ -7,6 +7,7 @@ void UpdateTilesetAnimations(void);
 void TransferTilesetAnimsBuffer(void);
 
 void InitTilesetAnim_General(void);
+void InitTilesetAnim_Johto_General(void);
 void InitTilesetAnim_Desert(void);
 void InitTilesetAnim_Desert_Pyramid(void);
 void InitTilesetAnim_Petalburg(void);

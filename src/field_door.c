@@ -49,8 +49,10 @@ static const u16 sDoorNullPalette5[16] = {};
 static const u8 sDoorAnimTiles_General[] = INCBIN_U8("graphics/door_anims/general.4bpp");
 static const u16 sDoorNullPalette6[16] = {};
 static const u8 sDoorAnimTiles_PokeCenter[] = INCBIN_U8("graphics/door_anims/poke_center.4bpp");
+static const u8 sDoorAnimTiles_PokeCenterJohto[] = INCBIN_U8("graphics/door_anims/poke_center_johto.4bpp");
 static const u8 sDoorAnimTiles_Gym[] = INCBIN_U8("graphics/door_anims/gym.4bpp");
 static const u8 sDoorAnimTiles_PokeMart[] = INCBIN_U8("graphics/door_anims/poke_mart.4bpp");
+static const u8 sDoorAnimTiles_PokeMartJohto[] = INCBIN_U8("graphics/door_anims/poke_center_johto.4bpp");
 static const u8 sDoorAnimTiles_RustboroTan[] = INCBIN_U8("graphics/door_anims/rustboro_tan.4bpp");
 static const u16 sDoorNullPalette7[16] = {};
 static const u8 sDoorAnimTiles_RustboroGray[] = INCBIN_U8("graphics/door_anims/rustboro_gray.4bpp");
@@ -201,8 +203,10 @@ static const struct DoorAnimFrame sBigDoorCloseAnimFrames[] =
 
 static const u8 sDoorAnimPalettes_General[] = {1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokeCenter[] = {1, 1, 1, 1};
+static const u8 sDoorAnimPalettes_PokeCenterJohto[] = {1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_Gym[] = {5, 5, 5, 5};
 static const u8 sDoorAnimPalettes_PokeMart[] = {1, 1, 1, 1};
+static const u8 sDoorAnimPalettes_PokeMartJohto[] = {1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_Littleroot[] = {10, 10, 6, 6, 6, 6, 6, 6};
 static const u8 sDoorAnimPalettes_BirchsLab[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_RustboroTan[] = {11, 11, 11, 11, 11, 11, 11, 11};
@@ -316,6 +320,8 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_DewfordDojoBuilding_DoorLeft,                 DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_DewfordDojoLeft, sDoorAnimPalettes_DewfordDojoLeft},
     {METATILE_DewfordDojoBuilding_DoorRight,                DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_DewfordDojoRight, sDoorAnimPalettes_DewfordDojoRight},
     {METATILE_DewfordDojo_Door,                             DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_DewfordDojo, sDoorAnimPalettes_DewfordDojoDoor},
+    {METATILE_JohtoGeneral_Door_JohtoPokecenter,            DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_PokeCenterJohto, sDoorAnimPalettes_PokeCenterJohto},
+    {METATILE_JohtoGeneral_Door_JohtoMart,                  DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_PokeCenterJohto, sDoorAnimPalettes_PokeCenterJohto},
     {},
 };
 
