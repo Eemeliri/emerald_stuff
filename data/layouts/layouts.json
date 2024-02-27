@@ -5150,6 +5150,16 @@
       "secondary_tileset": "gTileset_JohtoOlivine",
       "border_filepath": "data/layouts/OlivineCity/border.bin",
       "blockdata_filepath": "data/layouts/OlivineCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE40",
+      "name": "Route40_Layout",
+      "width": 30,
+      "height": 70,
+      "primary_tileset": "gTileset_JohtoGeneral",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/Route40/border.bin",
+      "blockdata_filepath": "data/layouts/Route40/map.bin"
     }
   ]
 }

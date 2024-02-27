@@ -76,6 +76,7 @@
 #define MAP_RUGGED_ROAD              (67 | (0 << 8))
 #define MAP_MIRAGE_WATERWAY          (68 | (0 << 8))
 #define MAP_OLIVINE_CITY             (69 | (0 << 8))
+#define MAP_ROUTE40                  (70 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
