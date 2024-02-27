@@ -1389,20 +1389,31 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
-        if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10) == TRUE)
+        u16 premierBallsToAdd = tItemCount / 10;
+        if (premierBallsToAdd >= 1
+         && ((I_PREMIER_BALL_BONUS <= GEN_7 && tItemId == ITEM_POKE_BALL)
+          || (I_PREMIER_BALL_BONUS >= GEN_8 && (ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS))))
         {
-            if (tItemCount > 19)
-            {
-                BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
-            }
-            else
-            {
-                BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
-            }
+            u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_PREMIER_BALL);
+            if (spaceAvailable < premierBallsToAdd)
+                premierBallsToAdd = spaceAvailable;
         }
         else
+        {
+            premierBallsToAdd = 0;
+        }
+
+        PlaySE(SE_SELECT);
+        AddBagItem(ITEM_PREMIER_BALL, premierBallsToAdd);
+        if (premierBallsToAdd > 0)
+        {
+            ConvertIntToDecimalStringN(gStringVar1, premierBallsToAdd, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+            BuyMenuDisplayMessage(taskId, (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall), BuyMenuReturnToItemList);
+        }
+        else
+        {
             BuyMenuReturnToItemList(taskId);
+        }
     }
 }
 
