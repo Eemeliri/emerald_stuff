@@ -1,4 +1,5 @@
 Everyone who worked on the Pret disassembly and RHH expansion
+TrainerX493 and HunarPG - Glazed's Johto tiles
 Pawkkie - Various resources and shadows port of merrps
 quocmanh94 - HGSS berry animation
 BSBob - Map popup

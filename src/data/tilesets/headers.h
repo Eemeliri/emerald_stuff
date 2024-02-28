@@ -1079,3 +1079,69 @@ const struct Tileset gTileset_JohtoOlivine =
     .callback = NULL,
     .paletteOverrides = gTilesetPalOverrides_JohtoOlivine,
 };
+
+const struct Tileset gTileset_JohtoCave =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_JohtoCave,
+    .palettes = gTilesetPalettes_JohtoCave,
+    .metatiles = gMetatiles_JohtoCave,
+    .metatileAttributes = gMetatileAttributes_JohtoCave,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoCave2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoCave2,
+    .palettes = gTilesetPalettes_JohtoCave2,
+    .metatiles = gMetatiles_JohtoCave2,
+    .metatileAttributes = gMetatileAttributes_JohtoCave2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoBuilding =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_JohtoBuilding,
+    .palettes = gTilesetPalettes_JohtoBuilding,
+    .metatiles = gMetatiles_JohtoBuilding,
+    .metatileAttributes = gMetatileAttributes_JohtoBuilding,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_building =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_building,
+    .palettes = gTilesetPalettes_johto_building,
+    .metatiles = gMetatiles_johto_building,
+    .metatileAttributes = gMetatileAttributes_johto_building,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_pokecenter =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_pokecenter,
+    .palettes = gTilesetPalettes_johto_pokecenter,
+    .metatiles = gMetatiles_johto_pokecenter,
+    .metatileAttributes = gMetatileAttributes_johto_pokecenter,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_pokemart =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_pokemart,
+    .palettes = gTilesetPalettes_johto_pokemart,
+    .metatiles = gMetatiles_johto_pokemart,
+    .metatileAttributes = gMetatileAttributes_johto_pokemart,
+    .callback = NULL,
+};
