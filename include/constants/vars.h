@@ -274,7 +274,7 @@
 #define VAR_HALL_OF_FAMES                    0x40FE // How many times made to Hall of fame
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
-#define VAR_NEW_1                            0x4100 // Unused Var
+#define VAR_JOHTO_INTRODUCTION_STATE         0x4100 // Track the johto introduction phase
 #define VAR_NEW_2                            0x4101 // Unused Var
 #define VAR_NEW_3                            0x4102 // Unused Var
 #define VAR_NEW_4                            0x4103 // Unused Var

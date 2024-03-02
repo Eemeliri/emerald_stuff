@@ -5,7 +5,7 @@ mapscripts MarketHarbor_MapScripts {
 script harborTourist {
     lock
     faceplayer
-    msgbox(format("I'm currently visiting Hoenn with my girlfriend. We've lived in Alola for our whole lives, but decided recently to start travelling the world."))
+    msgbox(format("I'm currently visiting Hoenn with my girlfriend. We've lived in Johto for our whole lives, but decided recently to start travelling the world."))
     msgbox(format("Have you visited any other regions?"))
     waitmessage
     release
@@ -15,7 +15,7 @@ script harborTourist {
 script harborForeman {
     lock
     faceplayer
-    msgbox(format("The ship experienced some technical difficulties during the last trip to Hoenn from Alola."))
+    msgbox(format("The ship experienced some technical difficulties during the last trip to Hoenn from Johto."))
     msgbox(format("We're making sure that everything is functional for the return trip."))
     waitmessage
     release
@@ -34,8 +34,17 @@ script harborResearcher {
 script harborFerryman {
     lock
     faceplayer
-    msgbox(format("Alola! We're currently conducting maintenance work for the ship. Come back later!"))
-    waitmessage
+    if (var(VAR_JOHTO_INTRODUCTION_STATE) == 0) {
+        msgbox(format("Hello! We're currently conducting maintenance work for the ship. Come back a bit later!"))
+        waitmessage
+        
+    }
+    if (var(VAR_JOHTO_INTRODUCTION_STATE) == 1) {
+        msgbox(format("Hello! We're now hosting a banquet at the S.S Anne before returning to Johto. May I see your ticket?"))
+        msgbox(format("{PLAYER} flashed the S.S Ticket!"))
+        msgbox(format("Great! Welcome aboard!"))
+        
+    }
     release
     end
 }

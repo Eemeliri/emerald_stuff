@@ -291,3 +291,6 @@ const u16 gMetatileAttributes_johto_pokecenter[] = INCBIN_U16("data/tilesets/sec
 
 const u16 gMetatiles_johto_pokemart[] = INCBIN_U16("data/tilesets/secondary/johto_pokemart/metatiles.bin");
 const u16 gMetatileAttributes_johto_pokemart[] = INCBIN_U16("data/tilesets/secondary/johto_pokemart/metatile_attributes.bin");
+
+const u16 gMetatiles_SSAnne[] = INCBIN_U16("data/tilesets/secondary/ssanne/metatiles.bin");
+const u16 gMetatileAttributes_SSAnne[] = INCBIN_U16("data/tilesets/secondary/ssanne/metatile_attributes.bin");

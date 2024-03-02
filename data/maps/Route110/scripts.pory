@@ -1,4 +1,4 @@
-
+raw `
 .set LOCALID_CHALLENGE_BIKER, 21
 .set LOCALID_RIVAL, 28
 .set LOCALID_RIVAL_ON_BIKE, 29
@@ -993,22 +993,16 @@ Route110_Text_KeepAnEyeOutForRival:
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"
 
-Route110_Electrikes::
-	lockall
-	faceplayer
-	playmoncry SPECIES_ELECTRIKE, CRY_MODE_NORMAL
-	msgbox Route110_Electrikes_Text_0
-	waitmoncry
-	msgbox Route110_Electrikes_Text_1
-	waitmessage
-	releaseall
-	end
+`
 
-
-Route110_Electrikes_Text_0:
-	.string "Elektriik!$"
-
-Route110_Electrikes_Text_1:
-	.string "The Elektrikes seem to be agitated and\n"
-	.string "unwilling to move, perhaps it would be\l"
-	.string "best to come back later...$"
+script Route110_Electrikes {
+    lockall
+    faceplayer
+    playmoncry(SPECIES_ELECTRIKE, CRY_MODE_NORMAL)
+    msgbox(format("Elektriik!"))
+    waitmoncry
+    msgbox(format("The Elektrikes seem to be agitated and unwilling to move, perhaps it would be best to come back later..."))
+    waitmessage
+    releaseall
+    end
+}

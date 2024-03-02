@@ -1221,3 +1221,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/OlivineCity/scripts.inc"
 
 	.include "data/maps/Route40/scripts.inc"
+
+	.include "data/maps/SSAnne/scripts.inc"
+
+	.include "data/maps/SSKanne/scripts.inc"
+
+	.include "data/maps/SSAnne_rooms/scripts.inc"

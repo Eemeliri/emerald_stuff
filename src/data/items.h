@@ -11596,8 +11596,8 @@ const struct Item gItemsInfo[] =
         .price = 0,
         .description = COMPOUND_STRING(
             "The ticket required\n"
-            "for sailing on a\n"
-            "ferry."),
+            "for boarding ferry\n"
+            "in Slateport Market."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,

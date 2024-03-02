@@ -1,0 +1,126 @@
+mapscripts SSAnne_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(setAquaMemeberGfxAnne)
+    }
+}
+
+script setAquaMemeberGfxAnne {
+    setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_WOMAN_4)
+}
+
+script ssAnneDoorkeeper {
+
+}
+
+script ssAnneHealerDialogue {
+    lock
+    faceplayer
+    msgbox(format("You can use this room to rest your Pokémon and yourself."))
+    release
+    end
+}
+
+script ssAnneStorageGuard {
+    lock
+    faceplayer
+    msgbox(format("Sorry, but only authorized personel may enter the storage."))
+    release
+    end
+}
+
+script ssAnneSailor {
+    lock
+    faceplayer
+    msgbox(format("The banquet is almost over, but there are still multiple trainers in here looking for a fight."))
+    release
+    end
+}
+
+script ssAnneKid {
+    lock
+    faceplayer
+    msgbox(format("I had lots of fun visiting Hoenn, but I can't wait to get back home and play with my partner Misdreavus again!"))
+    release
+    end
+}
+
+script ssAnneArtist {
+
+}
+
+script ssAnneGameboykid {
+
+}
+
+script ssAnnegirl1 {
+
+}
+
+script ssAnneTrainerBoy {
+
+}
+
+script ssAnneTrainerPsychic {
+
+}
+
+script ssAnneTrainerWoman {
+
+}
+
+script ssAnneWindow {
+
+}
+
+script ssAnneBinoculars {
+
+}
+
+script ssAnneAquaGrunt {
+    lock
+    faceplayer
+    delay(60)
+    applymovement(10, aquaGruntSpinAnne)
+    waitmovement(10)
+    removeobject(10)
+    setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_MAGMA_MEMBER_F)
+    addobject(10)
+    applymovement(10, aquaGruntSpinAnne2)
+    waitmovement(10)
+    faceplayer
+    msgbox("hi")
+    release
+    end
+}
+
+movement aquaGruntSpinAnne {
+    face_up
+	delay_2
+	face_left
+	delay_2
+	face_down
+	delay_2
+	face_right
+	delay_2
+    face_up
+	delay_2
+	face_left
+	delay_2
+	step_end
+}
+
+movement aquaGruntSpinAnne2 {
+    face_down
+	delay_2
+	face_right
+	delay_2
+    face_up
+	delay_2
+	face_left
+	delay_2
+	face_down
+	delay_2
+	face_right
+	delay_2
+	step_end
+}

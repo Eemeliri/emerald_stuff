@@ -1562,8 +1562,8 @@
 #define FLAG_UNUSED_0x91E                           (SYSTEM_FLAGS + 0xBE) // Unused Flag
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
-#define FLAG_NEW_FLAG1                                   (SYSTEM_FLAGS + 0xC0) // Unused Flag
-#define FLAG_NEW_FLAG2                                   (SYSTEM_FLAGS + 0xC1) // Unused Flag
+#define FLAG_SS_ANNE_GRUNT_1                             (SYSTEM_FLAGS + 0xC0) // Flag for hiding the storage room guard after revealing the aqua grunt
+#define FLAG_SS_ANNE_GRUNT_2                            (SYSTEM_FLAGS + 0xC1) // Flag for hiding the aqua grunt after being found in the storage area?
 #define FLAG_NEW_FLAG3                                   (SYSTEM_FLAGS + 0xC2) // Unused Flag
 #define FLAG_NEW_FLAG4                                   (SYSTEM_FLAGS + 0xC3) // Unused Flag
 #define FLAG_NEW_FLAG5                                   (SYSTEM_FLAGS + 0xC4) // Unused Flag

@@ -1145,3 +1145,14 @@ const struct Tileset gTileset_johto_pokemart =
     .metatileAttributes = gMetatileAttributes_johto_pokemart,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_SSAnne =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SSAnne,
+    .palettes = gTilesetPalettes_SSAnne,
+    .metatiles = gMetatiles_SSAnne,
+    .metatileAttributes = gMetatileAttributes_SSAnne,
+    .callback = NULL,
+};

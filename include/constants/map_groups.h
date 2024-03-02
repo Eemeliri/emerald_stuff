@@ -457,6 +457,9 @@
 #define MAP_RUGGED_CAVE3           (6 | (25 << 8))
 #define MAP_DARK_CAVE              (7 | (25 << 8))
 #define MAP_MIRAGE_UNDERWATER      (8 | (25 << 8))
+#define MAP_SSANNE                 (9 | (25 << 8))
+#define MAP_SSKANNE                (10 | (25 << 8))
+#define MAP_SSANNE_ROOMS           (11 | (25 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (26 << 8))

@@ -487,7 +487,10 @@
     "RuggedCave2",
     "RuggedCave3",
     "DarkCave",
-    "MirageUnderwater"
+    "MirageUnderwater",
+    "SSAnne",
+    "SSKanne",
+    "SSAnne_rooms"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

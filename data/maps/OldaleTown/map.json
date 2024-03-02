@@ -116,8 +116,8 @@
       "x": 15,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_OLIVINE_CITY",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_SSANNE",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
