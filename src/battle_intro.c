@@ -12,15 +12,14 @@
 #include "constants/battle_partner.h"
 #include "constants/trainers.h"
 
-extern const u8 gBattleAnimBgCntSet[];
-extern const u8 gBattleAnimBgCntGet[];
-
 static void BattleIntroSlide1(u8);
 static void BattleIntroSlide2(u8);
 static void BattleIntroSlide3(u8);
 static void BattleIntroSlideLink(u8);
 static void BattleIntroSlidePartner(u8);
 static void BattleIntroNoSlide(u8);
+
+static const u8 sBattleAnimBgCnts[] = {REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT};
 
 static const TaskFunc sBattleIntroSlideFuncs[] =
 {
@@ -40,7 +39,7 @@ void SetAnimBgAttribute(u8 bgId, u8 attributeId, u8 value)
 {
     if (bgId < 4)
     {
-        u32 bgCnt = GetGpuReg(gBattleAnimBgCntSet[bgId]);
+        u32 bgCnt = GetGpuReg(sBattleAnimBgCnts[bgId]);
         switch (attributeId)
         {
         case BG_ANIM_SCREEN_SIZE:
@@ -66,7 +65,7 @@ void SetAnimBgAttribute(u8 bgId, u8 attributeId, u8 value)
             break;
         }
 
-        SetGpuReg(gBattleAnimBgCntSet[bgId], bgCnt);
+        SetGpuReg(sBattleAnimBgCnts[bgId], bgCnt);
     }
 }
 
@@ -76,7 +75,7 @@ int GetAnimBgAttribute(u8 bgId, u8 attributeId)
 
     if (bgId < 4)
     {
-        bgCnt = GetGpuReg(gBattleAnimBgCntGet[bgId]);
+        bgCnt = GetGpuReg(sBattleAnimBgCnts[bgId]);
         switch (attributeId)
         {
         case BG_ANIM_SCREEN_SIZE:
