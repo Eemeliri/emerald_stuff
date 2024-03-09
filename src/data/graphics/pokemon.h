@@ -5238,7 +5238,7 @@ const u32 gFollowMonShinyPalette_CastformSnowy[] = INCBIN_U32("graphics/pokemon/
     const u32 gMonPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/normal.gbapal.lz");
     const u32 gMonBackPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/back.4bpp.lz");
     const u32 gMonShinyPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/shiny.gbapal.lz");
-    // const u8 gMonIcon_WooperPaldean[] = INCBIN_U8("graphics/pokemon/wooper/wooper_paldean/icon.4bpp");
+    const u8 gMonIcon_WooperPaldean[] = INCBIN_U8("graphics/pokemon/wooper/wooper_paldean/icon.4bpp");
 
     const u32 gMonFrontPic_Clodsire[] = INCBIN_U32("graphics/pokemon/clodsire/front.4bpp.lz");
     const u32 gMonPalette_Clodsire[] = INCBIN_U32("graphics/pokemon/clodsire/normal.gbapal.lz");
