@@ -1227,3 +1227,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SSKanne/scripts.inc"
 
 	.include "data/maps/SSAnne_rooms/scripts.inc"
+
+	.include "data/maps/Route39/scripts.inc"

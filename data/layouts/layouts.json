@@ -5190,6 +5190,16 @@
       "secondary_tileset": "gTileset_SSAnne",
       "border_filepath": "data/layouts/SSAnne_rooms/border.bin",
       "blockdata_filepath": "data/layouts/SSAnne_rooms/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE39",
+      "name": "Route39_Layout",
+      "width": 30,
+      "height": 70,
+      "primary_tileset": "gTileset_JohtoGeneral",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/Route39/border.bin",
+      "blockdata_filepath": "data/layouts/Route39/map.bin"
     }
   ]
 }
