@@ -2102,32 +2102,7 @@ const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Draw");
 static const u8 sText_SpaceIs[] = _(" is");
 static const u8 sText_ApostropheS[] = _("'s");
 
-// For displaying names of invalid moves.
-// This is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
-static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][17] =
-{
-    [TYPE_NORMAL]   = _("a Normal move"),
-    [TYPE_FIGHTING] = _("a Fighting move"),
-    [TYPE_FLYING]   = _("a Flying move"),
-    [TYPE_POISON]   = _("a Poison move"),
-    [TYPE_GROUND]   = _("a Ground move"),
-    [TYPE_ROCK]     = _("a Rock move"),
-    [TYPE_BUG]      = _("a Bug move"),
-    [TYPE_GHOST]    = _("a Ghost move"),
-    [TYPE_STEEL]    = _("a Steel move"),
-    [TYPE_MYSTERY]  = _("a ??? move"),
-    [TYPE_FIRE]     = _("a Fire move"),
-    [TYPE_WATER]    = _("a Water move"),
-    [TYPE_GRASS]    = _("a Grass move"),
-    [TYPE_ELECTRIC] = _("an Electric move"),
-    [TYPE_PSYCHIC]  = _("a Psychic move"),
-    [TYPE_ICE]      = _("an Ice move"),
-    [TYPE_DRAGON]   = _("a Dragon move"),
-    [TYPE_DARK]     = _("a Dark move"),
-    [TYPE_FAIRY]    = _("a Fairy move"),
-};
-
-const u8 gText_BattleTourney[] = _("Battle Tourney");
+const u8 gText_BattleTourney[] = _("BATTLE TOURNEY");
 static const u8 sText_Round1[] = _("Round 1");
 static const u8 sText_Round2[] = _("Round 2");
 static const u8 sText_Semifinal[] = _("Semifinal");
@@ -2980,7 +2955,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
         if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
          && !IsZMove(gBattleMsgDataPtr->currentMove)
          && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-            StringCopy(gBattleTextBuff3, sATypeMove_Table[*(&gBattleStruct->stringMoveType)]);
+            StringCopy(gBattleTextBuff3, gTypesInfo[*(&gBattleStruct->stringMoveType)].generic);
         else
             StringCopy(gBattleTextBuff3, GetMoveName(gBattleMsgDataPtr->currentMove));
         stringPtr = sText_AttackerUsedX;
@@ -3418,7 +3393,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
                  && !IsZMove(gBattleMsgDataPtr->currentMove)
                  && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-                    toCpy = sATypeMove_Table[gBattleStruct->stringMoveType];
+                    toCpy = gTypesInfo[gBattleStruct->stringMoveType].generic;
                 else
                     toCpy = GetMoveName(gBattleMsgDataPtr->currentMove);
                 break;
@@ -3426,7 +3401,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 if (gBattleMsgDataPtr->originallyUsedMove >= MOVES_COUNT
                  && !IsZMove(gBattleMsgDataPtr->currentMove)
                  && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-                    toCpy = sATypeMove_Table[gBattleStruct->stringMoveType];
+                    toCpy = gTypesInfo[gBattleStruct->stringMoveType].generic;
                 else
                     toCpy = GetMoveName(gBattleMsgDataPtr->originallyUsedMove);
                 break;
@@ -3810,7 +3785,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcID += 3;
             break;
         case B_BUFF_TYPE: // type name
-            StringAppend(dst, gTypeNames[src[srcID + 1]]);
+            StringAppend(dst, gTypesInfo[src[srcID + 1]].name);
             srcID += 2;
             break;
         case B_BUFF_MON_NICK_WITH_PREFIX: // poke nick with prefix
