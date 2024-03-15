@@ -466,7 +466,6 @@ static void Task_ShopMenu(u8 taskId)
 }
 
 #define tItemCount  data[1]
-#define tItemId     data[5]
 #define tListTaskId data[7]
 #define tCallbackHi data[8]
 #define tCallbackLo data[9]
