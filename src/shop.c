@@ -1217,7 +1217,8 @@ static void Task_BuyMenuTryBuyingItem(u8 taskId)
             return;
         }
     }
-    else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
+
+    if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
     {
         PlaySE(SE_BOO);
         gTasks[taskId].data[0] = 70;
