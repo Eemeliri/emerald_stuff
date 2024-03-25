@@ -168,6 +168,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y);
 static void PrintMoneyLocal(u8 windowId, u8 y, u32 amount, u8 width, u8 colorIdx, bool32 copy);
 static void UpdateItemData(void);
+static void Task_ReturnToItemListWaitMsg(u8 taskId);
 
 static const u8 sGridPosX[] = { (120 + 16), (160 + 16), (200 + 16) };
 static const u8 sGridPosY[] = { (24 + 16), (64 + 16) };
@@ -1370,7 +1371,8 @@ static void BuyMenuTryMakePurchase(u8 taskId)
         }
         else
         {
-            BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, BuyMenuReturnToItemList);
+            gTasks[taskId].data[0] = 20;
+            BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, Task_ReturnToItemListWaitMsg);
         }
     }
     else
@@ -1384,7 +1386,8 @@ static void BuyMenuTryMakePurchase(u8 taskId)
         }
         else
         {
-            BuyMenuDisplayMessage(taskId, gText_SpaceForVar1Full, BuyMenuReturnToItemList);
+            gTasks[taskId].data[0] = 20;
+            BuyMenuDisplayMessage(taskId, gText_SpaceForVar1Full, Task_ReturnToItemListWaitMsg);
         }
     }
 }
