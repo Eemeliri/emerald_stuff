@@ -104,7 +104,7 @@ struct ShopData
     u16 itemsShowed;
     u16 selectedRow;
     u16 scrollOffset;
-    u8 maxQuantity;
+    u16 maxQuantity;
     u8 scrollIndicatorsTaskId;
     u8 iconSlot;
     u8 itemSpriteIds[2];
@@ -1030,7 +1030,7 @@ static void BuyMenuInitWindows(void)
         u16 quantity = CountTotalItemQuantityInBag(item);
         if (ItemId_GetPocket(item) == POCKET_TM_HM)
         {
-            const u8 *move = gMoveNames[ItemIdToBattleMoveId(item)];
+            const u8 *move = GetMoveName(ItemIdToBattleMoveId(item));
             ReformatItemDescription(0, gStringVar2);
             desc = gStringVar2;
             BuyMenuPrint(WIN_MULTI, move, GetStringRightAlignXOffset(FONT_SMALL, move, 80), 0, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
@@ -1146,7 +1146,7 @@ static void UpdateItemData(void)
             u16 quantity = CountTotalItemQuantityInBag(item);
             if (ItemId_GetPocket(item) == POCKET_TM_HM && item != ITEM_NONE)
             {
-                const u8 *move = gMoveNames[ItemIdToBattleMoveId(item)];
+                const u8 *move = GetMoveName(ItemIdToBattleMoveId(item));
                 ReformatItemDescription(i, gStringVar2);
                 desc = gStringVar2;
                 BuyMenuPrint(WIN_MULTI, move, GetStringRightAlignXOffset(FONT_SMALL, move, 80), 0, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
@@ -1332,7 +1332,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             ClearWindowTilemap(WIN_QUANTITY_PRICE);
             CopyItemName(sShopData->currentItemId, gStringVar1);
-            ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, BAG_ITEM_CAPACITY_DIGITS);
+            ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
             ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
             FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
             if (tItemCount >= 2)
@@ -1421,14 +1421,31 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
+        u16 premierBallsToAdd = tItemCount / 10;
+
+        if (premierBallsToAdd >= 1
+         && ((I_PREMIER_BALL_BONUS <= GEN_7 && sShopData->currentItemId == ITEM_POKE_BALL)
+          || (I_PREMIER_BALL_BONUS >= GEN_8 && (ItemId_GetPocket(sShopData->currentItemId) == POCKET_POKE_BALLS))))
+        {
+            u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_PREMIER_BALL);
+            if (spaceAvailable < premierBallsToAdd)
+                premierBallsToAdd = spaceAvailable;
+        }
+        else
+        {
+            premierBallsToAdd = 0;
+        }
+
         if (gTasks[taskId].data[0] != 20)
             PlaySE(SE_SELECT);
 
-        // Purchasing 10+ Poke Balls gets the player a Premier Ball
-        if (sShopData->currentItemId == ITEM_POKE_BALL && tItemCount >= 10 && AddBagItem(ITEM_PREMIER_BALL, 1) == TRUE)
+        AddBagItem(ITEM_PREMIER_BALL, premierBallsToAdd);
+        if (premierBallsToAdd > 0)
         {
             FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-            BuyMenuPrint(WIN_ITEM_DESCRIPTION, gText_ThrowInPremierBall, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+            ConvertIntToDecimalStringN(gStringVar1, premierBallsToAdd, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+            StringExpandPlaceholders(gStringVar2, (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall));
+            BuyMenuPrint(WIN_ITEM_DESCRIPTION, gStringVar2, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
         }
         gTasks[taskId].data[0] = 20;
         gTasks[taskId].func = Task_ReturnToItemListWaitMsg;
@@ -1456,7 +1473,7 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 
     FillWindowPixelBuffer(WIN_QUANTITY_PRICE, PIXEL_FILL(0));
     PrintMoneyLocal(WIN_QUANTITY_PRICE, 0, sShopData->totalCost, 67, COLORID_BLACK, FALSE);
-    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, BAG_ITEM_CAPACITY_DIGITS);
+    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     BuyMenuPrint(WIN_QUANTITY_PRICE, gStringVar4, 0, 1, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
     CopyWindowToVram(WIN_QUANTITY_PRICE, COPYWIN_FULL);
