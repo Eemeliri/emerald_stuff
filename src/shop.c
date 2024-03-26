@@ -864,7 +864,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     }
 
     FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-    BuyMenuPrint(WIN_ITEM_DESCRIPTION, description, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+    BuyMenuPrint(WIN_ITEM_DESCRIPTION, description, 20, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
 }
 
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
@@ -1244,7 +1244,7 @@ static void BuyMenuInitWindows(void)
     }
     CopyWindowToVram(WIN_MULTI, COPYWIN_FULL);
     FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-    BuyMenuPrint(WIN_ITEM_DESCRIPTION, desc, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+    BuyMenuPrint(WIN_ITEM_DESCRIPTION, desc, 20, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
     SetupSellerMugshot();
 }
 
@@ -1326,14 +1326,14 @@ static void UpdateItemData(void)
             BuyMenuPrint(WIN_MULTI, strip, GetStringRightAlignXOffset(FONT_SMALL, strip, 80), 4*8, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
 
         FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-        BuyMenuPrint(WIN_ITEM_DESCRIPTION, gText_QuitShopping, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+        BuyMenuPrint(WIN_ITEM_DESCRIPTION, gText_QuitShopping, 20, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
     }
     else
     {
         u32 i = GridMenu_SelectedIndex(sShopData->gridItems);
         u32 item = sMartInfo.itemList[i];
         const u8 *desc = BuyMenuGetItemDesc(i);
-        BuyMenuPrint(WIN_MULTI, BuyMenuGetItemName(i), 0, 0, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
+        BuyMenuPrint(WIN_MULTI, BuyMenuGetItemName(i), 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
 
         if (sMartInfo.martType == MART_TYPE_NORMAL)
         {
@@ -1359,7 +1359,7 @@ static void UpdateItemData(void)
             PrintMoneyLocal(WIN_MULTI, 2*8, BuyMenuGetItemPrice(i), 84, COLORID_BLACK, FALSE);
         }
         FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-        BuyMenuPrint(WIN_ITEM_DESCRIPTION, desc, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+        BuyMenuPrint(WIN_ITEM_DESCRIPTION, desc, 20, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
     }
     CopyWindowToVram(WIN_MULTI, COPYWIN_FULL);
 }
@@ -1387,7 +1387,7 @@ static void Task_WaitMessage(u8 taskId)
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *str, TaskFunc nextFunc)
 {
     StringExpandPlaceholders(gStringVar4, str);
-    BuyMenuPrint(WIN_ITEM_DESCRIPTION, gStringVar4, 4, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
+    BuyMenuPrint(WIN_ITEM_DESCRIPTION, gStringVar4, 20, 0, TEXT_SKIP_DRAW, COLORID_BLACK, TRUE);
     gTasks[taskId].func = nextFunc;
 }
 
