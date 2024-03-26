@@ -2,6 +2,7 @@ Everyone who worked on the Pret disassembly and RHH expansion
 TrainerX493 and HunarPG - Glazed's Johto tiles
 Pawkkie - Various resources and shadows port of merrps
 Archie&Mudkip - New pause menu
+Mudkip - New shop menu
 quocmanh94 - HGSS berry animation
 BSBob - Map popup
 Ravepossum - Map popup, pokedex from party menu, showmonpic shinyness
