@@ -12784,7 +12784,8 @@ const struct Item gItemsInfo[] =
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeFlute,
+        .battleUsage = EFFECT_ITEM_USE_POKE_FLUTE,
         .iconPic = gItemIcon_PokeFlute,
         .iconPalette = gItemIconPalette_PokeFlute,
     },
@@ -14060,6 +14061,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Cornerstone Mask"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_OGERPON_MASK,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
             "wield the Rock-\n"
@@ -14075,6 +14078,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Wellspring Mask"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_OGERPON_MASK,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
             "wield the Water-\n"
@@ -14090,6 +14095,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Hearthflame Mask"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_OGERPON_MASK,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
             "wield the Fire-\n"
@@ -14262,6 +14269,7 @@ const struct Item gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_FullHeal,
         .flingPower = 30,
         .iconPic = gItemIcon_JubilifeMuffin,
         .iconPalette = gItemIconPalette_JubilifeMuffin,

@@ -8,7 +8,7 @@ snoruntRuggedCave2::
 
 
 sandshrewRuggedCave2::
-	bufferspeciesname 0, SPECIES_SANDSHREW_ALOLAN
+	bufferspeciesname 0, SPECIES_SANDSHREW_ALOLA
 	return
 
 

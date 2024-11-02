@@ -58,7 +58,7 @@ script graniteCaveBrockPostBattle {
     msgbox(format("I am surprised, you are extremely skilled for a such a fresh trainer! I enjoyed that battle immensely."))
     msgbox(format("I have to get back to my work now, but I hope we meet again. It would be great to fight you at full strength once you have even more experience."))
     msgbox(format("Before I go, I would like you to have this egg, it is for a very special Pokémon that you can't find easily anymore."))
-    giveegg(SPECIES_GROWLITHE_HISUIAN)
+    giveegg(SPECIES_GROWLITHE_HISUI)
     if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
         playfanfare(MUS_OBTAIN_ITEM)
         msgbox(format("{PLAYER} obtained a mysterious Egg! It was sent to PC."))

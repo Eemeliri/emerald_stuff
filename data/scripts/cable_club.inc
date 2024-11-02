@@ -1251,7 +1251,11 @@ CableClub_OnResume:
 	specialvar VAR_0x8001, IsWirelessAdapterConnected
     goto_if_eq VAR_0x8001, FALSE, CableClub_OnResume_DisableUnionRoomNurseText
 	special InitUnionRoom
+.if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
+	return
+.else
 	end
+.endif
 
 CableClub_OnResume_DisableUnionRoomNurseText:
 	setflag FLAG_NURSE_UNION_ROOM_REMINDER

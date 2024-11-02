@@ -5,7 +5,7 @@ script snoruntRuggedCave2 {
 }
 
 script sandshrewRuggedCave2 {
-    bufferspeciesname(0, SPECIES_SANDSHREW_ALOLAN)
+    bufferspeciesname(0, SPECIES_SANDSHREW_ALOLA)
 }
 
 script swinubRuggedCave2 {

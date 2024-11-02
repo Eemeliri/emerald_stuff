@@ -41,9 +41,14 @@ REVISION     := 0
 TEST         ?= 0
 ANALYZE      ?= 0
 UNUSED_ERROR ?= 0
+DEBUG        ?= 0
 
 ifeq (check,$(MAKECMDGOALS))
   TEST := 1
+endif
+
+ifeq (debug,$(MAKECMDGOALS))
+  DEBUG := 1
 endif
 
 CPP := $(PREFIX)cpp
@@ -60,6 +65,7 @@ MAP = $(ROM:.gba=.map)
 SYM = $(ROM:.gba=.sym)
 
 TEST_OBJ_DIR_NAME := build/modern-test
+DEBUG_OBJ_DIR_NAME := build/modern-debug
 
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
@@ -88,7 +94,8 @@ ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=1
 SCRIPT := tools/poryscript/poryscript$(EXE)
 
 CC1              = $(shell $(PATH_ARMCC) --print-prog-name=cc1) -quiet
-override CFLAGS += -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init
+override CFLAGS += -mthumb -mthumb-interwork -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init
+
 ifeq ($(ANALYZE),1)
 override CFLAGS += -fanalyzer
 endif
@@ -103,6 +110,12 @@ OBJ_DIR := $(OBJ_DIR_NAME)
 LIBPATH := -L "$(dir $(shell $(PATH_ARMCC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(PATH_ARMCC) -mthumb -print-file-name=libnosys.a))" -L "$(dir $(shell $(PATH_ARMCC) -mthumb -print-file-name=libc.a))"
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
 
+ifeq ($(DEBUG),1)
+override CFLAGS += -Og -g
+else
+override CFLAGS += -O2
+endif
+
 ifeq ($(TESTELF),$(MAKECMDGOALS))
   TEST := 1
 endif
@@ -110,6 +123,10 @@ endif
 ifeq ($(TEST),1)
 OBJ_DIR := $(TEST_OBJ_DIR_NAME)
 endif
+ifeq ($(DEBUG),1)
+OBJ_DIR := $(DEBUG_OBJ_DIR_NAME)
+endif
+
 
 CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=1 -DTESTING=$(TEST)
 
@@ -148,7 +165,7 @@ MAKEFLAGS += --no-print-directory
 # Secondary expansion is required for dependency variables in object rules.
 .SECONDEXPANSION:
 
-.PHONY: all rom clean compare tidy tools check-tools mostlyclean clean-tools clean-check-tools $(TOOLDIRS) $(CHECKTOOLDIRS) libagbsyscall agbcc modern tidymodern tidynonmodern check history
+.PHONY: all rom clean compare tidy tools check-tools mostlyclean clean-tools clean-check-tools $(TOOLDIRS) $(CHECKTOOLDIRS) libagbsyscall agbcc modern tidymodern tidynonmodern check history debug
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
@@ -156,7 +173,7 @@ infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst 
 # Disable dependency scanning for clean/tidy/tools
 # Use a separate minimal makefile for speed
 # Since we don't need to reload most of this makefile
-ifeq (,$(filter-out all rom compare agbcc modern check libagbsyscall syms $(TESTELF),$(MAKECMDGOALS)))
+ifeq (,$(filter-out all rom compare agbcc modern check libagbsyscall syms $(TESTELF) debug,$(MAKECMDGOALS)))
 $(call infoshell, $(MAKE) -f make_tools.mk)
 else
 NODEP ?= 1
@@ -248,7 +265,7 @@ clean-tools:
 clean-check-tools:
 	@$(foreach tooldir,$(CHECKTOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
-mostlyclean: tidynonmodern tidymodern tidycheck
+mostlyclean: tidynonmodern tidymodern tidycheck tidydebug
 	find sound -iname '*.bin' -exec rm {} +
 	rm -f $(MID_SUBDIR)/*.s
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.rl' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
@@ -259,7 +276,7 @@ mostlyclean: tidynonmodern tidymodern tidycheck
 	rm -f $(patsubst %.pory,%.inc,$(shell find data/ -type f -name '*.pory'))
 	@$(MAKE) clean -C libagbsyscall
 
-tidy: tidymodern tidycheck
+tidy: tidymodern tidycheck tidydebug
 
 tidymodern:
 	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME)
@@ -269,6 +286,8 @@ tidycheck:
 	rm -f $(TESTELF) $(HEADLESSELF)
 	rm -rf $(TEST_OBJ_DIR_NAME)
 
+tidydebug:
+	rm -rf $(DEBUG_OBJ_DIR_NAME)
 
 include graphics_file_rules.mk
 include map_data_rules.mk
@@ -308,6 +327,11 @@ $(C_BUILDDIR)/data.o: CFLAGS += -fno-show-column -fno-diagnostics-show-caret
 
 ifeq ($(DINFO),1)
 override CFLAGS += -g
+endif
+
+ifeq ($(NOOPT),1)
+override CFLAGS := $(filter-out -O1 -Og -O2,$(CFLAGS))
+override CFLAGS += -O0
 endif
 
 # The dep rules have to be explicit or else missing files won't be reported.
@@ -447,6 +471,8 @@ agbcc:
 	@exit 1
 
 modern: all
+
+debug: all
 
 LD_SCRIPT_TEST := ld_script_test.ld
 

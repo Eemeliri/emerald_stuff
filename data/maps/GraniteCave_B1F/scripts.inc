@@ -68,7 +68,7 @@ graniteCaveBrockPostBattle::
 	msgbox graniteCaveBrockPostBattle_Text_0
 	msgbox graniteCaveBrockPostBattle_Text_1
 	msgbox graniteCaveBrockPostBattle_Text_2
-	giveegg SPECIES_GROWLITHE_HISUIAN
+	giveegg SPECIES_GROWLITHE_HISUI
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq graniteCaveBrockPostBattle_2
 	playfanfare MUS_OBTAIN_ITEM

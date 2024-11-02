@@ -141,7 +141,6 @@ const u8 gText_Store[] = _("Store");
 const u8 gMenuText_Check[] = _("Check");
 const u8 gText_None[] = _("None");
 const u8 gMenuText_Deselect[] = _("Deselect");
-const u8 gText_ThreeMarks[] = _("???");
 const u8 gText_FiveMarks[] = _("?????");
 const u8 gText_Slash[] = _("/");
 const u8 gText_OneDash[] = _("-");
@@ -198,6 +197,9 @@ const u8 gText_TheBattle[] = _("the battle");
 const u8 gText_ThePokemonList[] = _("the Pokémon list");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
+const u8 gText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
+const u8 gText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
+const u8 gText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
 
 const u8 *const gBagMenu_ReturnToStrings[] =
 {
@@ -236,14 +238,14 @@ const u8 gText_MegaStonesPocket[] = _("Mega Stones");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] = gText_ItemsPocket,
-    [MEDICINE_POCKET] = gText_MedicinePocket,
-    [BALLS_POCKET] = gText_PokeBallsPocket,
-    [BATTLEITEMS_POCKET] = gText_BattleItemsPocket,
-    [BERRIES_POCKET] = gText_BerriesPocket,
-    [MEGASTONES_POCKET] = gText_MegaStonesPocket,
-    [TMHM_POCKET]  = gText_TMHMPocket,
-    [KEYITEMS_POCKET] = gText_KeyItemsPocket
+    [ITEMS_POCKET] = COMPOUND_STRING("Items"),
+    [MEDICINE_POCKET] = COMPOUND_STRING("Medicine"),
+    [BALLS_POCKET] = COMPOUND_STRING("Pokéballs"),
+    [BATTLEITEMS_POCKET] = COMPOUND_STRING("Battle items"),
+    [BERRIES_POCKET] = COMPOUND_STRING("Berries"),
+    [MEGASTONES_POCKET] = COMPOUND_STRING("Megastones"),
+    [TMHM_POCKET]  = COMPOUND_STRING("TM/HM"),
+    [KEYITEMS_POCKET] = COMPOUND_STRING("Key items")
 };
 
 const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
@@ -862,7 +864,7 @@ const u8 gText_PkmnWasReleased[] = _("{DYNAMIC 0} was released.");
 const u8 gText_ByeByePkmn[] = _("Bye-bye, {DYNAMIC 0}!");
 const u8 gText_MarkYourPkmn[] = _("Mark your Pokémon.");
 const u8 gText_ThatsYourLastPkmn[] = _("That's your last Pokémon!");
-const u8 gText_YourPartysFull[] = _("Your party's full!");
+const u8 gText_YourPartysFull[] = _("Your party's full!{PAUSE_UNTIL_PRESS}");
 const u8 gText_YoureHoldingAPkmn[] = _("You're holding a Pokémon!");
 const u8 gText_WhichOneWillYouTake[] = _("Which one will you take?");
 const u8 gText_YouCantReleaseAnEgg[] = _("You can't release an Egg.");

@@ -54,7 +54,7 @@ EventScript_Shaymin::
 	delay 20
 	playmoncry SPECIES_SHAYMIN_SKY, CRY_MODE_ENCOUNTER
 	msgbox EventScript_Shaymin_Text_1
-	settotemboost 1, 2, 2, 2, 2, 2, 2, 0
+	SetTotemBoost 1, 2, 2, 2, 2, 2, 2, 0
 	seteventmon SPECIES_SHAYMIN_SKY, 75
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle

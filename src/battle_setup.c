@@ -642,11 +642,11 @@ void BattleSetup_StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_MEWTWO);
         break;
     case SPECIES_ZAPDOS:
-    case SPECIES_ZAPDOS_GALARIAN:
+    case SPECIES_ZAPDOS_GALAR:
     case SPECIES_MOLTRES:
-    case SPECIES_MOLTRES_GALARIAN:
+    case SPECIES_MOLTRES_GALAR:
     case SPECIES_ARTICUNO:
-    case SPECIES_ARTICUNO_GALARIAN:
+    case SPECIES_ARTICUNO_GALAR:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
         break;
     case SPECIES_AZELF:
