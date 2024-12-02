@@ -870,6 +870,18 @@ static u16 FontFunc_ShortNarrow(struct TextPrinter *textPrinter)
     return RenderText(textPrinter);
 }
 
+static u16 FontFunc_BW_Summary_Screen(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (subStruct->hasFontIdBeenSet == FALSE)
+    {
+        subStruct->fontId = FONT_BW_SUMMARY_SCREEN;
+        subStruct->hasFontIdBeenSet = TRUE;
+    }
+    return RenderText(textPrinter);
+}
+
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
@@ -883,18 +895,6 @@ void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
         subStruct->downArrowYPosIdx = 0;
         subStruct->downArrowDelay = 0;
     }
-}
-
-static u16 FontFunc_BW_Summary_Screen(struct TextPrinter *textPrinter)
-{
-    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
-
-    if (subStruct->hasFontIdBeenSet == FALSE)
-    {
-        subStruct->fontId = FONT_BW_SUMMARY_SCREEN;
-        subStruct->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
 }
 
 void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
