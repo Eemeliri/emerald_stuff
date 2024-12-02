@@ -9,6 +9,7 @@ MASKSGFXDIR := graphics/battle_anims/masks
 BATTRANSGFXDIR := graphics/battle_transitions
 TYPESGFXDIR := graphics/types
 TYPESBWGFXDIR := graphics/types_bw
+TYPESBWTERAGFXDIR := graphics/types_bw/tera
 RAYQUAZAGFXDIR := graphics/rayquaza_scene
 ROULETTEGFXDIR := graphics/roulette
 SLOTMACHINEGFXDIR := graphics/slot_machine
@@ -22,6 +23,7 @@ POKEDEXGFXDIR := graphics/pokedex
 STARTERGFXDIR := graphics/starter_choose
 NAMINGGFXDIR := graphics/naming_screen
 SPINDAGFXDIR := graphics/pokemon/spinda/spots
+TITLESCREENGFXDIR := graphics/title_screen
 
 types := none normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark fairy stellar
 contest_types := cool beauty cute smart tough
@@ -271,8 +273,12 @@ $(FONTGFXDIR)/frlg_female.fwjpnfont: $(FONTGFXDIR)/japanese_frlg_female.png
 
 
 ### Miscellaneous ###
-graphics/title_screen/pokemon_logo.gbapal: %.gbapal: %.pal
+
+$(TITLESCREENGFXDIR)/pokemon_logo.gbapal: %.gbapal: %.pal
 	$(GFX) $< $@ -num_colors 224
+
+$(TITLESCREENGFXDIR)/emerald_version.8bpp: %.8bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
 
 graphics/pokemon_jump/bg.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 63 -Wnum_tiles
@@ -390,6 +396,9 @@ $(TYPESBWGFXDIR)/move_types_bw.gbapal: $(TYPESBWGFXDIR)/move_types_bw_1.gbapal \
                                   $(TYPESBWGFXDIR)/move_types_bw_3.gbapal
 	@cat $^ >$@
 
+$(TYPESBWTERAGFXDIR)/tera_types_bw.4bpp: $(types:%=$(TYPESBWTERAGFXDIR)/%.4bpp)
+	@cat $^ >$@
+
 graphics/bag/menu.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 53 -Wnum_tiles
 
@@ -401,10 +410,6 @@ $(RAYQUAZAGFXDIR)/scene_2/bg.4bpp: %.4bpp: %.png
 
 $(RAYQUAZAGFXDIR)/scene_3/rayquaza.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 124 -Wnum_tiles
-
-$(RAYQUAZAGFXDIR)/scene_3/rayquaza_tail_fix.4bpp: $(RAYQUAZAGFXDIR)/scene_3/rayquaza_tail.4bpp
-	cp $< $@
-	head -c 12 /dev/zero >> $@
 
 $(RAYQUAZAGFXDIR)/scene_4/streaks.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 19 -Wnum_tiles

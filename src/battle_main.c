@@ -241,13 +241,13 @@ EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 EWRAM_DATA u8 gCategoryIconSpriteId = 0;
 
-void (*gPreBattleCallback1)(void);
-void (*gBattleMainFunc)(void);
-struct BattleResults gBattleResults;
-u8 gLeveledUpInBattle;
-u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
-u8 gMultiUsePlayerCursor;
-u8 gNumberOfMovesToChoose;
+COMMON_DATA void (*gPreBattleCallback1)(void) = NULL;
+COMMON_DATA void (*gBattleMainFunc)(void) = NULL;
+COMMON_DATA struct BattleResults gBattleResults = {0};
+COMMON_DATA u8 gLeveledUpInBattle = 0;
+COMMON_DATA u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT] = {0};
+COMMON_DATA u8 gMultiUsePlayerCursor = 0;
+COMMON_DATA u8 gNumberOfMovesToChoose = 0;
 
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
 {
@@ -316,6 +316,7 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
         .ball = DEFAULT_2(ITEM_POKE_BALL, __VA_ARGS__), \
     }
 
+// [TRAINER_CLASS_XYZ] = { _("name"), <money=5>, <ball=BALL_POKE> }
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
 {
     TRAINER_CLASS(TRAINER_CLASS_PKMN_TRAINER_1, "{PKMN} TRAINER"),
@@ -1846,7 +1847,20 @@ void CB2_QuitRecordedBattle(void)
         m4aMPlayStop(&gMPlayInfo_SE1);
         m4aMPlayStop(&gMPlayInfo_SE2);
         if (gTestRunnerEnabled)
+        {
+            // Clean up potentially-leaking tasks.
+            // I think these leak when the battle ends soon after a
+            // battler is fainted.
+            u8 taskId;
+            taskId = FindTaskIdByFunc(Task_PlayerController_RestoreBgmAfterCry);
+            if (taskId != TASK_NONE)
+                DestroyTask(taskId);
+            taskId = FindTaskIdByFunc(Task_DuckBGMForPokemonCry);
+            if (taskId != TASK_NONE)
+                DestroyTask(taskId);
+
             TestRunner_Battle_AfterLastTurn();
+        }
         FreeRestoreBattleData();
         FreeAllWindowBuffers();
         SetMainCallback2(gMain.savedCallback);
@@ -3894,7 +3908,6 @@ static void DoBattleIntro(void)
             gBattleStruct->eventsBeforeFirstTurnState = 0;
             gBattleStruct->switchInBattlerCounter = 0;
             gBattleStruct->overworldWeatherDone = FALSE;
-            SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
             Ai_InitPartyStruct(); // Save mons party counts, and first 2/4 mons on the battlefield.
 
             // Try to set a status to start the battle with
@@ -4019,11 +4032,11 @@ static void TryDoEventsBeforeFirstTurn(void)
     case FIRST_TURN_EVENTS_SWITCH_IN_ABILITIES:
         while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
         {
-            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
+            i = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
 
-            if (TryPrimalReversion(gBattlerAttacker))
+            if (TryPrimalReversion(i))
                 return;
-            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
+            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, i, 0, 0, 0) != 0)
                 return;
         }
         gBattleStruct->switchInBattlerCounter = 0;
@@ -4214,6 +4227,12 @@ u8 IsRunningFromBattleImpossible(u32 battler)
 {
     u32 holdEffect, i;
 
+    if (FlagGet(B_FLAG_NO_RUNNING))
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_ESCAPE;
+        return BATTLE_RUN_FORBIDDEN;
+    }
+
     if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
         holdEffect = gEnigmaBerries[battler].holdEffect;
     else
@@ -4332,18 +4351,26 @@ static void HandleTurnActionSelectionState(void)
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.
             RecordedBattle_CopyBattlerMoves(battler);
             gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
+            u32 isAiRisky = AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_RISKY; // Risky AI switches aggressively even mid battle
 
             // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {
-                if (ShouldSwitch(battler, FALSE))
+                AI_DATA->aiCalcInProgress = TRUE;
+
+                // Setup battler data
+                sBattler_AI = battler;
+                BattleAI_SetupAIData(0xF, sBattler_AI);
+
+                // Setup switching data
+                AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
+                if (ShouldSwitch(battler))
                     AI_DATA->shouldSwitch |= (1u << battler);
-                if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_RISKY) // Risky AI switches aggressively even mid battle
-                    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, TRUE);
-                else
-                    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, FALSE);
-                gBattleStruct->aiMoveOrAction[battler] = ComputeBattleAiScores(battler);
+
+                // Do scoring
+                gBattleStruct->aiMoveOrAction[battler] = BattleAI_ChooseMoveOrAction();
+                AI_DATA->aiCalcInProgress = FALSE;
             }
             // fallthrough
         case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
@@ -4568,8 +4595,9 @@ static void HandleTurnActionSelectionState(void)
                     BattleScriptExecute(BattleScript_PrintCantRunFromTrainer);
                     gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
                 }
-                else if (IsRunningFromBattleImpossible(battler) != BATTLE_RUN_SUCCESS
+                else if ((IsRunningFromBattleImpossible(battler) != BATTLE_RUN_SUCCESS
                          && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
+                         || (FlagGet(B_FLAG_NO_RUNNING) == TRUE && gBattleResources->bufferB[battler][1] == B_ACTION_RUN))
                 {
                     gSelectionBattleScripts[battler] = BattleScript_PrintCantEscapeFromBattle;
                     gBattleCommunication[battler] = STATE_SELECTION_SCRIPT;

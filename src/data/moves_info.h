@@ -1878,6 +1878,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
@@ -1899,6 +1900,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
         .zMove = { .powerOverride = 120 },
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
@@ -3625,6 +3627,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
+        .argument = 50,
         .makesContact = TRUE,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
@@ -5157,6 +5160,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
@@ -7206,7 +7210,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "The higher the user's HP,\n"
             "the more damage caused."),
-        .effect = EFFECT_ERUPTION,
+        .effect = EFFECT_POWER_BASED_ON_USER_HP,
         .power = 150,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -8183,7 +8187,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Inflicts more damage if the\n"
             "user's HP is high."),
-        .effect = EFFECT_ERUPTION,
+        .effect = EFFECT_POWER_BASED_ON_USER_HP,
         .power = 150,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -8493,7 +8497,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .type = TYPE_NORMAL,
         .accuracy = 0,
         .pp = 40,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_USER, // Targeting is handled through the script
         .priority = 0,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
@@ -9503,15 +9507,14 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Wring Out"),
         .description = sWringOutDescription,
-        .effect = EFFECT_VARY_POWER_BASED_ON_HP,
-        .power = 1,
+        .effect = EFFECT_POWER_BASED_ON_TARGET_HP,
+        .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 5,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .argument = 120,
         .makesContact = TRUE,
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
@@ -10270,6 +10273,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
+        .argument = 50,
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
@@ -11570,15 +11574,14 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Crush Grip"),
         .description = sWringOutDescription,
-        .effect = EFFECT_VARY_POWER_BASED_ON_HP,
-        .power = 1,
+        .effect = EFFECT_POWER_BASED_ON_TARGET_HP,
+        .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 5,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = 120,
         .makesContact = TRUE,
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
@@ -12220,7 +12223,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Coil"),
         .description = COMPOUND_STRING(
-            "Coils up to raise Attack\n"
+            "Coils up to raise Attack,\n"
             "Defense and Accuracy."),
         .effect = EFFECT_COIL,
         .power = 0,
@@ -13252,6 +13255,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
+        .argument = 50,
         .makesContact = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
@@ -14198,8 +14202,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Parabolic Charge"),
         .description = COMPOUND_STRING(
-            "Damages adjacent Pokémon and\n"
-            "heals up by half of it."),
+            "Damages adjacent Pokémon\n"
+            "and heals up by half of it."),
         .effect = EFFECT_ABSORB,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 65 : 50,
         .type = TYPE_ELECTRIC,
@@ -14208,6 +14212,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
@@ -14422,7 +14427,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .type = TYPE_FAIRY,
         .accuracy = 0,
         .pp = 10,
-        .target = MOVE_TARGET_ALL_BATTLERS,
+        .target = MOVE_TARGET_USER, // The targeting of Flower Shield is handled through a script
         .priority = 0,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
@@ -16758,7 +16763,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Plasma Fists"),
         .description = COMPOUND_STRING(
             "Hits with electrical fists.\n"
-            "Normal moves become Electric."),
+            "Normal moves turn Electric."),
         .effect = EFFECT_PLASMA_FISTS,
         .power = 100,
         .type = TYPE_ELECTRIC,
@@ -17117,8 +17122,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Dynamax Cannon"),
         .description = COMPOUND_STRING(
-            "Fires a strong beam. Deals\n"
-            "2x damage to Dynamaxed foes."),
+            "Unleashes core energy.\n"
+            "2x against Dynamaxed foes."),
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
         .power = 100,
         .type = TYPE_DRAGON,
@@ -17337,7 +17342,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Octolock"),
         .description = COMPOUND_STRING(
             "Traps the foe to lower Def\n"
-            "and Sp. Def fall each turn."),
+            "and Sp. Def each turn."),
         .effect = EFFECT_OCTOLOCK,
         .power = 0,
         .type = TYPE_FIGHTING,
@@ -18535,7 +18540,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "The higher the user's HP\n"
             "the more damage caused."),
-        .effect = EFFECT_ERUPTION,
+        .effect = EFFECT_POWER_BASED_ON_USER_HP,
         .power = 150,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -18639,8 +18644,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Glacial Lance"),
         .description = COMPOUND_STRING(
-            "Strikes by hurling a blizzard-\n"
-            "cloaked icicle lance at foes."),
+            "Hurls a blizzard-cloaked\n"
+            "icicle lance at foes."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 120 : 130,
         .type = TYPE_ICE,
@@ -18661,8 +18666,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Astral Barrage"),
         .description = COMPOUND_STRING(
-            "Strikes by sending a frightful\n"
-            "amount of ghosts at foes."),
+            "Sends a frightful amount\n"
+            "of small ghosts at foes."),
         .effect = EFFECT_HIT,
         .power = 120,
         .type = TYPE_GHOST,
@@ -18802,7 +18807,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .type = TYPE_FAIRY,
         .accuracy = 80,
         .pp = 5,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .windMove = TRUE,
@@ -20032,6 +20037,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
+        .argument = 50,
         .makesContact = TRUE,
         .slicingMove = TRUE,
         .healingMove = TRUE,
@@ -20333,6 +20339,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = 50,
         .thawsUser = TRUE,
         .metronomeBanned = TRUE,
         .healingMove = B_EXTRAPOLATED_MOVE_FLAGS,
@@ -20389,8 +20396,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Electro Shot"),
         .description = COMPOUND_STRING(
-            "Absorbs electricity in one turn,\n"
-            "then attacks next turn."),
+            "Gathers electricity, then\n"
+            "fires a high-voltage shot."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 130,
         .type = TYPE_ELECTRIC,
@@ -20412,8 +20419,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Tera Starstorm"),
         .description = COMPOUND_STRING(
-            "Damages all opponents if user is\n"
-            "Stellar form Terapagos."),
+            "In Terapagos's Stellar\n"
+            "Form, it hits all foes."),
         .effect = EFFECT_TERA_STARSTORM,
         .power = 120,
         .type = TYPE_NORMAL,
@@ -20525,15 +20532,14 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Hard Press"),
         .description = sWringOutDescription,
-        .effect = EFFECT_VARY_POWER_BASED_ON_HP,
-        .power = 1,
+        .effect = EFFECT_POWER_BASED_ON_TARGET_HP,
+        .power = 100,
         .type = TYPE_STEEL,
         .accuracy = 100,
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = 100,
         .makesContact = TRUE,
         .battleAnimScript = gBattleAnimMove_HardPress,
     },
@@ -20560,8 +20566,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Alluring Voice"),
         .description = COMPOUND_STRING(
-            "Confuses the target if their\n"
-            "stats were boosted this turn."),
+            "Confuses foe if its stats\n"
+            "were boosted this turn."),
         .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_FAIRY,
@@ -20613,6 +20619,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = TRUE,
         .battleAnimScript = gBattleAnimMove_SupercellSlam,
     },
 
@@ -20952,7 +20959,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_10000000_VOLT_THUNDERBOLT] =
     {
-        .name = COMPOUND_STRING("10000000 Volt Thunderbolt"),
+        .name = COMPOUND_STRING("10,000,000 Volt Thunderbolt"),
         .description = sNullDescription,
         .effect = EFFECT_HIT,
         .power = 195,

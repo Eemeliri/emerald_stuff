@@ -247,7 +247,7 @@ static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
 
 // IWRAM common
-void (*gItemUseCB)(u8, TaskFunc);
+COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
 
 static void ResetPartyMenu(void);
 static void CB2_InitPartyMenu(void);
@@ -4825,7 +4825,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         if (canHeal == TRUE)
         {
             if (hp == 0)
-            AnimatePartySlot(gPartyMenu.slotId, 1);
+                AnimatePartySlot(gPartyMenu.slotId, 1);
             PartyMenuModifyHP(taskId, gPartyMenu.slotId, 1, GetMonData(mon, MON_DATA_HP) - hp, Task_DisplayHPRestoredMessage);
             ResetHPTaskData(taskId, 0, hp);
             return;

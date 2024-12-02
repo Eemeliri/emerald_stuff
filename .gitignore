@@ -50,5 +50,6 @@ agbcc/
 *.js
 /.vs
 tools/poryscript
+/pokeemerald-*.png
 src/data/map_group_count.h
 tools/trainerproc/trainerproc
